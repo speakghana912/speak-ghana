@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Speak Ghana</title>
+    <style>
+        /* ===== MODERN COLOR PALETTE ===== */
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray-light: #F0F0F0;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--cream);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--black);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--red));
+            border-radius: 2px;
+        }
+
+        h2.center {
+            display: block;
+            text-align: center;
+        }
+
+        h2.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1.5rem;
+            color: var(--green);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.4);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #c49a6c);
+            color: var(--black);
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 163, 115, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--green);
+            color: var(--green);
+        }
+
+        .btn-outline:hover {
+            background: var(--green);
+            color: white;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .logo-text h1 span {
+            color: var(--gold);
+        }
+
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: var(--gold);
+            font-weight: 500;
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+            background: var(--green);
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            background: linear-gradient(135deg, #2A9D8F20, #D4A37320);
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== BLOG LAYOUT ===== */
+        .blog-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        /* ===== FEATURED POST ===== */
+        .featured-post {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px var(--shadow);
+            margin-bottom: 3rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .featured-image {
+            height: 400px;
+            background: linear-gradient(135deg, var(--gold), var(--green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+            position: relative;
+        }
+
+        .featured-tag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .featured-content {
+            padding: 3rem;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .featured-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-content p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        /* ===== BLOG POSTS GRID ===== */
+        .posts-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: transform 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--gold), var(--green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin: 0 0 1rem;
+            line-height: 1.4;
+        }
+
+        .blog-content p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: var(--cream);
+            color: var(--green);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .read-more {
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .read-more:hover {
+            color: var(--red);
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .sidebar-widget h3 {
+            font-size: 1.3rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .sidebar-widget h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        /* Search */
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid var(--cream);
+            border-radius: 50px;
+            font-size: 0.95rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        .search-btn {
+            background: var(--green);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-btn:hover {
+            background: var(--gold);
+            transform: scale(1.1);
+        }
+
+        /* Categories */
+        .category-list {
+            list-style: none;
+        }
+
+        .category-list li {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .category-list li:last-child {
+            border-bottom: none;
+        }
+
+        .category-list a {
+            color: var(--gray);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            transition: color 0.3s;
+        }
+
+        .category-list a:hover {
+            color: var(--green);
+        }
+
+        .category-count {
+            background: var(--cream);
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+
+        /* Popular Posts */
+        .popular-post {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .popular-post:last-child {
+            border-bottom: none;
+        }
+
+        .popular-image {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--gold), var(--green));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .popular-content h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .popular-content a {
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .popular-content a:hover {
+            color: var(--green);
+        }
+
+        .popular-date {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Tags */
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--cream);
+            color: var(--gray);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            background: var(--green);
+            color: white;
+        }
+
+        /* Newsletter Widget */
+        .newsletter-widget {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .newsletter-widget h3 {
+            color: var(--gold);
+            margin-top: 0;
+        }
+
+        .newsletter-widget p {
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-widget .search-input {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-widget .search-input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .newsletter-widget .search-btn {
+            background: var(--gold);
+            color: var(--black);
+            width: 100%;
+            border-radius: 50px;
+            padding: 1rem;
+        }
+
+        /* ===== PAGINATION ===== */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 4rem 0;
+        }
+
+        .page-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .page-link:hover,
+        .page-link.active {
+            background: var(--green);
+            color: white;
+        }
+
+        .page-dots {
+            display: flex;
+            align-items: center;
+            padding: 0 0.5rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .motto-footer {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .blog-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .featured-image {
+                height: 250px;
+            }
+            
+            .featured-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="mailto:speakghana912@gmail.com">📧 speakghana912@gmail.com</a>
+                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="images/speako.jpg" alt="Speak Ghana">
+                <div class="logo-text">
+                    <h1>Speak <span>Ghana</span></h1>
+                    <p>Reconnect. Speak. Thrive.</p>
+                </div>
+            </div>
+            <div class="motto-badge">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="learn.html">Learn</a>
+                <a href="resources.html">Resources</a>
+                <a href="contact.html">Contact</a>
+                <a href="blog.html" class="active">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="container">
+            <h1>The Speak Ghana Blog</h1>
+            <p>Insights, tips, and stories to support your language journey</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="blog-layout">
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Featured Post -->
+                <div class="featured-post">
+                    <div class="featured-image">
+                        <span class="featured-tag">Featured</span>
+                        🇬🇭
+                    </div>
+                    <div class="featured-content">
+                        <div class="featured-meta">
+                            <span>📅 March 15, 2026</span>
+                            <span>👤 by Richard Asiamah</span>
+                            <span>📁 Culture</span>
+                        </div>
+                        <h2>The Meaning Behind Adinkra Symbols: Nyansapo and the Wisdom Knot</h2>
+                        <p>Discover the deep wisdom of Ghana's sacred Adinkra symbols, and why the Nyansapo (Wisdom Knot) represents the journey of language learning and reconnecting with your roots.</p>
+                        <a href="#" class="btn btn-primary">Read Full Article →</a>
+                    </div>
+                </div>
+
+                <!-- Recent Posts Grid -->
+                <h2 class="center">Latest Articles</h2>
+                <div class="posts-grid">
+                    <!-- Post 1 -->
+                    <div class="blog-card">
+                        <div class="blog-image">🗣️</div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span>📅 March 10, 2026</span>
+                                <span>⏱ 5 min read</span>
+                            </div>
+                            <span class="blog-category">Beginner Tips</span>
+                            <h3>10 Twi Phrases Every Visitor to Ghana Should Know</h3>
+                            <p>Essential greetings and phrases to help you connect with locals during your visit to Ghana.</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+
+                    <!-- Post 2 -->
+                    <div class="blog-card">
+                        <div class="blog-image">🌍</div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span>📅 March 5, 2026</span>
+                                <span>⏱ 7 min read</span>
+                            </div>
+                            <span class="blog-category">Diaspora Stories</span>
+                            <h3>Why Learning Twi Helped Me Reconnect with My Grandmother</h3>
+                            <p>One student's emotional journey of learning Twi to speak with her Ghanaian grandmother for the first time.</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+
+                    <!-- Post 3 -->
+                    <div class="blog-card">
+                        <div class="blog-image">🎵</div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span>📅 February 28, 2026</span>
+                                <span>⏱ 6 min read</span>
+                            </div>
+                            <span class="blog-category">Culture</span>
+                            <h3>Top 10 Ghanaian Songs to Learn Twi</h3>
+                            <p>Learn Twi through music! Our favorite highlife and afrobeats tracks with lyric breakdowns.</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+
+                    <!-- Post 4 -->
+                    <div class="blog-card">
+                        <div class="blog-image">📚</div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span>📅 February 20, 2026</span>
+                                <span>⏱ 4 min read</span>
+                            </div>
+                            <span class="blog-category">Learning Tips</span>
+                            <h3>The 80/20 Method: Why You Learn Faster by Speaking More</h3>
+                            <p>Our teaching philosophy explained: why students talk 80% of class time and how it accelerates learning.</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+
+                    <!-- Post 5 -->
+                    <div class="blog-card">
+                        <div class="blog-image">👪</div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span>📅 February 15, 2026</span>
+                                <span>⏱ 5 min read</span>
+                            </div>
+                            <span class="blog-category">Vocabulary</span>
+                            <h3>Family Terms in Twi: How to Address Relatives Correctly</h3>
+                            <p>Learn the proper Twi words for family members and understand Ghanaian family structure.</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+
+                    <!-- Post 6 -->
+                    <div class="blog-card">
+                        <div class="blog-image">🧠</div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span>📅 February 8, 2026</span>
+                                <span>⏱ 8 min read</span>
+                            </div>
+                            <span class="blog-category">Culture</span>
+                            <h3>Beyond Nyansapo: 5 Adinkra Symbols and Their Meanings</h3>
+                            <p>Explore the wisdom of Sankofa, Gye Nyame, and other sacred symbols of the Akan people.</p>
+                            <a href="#" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <span class="page-dots">...</span>
+                    <a href="#" class="page-link">8</a>
+                    <a href="#" class="page-link">→</a>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Search Widget -->
+                <div class="sidebar-widget">
+                    <h3>Search</h3>
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Search articles...">
+                        <button class="search-btn">🔍</button>
+                    </div>
+                </div>
+
+                <!-- Categories Widget -->
+                <div class="sidebar-widget">
+                    <h3>Categories</h3>
+                    <ul class="category-list">
+                        <li><a href="#">Beginner Tips <span class="category-count">12</span></a></li>
+                        <li><a href="#">Culture & Traditions <span class="category-count">8</span></a></li>
+                        <li><a href="#">Diaspora Stories <span class="category-count">6</span></a></li>
+                        <li><a href="#">Vocabulary <span class="category-count">15</span></a></li>
+                        <li><a href="#">Grammar <span class="category-count">9</span></a></li>
+                        <li><a href="#">Music & Movies <span class="category-count">5</span></a></li>
+                        <li><a href="#">Student Success <span class="category-count">4</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Popular Posts Widget -->
+                <div class="sidebar-widget">
+                    <h3>Popular Posts</h3>
+                    
+                    <div class="popular-post">
+                        <div class="popular-image">🇬🇭</div>
+                        <div class="popular-content">
+                            <h4><a href="#">10 Twi Phrases Every Visitor Should Know</a></h4>
+                            <div class="popular-date">March 10, 2026</div>
+                        </div>
+                    </div>
+                    
+                    <div class="popular-post">
+                        <div class="popular-image">🧠</div>
+                        <div class="popular-content">
+                            <h4><a href="#">The Meaning of Nyansapo</a></h4>
+                            <div class="popular-date">March 15, 2026</div>
+                        </div>
+                    </div>
+                    
+                    <div class="popular-post">
+                        <div class="popular-image">🎵</div>
+                        <div class="popular-content">
+                            <h4><a href="#">Top 10 Ghanaian Songs</a></h4>
+                            <div class="popular-date">February 28, 2026</div>
+                        </div>
+                    </div>
+                    
+                    <div class="popular-post">
+                        <div class="popular-image">👪</div>
+                        <div class="popular-content">
+                            <h4><a href="#">Family Terms in Twi</a></h4>
+                            <div class="popular-date">February 15, 2026</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tags Widget -->
+                <div class="sidebar-widget">
+                    <h3>Popular Tags</h3>
+                    <div class="tag-cloud">
+                        <a href="#" class="tag">#Twi</a>
+                        <a href="#" class="tag">#Ghana</a>
+                        <a href="#" class="tag">#culture</a>
+                        <a href="#" class="tag">#beginners</a>
+                        <a href="#" class="tag">#proverbs</a>
+                        <a href="#" class="tag">#adinkra</a>
+                        <a href="#" class="tag">#nyansapo</a>
+                        <a href="#" class="tag">#diaspora</a>
+                        <a href="#" class="tag">#languagelearning</a>
+                        <a href="#" class="tag">#pronunciation</a>
+                        <a href="#" class="tag">#music</a>
+                        <a href="#" class="tag">#movies</a>
+                    </div>
+                </div>
+
+                <!-- Newsletter Widget -->
+                <div class="newsletter-widget">
+                    <h3>📧 Newsletter</h3>
+                    <p>Get weekly Twi tips and cultural insights</p>
+                    <input type="email" class="search-input" placeholder="Your email">
+                    <button class="search-btn">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 Osu, Accra, Ghana</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 speakghana912@gmail.com</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="learn.html">Learning Plans</a>
+                    <a href="resources.html">Free Resources</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Blog Categories</h4>
+                    <a href="#">Beginner Tips</a>
+                    <a href="#">Culture</a>
+                    <a href="#">Diaspora Stories</a>
+                    <a href="#">Vocabulary</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
