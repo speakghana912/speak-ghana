@@ -452,6 +452,53 @@
             box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
         }
 
+        /* ===== SOCIAL MEDIA SECTION ===== */
+        .social-contact-section {
+            background: linear-gradient(135deg, var(--gold), #c49a6c);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .social-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-contact-card {
+            background: rgba(255,255,255,0.2);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            color: var(--black);
+            transition: transform 0.3s;
+            display: block;
+        }
+
+        .social-contact-card:hover {
+            transform: translateY(-10px);
+            background: white;
+        }
+
+        .social-contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-contact-card h4 {
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .social-contact-card p {
+            color: var(--black);
+            opacity: 0.8;
+        }
+
         /* ===== MAP SECTION ===== */
         .map-section {
             background: white;
@@ -706,6 +753,10 @@
             .hours-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .social-contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -736,6 +787,10 @@
             
             .page-hero h1 {
                 font-size: 2.5rem;
+            }
+            
+            .social-contact-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -843,7 +898,7 @@
                 <p style="text-align: center; margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">We'll respond within 24 hours</p>
             </div>
 
-            <!-- Contact Information -->
+            <!-- Contact Information (UPDATED with social media) -->
             <div class="info-card">
                 <h3 style="margin-top: 0;">Contact Information</h3>
                 
@@ -884,6 +939,44 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- NEW: Social Media Info Item -->
+                <div class="info-item" style="margin-top: 1rem;">
+                    <div class="info-icon">📱</div>
+                    <div class="info-content">
+                        <h4>Follow Us</h4>
+                        <p><a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube: @SpeakGhana</a></p>
+                        <p><a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram: @speak_ghana</a></p>
+                        <p><a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok: @speakghana0</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW: Dedicated Social Media Section -->
+        <div class="social-contact-section">
+            <h2 class="center" style="color: var(--black);">Connect With Us Online</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--black);">Follow for daily Twi tips and cultural content</p>
+            
+            <div class="social-contact-grid">
+                <a href="https://www.youtube.com/@SpeakGhana" target="_blank" class="social-contact-card">
+                    <div class="social-contact-icon">📺</div>
+                    <h4>YouTube</h4>
+                    <p>@SpeakGhana</p>
+                    <p style="font-size: 0.9rem;">Weekly lessons & culture</p>
+                </a>
+                <a href="https://www.instagram.com/speak_ghana" target="_blank" class="social-contact-card">
+                    <div class="social-contact-icon">📸</div>
+                    <h4>Instagram</h4>
+                    <p>@speak_ghana</p>
+                    <p style="font-size: 0.9rem;">Daily vocabulary & stories</p>
+                </a>
+                <a href="https://www.tiktok.com/@speakghana0" target="_blank" class="social-contact-card">
+                    <div class="social-contact-icon">🎵</div>
+                    <h4>TikTok</h4>
+                    <p>@speakghana0</p>
+                    <p style="font-size: 0.9rem;">Fun language shorts</p>
+                </a>
             </div>
         </div>
 
@@ -997,7 +1090,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer (UPDATED with social media) -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1014,6 +1107,13 @@
                     <a href="learn.html">Learning Plans</a>
                     <a href="resources.html">Free Resources</a>
                     <a href="blog.html">Blog</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube: @SpeakGhana</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram: @speak_ghana</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok: @speakghana0</a>
                 </div>
                 
                 <div class="footer-section">
