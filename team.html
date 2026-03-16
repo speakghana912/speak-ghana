@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - Speak Ghana</title>
+    <style>
+        /* Same CSS as index.html */
+        /* Copy all CSS from index.html here */
+        
+        /* Additional styles for team page */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px var(--shadow);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .team-card:hover .team-photo img {
+            transform: scale(1.1);
+        }
+
+        .team-info {
+            padding: 2rem;
+        }
+
+        .team-info h3 {
+            font-size: 1.8rem;
+            color: var(--black);
+            margin-bottom: 0.3rem;
+        }
+
+        .team-info .role {
+            color: var(--green);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--cream);
+            border-radius: 30px;
+            color: var(--black);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .social-link:hover {
+            background: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .linkedin-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .linkedin-link:hover {
+            color: var(--gold);
+        }
+    </style>
+</head>
+<body>
+    <!-- Contact Bar -->
+    <div class="contact-info-bar">
+        <div class="container">
+            <div class="contact-details">
+                <a href="mailto:speakghana912@gmail.com">📧 speakghana912@gmail.com</a>
+                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="images/speako.jpg" alt="Speak Ghana Logo">
+                <div class="logo-text">
+                    <h1>Speak <span>Ghana</span></h1>
+                    <p>Reconnect. Speak. Thrive.</p>
+                </div>
+            </div>
+            <div class="motto">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="plans.html">Plans</a>
+                <a href="team.html" class="active">Our Team</a>
+                <a href="textbook.html">Textbook</a>
+                <a href="register.html">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <section style="padding: 5rem 0;">
+        <div class="container">
+            <h2>Meet Our Teachers</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">All teachers are native Twi speakers with years of teaching experience.</p>
+
+            <!-- CEO -->
+            <div style="max-width: 400px; margin: 0 auto 4rem;">
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="images/richard.jpg" alt="Richard Asiamah">
+                    </div>
+                    <div class="team-info">
+                        <h3>Richard Asiamah</h3>
+                        <div class="role">Founder & CEO</div>
+                        <p style="color: var(--gray); margin: 1rem 0;">Passionate about reconnecting the diaspora with Ghanaian heritage through language.</p>
+                        <a href="https://www.linkedin.com/in/richard-asiamah-856a9b135/" target="_blank" class="linkedin-link">🔗 View LinkedIn Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-grid">
+                <!-- Charlotte -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="images/charlotte.jpg" alt="Charlotte Tetebea Asiamah">
+                    </div>
+                    <div class="team-info">
+                        <h3>Charlotte Tetebea Asiamah</h3>
+                        <div class="role">Senior Twi Instructor</div>
+                        <p style="color: var(--gray); margin: 1rem 0;">Specializes in cultural immersion and helping diaspora students connect with their roots.</p>
+                        <a href="https://webapps.knust.edu.gh/staff/dirsearch/profile/summary/2a497368a7ab.html" target="_blank" class="linkedin-link">🔗 View Academic Profile</a>
+                    </div>
+                </div>
+
+                <!-- Michael -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="images/michael.jpg" alt="Michael Agyepong Nkansah">
+                    </div>
+                    <div class="team-info">
+                        <h3>Michael Agyepong Nkansah</h3>
+                        <div class="role">Twi & Fante Instructor</div>
+                        <p style="color: var(--gray); margin: 1rem 0;">Expert in pronunciation and building conversational confidence.</p>
+                        <div class="social-links">
+                            <span class="social-link">Twi Expert</span>
+                            <span class="social-link">Fante Specialist</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evelyn - New Teacher -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="images/evelyn.jpg" alt="Evelyn Mensah">
+                    </div>
+                    <div class="team-info">
+                        <h3>Evelyn Mensah</h3>
+                        <div class="role">Twi & Ga Instructor</div>
+                        <p style="color: var(--gray); margin: 1rem 0;">Bringing 10+ years of experience in teaching Twi and Ga to learners of all levels.</p>
+                        <div class="social-links">
+                            <span class="social-link">Ga Specialist</span>
+                            <span class="social-link">Beginner Expert</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, var(--cream), var(--white)); padding: 3rem; border-radius: 20px; margin-top: 4rem; text-align: center;">
+                <h3 style="color: var(--green);">All Teachers Are Native Speakers</h3>
+                <p style="font-size: 1.2rem;">Not the right fit? Request a change – we'll find you a better match at no extra cost.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 Osu, Accra, Ghana</p>
+                    <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
+                    <p>📧 <a href="mailto:speakghana912@gmail.com">speakghana912@gmail.com</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="plans.html">Plans</a></p>
+                    <p><a href="textbook.html">Textbook</a></p>
+                    <p><a href="register.html">Register</a></p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School</p>
+                <p class="motto">Reconnect. Speak. Thrive.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
