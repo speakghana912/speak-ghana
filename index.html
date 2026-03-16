@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speak Ghana - Premium Twi Language School</title>
+    <style>
+        /* ===== MODERN COLOR PALETTE ===== */
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray-light: #F0F0F0;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--cream);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--black);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--red));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1.5rem;
+            color: var(--green);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.4);
+            background: linear-gradient(135deg, #1f7a6e, var(--green));
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #c49a6c);
+            color: var(--black);
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 163, 115, 0.4);
+        }
+
+        .btn-large {
+            font-size: 1.2rem;
+            padding: 1rem 3rem;
+        }
+
+        /* ===== LOGO STYLES ===== */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .logo-text h1 span {
+            color: var(--gold);
+            font-weight: 800;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--green);
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: 'Nyansapo';
+            position: absolute;
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+            font-size: 8rem;
+            opacity: 0.03;
+            color: var(--gold);
+            font-weight: 800;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .proverb {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--gold);
+            max-width: 400px;
+            text-align: right;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .proverb span {
+            display: block;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.3rem;
+        }
+
+        /* ===== CONTACT BAR ===== */
+        .contact-info-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-details a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .contact-details a:hover {
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1.2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.95), rgba(42, 157, 143, 0.9)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><rect width="100" height="100" fill="%231E1E1E"/><text x="20" y="55" font-size="40" fill="%23D4A373">🧠</text></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><path d="M30 5 L55 30 L30 55 L5 30 Z" fill="none" stroke="rgba(212,163,115,0.1)" stroke-width="1"/></svg>');
+            opacity: 0.2;
+            animation: patternMove 60s linear infinite;
+        }
+
+        @keyframes patternMove {
+            from { transform: rotate(0deg) scale(1); }
+            to { transform: rotate(360deg) scale(1.5); }
+        }
+
+        .hero h2 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--gold), var(--red));
+            width: 100px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .free-march-banner {
+            background: linear-gradient(135deg, var(--gold), var(--red));
+            color: var(--black);
+            padding: 1.2rem 2.5rem;
+            font-weight: 700;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 2rem auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* ===== NYANSAPO ANIMATION (kept for hero) ===== */
+        .nyansapo-symbol {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .knot {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .knot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--gold);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .knot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .sound-wave {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: pulseWave 3s infinite;
+        }
+
+        .sound-wave:nth-child(2) {
+            width: 130px;
+            height: 130px;
+            animation-delay: 0.5s;
+            border-color: var(--red);
+        }
+
+        .sound-wave:nth-child(3) {
+            width: 160px;
+            height: 160px;
+            animation-delay: 1s;
+            border-color: var(--green);
+        }
+
+        @keyframes pulseWave {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* ===== MISSION & VISION SECTION ===== */
+        .mission-vision {
+            background: var(--white);
+            position: relative;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .mission-box, .vision-box {
+            padding: 2.5rem;
+            border-radius: 20px;
+            background: var(--white);
+            box-shadow: 0 20px 40px var(--shadow);
+            transition: transform 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .mission-box:hover, .vision-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .mission-box {
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .vision-box {
+            border-bottom: 4px solid var(--green);
+        }
+
+        .mission-box h3, .vision-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mission-box h3 span, .vision-box h3 span {
+            color: var(--gold);
+            font-size: 3rem;
+        }
+
+        .vision-box h3 span {
+            color: var(--green);
+        }
+
+        .mission-text, .vision-text {
+            font-size: 1.3rem;
+            font-weight: 500;
+            line-height: 1.5;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .vision-list {
+            background: linear-gradient(135deg, var(--cream), var(--white));
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .vision-list h4 {
+            color: var(--green);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .vision-list ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .vision-list li {
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .vision-list li::before {
+            content: '→';
+            color: var(--gold);
+            font-size: 1.3rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* ===== CORE VALUES SECTION ===== */
+        .core-values {
+            background: var(--cream);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.3s;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .value-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .value-symbol {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .value-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .value-meaning {
+            font-size: 1rem;
+            color: var(--green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== PRICING CARDS ===== */
+        .pricing {
+            background: var(--white);
+        }
+
+        .march-note {
+            background: linear-gradient(135deg, var(--gold), var(--red));
+            color: var(--black);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 40px rgba(231, 111, 81, 0.2);
+        }
+
+        .march-note h3 {
+            color: var(--black);
+            margin-top: 0;
+            font-size: 2rem;
+        }
+
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .plan-card {
+            background: var(--cream);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .plan-header {
+            background: linear-gradient(135deg, var(--black), #2a2a2a);
+            color: var(--gold);
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .plan-header h3 {
+            color: var(--gold);
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        .plan-header .package-type {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .plan-body {
+            padding: 2rem 1.5rem;
+            flex-grow: 1;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-features li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .taster-package {
+            background: linear-gradient(135deg, var(--cream), var(--white));
+            border: 2px dashed var(--gold);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .business-package {
+            background: linear-gradient(135deg, var(--black), #1a1a1a);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== TEAM SECTION ===== */
+        .team {
+            background: var(--cream);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px var(--shadow);
+            transition: all 0.3s;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .team-card:hover .team-photo img {
+            transform: scale(1.1);
+        }
+
+        .team-info {
+            padding: 1.8rem;
+        }
+
+        .team-info h3 {
+            font-size: 1.5rem;
+            color: var(--black);
+            margin-bottom: 0.3rem;
+        }
+
+        .team-info .role {
+            color: var(--green);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== GOOGLE FORM BUTTON ===== */
+        .registration-cta {
+            text-align: center;
+            background: var(--white);
+        }
+
+        .google-form-link {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--red));
+            color: var(--black);
+            padding: 1.8rem 4rem;
+            border-radius: 60px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 2rem 0;
+            transition: all 0.3s;
+            box-shadow: 0 20px 40px rgba(212, 163, 115, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .google-form-link:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 30px 60px rgba(231, 111, 81, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .payment-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .google-form-link {
+                font-size: 1.3rem;
+                padding: 1.2rem 2rem;
+            }
+            
+            .contact-details {
+                gap: 1rem;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Contact Bar -->
+    <div class="contact-info-bar">
+        <div class="container">
+            <div class="contact-details">
+                <a href="mailto:speakghana912@gmail.com"><span>📧</span> speakghana912@gmail.com</a>
+                <a href="tel:+233552263323"><span>📞</span> +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323"><span>💬</span> WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="images/speako.png" alt="Speak Ghana - Nyansapo Wisdom Knot Logo">
+                <div class="logo-text">
+                    <h1>Speak <span>Ghana</span></h1>
+                    <p>Nyansapo — The Wisdom Knot</p>
+                </div>
+            </div>
+            <div class="proverb">
+                "Nyansapo wosane no badwenma"
+                <span>A wisdom knot is untied only by the wise</span>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#mission-vision">Mission</a>
+                <a href="#values">Values</a>
+                <a href="#plans">Plans</a>
+                <a href="#team">Team</a>
+                <a href="#textbook">Textbook</a>
+                <a href="#register">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="nyansapo-symbol">
+                <div class="knot"></div>
+                <div class="sound-wave"></div>
+                <div class="sound-wave"></div>
+                <div class="sound-wave"></div>
+            </div>
+            <h2>Akwaaba! — Welcome!</h2>
+            <p>Personalized 1-on-1 & small-group Twi classes for diaspora learners and everyone who wants to speak Ghanaian languages confidently.</p>
+            
+            <div class="free-march-banner">
+                🎉 MARCH 2026 – ALL LESSONS ARE FREE! 🎉
+            </div>
+            
+            <p>Come try every class — no payment required in March.<br>
+            Want to secure your spot for April? You can begin your paid plan any time in March!</p>
+            
+            <a href="#register" class="btn btn-primary btn-large">Register for Free March Classes</a>
+        </div>
+    </section>
+
+    <section id="mission-vision" class="mission-vision">
+        <div class="container">
+            <h2>Our Mission & Vision</h2>
+            
+            <div class="mv-grid">
+                <div class="mission-box">
+                    <h3><span>“</span>Mission</h3>
+                    <div class="mission-text">
+                        To reconnect the global African diaspora with their roots through language, culture, and community – one word at a time.
+                    </div>
+                    <p style="font-style: italic; color: var(--red);">We believe that language is the key that unlocks identity, heritage, and belonging. Every word learned is a step closer to home.</p>
+                </div>
+                
+                <div class="vision-box">
+                    <h3><span>“</span>Vision</h3>
+                    <div class="vision-text">
+                        To become Africa's leading online language school, offering every major African language to learners worldwide.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="vision-list">
+                <h4>By 2030, We Envision:</h4>
+                <ul>
+                    <li><strong>20+</strong> African languages taught</li>
+                    <li><strong>10,000+</strong> active students globally</li>
+                    <li><strong>Physical learning centers</strong> in 5 African countries</li>
+                    <li><strong>Partnerships</strong> with diaspora organizations worldwide</li>
+                    <li><strong>A complete digital ecosystem</strong> (app, web, community)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="values" class="core-values">
+        <div class="container">
+            <h2>Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-symbol">🕊️</div>
+                    <div class="value-name">Sankofa</div>
+                    <div class="value-meaning">Look back to move forward</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-symbol">🤝</div>
+                    <div class="value-name">Akwaaba</div>
+                    <div class="value-meaning">Everyone is welcome</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-symbol">🌱</div>
+                    <div class="value-name">Kakra Kakra</div>
+                    <div class="value-meaning">Little by little</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-symbol">👪</div>
+                    <div class="value-name">Abusua</div>
+                    <div class="value-meaning">We are family</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-symbol">📈</div>
+                    <div class="value-name">Nkɔsoɔ</div>
+                    <div class="value-meaning">Progress</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="plans" class="pricing">
+        <div class="container">
+            <h2>Twi Lessons – Plans & Packages</h2>
+            
+            <div class="march-note">
+                <h3>🎉 MARCH 2026 – ALL LESSONS ARE FREE! 🎉</h3>
+                <p>Come try every class — no payment required in March.<br>
+                Want to secure your spot for April? You can begin your paid plan any time in March – your first paid month starts whenever you're ready.<br>
+                Classes officially begin April 1, but early birds get priority scheduling!</p>
+            </div>
+            
+            <p style="font-size: 1.2rem; margin-bottom: 3rem; text-align: center;"><strong>All plans include:</strong> PDFs & worksheets • WhatsApp group access • Ghanaian movie & song recommendations • direct teacher support & feedback • <strong>Complete Speak Ghana Twi Textbook</strong> (32 chapters, 300+ pages)</p>
+            
+            <div class="taster-package">
+                <h3 style="color: var(--green);">🧪 TASTER PACKAGE</h3>
+                <p style="font-size: 1.1rem;">Perfect for learners who want to try before committing to a full month.</p>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                    <span style="background: var(--gold); padding: 0.5rem 1.5rem; border-radius: 30px;">Private 60 min</span>
+                    <span style="background: var(--green); color: white; padding: 0.5rem 1.5rem; border-radius: 30px;">Group 90 min</span>
+                </div>
+            </div>
+            
+            <h3>👤 Private Packages (1-on-1)</h3>
+            <div class="plan-grid">
+                <!-- Private 60/1 -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Private 60 min</h3>
+                        <div class="package-type">1 Lesson / Week</div>
+                    </div>
+                    <div class="plan-body">
+                        <ul class="plan-features">
+                            <li>One 60-minute 1-on-1 lesson weekly</li>
+                            <li>Choose your fixed day & time</li>
+                            <li>Structured grammar & conversation</li>
+                            <li>Personalized homework & feedback</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <p><strong>Monthly • 3 months • 6 months</strong></p>
+                    </div>
+                </div>
+                
+                <!-- Private 60/2 -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Private 60 min</h3>
+                        <div class="package-type">2 Lessons / Week</div>
+                    </div>
+                    <div class="plan-body">
+                        <ul class="plan-features">
+                            <li>Two 60-minute 1-on-1 lessons weekly</li>
+                            <li>1 structured + 1 speaking practice</li>
+                            <li>Movie clips & song lyrics</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <p><strong>Monthly • 3 months • 6 months</strong></p>
+                    </div>
+                </div>
+                
+                <!-- Private 60/3 -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Private 60 min</h3>
+                        <div class="package-type">3 Lessons / Week</div>
+                    </div>
+                    <div class="plan-body">
+                        <ul class="plan-features">
+                            <li>Three 60-minute 1-on-1 lessons weekly</li>
+                            <li>Intensive learning + speaking</li>
+                            <li>Weekly progress report</li>
+                            <li>Priority teacher support</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <p><strong>Monthly • 3 months • 6 months</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">👥 Group Packages (4–10 learners)</h3>
+            <div class="plan-grid">
+                <!-- Group 90/1 -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Group 90 min</h3>
+                        <div class="package-type">1 Lesson / Week</div>
+                    </div>
+                    <div class="plan-body">
+                        <ul class="plan-features">
+                            <li>One 90-minute group class weekly</li>
+                            <li>Flexible group scheduling</li>
+                            <li>Speaking-focused interaction</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <p><strong>Monthly • 3 months • 6 months</strong></p>
+                    </div>
+                </div>
+                
+                <!-- Group 90/2 - POPULAR -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Group 90 min</h3>
+                        <div class="package-type">2 Lessons / Week</div>
+                    </div>
+                    <div class="plan-body">
+                        <div style="background: var(--gold); color: var(--black); padding: 0.3rem 1rem; border-radius: 30px; display: inline-block; margin-bottom: 1rem;">⭐ MOST POPULAR</div>
+                        <ul class="plan-features">
+                            <li>Two 90-minute group classes weekly</li>
+                            <li>Interactive conversation practice</li>
+                            <li>Weekly materials included</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <p><strong>Monthly • 3 months • 6 months</strong></p>
+                    </div>
+                </div>
+                
+                <!-- Group 90/3 -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Group 90 min</h3>
+                        <div class="package-type">3 Lessons / Week</div>
+                    </div>
+                    <div class="plan-body">
+                        <ul class="plan-features">
+                            <li>Three 90-minute group classes weekly</li>
+                            <li>Intensive immersion</li>
+                            <li>Cultural discussions</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <p><strong>Monthly • 3 months • 6 months</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Siblings Discount -->
+            <div style="background: linear-gradient(135deg, var(--cream), var(--white)); padding: 2rem; border-radius: 20px; margin: 3rem 0; text-align: center;">
+                <h3 style="color: var(--green); margin-top: 0;">👥 SIBLINGS & FRIENDS DISCOUNT</h3>
+                <p style="font-size: 1.2rem;">Learn together, save together! Both get <strong>5% off</strong> your monthly tuition.</p>
+            </div>
+            
+            <!-- Business Package -->
+            <div class="business-package">
+                <h3 style="color: var(--gold);">🏢 BUSINESS PACKAGE – For Teams & Organizations</h3>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Perfect for companies, NGOs, churches, and schools.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <h4 style="color: var(--gold);">Group Classes</h4>
+                        <ul style="color: white; margin-left: 1.5rem;">
+                            <li>4–12 learners per class</li>
+                            <li>Flexible scheduling</li>
+                            <li>Branded sessions available</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--gold);">Private 1-on-1</h4>
+                        <ul style="color: white; margin-left: 1.5rem;">
+                            <li>Individual sessions</li>
+                            <li>Monthly progress reports</li>
+                            <li>Bulk discounts available</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 2rem;"><strong>Bulk discount:</strong> 5–9 learners: 5% off • 10+ learners: 10% off + free onboarding</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="textbook" class="textbook" style="background: linear-gradient(135deg, var(--green), #1a5f55); color: white;">
+        <div class="container" style="text-align: center;">
+            <h2 style="color: var(--gold);">The Complete Speak Ghana Twi Textbook</h2>
+            <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto;">32 chapters • 300+ pages • Grammar guides • Cultural notes • Practice exercises • Beautiful images</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0;">
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <h3 style="color: var(--gold);">Digital PDF</h3>
+                    <p>Instant download • Lifetime access</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <h3 style="color: var(--gold);">Premium Bundle</h3>
+                    <p>PDF + Audio + Video Guides • 20% student discount</p>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.2rem;"><strong>INCLUDED FREE with every paid lesson plan!</strong></p>
+        </div>
+    </section>
+
+    <section id="team" class="team">
+        <div class="container">
+            <h2>Our Teachers</h2>
+            <p style="text-align: center; margin-bottom: 3rem; font-size: 1.2rem;">All teachers are native Twi speakers with teaching experience. Not the right fit? Request a change – free.</p>
+            
+            <div style="max-width: 400px; margin: 0 auto 3rem;">
+                <div class="team-card ceo-card">
+                    <div class="team-photo">
+                        <img src="images/richard.jpg" alt="Richard Asiamah - Founder & CEO">
+                    </div>
+                    <div class="team-info">
+                        <h3>Richard Asiamah</h3>
+                        <div class="role">Founder & CEO</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="images/charlotte.jpg" alt="Charlotte Tetebea Asiamah">
+                    </div>
+                    <div class="team-info">
+                        <h3>Charlotte Tetebea Asiamah</h3>
+                        <div class="role">Senior Twi Instructor</div>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="images/michael.jpg" alt="Michael Agyepong Nkansah">
+                    </div>
+                    <div class="team-info">
+                        <h3>Michael Agyepong Nkansah</h3>
+                        <div class="role">Twi & Fante Instructor</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="register" class="registration-cta">
+        <div class="container">
+            <h2>Ready to Start Your Journey?</h2>
+            
+            <div style="background: var(--white); padding: 4rem; border-radius: 30px; box-shadow: 0 30px 60px var(--shadow);">
+                <h3 style="color: var(--green);">📝 Register for April Paid Classes</h3>
+                
+                <a href="https://forms.gle/QouhorzyBJh7ANma7" target="_blank" class="google-form-link">
+                    📋 April Class Registration
+                </a>
+                
+                <p style="margin: 2rem 0 1rem; font-size: 1.2rem;">✨ March classes are still FREE – just contact us! ✨</p>
+                
+                <div style="background: linear-gradient(135deg, var(--cream), var(--white)); padding: 2rem; border-radius: 20px;">
+                    <h4 style="color: var(--green);">How to Start:</h4>
+                    <ol style="text-align: left; max-width: 500px; margin: 1rem auto; font-size: 1.1rem;">
+                        <li>Try free classes in March</li>
+                        <li>Choose your plan anytime in March</li>
+                        <li>First paid month starts when YOU'RE ready</li>
+                        <li>Official classes begin April 1 at 6:00 PM GMT</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 Osu, Accra, Ghana</p>
+                    <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
+                    <p>📧 <a href="mailto:speakghana912@gmail.com">speakghana912@gmail.com</a></p>
+                    <p>💬 <a href="https://wa.me/233552263323">WhatsApp: +233 55 226 3323</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="#plans">Plans & Pricing</a></p>
+                    <p><a href="#team">Our Teachers</a></p>
+                    <p><a href="#textbook">Textbook</a></p>
+                    <p><a href="#register">Register</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Payment Methods</h4>
+                    <div class="payment-methods">
+                        <span class="payment-badge">PayPal</span>
+                        <span class="payment-badge">Wise</span>
+                        <span class="payment-badge">Mobile Money</span>
+                        <span class="payment-badge">Bank Transfer</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
+                <p style="margin-top: 0.5rem; color: var(--gold);">"Kɔsɔ yie! — Continue well!"</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling with offset for fixed header
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
