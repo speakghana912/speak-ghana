@@ -5,9 +5,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Textbook - Speak Ghana</title>
     <style>
-        /* Same CSS as index.html */
-        /* Copy all CSS from index.html here */
-        
+        /* ===== BEAUTIFUL MODERN DESIGN ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #fdf6e9 0%, #fff9f0 100%);
+            color: #2d2d2d;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .top-bar {
+            background: #1a1a1a;
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid #D4A373;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #D4A373;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .logo-text h1 span {
+            color: #D4A373;
+        }
+
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: #D4A373;
+            font-weight: 500;
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1rem 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #E76F51;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #E76F51;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #2A9D8F;
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+            background: #2A9D8F;
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            background: linear-gradient(135deg, #2A9D8F20, #D4A37320);
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .page-hero h2 {
+            font-size: 3rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== TEXTBOOK SHOWCASE ===== */
         .textbook-showcase {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -16,45 +195,472 @@
             margin: 4rem 0;
         }
 
-        .textbook-cover {
-            background: linear-gradient(135deg, var(--gold), var(--red));
+        .book-cover {
+            background: linear-gradient(135deg, #2A9D8F, #1a5f55);
             padding: 3rem;
-            border-radius: 20px;
+            border-radius: 30px;
             color: white;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .textbook-cover h3 {
-            color: white;
-            font-size: 2.5rem;
-        }
-
-        .features-list {
-            list-style: none;
-        }
-
-        .features-list li {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
+            box-shadow: 0 30px 60px rgba(42, 157, 143, 0.3);
             position: relative;
-            font-size: 1.1rem;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.1);
         }
 
-        .features-list li::before {
-            content: '✓';
-            color: var(--green);
-            font-weight: bold;
+        .book-cover::before {
+            content: 'Twi';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12rem;
+            opacity: 0.1;
+            color: #D4A373;
+            font-weight: 800;
+            pointer-events: none;
+        }
+
+        .book-cover h3 {
+            color: #D4A373;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .book-cover .subtitle {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .book-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #D4A373;
+        }
+
+        /* ===== FEATURES GRID ===== */
+        .features-section {
+            background: white;
+            border-radius: 40px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f8f8;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            background: #2A9D8F;
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .feature-item:hover .feature-icon {
+            background: white;
+            color: #2A9D8F;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: #2A9D8F;
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        /* ===== FORMAT CARDS ===== */
+        .formats-section {
+            margin: 4rem 0;
+        }
+
+        .formats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .format-card {
+            background: white;
+            border-radius: 30px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .format-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(42, 157, 143, 0.2);
+        }
+
+        .format-card.popular::before {
+            content: '⭐ MOST POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #D4A373;
+            color: #1a1a1a;
+            padding: 0.3rem 3rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .format-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .format-card h3 {
+            font-size: 1.8rem;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+        }
+
+        .format-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 1.5rem 0;
+        }
+
+        .format-price small {
+            font-size: 1rem;
+            color: #666;
+            font-weight: normal;
+        }
+
+        .format-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .format-features li {
+            margin-bottom: 0.8rem;
+            color: #666;
+        }
+
+        .discount-badge {
+            background: #E76F51;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+
+        /* ===== SAMPLE PAGES ===== */
+        .sample-section {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-radius: 40px;
+            padding: 4rem;
+            color: white;
+            margin: 4rem 0;
+        }
+
+        .sample-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .sample-page {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sample-page h4 {
+            color: #D4A373;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .sample-content {
+            font-family: monospace;
+            line-height: 2;
+        }
+
+        .sample-line {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .sample-line .twi {
+            color: #D4A373;
+            font-weight: 600;
+        }
+
+        /* ===== CHAPTER LIST ===== */
+        .chapters-section {
+            background: white;
+            border-radius: 40px;
+            padding: 4rem;
+            margin: 4rem 0;
+        }
+
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .chapter-item {
+            background: #f8f8f8;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .chapter-item:hover {
+            background: #2A9D8F;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .chapter-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2A9D8F;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-item:hover .chapter-number {
+            color: white;
+        }
+
+        .chapter-title {
+            font-size: 1rem;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-section {
+            margin: 4rem 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .testimonial-text::before {
+            content: '"';
             position: absolute;
             left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: #D4A373;
+            opacity: 0.5;
+        }
+
+        .testimonial-author {
+            color: #2A9D8F;
+            font-weight: 600;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 40px;
+            padding: 4rem;
+            text-align: center;
+            color: white;
+            margin: 4rem 0;
+        }
+
+        .cta-section h3 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #D4A373;
+            color: #1a1a1a;
+            padding: 1.5rem 4rem;
+            border-radius: 60px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 2rem 0;
+            transition: all 0.3s;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05) translateY(-5px);
+            background: #E76F51;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #D4A373, #E76F51, #2A9D8F);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-grid h4 {
+            color: #D4A373;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-grid a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-grid a:hover {
+            color: #D4A373;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .motto-footer {
+            color: #D4A373;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .textbook-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .formats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chapters-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sample-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Contact Bar -->
-    <div class="contact-info-bar">
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
         <div class="container">
-            <div class="contact-details">
+            <div class="contact-info">
                 <a href="mailto:speakghana912@gmail.com">📧 speakghana912@gmail.com</a>
                 <a href="tel:+233552263323">📞 +233 55 226 3323</a>
                 <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
@@ -62,22 +668,24 @@
         </div>
     </div>
 
+    <!-- Header -->
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="images/speako.jpg" alt="Speak Ghana Logo">
+                <img src="images/speako.jpg" alt="Speak Ghana">
                 <div class="logo-text">
                     <h1>Speak <span>Ghana</span></h1>
                     <p>Reconnect. Speak. Thrive.</p>
                 </div>
             </div>
-            <div class="motto">
+            <div class="motto-badge">
                 Reconnect. Speak. Thrive.
                 <span>Your journey home begins here</span>
             </div>
         </div>
     </header>
 
+    <!-- Navigation -->
     <nav>
         <div class="container">
             <div class="nav-links">
@@ -90,79 +698,314 @@
         </div>
     </nav>
 
-    <section style="padding: 5rem 0;">
+    <!-- Page Hero -->
+    <div class="page-hero">
         <div class="container">
             <h2>The Complete Speak Ghana Twi Textbook</h2>
-            <p style="font-size: 1.3rem; margin-bottom: 3rem;">32 chapters • 300+ pages • Your complete guide to learning Twi</p>
+            <p>Your comprehensive guide to mastering Twi • 32 chapters • 300+ pages</p>
+        </div>
+    </div>
 
-            <div class="textbook-showcase">
-                <div class="textbook-cover">
-                    <h3>Speak Ghana</h3>
-                    <p style="font-size: 1.5rem;">Twi Textbook</p>
-                    <div style="margin-top: 2rem;">
-                        <span style="background: rgba(255,255,255,0.2); padding: 0.5rem 1rem; border-radius: 30px;">📘 32 Chapters</span>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Textbook Showcase -->
+        <div class="textbook-showcase">
+            <div class="book-cover">
+                <h3>Speak Ghana</h3>
+                <div class="subtitle">Twi Textbook</div>
+                <div class="book-stats">
+                    <div class="stat">
+                        <div class="number">32</div>
+                        <div>Chapters</div>
+                    </div>
+                    <div class="stat">
+                        <div class="number">300+</div>
+                        <div>Pages</div>
+                    </div>
+                    <div class="stat">
+                        <div class="number">1000+</div>
+                        <div>Words</div>
                     </div>
                 </div>
-                <div>
-                    <h3 style="color: var(--green);">What's Inside:</h3>
-                    <ul class="features-list">
-                        <li>300+ pages of comprehensive content</li>
-                        <li>Hundreds of vocabulary words</li>
-                        <li>Complete grammar guides</li>
-                        <li>Cultural notes and proverbs</li>
-                        <li>Practice exercises with answers</li>
-                        <li>Beautiful images and illustrations</li>
-                        <li>Worksheets for extra practice</li>
-                        <li>Audio pronunciation guides</li>
-                    </ul>
-                </div>
+                <p style="margin-top: 2rem;">📘 Complete learning system</p>
             </div>
-
-            <div style="background: var(--cream); padding: 3rem; border-radius: 20px; margin: 4rem 0;">
-                <h3 style="color: var(--green); text-align: center;">Available Formats</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                    <div style="text-align: center;">
-                        <h4>Digital PDF</h4>
-                        <p>Instant download<br>Lifetime access<br>Free updates</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <h4>Premium Bundle</h4>
-                        <p>PDF + Audio + Video<br>20% student discount<br>Bonus materials</p>
-                    </div>
+            <div>
+                <h3 style="color: #2A9D8F; font-size: 2rem; margin-bottom: 1rem;">Your All-in-One Learning Resource</h3>
+                <p style="font-size: 1.2rem; color: #666; margin-bottom: 1.5rem;">Whether you're a beginner or looking to improve, our textbook guides you step by step through the Twi language.</p>
+                <div style="background: #f8f8f8; padding: 1.5rem; border-radius: 15px;">
+                    <p style="font-weight: 600; color: #E76F51;">✨ INCLUDED FREE with every paid lesson plan! ✨</p>
+                    <p style="margin-top: 0.5rem;">Also available for separate purchase</p>
                 </div>
-                <p style="text-align: center; margin-top: 2rem; font-weight: bold; color: var(--green);">✨ INCLUDED FREE with every paid lesson plan! ✨</p>
-            </div>
-
-            <div style="text-align: center;">
-                <h3>Want Just the Textbook?</h3>
-                <p style="margin-bottom: 2rem;">Email us to order separately</p>
-                <a href="mailto:speakghana912@gmail.com" class="btn btn-primary btn-large">Email to Order</a>
             </div>
         </div>
-    </section>
 
+        <!-- Features Section -->
+        <div class="features-section">
+            <h2 style="color: #2A9D8F; text-align: center;">What's Inside the Textbook</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📚</div>
+                    <div>32 comprehensive chapters</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📖</div>
+                    <div>300+ pages of content</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🗣️</div>
+                    <div>Hundreds of vocabulary words</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📝</div>
+                    <div>Complete grammar guides</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎭</div>
+                    <div>Cultural notes and proverbs</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✍️</div>
+                    <div>Practice exercises with answers</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🖼️</div>
+                    <div>Beautiful images and illustrations</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div>Worksheets for extra practice</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎧</div>
+                    <div>Audio pronunciation guides</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎬</div>
+                    <div>Video tutorials (Premium)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formats Section -->
+        <div class="formats-section">
+            <h2 style="color: #2A9D8F; text-align: center;">Available Formats</h2>
+            <div class="formats-grid">
+                <!-- Digital PDF -->
+                <div class="format-card">
+                    <div class="format-icon">📱</div>
+                    <h3>Digital PDF</h3>
+                    <div class="format-price">$35 <small>USD</small></div>
+                    <ul class="format-features">
+                        <li>✅ Instant download</li>
+                        <li>✅ Lifetime access</li>
+                        <li>✅ Free updates</li>
+                        <li>✅ Read on any device</li>
+                    </ul>
+                    <a href="mailto:speakghana912@gmail.com" class="cta-button" style="padding: 0.8rem 2rem; font-size: 1rem;">Email to Order</a>
+                </div>
+
+                <!-- Premium Bundle -->
+                <div class="format-card popular">
+                    <div class="format-icon">🎯</div>
+                    <h3>Premium Bundle</h3>
+                    <div class="format-price">$79 <small>USD</small></div>
+                    <div class="discount-badge">20% OFF for students</div>
+                    <ul class="format-features">
+                        <li>✅ PDF + Audio + Video</li>
+                        <li>✅ Pronunciation guides</li>
+                        <li>✅ Video tutorials</li>
+                        <li>✅ Bonus materials</li>
+                    </ul>
+                    <a href="mailto:speakghana912@gmail.com" class="cta-button" style="padding: 0.8rem 2rem; font-size: 1rem;">Email to Order</a>
+                </div>
+
+                <!-- Paperback -->
+                <div class="format-card">
+                    <div class="format-icon">📘</div>
+                    <h3>Paperback</h3>
+                    <div class="format-price">$49 <small>USD</small></div>
+                    <ul class="format-features">
+                        <li>✅ Physical book</li>
+                        <li>✅ High-quality print</li>
+                        <li>✅ Full color</li>
+                        <li>✅ Coming soon</li>
+                    </ul>
+                    <p style="color: #666;">Available for pre-order</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: #666;">💳 Payments: PayPal, Wise, Mobile Money, Bank Transfer</p>
+        </div>
+
+        <!-- Sample Pages -->
+        <div class="sample-section">
+            <h2 style="color: #D4A373; text-align: center;">Sample Pages</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">See the quality of our content</p>
+            <div class="sample-grid">
+                <div class="sample-page">
+                    <h4>Chapter 1: Greetings</h4>
+                    <div class="sample-content">
+                        <div class="sample-line"><span class="twi">Akwaaba</span> - Welcome</div>
+                        <div class="sample-line"><span class="twi">Mema wo akye</span> - Good morning</div>
+                        <div class="sample-line"><span class="twi">Wo ho te sen?</span> - How are you?</div>
+                        <div class="sample-line"><span class="twi">Me ho ye</span> - I am fine</div>
+                        <div class="sample-line"><span class="twi">Medaase</span> - Thank you</div>
+                    </div>
+                </div>
+                <div class="sample-page">
+                    <h4>Chapter 5: Family</h4>
+                    <div class="sample-content">
+                        <div class="sample-line"><span class="twi">Ɔba</span> - Child</div>
+                        <div class="sample-line"><span class="twi">Maame</span> - Mother</div>
+                        <div class="sample-line"><span class="twi">Papa</span> - Father</div>
+                        <div class="sample-line"><span class="twi">Nua</span> - Sibling</div>
+                        <div class="sample-line"><span class="twi">Abusua</span> - Family</div>
+                    </div>
+                </div>
+                <div class="sample-page">
+                    <h4>Chapter 12: Proverbs</h4>
+                    <div class="sample-content">
+                        <div class="sample-line"><span class="twi">Sankofa</span> - Return to the past</div>
+                        <div class="sample-line"><span class="twi">Nyansapo</span> - Wisdom knot</div>
+                        <div class="sample-line"><span class="twi">Kakra kakra</span> - Little by little</div>
+                        <div class="sample-line"><span class="twi">Ɛyɛ</span> - It is good</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chapters List -->
+        <div class="chapters-section">
+            <h2 style="color: #2A9D8F; text-align: center;">32 Chapters • Complete Curriculum</h2>
+            <div class="chapters-grid">
+                <div class="chapter-item">
+                    <div class="chapter-number">01</div>
+                    <div class="chapter-title">Greetings</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">02</div>
+                    <div class="chapter-title">Introductions</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">03</div>
+                    <div class="chapter-title">Numbers</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">04</div>
+                    <div class="chapter-title">Days & Time</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">05</div>
+                    <div class="chapter-title">Family</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">06</div>
+                    <div class="chapter-title">Food & Drink</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">07</div>
+                    <div class="chapter-title">Market Shopping</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">08</div>
+                    <div class="chapter-title">Directions</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">09</div>
+                    <div class="chapter-title">Weather</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">10</div>
+                    <div class="chapter-title">Colors</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">11</div>
+                    <div class="chapter-title">Verbs</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">12</div>
+                    <div class="chapter-title">Proverbs</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">13</div>
+                    <div class="chapter-title">Tenses</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">14</div>
+                    <div class="chapter-title">Questions</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">15</div>
+                    <div class="chapter-title">Negatives</div>
+                </div>
+                <div class="chapter-item">
+                    <div class="chapter-number">16</div>
+                    <div class="chapter-title">Adjectives</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem;">...and 16 more chapters covering everything you need!</p>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials-section">
+            <h2 style="color: #2A9D8F; text-align: center;">What Students Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        This textbook is incredible! The cultural notes and proverbs make learning so much more meaningful.
+                    </div>
+                    <div class="testimonial-author">— Sarah, UK</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        I've tried other resources, but this book's structure is perfect. Each chapter builds on the last.
+                    </div>
+                    <div class="testimonial-author">— Kwame, USA</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        The audio guides are a game-changer. I can practice pronunciation anytime.
+                    </div>
+                    <div class="testimonial-author">— Abena, Canada</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h3>Start Your Learning Journey Today</h3>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Get the textbook FREE with any paid lesson plan</p>
+            <a href="plans.html" class="cta-button">View Lesson Plans</a>
+            <p style="margin-top: 2rem;">Or purchase separately: <strong>speakghana912@gmail.com</strong></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-section">
+                <div>
                     <h4>Speak Ghana</h4>
                     <p>📍 Osu, Accra, Ghana</p>
-                    <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
-                    <p>📧 <a href="mailto:speakghana912@gmail.com">speakghana912@gmail.com</a></p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 speakghana912@gmail.com</p>
                 </div>
-                
-                <div class="footer-section">
+                <div>
                     <h4>Quick Links</h4>
-                    <p><a href="index.html">Home</a></p>
-                    <p><a href="plans.html">Plans</a></p>
-                    <p><a href="team.html">Our Team</a></p>
-                    <p><a href="register.html">Register</a></p>
+                    <a href="index.html">Home</a>
+                    <a href="plans.html">Plans & Pricing</a>
+                    <a href="team.html">Our Team</a>
+                    <a href="register.html">Register</a>
+                </div>
+                <div>
+                    <h4>Textbook Options</h4>
+                    <p>Digital PDF - $35</p>
+                    <p>Premium Bundle - $79</p>
+                    <p>Paperback - $49</p>
                 </div>
             </div>
-            
             <div class="copyright">
-                <p>© 2026 Speak Ghana Language School</p>
-                <p class="motto">Reconnect. Speak. Thrive.</p>
+                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
             </div>
         </div>
     </footer>
