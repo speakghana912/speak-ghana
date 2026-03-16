@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Speak Ghana</title>
+    <style>
+        /* Same CSS as index.html */
+        /* Copy all CSS from index.html here */
+        
+        .registration-card {
+            background: var(--white);
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .register-link {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--red));
+            color: var(--black);
+            padding: 2rem 4rem;
+            border-radius: 60px;
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 2rem 0;
+            transition: all 0.3s;
+            box-shadow: 0 20px 40px rgba(212, 163, 115, 0.3);
+        }
+
+        .register-link:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 30px 60px rgba(231, 111, 81, 0.4);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .step {
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .step-number {
+            background: var(--green);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contact Bar -->
+    <div class="contact-info-bar">
+        <div class="container">
+            <div class="contact-details">
+                <a href="mailto:speakghana912@gmail.com">📧 speakghana912@gmail.com</a>
+                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="images/speako.jpg" alt="Speak Ghana Logo">
+                <div class="logo-text">
+                    <h1>Speak <span>Ghana</span></h1>
+                    <p>Reconnect. Speak. Thrive.</p>
+                </div>
+            </div>
+            <div class="motto">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="plans.html">Plans</a>
+                <a href="team.html">Our Team</a>
+                <a href="textbook.html">Textbook</a>
+                <a href="register.html" class="active">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <section style="padding: 5rem 0;">
+        <div class="container">
+            <div class="registration-card">
+                <h2 style="display: block; text-align: center;">Start Your Journey</h2>
+                
+                <div class="free-march-banner" style="margin: 2rem auto;">
+                    🎉 MARCH 2026 – ALL LESSONS FREE! 🎉
+                </div>
+
+                <a href="https://forms.gle/QouhorzyBJh7ANma7" target="_blank" class="register-link">
+                    📋 Register Now
+                </a>
+
+                <p style="font-size: 1.2rem; margin: 2rem 0;">Click above to fill out our Google Form</p>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <p>Try Free in March</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <p>Choose Your Plan</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <p>Start Anytime</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <p>Begin April 1</p>
+                    </div>
+                </div>
+
+                <div style="background: var(--cream); padding: 2rem; border-radius: 15px; margin-top: 2rem;">
+                    <h4 style="color: var(--green);">Questions?</h4>
+                    <p>Email us at speakghana912@gmail.com or call +233 55 226 3323</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 Osu, Accra, Ghana</p>
+                    <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
+                    <p>📧 <a href="mailto:speakghana912@gmail.com">speakghana912@gmail.com</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="plans.html">Plans</a></p>
+                    <p><a href="team.html">Our Team</a></p>
+                    <p><a href="textbook.html">Textbook</a></p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School</p>
+                <p class="motto">Reconnect. Speak. Thrive.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
