@@ -33,7 +33,7 @@
         }
 
         .container {
-            max-width: 1280px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -50,7 +50,7 @@
 
         h2 {
             font-size: 2.5rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             color: var(--black);
             position: relative;
             display: inline-block;
@@ -67,9 +67,19 @@
             border-radius: 2px;
         }
 
+        h2.center {
+            display: block;
+            text-align: center;
+        }
+
+        h2.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
         h3 {
             font-size: 1.8rem;
-            margin: 2rem 0 1.5rem;
+            margin: 1.5rem 0 1rem;
             color: var(--green);
         }
 
@@ -96,7 +106,6 @@
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(42, 157, 143, 0.4);
-            background: linear-gradient(135deg, #1f7a6e, var(--green));
         }
 
         .btn-gold {
@@ -115,16 +124,61 @@
             padding: 1rem 3rem;
         }
 
-        /* ===== LOGO STYLES ===== */
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
         .logo {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
+            gap: 1rem;
         }
 
         .logo img {
             height: 70px;
             width: auto;
+            border-radius: 10px;
             transition: transform 0.3s;
         }
 
@@ -134,88 +188,34 @@
 
         .logo-text h1 {
             font-size: 2rem;
-            font-weight: 700;
+            color: white;
         }
 
         .logo-text h1 span {
             color: var(--gold);
-            font-weight: 800;
         }
 
         .logo-text p {
+            color: rgba(255,255,255,0.9);
             font-size: 0.9rem;
-            color: var(--green);
-            font-weight: 500;
             letter-spacing: 1px;
         }
 
-        /* ===== HEADER ===== */
-        header {
-            background: linear-gradient(135deg, #1a1a1a, var(--green));
-            color: white;
-            padding: 1.5rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .motto {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--gold);
-            max-width: 400px;
-            text-align: right;
-            background: rgba(255, 255, 255, 0.05);
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
             padding: 1rem 2rem;
             border-radius: 50px;
-            backdrop-filter: blur(10px);
-            letter-spacing: 1px;
-        }
-
-        .motto span {
-            display: block;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 0.3rem;
-        }
-
-        /* ===== CONTACT BAR ===== */
-        .contact-info-bar {
-            background: var(--black);
-            color: white;
-            padding: 0.8rem 0;
-            border-bottom: 3px solid var(--gold);
-        }
-
-        .contact-details {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-details a {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .contact-details a:hover {
             color: var(--gold);
-            transform: translateY(-2px);
+            font-weight: 500;
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
         }
 
         /* ===== NAVIGATION ===== */
@@ -225,7 +225,7 @@
             box-shadow: 0 4px 20px var(--shadow);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
@@ -233,7 +233,7 @@
             display: flex;
             justify-content: center;
             gap: 3rem;
-            padding: 1.2rem 0;
+            padding: 1rem 0;
             flex-wrap: wrap;
         }
 
@@ -241,15 +241,15 @@
             color: var(--black);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s;
-            font-size: 1rem;
+            padding: 0.5rem 0;
             position: relative;
+            transition: color 0.3s;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
@@ -275,51 +275,84 @@
             background: var(--green);
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION WITH RETURN IMAGE ===== */
         .hero {
-            background: linear-gradient(135deg, rgba(30, 30, 30, 0.95), rgba(42, 157, 143, 0.9)), 
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><rect width="100" height="100" fill="%231E1E1E"/><text x="20" y="55" font-size="40" fill="%23D4A373">🇬🇭</text></svg>');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.85), rgba(42, 157, 143, 0.85));
             color: white;
-            text-align: center;
-            padding: 8rem 2rem;
+            padding: 0;
             position: relative;
             overflow: hidden;
         }
 
-        .hero h2 {
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            min-height: 600px;
+        }
+
+        .hero-content {
+            padding: 4rem;
+            z-index: 2;
+        }
+
+        .hero-content h2 {
             color: white;
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .hero h2::after {
-            left: 50%;
-            transform: translateX(-50%);
+        .hero-content h2::after {
             background: linear-gradient(90deg, var(--gold), var(--red));
             width: 100px;
         }
 
-        .hero p {
+        .hero-content p {
             font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
+            margin-bottom: 2rem;
             opacity: 0.95;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
-        .free-march-banner {
+        .hero-image {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-overlay-text {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            border-left: 4px solid var(--gold);
+        }
+
+        .free-badge {
             background: linear-gradient(135deg, var(--gold), var(--red));
             color: var(--black);
-            padding: 1.2rem 2.5rem;
-            font-weight: 700;
-            font-size: 1.3rem;
+            padding: 0.8rem 2rem;
             border-radius: 50px;
             display: inline-block;
-            margin: 2rem auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin: 1rem 0;
+            font-weight: 700;
+            font-size: 1.2rem;
             animation: pulse 2s infinite;
         }
 
@@ -329,64 +362,107 @@
             100% { transform: scale(1); }
         }
 
-        /* ===== MISSION SECTION ===== */
-        .mission {
-            background: var(--white);
-            text-align: center;
-        }
-
-        .mission-text {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: var(--gray);
-        }
-
-        .mission-highlight {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--green);
-            margin: 2rem 0;
-        }
-
-        /* ===== VALUES SECTION ===== */
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .value-card {
-            background: var(--white);
+        /* ===== MARCH BANNER ===== */
+        .march-banner {
+            background: linear-gradient(135deg, var(--gold), var(--red));
             border-radius: 20px;
-            padding: 2.5rem 1.5rem;
-            box-shadow: 0 10px 30px var(--shadow);
-            transition: all 0.3s;
+            padding: 2.5rem;
             text-align: center;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px rgba(231, 111, 81, 0.2);
         }
 
-        .value-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .value-symbol {
-            font-size: 3.5rem;
+        .march-banner h3 {
+            color: var(--black);
+            font-size: 2.2rem;
             margin-bottom: 1rem;
         }
 
-        .value-name {
-            font-size: 1.8rem;
-            font-weight: 700;
+        .march-banner p {
             color: var(--black);
-            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
         }
 
-        .value-meaning {
-            font-size: 1rem;
+        /* ===== FEATURED SECTION ===== */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 15px 30px var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            color: var(--green);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        /* ===== TESTIMONIAL PREVIEW ===== */
+        .testimonial-preview {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 15px 30px var(--shadow);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .testimonial-card {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            position: relative;
+            border-left: 4px solid var(--gold);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--gold);
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--black);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-author {
             color: var(--green);
             font-weight: 600;
         }
@@ -394,8 +470,11 @@
         /* ===== CTA SECTION ===== */
         .cta-section {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
-            color: white;
+            border-radius: 30px;
+            padding: 4rem;
             text-align: center;
+            color: white;
+            margin: 4rem 0;
         }
 
         .cta-section h2 {
@@ -408,13 +487,40 @@
             background: var(--gold);
         }
 
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        /* ===== VALUES PREVIEW ===== */
+        .values-preview {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .value-pill {
+            background: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px var(--shadow);
+            font-weight: 600;
+            color: var(--green);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
         /* ===== FOOTER ===== */
         footer {
             background: var(--black);
             color: white;
             padding: 4rem 0 2rem;
+            margin-top: 4rem;
             position: relative;
-            overflow: hidden;
         }
 
         footer::before {
@@ -423,7 +529,7 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 4px;
             background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
         }
 
@@ -437,48 +543,91 @@
         .footer-section h4 {
             color: var(--gold);
             margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .footer-section a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
+            display: block;
             margin-bottom: 0.5rem;
+            transition: color 0.3s;
         }
 
         .footer-section a:hover {
             color: var(--gold);
-            transform: translateX(5px);
         }
 
         .copyright {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
         }
 
-        .copyright .motto {
+        .motto-footer {
             color: var(--gold);
             font-size: 1.2rem;
             margin-top: 1rem;
-            text-align: center;
-            background: none;
-            padding: 0;
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .newsletter h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .newsletter-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--red);
+            color: white;
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            h2 {
-                font-size: 2rem;
+        @media (max-width: 968px) {
+            .hero-split {
+                grid-template-columns: 1fr;
             }
             
-            .hero h2 {
-                font-size: 2.2rem;
+            .hero-image {
+                height: 400px;
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
             }
             
             .header-content {
@@ -486,150 +635,216 @@
                 text-align: center;
             }
             
-            .motto {
-                text-align: center;
-            }
-            
             .nav-links {
                 gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content {
+                padding: 3rem 1.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Contact Bar -->
-    <div class="contact-info-bar">
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
         <div class="container">
-            <div class="contact-details">
-                <a href="mailto:speakghana912@gmail.com"><span>📧</span> speakghana912@gmail.com</a>
-                <a href="tel:+233552263323"><span>📞</span> +233 55 226 3323</a>
-                <a href="https://wa.me/233552263323"><span>💬</span> WhatsApp: +233 55 226 3323</a>
+            <div class="contact-info">
+                <a href="mailto:speakghana912@gmail.com">📧 speakghana912@gmail.com</a>
+                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
             </div>
         </div>
     </div>
 
+    <!-- Header -->
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="images/speako.jpg" alt="Speak Ghana Logo">
+                <img src="images/speako.jpg" alt="Speak Ghana">
                 <div class="logo-text">
                     <h1>Speak <span>Ghana</span></h1>
                     <p>Reconnect. Speak. Thrive.</p>
                 </div>
             </div>
-            <div class="motto">
+            <div class="motto-badge">
                 Reconnect. Speak. Thrive.
                 <span>Your journey home begins here</span>
             </div>
         </div>
     </header>
 
+    <!-- Navigation -->
     <nav>
         <div class="container">
             <div class="nav-links">
                 <a href="index.html" class="active">Home</a>
-                <a href="plans.html">Plans</a>
-                <a href="team.html">Our Team</a>
-                <a href="textbook.html">Textbook</a>
-                <a href="register.html">Register</a>
+                <a href="about.html">About</a>
+                <a href="learn.html">Learn</a>
+                <a href="resources.html">Resources</a>
+                <a href="contact.html">Contact</a>
+                <a href="blog.html">Blog</a>
             </div>
         </div>
     </nav>
 
+    <!-- Hero Section with Return Image -->
     <section class="hero">
-        <div class="container">
-            <h2>Akwaaba! — Welcome!</h2>
-            <p>Personalized 1-on-1 & small-group Twi classes for diaspora learners and everyone who wants to speak Ghanaian languages confidently.</p>
-            
-            <div class="free-march-banner">
-                🎉 MARCH 2026 – ALL LESSONS ARE FREE! 🎉
+        <div class="hero-split">
+            <div class="hero-content">
+                <div class="free-badge">🎉 MARCH 2026 – ALL LESSONS FREE! 🎉</div>
+                <h2>Akwaaba! — Welcome Home</h2>
+                <p>Reconnect with your roots through language, culture, and community. Personalized Twi classes for the global African diaspora.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="learn.html" class="btn btn-gold btn-large">Explore Plans</a>
+                    <a href="register.html" class="btn btn-primary btn-large">Start Free Trial</a>
+                </div>
+                <p style="margin-top: 2rem; font-size: 1rem;">✨ No payment required in March • Try any class free ✨</p>
             </div>
-            
-            <p>Come try every class — no payment required in March.</p>
-            
-            <a href="register.html" class="btn btn-primary btn-large">Start Your Journey</a>
-        </div>
-    </section>
-
-    <section class="mission">
-        <div class="container">
-            <h2>Our Mission</h2>
-            <div class="mission-text">
-                <p>To reconnect the global African diaspora with their roots through language, culture, and community – one word at a time.</p>
-                <div class="mission-highlight">Reconnect. Speak. Thrive.</div>
-                <p>We believe that language is the key that unlocks identity, heritage, and belonging. Every word learned is a step closer to home.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="core-values">
-        <div class="container">
-            <h2>Our Core Values</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-symbol">🕊️</div>
-                    <div class="value-name">Sankofa</div>
-                    <div class="value-meaning">Look back to move forward</div>
-                </div>
-                <div class="value-card">
-                    <div class="value-symbol">🤝</div>
-                    <div class="value-name">Akwaaba</div>
-                    <div class="value-meaning">Everyone is welcome</div>
-                </div>
-                <div class="value-card">
-                    <div class="value-symbol">🌱</div>
-                    <div class="value-name">Kakra Kakra</div>
-                    <div class="value-meaning">Little by little</div>
-                </div>
-                <div class="value-card">
-                    <div class="value-symbol">👪</div>
-                    <div class="value-name">Abusua</div>
-                    <div class="value-meaning">We are family</div>
-                </div>
-                <div class="value-card">
-                    <div class="value-symbol">📈</div>
-                    <div class="value-name">Nkɔsoɔ</div>
-                    <div class="value-meaning">Progress</div>
+            <div class="hero-image">
+                <!-- Return PNG Image - Diasporans coming back to Ghana -->
+                <img src="images/return.png" alt="Diasporans returning to Ghana - Reconnecting with roots">
+                <div class="image-overlay-text">
+                    <span style="font-size: 1.5rem;">🇬🇭 Reconnect. Speak. Thrive.</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cta-section">
-        <div class="container">
+    <!-- Main Content -->
+    <div class="container">
+        <!-- March Banner -->
+        <div class="march-banner">
+            <h3>🎉 MARCH 2026 – ALL LESSONS ARE FREE! 🎉</h3>
+            <p>Try any class for free throughout March. No payment required. Secure your spot for April!</p>
+        </div>
+
+        <!-- Featured Section -->
+        <h2 class="center">Your Journey Home Begins Here</h2>
+        <div class="featured-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🗣️</div>
+                <h3>Speak from Day One</h3>
+                <p>Our 80/20 method means you talk 80% of class time. Learn by speaking, not just listening.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Connect with Your Roots</h3>
+                <p>More than language - learn proverbs, culture, and traditions that connect you to home.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Join a Community</h3>
+                <p>You're not alone. Join fellow diaspora learners in our WhatsApp community.</p>
+            </div>
+        </div>
+
+        <!-- Values Preview -->
+        <div class="values-preview">
+            <span class="value-pill">🕊️ Sankofa</span>
+            <span class="value-pill">🤝 Akwaaba</span>
+            <span class="value-pill">🌱 Kakra Kakra</span>
+            <span class="value-pill">👪 Abusua</span>
+            <span class="value-pill">📈 Nkɔsoɔ</span>
+        </div>
+
+        <!-- Testimonial Preview -->
+        <div class="testimonial-preview">
+            <h2 class="center">What Our Students Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Learning Twi with Speak Ghana opened doors to connect with my husband's family. The teachers are amazing!
+                    </div>
+                    <div class="testimonial-author">— Sarah, UK</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        I've tried apps before, but nothing compares to live classes with native speakers. Kakra kakra, I'm getting there!
+                    </div>
+                    <div class="testimonial-author">— Kwame, USA</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="learn.html#testimonials" class="btn btn-gold">Read More Stories →</a>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
             <h2>Ready to Reconnect?</h2>
-            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Join hundreds of diaspora learners who are finding their way home through language.</p>
-            <a href="plans.html" class="btn btn-gold btn-large">View Our Plans</a>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Join hundreds of diaspora learners finding their way home through language.</p>
+            <div class="cta-buttons">
+                <a href="learn.html" class="btn btn-gold btn-large">View All Plans</a>
+                <a href="register.html" class="btn btn-primary btn-large">Register for Free March Classes</a>
+            </div>
+            <p style="margin-top: 2rem;">✨ First month free • No commitment • Start speaking today ✨</p>
         </div>
-    </section>
+    </div>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>Speak Ghana</h4>
                     <p>📍 Osu, Accra, Ghana</p>
-                    <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
-                    <p>📧 <a href="mailto:speakghana912@gmail.com">speakghana912@gmail.com</a></p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 speakghana912@gmail.com</p>
+                    <p>💬 WhatsApp: +233 55 226 3323</p>
                 </div>
                 
                 <div class="footer-section">
                     <h4>Quick Links</h4>
-                    <p><a href="plans.html">Plans & Pricing</a></p>
-                    <p><a href="team.html">Our Team</a></p>
-                    <p><a href="textbook.html">Textbook</a></p>
-                    <p><a href="register.html">Register</a></p>
+                    <a href="about.html">About Us</a>
+                    <a href="learn.html">Learning Plans</a>
+                    <a href="resources.html">Free Resources</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="blog.html">Blog</a>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Payment Methods</h4>
-                    <p>PayPal • Wise • Mobile Money • Bank Transfer</p>
+                    <h4>Follow Us</h4>
+                    <a href="#">Instagram: @speakghana</a>
+                    <a href="#">TikTok: @speakghana</a>
+                    <a href="#">YouTube: Speak Ghana</a>
+                    <a href="#">Facebook: Speak Ghana</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Get Twi tips and cultural insights</p>
+                    <div class="newsletter">
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Your email" class="newsletter-input">
+                            <button class="newsletter-btn">Subscribe</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="copyright">
                 <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
-                <p class="motto">Reconnect. Speak. Thrive.</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
             </div>
         </div>
     </footer>
