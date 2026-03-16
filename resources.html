@@ -510,32 +510,56 @@
             color: var(--green);
         }
 
-        <!-- Social Media Section -->
-<div class="social-section">
-    <h2 class="center">📱 Connect With Us</h2>
-    <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--black);">Follow for daily Twi tips and cultural content</p>
-    
-    <div class="social-grid">
-        <a href="https://www.youtube.com/@SpeakGhana" target="_blank" class="social-card">
-            <div class="social-icon">📺</div>
-            <h3>YouTube</h3>
-            <p>@SpeakGhana</p>
-            <p style="font-size: 0.9rem;">Weekly lessons & culture</p>
-        </a>
-        <a href="https://www.instagram.com/speak_ghana" target="_blank" class="social-card">
-            <div class="social-icon">📸</div>
-            <h3>Instagram</h3>
-            <p>@speak_ghana</p>
-            <p style="font-size: 0.9rem;">Daily vocabulary & stories</p>
-        </a>
-        <a href="https://www.tiktok.com/@speakghana0" target="_blank" class="social-card">
-            <div class="social-icon">🎵</div>
-            <h3>TikTok</h3>
-            <p>@speakghana0</p>
-            <p style="font-size: 0.9rem;">Fun language shorts</p>
-        </a>
-    </div>
-</div>
+        /* ===== SOCIAL MEDIA SECTION STYLES ===== */
+        .social-section {
+            background: linear-gradient(135deg, var(--gold), #c49a6c);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .social-section h2 {
+            color: var(--black);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .social-card {
+            background: rgba(255,255,255,0.2);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            color: var(--black);
+            transition: transform 0.3s;
+            display: block;
+        }
+
+        .social-card:hover {
+            transform: translateY(-10px);
+            background: white;
+        }
+
+        .social-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-card h3 {
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .social-card p {
+            color: var(--black);
+            opacity: 0.8;
+        }
 
         /* ===== RECOMMENDED MEDIA SECTION ===== */
         .media-section {
@@ -850,35 +874,29 @@
             <p style="margin-top: 2rem; color: var(--gray);">No spam. Unsubscribe anytime.</p>
         </div>
 
-        <!-- Social Media Section -->
+        <!-- Social Media Section (FIXED - Now properly placed) -->
         <div class="social-section">
-            <h2 class="center">📱 Follow Us</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--black);">Daily content to support your learning</p>
+            <h2 class="center">📱 Connect With Us</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--black);">Follow for daily Twi tips and cultural content</p>
             
             <div class="social-grid">
-                <a href="#" class="social-card">
+                <a href="https://www.youtube.com/@SpeakGhana" target="_blank" class="social-card">
+                    <div class="social-icon">📺</div>
+                    <h3>YouTube</h3>
+                    <p>@SpeakGhana</p>
+                    <p style="font-size: 0.9rem;">Weekly lessons & culture</p>
+                </a>
+                <a href="https://www.instagram.com/speak_ghana" target="_blank" class="social-card">
                     <div class="social-icon">📸</div>
                     <h3>Instagram</h3>
-                    <p>@speakghana</p>
-                    <p style="font-size: 0.9rem;">Daily vocabulary & culture</p>
+                    <p>@speak_ghana</p>
+                    <p style="font-size: 0.9rem;">Daily vocabulary & stories</p>
                 </a>
-                <a href="#" class="social-card">
+                <a href="https://www.tiktok.com/@speakghana0" target="_blank" class="social-card">
                     <div class="social-icon">🎵</div>
                     <h3>TikTok</h3>
-                    <p>@speakghana</p>
-                    <p style="font-size: 0.9rem;">Fun language videos</p>
-                </a>
-                <a href="#" class="social-card">
-                    <div class="social-icon">▶️</div>
-                    <h3>YouTube</h3>
-                    <p>Speak Ghana</p>
-                    <p style="font-size: 0.9rem;">Lesson recordings & tutorials</p>
-                </a>
-                <a href="#" class="social-card">
-                    <div class="social-icon">📘</div>
-                    <h3>Facebook</h3>
-                    <p>Speak Ghana</p>
-                    <p style="font-size: 0.9rem;">Community discussions</p>
+                    <p>@speakghana0</p>
+                    <p style="font-size: 0.9rem;">Fun language shorts</p>
                 </a>
             </div>
         </div>
@@ -941,7 +959,7 @@
                     <div style="background: #333; height: 150px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white;">Lesson 3: Food</div>
                 </div>
             </div>
-            <a href="#" class="btn btn-gold">Subscribe to Our Channel</a>
+            <a href="https://www.youtube.com/@SpeakGhana" target="_blank" class="btn btn-gold">Subscribe to Our Channel</a>
         </div>
     </div>
 
@@ -966,11 +984,10 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Resources</h4>
-                    <a href="#">Free PDFs</a>
-                    <a href="#">Blog</a>
-                    <a href="#">YouTube</a>
-                    <a href="#">Newsletter</a>
+                    <h4>Follow Us</h4>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube: @SpeakGhana</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram: @speak_ghana</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok: @speakghana0</a>
                 </div>
             </div>
             
