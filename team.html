@@ -5,35 +5,227 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Team - Speak Ghana</title>
     <style>
-        /* Same CSS as index.html */
-        /* Copy all CSS from index.html here */
-        
-        /* Additional styles for team page */
+        /* ===== BEAUTIFUL MODERN DESIGN ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #fdf6e9 0%, #fff9f0 100%);
+            color: #2d2d2d;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .top-bar {
+            background: #1a1a1a;
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid #D4A373;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #D4A373;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .logo-text h1 span {
+            color: #D4A373;
+        }
+
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: #D4A373;
+            font-weight: 500;
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1rem 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #E76F51;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #E76F51;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #2A9D8F;
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+            background: #2A9D8F;
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            background: linear-gradient(135deg, #2A9D8F20, #D4A37320);
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .page-hero h2 {
+            font-size: 3rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== TEAM GRID ===== */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
         }
 
         .team-card {
-            background: var(--white);
-            border-radius: 20px;
+            background: white;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 15px 30px var(--shadow);
-            transition: all 0.3s;
-            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
         }
 
         .team-photo {
             width: 100%;
-            height: 300px;
+            height: 320px;
             overflow: hidden;
+            position: relative;
+        }
+
+        .team-photo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
         }
 
         .team-photo img {
@@ -49,19 +241,35 @@
 
         .team-info {
             padding: 2rem;
+            text-align: center;
+            position: relative;
+            background: white;
         }
 
         .team-info h3 {
             font-size: 1.8rem;
-            color: var(--black);
+            color: #1a1a1a;
             margin-bottom: 0.3rem;
         }
 
         .team-info .role {
-            color: var(--green);
-            font-weight: 600;
+            color: #2A9D8F;
             font-size: 1.2rem;
+            font-weight: 600;
             margin-bottom: 1rem;
+        }
+
+        .team-info .specialty {
+            color: #E76F51;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .team-info .bio {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
         .social-links {
@@ -74,37 +282,244 @@
         .social-link {
             display: inline-block;
             padding: 0.5rem 1.2rem;
-            background: var(--cream);
-            border-radius: 30px;
-            color: var(--black);
+            background: #f8f8f8;
+            border-radius: 50px;
+            color: #2d2d2d;
             text-decoration: none;
-            transition: all 0.3s;
             font-size: 0.9rem;
+            transition: all 0.3s;
+            border: 1px solid #e0e0e0;
         }
 
         .social-link:hover {
-            background: var(--gold);
+            background: #2A9D8F;
+            color: white;
+            border-color: #2A9D8F;
             transform: translateY(-3px);
         }
 
         .linkedin-link {
-            display: inline-block;
-            margin-top: 1rem;
-            color: var(--green);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2A9D8F;
             text-decoration: none;
             font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s;
         }
 
         .linkedin-link:hover {
-            color: var(--gold);
+            color: #E76F51;
+            transform: translateX(5px);
+        }
+
+        .academic-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #D4A373;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .academic-link:hover {
+            color: #E76F51;
+            transform: translateX(5px);
+        }
+
+        /* ===== CEO SECTION ===== */
+        .ceo-section {
+            max-width: 500px;
+            margin: 0 auto 4rem;
+        }
+
+        .ceo-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border: 2px solid #D4A373;
+        }
+
+        .ceo-photo {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .ceo-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ceo-info {
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .ceo-info h3 {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .ceo-info .role {
+            color: #2A9D8F;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .ceo-info .bio {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* ===== VALUES BADGES ===== */
+        .values-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #D4A37320, #E76F5120);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: #1a1a1a;
+            border: 1px solid #D4A37340;
+        }
+
+        /* ===== TEACHER NOTE ===== */
+        .teacher-note {
+            background: linear-gradient(135deg, #2A9D8F10, #D4A37310);
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
+            margin: 4rem 0;
+            border: 2px dashed #2A9D8F;
+        }
+
+        .teacher-note h3 {
+            color: #2A9D8F;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .teacher-note p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .guarantee-badge {
+            background: #E76F51;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 2rem;
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #D4A373, #E76F51, #2A9D8F);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-grid h4 {
+            color: #D4A373;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-grid a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-grid a:hover {
+            color: #D4A373;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .motto-footer {
+            color: #D4A373;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ceo-section {
+                padding: 0 1rem;
+            }
+            
+            .teacher-note {
+                padding: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Contact Bar -->
-    <div class="contact-info-bar">
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
         <div class="container">
-            <div class="contact-details">
+            <div class="contact-info">
                 <a href="mailto:speakghana912@gmail.com">📧 speakghana912@gmail.com</a>
                 <a href="tel:+233552263323">📞 +233 55 226 3323</a>
                 <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
@@ -112,22 +527,24 @@
         </div>
     </div>
 
+    <!-- Header -->
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="images/speako.jpg" alt="Speak Ghana Logo">
+                <img src="images/speako.jpg" alt="Speak Ghana">
                 <div class="logo-text">
                     <h1>Speak <span>Ghana</span></h1>
                     <p>Reconnect. Speak. Thrive.</p>
                 </div>
             </div>
-            <div class="motto">
+            <div class="motto-badge">
                 Reconnect. Speak. Thrive.
                 <span>Your journey home begins here</span>
             </div>
         </div>
     </header>
 
+    <!-- Navigation -->
     <nav>
         <div class="container">
             <div class="nav-links">
@@ -140,102 +557,175 @@
         </div>
     </nav>
 
-    <section style="padding: 5rem 0;">
+    <!-- Page Hero -->
+    <div class="page-hero">
         <div class="container">
             <h2>Meet Our Teachers</h2>
-            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">All teachers are native Twi speakers with years of teaching experience.</p>
+            <p>All instructors are native Twi speakers with years of teaching experience and a passion for sharing Ghanaian culture.</p>
+        </div>
+    </div>
 
-            <!-- CEO -->
-            <div style="max-width: 400px; margin: 0 auto 4rem;">
-                <div class="team-card">
-                    <div class="team-photo">
-                        <img src="images/richard.jpg" alt="Richard Asiamah">
-                    </div>
-                    <div class="team-info">
-                        <h3>Richard Asiamah</h3>
-                        <div class="role">Founder & CEO</div>
-                        <p style="color: var(--gray); margin: 1rem 0;">Passionate about reconnecting the diaspora with Ghanaian heritage through language.</p>
-                        <a href="https://www.linkedin.com/in/richard-asiamah-856a9b135/" target="_blank" class="linkedin-link">🔗 View LinkedIn Profile</a>
-                    </div>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- CEO Section -->
+        <div class="ceo-section">
+            <div class="ceo-card">
+                <div class="ceo-photo">
+                    <img src="images/richard.jpg" alt="Richard Asiamah">
                 </div>
-            </div>
-
-            <div class="team-grid">
-                <!-- Charlotte -->
-                <div class="team-card">
-                    <div class="team-photo">
-                        <img src="images/charlotte.jpg" alt="Charlotte Tetebea Asiamah">
+                <div class="ceo-info">
+                    <h3>Richard Asiamah</h3>
+                    <div class="role">Founder & CEO</div>
+                    <div class="bio">
+                        Passionate about reconnecting the diaspora with Ghanaian heritage through language. With over a decade of experience in language education, Richard founded Speak Ghana to create a welcoming home for learners worldwide.
                     </div>
-                    <div class="team-info">
-                        <h3>Charlotte Tetebea Asiamah</h3>
-                        <div class="role">Senior Twi Instructor</div>
-                        <p style="color: var(--gray); margin: 1rem 0;">Specializes in cultural immersion and helping diaspora students connect with their roots.</p>
-                        <a href="https://webapps.knust.edu.gh/staff/dirsearch/profile/summary/2a497368a7ab.html" target="_blank" class="linkedin-link">🔗 View Academic Profile</a>
+                    <div class="values-badges">
+                        <span class="badge">🌍 Diaspora Connection</span>
+                        <span class="badge">📚 Curriculum Design</span>
+                        <span class="badge">🤝 Community Building</span>
                     </div>
+                    <a href="https://www.linkedin.com/in/richard-asiamah-856a9b135/" target="_blank" class="linkedin-link">
+                        🔗 View LinkedIn Profile →
+                    </a>
                 </div>
-
-                <!-- Michael -->
-                <div class="team-card">
-                    <div class="team-photo">
-                        <img src="images/michael.jpg" alt="Michael Agyepong Nkansah">
-                    </div>
-                    <div class="team-info">
-                        <h3>Michael Agyepong Nkansah</h3>
-                        <div class="role">Twi & Fante Instructor</div>
-                        <p style="color: var(--gray); margin: 1rem 0;">Expert in pronunciation and building conversational confidence.</p>
-                        <div class="social-links">
-                            <span class="social-link">Twi Expert</span>
-                            <span class="social-link">Fante Specialist</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Evelyn - New Teacher -->
-                <div class="team-card">
-                    <div class="team-photo">
-                        <img src="images/evelyn.jpg" alt="Evelyn Mensah">
-                    </div>
-                    <div class="team-info">
-                        <h3>Evelyn Mensah</h3>
-                        <div class="role">Twi & Ga Instructor</div>
-                        <p style="color: var(--gray); margin: 1rem 0;">Bringing 10+ years of experience in teaching Twi and Ga to learners of all levels.</p>
-                        <div class="social-links">
-                            <span class="social-link">Ga Specialist</span>
-                            <span class="social-link">Beginner Expert</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="background: linear-gradient(135deg, var(--cream), var(--white)); padding: 3rem; border-radius: 20px; margin-top: 4rem; text-align: center;">
-                <h3 style="color: var(--green);">All Teachers Are Native Speakers</h3>
-                <p style="font-size: 1.2rem;">Not the right fit? Request a change – we'll find you a better match at no extra cost.</p>
             </div>
         </div>
-    </section>
 
+        <!-- Teachers Grid -->
+        <h2 style="font-size: 2.5rem; text-align: center; margin: 3rem 0 1rem;">Our Amazing Instructors</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 3rem;">Native speakers dedicated to your success</p>
+
+        <div class="team-grid">
+            <!-- Charlotte -->
+            <div class="team-card">
+                <div class="team-photo">
+                    <img src="images/charlotte.jpg" alt="Charlotte Tetebea Asiamah">
+                </div>
+                <div class="team-info">
+                    <h3>Charlotte Tetebea Asiamah</h3>
+                    <div class="role">Senior Twi Instructor</div>
+                    <div class="specialty">Cultural Immersion Specialist</div>
+                    <div class="bio">
+                        Charlotte brings warmth and patience to every class. She specializes in helping diaspora students connect with their heritage through language, proverbs, and cultural traditions.
+                    </div>
+                    <div class="values-badges">
+                        <span class="badge">Twi Expert</span>
+                        <span class="badge">Cultural Immersion</span>
+                        <span class="badge">Proverbs</span>
+                    </div>
+                    <a href="https://webapps.knust.edu.gh/staff/dirsearch/profile/summary/2a497368a7ab.html" target="_blank" class="academic-link">
+                        📚 View Academic Profile →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Michael -->
+            <div class="team-card">
+                <div class="team-photo">
+                    <img src="images/michael.jpg" alt="Michael Agyepong Nkansah">
+                </div>
+                <div class="team-info">
+                    <h3>Michael Agyepong Nkansah</h3>
+                    <div class="role">Twi & Fante Instructor</div>
+                    <div class="specialty">Pronunciation & Conversation</div>
+                    <div class="bio">
+                        Michael's energetic teaching style gets students speaking from day one. He specializes in perfecting pronunciation and building conversational confidence.
+                    </div>
+                    <div class="values-badges">
+                        <span class="badge">Twi Expert</span>
+                        <span class="badge">Fante</span>
+                        <span class="badge">Pronunciation</span>
+                    </div>
+                    <div class="social-links">
+                        <span class="social-link">🎤 Speaking Coach</span>
+                        <span class="social-link">🗣️ Conversation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evelyn - New Teacher -->
+            <div class="team-card">
+                <div class="team-photo">
+                    <img src="images/evelyn.jpg" alt="Evelyn Mensah">
+                </div>
+                <div class="team-info">
+                    <h3>Evelyn Mensah</h3>
+                    <div class="role">Twi & Ga Instructor</div>
+                    <div class="specialty">Beginner & Children Specialist</div>
+                    <div class="bio">
+                        With 10+ years of experience, Evelyn has a gift for making language learning fun and accessible. She specializes in teaching beginners and creating a comfortable learning environment.
+                    </div>
+                    <div class="values-badges">
+                        <span class="badge">Ga Specialist</span>
+                        <span class="badge">Beginners</span>
+                        <span class="badge">Children</span>
+                    </div>
+                    <div class="social-links">
+                        <span class="social-link">📖 Patient Teacher</span>
+                        <span class="social-link">🎯 Step-by-Step</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teacher Guarantee Note -->
+        <div class="teacher-note">
+            <h3>You're in Good Hands</h3>
+            <p>Every teacher at Speak Ghana is a native speaker with extensive teaching experience. We match you with the instructor whose style best fits your learning needs.</p>
+            <div class="guarantee-badge">
+                ⭐ Not the right fit? Request a change - FREE ⭐
+            </div>
+            <p style="margin-top: 2rem; font-size: 1.1rem;">We'll find you a better match at no extra cost. Your success is our priority.</p>
+        </div>
+
+        <!-- Why Choose Our Teachers -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 4rem 0;">
+            <div style="text-align: center; padding: 2rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🎓</div>
+                <h3 style="color: #2A9D8F;">Native Speakers</h3>
+                <p>All teachers are native Twi speakers from Ghana</p>
+            </div>
+            <div style="text-align: center; padding: 2rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📋</div>
+                <h3 style="color: #2A9D8F;">Certified & Experienced</h3>
+                <p>Years of teaching experience with proven methods</p>
+            </div>
+            <div style="text-align: center; padding: 2rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">❤️</div>
+                <h3 style="color: #2A9D8F;">Passionate Mentors</h3>
+                <p>Dedicated to helping you reconnect with your roots</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-section">
+                <div>
                     <h4>Speak Ghana</h4>
                     <p>📍 Osu, Accra, Ghana</p>
-                    <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
-                    <p>📧 <a href="mailto:speakghana912@gmail.com">speakghana912@gmail.com</a></p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 speakghana912@gmail.com</p>
                 </div>
-                
-                <div class="footer-section">
+                <div>
                     <h4>Quick Links</h4>
-                    <p><a href="index.html">Home</a></p>
-                    <p><a href="plans.html">Plans</a></p>
-                    <p><a href="textbook.html">Textbook</a></p>
-                    <p><a href="register.html">Register</a></p>
+                    <a href="index.html">Home</a>
+                    <a href="plans.html">Plans & Pricing</a>
+                    <a href="textbook.html">Textbook</a>
+                    <a href="register.html">Register</a>
+                </div>
+                <div>
+                    <h4>Meet Our Team</h4>
+                    <a href="#richard">Richard Asiamah (CEO)</a>
+                    <a href="#charlotte">Charlotte Asiamah</a>
+                    <a href="#michael">Michael Nkansah</a>
+                    <a href="#evelyn">Evelyn Mensah</a>
                 </div>
             </div>
-            
             <div class="copyright">
-                <p>© 2026 Speak Ghana Language School</p>
-                <p class="motto">Reconnect. Speak. Thrive.</p>
+                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
             </div>
         </div>
     </footer>
