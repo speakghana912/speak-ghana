@@ -5,71 +5,553 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Speak Ghana</title>
     <style>
-        /* Same CSS as index.html */
-        /* Copy all CSS from index.html here */
-        
-        .registration-card {
-            background: var(--white);
-            padding: 4rem;
-            border-radius: 30px;
-            box-shadow: 0 30px 60px var(--shadow);
-            max-width: 800px;
+        /* ===== BEAUTIFUL MODERN DESIGN ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #fdf6e9 0%, #fff9f0 100%);
+            color: #2d2d2d;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1300px;
             margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .top-bar {
+            background: #1a1a1a;
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid #D4A373;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #D4A373;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .logo-text h1 span {
+            color: #D4A373;
+        }
+
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: #D4A373;
+            font-weight: 500;
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1rem 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #E76F51;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #E76F51;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #2A9D8F;
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+            background: #2A9D8F;
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            background: linear-gradient(135deg, #2A9D8F20, #D4A37320);
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .page-hero h2 {
+            font-size: 3rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== REGISTRATION CARD ===== */
+        .registration-card {
+            background: white;
+            border-radius: 40px;
+            padding: 4rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 3rem auto;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .registration-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #D4A373, #E76F51, #2A9D8F);
+        }
+
+        .registration-card::after {
+            content: '🇬🇭';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 8rem;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .registration-card h2 {
+            font-size: 2.8rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
             text-align: center;
         }
 
-        .register-link {
+        .registration-card h3 {
+            font-size: 2rem;
+            color: #2A9D8F;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* ===== MARCH BANNER ===== */
+        .march-banner {
+            background: linear-gradient(135deg, #D4A373, #E76F51);
+            border-radius: 30px;
+            padding: 2.5rem;
+            text-align: center;
+            margin: 2rem 0 3rem;
+            box-shadow: 0 20px 40px rgba(231, 111, 81, 0.2);
+        }
+
+        .march-banner h4 {
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .march-banner p {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+        }
+
+        /* ===== REGISTRATION BUTTON ===== */
+        .register-button {
             display: inline-block;
-            background: linear-gradient(135deg, var(--gold), var(--red));
-            color: var(--black);
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
             padding: 2rem 4rem;
             border-radius: 60px;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             text-decoration: none;
             margin: 2rem 0;
-            transition: all 0.3s;
-            box-shadow: 0 20px 40px rgba(212, 163, 115, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(42, 157, 143, 0.3);
+            border: 2px solid rgba(255,255,255,0.2);
+            width: 100%;
+            max-width: 600px;
         }
 
-        .register-link:hover {
+        .register-button:hover {
             transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 30px 60px rgba(231, 111, 81, 0.4);
+            box-shadow: 0 30px 60px rgba(42, 157, 143, 0.4);
+            background: linear-gradient(135deg, #1f7a6e, #2A9D8F);
         }
 
-        .steps {
+        .register-button i {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+        }
+
+        /* ===== STEPS SECTION ===== */
+        .steps-section {
+            margin: 4rem 0;
+        }
+
+        .steps-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
+            gap: 1.5rem;
             margin: 3rem 0;
         }
 
-        .step {
-            padding: 1.5rem;
-            background: var(--cream);
-            border-radius: 15px;
+        .step-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
             position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            background: white;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .step-number {
-            background: var(--green);
+            background: #2A9D8F;
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-card h4 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* ===== PLAN SUMMARY ===== */
+        .plan-summary {
+            background: linear-gradient(135deg, #2A9D8F10, #D4A37310);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .plan-summary h3 {
+            color: #2A9D8F;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .plan-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .plan-tag {
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .plan-tag:hover {
+            background: #2A9D8F;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            margin: 4rem 0;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid #D4A373;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .faq-item h4 {
+            color: #2A9D8F;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-item p {
+            color: #666;
+        }
+
+        /* ===== CONTACT CARD ===== */
+        .contact-card {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-radius: 30px;
+            padding: 3rem;
+            color: white;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .contact-card h3 {
+            color: #D4A373;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+        }
+
+        .contact-card a {
+            color: #D4A373;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-card a:hover {
+            color: #E76F51;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .contact-method {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #D4A373, #E76F51, #2A9D8F);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-grid h4 {
+            color: #D4A373;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-grid a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-grid a:hover {
+            color: #D4A373;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .motto-footer {
+            color: #D4A373;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .registration-card {
+                padding: 2rem;
+            }
+            
+            .register-button {
+                font-size: 1.5rem;
+                padding: 1.5rem 2rem;
+            }
+            
+            .plan-tags {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .plan-tag {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Contact Bar -->
-    <div class="contact-info-bar">
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
         <div class="container">
-            <div class="contact-details">
+            <div class="contact-info">
                 <a href="mailto:speakghana912@gmail.com">📧 speakghana912@gmail.com</a>
                 <a href="tel:+233552263323">📞 +233 55 226 3323</a>
                 <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
@@ -77,22 +559,24 @@
         </div>
     </div>
 
+    <!-- Header -->
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="images/speako.jpg" alt="Speak Ghana Logo">
+                <img src="images/speako.jpg" alt="Speak Ghana">
                 <div class="logo-text">
                     <h1>Speak <span>Ghana</span></h1>
                     <p>Reconnect. Speak. Thrive.</p>
                 </div>
             </div>
-            <div class="motto">
+            <div class="motto-badge">
                 Reconnect. Speak. Thrive.
                 <span>Your journey home begins here</span>
             </div>
         </div>
     </header>
 
+    <!-- Navigation -->
     <nav>
         <div class="container">
             <div class="nav-links">
@@ -105,70 +589,189 @@
         </div>
     </nav>
 
-    <section style="padding: 5rem 0;">
+    <!-- Page Hero -->
+    <div class="page-hero">
         <div class="container">
-            <div class="registration-card">
-                <h2 style="display: block; text-align: center;">Start Your Journey</h2>
-                
-                <div class="free-march-banner" style="margin: 2rem auto;">
-                    🎉 MARCH 2026 – ALL LESSONS FREE! 🎉
-                </div>
+            <h2>Begin Your Journey</h2>
+            <p>Join hundreds of diaspora learners reconnecting with their roots through language.</p>
+        </div>
+    </div>
 
-                <a href="https://forms.gle/QouhorzyBJh7ANma7" target="_blank" class="register-link">
-                    📋 Register Now
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Registration Card -->
+        <div class="registration-card">
+            <h2>🇬🇭 Akwaaba! 🇬🇭</h2>
+            <h3>Ready to Start Speaking Twi?</h3>
+
+            <!-- March Free Banner -->
+            <div class="march-banner">
+                <h4>🎉 MARCH 2026 – ALL LESSONS FREE! 🎉</h4>
+                <p>Try any class for free throughout March. No payment required.</p>
+            </div>
+
+            <!-- Main Registration Button -->
+            <div style="text-align: center;">
+                <a href="https://forms.gle/QouhorzyBJh7ANma7" target="_blank" class="register-button">
+                    📋 CLICK HERE TO REGISTER
                 </a>
+                <p style="margin: 1rem 0; color: #666;">For April Paid Classes • Free March classes just email us</p>
+            </div>
 
-                <p style="font-size: 1.2rem; margin: 2rem 0;">Click above to fill out our Google Form</p>
-
-                <div class="steps">
-                    <div class="step">
+            <!-- 4 Simple Steps -->
+            <div class="steps-section">
+                <h3 style="text-align: center; color: #2A9D8F; margin-bottom: 2rem;">Your Journey in 4 Simple Steps</h3>
+                <div class="steps-grid">
+                    <div class="step-card">
                         <div class="step-number">1</div>
-                        <p>Try Free in March</p>
+                        <h4>Try Free in March</h4>
+                        <p>Attend any class at no cost</p>
                     </div>
-                    <div class="step">
+                    <div class="step-card">
                         <div class="step-number">2</div>
-                        <p>Choose Your Plan</p>
+                        <h4>Choose Your Plan</h4>
+                        <p>Private or Group • 1-3 lessons/week</p>
                     </div>
-                    <div class="step">
+                    <div class="step-card">
                         <div class="step-number">3</div>
-                        <p>Start Anytime</p>
+                        <h4>Start Anytime</h4>
+                        <p>Begin your paid plan when YOU'RE ready</p>
                     </div>
-                    <div class="step">
+                    <div class="step-card">
                         <div class="step-number">4</div>
-                        <p>Begin April 1</p>
+                        <h4>Official Start</h4>
+                        <p>Classes begin April 1, 2026 at 6PM GMT</p>
                     </div>
                 </div>
+            </div>
 
-                <div style="background: var(--cream); padding: 2rem; border-radius: 15px; margin-top: 2rem;">
-                    <h4 style="color: var(--green);">Questions?</h4>
-                    <p>Email us at speakghana912@gmail.com or call +233 55 226 3323</p>
+            <!-- Quick Plan Overview -->
+            <div class="plan-summary">
+                <h3>Choose Your Perfect Plan</h3>
+                <div class="plan-tags">
+                    <span class="plan-tag">👤 Private 60min • 1 lesson/wk</span>
+                    <span class="plan-tag">👤 Private 60min • 2 lessons/wk</span>
+                    <span class="plan-tag">👤 Private 60min • 3 lessons/wk</span>
+                    <span class="plan-tag">👤 Private 90min • 1 lesson/wk</span>
+                    <span class="plan-tag">👤 Private 90min • 2 lessons/wk</span>
+                    <span class="plan-tag">👥 Group 90min • 1 lesson/wk</span>
+                    <span class="plan-tag">👥 Group 90min • 2 lessons/wk</span>
+                    <span class="plan-tag">👥 Group 90min • 3 lessons/wk</span>
+                    <span class="plan-tag">🏢 Business Package</span>
+                    <span class="plan-tag">🧪 Taster Package</span>
+                </div>
+                <p style="text-align: center; margin-top: 2rem; color: #2A9D8F; font-weight: 600;">
+                    ✨ All plans include complete 300+ page textbook ✨
+                </p>
+            </div>
+
+            <!-- Special Discounts -->
+            <div style="background: #f8f8f8; border-radius: 20px; padding: 2rem; margin: 2rem 0; text-align: center;">
+                <h3 style="color: #E76F51; margin-bottom: 1rem;">🎁 SPECIAL DISCOUNTS</h3>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <div style="background: white; padding: 1.5rem; border-radius: 15px; min-width: 200px;">
+                        <h4 style="color: #2A9D8F;">👥 Siblings</h4>
+                        <p>5% off for both</p>
+                    </div>
+                    <div style="background: white; padding: 1.5rem; border-radius: 15px; min-width: 200px;">
+                        <h4 style="color: #2A9D8F;">👫 Friends</h4>
+                        <p>5% off for both</p>
+                    </div>
+                    <div style="background: white; padding: 1.5rem; border-radius: 15px; min-width: 200px;">
+                        <h4 style="color: #2A9D8F;">🏢 Business</h4>
+                        <p>5-10% bulk discount</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 style="text-align: center; color: #1a1a1a; margin-bottom: 2rem;">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>How do I join the free March classes?</h4>
+                    <p>Just email us or WhatsApp! No registration form needed for March - we'll send you the class link directly.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>When do paid classes start?</h4>
+                    <p>Officially April 1, 2026 at 6:00 PM GMT. But you can start your paid plan anytime in March!</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What if I miss a class?</h4>
+                    <p>Recordings provided for group classes. Private lessons reschedule with 24h notice.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I switch plans later?</h4>
+                    <p>Yes! Upgrade or downgrade anytime. Changes take effect the following month.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What materials do I need?</h4>
+                    <p>Just Zoom and WhatsApp. All PDFs and the complete textbook are provided free.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Is the textbook really free?</h4>
+                    <p>Absolutely! Every paid plan includes our 300+ page textbook (digital copy).</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How do group schedules work?</h4>
+                    <p>We find a time that works for the majority. You vote on the final day/time.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What if I don't like my teacher?</h4>
+                    <p>Request a change - we'll match you with a different teacher at no cost.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Card -->
+        <div class="contact-card">
+            <h3>📞 Questions? We're Here to Help!</h3>
+            <div class="contact-methods">
+                <span class="contact-method">📧 speakghana912@gmail.com</span>
+                <span class="contact-method">📞 +233 55 226 3323</span>
+                <span class="contact-method">💬 WhatsApp: +233 55 226 3323</span>
+            </div>
+            <p style="margin: 2rem 0 1rem;">Response within 24 hours • We're based in Accra, Ghana</p>
+            <p style="font-size: 1.5rem; color: #D4A373;">🇬🇭 Reconnect. Speak. Thrive. 🇬🇭</p>
+        </div>
+
+        <!-- Final Reminder -->
+        <div style="text-align: center; padding: 2rem; background: white; border-radius: 30px; margin-bottom: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <h3 style="color: #2A9D8F; font-size: 2rem; margin-bottom: 1rem;">✨ Start Your Journey Today ✨</h3>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Free classes throughout March • No commitment required</p>
+            <a href="https://forms.gle/QouhorzyBJh7ANma7" target="_blank" class="register-button" style="font-size: 1.8rem; padding: 1.5rem 3rem; max-width: 400px;">
+                📋 Register Now
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-section">
+                <div>
                     <h4>Speak Ghana</h4>
                     <p>📍 Osu, Accra, Ghana</p>
-                    <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
-                    <p>📧 <a href="mailto:speakghana912@gmail.com">speakghana912@gmail.com</a></p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 speakghana912@gmail.com</p>
                 </div>
-                
-                <div class="footer-section">
+                <div>
                     <h4>Quick Links</h4>
-                    <p><a href="index.html">Home</a></p>
-                    <p><a href="plans.html">Plans</a></p>
-                    <p><a href="team.html">Our Team</a></p>
-                    <p><a href="textbook.html">Textbook</a></p>
+                    <a href="index.html">Home</a>
+                    <a href="plans.html">Plans & Pricing</a>
+                    <a href="team.html">Our Team</a>
+                    <a href="textbook.html">Textbook</a>
+                </div>
+                <div>
+                    <h4>Free March Classes</h4>
+                    <p>Try any class for free!</p>
+                    <p>Email or WhatsApp us to join</p>
                 </div>
             </div>
-            
             <div class="copyright">
-                <p>© 2026 Speak Ghana Language School</p>
-                <p class="motto">Reconnect. Speak. Thrive.</p>
+                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
             </div>
         </div>
     </footer>
