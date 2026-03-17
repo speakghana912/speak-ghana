@@ -130,6 +130,11 @@
             padding: 1rem 3rem;
         }
 
+        .btn-small {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
         /* ===== TOP BAR ===== */
         .top-bar {
             background: var(--black);
@@ -159,7 +164,7 @@
             color: var(--gold);
         }
 
-        /* ===== HEADER ===== */
+        /* ===== HEADER WITH CLICKABLE LOGO ===== */
         header {
             background: linear-gradient(135deg, #1a1a1a, var(--green));
             color: white;
@@ -175,10 +180,11 @@
             gap: 2rem;
         }
 
-        .logo {
+        .logo a {
             display: flex;
             align-items: center;
             gap: 1rem;
+            text-decoration: none;
         }
 
         .logo img {
@@ -238,7 +244,7 @@
         .nav-links {
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            gap: 2.5rem;
             padding: 1rem 0;
             flex-wrap: wrap;
         }
@@ -499,7 +505,7 @@
             opacity: 0.8;
         }
 
-        /* ===== MAP SECTION ===== */
+        /* ===== MAP SECTION (UPDATED) ===== */
         .map-section {
             background: white;
             border-radius: 30px;
@@ -508,9 +514,48 @@
             box-shadow: 0 20px 40px var(--shadow);
         }
 
+        .map-locations {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .map-location-card {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--green);
+        }
+
+        .map-location-card h4 {
+            color: var(--green);
+            margin-bottom: 0.5rem;
+        }
+
+        .map-location-card p {
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .map-location-card .badge {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .map-location-card .badge.soon {
+            background: var(--gold);
+            color: var(--black);
+        }
+
         .map-placeholder {
             background: linear-gradient(135deg, var(--cream), #e0e0e0);
-            height: 400px;
+            height: 300px;
             border-radius: 20px;
             display: flex;
             flex-direction: column;
@@ -519,6 +564,7 @@
             color: var(--gray);
             position: relative;
             overflow: hidden;
+            margin-top: 2rem;
         }
 
         .map-placeholder::before {
@@ -535,6 +581,30 @@
             border-radius: 50px;
             margin-top: 2rem;
             z-index: 2;
+        }
+
+        .map-directions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .map-directions a {
+            background: var(--green);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .map-directions a:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
         }
 
         /* ===== HOURS SECTION ===== */
@@ -701,7 +771,7 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 3rem;
             margin-bottom: 3rem;
         }
@@ -715,7 +785,7 @@
             color: rgba(255,255,255,0.8);
             text-decoration: none;
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             transition: color 0.3s;
         }
 
@@ -738,7 +808,8 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
-            .contact-grid {
+            .contact-grid,
+            .map-locations {
                 grid-template-columns: 1fr;
             }
             
@@ -757,6 +828,10 @@
             .social-contact-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -769,6 +844,10 @@
             }
             
             .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -807,15 +886,17 @@
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header with clickable logo -->
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="images/speako.jpg" alt="Speak Ghana">
-                <div class="logo-text">
-                    <h1>Speak <span>Ghana</span></h1>
-                    <p>Reconnect. Speak. Thrive.</p>
-                </div>
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
             </div>
             <div class="motto-badge">
                 Reconnect. Speak. Thrive.
@@ -824,13 +905,14 @@
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Navigation (UPDATED) -->
     <nav>
         <div class="container">
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
-                <a href="learn.html">Learn</a>
+                <a href="languages.html">Languages</a>
+                <a href="kids-teens.html">Kids & Teens</a>
                 <a href="resources.html">Resources</a>
                 <a href="contact.html" class="active">Contact</a>
                 <a href="blog.html">Blog</a>
@@ -898,16 +980,25 @@
                 <p style="text-align: center; margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">We'll respond within 24 hours</p>
             </div>
 
-            <!-- Contact Information (UPDATED with social media) -->
+            <!-- Contact Information -->
             <div class="info-card">
                 <h3 style="margin-top: 0;">Contact Information</h3>
                 
                 <div class="info-item">
                     <div class="info-icon">📍</div>
                     <div class="info-content">
-                        <h4>Visit Us</h4>
-                        <p>Osu, Accra, Ghana</p>
-                        <p>Behind Oxford Street</p>
+                        <h4>Main Office (Kumasi)</h4>
+                        <p>KNUST Campus, Kumasi</p>
+                        <p>Ashanti Region, Ghana</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-content">
+                        <h4>Accra Office</h4>
+                        <p>Opening Soon</p>
+                        <p><a href="about.html">Learn more on About page →</a></p>
                     </div>
                 </div>
                 
@@ -940,8 +1031,7 @@
                     </div>
                 </div>
 
-                <!-- NEW: Social Media Info Item -->
-                <div class="info-item" style="margin-top: 1rem;">
+                <div class="info-item">
                     <div class="info-icon">📱</div>
                     <div class="info-content">
                         <h4>Follow Us</h4>
@@ -953,7 +1043,7 @@
             </div>
         </div>
 
-        <!-- NEW: Dedicated Social Media Section -->
+        <!-- Social Media Section -->
         <div class="social-contact-section">
             <h2 class="center" style="color: var(--black);">Connect With Us Online</h2>
             <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--black);">Follow for daily Twi tips and cultural content</p>
@@ -980,16 +1070,34 @@
             </div>
         </div>
 
-        <!-- Map Section -->
+        <!-- Map Section (UPDATED) -->
         <div class="map-section">
-            <h3 style="margin-top: 0;">Our Location</h3>
-            <div class="map-placeholder">
-                <!-- In a real implementation, embed Google Maps here -->
-                <div class="map-address">
-                    📍 Osu, Accra, Ghana
+            <h3 style="margin-top: 0;">Our Locations</h3>
+            
+            <div class="map-locations">
+                <div class="map-location-card">
+                    <span class="badge">📍 Main Office</span>
+                    <h4>Kumasi Campus</h4>
+                    <p>KNUST Campus<br>Kumasi, Ashanti Region</p>
+                    <div class="map-directions">
+                        <a href="https://maps.google.com/?q=KNUST+Kumasi+Ghana" target="_blank">Google Maps</a>
+                        <a href="https://www.openstreetmap.org/search?query=KNUST%20Kumasi%20Ghana" target="_blank">OpenStreetMap</a>
+                    </div>
+                </div>
+                
+                <div class="map-location-card">
+                    <span class="badge soon">🚧 Opening Soon</span>
+                    <h4>Accra Office</h4>
+                    <p>Location to be announced<br>Check back for updates</p>
+                    <a href="about.html" class="btn btn-primary btn-small">Learn More</a>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 1rem;">Visit us in Osu - we'd love to meet you!</p>
+            
+            <div class="map-placeholder">
+                <div class="map-address">
+                    📍 KNUST Campus, Kumasi (Main Office)
+                </div>
+            </div>
         </div>
 
         <!-- Business Hours -->
@@ -1090,13 +1198,14 @@
         </div>
     </div>
 
-    <!-- Footer (UPDATED with social media) -->
+    <!-- Footer (UPDATED) -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>Speak Ghana</h4>
-                    <p>📍 Osu, Accra, Ghana</p>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>🏗️ Accra Office (Opening Soon)</p>
                     <p>📞 +233 55 226 3323</p>
                     <p>📧 speakghana912@gmail.com</p>
                 </div>
@@ -1104,8 +1213,10 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <a href="about.html">About Us</a>
-                    <a href="learn.html">Learning Plans</a>
+                    <a href="languages.html">Languages</a>
+                    <a href="kids-teens.html">Kids & Teens</a>
                     <a href="resources.html">Free Resources</a>
+                    <a href="contact.html">Contact</a>
                     <a href="blog.html">Blog</a>
                 </div>
                 
@@ -1117,10 +1228,12 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Legal</h4>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Refund Policy</a>
+                    <h4>Programs</h4>
+                    <a href="languages.html#twi">Twi</a>
+                    <a href="languages.html#ga">Ga</a>
+                    <a href="languages.html#ewe">Ewe</a>
+                    <a href="languages.html#fante">Fante</a>
+                    <a href="languages.html#dagbani">Dagbani</a>
                 </div>
             </div>
             
