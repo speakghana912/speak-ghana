@@ -132,6 +132,179 @@
             padding: 1rem 3rem;
         }
 
+        /* ===== VALUE PROPOSITION SECTION ===== */
+        .value-proposition {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .comparison-item {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--green);
+        }
+
+        .comparison-item h3 {
+            color: var(--green);
+            margin-top: 0;
+        }
+
+        .comparison-item p {
+            color: var(--gray);
+        }
+
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .pain-point {
+            text-align: center;
+            padding: 2rem;
+            background: var(--cream);
+            border-radius: 20px;
+        }
+
+        .pain-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .solution-badge {
+            background: var(--green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* ===== SKILL LEVELS ===== */
+        .skill-levels {
+            margin: 4rem 0;
+        }
+
+        .level-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .level-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px var(--shadow);
+            border-top: 4px solid var(--gold);
+        }
+
+        .level-card h3 {
+            color: var(--green);
+            margin-bottom: 1rem;
+        }
+
+        .level-card p {
+            color: var(--gray);
+        }
+
+        /* ===== PROGRESS ROADMAP ===== */
+        .roadmap {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            color: white;
+        }
+
+        .roadmap h2 {
+            color: white;
+        }
+
+        .roadmap-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .roadmap-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .roadmap-step h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .roadmap-step p {
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--green);
+        }
+
+        .faq-item h4 {
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .faq-item p {
+            color: var(--gray);
+        }
+
         /* ===== TOP BAR ===== */
         .top-bar {
             background: var(--black);
@@ -175,12 +348,6 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
         }
 
         .logo a {
@@ -290,7 +457,7 @@
             background: var(--green);
         }
 
-        /* ===== HERO SECTION WITH RETURN IMAGE ===== */
+        /* ===== HERO SECTION ===== */
         .hero {
             background: linear-gradient(135deg, rgba(30, 30, 30, 0.85), rgba(42, 157, 143, 0.85));
             color: white;
@@ -473,100 +640,7 @@
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* ===== REAL TESTIMONIALS SECTION ===== */
-        .real-testimonials {
-            background: white;
-            border-radius: 30px;
-            padding: 4rem;
-            margin: 4rem 0;
-            box-shadow: 0 20px 40px var(--shadow);
-        }
-
-        .testimonial-stats {
-            display: flex;
-            justify-content: space-around;
-            margin: 3rem 0;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--green);
-        }
-
-        .stat-label {
-            color: var(--gray);
-            font-size: 1.1rem;
-        }
-
-        .teacher-rating-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .teacher-card {
-            background: var(--cream);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-        }
-
-        .teacher-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--green);
-            margin-bottom: 1rem;
-        }
-
-        .teacher-rating {
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
-        }
-
-        .teacher-classes {
-            color: var(--gray);
-            margin-bottom: 1rem;
-        }
-
-        .teacher-quote {
-            font-style: italic;
-            color: var(--black);
-        }
-
-        .feedback-highlights {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .highlight-card {
-            background: var(--cream);
-            padding: 2rem;
-            border-radius: 20px;
-            border-left: 4px solid var(--gold);
-        }
-
-        .highlight-quote {
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .highlight-author {
-            color: var(--green);
-            font-weight: 600;
-        }
-
-        /* ===== TESTIMONIAL PREVIEW ===== */
+        /* ===== TESTIMONIAL SECTION ===== */
         .testimonial-preview {
             background: white;
             border-radius: 30px;
@@ -611,12 +685,6 @@
         .testimonial-author {
             color: var(--green);
             font-weight: 600;
-        }
-
-        .testimonial-rating {
-            color: var(--gold);
-            margin-top: 0.5rem;
-            font-size: 1.2rem;
         }
 
         /* ===== CTA SECTION ===== */
@@ -747,7 +815,12 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
-            .hero-split {
+            .hero-split,
+            .comparison-grid,
+            .pain-points,
+            .level-grid,
+            .roadmap-steps,
+            .faq-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -755,19 +828,8 @@
                 height: 400px;
             }
             
-            .featured-grid {
-                grid-template-columns: 1fr;
-            }
-            
+            .featured-grid,
             .testimonial-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .teacher-rating-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .feedback-highlights {
                 grid-template-columns: 1fr;
             }
             
@@ -866,7 +928,6 @@
                 <p style="margin-top: 2rem; font-size: 1rem;">✨ No payment required in March • Try any class free ✨</p>
             </div>
             <div class="hero-image">
-                <!-- Return PNG Image - Diasporans coming back to Ghana -->
                 <img src="images/return.png" alt="Diasporans returning to Ghana - Reconnecting with roots">
                 <div class="image-overlay-text">
                     <span style="font-size: 1.5rem;">🇬🇭 Reconnect. Speak. Thrive.</span>
@@ -912,106 +973,155 @@
             <span class="value-pill">📈 Nkɔsoɔ</span>
         </div>
 
-        <!-- Real Student Feedback Section -->
-        <div class="real-testimonials">
-            <h2 class="center">What Our Students Are Saying</h2>
+        <!-- Clear Value Proposition Section -->
+        <div class="value-proposition">
+            <h2 class="center">Why Choose Speak Ghana?</h2>
             
-            <div class="testimonial-stats">
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Would recommend their teacher</div>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>📱 Language Apps</h3>
+                    <p>• Algorithms, not humans<br>• No real conversation practice<br>• No cultural context<br>• One-size-fits-all approach</p>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">4.7/5</div>
-                    <div class="stat-label">Average class rating</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Recent student reviews</div>
+                <div class="comparison-item">
+                    <h3>🇬🇭 Speak Ghana</h3>
+                    <p>• Native speakers, not algorithms<br>• Real conversation from day one<br>• Cultural immersion in every lesson<br>• Personalized to your level</p>
                 </div>
             </div>
 
-            <div class="teacher-rating-grid">
-                <div class="teacher-card">
-                    <div class="teacher-name">Tetebea</div>
-                    <div class="teacher-rating">⭐⭐⭐⭐⭐</div>
-                    <div class="teacher-classes">5 classes rated</div>
-                    <div class="teacher-quote">"The love, patience and passion of Tetebea"</div>
+            <div class="pain-points">
+                <div class="pain-point">
+                    <div class="pain-icon">😫</div>
+                    <h4>Tired of apps that don't work?</h4>
+                    <p>You've tried Duolingo. You've watched YouTube. But you still can't hold a conversation.</p>
+                    <span class="solution-badge">We focus on speaking, not tapping</span>
                 </div>
-                <div class="teacher-card">
-                    <div class="teacher-name">Michael</div>
-                    <div class="teacher-rating">⭐⭐⭐⭐⭐</div>
-                    <div class="teacher-classes">1 class rated</div>
-                    <div class="teacher-quote">"The most are beginner"</div>
+                <div class="pain-point">
+                    <div class="pain-icon">🗣️</div>
+                    <h4>Can't practice with native speakers?</h4>
+                    <p>Apps don't correct your pronunciation. Books don't respond to your questions.</p>
+                    <span class="solution-badge">Live classes with real teachers</span>
                 </div>
-                <div class="teacher-card">
-                    <div class="teacher-name">All Teachers</div>
-                    <div class="teacher-rating">⭐⭐⭐⭐</div>
-                    <div class="teacher-classes">100% recommend rate</div>
-                    <div class="teacher-quote">"Clear, patient, and encouraging"</div>
-                </div>
-            </div>
-
-            <h3 class="center" style="margin: 3rem 0 1.5rem;">Student Highlights</h3>
-            <div class="feedback-highlights">
-                <div class="highlight-card">
-                    <div class="highlight-quote">"I like that we were able to go over the alphabet individually. I like that she spoke in Twi even if we did not understand because that will help us eventually."</div>
-                    <div class="highlight-author">— Student of Tetebea</div>
-                </div>
-                <div class="highlight-card">
-                    <div class="highlight-quote">"The teacher was patient. The love, patience and passion of Michael and Tetebea."</div>
-                    <div class="highlight-author">— Student</div>
-                </div>
-                <div class="highlight-card">
-                    <div class="highlight-quote">"So many new words! And also we were only 2 people - it's perfect like this."</div>
-                    <div class="highlight-author">— Student of Tetebea</div>
-                </div>
-                <div class="highlight-card">
-                    <div class="highlight-quote">"That it was live, we were corrected when we got something wrong."</div>
-                    <div class="highlight-author">— Student</div>
+                <div class="pain-point">
+                    <div class="pain-icon">🌍</div>
+                    <h4>Missing the cultural connection?</h4>
+                    <p>Language without culture is just words. You want to understand proverbs, traditions, and context.</p>
+                    <span class="solution-badge">Every lesson includes cultural immersion</span>
                 </div>
             </div>
+        </div>
 
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="learn.html#testimonials" class="btn btn-gold">Read More Student Stories</a>
+        <!-- Skill Levels Section -->
+        <div class="skill-levels">
+            <h2 class="center">We Welcome All Levels</h2>
+            <div class="level-grid">
+                <div class="level-card">
+                    <h3>🔰 Beginner</h3>
+                    <p>Never spoken Twi before? Perfect! We start with alphabet, greetings, and basic phrases.</p>
+                </div>
+                <div class="level-card">
+                    <h3>📘 Elementary</h3>
+                    <p>Know a few words? We'll build your vocabulary and start simple conversations.</p>
+                </div>
+                <div class="level-card">
+                    <h3>📚 Intermediate</h3>
+                    <p>Can understand basic conversations? We'll work on fluency and complex sentences.</p>
+                </div>
+                <div class="level-card">
+                    <h3>🎓 Advanced</h3>
+                    <p>Already conversational? We'll perfect your pronunciation and dive into proverbs.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Roadmap -->
+        <div class="roadmap">
+            <h2 class="center">Your Path to Fluency</h2>
+            <div class="roadmap-steps">
+                <div class="roadmap-step">
+                    <div class="step-number">1</div>
+                    <h4>Month 1-2</h4>
+                    <p>Greetings, introductions, basic vocabulary. You'll have simple conversations.</p>
+                </div>
+                <div class="roadmap-step">
+                    <div class="step-number">2</div>
+                    <h4>Month 3-4</h4>
+                    <p>Family terms, daily activities, questions. You'll express yourself clearly.</p>
+                </div>
+                <div class="roadmap-step">
+                    <div class="step-number">3</div>
+                    <h4>Month 5-6</h4>
+                    <p>Proverbs, storytelling, cultural discussions. You'll speak with confidence.</p>
+                </div>
+                <div class="roadmap-step">
+                    <div class="step-number">4</div>
+                    <h4>Month 6+</h4>
+                    <p>Fluent conversation, deeper cultural understanding. You'll feel at home.</p>
+                </div>
             </div>
         </div>
 
         <!-- Testimonial Preview -->
         <div class="testimonial-preview">
-            <h2 class="center">Recent Student Feedback</h2>
+            <h2 class="center">What Our Students Say</h2>
             <div class="testimonial-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
                         Learning Twi with Speak Ghana opened doors to connect with my husband's family. The teachers are amazing!
                     </div>
                     <div class="testimonial-author">— Sarah, UK</div>
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-text">
                         I've tried apps before, but nothing compares to live classes with native speakers. Kakra kakra, I'm getting there!
                     </div>
                     <div class="testimonial-author">— Kwame, USA</div>
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        The teacher was patient. Actually going over the basics learning the alphabets.
-                    </div>
-                    <div class="testimonial-author">— Student of Tetebea</div>
-                    <div class="testimonial-rating">⭐⭐⭐⭐</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        So many new words! And we were only 2 people - it's perfect like this.
-                    </div>
-                    <div class="testimonial-author">— Student</div>
-                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 2rem;">
-                <a href="learn.html#testimonials" class="btn btn-gold">Read All Reviews →</a>
+                <a href="learn.html#testimonials" class="btn btn-gold">Read More Stories →</a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="center">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>What if I miss a class?</h4>
+                    <p>Recordings are available for group classes. Private lessons can be rescheduled with 24-hour notice.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I switch plans later?</h4>
+                    <p>Yes! You can upgrade or downgrade your plan at any time. Changes take effect the following month.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do I need any materials?</h4>
+                    <p>Just a phone/computer with Zoom and WhatsApp. All PDFs and worksheets are provided, and you'll receive the complete textbook with your paid plan.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Is the textbook really free with lessons?</h4>
+                    <p>Absolutely! Every paid lesson plan includes the complete Speak Ghana Twi textbook (digital copy) – a 300+ page resource you can keep forever.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I buy just the textbook without lessons?</h4>
+                    <p>Yes! See our Resources page for standalone textbook options.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What's the difference between free March classes and paid plans?</h4>
+                    <p>March classes let you try everything for free. Paid plans include the full textbook, structured curriculum, homework feedback, and ongoing teacher support.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How do group schedules work?</h4>
+                    <p>Once your group is formed, we'll find a time that works for the majority. You'll vote on the final day/time.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What if I'm not happy with my teacher?</h4>
+                    <p>No problem! Just request a change and we'll match you with a different teacher at no extra cost.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you offer siblings or friends discount?</h4>
+                    <p>Yes! Enroll with a sibling or friend and both get 5% off your monthly tuition.</p>
+                </div>
             </div>
         </div>
 
@@ -1028,50 +1138,50 @@
     </div>
 
     <!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h4>Speak Ghana</h4>
-                <p>📍 Osu, Accra, Ghana</p>
-                <p>📞 +233 55 226 3323</p>
-                <p>📧 speakghana912@gmail.com</p>
-                <p>💬 WhatsApp: +233 55 226 3323</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="about.html">About Us</a>
-                <a href="learn.html">Learning Plans</a>
-                <a href="resources.html">Free Resources</a>
-                <a href="contact.html">Contact</a>
-                <a href="blog.html">Blog</a>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube: @SpeakGhana</a>
-                <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram: @speak_ghana</a>
-                <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok: @speakghana0</a>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Newsletter</h4>
-                <p>Get Twi tips and cultural insights</p>
-                <div class="newsletter">
-                    <div class="newsletter-form">
-                        <input type="email" placeholder="Your email" class="newsletter-input">
-                        <button class="newsletter-btn">Subscribe</button>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 Osu, Accra, Ghana</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 speakghana912@gmail.com</p>
+                    <p>💬 WhatsApp: +233 55 226 3323</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="learn.html">Learning Plans</a>
+                    <a href="resources.html">Free Resources</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube: @SpeakGhana</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram: @speak_ghana</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok: @speakghana0</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Get Twi tips and cultural insights</p>
+                    <div class="newsletter">
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Your email" class="newsletter-input">
+                            <button class="newsletter-btn">Subscribe</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
+            </div>
         </div>
-        
-        <div class="copyright">
-            <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
-            <div class="motto-footer">Reconnect. Speak. Thrive.</div>
-        </div>
-    </div>
-</footer>
+    </footer>
 </body>
 </html>
