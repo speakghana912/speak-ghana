@@ -538,6 +538,97 @@
             margin-bottom: 1rem;
         }
 
+        /* ===== OFFICE LOCATIONS SECTION ===== */
+        .locations-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .location-card {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .location-card h3 {
+            color: var(--green);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .location-address {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .location-badge {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .location-badge.soon {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .map-container {
+            background: linear-gradient(135deg, var(--cream), #e0e0e0);
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .map-overlay {
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            margin: 1rem;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .map-link {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .map-link:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
         /* ===== FAQ SECTION ===== */
         .faq-section {
             background: white;
@@ -637,6 +728,7 @@
         @media (max-width: 968px) {
             .story-grid,
             .mv-grid,
+            .locations-grid,
             .faq-grid {
                 grid-template-columns: 1fr;
             }
@@ -925,6 +1017,53 @@
             </div>
         </div>
 
+        <!-- OFFICE LOCATIONS SECTION (NEW) -->
+        <div class="locations-section">
+            <h2 class="center">Our Locations</h2>
+            
+            <div class="locations-grid">
+                <div class="location-card">
+                    <span class="location-badge">📍 Main Office</span>
+                    <h3>Kumasi Campus</h3>
+                    <div class="location-address">
+                        <strong>KNUST Campus</strong><br>
+                        Kumasi, Ashanti Region<br>
+                        Ghana<br>
+                        <br>
+                        📞 +233 55 226 3323<br>
+                        📧 speakghana912@gmail.com
+                    </div>
+                    <a href="https://maps.google.com/?q=KNUST+Kumasi+Ghana" target="_blank" class="btn btn-gold btn-small">Get Directions →</a>
+                </div>
+
+                <div class="location-card">
+                    <span class="location-badge soon">🚧 Opening Soon</span>
+                    <h3>Accra Office</h3>
+                    <div class="location-address">
+                        <strong>Coming Soon</strong><br>
+                        Our Accra office will be opening soon.<br>
+                        Currently serving students online and at our Kumasi campus.<br>
+                        <br>
+                        📧 speakghana912@gmail.com for updates
+                    </div>
+                    <a href="mailto:speakghana912@gmail.com" class="btn btn-primary btn-small">Get Notified →</a>
+                </div>
+            </div>
+
+            <!-- Interactive Map Placeholder -->
+            <div class="map-container">
+                <div class="map-overlay">
+                    <strong>📍 KNUST Campus, Kumasi</strong><br>
+                    (Click below for live directions)
+                </div>
+                <div style="text-align: center;">
+                    <a href="https://maps.google.com/?q=KNUST+Kumasi+Ghana" target="_blank" class="map-link">Open in Google Maps →</a>
+                    <a href="https://www.openstreetmap.org/search?query=KNUST%20Kumasi%20Ghana" target="_blank" class="map-link" style="background: var(--gold); color: var(--black);">Open in OpenStreetMap</a>
+                </div>
+                <p style="margin-top: 2rem; color: var(--gray);">Full interactive map with live directions coming soon. Click the links above for instant directions.</p>
+            </div>
+        </div>
+
         <!-- FAQ Section -->
         <div class="faq-section">
             <h2 class="center">Frequently Asked Questions</h2>
@@ -993,7 +1132,8 @@
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>Speak Ghana</h4>
-                    <p>📍 Osu, Accra, Ghana</p>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>🏗️ Accra Office (Opening Soon)</p>
                     <p>📞 +233 55 226 3323</p>
                     <p>📧 speakghana912@gmail.com</p>
                 </div>
