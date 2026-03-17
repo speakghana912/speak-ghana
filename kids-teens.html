@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids & Teens - Speak Ghana</title>
+    
+    <!-- ABSOLUTE URL FAVICON -->
+    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
+
+    <style>
+        /* ===== MODERN COLOR PALETTE ===== */
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray-light: #F0F0F0;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--cream);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--black);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--red));
+            border-radius: 2px;
+        }
+
+        h2.center {
+            display: block;
+            text-align: center;
+        }
+
+        h2.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1.5rem;
+            color: var(--green);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.4);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #c49a6c);
+            color: var(--black);
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 163, 115, 0.4);
+        }
+
+        .btn-large {
+            font-size: 1.2rem;
+            padding: 1rem 3rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .logo-text h1 span {
+            color: var(--gold);
+        }
+
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: var(--gold);
+            font-weight: 500;
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+            background: var(--green);
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* ===== INTRODUCTION SECTION ===== */
+        .intro-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-text p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .intro-stat {
+            text-align: center;
+        }
+
+        .intro-stat .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .intro-stat .label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .intro-image {
+            background: linear-gradient(135deg, var(--gold), var(--green));
+            border-radius: 20px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 8rem;
+        }
+
+        /* ===== AGE GROUP NAVIGATOR ===== */
+        .age-navigator {
+            background: white;
+            border-radius: 60px;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0 3rem;
+            box-shadow: 0 10px 30px var(--shadow);
+            position: sticky;
+            top: 80px;
+            z-index: 99;
+        }
+
+        .age-nav-link {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .age-nav-link:hover {
+            background: var(--cream);
+        }
+
+        .age-nav-link.active {
+            background: var(--green);
+            color: white;
+        }
+
+        /* ===== KIDS SECTION ===== */
+        .age-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+            scroll-margin-top: 100px;
+        }
+
+        .age-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .age-icon {
+            font-size: 4rem;
+            background: var(--cream);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .age-title h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .age-title h2::after {
+            display: none;
+        }
+
+        .age-badge {
+            background: var(--green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        /* ===== PACKAGE CARDS ===== */
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .package-card {
+            background: var(--cream);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px var(--shadow);
+            transition: transform 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .package-header {
+            background: linear-gradient(135deg, var(--black), #2a2a2a);
+            color: var(--gold);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .package-header h3 {
+            color: var(--gold);
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .package-subheader {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+
+        .package-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .age-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            align-self: flex-start;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .package-features li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .package-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--green);
+            margin: 1rem 0 0.5rem;
+        }
+
+        .package-price small {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: normal;
+        }
+
+        .package-commitment {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .popular-badge {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            align-self: flex-start;
+        }
+
+        /* ===== FAMILY BUNDLES ===== */
+        .family-section {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            color: white;
+        }
+
+        .family-section h2 {
+            color: white;
+        }
+
+        .family-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .family-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .family-card h3 {
+            color: var(--gold);
+            margin-top: 0;
+        }
+
+        .family-card .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin: 1rem 0;
+        }
+
+        .family-card ul {
+            list-style: none;
+        }
+
+        .family-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .family-card li::before {
+            content: '✓';
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+        }
+
+        /* ===== PRICING TABLE ===== */
+        .pricing-table {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 3rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: var(--green);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--cream);
+            text-align: center;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: var(--cream);
+        }
+
+        .package-name {
+            font-weight: 600;
+            color: var(--green);
+            text-align: left;
+        }
+
+        /* ===== ENROLLMENT FORM ===== */
+        .enrollment-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .enrollment-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--green);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--cream);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.4);
+        }
+
+        /* ===== COMMITMENT SECTION ===== */
+        .commitment-section {
+            background: linear-gradient(135deg, var(--gold), var(--red));
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            text-align: center;
+            color: var(--black);
+        }
+
+        .commitment-section h2 {
+            color: var(--black);
+        }
+
+        .commitment-quote {
+            font-size: 2rem;
+            font-style: italic;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .motto-footer {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .intro-grid,
+            .family-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .age-navigator {
+                position: static;
+                border-radius: 20px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .commitment-quote {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="mailto:speakghana912@gmail.com">📧 speakghana912@gmail.com</a>
+                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="languages.html">Languages</a>
+                <a href="kids-teens.html" class="active">Kids & Teens</a>
+                <a href="resources.html">Resources</a>
+                <a href="contact.html">Contact</a>
+                <a href="blog.html">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Kids & Teen Programs</h1>
+            <p>Nurturing the Next Generation of Ghanaian Language Speakers</p>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <div class="container">
+        <div class="intro-section">
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h2>Every child deserves to know where they come from</h2>
+                    <p>Most Twi resources are designed for adults – kids get bored, teens tune out. Diaspora youth often feel disconnected from their roots, and parents struggle to pass language to the next generation.</p>
+                    <p><strong>That's why we created age-appropriate, engaging programs specifically for young learners.</strong></p>
+                    
+                    <div class="intro-stats">
+                        <div class="intro-stat">
+                            <div class="number">5-17</div>
+                            <div class="label">Age Range</div>
+                        </div>
+                        <div class="intro-stat">
+                            <div class="number">10+</div>
+                            <div class="label">Packages</div>
+                        </div>
+                        <div class="intro-stat">
+                            <div class="number">🎯</div>
+                            <div class="label">Age-Appropriate</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-image">
+                    👨‍👩‍👧‍👦
+                </div>
+            </div>
+        </div>
+
+        <!-- Age Group Navigator -->
+        <div class="age-navigator">
+            <a href="#kids" class="age-nav-link active">Kids (5-12)</a>
+            <a href="#teens" class="age-nav-link">Teens (13-17)</a>
+            <a href="#family" class="age-nav-link">Family Bundles</a>
+            <a href="#pricing" class="age-nav-link">Pricing</a>
+            <a href="#enroll" class="age-nav-link">Enroll</a>
+        </div>
+
+        <!-- KIDS SECTION (Ages 5-12) -->
+        <section id="kids" class="age-section">
+            <div class="age-header">
+                <div class="age-icon">🧸</div>
+                <div class="age-title">
+                    <h2>Kids Programs (Ages 5-12)</h2>
+                    <span class="age-badge">Play-based • Songs • Stories</span>
+                </div>
+            </div>
+
+            <h3>Package K1: Twi Tots (Ages 5-8)</h3>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Twi Tots</h3>
+                        <div class="package-subheader">30 min • 1x/week</div>
+                    </div>
+                    <div class="package-body">
+                        <span class="age-tag">Ages 5-8</span>
+                        <ul class="package-features">
+                            <li>Greetings (Akwaaba, Mema wo akye)</li>
+                            <li>Family words (papa, maame, nana)</li>
+                            <li>Food names (fufu, banku, orange)</li>
+                            <li>Numbers 1-10</li>
+                            <li>Animals (kraman, akokɔ, agyinamoa)</li>
+                            <li>Simple songs and rhymes</li>
+                        </ul>
+                        <div class="package-price">$35 <small>/month</small></div>
+                        <div class="package-commitment">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Package K2: Twi Explorers (Ages 9-12)</h3>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Twi Explorers</h3>
+                        <div class="package-subheader">45 min • 1x/week</div>
+                    </div>
+                    <div class="package-body">
+                        <span class="age-tag">Ages 9-12</span>
+                        <ul class="package-features">
+                            <li>Full greetings and introductions</li>
+                            <li>Colors and describing things</li>
+                            <li>Simple sentences ("Me pɛ...", "Me dɔ...")</li>
+                            <li>Counting to 50</li>
+                            <li>Days of the week and time</li>
+                            <li>Ghanaian folktales (Ananse stories)</li>
+                        </ul>
+                        <div class="package-price">$45 <small>/month</small></div>
+                        <div class="package-commitment">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Package K3: Siblings Special</h3>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Siblings Special</h3>
+                        <div class="package-subheader">45 min • 1x/week</div>
+                    </div>
+                    <div class="package-body">
+                        <span class="age-tag">Family (2-4 siblings)</span>
+                        <ul class="package-features">
+                            <li>Same as K2, tailored for multiple ages</li>
+                            <li>Older siblings help younger ones</li>
+                            <li>Family games and challenges</li>
+                            <li>Learn together, practice together</li>
+                        </ul>
+                        <div class="package-price">$65 <small>/family</small></div>
+                        <div class="package-commitment">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Package K4: Summer Camp – Twi Adventure (8 weeks)</h3>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Summer Camp</h3>
+                        <div class="package-subheader">8 weeks • 2x/week • 45 min</div>
+                    </div>
+                    <div class="package-body">
+                        <span class="age-tag">Ages 6-12</span>
+                        <ul class="package-features">
+                            <li>Week 1: Akwaaba! Greetings & Names</li>
+                            <li>Week 2: My Family, My Heart</li>
+                            <li>Week 3: Food, Food, Food!</li>
+                            <li>Week 4: Animals of Ghana</li>
+                            <li>Week 5: Colors & Kente</li>
+                            <li>Week 6: Ananse Stories</li>
+                            <li>Week 7: Numbers & Market Day</li>
+                            <li>Week 8: Celebration & Showcase</li>
+                        </ul>
+                        <div class="package-price">$180 <small>full 8 weeks</small></div>
+                        <p><small>Early Bird (by May 1): $160</small></p>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEENS SECTION (Ages 13-17) -->
+        <section id="teens" class="age-section">
+            <div class="age-header">
+                <div class="age-icon">🎧</div>
+                <div class="age-title">
+                    <h2>Teen Programs (Ages 13-17)</h2>
+                    <span class="age-badge">Real conversations • Pop culture • Music</span>
+                </div>
+            </div>
+
+            <h3>Package T1: Teen Talk</h3>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Teen Talk</h3>
+                        <div class="package-subheader">60 min • 1x/week</div>
+                    </div>
+                    <div class="package-body">
+                        <span class="age-tag">Ages 13-17</span>
+                        <ul class="package-features">
+                            <li>Real conversations, not textbook phrases</li>
+                            <li>How to greet friends vs. elders</li>
+                            <li>Slang and casual expressions</li>
+                            <li>Ghanaian music lyrics (highlife, afrobeats)</li>
+                            <li>Texting and social media phrases</li>
+                            <li>Talking about school, hobbies, crushes</li>
+                        </ul>
+                        <div class="package-price">$55 <small>/month</small></div>
+                        <div class="package-commitment">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Package T2: Twi Fluency Fast</h3>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Twi Fluency Fast</h3>
+                        <div class="package-subheader">60 min • 2x/week</div>
+                    </div>
+                    <div class="package-body">
+                        <span class="popular-badge">⭐ MOST POPULAR</span>
+                        <span class="age-tag">Ages 13-17</span>
+                        <ul class="package-features">
+                            <li><strong>Lesson A:</strong> Grammar, vocabulary, writing</li>
+                            <li><strong>Lesson B:</strong> Conversation practice, music, culture</li>
+                            <li>Deeper grammar and reading</li>
+                            <li>Writing WhatsApp messages</li>
+                            <li>Interviewing Ghanaian family members</li>
+                            <li>Preparing for Ghana visit</li>
+                        </ul>
+                        <div class="package-price">$95 <small>/month</small></div>
+                        <div class="package-commitment">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Package T3: Diaspora Connect (Private 1-on-1 for Teens)</h3>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Private 45 min</h3>
+                        <div class="package-subheader">1-on-1 with teen-focused teacher</div>
+                    </div>
+                    <div class="package-body">
+                        <span class="age-tag">Ages 13-17</span>
+                        <ul class="package-features">
+                            <li>Personalized lessons based on interests</li>
+                            <li>Help connecting to Ghanaian family</li>
+                            <li>School project support</li>
+                            <li>Flexible scheduling</li>
+                        </ul>
+                        <div class="package-price">$65 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Private 60 min</h3>
+                        <div class="package-subheader">1-on-1 with teen-focused teacher</div>
+                    </div>
+                    <div class="package-body">
+                        <span class="age-tag">Ages 13-17</span>
+                        <ul class="package-features">
+                            <li>Everything in 45 min, plus:</li>
+                            <li>Deeper conversation practice</li>
+                            <li>More cultural discussions</li>
+                            <li>Parent updates after each lesson</li>
+                        </ul>
+                        <div class="package-price">$85 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Package T4: Summer Intensive – Teen Immersion (6 weeks)</h3>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Teen Immersion</h3>
+                        <div class="package-subheader">6 weeks • 3x/week • 90 min</div>
+                    </div>
+                    <div class="package-body">
+                        <span class="age-tag">Ages 13-17</span>
+                        <ul class="package-features">
+                            <li>Hold a 15-minute conversation</li>
+                            <li>Understand song lyrics</li>
+                            <li>Write WhatsApp messages</li>
+                            <li>Order food at a Ghanaian restaurant</li>
+                            <li>Impress grandparents!</li>
+                            <li>Projects: Video intro, song translation, family interview</li>
+                        </ul>
+                        <div class="package-price">$360 <small>full 6 weeks</small></div>
+                        <p><small>Early Bird (by May 1): $320</small></p>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAMILY BUNDLES SECTION -->
+        <section id="family" class="family-section">
+            <h2 class="center">Family Bundles</h2>
+            <p style="text-align: center; font-size: 1.2rem;">The whole family learns together!</p>
+
+            <div class="family-grid">
+                <div class="family-card">
+                    <h3>👨‍👩‍👧‍👦 Family Pack (F1)</h3>
+                    <p>Parents + Kids (2 adults + up to 3 kids)</p>
+                    <div class="price">$120 <small>/month</small></div>
+                    <ul>
+                        <li>4 live family lessons per month</li>
+                        <li>Adult workbook + Kids workbooks</li>
+                        <li>Family WhatsApp group</li>
+                        <li>"Family Challenge" activities</li>
+                        <li>Access to all cultural materials</li>
+                    </ul>
+                    <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-gold btn-small" style="margin-top: 1rem;">Register</a>
+                </div>
+
+                <div class="family-card">
+                    <h3>📚 Heritage Homeschool (F2)</h3>
+                    <p>Curriculum License for Homeschooling Families</p>
+                    <div class="price">$180 <small>/year</small></div>
+                    <ul>
+                        <li>Full Speak Ghana Kids Curriculum (levels 1-3)</li>
+                        <li>Video lessons for each topic</li>
+                        <li>Printable worksheets and activities</li>
+                        <li>Song and story library</li>
+                        <li>Progress tracking sheets</li>
+                        <li>Certificate for each level</li>
+                    </ul>
+                    <p><small>Add-on coaching: +$30/month</small></p>
+                    <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-gold btn-small" style="margin-top: 1rem;">Register</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING TABLE SECTION -->
+        <section id="pricing" class="pricing-table">
+            <h2 class="center">Pricing Summary – Kids & Teens</h2>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Package</th>
+                            <th>Age</th>
+                            <th>Frequency</th>
+                            <th>Class Size</th>
+                            <th>Price/Month</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="package-name">K1: Twi Tots</td>
+                            <td>5-8</td>
+                            <td>1x/30min</td>
+                            <td>3-6</td>
+                            <td>$35</td>
+                        </tr>
+                        <tr>
+                            <td class="package-name">K2: Twi Explorers</td>
+                            <td>9-12</td>
+                            <td>1x/45min</td>
+                            <td>4-8</td>
+                            <td>$45</td>
+                        </tr>
+                        <tr>
+                            <td class="package-name">K3: Siblings Special</td>
+                            <td>5-12</td>
+                            <td>1x/45min</td>
+                            <td>Family</td>
+                            <td>$65/family</td>
+                        </tr>
+                        <tr>
+                            <td class="package-name">K4: Summer Camp</td>
+                            <td>6-12</td>
+                            <td>2x/45min</td>
+                            <td>4-8</td>
+                            <td>$180 (8 wks)</td>
+                        </tr>
+                        <tr>
+                            <td class="package-name">T1: Teen Talk</td>
+                            <td>13-17</td>
+                            <td>1x/60min</td>
+                            <td>4-8</td>
+                            <td>$55</td>
+                        </tr>
+                        <tr>
+                            <td class="package-name">T2: Twi Fluency Fast</td>
+                            <td>13-17</td>
+                            <td>2x/60min</td>
+                            <td>4-8</td>
+                            <td>$95</td>
+                        </tr>
+                        <tr>
+                            <td class="package-name">T3: Private (45min)</td>
+                            <td>13-17</td>
+                            <td>1x/week</td>
+                            <td>1-on-1</td>
+                            <td>$65</td>
+                        </tr>
+                        <tr>
+                            <td class="package-name">T3: Private (60min)</td>
+                            <td>13-17</td>
+                            <td>1x/week</td>
+                            <td>1-on-1</td>
+                            <td>$85</td>
+                        </tr>
+                        <tr>
+                            <td class="package-name">T4: Teen Summer</td>
+                            <td>13-17</td>
+                            <td>3x/90min</td>
+                            <td>4-8</td>
+                            <td>$360 (6 wks)</td>
+                        </tr>
+                        <tr>
+                            <td class="package-name">F1: Family Pack</td>
+                            <td>All</td>
+                            <td>1x/60min</td>
+                            <td>Family</td>
+                            <td>$120/family</td>
+                        </tr>
+                        <tr>
+                            <td class="package-name">F2: Homeschool</td>
+                            <td>K-12</td>
+                            <td>Self-paced</td>
+                            <td>Family</td>
+                            <td>$180/year</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="background: var(--cream); padding: 2rem; border-radius: 15px; margin-top: 2rem;">
+                <h4 style="color: var(--green);">🎁 Discounts & Promotions</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    <p><strong>Sibling Discount:</strong> 15% off second child</p>
+                    <p><strong>Refer a Friend:</strong> 1 month free for both</p>
+                    <p><strong>Birthday Month:</strong> 10% off</p>
+                    <p><strong>Military/Family:</strong> 10% off</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENROLLMENT FORM SECTION -->
+        <section id="enroll" class="enrollment-section">
+            <h2 class="center">Quick Enrollment Form</h2>
+            <p style="text-align: center; margin-bottom: 3rem;">Fill this out and we'll contact you within 24 hours</p>
+
+            <div class="enrollment-form">
+                <form action="https://formspree.io/f/mlgpodpb" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Parent/Guardian Name *</label>
+                            <input type="text" name="parent_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" name="phone" placeholder="+233 XX XXX XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>Child's Name *</label>
+                            <input type="text" name="child_name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Child's Age *</label>
+                            <input type="number" name="child_age" min="1" max="17" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Day/Time</label>
+                            <input type="text" name="preferred_time" placeholder="e.g., Saturdays 10am">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Which package? *</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="package" value="K1"> K1: Twi Tots (5-8)
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="package" value="K2"> K2: Twi Explorers (9-12)
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="package" value="K3"> K3: Siblings Special
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="package" value="K4"> K4: Summer Camp
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="package" value="T1"> T1: Teen Talk (13-17)
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="package" value="T2"> T2: Twi Fluency Fast
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="package" value="T3"> T3: Private 1-on-1
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="package" value="T4"> T4: Teen Summer
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="package" value="F1"> F1: Family Pack
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="package" value="F2"> F2: Homeschool
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Timezone</label>
+                        <select name="timezone">
+                            <option value="GMT">GMT (London)</option>
+                            <option value="EST">EST (New York)</option>
+                            <option value="PST">PST (Los Angeles)</option>
+                            <option value="WAT">WAT (Lagos)</option>
+                            <option value="CAT">CAT (Johannesburg)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>How did you hear about us?</label>
+                        <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Enrollment</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- COMMITMENT SECTION -->
+        <section class="commitment-section">
+            <h2 class="center">Our Commitment to Young Learners</h2>
+            <div class="commitment-quote">
+                "Sankofa – Go back and get it. For our children, for our future."
+            </div>
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 2rem auto;">
+                At Speak Ghana, we believe every child and teen deserves to know where they come from, speak with their grandparents, feel proud of their heritage, and belong to a community.
+            </p>
+            <p style="font-size: 1.1rem;">We don't just teach words. We build identity, confidence, and connection – one young learner at a time.</p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 Osu, Accra, Ghana</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 speakghana912@gmail.com</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Kids & Teens</h4>
+                    <a href="#kids">Kids (5-12)</a>
+                    <a href="#teens">Teens (13-17)</a>
+                    <a href="#family">Family Bundles</a>
+                    <a href="#pricing">Pricing</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Languages</h4>
+                    <a href="languages.html#twi">Twi</a>
+                    <a href="languages.html#ga">Ga</a>
+                    <a href="languages.html#ewe">Ewe</a>
+                    <a href="languages.html#fante">Fante</a>
+                    <a href="languages.html#dagbani">Dagbani</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
