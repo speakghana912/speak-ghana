@@ -166,7 +166,7 @@
             color: var(--gold);
         }
 
-        /* ===== HEADER ===== */
+        /* ===== HEADER WITH CLICKABLE LOGO ===== */
         header {
             background: linear-gradient(135deg, #1a1a1a, var(--green));
             color: white;
@@ -787,7 +787,7 @@
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header with clickable logo -->
     <header>
         <div class="container header-content">
             <div class="logo">
@@ -1095,11 +1095,11 @@
                 <a href="#" class="quiz-button">Start Twi Quiz</a>
             </div>
 
-            <!-- ENROLLMENT FORM FOR TWI -->
+            <!-- ENROLLMENT FORM FOR TWI (UPDATED with redirect) -->
             <div id="twi-enroll" class="enrollment-section">
                 <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Twi Classes</h3>
                 
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
+                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
                     <input type="hidden" name="language" value="Twi">
                     
                     <div class="form-row">
@@ -1365,11 +1365,11 @@
                 <a href="#" class="quiz-button">Start Ga Quiz</a>
             </div>
 
-            <!-- ENROLLMENT FORM FOR GA -->
+            <!-- ENROLLMENT FORM FOR GA (UPDATED with redirect) -->
             <div id="ga-enroll" class="enrollment-section">
                 <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Ga Classes</h3>
                 
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
+                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
                     <input type="hidden" name="language" value="Ga">
                     
                     <div class="form-row">
@@ -1455,56 +1455,524 @@
             </div>
         </section>
 
-        <!-- EWE SECTION with enrollment form (similar structure) -->
+        <!-- EWE SECTION -->
         <section id="ewe" class="language-section">
-            <!-- ... (keep existing Ewe content) ... -->
-            
-            <!-- Add enrollment form for Ewe similar to Ga -->
+            <div class="language-header">
+                <div class="language-icon-large">🌊</div>
+                <div class="language-title">
+                    <h2>Ewe</h2>
+                    <div class="language-stats">
+                        <span class="stat"><strong>3M+</strong> speakers</span>
+                        <span class="stat">Volta Region, Togo</span>
+                        <span class="stat">Adults & Kids</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="why-learn">
+                <h3>Why Learn Ewe?</h3>
+                <p>Ewe is spoken in the Volta Region of Ghana and parts of Togo. Known for its rich oral tradition, vibrant music, and drumming culture, learning Ewe opens doors to a unique cultural heritage.</p>
+            </div>
+
+            <h3>Adult Packages</h3>
+            <div class="package-grid">
+                <!-- Package cards (simplified for space) -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$75 <small>/month</small></div>
+                        <a href="#ewe-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$135 <small>/month</small></div>
+                        <a href="#ewe-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">3 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$195 <small>/month</small></div>
+                        <a href="#ewe-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$50 <small>/month</small></div>
+                        <a href="#ewe-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$90 <small>/month</small></div>
+                        <a href="#ewe-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">3 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$120 <small>/month</small></div>
+                        <a href="#ewe-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kids & Teens Section -->
+            <div class="kids-section">
+                <div class="kids-header">
+                    <h3>Kids & Teens Programs</h3>
+                    <span class="kids-badge">Ages 5-17</span>
+                </div>
+                <div class="kids-grid">
+                    <div class="kids-card">
+                        <h4>Ewe for Kids (5-8)</h4>
+                        <div class="package-price">$35 <small>/month</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Ewe Explorers (9-12)</h4>
+                        <div class="package-price">$45 <small>/month</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Teen Ewe (13-17)</h4>
+                        <div class="package-price">$55 <small>/month</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="textbook-card">
+                <div class="textbook-info">
+                    <h4>Ewe Textbook</h4>
+                    <p>Comprehensive learning materials coming soon</p>
+                </div>
+                <span class="coming-soon">Coming Soon</span>
+            </div>
+
+            <div class="quiz-placeholder">
+                <h4>Find Your Ewe Level</h4>
+                <a href="#" class="quiz-button">Start Ewe Quiz</a>
+            </div>
+
+            <!-- ENROLLMENT FORM FOR EWE (UPDATED with redirect) -->
             <div id="ewe-enroll" class="enrollment-section">
                 <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Ewe Classes</h3>
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
+                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
                     <input type="hidden" name="language" value="Ewe">
-                    <!-- ... rest of form fields same as Ga ... -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" name="phone" placeholder="+233 XX XXX XXXX">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Package *</label>
+                        <select name="package" required>
+                            <option value="">Select a package</option>
+                            <option value="Private 60min 1x/week">Private 60min - 1 lesson/week ($75/month)</option>
+                            <option value="Private 60min 2x/week">Private 60min - 2 lessons/week ($135/month)</option>
+                            <option value="Private 60min 3x/week">Private 60min - 3 lessons/week ($195/month)</option>
+                            <option value="Private 90min 1x/week">Private 90min - 1 lesson/week ($110/month)</option>
+                            <option value="Private 90min 2x/week">Private 90min - 2 lessons/week ($220/month)</option>
+                            <option value="Group 90min 1x/week">Group 90min - 1 lesson/week ($50/month)</option>
+                            <option value="Group 90min 2x/week">Group 90min - 2 lessons/week ($90/month)</option>
+                            <option value="Group 90min 3x/week">Group 90min - 3 lessons/week ($120/month)</option>
+                            <option value="Taster Private">Taster Package - Private 60min ($25 one-time)</option>
+                            <option value="Taster Group">Taster Package - Group 90min ($15 one-time)</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Commitment *</label>
+                            <select name="commitment" required>
+                                <option value="Monthly">Monthly</option>
+                                <option value="3 months">3 months (save 10%)</option>
+                                <option value="6 months">6 months (save 20%)</option>
+                                <option value="One-time">One-time (Taster only)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Timezone</label>
+                            <select name="timezone">
+                                <option value="GMT">GMT (London)</option>
+                                <option value="EST">EST (New York)</option>
+                                <option value="PST">PST (Los Angeles)</option>
+                                <option value="WAT">WAT (Lagos)</option>
+                                <option value="CAT">CAT (Johannesburg)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Class Time</label>
+                        <input type="text" name="preferred_time" placeholder="e.g., Sundays 6pm GMT">
+                    </div>
+                    <div class="form-group">
+                        <label>How did you hear about us?</label>
+                        <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="sibling_discount" value="yes"> Apply sibling/friend discount (5% off)
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Enrollment</button>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">We'll contact you within 24 hours</p>
                 </form>
             </div>
         </section>
 
-        <!-- FANTE SECTION with enrollment form -->
+        <!-- FANTE SECTION -->
         <section id="fante" class="language-section">
-            <!-- ... (keep existing Fante content) ... -->
-            
-            <!-- Add enrollment form for Fante -->
+            <div class="language-header">
+                <div class="language-icon-large">🏖️</div>
+                <div class="language-title">
+                    <h2>Fante</h2>
+                    <div class="language-stats">
+                        <span class="stat"><strong>2M+</strong> speakers</span>
+                        <span class="stat">Coastal Ghana</span>
+                        <span class="stat">Adults & Kids</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="why-learn">
+                <h3>Why Learn Fante?</h3>
+                <p>Fante is spoken along Ghana's beautiful coastline. Close to Twi but with its own distinct identity, Fante connects you to the vibrant coastal communities and their rich traditions.</p>
+            </div>
+
+            <h3>Adult Packages</h3>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$75 <small>/month</small></div>
+                        <a href="#fante-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$135 <small>/month</small></div>
+                        <a href="#fante-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$50 <small>/month</small></div>
+                        <a href="#fante-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$90 <small>/month</small></div>
+                        <a href="#fante-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kids-section">
+                <div class="kids-header">
+                    <h3>Kids & Teens Programs</h3>
+                </div>
+                <div class="kids-grid">
+                    <div class="kids-card">
+                        <h4>Fante for Kids (5-12)</h4>
+                        <div class="package-price">$45 <small>/month</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Teen Fante (13-17)</h4>
+                        <div class="package-price">$55 <small>/month</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="textbook-card">
+                <div class="textbook-info">
+                    <h4>Fante Textbook</h4>
+                    <p>Coming soon</p>
+                </div>
+                <span class="coming-soon">Coming Soon</span>
+            </div>
+
+            <div class="quiz-placeholder">
+                <h4>Find Your Fante Level</h4>
+                <a href="#" class="quiz-button">Start Fante Quiz</a>
+            </div>
+
+            <!-- ENROLLMENT FORM FOR FANTE (UPDATED with redirect) -->
             <div id="fante-enroll" class="enrollment-section">
                 <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Fante Classes</h3>
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
+                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
                     <input type="hidden" name="language" value="Fante">
-                    <!-- ... rest of form fields ... -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" name="phone" placeholder="+233 XX XXX XXXX">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Package *</label>
+                        <select name="package" required>
+                            <option value="">Select a package</option>
+                            <option value="Private 60min 1x/week">Private 60min - 1 lesson/week ($75/month)</option>
+                            <option value="Private 60min 2x/week">Private 60min - 2 lessons/week ($135/month)</option>
+                            <option value="Private 90min 1x/week">Private 90min - 1 lesson/week ($110/month)</option>
+                            <option value="Private 90min 2x/week">Private 90min - 2 lessons/week ($220/month)</option>
+                            <option value="Group 90min 1x/week">Group 90min - 1 lesson/week ($50/month)</option>
+                            <option value="Group 90min 2x/week">Group 90min - 2 lessons/week ($90/month)</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Commitment *</label>
+                            <select name="commitment" required>
+                                <option value="Monthly">Monthly</option>
+                                <option value="3 months">3 months (save 10%)</option>
+                                <option value="6 months">6 months (save 20%)</option>
+                                <option value="One-time">One-time (Taster only)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Timezone</label>
+                            <select name="timezone">
+                                <option value="GMT">GMT (London)</option>
+                                <option value="EST">EST (New York)</option>
+                                <option value="PST">PST (Los Angeles)</option>
+                                <option value="WAT">WAT (Lagos)</option>
+                                <option value="CAT">CAT (Johannesburg)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Class Time</label>
+                        <input type="text" name="preferred_time" placeholder="e.g., Sundays 6pm GMT">
+                    </div>
+                    <div class="form-group">
+                        <label>How did you hear about us?</label>
+                        <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="sibling_discount" value="yes"> Apply sibling/friend discount (5% off)
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Enrollment</button>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">We'll contact you within 24 hours</p>
                 </form>
             </div>
         </section>
 
-        <!-- DAGBANI SECTION with enrollment form -->
+        <!-- DAGBANI SECTION -->
         <section id="dagbani" class="language-section">
-            <!-- ... (keep existing Dagbani content) ... -->
-            
-            <!-- Add enrollment form for Dagbani -->
+            <div class="language-header">
+                <div class="language-icon-large">🌄</div>
+                <div class="language-title">
+                    <h2>Dagbani</h2>
+                    <div class="language-stats">
+                        <span class="stat"><strong>1M+</strong> speakers</span>
+                        <span class="stat">Northern Region</span>
+                        <span class="stat">Adults & Kids</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="why-learn">
+                <h3>Why Learn Dagbani?</h3>
+                <p>Dagbani is the language of the Dagomba people in Northern Ghana. Learning Dagbani connects you to the rich history, traditions, and hospitality of the northern regions.</p>
+            </div>
+
+            <h3>Adult Packages</h3>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$75 <small>/month</small></div>
+                        <a href="#dagbani-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$50 <small>/month</small></div>
+                        <a href="#dagbani-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kids-section">
+                <div class="kids-header">
+                    <h3>Kids & Teens Programs</h3>
+                </div>
+                <div class="kids-grid">
+                    <div class="kids-card">
+                        <h4>Dagbani for Kids</h4>
+                        <div class="package-price">$35 <small>/month</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="textbook-card">
+                <div class="textbook-info">
+                    <h4>Dagbani Textbook</h4>
+                    <p>Coming soon</p>
+                </div>
+                <span class="coming-soon">Coming Soon</span>
+            </div>
+
+            <div class="quiz-placeholder">
+                <h4>Find Your Dagbani Level</h4>
+                <a href="#" class="quiz-button">Start Dagbani Quiz</a>
+            </div>
+
+            <!-- ENROLLMENT FORM FOR DAGBANI (UPDATED with redirect) -->
             <div id="dagbani-enroll" class="enrollment-section">
                 <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Dagbani Classes</h3>
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
+                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
                     <input type="hidden" name="language" value="Dagbani">
-                    <!-- ... rest of form fields ... -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" name="phone" placeholder="+233 XX XXX XXXX">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Package *</label>
+                        <select name="package" required>
+                            <option value="">Select a package</option>
+                            <option value="Private 60min 1x/week">Private 60min - 1 lesson/week ($75/month)</option>
+                            <option value="Group 90min 1x/week">Group 90min - 1 lesson/week ($50/month)</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Commitment *</label>
+                            <select name="commitment" required>
+                                <option value="Monthly">Monthly</option>
+                                <option value="3 months">3 months (save 10%)</option>
+                                <option value="6 months">6 months (save 20%)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Timezone</label>
+                            <select name="timezone">
+                                <option value="GMT">GMT (London)</option>
+                                <option value="EST">EST (New York)</option>
+                                <option value="PST">PST (Los Angeles)</option>
+                                <option value="WAT">WAT (Lagos)</option>
+                                <option value="CAT">CAT (Johannesburg)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Class Time</label>
+                        <input type="text" name="preferred_time" placeholder="e.g., Sundays 6pm GMT">
+                    </div>
+                    <div class="form-group">
+                        <label>How did you hear about us?</label>
+                        <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="sibling_discount" value="yes"> Apply sibling/friend discount (5% off)
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Enrollment</button>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">We'll contact you within 24 hours</p>
                 </form>
             </div>
         </section>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer (UPDATED with correct location) -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>Speak Ghana</h4>
-                    <p>📍 Osu, Accra, Ghana</p>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>🏗️ Accra Office (Opening Soon)</p>
                     <p>📞 +233 55 226 3323</p>
                     <p>📧 speakghana912@gmail.com</p>
                 </div>
