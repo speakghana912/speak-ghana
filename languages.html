@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Languages - Speak Ghana</title>
+    
+    <!-- ABSOLUTE URL FAVICON -->
+    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
+
+    <style>
+        /* ===== MODERN COLOR PALETTE ===== */
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray-light: #F0F0F0;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--cream);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--black);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--red));
+            border-radius: 2px;
+        }
+
+        h2.center {
+            display: block;
+            text-align: center;
+        }
+
+        h2.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1.5rem;
+            color: var(--green);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.4);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #c49a6c);
+            color: var(--black);
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 163, 115, 0.4);
+        }
+
+        .btn-large {
+            font-size: 1.2rem;
+            padding: 1rem 3rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .logo-text h1 span {
+            color: var(--gold);
+        }
+
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: var(--gold);
+            font-weight: 500;
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+            background: var(--green);
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* ===== LANGUAGE SECTION ===== */
+        .language-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+            scroll-margin-top: 100px;
+        }
+
+        .language-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .language-icon-large {
+            font-size: 4rem;
+            background: var(--cream);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .language-title h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .language-title h2::after {
+            display: none;
+        }
+
+        .language-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: var(--cream);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+        }
+
+        .stat strong {
+            color: var(--green);
+        }
+
+        .why-learn {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-left: 4px solid var(--gold);
+        }
+
+        /* ===== PACKAGE CARDS ===== */
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .package-card {
+            background: var(--cream);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .package-header {
+            background: linear-gradient(135deg, var(--black), #2a2a2a);
+            color: var(--gold);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .package-header h4 {
+            color: var(--gold);
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .package-type {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+
+        .package-body {
+            padding: 1.5rem;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .package-features li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .package-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--green);
+            margin: 1rem 0;
+        }
+
+        .package-price small {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: normal;
+        }
+
+        .commitment-options {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin: 1rem 0;
+        }
+
+        /* ===== KIDS PACKAGES ===== */
+        .kids-section {
+            background: linear-gradient(135deg, #fdf6e9, #fff);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px dashed var(--gold);
+        }
+
+        .kids-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .kids-header h3 {
+            margin: 0;
+        }
+
+        .kids-badge {
+            background: var(--green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+
+        .kids-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .kids-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .kids-card h4 {
+            color: var(--green);
+            margin-bottom: 0.5rem;
+        }
+
+        .age-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== TEXTBOOK CARD ===== */
+        .textbook-card {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .textbook-info h4 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .coming-soon {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        /* ===== QUIZ PLACEHOLDER ===== */
+        .quiz-placeholder {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .quiz-button:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        /* ===== FAQ ===== */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .faq-item {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--green);
+        }
+
+        .faq-item h4 {
+            color: var(--green);
+            margin-bottom: 0.8rem;
+        }
+
+        /* ===== LANGUAGE NAVIGATOR ===== */
+        .language-navigator {
+            background: white;
+            border-radius: 60px;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0 3rem;
+            box-shadow: 0 10px 30px var(--shadow);
+            position: sticky;
+            top: 80px;
+            z-index: 99;
+        }
+
+        .lang-nav-link {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-nav-link:hover {
+            background: var(--cream);
+        }
+
+        .lang-nav-link.active {
+            background: var(--green);
+            color: white;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .motto-footer {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .language-navigator {
+                position: static;
+                border-radius: 20px;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .language-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .language-stats {
+                justify-content: center;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="mailto:speakghana912@gmail.com">📧 speakghana912@gmail.com</a>
+                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="languages.html" class="active">Languages</a>
+                <a href="kids-teens.html">Kids & Teens</a>
+                <a href="resources.html">Resources</a>
+                <a href="contact.html">Contact</a>
+                <a href="blog.html">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Our Languages</h1>
+            <p>Choose from five Ghanaian languages. Each with programs for adults, kids, and families.</p>
+        </div>
+    </section>
+
+    <!-- Language Navigator (Quick Jump) -->
+    <div class="container">
+        <div class="language-navigator">
+            <a href="#twi" class="lang-nav-link active">Twi</a>
+            <a href="#ga" class="lang-nav-link">Ga</a>
+            <a href="#ewe" class="lang-nav-link">Ewe</a>
+            <a href="#fante" class="lang-nav-link">Fante</a>
+            <a href="#dagbani" class="lang-nav-link">Dagbani</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- TWI SECTION -->
+        <section id="twi" class="language-section">
+            <div class="language-header">
+                <div class="language-icon-large">🗣️</div>
+                <div class="language-title">
+                    <h2>Twi (Akan)</h2>
+                    <div class="language-stats">
+                        <span class="stat"><strong>9M+</strong> speakers</span>
+                        <span class="stat">Southern/Central Ghana</span>
+                        <span class="stat">Adults & Kids</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="why-learn">
+                <h3>Why Learn Twi?</h3>
+                <p>Twi is the most widely spoken Ghanaian language, making it the perfect starting point for diaspora learners. Connect with family, understand cultural traditions, and speak with confidence.</p>
+            </div>
+
+            <h3>Adult Packages</h3>
+            <div class="package-grid">
+                <!-- Private 60min 1x/week -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>One 60-minute 1-on-1 lesson weekly</li>
+                            <li>Choose your fixed day & time</li>
+                            <li>Structured grammar & conversation</li>
+                            <li>Personalized homework & feedback</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <div class="package-price">$75 <small>/month</small></div>
+                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+
+                <!-- Private 60min 2x/week -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Two 60-minute 1-on-1 lessons weekly</li>
+                            <li>1 structured + 1 speaking practice</li>
+                            <li>Movie clips & song lyrics</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <div class="package-price">$135 <small>/month</small></div>
+                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+
+                <!-- Private 60min 3x/week -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">3 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Three 60-minute 1-on-1 lessons weekly</li>
+                            <li>Intensive learning + speaking</li>
+                            <li>Weekly progress report</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <div class="package-price">$195 <small>/month</small></div>
+                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+
+                <!-- Private 90min 1x/week -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 90 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>One 90-minute 1-on-1 lesson weekly</li>
+                            <li>Deep immersion sessions</li>
+                            <li>Grammar + vocabulary + culture</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <div class="package-price">$110 <small>/month</small></div>
+                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+
+                <!-- Private 90min 2x/week -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 90 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Two 90-minute 1-on-1 lessons weekly</li>
+                            <li>Ultimate private package</li>
+                            <li>Full materials & feedback</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <div class="package-price">$220 <small>/month</small></div>
+                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+
+                <!-- Group 90min 1x/week -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>One 90-minute group class weekly</li>
+                            <li>Flexible group scheduling</li>
+                            <li>Speaking-focused interaction</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <div class="package-price">$50 <small>/month</small></div>
+                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+
+                <!-- Group 90min 2x/week (Most Popular) -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <span style="background: var(--gold); color: var(--black); padding: 0.2rem 1rem; border-radius: 50px; display: inline-block; margin-bottom: 1rem; font-size: 0.8rem;">⭐ MOST POPULAR</span>
+                        <ul class="package-features">
+                            <li>Two 90-minute group classes weekly</li>
+                            <li>Interactive conversation practice</li>
+                            <li>Weekly materials included</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <div class="package-price">$90 <small>/month</small></div>
+                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+
+                <!-- Group 90min 3x/week -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">3 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Three 90-minute group classes weekly</li>
+                            <li>Intensive immersion</li>
+                            <li>Cultural discussions</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <div class="package-price">$120 <small>/month</small></div>
+                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 2rem 0; background: var(--cream); padding: 2rem; border-radius: 15px;">
+                <h4 style="color: var(--green);">🎁 Siblings & Friends Discount</h4>
+                <p>Enroll with a sibling or friend and both get <strong>5% off</strong> your monthly tuition.</p>
+            </div>
+
+            <div style="background: linear-gradient(135deg, var(--black), #2a2a2a); color: white; padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                <h4 style="color: var(--gold);">🏢 Business Package</h4>
+                <p>For teams and organizations. Bulk discounts available for 5+ learners.</p>
+                <a href="contact.html" class="btn btn-gold btn-small">Inquire for Your Team</a>
+            </div>
+
+            <!-- Kids & Teens Section -->
+            <div class="kids-section">
+                <div class="kids-header">
+                    <h3>Kids & Teens Programs</h3>
+                    <span class="kids-badge">Ages 5-17</span>
+                </div>
+
+                <div class="kids-grid">
+                    <div class="kids-card">
+                        <h4>Twi Tots (K1)</h4>
+                        <span class="age-badge">Ages 5-8</span>
+                        <p>30 min, 1x/week</p>
+                        <div class="package-price">$35 <small>/month</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Twi Explorers (K2)</h4>
+                        <span class="age-badge">Ages 9-12</span>
+                        <p>45 min, 1x/week</p>
+                        <div class="package-price">$45 <small>/month</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Siblings Special (K3)</h4>
+                        <span class="age-badge">Ages 5-12</span>
+                        <p>45 min, 1x/week</p>
+                        <div class="package-price">$65 <small>/family</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Teen Talk (T1)</h4>
+                        <span class="age-badge">Ages 13-17</span>
+                        <p>60 min, 1x/week</p>
+                        <div class="package-price">$55 <small>/month</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Twi Fluency Fast (T2)</h4>
+                        <span class="age-badge">Ages 13-17</span>
+                        <p>60 min, 2x/week</p>
+                        <div class="package-price">$95 <small>/month</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Family Pack (F1)</h4>
+                        <span class="age-badge">All Ages</span>
+                        <p>60 min, 1x/week</p>
+                        <div class="package-price">$120 <small>/family</small></div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="kids-teens.html" class="btn btn-gold">View All Kids & Teen Programs →</a>
+                </div>
+            </div>
+
+            <!-- Textbook Info -->
+            <div class="textbook-card">
+                <div class="textbook-info">
+                    <h4>The Complete Twi Textbook</h4>
+                    <p>32 chapters • 300+ pages • Grammar guides • Cultural notes • Exercises</p>
+                </div>
+                <span class="coming-soon">Available Now</span>
+            </div>
+
+            <!-- Quiz Placeholder -->
+            <div class="quiz-placeholder">
+                <h4>Find Your Twi Level</h4>
+                <p>Take our 5-minute quiz to discover your current level and get personalized course recommendations.</p>
+                <a href="#" class="quiz-button">Start Twi Quiz</a>
+            </div>
+
+            <!-- FAQ -->
+            <h3>Frequently Asked Questions</h3>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>What if I miss a class?</h4>
+                    <p>Recordings are available for group classes. Private lessons can be rescheduled with 24-hour notice.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I switch plans later?</h4>
+                    <p>Yes! You can upgrade or downgrade your plan at any time. Changes take effect the following month.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Is the textbook really free?</h4>
+                    <p>Absolutely! Every paid lesson plan includes the complete textbook (digital copy).</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What if I'm not happy with my teacher?</h4>
+                    <p>No problem! Request a change and we'll match you with a different teacher at no extra cost.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GA SECTION -->
+        <section id="ga" class="language-section">
+            <div class="language-header">
+                <div class="language-icon-large">🏙️</div>
+                <div class="language-title">
+                    <h2>Ga</h2>
+                    <div class="language-stats">
+                        <span class="stat"><strong>600k+</strong> speakers</span>
+                        <span class="stat">Accra region</span>
+                        <span class="stat">Adults & Kids</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="why-learn">
+                <h3>Why Learn Ga?</h3>
+                <p>Ga is the language of Ghana's capital, Accra. With a rich history dating back centuries, learning Ga connects you to the vibrant culture and traditions of the Ga people.</p>
+            </div>
+
+            <h3>Adult Packages</h3>
+            <div class="package-grid">
+                <!-- Same package structure as Twi, repeated for Ga -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>One 60-minute 1-on-1 lesson weekly</li>
+                            <li>Choose your fixed day & time</li>
+                            <li>Structured grammar & conversation</li>
+                            <li>Personalized homework & feedback</li>
+                        </ul>
+                        <div class="package-price">$75 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$135 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">3 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$195 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 90 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$110 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 90 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$220 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$50 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$90 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">3 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$120 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 2rem 0; background: var(--cream); padding: 2rem; border-radius: 15px;">
+                <h4 style="color: var(--green);">🎁 Siblings & Friends Discount</h4>
+                <p>Enroll with a sibling or friend and both get <strong>5% off</strong> your monthly tuition.</p>
+            </div>
+
+            <!-- Kids & Teens Section for Ga -->
+            <div class="kids-section">
+                <div class="kids-header">
+                    <h3>Kids & Teens Programs</h3>
+                    <span class="kids-badge">Ages 5-17</span>
+                </div>
+                <div class="kids-grid">
+                    <div class="kids-card">
+                        <h4>Ga for Kids (5-8)</h4>
+                        <span class="age-badge">Ages 5-8</span>
+                        <p>30 min, 1x/week</p>
+                        <div class="package-price">$35 <small>/month</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Ga Explorers (9-12)</h4>
+                        <span class="age-badge">Ages 9-12</span>
+                        <p>45 min, 1x/week</p>
+                        <div class="package-price">$45 <small>/month</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Teen Ga (13-17)</h4>
+                        <span class="age-badge">Ages 13-17</span>
+                        <p>60 min, 1x/week</p>
+                        <div class="package-price">$55 <small>/month</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Textbook Info - Coming Soon -->
+            <div class="textbook-card">
+                <div class="textbook-info">
+                    <h4>Ga Textbook</h4>
+                    <p>Comprehensive learning materials coming soon</p>
+                </div>
+                <span class="coming-soon">Coming Soon</span>
+            </div>
+
+            <!-- Quiz Placeholder -->
+            <div class="quiz-placeholder">
+                <h4>Find Your Ga Level</h4>
+                <p>Take our quiz to discover your current level and get personalized recommendations.</p>
+                <a href="#" class="quiz-button">Start Ga Quiz</a>
+            </div>
+        </section>
+
+        <!-- EWE SECTION -->
+        <section id="ewe" class="language-section">
+            <div class="language-header">
+                <div class="language-icon-large">🌊</div>
+                <div class="language-title">
+                    <h2>Ewe</h2>
+                    <div class="language-stats">
+                        <span class="stat"><strong>3M+</strong> speakers</span>
+                        <span class="stat">Volta Region, Togo</span>
+                        <span class="stat">Adults & Kids</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="why-learn">
+                <h3>Why Learn Ewe?</h3>
+                <p>Ewe is spoken in the Volta Region of Ghana and parts of Togo. Known for its rich oral tradition, vibrant music, and drumming culture, learning Ewe opens doors to a unique cultural heritage.</p>
+            </div>
+
+            <h3>Adult Packages</h3>
+            <div class="package-grid">
+                <!-- Package cards (same structure as Ga) -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$75 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$135 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">3 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$195 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$50 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$90 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">3 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$120 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kids & Teens Section -->
+            <div class="kids-section">
+                <div class="kids-header">
+                    <h3>Kids & Teens Programs</h3>
+                    <span class="kids-badge">Ages 5-17</span>
+                </div>
+                <div class="kids-grid">
+                    <div class="kids-card">
+                        <h4>Ewe for Kids (5-8)</h4>
+                        <div class="package-price">$35 <small>/month</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Ewe Explorers (9-12)</h4>
+                        <div class="package-price">$45 <small>/month</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Teen Ewe (13-17)</h4>
+                        <div class="package-price">$55 <small>/month</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="textbook-card">
+                <div class="textbook-info">
+                    <h4>Ewe Textbook</h4>
+                    <p>Comprehensive learning materials coming soon</p>
+                </div>
+                <span class="coming-soon">Coming Soon</span>
+            </div>
+
+            <div class="quiz-placeholder">
+                <h4>Find Your Ewe Level</h4>
+                <a href="#" class="quiz-button">Start Ewe Quiz</a>
+            </div>
+        </section>
+
+        <!-- FANTE SECTION -->
+        <section id="fante" class="language-section">
+            <div class="language-header">
+                <div class="language-icon-large">🏖️</div>
+                <div class="language-title">
+                    <h2>Fante</h2>
+                    <div class="language-stats">
+                        <span class="stat"><strong>2M+</strong> speakers</span>
+                        <span class="stat">Coastal Ghana</span>
+                        <span class="stat">Adults & Kids</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="why-learn">
+                <h3>Why Learn Fante?</h3>
+                <p>Fante is spoken along Ghana's beautiful coastline. Close to Twi but with its own distinct identity, Fante connects you to the vibrant coastal communities and their rich traditions.</p>
+            </div>
+
+            <h3>Adult Packages</h3>
+            <div class="package-grid">
+                <!-- Package cards (same structure) -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$75 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$135 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$50 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$90 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kids-section">
+                <div class="kids-header">
+                    <h3>Kids & Teens Programs</h3>
+                </div>
+                <div class="kids-grid">
+                    <div class="kids-card">
+                        <h4>Fante for Kids (5-12)</h4>
+                        <div class="package-price">$45 <small>/month</small></div>
+                    </div>
+                    <div class="kids-card">
+                        <h4>Teen Fante (13-17)</h4>
+                        <div class="package-price">$55 <small>/month</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="textbook-card">
+                <div class="textbook-info">
+                    <h4>Fante Textbook</h4>
+                    <p>Coming soon</p>
+                </div>
+                <span class="coming-soon">Coming Soon</span>
+            </div>
+
+            <div class="quiz-placeholder">
+                <h4>Find Your Fante Level</h4>
+                <a href="#" class="quiz-button">Start Fante Quiz</a>
+            </div>
+        </section>
+
+        <!-- DAGBANI SECTION -->
+        <section id="dagbani" class="language-section">
+            <div class="language-header">
+                <div class="language-icon-large">🌄</div>
+                <div class="language-title">
+                    <h2>Dagbani</h2>
+                    <div class="language-stats">
+                        <span class="stat"><strong>1M+</strong> speakers</span>
+                        <span class="stat">Northern Region</span>
+                        <span class="stat">Adults & Kids</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="why-learn">
+                <h3>Why Learn Dagbani?</h3>
+                <p>Dagbani is the language of the Dagomba people in Northern Ghana. Learning Dagbani connects you to the rich history, traditions, and hospitality of the northern regions.</p>
+            </div>
+
+            <h3>Adult Packages</h3>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Private 60 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$75 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Group 90 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-price">$50 <small>/month</small></div>
+                        <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-small">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kids-section">
+                <div class="kids-header">
+                    <h3>Kids & Teens Programs</h3>
+                </div>
+                <div class="kids-grid">
+                    <div class="kids-card">
+                        <h4>Dagbani for Kids</h4>
+                        <div class="package-price">$35 <small>/month</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="textbook-card">
+                <div class="textbook-info">
+                    <h4>Dagbani Textbook</h4>
+                    <p>Coming soon</p>
+                </div>
+                <span class="coming-soon">Coming Soon</span>
+            </div>
+
+            <div class="quiz-placeholder">
+                <h4>Find Your Dagbani Level</h4>
+                <a href="#" class="quiz-button">Start Dagbani Quiz</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 Osu, Accra, Ghana</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 speakghana912@gmail.com</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Languages</h4>
+                    <a href="#twi">Twi (Akan)</a>
+                    <a href="#ga">Ga</a>
+                    <a href="#ewe">Ewe</a>
+                    <a href="#fante">Fante</a>
+                    <a href="#dagbani">Dagbani</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Programs</h4>
+                    <a href="#twi">Adult Classes</a>
+                    <a href="kids-teens.html">Kids (5-12)</a>
+                    <a href="kids-teens.html">Teens (13-17)</a>
+                    <a href="#twi">Family Packages</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
