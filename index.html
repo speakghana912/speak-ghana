@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Speak Ghana - Reconnect. Speak. Thrive.</title>
     
-    <!-- ABSOLUTE URL FAVICON - Uses the full web address -->
+    <!-- ABSOLUTE URL FAVICON -->
     <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
     <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
@@ -181,6 +181,13 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
         }
 
         .logo img {
@@ -364,6 +371,15 @@
             animation: pulse 2s infinite;
         }
 
+        .free-badge a {
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .free-badge a:hover {
+            text-decoration: underline;
+        }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -389,6 +405,16 @@
         .march-banner p {
             color: var(--black);
             font-size: 1.3rem;
+        }
+
+        .march-banner a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .march-banner a:hover {
+            text-decoration: underline;
         }
 
         /* ===== FEATURED SECTION ===== */
@@ -447,6 +473,99 @@
             border: 1px solid rgba(0,0,0,0.05);
         }
 
+        /* ===== REAL TESTIMONIALS SECTION ===== */
+        .real-testimonials {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .testimonial-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .teacher-rating-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .teacher-card {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .teacher-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 1rem;
+        }
+
+        .teacher-rating {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .teacher-classes {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .teacher-quote {
+            font-style: italic;
+            color: var(--black);
+        }
+
+        .feedback-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .highlight-card {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .highlight-quote {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-author {
+            color: var(--green);
+            font-weight: 600;
+        }
+
         /* ===== TESTIMONIAL PREVIEW ===== */
         .testimonial-preview {
             background: white;
@@ -492,6 +611,12 @@
         .testimonial-author {
             color: var(--green);
             font-weight: 600;
+        }
+
+        .testimonial-rating {
+            color: var(--gold);
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
         }
 
         /* ===== CTA SECTION ===== */
@@ -638,6 +763,14 @@
                 grid-template-columns: 1fr;
             }
             
+            .teacher-rating-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feedback-highlights {
+                grid-template-columns: 1fr;
+            }
+            
             .header-content {
                 flex-direction: column;
                 text-align: center;
@@ -684,15 +817,17 @@
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header with clickable logo -->
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="images/speako.jpg" alt="Speak Ghana">
-                <div class="logo-text">
-                    <h1>Speak <span>Ghana</span></h1>
-                    <p>Reconnect. Speak. Thrive.</p>
-                </div>
+                <a href="https://speakghana.org">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
             </div>
             <div class="motto-badge">
                 Reconnect. Speak. Thrive.
@@ -719,12 +854,14 @@
     <section class="hero">
         <div class="hero-split">
             <div class="hero-content">
-                <div class="free-badge">🎉 MARCH 2026 – ALL LESSONS FREE! 🎉</div>
+                <div class="free-badge">
+                    <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank">🎉 MARCH 2026 – ALL LESSONS FREE! 🎉</a>
+                </div>
                 <h2>Akwaaba! — Welcome Home</h2>
                 <p>Reconnect with your roots through language, culture, and community. Personalized Twi classes for the global African diaspora.</p>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                     <a href="learn.html" class="btn btn-gold btn-large">Explore Plans</a>
-                    <a href="register.html" class="btn btn-primary btn-large">Start Free Trial</a>
+                    <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-large">Register for Free March Classes</a>
                 </div>
                 <p style="margin-top: 2rem; font-size: 1rem;">✨ No payment required in March • Try any class free ✨</p>
             </div>
@@ -740,10 +877,10 @@
 
     <!-- Main Content -->
     <div class="container">
-        <!-- March Banner -->
+        <!-- March Banner with Link -->
         <div class="march-banner">
-            <h3>🎉 MARCH 2026 – ALL LESSONS ARE FREE! 🎉</h3>
-            <p>Try any class for free throughout March. No payment required. Secure your spot for April!</p>
+            <h3><a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank">🎉 MARCH 2026 – ALL LESSONS ARE FREE! 🎉</a></h3>
+            <p>Try any class for free throughout March. No payment required. <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank">Secure your spot for April →</a></p>
         </div>
 
         <!-- Featured Section -->
@@ -775,25 +912,106 @@
             <span class="value-pill">📈 Nkɔsoɔ</span>
         </div>
 
+        <!-- Real Student Feedback Section -->
+        <div class="real-testimonials">
+            <h2 class="center">What Our Students Are Saying</h2>
+            
+            <div class="testimonial-stats">
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Would recommend their teacher</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.7/5</div>
+                    <div class="stat-label">Average class rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Recent student reviews</div>
+                </div>
+            </div>
+
+            <div class="teacher-rating-grid">
+                <div class="teacher-card">
+                    <div class="teacher-name">Tetebea</div>
+                    <div class="teacher-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="teacher-classes">5 classes rated</div>
+                    <div class="teacher-quote">"The love, patience and passion of Tetebea"</div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-name">Michael</div>
+                    <div class="teacher-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="teacher-classes">1 class rated</div>
+                    <div class="teacher-quote">"The most are beginner"</div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-name">All Teachers</div>
+                    <div class="teacher-rating">⭐⭐⭐⭐</div>
+                    <div class="teacher-classes">100% recommend rate</div>
+                    <div class="teacher-quote">"Clear, patient, and encouraging"</div>
+                </div>
+            </div>
+
+            <h3 class="center" style="margin: 3rem 0 1.5rem;">Student Highlights</h3>
+            <div class="feedback-highlights">
+                <div class="highlight-card">
+                    <div class="highlight-quote">"I like that we were able to go over the alphabet individually. I like that she spoke in Twi even if we did not understand because that will help us eventually."</div>
+                    <div class="highlight-author">— Student of Tetebea</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-quote">"The teacher was patient. The love, patience and passion of Michael and Tetebea."</div>
+                    <div class="highlight-author">— Student</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-quote">"So many new words! And also we were only 2 people - it's perfect like this."</div>
+                    <div class="highlight-author">— Student of Tetebea</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-quote">"That it was live, we were corrected when we got something wrong."</div>
+                    <div class="highlight-author">— Student</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="learn.html#testimonials" class="btn btn-gold">Read More Student Stories</a>
+            </div>
+        </div>
+
         <!-- Testimonial Preview -->
         <div class="testimonial-preview">
-            <h2 class="center">What Our Students Say</h2>
+            <h2 class="center">Recent Student Feedback</h2>
             <div class="testimonial-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
                         Learning Twi with Speak Ghana opened doors to connect with my husband's family. The teachers are amazing!
                     </div>
                     <div class="testimonial-author">— Sarah, UK</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-text">
                         I've tried apps before, but nothing compares to live classes with native speakers. Kakra kakra, I'm getting there!
                     </div>
                     <div class="testimonial-author">— Kwame, USA</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        The teacher was patient. Actually going over the basics learning the alphabets.
+                    </div>
+                    <div class="testimonial-author">— Student of Tetebea</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        So many new words! And we were only 2 people - it's perfect like this.
+                    </div>
+                    <div class="testimonial-author">— Student</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 2rem;">
-                <a href="learn.html#testimonials" class="btn btn-gold">Read More Stories →</a>
+                <a href="learn.html#testimonials" class="btn btn-gold">Read All Reviews →</a>
             </div>
         </div>
 
@@ -803,7 +1021,7 @@
             <p style="font-size: 1.3rem; margin-bottom: 2rem;">Join hundreds of diaspora learners finding their way home through language.</p>
             <div class="cta-buttons">
                 <a href="learn.html" class="btn btn-gold btn-large">View All Plans</a>
-                <a href="register.html" class="btn btn-primary btn-large">Register for Free March Classes</a>
+                <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-large">Register for Free March Classes</a>
             </div>
             <p style="margin-top: 2rem;">✨ First month free • No commitment • Start speaking today ✨</p>
         </div>
