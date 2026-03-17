@@ -386,7 +386,7 @@
             border-radius: 20px;
             padding: 2.5rem;
             text-align: center;
-            margin: 3rem 0;
+            margin: 3rem 0 2rem;
             box-shadow: 0 20px 40px rgba(231, 111, 81, 0.2);
         }
 
@@ -409,6 +409,92 @@
 
         .march-banner a:hover {
             text-decoration: underline;
+        }
+
+        /* ===== MARCH ENROLLMENT FORM ===== */
+        .march-enrollment {
+            background: linear-gradient(135deg, var(--gold), var(--red));
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 0 0 4rem 0;
+            box-shadow: 0 20px 40px rgba(231, 111, 81, 0.3);
+        }
+
+        .march-enrollment h3 {
+            color: var(--black);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .march-enrollment p {
+            color: var(--black);
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .enrollment-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.2);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--black);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: var(--black);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--green);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
 
         /* ===== LANGUAGES SECTION ===== */
@@ -926,8 +1012,9 @@
                 height: 400px;
             }
             
-            .languages-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .languages-grid,
+            .form-row {
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .featured-grid,
@@ -953,7 +1040,7 @@
 
         @media (max-width: 768px) {
             .languages-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
             
             h2 {
@@ -979,6 +1066,10 @@
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1034,13 +1125,13 @@
         <div class="hero-split">
             <div class="hero-content">
                 <div class="free-badge">
-                    <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank">🎉 MARCH 2026 – ALL LESSONS FREE! 🎉</a>
+                    <a href="#march-enroll">🎉 MARCH 2026 – ALL LESSONS FREE! 🎉</a>
                 </div>
                 <h2>Akwaaba! — Welcome Home</h2>
                 <p>Reconnect with your roots through language, culture, and community. Ghanaian language classes for the global African diaspora.</p>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                     <a href="languages.html" class="btn btn-gold btn-large">Explore Languages</a>
-                    <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank" class="btn btn-primary btn-large">Free Trial</a>
+                    <a href="#march-enroll" class="btn btn-primary btn-large">Free Trial</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -1055,9 +1146,115 @@
     <!-- Main Content -->
     <div class="container">
         <!-- March Banner -->
-        <div class="march-banner">
-            <h3><a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank">🎉 MARCH 2026 – ALL LESSONS FREE! 🎉</a></h3>
-            <p>Try any class for free throughout March. No payment required. <a href="https://forms.gle/ZbRDhCKH1C1xTw4F9" target="_blank">Secure your spot for April →</a></p>
+        <div class="march-banner" id="march-banner">
+            <h3><a href="#march-enroll">🎉 MARCH 2026 – ALL LESSONS FREE! 🎉</a></h3>
+            <p>Try any class for free throughout March. No payment required. <a href="#march-enroll">Secure your spot for April →</a></p>
+        </div>
+
+        <!-- MARCH ENROLLMENT FORM -->
+        <div id="march-enroll" class="march-enrollment">
+            <h3>🎉 Sign Up for Free March Classes</h3>
+            <p>No payment required • Try any class • Secure your spot for April</p>
+            
+            <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
+                <input type="hidden" name="form_type" value="March Free Classes">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name *</label>
+                        <input type="text" name="first_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="last_name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="phone" placeholder="+233 XX XXX XXXX">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Which language are you interested in? *</label>
+                    <select name="language" required>
+                        <option value="">Select a language</option>
+                        <option value="Twi">Twi (Akan)</option>
+                        <option value="Ga">Ga</option>
+                        <option value="Ewe">Ewe</option>
+                        <option value="Fante">Fante</option>
+                        <option value="Dagbani">Dagbani</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Which class are you interested in? *</label>
+                    <select name="class_type" required>
+                        <option value="">Select a class</option>
+                        <option value="Private 60min">Private 60min</option>
+                        <option value="Private 90min">Private 90min</option>
+                        <option value="Group 90min">Group 90min</option>
+                        <option value="Kids (5-12)">Kids Program (5-12)</option>
+                        <option value="Teens (13-17)">Teens Program (13-17)</option>
+                        <option value="Not sure">Not sure yet</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Preferred Day</label>
+                        <select name="preferred_day">
+                            <option value="">Any</option>
+                            <option value="Sunday">Sunday</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Time</label>
+                        <select name="preferred_time">
+                            <option value="">Any</option>
+                            <option value="6pm GMT">6pm GMT</option>
+                            <option value="7pm GMT">7pm GMT</option>
+                            <option value="Other">Other (specify below)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Timezone</label>
+                    <select name="timezone">
+                        <option value="GMT">GMT (London)</option>
+                        <option value="EST">EST (New York)</option>
+                        <option value="PST">PST (Los Angeles)</option>
+                        <option value="WAT">WAT (Lagos)</option>
+                        <option value="CAT">CAT (Johannesburg)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>How did you hear about us?</label>
+                    <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
+                </div>
+
+                <div class="form-group">
+                    <label>Questions or special requests?</label>
+                    <textarea name="notes" rows="3" placeholder="Tell us anything else you'd like us to know"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Sign Up for Free March Classes</button>
+                <p style="text-align: center; margin-top: 1rem; color: var(--black);">We'll send you class details within 24 hours</p>
+            </form>
         </div>
 
         <!-- Languages Section -->
@@ -1215,7 +1412,7 @@
             <p style="font-size: 1.3rem; margin-bottom: 2rem;">Join hundreds of families reconnecting with their roots.</p>
             <div class="cta-buttons">
                 <a href="languages.html" class="btn btn-gold btn-large">Explore Languages</a>
-                <a href="kids-teens.html" class="btn btn-primary btn-large">Kids & Teen Programs</a>
+                <a href="#march-enroll" class="btn btn-primary btn-large">Free March Classes</a>
             </div>
             <p style="margin-top: 2rem;">✨ Free trial classes available • No commitment ✨</p>
         </div>
@@ -1236,8 +1433,8 @@
                     <h4>Programs</h4>
                     <a href="languages.html">Adult Classes</a>
                     <a href="kids-teens.html">Kids (5-12)</a>
-                    <a href="teens.html">Teens (13-17)</a>
-                    <a href="family.html">Family Packages</a>
+                    <a href="kids-teens.html">Teens (13-17)</a>
+                    <a href="languages.html">Family Packages</a>
                 </div>
                 
                 <div class="footer-section">
