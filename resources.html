@@ -165,7 +165,7 @@
             color: var(--gold);
         }
 
-        /* ===== HEADER ===== */
+        /* ===== HEADER WITH CLICKABLE LOGO ===== */
         header {
             background: linear-gradient(135deg, #1a1a1a, var(--green));
             color: white;
@@ -181,10 +181,11 @@
             gap: 2rem;
         }
 
-        .logo {
+        .logo a {
             display: flex;
             align-items: center;
             gap: 1rem;
+            text-decoration: none;
         }
 
         .logo img {
@@ -244,7 +245,7 @@
         .nav-links {
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            gap: 2.5rem;
             padding: 1rem 0;
             flex-wrap: wrap;
         }
@@ -605,7 +606,7 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 3rem;
             margin-bottom: 3rem;
         }
@@ -619,7 +620,7 @@
             color: rgba(255,255,255,0.8);
             text-decoration: none;
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             transition: color 0.3s;
         }
 
@@ -648,13 +649,18 @@
             .media-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
             .blog-grid,
             .materials-grid,
             .social-grid,
-            .media-grid {
+            .media-grid,
+            .footer-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -1280,15 +1286,17 @@
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header with clickable logo -->
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="images/speako.jpg" alt="Speak Ghana">
-                <div class="logo-text">
-                    <h1>Speak <span>Ghana</span></h1>
-                    <p>Reconnect. Speak. Thrive.</p>
-                </div>
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
             </div>
             <div class="motto-badge">
                 Reconnect. Speak. Thrive.
@@ -1297,13 +1305,14 @@
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Navigation (UPDATED) -->
     <nav>
         <div class="container">
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
-                <a href="learn.html">Learn</a>
+                <a href="languages.html">Languages</a>
+                <a href="kids-teens.html">Kids & Teens</a>
                 <a href="resources.html" class="active">Resources</a>
                 <a href="contact.html">Contact</a>
                 <a href="blog.html">Blog</a>
@@ -1358,7 +1367,7 @@
             </div>
         </div>
 
-        <!-- Free Materials Section -->
+        <!-- Free Materials Section (UPDATED with download links) -->
         <div class="materials-section">
             <h2 class="center">📚 Free Learning Materials</h2>
             <div class="materials-grid">
@@ -1366,37 +1375,37 @@
                     <div class="material-icon">📄</div>
                     <h3>Greetings Cheat Sheet</h3>
                     <p>Essential Twi greetings and responses in one handy PDF</p>
-                    <a href="#" class="download-btn">Download PDF</a>
+                    <a href="/pdfs/greetings-cheatsheet.pdf" download class="download-btn">Download PDF</a>
                 </div>
                 <div class="material-card">
                     <div class="material-icon">🔤</div>
                     <h3>Alphabet & Pronunciation</h3>
                     <p>Learn the Twi alphabet with audio guide</p>
-                    <a href="#" class="download-btn">Download PDF</a>
+                    <a href="/pdfs/alphabet-pronunciation.pdf" download class="download-btn">Download PDF</a>
                 </div>
                 <div class="material-card">
                     <div class="material-icon">🗣️</div>
                     <h3>100 Common Words</h3>
                     <p>Most frequently used Twi words for beginners</p>
-                    <a href="#" class="download-btn">Download PDF</a>
+                    <a href="/pdfs/100-common-words.pdf" download class="download-btn">Download PDF</a>
                 </div>
                 <div class="material-card">
                     <div class="material-icon">👪</div>
                     <h3>Family Terms</h3>
                     <p>Complete guide to family vocabulary</p>
-                    <a href="#" class="download-btn">Download PDF</a>
+                    <a href="/pdfs/family-terms.pdf" download class="download-btn">Download PDF</a>
                 </div>
                 <div class="material-card">
                     <div class="material-icon">📅</div>
                     <h3>Days & Months</h3>
                     <p>Calendar vocabulary in Twi</p>
-                    <a href="#" class="download-btn">Download PDF</a>
+                    <a href="/pdfs/days-months.pdf" download class="download-btn">Download PDF</a>
                 </div>
                 <div class="material-card">
                     <div class="material-icon">💬</div>
                     <h3>Common Phrases</h3>
                     <p>Everyday conversations made easy</p>
-                    <a href="#" class="download-btn">Download PDF</a>
+                    <a href="/pdfs/common-phrases.pdf" download class="download-btn">Download PDF</a>
                 </div>
             </div>
             <p style="text-align: center; margin-top: 2rem;">✨ More materials added regularly - check back often! ✨</p>
@@ -1554,7 +1563,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer (UPDATED) -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1568,7 +1577,8 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <a href="about.html">About Us</a>
-                    <a href="learn.html">Learning Plans</a>
+                    <a href="languages.html">Languages</a>
+                    <a href="kids-teens.html">Kids & Teens</a>
                     <a href="resources.html">Free Resources</a>
                     <a href="contact.html">Contact</a>
                     <a href="blog.html">Blog</a>
@@ -1579,6 +1589,13 @@
                     <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube: @SpeakGhana</a>
                     <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram: @speak_ghana</a>
                     <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok: @speakghana0</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="/pdfs/greetings-cheatsheet.pdf" download>Greetings Cheat Sheet</a>
+                    <a href="/pdfs/alphabet-pronunciation.pdf" download>Alphabet Guide</a>
+                    <a href="/pdfs/100-common-words.pdf" download>100 Common Words</a>
                 </div>
             </div>
             
