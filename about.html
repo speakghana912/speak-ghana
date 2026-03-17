@@ -154,7 +154,7 @@
             color: var(--gold);
         }
 
-        /* ===== HEADER ===== */
+        /* ===== HEADER WITH CLICKABLE LOGO ===== */
         header {
             background: linear-gradient(135deg, #1a1a1a, var(--green));
             color: white;
@@ -170,10 +170,11 @@
             gap: 2rem;
         }
 
-        .logo {
+        .logo a {
             display: flex;
             align-items: center;
             gap: 1rem;
+            text-decoration: none;
         }
 
         .logo img {
@@ -233,7 +234,7 @@
         .nav-links {
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            gap: 2.5rem;
             padding: 1rem 0;
             flex-wrap: wrap;
         }
@@ -485,6 +486,20 @@
             font-size: 0.95rem;
         }
 
+        .team-info .profile-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .team-info .profile-link:hover {
+            color: var(--green);
+            text-decoration: underline;
+        }
+
         .ceo-card {
             max-width: 400px;
             margin: 0 auto 3rem;
@@ -583,7 +598,7 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 3rem;
             margin-bottom: 3rem;
         }
@@ -597,7 +612,7 @@
             color: rgba(255,255,255,0.8);
             text-decoration: none;
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             transition: color 0.3s;
         }
 
@@ -637,11 +652,19 @@
             .stats-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
             .values-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
             }
             
             .header-content {
@@ -675,15 +698,17 @@
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header with clickable logo -->
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="images/speako.jpg" alt="Speak Ghana">
-                <div class="logo-text">
-                    <h1>Speak <span>Ghana</span></h1>
-                    <p>Reconnect. Speak. Thrive.</p>
-                </div>
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
             </div>
             <div class="motto-badge">
                 Reconnect. Speak. Thrive.
@@ -698,7 +723,8 @@
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html" class="active">About</a>
-                <a href="learn.html">Learn</a>
+                <a href="languages.html">Languages</a>
+                <a href="kids-teens.html">Kids & Teens</a>
                 <a href="resources.html">Resources</a>
                 <a href="contact.html">Contact</a>
                 <a href="blog.html">Blog</a>
@@ -817,12 +843,13 @@
                         <h3>Richard Asiamah</h3>
                         <div class="role">Founder & CEO</div>
                         <div class="bio">Passionate about reconnecting the diaspora with Ghanaian heritage through language.</div>
+                        <a href="https://www.linkedin.com/in/richard-asiamah-856a9b135/" target="_blank" class="profile-link">🔗 LinkedIn Profile</a>
                     </div>
                 </div>
             </div>
 
             <div class="team-grid">
-                <!-- Charlotte -->
+                <!-- Charlotte with Academic Profile -->
                 <div class="team-card">
                     <div class="team-photo">
                         <img src="images/charlotte.jpg" alt="Charlotte Tetebea Asiamah">
@@ -830,7 +857,8 @@
                     <div class="team-info">
                         <h3>Charlotte Tetebea Asiamah</h3>
                         <div class="role">Senior Twi Instructor</div>
-                        <div class="bio">Cultural immersion specialist helping students connect through proverbs and traditions.</div>
+                        <div class="bio">Cultural immersion specialist helping students connect through proverbs and traditions. Academic background in Ghanaian linguistics.</div>
+                        <a href="https://webapps.knust.edu.gh/staff/dirsearch/profile/summary/2a497368a7ab.html" target="_blank" class="profile-link">📚 View Academic Profile</a>
                     </div>
                 </div>
 
@@ -973,7 +1001,8 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <a href="about.html">About Us</a>
-                    <a href="learn.html">Learning Plans</a>
+                    <a href="languages.html">Languages</a>
+                    <a href="kids-teens.html">Kids & Teens</a>
                     <a href="resources.html">Free Resources</a>
                     <a href="contact.html">Contact</a>
                     <a href="blog.html">Blog</a>
@@ -981,9 +1010,18 @@
                 
                 <div class="footer-section">
                     <h4>Follow Us</h4>
-                    <a href="#">Instagram: @speakghana</a>
-                    <a href="#">TikTok: @speakghana</a>
-                    <a href="#">YouTube: Speak Ghana</a>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube: @SpeakGhana</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram: @speak_ghana</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok: @speakghana0</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Programs</h4>
+                    <a href="languages.html#twi">Twi</a>
+                    <a href="languages.html#ga">Ga</a>
+                    <a href="languages.html#ewe">Ewe</a>
+                    <a href="languages.html#fante">Fante</a>
+                    <a href="languages.html#dagbani">Dagbani</a>
                 </div>
             </div>
             
