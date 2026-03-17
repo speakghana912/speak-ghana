@@ -1254,5 +1254,105 @@
             </div>
         </div>
     </footer>
+
+    <!-- Event Tracking for Google Analytics -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Track Form Submissions
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function() {
+                    // Get form name or ID for tracking
+                    let formName = 'unknown_form';
+                    if (this.id) formName = this.id;
+                    else if (this.name) formName = this.name;
+                    else if (this.classList.contains('enrollment-form')) formName = 'enrollment_form';
+                    else if (this.classList.contains('contact-form')) formName = 'contact_form';
+                    
+                    // Track the event
+                    gtag('event', 'form_submission', {
+                        'event_category': 'engagement',
+                        'event_label': formName
+                    });
+                    
+                    console.log('Form submission tracked:', formName); // For testing
+                });
+            });
+            
+            // Track PDF Downloads
+            const pdfLinks = document.querySelectorAll('a[href$=".pdf"], a[download]');
+            pdfLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    let pdfName = 'unknown_pdf';
+                    if (this.href) {
+                        const parts = this.href.split('/');
+                        pdfName = parts[parts.length - 1];
+                    }
+                    
+                    gtag('event', 'pdf_download', {
+                        'event_category': 'resource',
+                        'event_label': pdfName
+                    });
+                    
+                    console.log('PDF download tracked:', pdfName); // For testing
+                });
+            });
+            
+            // Track WhatsApp Clicks
+            const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
+            whatsappLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    gtag('event', 'whatsapp_click', {
+                        'event_category': 'contact',
+                        'event_label': 'whatsapp_button'
+                    });
+                    
+                    console.log('WhatsApp click tracked'); // For testing
+                });
+            });
+            
+            // Track Phone Number Clicks
+            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+            phoneLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    gtag('event', 'phone_click', {
+                        'event_category': 'contact',
+                        'event_label': 'phone_number'
+                    });
+                    
+                    console.log('Phone click tracked');
+                });
+            });
+            
+            // Track Email Clicks
+            const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+            emailLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    gtag('event', 'email_click', {
+                        'event_category': 'contact',
+                        'event_label': 'email_link'
+                    });
+                    
+                    console.log('Email click tracked');
+                });
+            });
+            
+            // Track Navigation Clicks (optional)
+            const navLinks = document.querySelectorAll('.nav-links a, .btn');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const linkText = this.innerText.trim() || 'nav_link';
+                    gtag('event', 'navigation_click', {
+                        'event_category': 'navigation',
+                        'event_label': linkText
+                    });
+                    
+                    console.log('Navigation click tracked:', linkText);
+                });
+            });
+            
+        });
+    </script>
 </body>
 </html>
