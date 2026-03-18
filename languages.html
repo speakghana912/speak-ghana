@@ -548,7 +548,7 @@
             font-weight: 600;
         }
 
-        /* ===== QUIZ PLACEHOLDER ===== */
+        /* ===== QUIZ PLACEHOLDER - Keeping for other languages ===== */
         .quiz-placeholder {
             background: var(--cream);
             border-radius: 20px;
@@ -1098,12 +1098,8 @@
                 <span class="coming-soon">Available Now</span>
             </div>
 
-            <!-- Quiz Placeholder -->
-            <div class="quiz-placeholder">
-                <h4>Find Your Twi Level</h4>
-                <p>Take our 5-minute quiz to discover your current level and get personalized course recommendations.</p>
-                <a href="#" class="quiz-button">Start Twi Quiz</a>
-            </div>
+            <!-- ===== NEW: Twi Level Quiz (JavaScript) ===== -->
+            <div id="twi-level-quiz"></div>
 
             <!-- ENROLLMENT FORM FOR TWI -->
             <div id="twi-enroll" class="enrollment-section">
@@ -1368,7 +1364,7 @@
                 <span class="coming-soon">Coming Soon</span>
             </div>
 
-            <!-- Quiz Placeholder -->
+            <!-- Quiz Placeholder (kept for Ga) -->
             <div class="quiz-placeholder">
                 <h4>Find Your Ga Level</h4>
                 <p>Take our quiz to discover your current level and get personalized recommendations.</p>
@@ -2118,5 +2114,8 @@
             
         });
     </script>
+
+    <!-- Twi Level Quiz Script -->
+    <script src="twi-quiz.js"></script>
 </body>
 </html>
