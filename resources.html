@@ -320,6 +320,170 @@
             margin: 0 auto;
         }
 
+        /* ===== FREE CLASSES SECTION ===== */
+        .free-classes-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .welcome-banner {
+            background: var(--gold);
+            color: var(--black);
+            padding: 1.5rem;
+            border-radius: 50px;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border: 2px dashed var(--green);
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .class-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2rem;
+            border-left: 4px solid var(--green);
+            box-shadow: 0 10px 20px var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .class-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .class-header h3 {
+            color: var(--green);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .class-badge {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .class-time {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .class-time span {
+            font-size: 1.5rem;
+        }
+
+        .zoom-btn {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            text-align: center;
+            margin: 1rem 0;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .zoom-btn:hover {
+            background: white;
+            color: var(--green);
+            border-color: var(--green);
+            transform: scale(1.02);
+        }
+
+        .class-details {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .class-details p {
+            margin: 0.3rem 0;
+            font-family: monospace;
+        }
+
+        .class-details strong {
+            color: var(--green);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .passcode {
+            background: var(--cream);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-family: monospace;
+            font-weight: 600;
+        }
+
+        .tips-section {
+            background: var(--green);
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tips-section h3 {
+            color: var(--gold);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .tip-icon {
+            font-size: 2rem;
+        }
+
+        .tip-text {
+            font-size: 1rem;
+        }
+
+        .see-you {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
         /* ===== BLOG SECTION ===== */
         .blog-section {
             background: white;
@@ -657,7 +821,9 @@
             .blog-grid,
             .materials-grid,
             .social-grid,
-            .media-grid {
+            .media-grid,
+            .classes-grid,
+            .tips-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
@@ -671,6 +837,8 @@
             .materials-grid,
             .social-grid,
             .media-grid,
+            .classes-grid,
+            .tips-grid,
             .footer-grid {
                 grid-template-columns: 1fr;
             }
@@ -690,6 +858,11 @@
             
             .page-hero h1 {
                 font-size: 2.5rem;
+            }
+            
+            .welcome-banner {
+                font-size: 1rem;
+                padding: 1rem;
             }
         }
     </style>
@@ -1375,6 +1548,123 @@
             </div>
             <div style="text-align: center;">
                 <a href="#" class="btn btn-outline">View All Posts →</a>
+            </div>
+        </div>
+
+        <!-- ===== NEW FREE ONLINE CLASSES SECTION ===== -->
+        <div class="free-classes-section">
+            <h2 class="center">🎓 Free Online Twi Classes</h2>
+            
+            <div class="welcome-banner">
+                🎉 First class this week! Akwaaba! 🇬🇭
+            </div>
+
+            <div class="classes-grid">
+                <!-- Group A -->
+                <div class="class-card">
+                    <div class="class-header">
+                        <h3>Group A</h3>
+                        <span class="class-badge">🇬🇭 Open</span>
+                    </div>
+                    <div class="class-time">
+                        <span>📅</span> <strong>Sunday 5-6pm</strong>
+                    </div>
+                    <a href="https://us06web.zoom.us/j/85236961457?pwd=uRi4BuuTjchQH0hVvsPBqGui56plwD.1" 
+                       target="_blank" 
+                       class="zoom-btn">
+                        🔗 Join Group A on Zoom
+                    </a>
+                    <div class="class-details">
+                        <p><strong>Meeting ID:</strong> 852 3696 1457</p>
+                        <p><strong>Passcode:</strong> <span class="passcode">516641</span></p>
+                    </div>
+                </div>
+
+                <!-- Group B -->
+                <div class="class-card">
+                    <div class="class-header">
+                        <h3>Group B</h3>
+                        <span class="class-badge">🇬🇭 Open</span>
+                    </div>
+                    <div class="class-time">
+                        <span>📅</span> <strong>Sunday 7-8pm</strong>
+                    </div>
+                    <a href="https://us06web.zoom.us/j/81010571284?pwd=0tmVrGHktUaiJHfQXj1iOGRobDTahr.1" 
+                       target="_blank" 
+                       class="zoom-btn">
+                        🔗 Join Group B on Zoom
+                    </a>
+                    <div class="class-details">
+                        <p><strong>Meeting ID:</strong> 810 1057 1284</p>
+                        <p><strong>Passcode:</strong> <span class="passcode">294001</span></p>
+                    </div>
+                </div>
+
+                <!-- Group C -->
+                <div class="class-card">
+                    <div class="class-header">
+                        <h3>Group C</h3>
+                        <span class="class-badge">🇬🇭 Open</span>
+                    </div>
+                    <div class="class-time">
+                        <span>📅</span> <strong>Saturday 7-8pm</strong>
+                    </div>
+                    <a href="https://us06web.zoom.us/j/84400250790?pwd=a3qf3QbuaJQhad9poQqz9yiQD5Le7Q.1" 
+                       target="_blank" 
+                       class="zoom-btn">
+                        🔗 Join Group C on Zoom
+                    </a>
+                    <div class="class-details">
+                        <p><strong>Meeting ID:</strong> 844 0025 0790</p>
+                        <p><strong>Passcode:</strong> <span class="passcode">760981</span></p>
+                    </div>
+                </div>
+
+                <!-- Group D -->
+                <div class="class-card">
+                    <div class="class-header">
+                        <h3>Group D</h3>
+                        <span class="class-badge">🇬🇭 Open</span>
+                    </div>
+                    <div class="class-time">
+                        <span>📅</span> <strong>Sunday 2-3pm</strong>
+                    </div>
+                    <a href="https://us06web.zoom.us/j/87892941105?pwd=sIjQdHqKSAO4dS7NKEW4JaHRv6QRUT.1" 
+                       target="_blank" 
+                       class="zoom-btn">
+                        🔗 Join Group D on Zoom
+                    </a>
+                    <div class="class-details">
+                        <p><strong>Meeting ID:</strong> 878 9294 1105</p>
+                        <p><strong>Passcode:</strong> <span class="passcode">535853</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Tips -->
+            <div class="tips-section">
+                <h3>📝 Quick Tips for Your First Class:</h3>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <span class="tip-icon">1️⃣</span>
+                        <span class="tip-text">Click your group link to join directly</span>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">2️⃣</span>
+                        <span class="tip-text">Test audio/video a few minutes before</span>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">3️⃣</span>
+                        <span class="tip-text">Have your textbook ready</span>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon">4️⃣</span>
+                        <span class="tip-text">Come ready to speak! 🗣️</span>
+                    </div>
+                </div>
+                <div class="see-you">
+                    See you in class! ✨
+                </div>
             </div>
         </div>
 
