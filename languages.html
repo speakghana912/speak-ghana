@@ -386,19 +386,41 @@
         .cultural-image {
             text-align: center;
             margin: 2rem 0 3rem 0;
+            padding: 1rem;
+            background: linear-gradient(135deg, #fff9f0, #fff);
+            border-radius: 20px;
+            border: 1px solid var(--gold);
         }
 
         .cultural-image img {
             max-width: 100%;
+            max-height: 300px;
+            width: auto;
+            height: auto;
             border-radius: 15px;
             box-shadow: 0 10px 30px var(--shadow);
+            display: inline-block;
         }
 
         .cultural-image p {
             color: var(--gray);
             font-size: 0.9rem;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
             font-style: italic;
+        }
+
+        .image-fallback {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 15px;
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .image-fallback span {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 1rem;
         }
 
         /* ===== PACKAGE CARDS ===== */
@@ -884,11 +906,62 @@
                 </div>
             </div>
 
-            <!-- Ashanti Stool Image - Properly Integrated -->
-            <div class="cultural-image">
-                <img src="images/ashanti-stool.png" alt="Sacred Ashanti Golden Stool">
+            <!-- Ashanti Stool Image with JavaScript fallback -->
+            <div class="cultural-image" id="stool-image-container">
+                <img id="ashanti-stool" 
+                     src="images/ashanti-stool.png" 
+                     alt="Sacred Ashanti Golden Stool"
+                     onerror="this.style.display='none'; document.getElementById('image-fallback').style.display='block';">
+                
+                <div id="image-fallback" class="image-fallback" style="display: none;">
+                    <span>👑</span>
+                    <p><strong>The Sacred Golden Stool</strong><br>Symbol of the Ashanti kingdom</p>
+                    <p style="font-size: 0.8rem; color: var(--gray);">(Image: ashanti-stool.png)</p>
+                </div>
+                
                 <p>The sacred Golden Stool - symbol of the Ashanti kingdom</p>
             </div>
+
+            <script>
+                // Additional check to ensure image loads
+                document.addEventListener('DOMContentLoaded', function() {
+                    const img = document.getElementById('ashanti-stool');
+                    const fallback = document.getElementById('image-fallback');
+                    
+                    // Check if image is already loaded or failed
+                    if (img.complete) {
+                        if (img.naturalHeight === 0) {
+                            img.style.display = 'none';
+                            fallback.style.display = 'block';
+                        }
+                    }
+                    
+                    // Try loading with different paths if needed
+                    const imagePaths = [
+                        'images/ashanti-stool.png',
+                        './images/ashanti-stool.png',
+                        '/images/ashanti-stool.png'
+                    ];
+                    
+                    let pathIndex = 0;
+                    
+                    function tryNextPath() {
+                        if (pathIndex < imagePaths.length) {
+                            img.src = imagePaths[pathIndex];
+                            pathIndex++;
+                        }
+                    }
+                    
+                    img.onerror = function() {
+                        tryNextPath();
+                    };
+                    
+                    img.onload = function() {
+                        img.style.display = 'inline-block';
+                        fallback.style.display = 'none';
+                    };
+                });
+            </script>
 
             <div class="why-learn">
                 <h3>Why Learn Twi?</h3>
@@ -1238,7 +1311,7 @@
             </div>
         </section>
 
-        <!-- GA SECTION -->
+        <!-- GA SECTION (unchanged) -->
         <section id="ga" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🏙️</div>
