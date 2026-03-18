@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const MAILERLITE_API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZjcwN2UyMWMxNmYyMjYyZGZjYTQ4ZWYzNWU0NDY5OGNhNzVkOWQxYTZmNWQ0YjlkNTIwM2JlY2M2NzQ0NWFkMTUyMWRmZjY1ODY3NDU1ZWIiLCJpYXQiOjE3NzM4MzA2ODUuNjQ0NjE3LCJuYmYiOjE3NzM4MzA2ODUuNjQ0NjE5LCJleHAiOjQ5Mjk1MDQyODUuNjM3OTc5LCJzdWIiOiIyMjE3MjQ2Iiwic2NvcGVzIjpbXX0.NukFhsIIW5aLhITNpa08eSMIAi7em6HnFp9Z7xf_9OIbuLaSX9mIxl8MDwgzYMfgh_McPwrChF5qTLsqmB_umHxbSe7H9_e8lkFU9h6wu56X94dFIB8mMm6e7YDqfM_COgyFD8iyp9SufBg9zAsEU84t8sLmXbhU9LkS8Xn8GIu69SOQcyeWyOxfuKTWHDpjSDbJ1aspmieDeOt6fk5ZrFGv7O2JxAe__IKkEdgzbxOMF3THiCy9owYSUGVxpoTXjGs1ULmvhNDDi5izxKkGHU-XYbr8HSGFlye4PY9zs7xX5vhMbS5NOgsFVHRdCf9WRCCGvqSPSl_G_-4_waAua3z8QuiIDEgugyqudefRdM6QyvWp5uRzh7WGH8TmR8VmWG8Vle2yYPpMC-BpWoDDPDEKKgUYCZJG1edHpbA-ECsTF9HvdS4OFS04Igq0BCSOhcW9STA8JZdm4bplPNacLsh7ZQOK7bde-bDSoI2xfU8eb1mntPNgRJadlxCvBYaNOV0q477iJG3kR8nY4Rpq5_vG6JtCsHNFfqR520JrhJW4rvV8Cr2iMN7qMzGheqm2ouqOfvRGV0FDkCsWq_uM3B6BmBCBpF7q_n9YY0c_uQy2JCu6M-gXh4z2XsOiMomCHzZPzpzpO78GGRZ5Te-OFTpXvEFVCjf9Q93BrvD-hVs';
 
     // ===== MAILERLITE GROUP ID FOR KIDS =====
-    // You'll need to create a "Twi Kids" group in MailerLite and add the ID here
-    const KIDS_GROUP_ID = 'YOUR_KIDS_GROUP_ID'; // Replace with actual group ID after creating it
+    const KIDS_GROUP_ID = '182277545531541431'; // Twi Kids group
     
     // =========================================
 
@@ -257,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 quiz_type: 'Kids Twi Quiz',
                 kids_score: score.toString()
             },
-            groups: KIDS_GROUP_ID ? [KIDS_GROUP_ID] : [],
+            groups: [KIDS_GROUP_ID], // Add to Twi Kids group
             status: 'active'
         };
 
@@ -296,16 +295,16 @@ document.addEventListener('DOMContentLoaded', function() {
         let funEmoji = '';
         
         if (score === 10) {
-            funMessage = 'PERFECT! You're a Twi superstar! ⭐';
+            funMessage = 'PERFECT! You\'re a Twi superstar! ⭐';
             funEmoji = '🏆';
         } else if (score >= 8) {
-            funMessage = 'Great job! You're really good at this! 🌟';
+            funMessage = 'Great job! You\'re really good at this! 🌟';
             funEmoji = '🎉';
         } else if (score >= 5) {
             funMessage = 'Good work! Keep practicing! 📚';
             funEmoji = '🌱';
         } else {
-            funMessage = 'You tried! Let's learn more together! 💪';
+            funMessage = 'You tried! Let\'s learn more together! 💪';
             funEmoji = '🎈';
         }
 
