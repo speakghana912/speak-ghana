@@ -1,8 +1,20 @@
-// Twi Level Quiz - 20 Questions
+// Twi Level Quiz - 20 Questions with MailerLite Integration
 // Add this to your languages.html page
 
 document.addEventListener('DOMContentLoaded', function() {
     
+    // ===== CONFIGURATION - YOUR MAILERLITE API KEY =====
+    const MAILERLITE_API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZjcwN2UyMWMxNmYyMjYyZGZjYTQ4ZWYzNWU0NDY5OGNhNzVkOWQxYTZmNWQ0YjlkNTIwM2JlY2M2NzQ0NWFkMTUyMWRmZjY1ODY3NDU1ZWIiLCJpYXQiOjE3NzM4MzA2ODUuNjQ0NjE3LCJuYmYiOjE3NzM4MzA2ODUuNjQ0NjE5LCJleHAiOjQ5Mjk1MDQyODUuNjM3OTc5LCJzdWIiOiIyMjE3MjQ2Iiwic2NvcGVzIjpbXX0.NukFhsIIW5aLhITNpa08eSMIAi7em6HnFp9Z7xf_9OIbuLaSX9mIxl8MDwgzYMfgh_McPwrChF5qTLsqmB_umHxbSe7H9_e8lkFU9h6wu56X94dFIB8mMm6e7YDqfM_COgyFD8iyp9SufBg9zAsEU84t8sLmXbhU9LkS8Xn8GIu69SOQcyeWyOxfuKTWHDpjSDbJ1aspmieDeOt6fk5ZrFGv7O2JxAe__IKkEdgzbxOMF3THiCy9owYSUGVxpoTXjGs1ULmvhNDDi5izxKkGHU-XYbr8HSGFlye4PY9zs7xX5vhMbS5NOgsFVHRdCf9WRCCGvqSPSl_G_-4_waAua3z8QuiIDEgugyqudefRdM6QyvWp5uRzh7WGH8TmR8VmWG8Vle2yYPpMC-BpWoDDPDEKKgUYCZJG1edHpbA-ECsTF9HvdS4OFS04Igq0BCSOhcW9STA8JZdm4bplPNacLsh7ZQOK7bde-bDSoI2xfU8eb1mntPNgRJadlxCvBYaNOV0q477iJG3kR8nY4Rpq5_vG6JtCsHNFfqR520JrhJW4rvV8Cr2iMN7qMzGheqm2ouqOfvRGV0FDkCsWq_uM3B6BmBCBpF7q_n9YY0c_uQy2JCu6M-gXh4z2XsOiMomCHzZPzpzpO78GGRZ5Te-OFTpXvEFVCjf9Q93BrvD-hVs';
+
+    // ===== YOUR MAILERLITE GROUP IDs =====
+    const GROUPS = {
+        beginner: '182274905732023398',      // Twi Beginner - scores 0-7
+        elementary: '182275137855292895',    // Twi Elementary - scores 8-12
+        intermediate: '182275153398334976',  // Twi Intermediate - scores 13-16
+        advanced: '182275201245906532'       // Twi Advanced - scores 17-20
+    };
+    // =====================================
+
     // Quiz questions - 20 questions covering different difficulty levels
     const questions = [
         // Beginner Questions (1-5)
@@ -317,9 +329,84 @@ document.addEventListener('DOMContentLoaded', function() {
                 'value': score
             });
 
-            // Here you would send to MailerLite via AJAX
-            // For now, just show results
+            // Show results immediately (don't wait for MailerLite)
             showResults(email, name);
+            
+            // Send to MailerLite in the background
+            addToMailerLite(email, name, score);
+        });
+    }
+
+    // ===== Function to add subscriber to MailerLite =====
+    function addToMailerLite(email, name, score) {
+        // Determine level based on score
+        let level = 'beginner';
+        let levelName = 'Beginner';
+        let groupId = GROUPS.beginner;
+        
+        if (score <= 7) {
+            level = 'beginner';
+            levelName = 'Beginner';
+            groupId = GROUPS.beginner;
+        } else if (score <= 12) {
+            level = 'elementary';
+            levelName = 'Elementary';
+            groupId = GROUPS.elementary;
+        } else if (score <= 16) {
+            level = 'intermediate';
+            levelName = 'Intermediate';
+            groupId = GROUPS.intermediate;
+        } else {
+            level = 'advanced';
+            levelName = 'Advanced';
+            groupId = GROUPS.advanced;
+        }
+
+        // Prepare subscriber data for MailerLite API 
+        const subscriberData = {
+            email: email,
+            fields: {
+                name: name || 'Quiz Taker',
+                last_name: '',
+                quiz_score: score.toString(),
+                quiz_level: levelName
+            },
+            groups: [groupId], // Add to specific group based on level 
+            status: 'active'
+        };
+
+        // Send to MailerLite API 
+        fetch('https://connect.mailerlite.com/api/subscribers', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${MAILERLITE_API_KEY}`
+            },
+            body: JSON.stringify(subscriberData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                // Log error but don't disrupt user experience 
+                console.error('MailerLite API error:', response.status);
+                return response.json().then(data => {
+                    console.error('Error details:', data);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Successfully added to MailerLite:', data);
+            
+            // Track successful addition in Google Analytics
+            gtag('event', 'newsletter_signup', {
+                'event_category': 'quiz',
+                'event_label': levelName,
+                'value': score
+            });
+        })
+        .catch(error => {
+            console.error('Error adding to MailerLite:', error);
         });
     }
 
@@ -401,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 
                 <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--gray); background: white; padding: 1rem; border-radius: 50px; display: inline-block;">
-                    📧 We've sent your results to ${email}
+                    📧 We've sent your results and level to ${email}
                 </p>
             </div>
         `;
@@ -413,9 +500,6 @@ document.addEventListener('DOMContentLoaded', function() {
             score = 0;
             userAnswers = [];
         });
-
-        // Here you would also send to MailerLite
-        console.log('Quiz completed - Email:', email, 'Name:', name, 'Level:', level, 'Score:', score);
     }
 
     // Initialize quiz on the page
