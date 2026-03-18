@@ -137,9 +137,25 @@
             box-shadow: 0 8px 25px rgba(212, 163, 115, 0.4);
         }
 
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--green);
+            color: var(--green);
+        }
+
+        .btn-outline:hover {
+            background: var(--green);
+            color: white;
+        }
+
         .btn-large {
             font-size: 1.2rem;
             padding: 1rem 3rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
         }
 
         /* ===== TOP BAR ===== */
@@ -388,6 +404,116 @@
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
+        }
+
+        /* ===== QUIZ BANNER (NEW) ===== */
+        .quiz-banner {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(42, 157, 143, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .quiz-banner-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .quiz-banner-text h3 {
+            color: white;
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .quiz-banner-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .quiz-icon {
+            font-size: 4rem;
+            line-height: 1;
+        }
+
+        /* ===== QUIZ SECTION (NEW) ===== */
+        .quiz-section {
+            background: var(--cream);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            text-align: center;
+            border: 3px dashed var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-section::before {
+            content: '📝';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 10rem;
+            opacity: 0.05;
+            transform: rotate(15deg);
+        }
+
+        .quiz-section h2 {
+            color: var(--green);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-section p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .quiz-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-circle {
+            background: white;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px var(--shadow);
+            border: 3px solid var(--gold);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--green);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
         }
 
         /* ===== MARCH BANNER ===== */
@@ -1081,6 +1207,11 @@
             .form-row {
                 grid-template-columns: 1fr;
             }
+
+            .quiz-banner-content {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -1155,7 +1286,19 @@
 
     <!-- Main Content -->
     <div class="container">
-        <!-- March Banner -->
+        <!-- ===== NEW: QUIZ BANNER (Top of page) ===== -->
+        <div class="quiz-banner">
+            <div class="quiz-banner-content">
+                <div class="quiz-icon">📝</div>
+                <div class="quiz-banner-text">
+                    <h3>Test Your Twi Level!</h3>
+                    <p>2-minute quiz • Free • Get personalized course recommendations</p>
+                </div>
+                <a href="languages.html#twi-level-quiz" class="btn btn-gold btn-large" style="background: var(--gold); color: var(--black);">Start Quiz →</a>
+            </div>
+        </div>
+
+        <!-- March Banner (Keeping this for now since March isn't over) -->
         <div class="march-banner" id="march-banner">
             <h3><a href="#march-enroll">🎉 MARCH 2026 – ALL LESSONS FREE! 🎉</a></h3>
             <p>Try any class for free throughout March. No payment required. <a href="#march-enroll">Secure your spot for April →</a></p>
@@ -1342,6 +1485,34 @@
             <span class="value-pill">🌱 Kakra Kakra</span>
             <span class="value-pill">👪 Abusua</span>
             <span class="value-pill">📈 Nkɔsoɔ</span>
+        </div>
+
+        <!-- ===== NEW: QUIZ SECTION (Middle of page) ===== -->
+        <div class="quiz-section">
+            <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">📝</span>
+            <h2>Not Sure Where to Start?</h2>
+            <p>Take our 2-minute Twi level quiz and get personalized course recommendations based on your score!</p>
+            
+            <div class="quiz-stats">
+                <div class="stat-circle">
+                    <span class="stat-number">20</span>
+                    <span class="stat-label">Questions</span>
+                </div>
+                <div class="stat-circle">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Minutes</span>
+                </div>
+                <div class="stat-circle">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Levels</span>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0;">
+                <a href="languages.html#twi-level-quiz" class="btn btn-primary btn-large">Start Twi Quiz →</a>
+                <a href="languages.html" class="btn btn-outline btn-large">Explore All Languages</a>
+            </div>
+            <p style="margin-top: 1.5rem; color: var(--gray); font-style: italic;">✨ Over 500 people have taken the quiz already! ✨</p>
         </div>
 
         <!-- Value Proposition -->
@@ -1574,7 +1745,17 @@
                     console.log('Navigation click tracked:', linkText);
                 });
             });
-            
+
+            // Track Quiz Banner Clicks
+            const quizLinks = document.querySelectorAll('a[href*="twi-level-quiz"]');
+            quizLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    gtag('event', 'quiz_click', {
+                        'event_category': 'homepage',
+                        'event_label': 'twi_quiz_banner'
+                    });
+                });
+            });
         });
     </script>
 </body>
