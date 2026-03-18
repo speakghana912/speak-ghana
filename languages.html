@@ -382,6 +382,25 @@
             border-left: 4px solid var(--gold);
         }
 
+        /* ===== CULTURAL IMAGE STYLES ===== */
+        .cultural-image {
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .cultural-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .cultural-image p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
         /* ===== PACKAGE CARDS ===== */
         .package-grid {
             display: grid;
@@ -865,6 +884,12 @@
                 </div>
             </div>
 
+            <!-- Ashanti Stool Image - Properly Integrated -->
+            <div class="cultural-image">
+                <img src="images/ashanti-stool.png" alt="Sacred Ashanti Golden Stool">
+                <p>The sacred Golden Stool - symbol of the Ashanti kingdom</p>
+            </div>
+
             <div class="why-learn">
                 <h3>Why Learn Twi?</h3>
                 <p>Twi is the most widely spoken Ghanaian language, making it the perfect starting point for diaspora learners. Connect with family, understand cultural traditions, and speak with confidence.</p>
@@ -1105,7 +1130,7 @@
             <div id="twi-enroll" class="enrollment-section">
                 <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Twi Classes</h3>
                 
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
+                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
                     <input type="hidden" name="language" value="Twi">
                     
                     <div class="form-row">
@@ -1375,7 +1400,7 @@
             <div id="ga-enroll" class="enrollment-section">
                 <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Ga Classes</h3>
                 
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
+                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
                     <input type="hidden" name="language" value="Ga">
                     
                     <div class="form-row">
@@ -1583,7 +1608,7 @@
             <!-- ENROLLMENT FORM FOR EWE -->
             <div id="ewe-enroll" class="enrollment-section">
                 <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Ewe Classes</h3>
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
+                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
                     <input type="hidden" name="language" value="Ewe">
                     <div class="form-row">
                         <div class="form-group">
@@ -1756,7 +1781,7 @@
             <!-- ENROLLMENT FORM FOR FANTE -->
             <div id="fante-enroll" class="enrollment-section">
                 <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Fante Classes</h3>
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
+                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
                     <input type="hidden" name="language" value="Fante">
                     <div class="form-row">
                         <div class="form-group">
@@ -1901,7 +1926,7 @@
             <!-- ENROLLMENT FORM FOR DAGBANI -->
             <div id="dagbani-enroll" class="enrollment-section">
                 <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Dagbani Classes</h3>
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
+                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
                     <input type="hidden" name="language" value="Dagbani">
                     <div class="form-row">
                         <div class="form-group">
@@ -2116,6 +2141,7 @@
     </script>
 
     <!-- Twi Level Quiz Script -->
-    <script src="twi-quiz.js"></script>
+    <!-- Note: Create twi-quiz.js file or remove this line if not needed -->
+    <!-- <script src="twi-quiz.js"></script> -->
 </body>
 </html>
