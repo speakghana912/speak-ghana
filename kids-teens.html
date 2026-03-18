@@ -569,6 +569,25 @@
             align-self: flex-start;
         }
 
+        /* ===== IMAGE STYLES ===== */
+        .section-image {
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .section-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .image-caption {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
         /* ===== FAMILY BUNDLES ===== */
         .family-section {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
@@ -1076,24 +1095,6 @@
             </div>
         </section>
 
-        <!-- ===== KIDS GAMES FUN ZONE ===== -->
-        <!-- All 5 games placed here in a nice order -->
-
-        <!-- Game 1: Vocabulary Quiz -->
-        <div id="kids-quiz"></div>
-
-        <!-- Game 2: Animal Match -->
-        <div id="kids-animal-match"></div>
-
-        <!-- Game 3: Colors Game -->
-        <div id="kids-colors"></div>
-
-        <!-- Game 4: Numbers Game -->
-        <div id="kids-numbers"></div>
-
-        <!-- Game 5: Memory Game -->
-        <div id="kids-memory"></div>
-
         <!-- TEENS SECTION (Ages 13-17) -->
         <section id="teens" class="age-section">
             <div class="age-header">
@@ -1102,6 +1103,12 @@
                     <h2>Teen Programs (Ages 13-17)</h2>
                     <span class="age-badge">Real conversations • Pop culture • Music</span>
                 </div>
+            </div>
+
+            <!-- Teens Studying Image - Properly Integrated -->
+            <div class="section-image">
+                <img src="images/teens-studying.png" alt="Teenagers learning Twi together">
+                <div class="image-caption">Teens connecting through language and culture</div>
             </div>
 
             <h3>Package T1: Teen Talk</h3>
@@ -1368,7 +1375,7 @@
             <p style="text-align: center; margin-bottom: 3rem;">Fill this out and we'll contact you within 24 hours</p>
 
             <div class="enrollment-form">
-                <form action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
+                <form action="https://formspree.io/f/mlgpodpb" method="POST">
                     <div class="form-row">
                         <div class="form-group">
                             <label>Parent/Guardian Name *</label>
@@ -1803,11 +1810,14 @@
         });
     </script>
 
-    <!-- ALL KIDS GAMES SCRIPTS -->
+    <!-- Note: Game scripts removed as they were causing 404 errors -->
+    <!-- To add games back, create these files and uncomment: -->
+    <!-- 
     <script src="kids-quiz.js"></script>
     <script src="kids-animal-match.js"></script>
     <script src="kids-colors.js"></script>
     <script src="kids-numbers.js"></script>
     <script src="kids-memory.js"></script>
+    -->
 </body>
 </html>
