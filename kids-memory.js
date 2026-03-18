@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { emoji: "🐔", twi: "akokɔ" },
         { emoji: "🐮", twi: "nantwie" },
         { emoji: "🐑", twi: "odwan" },
-        { emoji: "🐘", twi: "sonono" }
+        { emoji: "🐘", twi: "sonon" }
     ];
 
     let currentRound = 0;
@@ -110,4 +110,147 @@ document.addEventListener('DOMContentLoaded', function() {
             <div>
                 <!-- Progress bar -->
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                    <div style="background: white; height: 8px; border-radius: 10px; flex-grow: 1; overflow: hidden; border: 1px solid var(--gold
+                    <div style="background: white; height: 8px; border-radius: 10px; flex-grow: 1; overflow: hidden; border: 1px solid var(--gold);">
+                        <div style="background: var(--green); width: ${(currentRound / totalRounds) * 100}%; height: 100%;"></div>
+                    </div>
+                    <span style="font-size: 0.9rem; background: white; padding: 0.2rem 0.8rem; border-radius: 20px; border: 1px solid var(--gold);">
+                        Round ${currentRound + 1}/${totalRounds}
+                    </span>
+                </div>
+                
+                <!-- Memory section - sticky -->
+                <div style="background: white; border-radius: 20px; padding: 1.5rem; margin-bottom: 1rem; text-align: center; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <p style="font-size: 1rem; color: var(--gray); margin-bottom: 0.5rem;">👀 Look at these animals...</p>
+                    <div style="margin-bottom: 0.5rem;">
+                        ${animalsHtml}
+                    </div>
+                    <h4 style="font-size: 1.3rem; color: var(--green); margin: 0.5rem 0 0;">Which one is missing?</h4>
+                </div>
+                
+                <!-- Scrollable options -->
+                <div style="max-height: 300px; overflow-y: auto; padding-right: 0.3rem;">
+                    ${optionsHtml}
+                </div>
+            </div>
+        `;
+
+        // Add click handlers
+        document.querySelectorAll('.memory-option').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const selectedTwi = this.dataset.twi;
+                
+                if (selectedTwi === missing.twi) {
+                    // Correct!
+                    score++;
+                    this.style.background = 'var(--green)';
+                    this.style.color = 'white';
+                    this.innerHTML = '<span style="font-size: 2rem;">✓</span> <span>Correct!</span>';
+                    
+                    setTimeout(() => {
+                        currentRound++;
+                        nextRound();
+                    }, 800);
+                } else {
+                    // Wrong - quick feedback
+                    this.style.opacity = '0.5';
+                    setTimeout(() => {
+                        this.style.opacity = '1';
+                    }, 300);
+                }
+            });
+        });
+    }
+
+    function showEmailForm() {
+        document.getElementById('memory-content').style.display = 'none';
+        const emailDiv = document.getElementById('memory-email');
+        emailDiv.style.display = 'block';
+
+        emailDiv.innerHTML = `
+            <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 30px;">
+                <span style="font-size: 4rem;">🧠</span>
+                <h3 style="color: var(--green); font-size: 1.8rem; margin: 0.5rem 0;">Great memory!</h3>
+                <p style="color: var(--gray); margin-bottom: 1rem;">You got ${score} out of ${totalRounds} correct!</p>
+                
+                <form id="memory-email-form">
+                    <input type="email" id="memory-email-input" placeholder="parent@email.com" required 
+                           style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 30px; font-size: 1rem; margin-bottom: 0.8rem;">
+                    <input type="text" id="memory-name-input" placeholder="Child's name (optional)" 
+                           style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 30px; font-size: 1rem; margin-bottom: 1rem;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.8rem;">Get More Games →</button>
+                </form>
+            </div>
+        `;
+
+        document.getElementById('memory-email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('memory-email-input').value;
+            const childName = document.getElementById('memory-name-input').value;
+            
+            gtag('event', 'kids_memory_game_completed', {
+                'event_category': 'kids',
+                'event_label': 'memory_game',
+                'value': score
+            });
+
+            showResults(email, childName);
+            addToMailerLite(email, childName, score);
+        });
+    }
+
+    function addToMailerLite(email, childName, score) {
+        const subscriberData = {
+            email: email,
+            fields: {
+                name: childName || 'Memory Game Parent',
+                child_name: childName || '',
+                game_type: 'Memory Game',
+                game_score: score.toString()
+            },
+            groups: [KIDS_GROUP_ID],
+            status: 'active'
+        };
+
+        fetch('https://connect.mailerlite.com/api/subscribers', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${MAILERLITE_API_KEY}`
+            },
+            body: JSON.stringify(subscriberData)
+        })
+        .then(response => response.json())
+        .catch(error => console.error('Error:', error));
+    }
+
+    function showResults(email, childName) {
+        document.getElementById('memory-email').style.display = 'none';
+        const resultsDiv = document.getElementById('memory-results');
+        resultsDiv.style.display = 'block';
+
+        resultsDiv.innerHTML = `
+            <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 30px;">
+                <span style="font-size: 4rem;">🧠</span>
+                <h3 style="color: var(--green); font-size: 2.5rem; margin: 0.5rem 0;">${score}/${totalRounds}</h3>
+                <p style="font-size: 1rem; margin-bottom: 1rem;">Awesome memory!</p>
+                
+                <div style="background: var(--cream); border-radius: 20px; padding: 1rem; margin: 1rem 0;">
+                    <p style="font-size: 1rem;">✓ Results sent to ${email}</p>
+                </div>
+                
+                <button id="memory-play-again" class="btn btn-primary" style="padding: 0.8rem 2rem;">Play Again! 🔄</button>
+            </div>
+        `;
+
+        document.getElementById('memory-play-again').addEventListener('click', function() {
+            document.getElementById('memory-results').style.display = 'none';
+            document.getElementById('memory-start').style.display = 'block';
+            currentRound = 0;
+            score = 0;
+        });
+    }
+
+    // Initialize game
+    createGameContainer();
+});
