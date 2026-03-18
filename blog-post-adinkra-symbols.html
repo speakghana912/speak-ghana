@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Meaning Behind Adinkra Symbols - Speak Ghana Blog</title>
+    
+    <!-- ABSOLUTE URL FAVICON -->
+    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZXFR0LFLH6');
+    </script>
+
+    <style>
+        /* ===== MODERN COLOR PALETTE ===== */
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray-light: #F0F0F0;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--cream);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .container-wide {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .logo-text h1 span {
+            color: var(--gold);
+        }
+
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: var(--gold);
+            font-weight: 500;
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* ===== BLOG POST STYLES ===== */
+        .blog-post {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .post-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .featured-image-large {
+            width: 100%;
+            height: 400px;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--gold), var(--green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .featured-image-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .featured-image-large:hover img {
+            transform: scale(1.05);
+        }
+
+        .post-meta {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .post-meta span {
+            margin: 0 1rem;
+        }
+
+        .post-header h1 {
+            font-size: 2.8rem;
+            color: var(--green);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .post-header h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--red));
+            margin: 2rem auto 0;
+        }
+
+        .author-bio {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            overflow: hidden;
+        }
+
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .symbol-card {
+            background: var(--cream);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .symbol-card:hover {
+            transform: translateX(10px);
+        }
+
+        .symbol-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 0.3rem;
+        }
+
+        .symbol-pronunciation {
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .symbol-meaning {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .symbol-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            margin: 1rem 0 1.5rem;
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+            overflow: hidden;
+        }
+
+        .symbol-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .symbol-proverb {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--red);
+            font-style: italic;
+        }
+
+        .pro-tip {
+            background: var(--green);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pro-tip::before {
+            content: '🧠';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 8rem;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .pro-tip h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .reference-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .reference-table th {
+            background: var(--green);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .reference-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .reference-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .reference-table tr:hover {
+            background: var(--cream);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--gold), var(--red));
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '📚';
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            font-size: 8rem;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        .cta-box h3 {
+            color: var(--black);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: var(--black);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--black);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .back-to-blog {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .back-to-blog a {
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-to-blog a:hover {
+            color: var(--gold);
+        }
+
+        .related-posts {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px dashed var(--cream);
+        }
+
+        .related-posts h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .related-card {
+            background: var(--cream);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--black);
+            transition: transform 0.3s;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .related-card h4 {
+            color: var(--green);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .related-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .motto-footer {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .blog-post {
+                padding: 2rem;
+            }
+            
+            .post-header h1 {
+                font-size: 2rem;
+            }
+            
+            .featured-image-large {
+                height: 250px;
+            }
+            
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .author-bio {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .reference-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div class="container-wide">
+            <div class="contact-info">
+                <a href="mailto:info@speakghana.org">📧 info@speakghana.org</a>
+                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container-wide header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container-wide">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="languages.html">Languages</a>
+                <a href="kids-teens.html">Kids & Teens</a>
+                <a href="resources.html">Resources</a>
+                <a href="contact.html">Contact</a>
+                <a href="blog.html" class="active">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Content -->
+    <div class="container">
+        <div class="blog-post">
+            <!-- Featured Image -->
+            <div class="featured-image-large">
+                <img src="https://images.unsplash.com/photo-1589802124037-8f9dfd24a11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Colorful Adinkra cloth with symbols">
+            </div>
+
+            <div class="post-header">
+                <div class="post-meta">
+                    <span>📅 March 15, 2026</span>
+                    <span>👤 by Richard Asiamah</span>
+                    <span>📁 Culture</span>
+                </div>
+                <h1>The Meaning Behind Adinkra Symbols: Nyansapo and the Wisdom Knot</h1>
+            </div>
+
+            <!-- Author Bio -->
+            <div class="author-bio">
+                <div class="author-image">
+                    <img src="images/richard.jpg" alt="Richard Asiamah">
+                </div>
+                <div>
+                    <strong style="color: var(--green);">👋 Hey, I'm Richard!</strong>
+                    <p style="margin-top: 0.3rem;">I founded Speak Ghana to help people reconnect with their roots. Adinkra symbols are one of my favorite parts of Ghanaian culture – they carry so much wisdom!</p>
+                </div>
+            </div>
+
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Have you ever seen those beautiful symbols on Ghanaian fabrics, pottery, or even money and wondered what they mean?</p>
+
+            <p>They're called <strong>Adinkra symbols</strong>, and they're so much more than just decorations.</p>
+
+            <p>Each one tells a story. Each one carries wisdom passed down through generations. And once you understand them, you'll start seeing them everywhere – on clothes, in architecture, and even on the Ghanaian cedi notes in your pocket.</p>
+
+            <p>Let me walk you through some of the most powerful Adinkra symbols and what they represent.</p>
+
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">What Are Adinkra Symbols?</h2>
+
+            <p>Adinkra is a visual language. It's a way of communicating proverbs, beliefs, and philosophical ideas through symbols.</p>
+
+            <p>The word "Adinkra" means "a message one gives to another when parting." Originally, these symbols were used on cloth worn for special occasions, especially funerals and mourning. But over time, their use has expanded.</p>
+
+            <p>Today, you'll find Adinkra symbols everywhere in Ghana – on fabrics, jewelry, buildings, logos, and even on the Ghanaian currency.</p>
+
+            <p>There are over 100 symbols in common use, each with its own name, meaning, and often a proverb attached to it.</p>
+
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">The Most Important Adinkra Symbols</h2>
+
+            <!-- Symbol 1: Sankofa -->
+            <div class="symbol-card">
+                <div class="symbol-name">Sankofa</div>
+                <div class="symbol-pronunciation">sahn-KOH-fah</div>
+                <div class="symbol-meaning">"Go back and get it"</div>
+                
+                <div class="symbol-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Adinkra_Sankofa.svg/800px-Adinkra_Sankofa.svg.png" alt="Sankofa symbol - bird with head turned back">
+                </div>
+                
+                <p><strong>Symbol:</strong> A bird with its head turned backward, carrying an egg in its mouth. Sometimes shown as a stylized heart shape.</p>
+                
+                <p><strong>Meaning:</strong> Sankofa teaches us that we must learn from the past to build a successful future. It's about taking what is good from our history and bringing it into the present.</p>
+                
+                <p>The word comes from the Akan language: <em>san</em> (to return), <em>ko</em> (to go), and <em>fa</em> (to fetch).</p>
+                
+                <div class="symbol-proverb">
+                    <strong>Proverb:</strong> "Se wo were fi na wosankofa a yenkyi" – "It is not wrong to go back for that which you have forgotten."
+                </div>
+                
+                <p style="margin-top: 1rem;"><strong>Where you'll see it:</strong> This is one of the most widely used Adinkra symbols in the world. You'll find it in jewelry, tattoos, and clothing. It's especially important in the African diaspora as a symbol of reconnecting with ancestral heritage.</p>
+            </div>
+
+            <!-- Symbol 2: Gye Nyame -->
+            <div class="symbol-card">
+                <div class="symbol-name">Gye Nyame</div>
+                <div class="symbol-pronunciation">jih-nyah-meh</div>
+                <div class="symbol-meaning">"Except God"</div>
+                
+                <div class="symbol-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Adinkra_Gye_Nyame.svg/800px-Adinkra_Gye_Nyame.svg.png" alt="Gye Nyame symbol">
+                </div>
+                
+                <p><strong>Symbol:</strong> A distinctive, intricate pattern that looks like a stylized spiral or knot.</p>
+                
+                <p><strong>Meaning:</strong> This is arguably the most popular Adinkra symbol in Ghana. It represents the omnipotence, omnipresence, and immortality of God. It expresses the deep spiritual belief that nothing happens without God's will.</p>
+                
+                <p>"Gye Nyame" literally means "Except God" or "Only God" in the Twi language. It speaks to the supremacy of the divine over all things.</p>
+                
+                <div class="symbol-proverb">
+                    <strong>Proverb:</strong> "Abode nyinaa ne Nyame" – "All things are with God."
+                </div>
+                
+                <p style="margin-top: 1rem;"><strong>Where you'll see it:</strong> Everywhere! It's on the wall of the Ghanaian embassy in Washington DC. It's featured on the 200 Ghana cedi note. It's in the logos of the University of Cape Coast. And it's probably on the clothing of someone you'll meet in Ghana.</p>
+            </div>
+
+            <!-- Symbol 3: Nyansapo -->
+            <div class="symbol-card">
+                <div class="symbol-name">Nyansapo</div>
+                <div class="symbol-pronunciation">nyan-sah-poh</div>
+                <div class="symbol-meaning">"The Wisdom Knot"</div>
+                
+                <div class="symbol-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/AdinkraNyansapo.svg/800px-AdinkraNyansapo.svg.png" alt="Nyansapo symbol - wisdom knot">
+                </div>
+                
+                <p><strong>Symbol:</strong> An intricate, knot-like design.</p>
+                
+                <p><strong>Meaning:</strong> Nyansapo represents wisdom, ingenuity, intelligence, and patience. It's called the "wisdom knot" because it symbolizes that a wise person can untie even the most complicated knots.</p>
+                
+                <p>The symbol embodies the idea that wise people have the ability to choose the best way to achieve their goals.</p>
+                
+                <div class="symbol-proverb">
+                    <strong>Proverb:</strong> "Nyansapo wosane no badwemma" – "The wisdom knot is not tied in a fool's head."
+                </div>
+                
+                <p style="margin-top: 1rem;"><strong>Where you'll see it:</strong> Harvard University's Center for African Studies uses Nyansapo in its logo. The design features the Harvard shield converging to form the wisdom knot, representing the center's role as a knowledge-collecting institution.</p>
+            </div>
+
+            <!-- Symbol 4: Dwennimmen -->
+            <div class="symbol-card">
+                <div class="symbol-name">Dwennimmen</div>
+                <div class="symbol-pronunciation">dwen-neem-men</div>
+                <div class="symbol-meaning">"Ram's Horns"</div>
+                
+                <div class="symbol-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/AdinkraDwennimmen.svg/800px-AdinkraDwennimmen.svg.png" alt="Dwennimmen symbol - ram's horns">
+                </div>
+                
+                <p><strong>Symbol:</strong> Two rams' horns curving inward.</p>
+                
+                <p><strong>Meaning:</strong> This symbol represents humility and strength. A ram is powerful and will fight fiercely, but it also submits humbly to its master. The symbol teaches that even the strong must be humble.</p>
+                
+                <div class="symbol-proverb">
+                    <strong>Proverb:</strong> "Dwennimmen, wo de wo ho a, wo de wo ho a" – "The ram's horns, if you have them, you have them."
+                </div>
+            </div>
+
+            <!-- Symbol 5: Akofena -->
+            <div class="symbol-card">
+                <div class="symbol-name">Akofena</div>
+                <div class="symbol-pronunciation">ah-koh-feh-nah</div>
+                <div class="symbol-meaning">"State Ceremonial Sword"</div>
+                
+                <div class="symbol-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/AdinkraAkofena.svg/800px-AdinkraAkofena.svg.png" alt="Akofena symbol - crossed swords">
+                </div>
+                
+                <p><strong>Symbol:</strong> Crossed swords.</p>
+                
+                <p><strong>Meaning:</strong> Akofena represents authority, legitimacy, and gallantry. It's a reminder of the responsibility that comes with power.</p>
+                
+                <div class="symbol-proverb">
+                    <strong>Proverb:</strong> "Akofena, a w'asie no, na w'asie no" – "The ceremonial sword, if you have kept it, you have kept it."
+                </div>
+            </div>
+
+            <!-- Symbol 6: Bi-Nka-Bi -->
+            <div class="symbol-card">
+                <div class="symbol-name">Bi-Nka-Bi</div>
+                <div class="symbol-pronunciation">bee-n-kah-bee</div>
+                <div class="symbol-meaning">"No One Should Bite Another"</div>
+                
+                <div class="symbol-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/AdinkraBiNkaBi.svg/800px-AdinkraBiNkaBi.svg.png" alt="Bi-Nka-Bi symbol - two fish apart">
+                </div>
+                
+                <p><strong>Symbol:</strong> Two fish turning away from each other.</p>
+                
+                <p><strong>Meaning:</strong> This is a symbol of justice, fair play, freedom, peace, and unity. It's an important part of the Akan code of conduct – the idea that we should not provoke or harm one another.</p>
+                
+                <div class="symbol-proverb">
+                    <strong>Proverb:</strong> "Bi nka bi, na obi nka obi" – "No one should bite another, and no one should be bitten."
+                </div>
+            </div>
+
+            <!-- Symbol 7: Funtunfunefu Denkyemfunefu -->
+            <div class="symbol-card">
+                <div class="symbol-name">Funtunfunefu Denkyemfunefu</div>
+                <div class="symbol-pronunciation">foon-toon-foo-neh-foo den-chim-foo-neh-foo</div>
+                <div class="symbol-meaning">"Siamese Crocodiles"</div>
+                
+                <div class="symbol-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/AdinkraFuntunfunefuDenkyemfunefu.svg/800px-AdinkraFuntunfunefuDenkyemfunefu.svg.png" alt="Funtunfunefu Denkyemfunefu symbol - siamese crocodiles">
+                </div>
+                
+                <p><strong>Symbol:</strong> Two crocodiles sharing one stomach.</p>
+                
+                <p><strong>Meaning:</strong> This fascinating symbol shows two crocodiles with a single stomach. It represents unity in diversity – even if they fight over food, it goes to the same place. The lesson is that we must learn to cooperate despite our differences.</p>
+                
+                <div class="symbol-proverb">
+                    <strong>Proverb:</strong> "Funtunfunefu denkyemfunefu, a w'akyere w'akyere" – "The siamese crocodiles, if you catch one, you catch them all."
+                </div>
+            </div>
+
+            <!-- Quick Reference Table -->
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">Quick Reference Guide</h2>
+
+            <table class="reference-table">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🕊️</td>
+                        <td><strong>Sankofa</strong></td>
+                        <td>Learn from the past</td>
+                    </tr>
+                    <tr>
+                        <td>🌀</td>
+                        <td><strong>Gye Nyame</strong></td>
+                        <td>Except God – divine supremacy</td>
+                    </tr>
+                    <tr>
+                        <td>🔗</td>
+                        <td><strong>Nyansapo</strong></td>
+                        <td>Wisdom knot – intelligence, patience</td>
+                    </tr>
+                    <tr>
+                        <td>🐏</td>
+                        <td><strong>Dwennimmen</strong></td>
+                        <td>Strength with humility</td>
+                    </tr>
+                    <tr>
+                        <td>⚔️</td>
+                        <td><strong>Akofena</strong></td>
+                        <td>Authority, legitimacy</td>
+                    </tr>
+                    <tr>
+                        <td>🐟🐟</td>
+                        <td><strong>Bi-Nka-Bi</strong></td>
+                        <td>Peace, justice, don't harm others</td>
+                    </tr>
+                    <tr>
+                        <td>🐊🐊</td>
+                        <td><strong>Funtunfunefu</strong></td>
+                        <td>Unity in diversity</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- How They're Made Section -->
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">How Adinkra Symbols Are Made</h2>
+
+            <p>Creating Adinkra cloth is a careful, skilled process:</p>
+
+            <ol style="margin-left: 2rem; margin-bottom: 2rem;">
+                <li><strong>Preparation:</strong> A bolt of cotton cloth is stretched taut and held in place with small nails.</li>
+                <li><strong>Marking:</strong> A comb is dipped into ink and pulled across the fabric to create guidelines.</li>
+                <li><strong>Stamping:</strong> The artisan chooses which symbols to use. Each stamp is carved from a calabash gourd. The stamp is dipped in a traditional black dye, shaken to remove excess, and then rocked gently onto the fabric.</li>
+                <li><strong>Repetition:</strong> The stamp is redipped before each application, creating repeating patterns across the cloth.</li>
+            </ol>
+
+            <p>Traditionally, Adinkra cloth was made only for royalty and spiritual leaders. But since Ghana gained independence, its use has expanded – though it's still considered formal attire.</p>
+
+            <!-- Adinkra Today Section -->
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">Adinkra in Modern Times</h2>
+
+            <p>What started as symbols for mourning and royalty has become something much bigger.</p>
+
+            <p>Today, Adinkra symbols represent Ghanaian identity itself. They're a source of pride for Ghanaians and a marker of West African identity both at home and in the diaspora.</p>
+
+            <p>You'll find them:</p>
+            <ul style="margin-left: 2rem; margin-bottom: 2rem;">
+                <li>On the <strong>Ghanaian cedi</strong> – Gye Nyame appears
