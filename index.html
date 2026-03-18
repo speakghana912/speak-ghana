@@ -1038,6 +1038,60 @@
             margin: 3rem 0 2rem;
         }
 
+        /* ===== FLOATING WHATSAPP BUTTON ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            font-size: 1.1rem;
+            backdrop-filter: blur(5px);
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: #20ba5a;
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+        }
+
+        .whatsapp-float span {
+            font-size: 1rem;
+        }
+
+        @keyframes pulse-whatsapp {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 20px 35px rgba(37, 211, 102, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            }
+        }
+
         /* ===== FOOTER ===== */
         footer {
             background: var(--black);
@@ -1171,6 +1225,21 @@
             
             .nav-links {
                 gap: 1rem;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .whatsapp-float span {
+                display: none; /* Hide text on mobile, show only icon */
+            }
+            
+            .whatsapp-float img {
+                margin: 0;
             }
         }
 
@@ -1309,7 +1378,7 @@
             <h3>🎉 Sign Up for Free March Classes</h3>
             <p>No payment required • Try any class • Secure your spot for April</p>
             
-            <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
+            <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
                 <input type="hidden" name="form_type" value="March Free Classes">
                 
                 <div class="form-row">
@@ -1649,6 +1718,16 @@
         </div>
     </footer>
 
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/233552263323?text=Hi%20Speak%20Ghana!%20I%20have%20a%20question%20about%20your%20language%20classes." 
+       class="whatsapp-float" 
+       target="_blank">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.06.6 4.06 1.74 5.8L2.1 22l4.43-1.61c1.67.98 3.6 1.51 5.6 1.51 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.24c-1.71 0-3.37-.48-4.8-1.38l-.34-.2-3.03 1.1 1.07-2.98-.19-.35c-.95-1.5-1.46-3.24-1.46-5.02 0-4.66 3.8-8.46 8.46-8.46s8.46 3.8 8.46 8.46-3.79 8.46-8.46 8.46zm4.63-6.36c-.25-.12-1.47-.73-1.7-.81-.23-.08-.39-.12-.56.12-.17.24-.64.81-.78.98-.14.17-.29.19-.54.07-.25-.12-1.06-.39-2.02-1.24-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.56-1.35-.77-1.85-.2-.49-.4-.42-.56-.43-.14-.01-.31-.01-.48-.01s-.44.06-.66.3c-.23.24-.87.85-.87 2.08 0 1.23.89 2.42 1.02 2.58.13.16 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z'/%3E%3C/svg%3E" 
+             alt="WhatsApp"
+             style="width: 24px; height: 24px;">
+        <span>Chat with us</span>
+    </a>
+
     <!-- Event Tracking for Google Analytics -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1756,6 +1835,17 @@
                     });
                 });
             });
+
+            // Track WhatsApp Floating Button Clicks
+            const whatsappFloat = document.querySelector('.whatsapp-float');
+            if (whatsappFloat) {
+                whatsappFloat.addEventListener('click', function() {
+                    gtag('event', 'whatsapp_float_click', {
+                        'event_category': 'contact',
+                        'event_label': 'floating_whatsapp_button'
+                    });
+                });
+            }
         });
     </script>
 </body>
