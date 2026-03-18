@@ -484,6 +484,46 @@
             font-weight: 600;
         }
 
+        /* ===== QUIZ SECTION STYLES ===== */
+        .quiz-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .quiz-nav-btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .question-item {
+            transition: all 0.3s;
+        }
+
+        .question-item:hover {
+            transform: translateX(5px);
+        }
+
+        #email-form-container {
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* ===== BLOG SECTION ===== */
         .blog-section {
             background: white;
@@ -1668,6 +1708,72 @@
             </div>
         </div>
 
+        <!-- ===== INTERACTIVE TWI ALPHABET QUIZ ===== -->
+        <div class="quiz-section">
+            <h2 class="center">📝 Interactive Twi Alphabet Quiz</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">Test your knowledge from our free classes! 🇬🇭</p>
+            
+            <!-- Quiz Navigation -->
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <button onclick="loadSet(1)" class="quiz-nav-btn active" id="set1-btn" style="background: var(--green); color: white; border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">Set 1: Basics</button>
+                <button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn" style="background: var(--cream); color: var(--black); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">Set 2: Word Pairs</button>
+                <button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn" style="background: var(--cream); color: var(--black); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">Set 3: Applied</button>
+            </div>
+
+            <!-- Current Quiz Title -->
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <h3 id="current-quiz-title" style="color: var(--green);">Set 1: Basics</h3>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quiz-container" style="background: var(--cream); border-radius: 20px; padding: 2rem;">
+                <!-- Questions will be loaded here by JavaScript -->
+                <div style="text-align: center; padding: 3rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
+                    <p>Loading quiz questions...</p>
+                </div>
+            </div>
+
+            <!-- Email Capture Form (Hidden by default) -->
+            <div id="email-form-container" style="display: none; margin-top: 2rem;">
+                <div style="background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 20px; padding: 2rem; text-align: center; color: white;">
+                    <h3 style="color: white; margin-bottom: 1rem;">📧 Get Your Results + Free Guides!</h3>
+                    <p style="margin-bottom: 2rem;">Enter your email to see your score and get 5 free Twi learning PDFs:</p>
+                    
+                    <form onsubmit="event.preventDefault(); submitEmail();" style="max-width: 500px; margin: 0 auto;">
+                        <input type="email" id="quiz-email" placeholder="Your email address" required style="width: 100%; padding: 1rem; border: none; border-radius: 50px; margin-bottom: 1rem; font-size: 1rem;">
+                        
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: white;">
+                            <input type="checkbox" id="email-consent" checked style="width: 20px; height: 20px;">
+                            <label for="email-consent">Send me my results + free Twi guides</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-gold" style="width: 100%; padding: 1rem; font-size: 1.1rem; background: var(--gold); color: var(--black); border: none; border-radius: 50px; font-weight: 600; cursor: pointer;">
+                            Show My Results →
+                        </button>
+                    </form>
+                    
+                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">✓ Greetings Cheat Sheet • ✓ Alphabet Guide • ✓ 100 Words List</p>
+                </div>
+            </div>
+
+            <!-- Results Area (Hidden by default) -->
+            <div id="results-area" style="text-align: center; margin-top: 2rem; display: none;">
+                <div style="background: var(--green); color: white; padding: 2rem; border-radius: 20px;">
+                    <h3 style="color: white; margin-bottom: 1rem;" id="results-title">Your Score</h3>
+                    <div style="font-size: 4rem; font-weight: 700;" id="score-display">0/10</div>
+                    <p id="score-message" style="margin-top: 1rem; font-size: 1.2rem;"></p>
+                    <button onclick="retakeQuiz()" class="btn btn-gold" style="margin-top: 1.5rem; background: var(--gold); color: var(--black); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">🔄 Retake This Set</button>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div style="margin-top: 2rem; background: var(--cream); border-radius: 50px; height: 10px; overflow: hidden;">
+                <div id="progress-bar" style="width: 0%; height: 100%; background: var(--green); transition: width 0.3s;"></div>
+            </div>
+            <p style="text-align: center; margin-top: 0.5rem; color: var(--gray);" id="progress-text">0/10 answered</p>
+        </div>
+
         <!-- Free Materials Section (UPDATED with download links) -->
         <div class="materials-section">
             <h2 class="center">📚 Free Learning Materials</h2>
@@ -2018,5 +2124,8 @@
             
         });
     </script>
+
+    <!-- Add the quiz JavaScript file -->
+    <script src="alphabets-quiz.js"></script>
 </body>
 </html>
