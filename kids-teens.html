@@ -1616,89 +1616,191 @@
         });
     </script>
 
-    <!-- Sound Effects for Games -->
+    <!-- Sound Effects for Games - FIXED VERSION with Sound Control Button -->
     <script>
-        // Sound Effects using Web Audio API
+        // Sound Effects using Web Audio API - Fixed for browser autoplay policies
         const SoundEffects = {
-            correct: function() {
+            audioContext: null,
+            initialized: false,
+            soundEnabled: false,
+            
+            // Initialize audio context (must be called after user interaction)
+            init: function() {
+                if (this.initialized) return true;
+                if (!this.soundEnabled) return false;
+                
                 try {
-                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    const oscillator = audioCtx.createOscillator();
-                    const gainNode = audioCtx.createGain();
+                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    this.initialized = true;
+                    console.log('Audio initialized successfully');
+                    return true;
+                } catch(e) {
+                    console.log('Audio initialization failed:', e);
+                    return false;
+                }
+            },
+            
+            enable: function() {
+                this.soundEnabled = true;
+                // Try to initialize and play a test sound
+                if (this.init()) {
+                    this.test();
+                }
+            },
+            
+            test: function() {
+                this.correct();
+            },
+            
+            correct: function() {
+                if (!this.soundEnabled || !this.init()) return;
+                try {
+                    const oscillator = this.audioContext.createOscillator();
+                    const gainNode = this.audioContext.createGain();
                     
                     oscillator.type = 'sine';
                     oscillator.frequency.value = 800;
-                    gainNode.gain.value = 0.3;
+                    gainNode.gain.value = 0.2;
                     
                     oscillator.connect(gainNode);
-                    gainNode.connect(audioCtx.destination);
+                    gainNode.connect(this.audioContext.destination);
                     
                     oscillator.start();
-                    oscillator.stop(audioCtx.currentTime + 0.2);
+                    oscillator.stop(this.audioContext.currentTime + 0.15);
                     
-                    // Resume audio context if suspended (browser autoplay policy)
-                    if (audioCtx.state === 'suspended') {
-                        audioCtx.resume();
+                    if (this.audioContext.state === 'suspended') {
+                        this.audioContext.resume();
                     }
                 } catch(e) {
-                    console.log('Sound not supported');
+                    console.log('Error playing correct sound:', e);
                 }
             },
             
             wrong: function() {
+                if (!this.soundEnabled || !this.init()) return;
                 try {
-                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    const oscillator = audioCtx.createOscillator();
-                    const gainNode = audioCtx.createGain();
+                    const oscillator = this.audioContext.createOscillator();
+                    const gainNode = this.audioContext.createGain();
                     
                     oscillator.type = 'sawtooth';
                     oscillator.frequency.value = 300;
-                    gainNode.gain.value = 0.2;
+                    gainNode.gain.value = 0.15;
                     
                     oscillator.connect(gainNode);
-                    gainNode.connect(audioCtx.destination);
+                    gainNode.connect(this.audioContext.destination);
                     
                     oscillator.start();
-                    oscillator.stop(audioCtx.currentTime + 0.15);
+                    oscillator.stop(this.audioContext.currentTime + 0.1);
                     
-                    if (audioCtx.state === 'suspended') {
-                        audioCtx.resume();
+                    if (this.audioContext.state === 'suspended') {
+                        this.audioContext.resume();
                     }
                 } catch(e) {
-                    console.log('Sound not supported');
+                    console.log('Error playing wrong sound:', e);
                 }
             },
             
             cheer: function() {
+                if (!this.soundEnabled || !this.init()) return;
                 try {
-                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    const now = audioCtx.currentTime;
-                    
-                    // Play a little victory melody
+                    const now = this.audioContext.currentTime;
                     const notes = [600, 800, 1000];
+                    
                     notes.forEach((freq, i) => {
-                        const oscillator = audioCtx.createOscillator();
-                        const gainNode = audioCtx.createGain();
+                        const oscillator = this.audioContext.createOscillator();
+                        const gainNode = this.audioContext.createGain();
                         
                         oscillator.type = 'sine';
                         oscillator.frequency.value = freq;
-                        gainNode.gain.value = 0.2;
+                        gainNode.gain.value = 0.15;
                         
                         oscillator.connect(gainNode);
-                        gainNode.connect(audioCtx.destination);
+                        gainNode.connect(this.audioContext.destination);
                         
                         oscillator.start(now + i * 0.1);
-                        oscillator.stop(now + i * 0.1 + 0.3);
+                        oscillator.stop(now + i * 0.1 + 0.2);
                     });
                     
-                    if (audioCtx.state === 'suspended') {
-                        audioCtx.resume();
+                    if (this.audioContext.state === 'suspended') {
+                        this.audioContext.resume();
                     }
                 } catch(e) {
-                    console.log('Sound not supported');
+                    console.log('Error playing cheer sound:', e);
                 }
             }
         };
+
+        // Add a floating sound control button
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create sound toggle button
+            const soundBtn = document.createElement('div');
+            soundBtn.id = 'sound-control';
+            soundBtn.innerHTML = '🔇';
+            soundBtn.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: var(--gold);
+                color: var(--black);
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                cursor: pointer;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                z-index: 1000;
+                transition: all 0.3s;
+                border: 2px solid white;
+            `;
+            
+            soundBtn.addEventListener('click', function() {
+                if (!SoundEffects.soundEnabled) {
+                    // Enable sounds
+                    SoundEffects.enable();
+                    this.innerHTML = '🔊';
+                    this.style.background = 'var(--green)';
+                    
+                    // Show temporary message
+                    const msg = document.createElement('div');
+                    msg.innerHTML = '✓ Sound enabled!';
+                    msg.style.cssText = `
+                        position: fixed;
+                        bottom: 80px;
+                        right: 20px;
+                        background: var(--green);
+                        color: white;
+                        padding: 0.5rem 1rem;
+                        border-radius: 20px;
+                        font-size: 0.9rem;
+                        z-index: 1000;
+                        animation: fadeOut 2s forwards;
+                    `;
+                    document.body.appendChild(msg);
+                    setTimeout(() => msg.remove(), 2000);
+                } else {
+                    // Disable sounds
+                    SoundEffects.soundEnabled = false;
+                    this.innerHTML = '🔇';
+                    this.style.background = 'var(--gold)';
+                }
+            });
+            
+            document.body.appendChild(soundBtn);
+            
+            // Add fade out animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeOut {
+                    0% { opacity: 1; }
+                    70% { opacity: 1; }
+                    100% { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
     </script>
 
     <!-- ALL KIDS GAMES SCRIPTS -->
