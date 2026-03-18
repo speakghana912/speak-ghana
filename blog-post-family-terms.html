@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Terms in Twi - Speak Ghana Blog</title>
+    
+    <!-- ABSOLUTE URL FAVICON -->
+    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZXFR0LFLH6');
+    </script>
+
+    <style>
+        /* ===== MODERN COLOR PALETTE ===== */
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray-light: #F0F0F0;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --soft-pink: #FDE2E4;
+            --soft-blue: #E2F0F9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--cream);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .container-wide {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .logo-text h1 span {
+            color: var(--gold);
+        }
+
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: var(--gold);
+            font-weight: 500;
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* ===== BLOG POST STYLES ===== */
+        .blog-post {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-post::before {
+            content: '👪';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            font-size: 10rem;
+            opacity: 0.03;
+            transform: rotate(15deg);
+            pointer-events: none;
+        }
+
+        .post-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .featured-image-large {
+            width: 100%;
+            height: 350px;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .featured-image-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .featured-image-large:hover img {
+            transform: scale(1.05);
+        }
+
+        .post-meta {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .post-meta span {
+            margin: 0 0.5rem;
+        }
+
+        .post-header h1 {
+            font-size: 2.8rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        .post-header h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--red));
+            margin: 1.5rem auto 0;
+        }
+
+        .author-bio {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: var(--soft-pink);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0 3rem;
+            border-left: 6px solid var(--gold);
+        }
+
+        .author-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-bio p {
+            margin: 0.3rem 0 0;
+            font-size: 1rem;
+        }
+
+        .cultural-note {
+            background: var(--soft-blue);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border-left: 6px solid var(--green);
+            font-style: italic;
+        }
+
+        .cultural-note p {
+            margin-bottom: 0.5rem;
+        }
+
+        .cultural-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .vocab-table th {
+            background: var(--green);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .vocab-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .vocab-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .vocab-table tr:hover {
+            background: var(--cream);
+        }
+
+        .vocab-table .twi-word {
+            font-weight: 700;
+            color: var(--green);
+            font-size: 1.1rem;
+        }
+
+        .story-box {
+            background: linear-gradient(135deg, #fdf6e9, #fff9f0);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2.5rem 0;
+            border: 2px dashed var(--gold);
+            position: relative;
+        }
+
+        .story-box::before {
+            content: '📖';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            border: 2px dashed var(--gold);
+        }
+
+        .example-sentence {
+            background: var(--cream);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .example-sentence .twi {
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .example-sentence .english {
+            color: var(--gray);
+            font-style: italic;
+            margin-top: 0.3rem;
+        }
+
+        .mistake-box {
+            background: #fff0f0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            border-left: 6px solid var(--red);
+        }
+
+        .mistake-box h4 {
+            color: var(--red);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .tip-box {
+            background: var(--green);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .tip-box h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .quick-ref {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2.5rem 0;
+            border: 2px solid var(--gold);
+        }
+
+        .quick-ref h3 {
+            color: var(--green);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .ref-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .ref-item {
+            padding: 0.8rem;
+            border-bottom: 1px dashed var(--cream);
+        }
+
+        .ref-item .twi {
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .ref-item .eng {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--gold), var(--red));
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '👪';
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            font-size: 8rem;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        .cta-box h3 {
+            color: var(--black);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: var(--black);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--black);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 2;
+            margin: 0 0.5rem 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .back-to-blog {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .back-to-blog a {
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-to-blog a:hover {
+            color: var(--gold);
+        }
+
+        .related-posts {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px dashed var(--cream);
+        }
+
+        .related-posts h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .related-card {
+            background: var(--cream);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--black);
+            transition: transform 0.3s;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .related-card h4 {
+            color: var(--green);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .related-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .motto-footer {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .blog-post {
+                padding: 2rem;
+            }
+            
+            .post-header h1 {
+                font-size: 2rem;
+            }
+            
+            .featured-image-large {
+                height: 200px;
+            }
+            
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .author-bio {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .ref-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div class="container-wide">
+            <div class="contact-info">
+                <a href="mailto:info@speakghana.org">📧 info@speakghana.org</a>
+                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container-wide header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container-wide">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="languages.html">Languages</a>
+                <a href="kids-teens.html">Kids & Teens</a>
+                <a href="resources.html">Resources</a>
+                <a href="contact.html">Contact</a>
+                <a href="blog.html" class="active">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Content -->
+    <div class="container">
+        <div class="blog-post">
+            <!-- Featured Image -->
+            <div class="featured-image-large">
+                <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Ghanaian family together">
+            </div>
+
+            <div class="post-header">
+                <div class="post-meta">
+                    <span>📅 February 15, 2026</span>
+                    <span>👤 by Charlotte Tetebea Asiamah</span>
+                    <span>📁 Vocabulary / Culture</span>
+                </div>
+                <h1>Family Terms in Twi: How to Address Relatives Correctly</h1>
+            </div>
+
+            <!-- Author Bio - Charlotte's style -->
+            <div class="author-bio">
+                <div class="author-image">
+                    <img src="images/charlotte.jpg" alt="Charlotte Tetebea Asiamah">
+                </div>
+                <div>
+                    <strong style="color: var(--green); font-size: 1.2rem;">Hello, friends! Charlotte here.</strong>
+                    <p style="margin-top: 0.5rem;">When Richard asked me to write about family terms, I got very excited. You see, family is not just important in Ghana – family <em>is</em> everything. And the way we talk about family? It tells you so much about who we are.</p>
+                </div>
+            </div>
+
+            <!-- Cultural Note -->
+            <div class="cultural-note">
+                <p>In Ghana, when I say "my family," I'm not just talking about my parents and siblings. I'm talking about my grandmothers, my aunts, my uncles, my cousins, my second cousins, my grandmother's sister's children... you get the idea [citation:2].</p>
+                <p style="margin-top: 1rem;">The Akan people have a saying: <strong>"Abusua ye dom"</strong> – Family is a crowd. And we mean that literally!</p>
+            </div>
+
+            <p>Here's something beautiful: In our culture, family includes not just the living, but also the ancestors and the children not yet born [citation:2]. We are connected to those who came before us and those who will come after us. That's why family terms carry so much weight.</p>
+            <p>Now, let's learn how to address all these wonderful people!</p>
+
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">The Core Family Terms</h2>
+            <p>Let's start with the basics. These are the words you'll use most often.</p>
+
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>Twi</th>
+                        <th>How to Say It</th>
+                        <th>What It Means</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="twi-word">Agya</td>
+                        <td>ah-jah</td>
+                        <td>Father</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Maame</td>
+                        <td>mah-meh</td>
+                        <td>Mother</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Ɔba</td>
+                        <td>aw-bah</td>
+                        <td>Child</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Babanyin</td>
+                        <td>bah-bah-yin</td>
+                        <td>Son</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Babaawa</td>
+                        <td>bah-bah-wah</td>
+                        <td>Daughter</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Nua</td>
+                        <td>noo-ah</td>
+                        <td>Sibling (brother/sister)</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Nua barima</td>
+                        <td>noo-ah bah-ree-mah</td>
+                        <td>Brother</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Nua bea</td>
+                        <td>noo-ah bay-ah</td>
+                        <td>Sister</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <h4>💝 A little note from Charlotte</h4>
+                <p>When you call your parents, you don't just say "Agya" like a word. You say it with love. <strong>"Agya me"</strong> (my father) or <strong>"Maame me"</strong> (my mother). It sounds warmer that way.</p>
+            </div>
+
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">Grandparents: The Heart of the Family</h2>
+            <p>In Ghana, grandparents are special. They are the ones who tell us stories, teach us proverbs, and spoil us with sweets when our parents aren't looking!</p>
+
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>Twi</th>
+                        <th>How to Say It</th>
+                        <th>What It Means</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="twi-word">Nana</td>
+                        <td>nah-nah</td>
+                        <td>Grandparent</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Nana barima</td>
+                        <td>nah-nah bah-ree-mah</td>
+                        <td>Grandfather</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Nana bea</td>
+                        <td>nah-nah bay-ah</td>
+                        <td>Grandmother</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Nananom</td>
+                        <td>nah-nah-nom</td>
+                        <td>Grandparents (plural)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="story-box">
+                <p><strong>Fun fact:</strong> "Nana" is also a title for chiefs and queens. So when you call your grandmother "Nana," you're giving her royal respect!</p>
+            </div>
+
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">Aunts, Uncles, and Cousins – It's Different Here!</h2>
+            <p>Okay, this is where it gets interesting. In Twi, we don't just say "aunt" or "uncle." We have different words depending on whether the person is from your mother's side or your father's side [citation:5].</p>
+            <p>Why? Because in Akan culture, we follow the mother's line (matrilineal). Your mother's family is your <em>abusua</em> – your bloodline. Your father's side is also important, but in a different way [citation:8].</p>
+
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>Twi</th>
+                        <th>How to Say It</th>
+                        <th>What It Means</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="twi-word">Ɔkɔtɔ</td>
+                        <td>aw-kaw-toh</td>
+                        <td>Aunt (on mother's side)</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Sɛwa</td>
+                        <td>seh-wah</td>
+                        <td>Aunt (on father's side)</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Wɔfa</td>
+                        <td>woh-fah</td>
+                        <td>Uncle (on mother's side)</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Agya kakra</td>
+                        <td>ah-jah kah-krah</td>
+                        <td>Uncle (on father's side – means "little father")</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Charlotte's Story -->
+            <div class="story-box">
+                <p>Let me explain with a story.</p>
+                <p>When I was little, my mother's brother – my <strong>wɔfa</strong> – would visit and always bring me gifts. He was like a second father to me. But my father's brother? I called him <strong>agya kakra</strong> – little father. He looked like my dad, laughed like my dad, and I respected him almost the same way.</p>
+                <p style="margin-top: 1rem;">See the difference?</p>
+            </div>
+
+            <p>And cousins? In Twi, we often just call them <strong>nua</strong> – brother or sister – because they feel that close. But if you want to be specific:</p>
+
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>Twi</th>
+                        <th>How to Say It</th>
+                        <th>What It Means</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="twi-word">Nua barima</td>
+                        <td>noo-ah bah-ree-mah</td>
+                        <td>Male cousin (brother-cousin)</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Nua bea</td>
+                        <td>noo-ah bay-ah</td>
+                        <td>Female cousin (sister-cousin)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">Extended Family</h2>
+            <p>Now we're getting to the beautiful part. In Ghana, your family keeps going and going...</p>
+
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>Twi</th>
+                        <th>How to Say It</th>
+                        <th>What It Means</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="twi-word">Abusua</td>
+                        <td>ah-boo-sway</td>
+                        <td>Family / Clan</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Abusuapanin</td>
+                        <td>ah-boo-sway-pah-neen</td>
+                        <td>Family head / Elder</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Nana</td>
+                        <td>nah-nah</td>
+                        <td>Ancestor (also grandparent)</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Akonta</td>
+                        <td>ah-kohn-tah</td>
+                        <td>In-law</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Akonta barima</td>
+                        <td>ah-kohn-tah bah-ree-mah</td>
+                        <td>Brother-in-law</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Akonta bea</td>
+                        <td>ah-kohn-tah bay-ah</td>
+                        <td>Sister-in-law</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Awɔ</td>
+                        <td>ah-woh</td>
+                        <td>Mother-in-law</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Ase</td>
+                        <td>ah-seh</td>
+                        <td>Father-in-law</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="cultural-note">
+                <p><strong>Important:</strong> When you marry into a Ghanaian family, you don't just marry one person. You marry the whole family! Your in-laws become your family. They will call you son or daughter. And you will call them mother and father [citation:5].</p>
+            </div>
+
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">How to Use These Words in Real Life</h2>
+            <p>Let me show you how this works in everyday conversation.</p>
+
+            <h3 style="color: var(--green); margin: 2rem 0 1rem;">When Introducing Your Family</h3>
+            <div class="example-sentence">
+                <div class="twi">"Me din de Charlotte. Me maame din de Efua, na me agya din de Kwame. Me wɔfa Kofi yɛ me maame nua."</div>
+                <div class="english">(My name is Charlotte. My mother's name is Efua, and my father's name is Kwame. My uncle Kofi is my mother's brother.)</div>
+            </div>
+
+            <h3 style="color: var(--green); margin: 2rem 0 1rem;">When Talking About Your Grandparents</h3>
+            <div class="example-sentence">
+                <div class="twi">"Me nananom te Kumasi. Me nana barima yɛ ɔkuafo, na me nana bea yɛ ɔdwadini."</div>
+                <div class="english">(My grandparents live in Kumasi. My grandfather is a farmer, and my grandmother is a trader.)</div>
+            </div>
+
+            <h3 style="color: var(--green); margin: 2rem 0 1rem;">When Showing Respect to an Elder</h3>
+            <p>If you meet an older person, you don't call them by their first name. You say:</p>
+            <div class="example-sentence">
+                <div class="twi">"Agya, ɛte sɛn?"</div>
+                <div class="english">(Father, how are you?) – for an older man</div>
+            </div>
+            <div class="example-sentence">
+                <div class="twi">"Maame, ɛte sɛn?"</div>
+                <div class="english">(Mother, how are you?) – for an older woman</div>
+            </div>
+            <p>Even if they're not your real parents! It's a sign of respect [citation:6].</p>
+
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">A Little Grammar – Making Plurals</h2>
+            <p>When you have more than one family member, here's how to say it:</p>
+
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>Singular</th>
+                        <th>Plural</th>
+                        <th>How to Say It</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ɔba (child)</td>
+                        <td class="twi-word">Mmɔba</td>
+                        <td>mmoh-bah</td>
+                    </tr>
+                    <tr>
+                        <td>Nua (sibling)</td>
+                        <td class="twi-word">Nuanom</td>
+                        <td>noo-ah-nom</td>
+                    </tr>
+                    <tr>
+                        <td>Agya (father)</td>
+                        <td class="twi-word">Agyanom</td>
+                        <td>ah-jah-nom</td>
+                    </tr>
+                    <tr>
+                        <td>Maame (mother)</td>
+                        <td class="twi-word">Maamenom</td>
+                        <td>mah-meh-nom</td>
+                    </tr>
+                    <tr>
+                        <td>Nana (grandparent)</td>
+                        <td class="twi-word">Nananom</td>
+                        <td>nah-nah-nom</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <p>See that <strong>-nom</strong> at the end? That's how we make family words plural. It's like adding an "s" in English, but it's special for family [citation:6].</p>
+            </div>
+
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">Why Getting It Right Matters</h2>
+            <p>Let me tell you a quick story.</p>
+
+            <div class="story-box">
+                <p>Last year, one of our students – a lovely young woman from America – came to Ghana for the first time. She had learned some Twi from our classes. When she met her grandmother, she said:</p>
+                <p style="font-size: 1.3rem; margin: 1rem 0;"><strong>"Nana, medaase pa!"</strong></p>
+                <p>(Grandma, thank you very much!)</p>
+                <p style="margin-top: 1rem;">Her grandmother started crying. Happy tears.</p>
+                <p>Why? Because she didn't just say "thank you." She used the right word, the right tone, the right respect. She showed that she understood – family matters.</p>
+                <p style="margin-top: 1rem;">That's what these words do. They open doors. They open hearts.</p>
+            </div>
+
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">Common Mistakes to Avoid</h2>
+            <p>I've been teaching for many years, so let me share some things I see students mix up:</p>
+
+            <div class="mistake-box">
+                <h4>❌ Mistake #1: Calling your father's brother "wɔfa"</h4>
+                <p><strong>Remember:</strong> Wɔfa is for mother's brother. Father's brother is "agya kakra" (little father) [citation:5].</p>
+            </div>
+
+            <div class="mistake-box">
+                <h4>❌ Mistake #2: Using "nua" for everyone</h4>
+                <p><strong>Fix:</strong> Nua is great for siblings and cousins you're close to. But for older relatives, use the proper terms. It shows respect.</p>
+            </div>
+
+            <div class="mistake-box">
+                <h4>❌ Mistake #3: Forgetting the plural</h4>
+                <p><strong>Fix:</strong> When talking about multiple grandparents, it's "nananom," not "nana nana." Add that -nom!</p>
+            </div>
+
+            <div class="mistake-box">
+                <h4>❌ Mistake #4: Calling your mother-in-law by her first name</h4>
+                <p><strong>Please don't!</strong> She is "awɔ" (mother-in-law) or "maame." Always. Forever. Trust me on this [citation:9].</p>
+            </div>
+
+            <!-- Quick Reference -->
+            <div class="quick-ref">
+                <h3>📋 Quick Reference Guide</h3>
+                <div class="ref-grid">
+                    <div class="ref-item"><span class="twi">Agya</span> <span class="eng">– Father</span></div>
+                    <div class="ref-item"><span class="twi">Maame</span> <span class="eng">– Mother</span></div>
+                    <div class="ref-item"><span class="twi">Nana barima</span> <span class="eng">– Grandfather</span></div>
+                    <div class="ref-item"><span class="twi">Nana bea</span> <span class="eng">– Grandmother</span></div>
+                    <div class="ref-item"><span class="twi">Wɔfa</span> <span class="eng">– Uncle (mother's side)</span></div>
+                    <div class="ref-item"><span class="twi">Agya kakra</span> <span class="eng">– Uncle (father's side)</span></div>
+                    <div class="ref-item"><span class="twi">Ɔkɔtɔ</span> <span class="eng">– Aunt (mother's side)</span></div>
+                    <div class="ref-item"><span class="twi">Sɛwa</span> <span class="eng">– Aunt (father's side)</span></div>
+                    <div class="ref-item"><span class="twi">Nua barima</span> <span class="eng">– Brother</span></div>
+                    <div class="ref-item"><span class="twi">Nua bea</span> <span class="eng">– Sister</span></div>
+                    <div class="ref-item"><span class="twi">Awɔ</span> <span class="eng">– Mother-in-law</span></div>
+                    <div class="ref-item"><span class="twi">Ase</span> <span class="eng">– Father-in-law</span></div>
+                    <div class="ref-item"><span class="twi">Abusua</span> <span class="eng">– Family / Clan</span></div>
+                </div>
+            </div>
+
+            <!-- Charlotte's Closing Thoughts -->
+            <div style="background: linear-gradient(135deg, var(--soft-pink), #ffe8e8); padding: 2.5rem; border-radius: 20px; margin: 3rem 0; position: relative;">
+                <div style="position: absolute; top: -15px; left: 30px; background: white; padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 1.2rem; border: 2px solid var(--gold);">💭 Charlotte's Thoughts</div>
+                <p style="font-size: 1.2rem; margin-top: 1rem;">You know, when I was a little girl, my grandmother would gather all the cousins and teach us who was related to whom. She'd point and say, "That one is your wɔfa's daughter, so she's your cousin but call her sister." It was confusing at first. But now? I'm so grateful.</p>
+                <p style="margin-top: 1.5rem;">Because knowing these words means knowing where you belong.</p>
+                <p style="margin-top: 1.5rem;">So as you learn these family terms, don't just memorize them. Think about the people behind them. Think about the grandmother who wants to hear you call her "Nana." Think about the uncle who will smile so wide when you say "Wɔfa" for the first time.</p>
+                <p style="margin-top: 1.5rem;">That's what this is really about.</p>
+            </div>
+
+            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">Want to Practice?</h2>
+            <p>The best way to learn family terms is to use them. So here's your homework:</p>
+            <ul style="margin-left: 2rem; margin-bottom: 2rem;">
+                <li>Draw your family tree and label everyone in Twi</li>
+                <li>Call one family member this week and greet them in Twi</li>
+                <li>If you're visiting Ghana, try greeting an elder with "Agya" or "Maame"</li>
+            </ul>
+            <p>And if you get stuck? That's what we're here for.</p>
+
+            <!-- Call to Action -->
+            <div class="cta-box">
+                <h3>Want to learn more?</h3>
+                <p>Join our classes and practice with native speakers who will become like family!</p>
+                <a href="https://speakghana.org/languages.html" class="cta-button">Explore Our Classes →</a>
+                <a href="https://speakghana.org/resources.html" class="cta-button">Get Free Resources →</a>
+            </div>
+
+            <!-- Back to Blog Link -->
+            <div class="back-to-blog">
+                <a href="blog.html">← Back to all posts</a>
+            </div>
+
+            <!-- Related Posts -->
+            <div class="related-posts">
+                <h3>You might also like...</h3>
+                <div class="related-grid">
+                    <a href="blog-post-10-twi-phrases.html" class="related-card">
+                        <h4>10 Twi Phrases Every Visitor Should Know</h4>
+                        <p>Essential greetings for your trip to Ghana</p>
+                    </a>
+                    <a href="blog-post-adinkra-symbols.html" class="related-card">
+                        <h4>The Meaning Behind Adinkra Symbols</h4>
+                        <p>Discover Sankofa, Gye Nyame and more</p>
+                    </a>
+                    <a href="blog-post-80-20-method.html" class="related-card">
+                        <h4>The 80/20 Method</h4>
+                        <p>Why you learn faster by speaking more</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-wide">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>🏗️ Accra Office (Opening Soon)</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="languages.html">Languages</a>
+                    <a href="kids-teens.html">Kids & Teens</a>
+                    <a href="resources.html">Free Resources</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Blog Categories</h4>
+                    <a href="#">Beginner Tips</a>
+                    <a href="#">Culture</a>
+                    <a href="#">Diaspora Stories</a>
+                    <a href="#">Vocabulary</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <a href="https://www.youtube.com/@SpeakGhana">📺 YouTube</a>
+                    <a href="https://www.instagram.com/speak_ghana">📸 Instagram</a>
+                    <a href="https://www.tiktok.com/@speakghana0">🎵 TikTok</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Event Tracking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track CTA button clicks
+            const ctaButtons = document.querySelectorAll('.cta-button');
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    gtag('event', 'cta_click', {
+                        'event_category': 'blog',
+                        'event_label': 'family_terms'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
