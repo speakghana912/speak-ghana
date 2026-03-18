@@ -185,19 +185,32 @@ function loadSet(setNumber) {
     quizSubmitted = false;
     
     // Update navigation buttons
-    document.querySelectorAll('.quiz-nav-btn').forEach(btn => {
-        btn.style.background = 'var(--cream)';
-        btn.style.color = 'var(--black)';
-    });
-    document.getElementById(`set${setNumber}-btn`).style.background = 'var(--green)';
-    document.getElementById(`set${setNumber}-btn`).style.color = 'white';
+    const set1Btn = document.getElementById('set1-btn');
+    const set2Btn = document.getElementById('set2-btn');
+    const set3Btn = document.getElementById('set3-btn');
+    
+    if (set1Btn && set2Btn && set3Btn) {
+        [set1Btn, set2Btn, set3Btn].forEach(btn => {
+            btn.style.background = 'var(--cream)';
+            btn.style.color = 'var(--black)';
+        });
+        
+        document.getElementById(`set${setNumber}-btn`).style.background = 'var(--green)';
+        document.getElementById(`set${setNumber}-btn`).style.color = 'white';
+    }
     
     // Update quiz title
-    document.getElementById('current-quiz-title').textContent = quizData[`set${setNumber}`].title;
+    const titleElement = document.getElementById('current-quiz-title');
+    if (titleElement) {
+        titleElement.textContent = quizData[`set${setNumber}`].title;
+    }
     
     // Hide results and email form
-    document.getElementById('results-area').style.display = 'none';
-    document.getElementById('email-form-container').style.display = 'none';
+    const resultsArea = document.getElementById('results-area');
+    const emailForm = document.getElementById('email-form-container');
+    
+    if (resultsArea) resultsArea.style.display = 'none';
+    if (emailForm) emailForm.style.display = 'none';
     
     // Render questions
     renderQuestions();
@@ -206,6 +219,8 @@ function loadSet(setNumber) {
 // Render questions for current set
 function renderQuestions() {
     const container = document.getElementById('quiz-container');
+    if (!container) return;
+    
     const setData = quizData[`set${currentSet}`].questions;
     
     let html = '<div class="questions-list">';
@@ -256,7 +271,7 @@ function renderQuestions() {
     if (!quizSubmitted) {
         html += `
             <div style="text-align: center; margin-top: 2rem;">
-                <button onclick="submitQuiz()" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.2rem;">
+                <button onclick="submitQuiz()" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.2rem; background: linear-gradient(135deg, var(--green), #1f7a6e); color: white; border: none; border-radius: 50px; font-weight: 600; cursor: pointer;">
                     ✅ Submit Answers
                 </button>
             </div>
@@ -297,9 +312,14 @@ function submitQuiz() {
     
     // If email not submitted yet, show email form
     if (!emailSubmitted) {
-        document.getElementById('email-form-container').style.display = 'block';
-        document.getElementById('results-area').style.display = 'none';
-        document.getElementById('email-form-container').scrollIntoView({ behavior: 'smooth' });
+        const emailForm = document.getElementById('email-form-container');
+        const resultsArea = document.getElementById('results-area');
+        
+        if (emailForm) {
+            emailForm.style.display = 'block';
+            emailForm.scrollIntoView({ behavior: 'smooth' });
+        }
+        if (resultsArea) resultsArea.style.display = 'none';
     } else {
         // Email already given, show results immediately
         quizSubmitted = true;
@@ -310,8 +330,13 @@ function submitQuiz() {
 
 // Submit email and show results
 function submitEmail() {
-    const email = document.getElementById('quiz-email').value;
-    const consent = document.getElementById('email-consent').checked;
+    const emailInput = document.getElementById('quiz-email');
+    const consentCheck = document.getElementById('email-consent');
+    
+    if (!emailInput || !consentCheck) return;
+    
+    const email = emailInput.value;
+    const consent = consentCheck.checked;
     
     if (!email) {
         alert('Please enter your email address');
@@ -342,7 +367,8 @@ function submitEmail() {
             emailSubmitted = true;
             
             // Hide email form
-            document.getElementById('email-form-container').style.display = 'none';
+            const emailForm = document.getElementById('email-form-container');
+            if (emailForm) emailForm.style.display = 'none';
             
             // Show results
             quizSubmitted = true;
@@ -371,7 +397,8 @@ function displayResults() {
     const scoreDisplay = document.getElementById('score-display');
     const scoreMessage = document.getElementById('score-message');
     const resultsArea = document.getElementById('results-area');
-    const quizTitle = quizData[`set${currentSet}`].title;
+    
+    if (!scoreDisplay || !scoreMessage || !resultsArea) return;
     
     scoreDisplay.textContent = `${currentScore}/10`;
     
@@ -389,19 +416,31 @@ function displayResults() {
 function retakeQuiz() {
     userAnswers = new Array(10).fill(null);
     quizSubmitted = false;
-    document.getElementById('results-area').style.display = 'none';
+    
+    const resultsArea = document.getElementById('results-area');
+    if (resultsArea) resultsArea.style.display = 'none';
+    
     renderQuestions();
 }
 
 // Update progress bar
 function updateProgress() {
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    
+    if (!progressBar || !progressText) return;
+    
     const answered = userAnswers.filter(a => a !== null).length;
     const progress = (answered / 10) * 100;
-    document.getElementById('progress-bar').style.width = progress + '%';
-    document.getElementById('progress-text').textContent = `${answered}/10 answered`;
+    progressBar.style.width = progress + '%';
+    progressText.textContent = `${answered}/10 answered`;
 }
 
 // Load set 1 by default when page loads
 window.onload = function() {
-    loadSet(1);
+    // Check if quiz elements exist before loading
+    const container = document.getElementById('quiz-container');
+    if (container) {
+        loadSet(1);
+    }
 };
