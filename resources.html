@@ -147,6 +147,11 @@
             color: white;
         }
 
+        .btn-large {
+            font-size: 1.2rem;
+            padding: 1.2rem 3rem;
+        }
+
         /* ===== TOP BAR ===== */
         .top-bar {
             background: var(--black);
@@ -484,12 +489,102 @@
             font-weight: 600;
         }
 
+        /* ===== QUIZ LAUNCH BUTTON ===== */
+        .quiz-launch {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .quiz-launch-btn {
+            font-size: 1.3rem;
+            padding: 1.2rem 3rem;
+            animation: pulse 2s infinite;
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
+        }
+
+        .quiz-launch-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.4);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* ===== QUIZ POPUP MODAL ===== */
+        .quiz-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .quiz-popup-content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            position: relative;
+            animation: popupSlide 0.3s ease;
+        }
+
+        @keyframes popupSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--red);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 1001;
+        }
+
+        .close-popup:hover {
+            transform: scale(1.1);
+            background: #d64b2f;
+        }
+
         /* ===== QUIZ SECTION STYLES ===== */
         .quiz-section {
             background: white;
             border-radius: 30px;
-            padding: 4rem;
-            margin: 3rem 0;
+            padding: 2rem;
+            margin: 1rem 0;
             box-shadow: 0 20px 40px var(--shadow);
         }
 
@@ -903,6 +998,16 @@
             .welcome-banner {
                 font-size: 1rem;
                 padding: 1rem;
+            }
+            
+            .quiz-popup-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .close-popup {
+                top: 10px;
+                right: 10px;
             }
         }
     </style>
@@ -1499,7 +1604,7 @@
     </style>
 </head>
 <body>
-    <!-- Top Contact Bar (UPDATED with professional email) -->
+    <!-- Top Contact Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="contact-info">
@@ -1529,7 +1634,7 @@
         </div>
     </header>
 
-    <!-- Navigation (UPDATED) -->
+    <!-- Navigation -->
     <nav>
         <div class="container">
             <div class="nav-links">
@@ -1591,7 +1696,7 @@
             </div>
         </div>
 
-        <!-- ===== NEW FREE ONLINE CLASSES SECTION ===== -->
+        <!-- FREE ONLINE CLASSES SECTION -->
         <div class="free-classes-section">
             <h2 class="center">🎓 Free Online Twi Classes</h2>
             
@@ -1708,73 +1813,85 @@
             </div>
         </div>
 
-        <!-- ===== INTERACTIVE TWI ALPHABET QUIZ ===== -->
-        <div class="quiz-section">
-            <h2 class="center">📝 Interactive Twi Alphabet Quiz</h2>
-            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">Test your knowledge from our free classes! 🇬🇭</p>
-            
-            <!-- Quiz Navigation -->
-            <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                <button onclick="loadSet(1)" class="quiz-nav-btn active" id="set1-btn" style="background: var(--green); color: white; border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">Set 1: Basics</button>
-                <button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn" style="background: var(--cream); color: var(--black); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">Set 2: Word Pairs</button>
-                <button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn" style="background: var(--cream); color: var(--black); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">Set 3: Applied</button>
-            </div>
-
-            <!-- Current Quiz Title -->
-            <div style="text-align: center; margin-bottom: 1.5rem;">
-                <h3 id="current-quiz-title" style="color: var(--green);">Set 1: Basics</h3>
-            </div>
-
-            <!-- Quiz Container -->
-            <div id="quiz-container" style="background: var(--cream); border-radius: 20px; padding: 2rem;">
-                <!-- Questions will be loaded here by JavaScript -->
-                <div style="text-align: center; padding: 3rem;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
-                    <p>Loading quiz questions...</p>
-                </div>
-            </div>
-
-            <!-- Email Capture Form (Hidden by default) -->
-            <div id="email-form-container" style="display: none; margin-top: 2rem;">
-                <div style="background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 20px; padding: 2rem; text-align: center; color: white;">
-                    <h3 style="color: white; margin-bottom: 1rem;">📧 Get Your Results + Free Guides!</h3>
-                    <p style="margin-bottom: 2rem;">Enter your email to see your score and get 5 free Twi learning PDFs:</p>
-                    
-                    <form onsubmit="event.preventDefault(); submitEmail();" style="max-width: 500px; margin: 0 auto;">
-                        <input type="email" id="quiz-email" placeholder="Your email address" required style="width: 100%; padding: 1rem; border: none; border-radius: 50px; margin-bottom: 1rem; font-size: 1rem;">
-                        
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: white;">
-                            <input type="checkbox" id="email-consent" checked style="width: 20px; height: 20px;">
-                            <label for="email-consent">Send me my results + free Twi guides</label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-gold" style="width: 100%; padding: 1rem; font-size: 1.1rem; background: var(--gold); color: var(--black); border: none; border-radius: 50px; font-weight: 600; cursor: pointer;">
-                            Show My Results →
-                        </button>
-                    </form>
-                    
-                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">✓ Greetings Cheat Sheet • ✓ Alphabet Guide • ✓ 100 Words List</p>
-                </div>
-            </div>
-
-            <!-- Results Area (Hidden by default) -->
-            <div id="results-area" style="text-align: center; margin-top: 2rem; display: none;">
-                <div style="background: var(--green); color: white; padding: 2rem; border-radius: 20px;">
-                    <h3 style="color: white; margin-bottom: 1rem;" id="results-title">Your Score</h3>
-                    <div style="font-size: 4rem; font-weight: 700;" id="score-display">0/10</div>
-                    <p id="score-message" style="margin-top: 1rem; font-size: 1.2rem;"></p>
-                    <button onclick="retakeQuiz()" class="btn btn-gold" style="margin-top: 1.5rem; background: var(--gold); color: var(--black); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">🔄 Retake This Set</button>
-                </div>
-            </div>
-
-            <!-- Progress Bar -->
-            <div style="margin-top: 2rem; background: var(--cream); border-radius: 50px; height: 10px; overflow: hidden;">
-                <div id="progress-bar" style="width: 0%; height: 100%; background: var(--green); transition: width 0.3s;"></div>
-            </div>
-            <p style="text-align: center; margin-top: 0.5rem; color: var(--gray);" id="progress-text">0/10 answered</p>
+        <!-- ===== QUIZ LAUNCH BUTTON ===== -->
+        <div class="quiz-launch">
+            <button onclick="openQuizPopup()" class="quiz-launch-btn">
+                📝 Take the Twi Alphabet Quiz →
+            </button>
+            <p style="margin-top: 1rem; color: var(--gray);">3 sets • 30 questions • Test your knowledge from our free classes!</p>
         </div>
 
-        <!-- Free Materials Section (UPDATED with download links) -->
+        <!-- ===== QUIZ POPUP MODAL (Hidden by default) ===== -->
+        <div id="quiz-popup" class="quiz-popup">
+            <div class="quiz-popup-content">
+                <button onclick="closeQuizPopup()" class="close-popup">×</button>
+                
+                <!-- Quiz Header -->
+                <h2 class="center" style="margin-top: 0;">📝 Interactive Twi Alphabet Quiz</h2>
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">Test your knowledge from our free classes! 🇬🇭</p>
+                
+                <!-- Quiz Navigation -->
+                <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                    <button onclick="loadSet(1)" class="quiz-nav-btn active" id="set1-btn" style="background: var(--green); color: white; border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">Set 1: Basics</button>
+                    <button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn" style="background: var(--cream); color: var(--black); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">Set 2: Word Pairs</button>
+                    <button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn" style="background: var(--cream); color: var(--black); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">Set 3: Applied</button>
+                </div>
+
+                <!-- Current Quiz Title -->
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <h3 id="current-quiz-title" style="color: var(--green);">Set 1: Basics</h3>
+                </div>
+
+                <!-- Quiz Container -->
+                <div id="quiz-container" style="background: var(--cream); border-radius: 20px; padding: 2rem; max-height: 400px; overflow-y: auto;">
+                    <div style="text-align: center; padding: 3rem;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
+                        <p>Loading quiz questions...</p>
+                    </div>
+                </div>
+
+                <!-- Email Capture Form -->
+                <div id="email-form-container" style="display: none; margin-top: 2rem;">
+                    <div style="background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 20px; padding: 2rem; text-align: center; color: white;">
+                        <h3 style="color: white; margin-bottom: 1rem;">📧 Get Your Results + Free Guides!</h3>
+                        <p style="margin-bottom: 2rem;">Enter your email to see your score and get 5 free Twi learning PDFs:</p>
+                        
+                        <form onsubmit="event.preventDefault(); submitEmail();" style="max-width: 500px; margin: 0 auto;">
+                            <input type="email" id="quiz-email" placeholder="Your email address" required style="width: 100%; padding: 1rem; border: none; border-radius: 50px; margin-bottom: 1rem; font-size: 1rem;">
+                            
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: white;">
+                                <input type="checkbox" id="email-consent" checked style="width: 20px; height: 20px;">
+                                <label for="email-consent">Send me my results + free Twi guides</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-gold" style="width: 100%; padding: 1rem; font-size: 1.1rem; background: var(--gold); color: var(--black); border: none; border-radius: 50px; font-weight: 600; cursor: pointer;">
+                                Show My Results →
+                            </button>
+                        </form>
+                        
+                        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">✓ Greetings Cheat Sheet • ✓ Alphabet Guide • ✓ 100 Words List</p>
+                    </div>
+                </div>
+
+                <!-- Results Area -->
+                <div id="results-area" style="text-align: center; margin-top: 2rem; display: none;">
+                    <div style="background: var(--green); color: white; padding: 2rem; border-radius: 20px;">
+                        <h3 style="color: white; margin-bottom: 1rem;" id="results-title">Your Score</h3>
+                        <div style="font-size: 4rem; font-weight: 700;" id="score-display">0/10</div>
+                        <p id="score-message" style="margin-top: 1rem; font-size: 1.2rem;"></p>
+                        <button onclick="retakeQuiz()" class="btn btn-gold" style="margin-top: 1.5rem; background: var(--gold); color: var(--black); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">🔄 Retake This Set</button>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div style="margin-top: 2rem; background: var(--cream); border-radius: 50px; height: 10px; overflow: hidden;">
+                    <div id="progress-bar" style="width: 0%; height: 100%; background: var(--green); transition: width 0.3s;"></div>
+                </div>
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--gray);" id="progress-text">0/10 answered</p>
+            </div>
+        </div>
+
+        <!-- Free Materials Section -->
         <div class="materials-section">
             <h2 class="center">📚 Free Learning Materials</h2>
             <div class="materials-grid">
@@ -1818,12 +1935,11 @@
             <p style="text-align: center; margin-top: 2rem;">✨ More materials added regularly - check back often! ✨</p>
         </div>
 
-        <!-- Newsletter Section with MailerLite Form -->
+        <!-- Newsletter Section -->
         <div class="newsletter-section">
             <h2 class="center">📧 Join Our Newsletter</h2>
             <p style="font-size: 1.2rem; margin-bottom: 2rem;">Get weekly Twi tips, cultural insights, and special offers</p>
             
-            <!-- MailerLite Form -->
             <div id="mlb2-38562675" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-38562675">
                 <div class="ml-form-align-center">
                     <div class="ml-form-embedWrapper embedForm">
@@ -1970,7 +2086,7 @@
         </div>
     </div>
 
-    <!-- Footer (UPDATED with professional email) -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -2025,6 +2141,41 @@
         fetch("https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/takel")
     </script>
 
+    <!-- Quiz Popup Functions -->
+    <script>
+        function openQuizPopup() {
+            document.getElementById('quiz-popup').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            if (typeof loadSet === 'function') {
+                loadSet(1); // Load first set when opened
+            }
+        }
+
+        function closeQuizPopup() {
+            document.getElementById('quiz-popup').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            // Reset quiz state if needed
+            if (typeof retakeQuiz === 'function') {
+                retakeQuiz();
+            }
+        }
+
+        // Close popup when clicking outside the content
+        document.addEventListener('click', function(event) {
+            const popup = document.getElementById('quiz-popup');
+            if (event.target === popup) {
+                closeQuizPopup();
+            }
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeQuizPopup();
+            }
+        });
+    </script>
+
     <!-- Event Tracking for Google Analytics -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -2033,20 +2184,16 @@
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
-                    // Get form name or ID for tracking
                     let formName = 'unknown_form';
                     if (this.id) formName = this.id;
                     else if (this.name) formName = this.name;
                     else if (this.classList.contains('enrollment-form')) formName = 'enrollment_form';
                     else if (this.classList.contains('contact-form')) formName = 'contact_form';
                     
-                    // Track the event
                     gtag('event', 'form_submission', {
                         'event_category': 'engagement',
                         'event_label': formName
                     });
-                    
-                    console.log('Form submission tracked:', formName); // For testing
                 });
             });
             
@@ -2064,8 +2211,6 @@
                         'event_category': 'resource',
                         'event_label': pdfName
                     });
-                    
-                    console.log('PDF download tracked:', pdfName); // For testing
                 });
             });
             
@@ -2077,8 +2222,6 @@
                         'event_category': 'contact',
                         'event_label': 'whatsapp_button'
                     });
-                    
-                    console.log('WhatsApp click tracked'); // For testing
                 });
             });
             
@@ -2090,8 +2233,6 @@
                         'event_category': 'contact',
                         'event_label': 'phone_number'
                     });
-                    
-                    console.log('Phone click tracked');
                 });
             });
             
@@ -2103,12 +2244,10 @@
                         'event_category': 'contact',
                         'event_label': 'email_link'
                     });
-                    
-                    console.log('Email click tracked');
                 });
             });
             
-            // Track Navigation Clicks (optional)
+            // Track Navigation Clicks
             const navLinks = document.querySelectorAll('.nav-links a, .btn');
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -2117,11 +2256,19 @@
                         'event_category': 'navigation',
                         'event_label': linkText
                     });
-                    
-                    console.log('Navigation click tracked:', linkText);
                 });
             });
-            
+
+            // Track Quiz Launch
+            const quizBtn = document.querySelector('.quiz-launch-btn');
+            if (quizBtn) {
+                quizBtn.addEventListener('click', function() {
+                    gtag('event', 'quiz_launch', {
+                        'event_category': 'engagement',
+                        'event_label': 'popup_opened'
+                    });
+                });
+            }
         });
     </script>
 
