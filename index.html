@@ -1193,6 +1193,96 @@
             color: white;
         }
 
+        /* ===== QUIZ POPUP STYLES ===== */
+        .quiz-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .quiz-popup-content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            position: relative;
+            animation: popupSlide 0.3s ease;
+        }
+
+        @keyframes popupSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--red);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 1001;
+        }
+
+        .close-popup:hover {
+            transform: scale(1.1);
+            background: #d64b2f;
+        }
+
+        .quiz-nav-btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .question-item {
+            transition: all 0.3s;
+        }
+
+        .question-item:hover {
+            transform: translateX(5px);
+        }
+
+        #email-form-container {
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
             .hero-split {
@@ -1236,7 +1326,7 @@
             }
             
             .whatsapp-float span {
-                display: none; /* Hide text on mobile, show only icon */
+                display: none;
             }
             
             .whatsapp-float img {
@@ -1356,7 +1446,7 @@
 
     <!-- Main Content -->
     <div class="container">
-        <!-- ===== NEW: QUIZ BANNER (Top of page) ===== -->
+        <!-- ===== QUIZ BANNER (Top of page) - FIXED ===== -->
         <div class="quiz-banner">
             <div class="quiz-banner-content">
                 <div class="quiz-icon">📝</div>
@@ -1364,11 +1454,11 @@
                     <h3>Test Your Twi Level!</h3>
                     <p>2-minute quiz • Free • Get personalized course recommendations</p>
                 </div>
-                <a href="languages.html#twi-level-quiz" class="btn btn-gold btn-large" style="background: var(--gold); color: var(--black);">Start Quiz →</a>
+                <button onclick="openQuizPopup()" class="btn btn-gold btn-large" style="background: var(--gold); color: var(--black); border: none; cursor: pointer;">Start Quiz →</button>
             </div>
         </div>
 
-        <!-- March Banner (Keeping this for now since March isn't over) -->
+        <!-- March Banner -->
         <div class="march-banner" id="march-banner">
             <h3><a href="#march-enroll">🎉 MARCH 2026 – ALL LESSONS FREE! 🎉</a></h3>
             <p>Try any class for free throughout March. No payment required. <a href="#march-enroll">Secure your spot for April →</a></p>
@@ -1557,7 +1647,7 @@
             <span class="value-pill">📈 Nkɔsoɔ</span>
         </div>
 
-        <!-- ===== NEW: QUIZ SECTION (Middle of page) ===== -->
+        <!-- ===== QUIZ SECTION (Middle of page) - FIXED ===== -->
         <div class="quiz-section">
             <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">📝</span>
             <h2>Not Sure Where to Start?</h2>
@@ -1579,7 +1669,7 @@
             </div>
 
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0;">
-                <a href="languages.html#twi-level-quiz" class="btn btn-primary btn-large">Start Twi Quiz →</a>
+                <button onclick="openQuizPopup()" class="btn btn-primary btn-large" style="border: none; cursor: pointer;">Start Twi Quiz →</button>
                 <a href="languages.html" class="btn btn-outline btn-large">Explore All Languages</a>
             </div>
             <p style="margin-top: 1.5rem; color: var(--gray); font-style: italic;">✨ Over 500 people have taken the quiz already! ✨</p>
@@ -1669,7 +1759,77 @@
         </div>
     </div>
 
-    <!-- Footer (UPDATED with correct location and email) -->
+    <!-- ===== QUIZ POPUP MODAL ===== -->
+    <div id="quiz-popup" class="quiz-popup">
+        <div class="quiz-popup-content">
+            <button onclick="closeQuizPopup()" class="close-popup">×</button>
+            
+            <!-- Quiz Header -->
+            <h2 class="center" style="margin-top: 0;">📝 Interactive Twi Alphabet Quiz</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">Test your knowledge from our free classes! 🇬🇭</p>
+            
+            <!-- Quiz Navigation -->
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <button onclick="loadSet(1)" class="quiz-nav-btn active" id="set1-btn" style="background: var(--green); color: white; border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">Set 1: Basics</button>
+                <button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn" style="background: var(--cream); color: var(--black); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">Set 2: Word Pairs</button>
+                <button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn" style="background: var(--cream); color: var(--black); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">Set 3: Applied</button>
+            </div>
+
+            <!-- Current Quiz Title -->
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <h3 id="current-quiz-title" style="color: var(--green);">Set 1: Basics</h3>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quiz-container" style="background: var(--cream); border-radius: 20px; padding: 2rem; max-height: 400px; overflow-y: auto;">
+                <div style="text-align: center; padding: 3rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
+                    <p>Loading quiz questions...</p>
+                </div>
+            </div>
+
+            <!-- Email Capture Form -->
+            <div id="email-form-container" style="display: none; margin-top: 2rem;">
+                <div style="background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 20px; padding: 2rem; text-align: center; color: white;">
+                    <h3 style="color: white; margin-bottom: 1rem;">📧 Get Your Results + Free Guides!</h3>
+                    <p style="margin-bottom: 2rem;">Enter your email to see your score and get 5 free Twi learning PDFs:</p>
+                    
+                    <form onsubmit="event.preventDefault(); submitEmail();" style="max-width: 500px; margin: 0 auto;">
+                        <input type="email" id="quiz-email" placeholder="Your email address" required style="width: 100%; padding: 1rem; border: none; border-radius: 50px; margin-bottom: 1rem; font-size: 1rem;">
+                        
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: white;">
+                            <input type="checkbox" id="email-consent" checked style="width: 20px; height: 20px;">
+                            <label for="email-consent">Send me my results + free Twi guides</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-gold" style="width: 100%; padding: 1rem; font-size: 1.1rem; background: var(--gold); color: var(--black); border: none; border-radius: 50px; font-weight: 600; cursor: pointer;">
+                            Show My Results →
+                        </button>
+                    </form>
+                    
+                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">✓ Greetings Cheat Sheet • ✓ Alphabet Guide • ✓ 100 Words List</p>
+                </div>
+            </div>
+
+            <!-- Results Area -->
+            <div id="results-area" style="text-align: center; margin-top: 2rem; display: none;">
+                <div style="background: var(--green); color: white; padding: 2rem; border-radius: 20px;">
+                    <h3 style="color: white; margin-bottom: 1rem;" id="results-title">Your Score</h3>
+                    <div style="font-size: 4rem; font-weight: 700;" id="score-display">0/10</div>
+                    <p id="score-message" style="margin-top: 1rem; font-size: 1.2rem;"></p>
+                    <button onclick="retakeQuiz()" class="btn btn-gold" style="margin-top: 1.5rem; background: var(--gold); color: var(--black); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer;">🔄 Retake This Set</button>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div style="margin-top: 2rem; background: var(--cream); border-radius: 50px; height: 10px; overflow: hidden;">
+                <div id="progress-bar" style="width: 0%; height: 100%; background: var(--green); transition: width 0.3s;"></div>
+            </div>
+            <p style="text-align: center; margin-top: 0.5rem; color: var(--gray);" id="progress-text">0/10 answered</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1729,6 +1889,57 @@
         <span>Chat with us</span>
     </a>
 
+    <!-- Quiz JavaScript -->
+    <script>
+        // Quiz Popup Functions
+        function openQuizPopup() {
+            document.getElementById('quiz-popup').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            if (typeof loadSet === 'function') {
+                loadSet(1);
+            }
+        }
+
+        function closeQuizPopup() {
+            document.getElementById('quiz-popup').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            if (typeof retakeQuiz === 'function') {
+                retakeQuiz();
+            }
+        }
+
+        // Close popup when clicking outside
+        document.addEventListener('click', function(event) {
+            const popup = document.getElementById('quiz-popup');
+            if (event.target === popup) {
+                closeQuizPopup();
+            }
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeQuizPopup();
+            }
+        });
+
+        // Mock quiz functions (replace with your actual quiz logic)
+        function loadSet(setNumber) {
+            console.log('Loading set ' + setNumber);
+            // Your quiz loading logic here
+        }
+
+        function retakeQuiz() {
+            console.log('Retaking quiz');
+            // Your retake logic here
+        }
+
+        function submitEmail() {
+            console.log('Email submitted');
+            // Your email submission logic here
+        }
+    </script>
+
     <!-- Event Tracking for Google Analytics -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1737,20 +1948,16 @@
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
-                    // Get form name or ID for tracking
                     let formName = 'unknown_form';
                     if (this.id) formName = this.id;
                     else if (this.name) formName = this.name;
                     else if (this.classList.contains('enrollment-form')) formName = 'enrollment_form';
                     else if (this.classList.contains('contact-form')) formName = 'contact_form';
                     
-                    // Track the event
                     gtag('event', 'form_submission', {
                         'event_category': 'engagement',
                         'event_label': formName
                     });
-                    
-                    console.log('Form submission tracked:', formName); // For testing
                 });
             });
             
@@ -1768,8 +1975,6 @@
                         'event_category': 'resource',
                         'event_label': pdfName
                     });
-                    
-                    console.log('PDF download tracked:', pdfName); // For testing
                 });
             });
             
@@ -1781,8 +1986,6 @@
                         'event_category': 'contact',
                         'event_label': 'whatsapp_button'
                     });
-                    
-                    console.log('WhatsApp click tracked'); // For testing
                 });
             });
             
@@ -1794,8 +1997,6 @@
                         'event_category': 'contact',
                         'event_label': 'phone_number'
                     });
-                    
-                    console.log('Phone click tracked');
                 });
             });
             
@@ -1807,12 +2008,10 @@
                         'event_category': 'contact',
                         'event_label': 'email_link'
                     });
-                    
-                    console.log('Email click tracked');
                 });
             });
             
-            // Track Navigation Clicks (optional)
+            // Track Navigation Clicks
             const navLinks = document.querySelectorAll('.nav-links a, .btn');
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -1821,18 +2020,16 @@
                         'event_category': 'navigation',
                         'event_label': linkText
                     });
-                    
-                    console.log('Navigation click tracked:', linkText);
                 });
             });
 
-            // Track Quiz Banner Clicks
-            const quizLinks = document.querySelectorAll('a[href*="twi-level-quiz"]');
-            quizLinks.forEach(link => {
-                link.addEventListener('click', function() {
+            // Track Quiz Button Clicks
+            const quizButtons = document.querySelectorAll('button[onclick="openQuizPopup()"]');
+            quizButtons.forEach(button => {
+                button.addEventListener('click', function() {
                     gtag('event', 'quiz_click', {
                         'event_category': 'homepage',
-                        'event_label': 'twi_quiz_banner'
+                        'event_label': 'twi_quiz_button'
                     });
                 });
             });
@@ -1849,5 +2046,8 @@
             }
         });
     </script>
+
+    <!-- Add the quiz JavaScript file -->
+    <script src="twi-quiz.js"></script>
 </body>
 </html>
