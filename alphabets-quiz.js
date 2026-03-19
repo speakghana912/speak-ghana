@@ -1,5 +1,5 @@
 // ===== TWI ALPHABETS QUIZ - ALL 3 SETS WITH EMAIL CAPTURE =====
-// Filename: alphabets-quiz.js
+// Filename: alphabets-quiz.js (UPDATED for popup)
 
 const quizData = {
     set1: {
@@ -176,7 +176,7 @@ let currentSet = 1;
 let userAnswers = new Array(10).fill(null);
 let quizSubmitted = false;
 let currentScore = 0;
-let emailSubmitted = false; // Track if email already given
+let emailSubmitted = false;
 
 // Load quiz set
 function loadSet(setNumber) {
@@ -184,7 +184,7 @@ function loadSet(setNumber) {
     userAnswers = new Array(10).fill(null);
     quizSubmitted = false;
     
-    // Update navigation buttons
+    // Update navigation buttons (with null checks)
     const set1Btn = document.getElementById('set1-btn');
     const set2Btn = document.getElementById('set2-btn');
     const set3Btn = document.getElementById('set3-btn');
@@ -195,8 +195,11 @@ function loadSet(setNumber) {
             btn.style.color = 'var(--black)';
         });
         
-        document.getElementById(`set${setNumber}-btn`).style.background = 'var(--green)';
-        document.getElementById(`set${setNumber}-btn`).style.color = 'white';
+        const currentBtn = document.getElementById(`set${setNumber}-btn`);
+        if (currentBtn) {
+            currentBtn.style.background = 'var(--green)';
+            currentBtn.style.color = 'white';
+        }
     }
     
     // Update quiz title
@@ -436,11 +439,5 @@ function updateProgress() {
     progressText.textContent = `${answered}/10 answered`;
 }
 
-// Load set 1 by default when page loads
-window.onload = function() {
-    // Check if quiz elements exist before loading
-    const container = document.getElementById('quiz-container');
-    if (container) {
-        loadSet(1);
-    }
-};
+// REMOVED window.onload - we don't auto-load anymore
+// The quiz will load when the popup opens via loadSet(1) in openQuizPopup()
