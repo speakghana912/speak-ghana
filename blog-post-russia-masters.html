@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I Learned Russian and Got My Master's Degree | Speak Ghana Blog</title>
+    <meta name="description" content="I learned Russian from scratch and completed a Master's degree in Russia. Here's how I did it — and how the same method will help you learn Twi.">
+    
+    <!-- ABSOLUTE URL FAVICON -->
+    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZXFR0LFLH6');
+    </script>
+
+    <style>
+        /* ===== MODERN COLOR PALETTE ===== */
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray-light: #F0F0F0;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--black);
+            background-color: var(--cream);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .container-wide {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .logo-text h1 span {
+            color: var(--gold);
+        }
+
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: var(--gold);
+            font-weight: 500;
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* ===== BLOG POST STYLES ===== */
+        .blog-post {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .post-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .post-meta {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .post-meta span {
+            margin: 0 1rem;
+        }
+
+        .post-header h1 {
+            font-size: 2.8rem;
+            color: var(--green);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .post-header h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--red));
+            margin: 2rem auto 0;
+        }
+
+        /* Inline Photo Styles */
+        .inline-photo-left {
+            float: left;
+            margin: 0 2rem 1.5rem 0;
+            width: 45%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .inline-photo-right {
+            float: right;
+            margin: 0 0 1.5rem 2rem;
+            width: 45%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .inline-photo-center {
+            margin: 2rem auto;
+            width: 80%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px var(--shadow);
+        }
+
+        .inline-photo-left img,
+        .inline-photo-right img,
+        .inline-photo-center img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .photo-caption {
+            background: var(--cream);
+            padding: 0.8rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .author-bio {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-box {
+            background: linear-gradient(135deg, rgba(42, 157, 143, 0.05), rgba(212, 163, 115, 0.05));
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            position: relative;
+        }
+
+        .story-box::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+            border-left: 4px solid var(--gold);
+        }
+
+        .pro-tip {
+            background: var(--green);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pro-tip::before {
+            content: '🧠';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 8rem;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .pro-tip h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--gold), var(--red));
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '🎓';
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            font-size: 8rem;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        .cta-box h3 {
+            color: var(--black);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            color: var(--black);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--black);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .back-to-blog {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .back-to-blog a {
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-to-blog a:hover {
+            color: var(--gold);
+        }
+
+        .related-posts {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px dashed var(--cream);
+        }
+
+        .related-posts h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .related-card {
+            background: var(--cream);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--black);
+            transition: transform 0.3s;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .related-card h4 {
+            color: var(--green);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .related-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .motto-footer {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .blog-post {
+                padding: 2rem;
+            }
+            
+            .post-header h1 {
+                font-size: 2rem;
+            }
+
+            .inline-photo-left,
+            .inline-photo-right {
+                float: none;
+                width: 100%;
+                margin: 1.5rem 0;
+            }
+
+            .inline-photo-center {
+                width: 100%;
+            }
+            
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .author-bio {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div class="container-wide">
+            <div class="contact-info">
+                <a href="mailto:info@speakghana.org">📧 info@speakghana.org</a>
+                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container-wide header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container-wide">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="languages.html">Languages</a>
+                <a href="kids-teens.html">Kids & Teens</a>
+                <a href="resources.html">Resources</a>
+                <a href="contact.html">Contact</a>
+                <a href="blog.html" class="active">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Content -->
+    <div class="container">
+        <div class="blog-post">
+            <div class="post-header">
+                <div class="post-meta">
+                    <span>📅 March 20, 2026</span>
+                    <span>👤 by Richard Asiamah</span>
+                    <span>📁 Language Journey</span>
+                </div>
+                <h1>I Learned Russian From Scratch and Got My Master's Degree. You Can Learn Twi Too.</h1>
+            </div>
+
+            <!-- Author Bio -->
+            <div class="author-bio">
+                <div class="author-image">
+                    <img src="images/richard.jpg" alt="Richard Asiamah">
+                </div>
+                <div>
+                    <strong style="color: var(--green);">🎓 I'm Richard.</strong>
+                    <p style="margin-top: 0.3rem;">Before Speak Ghana, I moved to Russia. I didn't speak a word of Russian. Two years later, I walked across a stage in Moscow to receive my Master's degree — in Russian. Here's how I did it, and why it means you can absolutely learn Twi.</p>
+                </div>
+            </div>
+
+            <!-- Photo 1: Individual Graduation - LEFT ALIGNED -->
+            <div class="inline-photo-left">
+                <img src="images/russia-graduation-individual.jpg" alt="Richard in graduation gown, Russia">
+                <div class="photo-caption">The day I graduated. That gown took two years of work — and a lot of mistakes.</div>
+            </div>
+
+            <p>When I told people I was moving to Russia for my Master's, most of them asked the same question: <strong>"But do you speak Russian?"</strong></p>
+
+            <p>The answer was no. I didn't know a single word.</p>
+
+            <p>I had studied in English my whole life. My undergraduate degree was in English. I had never learned another language before. And now I was about to move to a country where almost everything — street signs, grocery stores, university lectures — was in a language I couldn't read or understand.</p>
+
+            <p>People thought I was crazy. Maybe I was.</p>
+
+            <p>But I did it. And today, I still speak and understand Russian.</p>
+
+            <p>If I can learn Russian — one of the hardest languages for English speakers — from scratch and complete a Master's degree in it, then <strong>you can absolutely learn Twi</strong>.</p>
+
+            <div class="story-box">
+                <h3 style="color: var(--green); margin-bottom: 1rem;">🇷🇺 The First Few Months Were Brutal</h3>
+                <p>I arrived in Russia with a dictionary and a lot of confidence. That confidence disappeared fast.</p>
+                <p>The first time I went to a grocery store, I stood in front of the milk section for ten minutes. I couldn't read the labels. I couldn't ask anyone. I didn't know how to say "milk."</p>
+                <p>I bought yogurt instead. I didn't even like yogurt.</p>
+                <p>That was my life for months. Simple things — buying food, taking the bus, understanding a professor — felt impossible.</p>
+                <p>But I kept showing up.</p>
+            </div>
+
+            <h2 style="color: var(--green); margin: 2rem 0 1rem;">The Method That Worked</h2>
+
+            <p>I didn't have a special gift for languages. I wasn't naturally talented. I just found a method that worked and stuck to it.</p>
+
+            <p><strong>1. I listened — a lot.</strong> I listened to Russian radio, Russian songs, Russian conversations I didn't understand. At first, it was just noise. But slowly, I started picking up words. Then phrases. Then sentences.</p>
+
+            <p><strong>2. I spoke badly — and kept speaking.</strong> I made mistakes every day. Wrong grammar. Wrong pronunciation. Embarrassing moments. But I kept talking. Every mistake was a step forward.</p>
+
+            <p><strong>3. I surrounded myself with the language.</strong> I didn't hide in English-speaking groups. I made Russian friends. I watched Russian TV. I forced myself to live in the language.</p>
+
+            <p><strong>4. I stopped being afraid of being wrong.</strong> This was the hardest. I wanted to be perfect. I wanted to speak like a native. But perfection was stopping me from even trying. Once I accepted that I would make mistakes, everything changed.</p>
+
+            <!-- Photo 2: Group Class Photo - RIGHT ALIGNED -->
+            <div class="inline-photo-right">
+                <img src="images/russia-graduation-group.jpg" alt="Richard with classmates on graduation stage">
+                <div class="photo-caption">My classmates on graduation day. We went through it together — late nights, exams, and all.</div>
+            </div>
+
+            <h2 style="color: var(--green); margin: 2rem 0 1rem;">From Grocery Stores to University Lectures</h2>
+
+            <p>After about a year, something shifted. I started understanding my professors without translating in my head. I could take notes in Russian. I could ask questions.</p>
+
+            <p>Was it perfect? No. I still made grammar mistakes. My accent was clearly not native. But I was <strong>understanding</strong>. I was <strong>communicating</strong>. And that was enough.</p>
+
+            <p>My Master's program was in Russian. The lectures, the assignments, the exams — all in Russian. There were days I felt like giving up. Days I thought I wasn't smart enough.</p>
+
+            <p>But I kept going. And on graduation day, when they called my name, I walked across that stage not just with a degree — but with proof that language barriers can be broken.</p>
+
+            <!-- Photo 3: Receiving Certificate - CENTER ALIGNED -->
+            <div class="inline-photo-center">
+                <img src="images/russia-graduation-stage.jpg" alt="Richard receiving Master's certificate on stage">
+                <div class="photo-caption">The moment they called my name. Two years of work, countless mistakes, and one unforgettable walk.</div>
+            </div>
+
+            <div class="quote">
+                <p>That moment on stage wasn't just about a degree. It was proof that a boy from Ghana who didn't know a word of Russian could learn a completely new language and succeed in it.</p>
+                <p>If I can do it with Russian, you can do it with Twi.</p>
+            </div>
+
+            <h2 style="color: var(--green); margin: 2rem 0 1rem;">What This Means for You</h2>
+
+            <p>When I started Speak Ghana, I built it around everything I learned in Russia.</p>
+
+            <ul style="margin-left: 2rem; margin-bottom: 2rem;">
+                <li><strong>We focus on speaking</strong> — because you learn by doing, not by studying grammar books.</li>
+                <li><strong>We celebrate mistakes</strong> — because every mistake is a step closer to fluency.</li>
+                <li><strong>We use real conversations</strong> — because language lives in connection, not in isolation.</li>
+                <li><strong>We don't rush</strong> — because confidence takes time.</li>
+            </ul>
+
+            <p>Learning Twi isn't about being perfect. It's about starting. It's about saying your first greeting, even if it comes out wrong. It's about understanding one word in a song your grandmother used to sing. It's about feeling closer to home.</p>
+
+            <div class="pro-tip">
+                <h4>🎓 Richard's Promise</h4>
+                <p style="font-size: 1.2rem;">I learned Russian from scratch and earned a Master's degree in it. I know how hard language learning can be. And I know it's possible.</p>
+                <p style="margin-top: 1rem;">If you're in the diaspora and you've been wanting to learn Twi — stop waiting. Start today. We'll walk with you every step of the way.</p>
+            </div>
+
+            <h2 style="color: var(--green); margin: 2rem 0 1rem;">Your Turn</h2>
+
+            <p>You don't need to move to Russia. You don't need to spend years in a classroom. You just need to start.</p>
+
+            <p>Come as you are. Whether you only know "Akwaaba" or you can already hold a simple conversation — we'll meet you where you are.</p>
+
+            <!-- Call to Action Box -->
+            <div class="cta-box">
+                <h3>Ready to Start Your Language Journey?</h3>
+                <p>Free March classes — no payment needed. Just come and try it.</p>
+                <a href="https://speakghana.org/#march-enroll" class="cta-button">Sign Up for Free →</a>
+            </div>
+
+            <!-- Back to Blog Link -->
+            <div class="back-to-blog">
+                <a href="blog.html">← Back to all posts</a>
+            </div>
+
+            <!-- Related Posts -->
+            <div class="related-posts">
+                <h3>You might also like...</h3>
+                <div class="related-grid">
+                    <a href="blog-post-russia.html" class="related-card">
+                        <h4>From Russia to Ghana: What Those Kids Taught Me</h4>
+                        <p>Teaching English in a Russian kindergarten shaped how I teach today.</p>
+                    </a>
+                    <a href="blog-post-10-twi-phrases.html" class="related-card">
+                        <h4>10 Twi Phrases Every Visitor Should Know</h4>
+                        <p>Essential greetings for your trip to Ghana</p>
+                    </a>
+                    <a href="blog-post-adinkra-symbols.html" class="related-card">
+                        <h4>The Meaning Behind Adinkra Symbols</h4>
+                        <p>Learn about Sankofa, Gye Nyame, and the wisdom knot</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-wide">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>🏗️ Accra Office (Opening Soon)</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="languages.html">Languages</a>
+                    <a href="kids-teens.html">Kids & Teens</a>
+                    <a href="resources.html">Free Resources</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Blog Categories</h4>
+                    <a href="#">Beginner Tips</a>
+                    <a href="#">Culture</a>
+                    <a href="#">Diaspora Stories</a>
+                    <a href="#">Language Journey</a>
+                    <a href="#">Teaching Stories</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube: @SpeakGhana</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram: @speak_ghana</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok: @speakghana0</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Event Tracking -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButton = document.querySelector('.cta-button');
+            if(ctaButton) {
+                ctaButton.addEventListener('click', function() {
+                    gtag('event', 'cta_click', {
+                        'event_category': 'blog',
+                        'event_label': 'russia_masters'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
