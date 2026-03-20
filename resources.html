@@ -490,10 +490,296 @@
             font-weight: 600;
         }
 
+        /* ===== VOCABULARY WHEEL SECTION STYLES ===== */
+        .vocab-week-section {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+            border: 2px solid var(--gold);
+        }
+
+        .vocab-week-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .vocab-week-title h2 {
+            color: var(--green);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .vocab-week-title h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+        }
+
+        .vocab-week-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .class-wheels-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .wheel-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .wheel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .wheel-header h3 {
+            color: var(--green);
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .class-time-badge {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .wheel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1rem 0 2rem;
+            position: relative;
+        }
+
+        .wheel-canvas {
+            width: 280px;
+            height: 280px;
+            max-width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border: 4px solid var(--gold);
+            background: white;
+        }
+
+        .pointer-small {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 25px solid var(--red);
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+        }
+
+        .wheel-controls {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .wheel-btn {
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .wheel-btn-spin {
+            background: var(--green);
+            color: white;
+        }
+
+        .wheel-btn-spin:hover {
+            background: #1f7a6e;
+            transform: translateY(-2px);
+        }
+
+        .wheel-btn-reset {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .wheel-btn-reset:hover {
+            background: #c49a6c;
+            transform: translateY(-2px);
+        }
+
+        .current-word-box {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 15px;
+            padding: 1rem;
+            color: white;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .current-word {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .question-small {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .answer-area {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .answer-input-small {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 2px solid var(--cream);
+        }
+
+        .answer-input-small:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .answer-btn-small {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .answer-btn-small:hover {
+            background: #c49a6c;
+            transform: translateY(-2px);
+        }
+
+        .next-btn-small {
+            background: var(--red);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .feedback-small {
+            font-size: 0.95rem;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 50px;
+        }
+
+        .feedback-small.correct {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .feedback-small.incorrect {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .score-small {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .vocab-list-small {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .vocab-pill {
+            background: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 2px solid var(--gold);
+        }
+
+        .vocab-pill span.twi {
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .vocab-pill span.eng {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
         /* ===== QUIZ LAUNCH BUTTON ===== */
         .quiz-launch {
             text-align: center;
             margin: 3rem 0;
+        }
+
+        .quiz-reminder-note {
+            background: var(--cream);
+            border-left: 6px solid var(--gold);
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            text-align: left;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .quiz-reminder-note p {
+            font-size: 1.2rem;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-reminder-note .note-highlight {
+            color: var(--green);
+            font-weight: 700;
         }
 
         .quiz-launch-btn {
@@ -1036,7 +1322,8 @@
             .media-grid,
             .classes-grid,
             .tips-grid,
-            .blog-post-grid {
+            .blog-post-grid,
+            .class-wheels-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
@@ -1053,7 +1340,8 @@
             .classes-grid,
             .tips-grid,
             .footer-grid,
-            .blog-post-grid {
+            .blog-post-grid,
+            .class-wheels-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -1087,6 +1375,11 @@
             .close-popup {
                 top: 10px;
                 right: 10px;
+            }
+            
+            .wheel-canvas {
+                width: 240px;
+                height: 240px;
             }
         }
     </style>
@@ -1480,8 +1773,25 @@
             </div>
         </div>
 
-        <!-- ===== QUIZ LAUNCH BUTTON ===== -->
+        <!-- ===== VOCABULARY WHEELS SECTION - 4 CLASSES ===== -->
+        <div class="vocab-week-section">
+            <div class="vocab-week-title">
+                <h2>🎡 Weekly Vocabulary Review</h2>
+                <p>Spin the wheel and test yourself on last week's words from your class!</p>
+            </div>
+
+            <div class="class-wheels-grid" id="vocabWheelsContainer">
+                <!-- Wheels will be generated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- ===== QUIZ LAUNCH BUTTON with REMINDER NOTE ===== -->
         <div class="quiz-launch">
+            <div class="quiz-reminder-note">
+                <p>📘 <span class="note-highlight">Based on what we studied on Alphabets</span> — it is necessary to take this quiz to refresh our brain and keep us prepared for our next class.</p>
+                <p style="font-size: 1rem; color: var(--gray); margin-top: 0.5rem;">30 questions covering everything we learned last weekend.</p>
+            </div>
+            
             <button onclick="openQuizPopup()" class="quiz-launch-btn">
                 📝 Take the Twi Alphabet Quiz →
             </button>
@@ -1806,6 +2116,338 @@
     <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
     <script>
         fetch("https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/takel")
+    </script>
+
+    <!-- Vocabulary Wheel JavaScript -->
+    <script>
+        // ===== VOCABULARY DATA FOR EACH CLASS =====
+        const classVocab = {
+            groupA: {
+                name: "Group A",
+                time: "Sunday 5-6pm",
+                words: [
+                    { twi: "edinnsiananmu", english: "pronoun" },
+                    { twi: "adeyɔ", english: "verb" },
+                    { twi: "edin asɛm", english: "noun" },
+                    { twi: "ɔyɛfoɔ", english: "subject" },
+                    { twi: "ɔkasamu", english: "sentence" },
+                    { twi: "Efie Dwumadie", english: "homework" },
+                    { twi: "yɛn", english: "we/us" },
+                    { twi: "yɛ suaa", english: "we learned" }
+                ]
+            },
+            groupB: {
+                name: "Group B",
+                time: "Sunday 7-8pm",
+                words: [
+                    { twi: "ɔkasamu", english: "sentence" },
+                    { twi: "adeyɔ", english: "verb" },
+                    { twi: "edin asɛm", english: "noun" },
+                    { twi: "edinnsiananmu", english: "pronoun" },
+                    { twi: "ɔyɛfoɔ", english: "subject" },
+                    { twi: "nsiesie", english: "correction" },
+                    { twi: "wowɔ ha sei", english: "are you here?" },
+                    { twi: "aane, mewɔ ha sei", english: "yes, i'm here" }
+                ]
+            },
+            groupC: {
+                name: "Group C",
+                time: "Saturday 7-8pm",
+                words: [
+                    { twi: "Akokɔnam", english: "Chicken" },
+                    { twi: "Nkyenam", english: "fish" },
+                    { twi: "Kosua", english: "eggs" },
+                    { twi: "Nawɔtwe", english: "week" },
+                    { twi: "Mepawokyɛw", english: "please" },
+                    { twi: "Wote ase?", english: "Do you understand?" },
+                    { twi: "Hyɛ aseɛ", english: "begin" },
+                    { twi: "Ɔkyerɛkyerɛni", english: "Teacher" }
+                ]
+            },
+            groupD: {
+                name: "Group D",
+                time: "Sunday 2-3pm",
+                words: [
+                    { twi: "me wo odo", english: "I have love" },
+                    { twi: "fa me kɔ efie", english: "take me home" },
+                    { twi: "edinnsiananmu", english: "pronoun" },
+                    { twi: "ɔyɛfoɔ", english: "subject" },
+                    { twi: "adeyɔ", english: "verb" },
+                    { twi: "ɔkasamu", english: "sentence" },
+                    { twi: "nsiesie", english: "correction" },
+                    { twi: "ɛpo", english: "sea" }
+                ]
+            }
+        };
+
+        // Colors for wheel segments
+        const wheelColors = ['#2A9D8F', '#D4A373', '#E76F51', '#9B59B6', '#3498DB', '#F39C12', '#1E1E1E', '#E67E22'];
+
+        // Store wheel states
+        const wheelStates = {};
+
+        // Initialize all wheels
+        document.addEventListener('DOMContentLoaded', function() {
+            createAllWheels();
+        });
+
+        function createAllWheels() {
+            const container = document.getElementById('vocabWheelsContainer');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            // Create a wheel for each class
+            for (let [groupId, groupData] of Object.entries(classVocab)) {
+                const wheelId = `wheel-${groupId}`;
+                const canvasId = `canvas-${groupId}`;
+                
+                // Initialize state for this wheel
+                wheelStates[groupId] = {
+                    currentRotation: 0,
+                    isSpinning: false,
+                    currentWord: null,
+                    score: 0,
+                    attempts: 0,
+                    selectedWord: null,
+                    showAnswer: false,
+                    feedback: '',
+                    feedbackClass: ''
+                };
+                
+                // Create wheel card HTML
+                const wheelCard = document.createElement('div');
+                wheelCard.className = 'wheel-card';
+                wheelCard.id = `card-${groupId}`;
+                
+                // Build the wheel HTML
+                wheelCard.innerHTML = `
+                    <div class="wheel-header">
+                        <h3>${groupData.name}</h3>
+                        <span class="class-time-badge">${groupData.time}</span>
+                    </div>
+                    
+                    <div class="wheel-container">
+                        <div class="pointer-small"></div>
+                        <canvas id="${canvasId}" class="wheel-canvas" width="280" height="280"></canvas>
+                    </div>
+                    
+                    <div class="wheel-controls">
+                        <button class="wheel-btn wheel-btn-spin" onclick="spinWheel('${groupId}')">🎡 Spin</button>
+                        <button class="wheel-btn wheel-btn-reset" onclick="resetWheel('${groupId}')">🔄 Reset</button>
+                    </div>
+                    
+                    <div id="word-box-${groupId}" class="current-word-box">
+                        <div class="current-word" id="current-word-${groupId}">???</div>
+                        <div class="question-small" id="question-${groupId}">Spin to get a word!</div>
+                    </div>
+                    
+                    <div id="answer-area-${groupId}" style="display: none;">
+                        <div class="answer-area">
+                            <input type="text" id="answer-input-${groupId}" class="answer-input-small" placeholder="English meaning...">
+                            <button class="answer-btn-small" onclick="checkAnswer('${groupId}')">Check</button>
+                        </div>
+                    </div>
+                    
+                    <div id="feedback-${groupId}" class="feedback-small"></div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
+                        <span id="score-${groupId}" class="score-small">Score: 0</span>
+                        <button id="next-btn-${groupId}" class="next-btn-small" onclick="nextWord('${groupId}')" style="display: none;">Next Word</button>
+                    </div>
+                    
+                    <div class="vocab-list-small" id="vocab-list-${groupId}">
+                        ${groupData.words.map(w => `<div class="vocab-pill"><span class="twi">${w.twi}</span> <span class="eng">- ${w.english}</span></div>`).join('')}
+                    </div>
+                `;
+                
+                container.appendChild(wheelCard);
+                
+                // Draw the wheel after it's added to DOM
+                setTimeout(() => {
+                    drawWheel(groupId, groupData.words);
+                }, 50);
+            }
+        }
+
+        function drawWheel(groupId, words) {
+            const canvas = document.getElementById(`canvas-${groupId}`);
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const segments = words.length;
+            const anglePerSegment = (Math.PI * 2) / segments;
+            const rotation = wheelStates[groupId]?.currentRotation || 0;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < segments; i++) {
+                const startAngle = i * anglePerSegment + rotation;
+                const endAngle = startAngle + anglePerSegment;
+                
+                // Draw segment
+                ctx.beginPath();
+                ctx.moveTo(canvas.width / 2, canvas.height / 2);
+                ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 - 8, startAngle, endAngle);
+                ctx.closePath();
+                
+                ctx.fillStyle = wheelColors[i % wheelColors.length];
+                ctx.fill();
+                
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Add text
+                ctx.save();
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                ctx.rotate(startAngle + anglePerSegment / 2);
+                ctx.textAlign = 'center';
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 12px Inter, sans-serif';
+                ctx.shadowColor = 'rgba(0,0,0,0.5)';
+                ctx.shadowBlur = 3;
+                
+                let word = words[i].twi;
+                if (word.length > 8) {
+                    word = word.substring(0, 6) + '…';
+                }
+                
+                ctx.fillText(word, 90, 5);
+                ctx.restore();
+            }
+            
+            // Center circle
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, canvas.height / 2, 20, 0, Math.PI * 2);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            ctx.font = 'bold 10px Inter';
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('SPIN', canvas.width / 2, canvas.height / 2);
+        }
+
+        function spinWheel(groupId) {
+            const state = wheelStates[groupId];
+            const words = classVocab[groupId].words;
+            
+            if (state.isSpinning) return;
+            
+            state.isSpinning = true;
+            
+            document.getElementById(`answer-area-${groupId}`).style.display = 'none';
+            document.getElementById(`next-btn-${groupId}`).style.display = 'none';
+            document.getElementById(`feedback-${groupId}`).innerHTML = '';
+            document.getElementById(`current-word-${groupId}`).innerText = '???';
+            document.getElementById(`question-${groupId}`).innerText = 'Spinning...';
+            
+            const spins = 5 + Math.floor(Math.random() * 5);
+            const targetRotation = state.currentRotation + (spins * Math.PI * 2) + (Math.random() * Math.PI * 2);
+            const duration = 2000;
+            const startTime = performance.now();
+            const startRotation = state.currentRotation;
+            
+            function animateSpin(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                state.currentRotation = startRotation + (targetRotation - startRotation) * easeOut;
+                
+                drawWheel(groupId, words);
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animateSpin);
+                } else {
+                    state.currentRotation = targetRotation % (Math.PI * 2);
+                    drawWheel(groupId, words);
+                    state.isSpinning = false;
+                    
+                    const segmentIndex = getSelectedSegment(groupId);
+                    state.selectedWord = words[segmentIndex];
+                    
+                    document.getElementById(`current-word-${groupId}`).innerText = state.selectedWord.twi;
+                    document.getElementById(`question-${groupId}`).innerText = 'What is the English meaning?';
+                    document.getElementById(`answer-area-${groupId}`).style.display = 'block';
+                    document.getElementById(`answer-input-${groupId}`).value = '';
+                    document.getElementById(`answer-input-${groupId}`).focus();
+                    
+                    state.attempts++;
+                    updateScore(groupId);
+                }
+            }
+            
+            requestAnimationFrame(animateSpin);
+        }
+
+        function getSelectedSegment(groupId) {
+            const state = wheelStates[groupId];
+            const words = classVocab[groupId].words;
+            const segments = words.length;
+            const anglePerSegment = (Math.PI * 2) / segments;
+            const pointerAngle = -Math.PI / 2;
+            
+            let rawAngle = (pointerAngle - state.currentRotation + Math.PI * 2) % (Math.PI * 2);
+            let index = Math.floor(rawAngle / anglePerSegment);
+            return index;
+        }
+
+        function checkAnswer(groupId) {
+            const state = wheelStates[groupId];
+            const userAnswer = document.getElementById(`answer-input-${groupId}`).value.trim().toLowerCase();
+            const correctAnswer = state.selectedWord.english.toLowerCase();
+            
+            const feedback = document.getElementById(`feedback-${groupId}`);
+            
+            if (userAnswer === correctAnswer) {
+                feedback.innerHTML = '✅ Correct!';
+                feedback.className = 'feedback-small correct';
+                state.score++;
+            } else {
+                feedback.innerHTML = `❌ "${state.selectedWord.english}"`;
+                feedback.className = 'feedback-small incorrect';
+            }
+            
+            updateScore(groupId);
+            document.getElementById(`answer-area-${groupId}`).style.display = 'none';
+            document.getElementById(`next-btn-${groupId}`).style.display = 'inline-block';
+        }
+
+        function nextWord(groupId) {
+            document.getElementById(`current-word-${groupId}`).innerText = '???';
+            document.getElementById(`question-${groupId}`).innerText = 'Spin to get a word!';
+            document.getElementById(`feedback-${groupId}`).innerHTML = '';
+            document.getElementById(`next-btn-${groupId}`).style.display = 'none';
+            document.getElementById(`answer-area-${groupId}`).style.display = 'none';
+        }
+
+        function resetWheel(groupId) {
+            const state = wheelStates[groupId];
+            state.currentRotation = 0;
+            state.score = 0;
+            state.attempts = 0;
+            state.selectedWord = null;
+            
+            drawWheel(groupId, classVocab[groupId].words);
+            updateScore(groupId);
+            
+            document.getElementById(`current-word-${groupId}`).innerText = '???';
+            document.getElementById(`question-${groupId}`).innerText = 'Spin to get a word!';
+            document.getElementById(`answer-area-${groupId}`).style.display = 'none';
+            document.getElementById(`next-btn-${groupId}`).style.display = 'none';
+            document.getElementById(`feedback-${groupId}`).innerHTML = '';
+        }
+
+        function updateScore(groupId) {
+            const state = wheelStates[groupId];
+            document.getElementById(`score-${groupId}`).innerHTML = `Score: ${state.score}`;
+        }
     </script>
 
     <!-- Quiz Popup Functions -->
