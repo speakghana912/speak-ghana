@@ -808,7 +808,7 @@
     </style>
 </head>
 <body>
-    <!-- Top Contact Bar (UPDATED with professional email) -->
+    <!-- Top Contact Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="contact-info">
@@ -838,7 +838,7 @@
         </div>
     </header>
 
-    <!-- Navigation (UPDATED) -->
+    <!-- Navigation -->
     <nav>
         <div class="container">
             <div class="nav-links">
@@ -866,21 +866,21 @@
         <div class="blog-layout">
             <!-- Main Content Area -->
             <div class="main-content">
-                <!-- Featured Post - Adinkra Symbols -->
+                <!-- Featured Post - Russia Experience (NEW) -->
                 <div class="featured-post">
                     <div class="featured-image">
                         <span class="featured-tag">Featured</span>
-                        🇬🇭
+                        🇷🇺🇬🇭
                     </div>
                     <div class="featured-content">
                         <div class="featured-meta">
-                            <span>📅 March 15, 2026</span>
+                            <span>📅 March 20, 2026</span>
                             <span>👤 by Richard Asiamah</span>
-                            <span>📁 Culture</span>
+                            <span>📁 Teaching Stories</span>
                         </div>
-                        <h2>The Meaning Behind Adinkra Symbols: Nyansapo and the Wisdom Knot</h2>
-                        <p>Discover the deep wisdom of Ghana's sacred Adinkra symbols, and why the Nyansapo (Wisdom Knot) represents the journey of language learning and reconnecting with your roots.</p>
-                        <a href="blog-post-adinkra-symbols.html" class="btn btn-primary">Read Full Article →</a>
+                        <h2>From Russia to Ghana: What Those Kids Taught Me About Language</h2>
+                        <p>Before I started Speak Ghana, I taught English in a Russian kindergarten. I thought I was there to teach them — but they ended up teaching me everything I know about how people really learn a new language.</p>
+                        <a href="blog-post-russia.html" class="btn btn-primary">Read Full Article →</a>
                     </div>
                 </div>
 
@@ -1007,6 +1007,7 @@
                         <li><a href="#">Beginner Tips <span class="category-count">14</span></a></li>
                         <li><a href="#">Culture & Traditions <span class="category-count">10</span></a></li>
                         <li><a href="#">Diaspora Stories <span class="category-count">7</span></a></li>
+                        <li><a href="#">Teaching Stories <span class="category-count">3</span></a></li>
                         <li><a href="#">Vocabulary <span class="category-count">16</span></a></li>
                         <li><a href="#">Grammar <span class="category-count">9</span></a></li>
                         <li><a href="#">Music & Movies <span class="category-count">7</span></a></li>
@@ -1014,9 +1015,17 @@
                     </ul>
                 </div>
 
-                <!-- Popular Posts Widget - ALL LINKS UPDATED -->
+                <!-- Popular Posts Widget - NEW POST ADDED AT TOP -->
                 <div class="sidebar-widget">
                     <h3>Popular Posts</h3>
+                    
+                    <div class="popular-post">
+                        <div class="popular-image">🇷🇺</div>
+                        <div class="popular-content">
+                            <h4><a href="blog-post-russia.html">From Russia to Ghana: What Those Kids Taught Me</a></h4>
+                            <div class="popular-date">March 20, 2026</div>
+                        </div>
+                    </div>
                     
                     <div class="popular-post">
                         <div class="popular-image">🎵</div>
@@ -1072,7 +1081,8 @@
                         <a href="#" class="tag">#nyansapo</a>
                         <a href="#" class="tag">#diaspora</a>
                         <a href="#" class="tag">#languagelearning</a>
-                        <a href="#" class="tag">#pronunciation</a>
+                        <a href="#" class="tag">#teachingstories</a>
+                        <a href="#" class="tag">#russia</a>
                         <a href="#" class="tag">#music</a>
                         <a href="#" class="tag">#family</a>
                     </div>
@@ -1089,7 +1099,7 @@
         </div>
     </div>
 
-    <!-- Footer (UPDATED with professional email) -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1116,6 +1126,7 @@
                     <a href="#">Beginner Tips</a>
                     <a href="#">Culture</a>
                     <a href="#">Diaspora Stories</a>
+                    <a href="#">Teaching Stories</a>
                     <a href="#">Vocabulary</a>
                     <a href="#">Learning Tips</a>
                 </div>
@@ -1143,20 +1154,18 @@
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
-                    // Get form name or ID for tracking
                     let formName = 'unknown_form';
                     if (this.id) formName = this.id;
                     else if (this.name) formName = this.name;
                     else if (this.classList.contains('enrollment-form')) formName = 'enrollment_form';
                     else if (this.classList.contains('contact-form')) formName = 'contact_form';
                     
-                    // Track the event
                     gtag('event', 'form_submission', {
                         'event_category': 'engagement',
                         'event_label': formName
                     });
                     
-                    console.log('Form submission tracked:', formName); // For testing
+                    console.log('Form submission tracked:', formName);
                 });
             });
             
@@ -1175,7 +1184,7 @@
                         'event_label': pdfName
                     });
                     
-                    console.log('PDF download tracked:', pdfName); // For testing
+                    console.log('PDF download tracked:', pdfName);
                 });
             });
             
@@ -1188,7 +1197,7 @@
                         'event_label': 'whatsapp_button'
                     });
                     
-                    console.log('WhatsApp click tracked'); // For testing
+                    console.log('WhatsApp click tracked');
                 });
             });
             
@@ -1218,7 +1227,7 @@
                 });
             });
             
-            // Track Navigation Clicks (optional)
+            // Track Navigation Clicks
             const navLinks = document.querySelectorAll('.nav-links a, .btn');
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
