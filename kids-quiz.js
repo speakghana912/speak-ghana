@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
         { question: "🐶 What is 'dog' in Twi?", options: ["kraman", "akokɔ", "agyinamoa", "odwan"], correct: 0, emoji: "🐶", category: "animals" },
         { question: "🐱 What is 'cat' in Twi?", options: ["agyinamoa", "kraman", "akokɔ", "nantwie"], correct: 0, emoji: "🐱", category: "animals" },
         { question: "🐔 What is 'chicken' in Twi?", options: ["akokɔ", "kraman", "odwan", "mpataa"], correct: 0, emoji: "🐔", category: "animals" },
-        { question: "🐮 What is 'cow' in Twi?", options: ["nantwie", "odwan", "sonon", "akokɔ"], correct: 0, emoji: "🐮", category: "animals" },
+        { question: "🐮 What is 'cow' in Twi?", options: ["nantwie", "odwan", "ɔsono", "akokɔ"], correct: 0, emoji: "🐮", category: "animals" },
         { question: "🐑 What is 'sheep' in Twi?", options: ["odwan", "kraman", "agyinamoa", "nantwie"], correct: 0, emoji: "🐑", category: "animals" },
-        { question: "🐘 What is 'elephant' in Twi?", options: ["sonon", "nantwie", "odwan", "kraman"], correct: 0, emoji: "🐘", category: "animals" },
+        { question: "🐘 What is 'elephant' in Twi?", options: ["ɔsono", "nantwie", "odwan", "kraman"], correct: 0, emoji: "🐘", category: "animals" },
         
         // Greetings
         { question: "👋 How do you say 'good morning'?", options: ["Maakye", "Maaha", "Maadwo", "Akwaaba"], correct: 0, emoji: "🌅", category: "greetings" },
