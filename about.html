@@ -472,24 +472,27 @@
             transform: translateY(-15px);
         }
 
-        /* FIXED: Full image shows without cropping */
+        /* Balanced photo sizing - shows faces well without excessive height */
         .team-photo {
             width: 100%;
+            height: 280px;
             background: linear-gradient(135deg, var(--cream), var(--gray-light));
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
         .team-photo img {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
             transition: transform 0.5s;
         }
 
         .team-card:hover .team-photo img {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
 
         .team-info {
@@ -822,6 +825,10 @@
             
             .page-hero h1 {
                 font-size: 2.5rem;
+            }
+
+            .team-photo {
+                height: 240px;
             }
         }
     </style>
