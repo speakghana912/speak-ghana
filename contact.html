@@ -1272,12 +1272,12 @@
                     else if (this.classList.contains('contact-form')) formName = 'contact_form';
                     
                     // Track the event
-                    gtag('event', 'form_submission', {
+                    gtag('event', 'generate_lead', {
                         'event_category': 'engagement',
                         'event_label': formName
                     });
                     
-                    console.log('Form submission tracked:', formName); // For testing
+                    console.log('Lead generated tracked:', formName); // For testing
                 });
             });
             
