@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | SPIL Ghana - Speak Indigenous Languages of Ghana</title>
-    <meta name="description" content="Learn about SPIL Ghana, founded by Richard Asiamah and Charlotte Tetebea Asiamah, a trained teacher with a degree in Akan. We help the diaspora reconnect through language.">
+    <title>About SPIL Ghana | Speak Indigenous Languages of Ghana</title>
+    <meta name="description" content="SPIL Ghana (Speak Indigenous Languages of Ghana) helps the diaspora reconnect with their roots. Founded by Richard Asiamah and Charlotte Tetebea Asiamah, a trained teacher with a degree in Akan.">
     <!-- ABSOLUTE URL FAVICON -->
-    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
-    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
+<link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+<link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
+<link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
 
     <!-- Google Analytics -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -136,22 +137,6 @@
             box-shadow: 0 8px 25px rgba(212, 163, 115, 0.4);
         }
 
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--green);
-            color: var(--green);
-        }
-
-        .btn-outline:hover {
-            background: var(--green);
-            color: white;
-        }
-
-        .btn-large {
-            font-size: 1.2rem;
-            padding: 1rem 3rem;
-        }
-
         .btn-small {
             padding: 0.5rem 1.5rem;
             font-size: 0.9rem;
@@ -186,7 +171,7 @@
             color: var(--gold);
         }
 
-        /* ===== HEADER ===== */
+        /* ===== HEADER WITH CLICKABLE LOGO ===== */
         header {
             background: linear-gradient(135deg, #1a1a1a, var(--green));
             color: white;
@@ -330,126 +315,422 @@
             margin: 0 auto;
         }
 
-        /* ===== ABOUT CONTENT ===== */
-        .about-content {
-            max-width: 900px;
-            margin: 4rem auto;
+        /* ===== BRAND ANNOUNCEMENT ===== */
+        .brand-announcement {
+            background: linear-gradient(135deg, var(--gold), var(--red));
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .brand-announcement h3 {
+            color: var(--black);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.5rem;
+        }
+
+        .brand-announcement p {
+            color: var(--black);
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        /* ===== OUR STORY SECTION ===== */
+        .story-section {
             background: white;
             border-radius: 30px;
-            padding: 3rem;
+            padding: 4rem;
+            margin: 3rem 0;
             box-shadow: 0 20px 40px var(--shadow);
         }
 
-        .founders-grid {
+        .story-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-text {
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+
+        .story-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .story-highlight {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--gold);
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--green);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* ===== MISSION & VISION ===== */
+        .mission-vision {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 30px;
+            padding: 4rem;
+            color: white;
+            margin: 3rem 0;
+        }
+
+        .mission-vision h2 {
+            color: white;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .mv-box {
+            background: rgba(255,255,255,0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mv-box h3 {
+            color: var(--gold);
+            margin-top: 0;
+        }
+
+        /* ===== CORE VALUES ===== */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
             gap: 2rem;
             margin: 3rem 0;
         }
 
-        .founder-card {
-            background: var(--cream);
+        .value-card {
+            background: white;
             border-radius: 20px;
             padding: 2rem;
             text-align: center;
+            box-shadow: 0 15px 30px var(--shadow);
             transition: transform 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .founder-card:hover {
+        .value-card:hover {
             transform: translateY(-10px);
         }
 
-        .founder-image {
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(135deg, var(--gold), var(--green));
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 4rem;
-            overflow: hidden;
+        .value-symbol {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
-        .founder-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .founder-card h3 {
+        .value-name {
+            font-size: 1.3rem;
+            font-weight: 700;
             color: var(--green);
             margin-bottom: 0.5rem;
         }
 
-        .founder-title {
-            color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+        .value-meaning {
+            color: var(--gray);
+            font-size: 0.9rem;
         }
 
-        .founder-credentials {
-            font-size: 0.9rem;
-            color: var(--gray);
+        /* ===== TEAM SECTION ===== */
+        .team-section {
+            margin: 4rem 0;
+        }
+
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px var(--shadow);
+            transition: transform 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .team-card:hover {
+            transform: translateY(-15px);
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .team-card:hover .team-photo img {
+            transform: scale(1.1);
+        }
+
+        .team-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .team-info h3 {
+            margin: 0 0 0.3rem;
+            color: var(--black);
+        }
+
+        .team-info .role {
+            color: var(--green);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .team-info .credentials {
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: 500;
             margin-bottom: 1rem;
         }
 
-        .story-box {
-            background: var(--cream);
-            border-left: 4px solid var(--gold);
-            padding: 2rem;
-            margin: 2rem 0;
-            border-radius: 10px;
+        .team-info .bio {
+            color: var(--gray);
+            font-size: 0.95rem;
         }
 
-        .values-grid {
+        .team-info .profile-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .team-info .profile-link:hover {
+            color: var(--green);
+            text-decoration: underline;
+        }
+
+        /* ===== WHY CHOOSE US ===== */
+        .why-choose {
+            background: var(--cream);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 3rem 0;
+        }
+
+        .reasons-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin: 3rem 0;
         }
 
-        .value-card {
-            text-align: center;
+        .reason-card {
+            background: white;
             padding: 2rem;
-            background: var(--cream);
             border-radius: 20px;
-            transition: transform 0.3s;
+            text-align: center;
+            box-shadow: 0 10px 20px var(--shadow);
         }
 
-        .value-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .value-icon {
+        .reason-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
-        .value-card h4 {
+        .reason-card h4 {
             color: var(--green);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
-        .cta-box {
-            background: linear-gradient(135deg, var(--gold), var(--red));
-            border-radius: 20px;
-            padding: 3rem;
-            text-align: center;
+        /* ===== OFFICE LOCATIONS SECTION ===== */
+        .locations-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
             margin: 3rem 0;
         }
 
-        .cta-box h3 {
-            color: var(--black);
-            margin-top: 0;
+        .location-card {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--gold);
         }
 
-        .cta-box p {
+        .location-card h3 {
+            color: var(--green);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .location-address {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .location-badge {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .location-badge.soon {
+            background: var(--gold);
             color: var(--black);
-            font-size: 1.2rem;
+        }
+
+        .map-container {
+            background: linear-gradient(135deg, var(--cream), #e0e0e0);
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .map-overlay {
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            margin: 1rem;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .map-link {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .map-link:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        /* ===== ACCRA SKYLINE IMAGE STYLES ===== */
+        .accra-skyline {
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .accra-skyline img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .accra-skyline p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 3rem 0;
+        }
+
+        .faq-category {
             margin-bottom: 2rem;
+        }
+
+        .faq-category h3 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--green);
+        }
+
+        .faq-item h4 {
+            color: var(--black);
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-item p {
+            color: var(--gray);
         }
 
         /* ===== FOOTER ===== */
@@ -510,8 +791,23 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
-            .founders-grid,
+            .story-grid,
+            .mv-grid,
+            .locations-grid,
+            .faq-grid,
+            .founders-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .values-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -521,6 +817,10 @@
         }
 
         @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
             .footer-grid {
                 grid-template-columns: 1fr;
             }
@@ -534,12 +834,12 @@
                 gap: 1rem;
             }
             
-            .page-hero h1 {
-                font-size: 2.5rem;
+            h2 {
+                font-size: 2rem;
             }
             
-            .about-content {
-                padding: 2rem;
+            .page-hero h1 {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -556,15 +856,15 @@
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header with clickable logo -->
     <header>
         <div class="container header-content">
             <div class="logo">
                 <a href="index.html">
                     <img src="images/speako.jpg" alt="SPIL Ghana">
                     <div class="logo-text">
-                        <h1>Speak <span>Ghana</span></h1>
-                        <p>Reconnect. Speak. Thrive.</p>
+                        <h1>SPIL <span>Ghana</span></h1>
+                        <p>Speak Indigenous Languages of Ghana</p>
                     </div>
                 </a>
             </div>
@@ -594,124 +894,309 @@
     <div class="page-hero">
         <div class="container">
             <h1>About SPIL Ghana</h1>
-            <p>Reconnecting the diaspora with their roots through language and culture</p>
+            <p>Speak Indigenous Languages of Ghana — helping the diaspora reconnect with their roots</p>
         </div>
     </div>
 
-    <!-- About Content -->
+    <!-- Main Content -->
     <div class="container">
-        <div class="about-content">
-            <!-- Founders Section -->
+        <!-- Brand Announcement -->
+        <div class="brand-announcement">
+            <h3>🇬🇭 Introducing SPIL Ghana 🇬🇭</h3>
+            <p>We are evolving! Formerly known as Speak Ghana, we are now SPIL Ghana — Speak Indigenous Languages of Ghana. Same mission, same heart, clearer name. We teach Twi, Ga, Ewe, Fante, and Dagbani to help you reconnect with your roots.</p>
+        </div>
+
+        <!-- Our Story Section -->
+        <div class="story-section">
+            <h2>Our Story</h2>
+            <div class="story-grid">
+                <div>
+                    <div class="story-text">
+                        <p>SPIL Ghana was born from a simple observation: millions of people in the diaspora long to connect with their Ghanaian heritage, but don't know where to start. Language is the key that unlocks identity, culture, and belonging.</p>
+                        <p>Founded by Richard Asiamah and Charlotte Tetebea Asiamah, our school began with one simple goal: to help diaspora learners speak Ghanaian languages confidently and reconnect with their roots. What started as a few private lessons has grown into a community of learners worldwide.</p>
+                        <p>Today, we offer structured courses in Twi, Ga, Ewe, Fante, and Dagbani. Our name — SPIL Ghana (Speak Indigenous Languages of Ghana) — reflects our commitment to preserving and teaching all of Ghana's rich linguistic heritage.</p>
+                    </div>
+                    <div class="story-highlight">
+                        "We believe that language is the key that unlocks identity, heritage, and belonging. Every word learned is a step closer to home."
+                    </div>
+                </div>
+                <div>
+                    <div class="stats-grid">
+                        <div>
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Students Taught</div>
+                        </div>
+                        <div>
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Languages</div>
+                        </div>
+                        <div>
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Countries</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission & Vision -->
+        <div class="mission-vision">
+            <h2>Our Mission & Vision</h2>
+            <div class="mv-grid">
+                <div class="mv-box">
+                    <h3>🎯 Mission</h3>
+                    <p style="font-size: 1.2rem;">To reconnect the global African diaspora with their roots through language, culture, and community – one word at a time.</p>
+                </div>
+                <div class="mv-box">
+                    <h3>🌟 Vision</h3>
+                    <p style="font-size: 1.2rem;">To become Africa's leading online language school, offering every major African language to learners worldwide.</p>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px;">
+                <h3 style="color: var(--gold);">By 2030, We Envision:</h3>
+                <ul style="columns: 2; list-style: none;">
+                    <li style="margin-bottom: 0.8rem;">✓ 20+ African languages taught</li>
+                    <li style="margin-bottom: 0.8rem;">✓ 10,000+ active students globally</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Physical centers in 5 African countries</li>
+                    <li style="margin-bottom: 0.8rem;">✓ Global diaspora partnerships</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Core Values -->
+        <h2 class="center">Our Core Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-symbol">🕊️</div>
+                <div class="value-name">Sankofa</div>
+                <div class="value-meaning">Look back to move forward</div>
+            </div>
+            <div class="value-card">
+                <div class="value-symbol">🤝</div>
+                <div class="value-name">Akwaaba</div>
+                <div class="value-meaning">Everyone is welcome</div>
+            </div>
+            <div class="value-card">
+                <div class="value-symbol">🌱</div>
+                <div class="value-name">Nkakrankakra</div>
+                <div class="value-meaning">Little by little</div>
+            </div>
+            <div class="value-card">
+                <div class="value-symbol">👪</div>
+                <div class="value-name">Abusua</div>
+                <div class="value-meaning">We are family</div>
+            </div>
+            <div class="value-card">
+                <div class="value-symbol">📈</div>
+                <div class="value-name">Nkɔsoɔ</div>
+                <div class="value-meaning">Progress</div>
+            </div>
+        </div>
+
+        <!-- Our Team -->
+        <div class="team-section">
             <h2 class="center">Meet Our Founders</h2>
             
+            <!-- Founders Grid -->
             <div class="founders-grid">
                 <!-- Richard Asiamah -->
-                <div class="founder-card">
-                    <div class="founder-image">
-                        <span>👨🏾‍🏫</span>
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="images/richard.jpg" alt="Richard Asiamah">
                     </div>
-                    <h3>Richard Asiamah</h3>
-                    <div class="founder-title">Co-founder & Language Learner</div>
-                    <div class="founder-credentials">Master's Degree (Russia) | Language Learning Expert</div>
-                    <p>Richard moved to Russia without knowing a word of Russian. Two years later, he earned his Master's degree — in Russian. That experience taught him that language barriers can be broken. He founded SPIL Ghana to help the diaspora reconnect with their roots the same way.</p>
+                    <div class="team-info">
+                        <h3>Richard Asiamah</h3>
+                        <div class="role">Co-founder & Language Learner</div>
+                        <div class="bio">Richard moved to Russia without knowing a word of Russian. Two years later, he earned his Master's degree — in Russian. That experience taught him that language barriers can be broken. He founded SPIL Ghana to help the diaspora reconnect with their roots the same way.</div>
+                        <a href="https://www.linkedin.com/in/richard-asiamah-856a9b135/" target="_blank" class="profile-link">🔗 LinkedIn Profile</a>
+                    </div>
                 </div>
 
                 <!-- Charlotte Tetebea Asiamah -->
-                <div class="founder-card">
-                    <div class="founder-image">
-                        <span>👩🏾‍🏫</span>
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="images/charlotte.jpg" alt="Charlotte Tetebea Asiamah">
                     </div>
-                    <h3>Charlotte Tetebea Asiamah</h3>
-                    <div class="founder-title">Co-founder & Head of Instruction</div>
-                    <div class="founder-credentials">Degree in Akan | Diploma in Education | Trained Teacher</div>
-                    <p>Charlotte is a trained teacher with a degree in Akan and a Diploma in Education. She brings academic rigor and classroom experience to SPIL Ghana. As a native speaker and trained educator, she designs our curriculum and ensures every student learns authentically.</p>
+                    <div class="team-info">
+                        <h3>Charlotte Tetebea Asiamah</h3>
+                        <div class="role">Co-founder & Head of Instruction</div>
+                        <div class="credentials">🎓 Degree in Akan | 📜 Diploma in Education | 👩🏾‍🏫 Trained Teacher</div>
+                        <div class="bio">Charlotte is a trained teacher with a degree in Akan and a Diploma in Education. She brings academic rigor and classroom experience to SPIL Ghana. As a native speaker and trained educator, she designs our curriculum and ensures every student learns authentically.</div>
+                        <a href="https://www.linkedin.com/in/charlotte-tetebea-asiamah-67a587185/" target="_blank" class="profile-link">🔗 LinkedIn Profile</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Our Story -->
-            <h2 class="center">Our Story</h2>
-            
-            <div class="story-box">
-                <p style="font-size: 1.2rem;">SPIL Ghana was born from two journeys — one in Russia, one in Ghana.</p>
-            </div>
-            
-            <p>Richard grew up in Ghana but moved abroad for studies. When he arrived in Russia speaking zero Russian, he discovered that language isn't taught — it's shared. He learned by listening, speaking badly at first, and never giving up.</p>
-            
-            <p>Meanwhile, Charlotte was in Ghana, studying Akan at university, earning her teaching qualifications, and learning what it takes to help someone truly understand a language. She saw how many diaspora Ghanaians longed to speak their mother tongue but didn't know where to start.</p>
-            
-            <p>Together, they decided to build something. A place where the diaspora could come to learn Ghanaian languages — not from apps or textbooks, but from trained educators who understand both the language and the journey of reconnecting.</p>
-            
-            <p>That's SPIL Ghana. <strong>Speak Indigenous Languages of Ghana.</strong></p>
+            <h2 class="center">Our Instructors</h2>
+            <div class="team-grid">
+                <!-- Michael -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="images/michael.jpg" alt="Michael Agyepong Nkansah">
+                    </div>
+                    <div class="team-info">
+                        <h3>Michael Agyepong Nkansah</h3>
+                        <div class="role">Twi & Fante Instructor</div>
+                        <div class="bio">Pronunciation expert focused on building conversational confidence.</div>
+                        <a href="https://www.linkedin.com/in/mike-kan-88b19917/" target="_blank" class="profile-link">🔗 LinkedIn Profile</a>
+                    </div>
+                </div>
 
-            <!-- Why We Do This -->
-            <h2 class="center">Why We Do This</h2>
-            
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">🗣️</div>
-                    <h4>Language is Connection</h4>
-                    <p>You can't truly connect with your roots without the words your ancestors spoke. We help you find those words.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">👩🏾‍🏫</div>
-                    <h4>Quality Teaching Matters</h4>
-                    <p>With a trained teacher and Akan degree holder leading instruction, you're learning from real expertise.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">🌍</div>
-                    <h4>For the Diaspora</h4>
-                    <p>We know your journey. We've lived it. We built this for people like us — Ghanaians abroad who want to come home through language.</p>
+                <!-- Evelyn -->
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="images/evelyn.jpg" alt="Evelyn Mensah">
+                    </div>
+                    <div class="team-info">
+                        <h3>Evelyn Mensah</h3>
+                        <div class="role">Twi & Ga Instructor</div>
+                        <div class="bio">Beginner specialist with 10+ years of experience making learning fun and accessible.</div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- What We Teach -->
-            <h2 class="center">What We Teach</h2>
-            
-            <p>We specialize in Ghana's indigenous languages:</p>
-            
-            <ul style="margin: 1rem 0 2rem 2rem;">
-                <li><strong>Twi (Akan)</strong> — The most widely spoken Ghanaian language</li>
-                <li><strong>Ga</strong> — The language of Accra and its people</li>
-                <li><strong>Ewe</strong> — Spoken in the Volta Region and beyond</li>
-                <li><strong>Fante</strong> — The coastal language of Central and Western Regions</li>
-                <li><strong>Dagbani</strong> — The language of Northern Ghana</li>
-            </ul>
-            
-            <p>We offer live online classes for adults, kids, and teens — designed specifically for diaspora learners who want to speak, not just study.</p>
+        <!-- Why Choose Us -->
+        <div class="why-choose">
+            <h2 class="center">Why Choose SPIL Ghana?</h2>
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <div class="reason-icon">🗣️</div>
+                    <h4>80/20 Method</h4>
+                    <p>Students talk 80% of class time. You learn by speaking, not just listening.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">👥</div>
+                    <h4>Native Teachers</h4>
+                    <p>All instructors are native Ghanaian speakers with years of teaching experience.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">📚</div>
+                    <h4>Complete Textbook</h4>
+                    <p>300+ page textbook included FREE with every paid plan.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">💬</div>
+                    <h4>WhatsApp Community</h4>
+                    <p>Practice with fellow learners between classes.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🎬</div>
+                    <h4>Cultural Immersion</h4>
+                    <p>Movies, music, and proverbs in every lesson.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🔄</div>
+                    <h4>Flexible Scheduling</h4>
+                    <p>Choose your own day and time that works for you.</p>
+                </div>
+            </div>
+        </div>
 
-            <!-- Our Approach -->
-            <h2 class="center">Our Approach</h2>
+        <!-- OFFICE LOCATIONS SECTION -->
+        <div class="locations-section">
+            <h2 class="center">Our Locations</h2>
             
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">💬</div>
-                    <h4>Speak 80% of Class Time</h4>
-                    <p>You learn to talk by talking. We make sure you're speaking most of the class.</p>
+            <div class="locations-grid">
+                <div class="location-card">
+                    <span class="location-badge">📍 Main Office</span>
+                    <h3>Kumasi Campus</h3>
+                    <div class="location-address">
+                        <strong>KNUST Campus</strong><br>
+                        Kumasi, Ashanti Region<br>
+                        Ghana
+                    </div>
+                    <a href="https://maps.google.com/?q=KNUST+Kumasi+Ghana" target="_blank" class="btn btn-gold btn-small">Get Directions →</a>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">🎮</div>
-                    <h4>Games & Stories</h4>
-                    <p>Language lives in joy. We use games, stories, and songs — not boring drills.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">⏱️</div>
-                    <h4>Patience Over Perfection</h4>
-                    <p>Mistakes are how you learn. We never rush you. We never shame you. You'll get there.</p>
+
+                <div class="location-card">
+                    <span class="location-badge soon">🚧 Opening Soon</span>
+                    <h3>Accra Office</h3>
+                    <div class="location-address">
+                        <strong>Coming Soon</strong><br>
+                        Our Accra office will be opening soon.<br>
+                        Currently serving students online and at our Kumasi campus.
+                    </div>
+                    <a href="contact.html" class="btn btn-primary btn-small">Contact Us for Updates</a>
                 </div>
             </div>
 
-            <!-- Our Promise -->
-            <div class="story-box">
-                <h3 style="color: var(--green); margin-top: 0;">Our Promise to You</h3>
-                <p>Whether you only know "Akwaaba" or you can already hold a simple conversation — come as you are. We'll meet you where you are and walk with you from there.</p>
-                <p style="margin-top: 1rem;"><strong>Language is not just words. It's connection. It's home. Let us help you find yours.</strong></p>
+            <!-- Accra Skyline Image -->
+            <div class="accra-skyline">
+                <img src="images/accra-skyline.png" alt="Accra skyline at sunset">
+                <p>Our future Accra office location</p>
             </div>
 
-            <!-- Call to Action -->
-            <div class="cta-box">
-                <h3>Ready to Start Your Journey?</h3>
-                <p>Free March classes — no payment required. Try a class and see how we teach.</p>
-                <a href="index.html#march-enroll" class="btn btn-primary">Sign Up for Free →</a>
+            <!-- Interactive Map -->
+            <div class="map-container">
+                <div class="map-overlay">
+                    <strong>📍 KNUST Campus, Kumasi</strong>
+                </div>
+                <div style="text-align: center;">
+                    <a href="https://maps.google.com/?q=KNUST+Kumasi+Ghana" target="_blank" class="map-link">Open in Google Maps →</a>
+                    <a href="https://www.openstreetmap.org/search?query=KNUST%20Kumasi%20Ghana" target="_blank" class="map-link" style="background: var(--gold); color: var(--black);">Open in OpenStreetMap</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="center">Frequently Asked Questions</h2>
+            
+            <div class="faq-category">
+                <h3>General Questions</h3>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>What does SPIL stand for?</h4>
+                        <p>SPIL stands for Speak Indigenous Languages of Ghana. We teach Twi, Ga, Ewe, Fante, and Dagbani.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Who are your classes for?</h4>
+                        <p>Anyone who wants to learn Ghanaian languages! We specialize in diaspora learners, but welcome everyone.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h3>Payment & Pricing</h3>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>What payment methods do you accept?</h4>
+                        <p>PayPal, Wise, Mobile Money, and Bank Transfer.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Can I switch plans later?</h4>
+                        <p>Yes! Upgrade or downgrade anytime. Changes take effect next month.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h3>Classes & Scheduling</h3>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>What if I miss a class?</h4>
+                        <p>Recordings for group classes. Private lessons reschedule with 24h notice.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>How do group schedules work?</h4>
+                        <p>We find a time that works for the majority. You vote on the final schedule.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h3>Teachers & Support</h3>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>What if I don't like my teacher?</h4>
+                        <p>Request a change - we'll find you a better match at no extra cost.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Are teachers native speakers?</h4>
+                        <p>Yes! All our teachers are native Ghanaian speakers.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -722,10 +1207,11 @@
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>SPIL Ghana</h4>
+                    <p>Speak Indigenous Languages of Ghana</p>
                     <p>📍 KNUST Campus, Kumasi</p>
                     <p>🏗️ Accra Office (Opening Soon)</p>
-                    <p>📞 +233 55 226 3323</p>
                     <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
+                    <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
                 </div>
                 
                 <div class="footer-section">
@@ -765,13 +1251,81 @@
     <!-- Event Tracking -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Track CTA button clicks
-            const ctaButtons = document.querySelectorAll('.cta-box .btn');
-            ctaButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    gtag('event', 'cta_click', {
-                        'event_category': 'about_page',
-                        'event_label': 'about_cta'
+            // Track Form Submissions
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function() {
+                    let formName = 'unknown_form';
+                    if (this.id) formName = this.id;
+                    else if (this.name) formName = this.name;
+                    else if (this.classList.contains('enrollment-form')) formName = 'enrollment_form';
+                    else if (this.classList.contains('contact-form')) formName = 'contact_form';
+                    
+                    gtag('event', 'form_submission', {
+                        'event_category': 'engagement',
+                        'event_label': formName
+                    });
+                });
+            });
+            
+            // Track PDF Downloads
+            const pdfLinks = document.querySelectorAll('a[href$=".pdf"], a[download]');
+            pdfLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    let pdfName = 'unknown_pdf';
+                    if (this.href) {
+                        const parts = this.href.split('/');
+                        pdfName = parts[parts.length - 1];
+                    }
+                    
+                    gtag('event', 'pdf_download', {
+                        'event_category': 'resource',
+                        'event_label': pdfName
+                    });
+                });
+            });
+            
+            // Track WhatsApp Clicks
+            const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
+            whatsappLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    gtag('event', 'whatsapp_click', {
+                        'event_category': 'contact',
+                        'event_label': 'whatsapp_button'
+                    });
+                });
+            });
+            
+            // Track Phone Number Clicks
+            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+            phoneLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    gtag('event', 'phone_click', {
+                        'event_category': 'contact',
+                        'event_label': 'phone_number'
+                    });
+                });
+            });
+            
+            // Track Email Clicks
+            const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+            emailLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    gtag('event', 'email_click', {
+                        'event_category': 'contact',
+                        'event_label': 'email_link'
+                    });
+                });
+            });
+            
+            // Track Navigation Clicks
+            const navLinks = document.querySelectorAll('.nav-links a, .btn');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const linkText = this.innerText.trim() || 'nav_link';
+                    gtag('event', 'navigation_click', {
+                        'event_category': 'navigation',
+                        'event_label': linkText
                     });
                 });
             });
