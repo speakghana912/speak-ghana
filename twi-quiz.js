@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             question: "What is the response to 'Wo ho te sɛn?'",
-            options: ["Me ho ye", "Me dɔ wo", "Yoo", "Maakye"],
+            options: ["Me ho yɛ", "Me dɔ wo", "Yoo", "Maakye"],
             correct: 0,
             level: "beginner"
         },
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Elementary Questions (6-10)
         {
             question: "How do you say 'How are you?' in Twi?",
-            options: ["Wo ho te sɛn?", "Me ho ye", "Yoo", "Nante yie"],
+            options: ["Wo ho te sɛn?", "Me ho yɛ", "Yoo", "Nante yie"],
             correct: 0,
             level: "elementary"
         },
@@ -102,12 +102,12 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             question: "How do you ask 'Where are you going?' in Twi?",
-            options: ["Wo ho te sɛn?", "Wɔrekɔ hen?", "Me rekɔ fie", "Ɛyɛ pa ara"],
+            options: ["Wo ho te sɛn?", "Worekɔ hen?", "Me rekɔ fie", "Ɛyɛ pa ara"],
             correct: 1,
             level: "intermediate"
         },
         {
-            question: "What does 'Kakra kakra' mean?",
+            question: "What does 'nkakrankakra' mean?",
             options: ["Quickly", "Little by little", "Very much", "Never mind"],
             correct: 1,
             level: "intermediate"
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Advanced Questions (16-20)
         {
             question: "What is the Twi word for 'patience'?",
-            options: ["Abotre", "Anigye", "Awɔ", "Asomdwee"],
+            options: ["Abotare", "Anigye", "Awɔ", "Asomdwee"],
             correct: 0,
             level: "advanced"
         },
