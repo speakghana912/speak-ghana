@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { emoji: "🐔", english: "Chicken", twi: "akokɔ" },
         { emoji: "🐮", english: "Cow", twi: "nantwie" },
         { emoji: "🐑", english: "Sheep", twi: "odwan" },
-        { emoji: "🐘", english: "Elephant", twi: "sonon" },
+        { emoji: "🐘", english: "Elephant", twi: "ɔsono" },
         { emoji: "🐒", english: "Monkey", twi: "ɔkwakuo" },
         { emoji: "🐊", english: "Crocodile", twi: "denkyem" },
         { emoji: "🐠", english: "Fish", twi: "mpataa" }
