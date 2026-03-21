@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Color pool - will randomize order
     const colorPool = [
         { name: "Red", twi: "kɔkɔɔ", emoji: "🟥", bg: "#FF4444" },
-        { name: "Yellow", twi: "ahaawa", emoji: "🟨", bg: "#FFD700" },
-        { name: "Blue", twi: "bru", emoji: "🟦", bg: "#4444FF" },
-        { name: "Green", twi: "ahabanmon", emoji: "🟩", bg: "#44FF44" },
+        { name: "Yellow", twi: "akokɔsradeɛ", emoji: "🟨", bg: "#FFD700" },
+        { name: "Blue", twi: "bibire", emoji: "🟦", bg: "#4444FF" },
+        { name: "Green", twi: "ahabanmono", emoji: "🟩", bg: "#44FF44" },
         { name: "Black", twi: "tuntum", emoji: "⬛", bg: "#333333" },
         { name: "White", twi: "fitaa", emoji: "⬜", bg: "#FFFFFF", textColor: "black" },
-        { name: "Purple", twi: "benkum", emoji: "🟪", bg: "#AA44FF" },
-        { name: "Orange", twi: "akokɔsrade", emoji: "🟧", bg: "#FF8844" }
+        { name: "Purple", twi: "beredum", emoji: "🟪", bg: "#AA44FF" },
+        { name: "Orange", twi: "akaahono", emoji: "🟧", bg: "#FF8844" }
     ];
 
     let colors = [];
