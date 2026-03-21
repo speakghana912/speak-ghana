@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { emoji: "🐔", twi: "akokɔ" },
         { emoji: "🐮", twi: "nantwie" },
         { emoji: "🐑", twi: "odwan" },
-        { emoji: "🐘", twi: "sonon" },
-        { emoji: "🐒", twi: "kwakwa" },
+        { emoji: "🐘", twi: "ɔsono" },
+        { emoji: "🐒", twi: "ɔkwakuo" },
         { emoji: "🐊", twi: "denkyem" }
     ];
 
