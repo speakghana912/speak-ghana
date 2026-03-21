@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
         { number: 1, twi: "Baako", emoji: "🐘" },
         { number: 2, twi: "Mmienu", emoji: "🐘" },
         { number: 3, twi: "Mmiɛnsa", emoji: "🐘" },
-        { number: 4, twi: "Mnan", emoji: "🐘" },
+        { number: 4, twi: "Ɛnan", emoji: "🐘" },
         { number: 5, twi: "Enum", emoji: "🐘" },
         { number: 1, twi: "Baako", emoji: "🐶" },
         { number: 2, twi: "Mmienu", emoji: "🐶" },
         { number: 3, twi: "Mmiɛnsa", emoji: "🐱" },
-        { number: 4, twi: "Mnan", emoji: "🐔" },
+        { number: 4, twi: "Ɛnan", emoji: "🐔" },
         { number: 5, twi: "Enum", emoji: "🐑" }
     ];
 
