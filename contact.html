@@ -966,7 +966,36 @@
                     
                     <div class="form-group">
                         <label>Phone</label>
-                        <input type="tel" name="phone" placeholder="+233 XX XXX XXXX">
+                        <div style="display: flex; gap: 0.5rem;">
+                            <select name="phone_code" style="width: 30%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 10px; background: white;">
+                                <option value="+233">🇬🇭 +233 (Ghana)</option>
+                                <option value="+1">🇺🇸 +1 (USA/Canada)</option>
+                                <option value="+44">🇬🇧 +44 (UK)</option>
+                                <option value="+49">🇩🇪 +49 (Germany)</option>
+                                <option value="+33">🇫🇷 +33 (France)</option>
+                                <option value="+31">🇳🇱 +31 (Netherlands)</option>
+                                <option value="+234">🇳🇬 +234 (Nigeria)</option>
+                                <option value="+27">🇿🇦 +27 (South Africa)</option>
+                                <option value="+61">🇦🇺 +61 (Australia)</option>
+                                <option value="+41">🇨🇭 +41 (Switzerland)</option>
+                                <option value="+46">🇸🇪 +46 (Sweden)</option>
+                                <option value="+45">🇩🇰 +45 (Denmark)</option>
+                                <option value="+47">🇳🇴 +47 (Norway)</option>
+                                <option value="+358">🇫🇮 +358 (Finland)</option>
+                                <option value="+353">🇮🇪 +353 (Ireland)</option>
+                                <option value="+32">🇧🇪 +32 (Belgium)</option>
+                                <option value="+34">🇪🇸 +34 (Spain)</option>
+                                <option value="+39">🇮🇹 +39 (Italy)</option>
+                                <option value="+351">🇵🇹 +351 (Portugal)</option>
+                                <option value="+852">🇭🇰 +852 (Hong Kong)</option>
+                                <option value="+65">🇸🇬 +65 (Singapore)</option>
+                                <option value="+971">🇦🇪 +971 (UAE)</option>
+                                <option value="+966">🇸🇦 +966 (Saudi Arabia)</option>
+                                <option value="+974">🇶🇦 +974 (Qatar)</option>
+                            </select>
+                            <input type="tel" name="phone" placeholder="Phone number" style="width: 70%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 10px; background: white;">
+                        </div>
+                        <small style="color: var(--gray);">Include area code without the + sign</small>
                     </div>
                     
                     <div class="form-group">
