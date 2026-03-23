@@ -416,22 +416,39 @@
             return shuffled;
         }
 
-        // Load current challenge
+        // Shuffle options array - KEY FIX!
+        function shuffleOptions(options) {
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+            return options;
+        }
+
+        // Load current challenge with RANDOMIZED button order
         function loadChallenge() {
             const challenge = currentQuestions[currentIndex];
             if (!challenge) return;
             
             soundHintSpan.textContent = `Click the speaker to hear the sound`;
             
-            // Create two buttons: correct and wrong options
-            optionsGrid.innerHTML = `
-                <button class="option-btn" data-value="${challenge.correct}">${challenge.correct.toUpperCase()}</button>
-                <button class="option-btn" data-value="${challenge.wrong}">${challenge.wrong.toUpperCase()}</button>
-            `;
+            // Create options array with correct and wrong, then SHUFFLE
+            const optionsArray = [
+                { value: challenge.correct, label: challenge.correct.toUpperCase() },
+                { value: challenge.wrong, label: challenge.wrong.toUpperCase() }
+            ];
             
-            // Add click handlers
-            document.querySelectorAll('.option-btn').forEach(btn => {
-                btn.addEventListener('click', () => checkAnswer(btn.dataset.value, challenge.correct, btn));
+            // SHUFFLE THE OPTIONS so correct answer isn't always first
+            const shuffledOptions = shuffleOptions([...optionsArray]);
+            
+            optionsGrid.innerHTML = '';
+            shuffledOptions.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = option.label;
+                btn.dataset.value = option.value;
+                btn.onclick = () => checkAnswer(option.value, challenge.correct, btn);
+                optionsGrid.appendChild(btn);
             });
             
             answered = false;
@@ -441,7 +458,7 @@
             
             // Update counter and progress
             counterDisplay.textContent = `Question ${currentIndex + 1} / ${currentQuestions.length}`;
-            const progressPercent = ((currentIndex) / currentQuestions.length) * 100;
+            const progressPercent = (currentIndex / currentQuestions.length) * 100;
             progressFill.style.width = `${progressPercent}%`;
         }
 
@@ -470,8 +487,6 @@
                 score++;
                 feedbackDiv.innerHTML = `✅ Correct! You heard ${correct.toUpperCase()}!`;
                 feedbackDiv.className = 'feedback correct-feedback';
-                
-                // Play a little celebration sound? (optional)
             } else {
                 buttonElement.classList.add('wrong');
                 const challenge = currentQuestions[currentIndex];
@@ -484,10 +499,8 @@
                     pair: challenge.pair,
                     hint: challenge.hint
                 });
-            }
-            
-            // Mark correct answer if player got it wrong
-            if (selected !== correct) {
+                
+                // Mark correct answer if player got it wrong
                 allButtons.forEach(btn => {
                     if (btn.dataset.value === correct) {
                         btn.classList.add('correct');
