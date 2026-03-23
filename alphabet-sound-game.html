@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Alphabet Sound Game | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #FDF8F2 0%, #F5E6D3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .game-container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: #2A9D8F;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .sound-card {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .play-button {
+            background: #D4A373;
+            border: none;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: #c49a6c;
+        }
+
+        .sound-hint {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .option-btn {
+            background: #FDF8F2;
+            border: 2px solid #2A9D8F;
+            border-radius: 60px;
+            padding: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: monospace;
+        }
+
+        .option-btn:hover {
+            background: #2A9D8F;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .option-btn.correct {
+            background: #2ecc71;
+            border-color: #2ecc71;
+            color: white;
+            pointer-events: none;
+        }
+
+        .option-btn.wrong {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            color: white;
+            pointer-events: none;
+        }
+
+        .option-btn.disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .score-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #FDF8F2;
+            border-radius: 60px;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2A9D8F;
+        }
+
+        .question-counter {
+            color: #666;
+        }
+
+        .next-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .next-btn:hover {
+            background: #1f7a6e;
+            transform: translateY(-2px);
+        }
+
+        .next-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            text-align: center;
+        }
+
+        .final-score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin: 1rem 0;
+        }
+
+        .restart-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container" id="gameContainer">
+        <h1>🎵 Match the Sound to the Letter</h1>
+        <p class="subtitle">Listen to Richard's voice, then click the matching letter</p>
+
+        <div id="gameArea">
+            <div class="sound-card">
+                <button class="play-button" id="playSoundBtn">🔊</button>
+                <div class="sound-hint" id="soundHint">Click the speaker to hear the sound</div>
+            </div>
+
+            <div class="options-grid" id="optionsGrid"></div>
+
+            <div class="score-area">
+                <span class="score" id="scoreDisplay">Score: 0</span>
+                <span class="question-counter" id="counterDisplay">Question 1 / 10</span>
+                <button class="next-btn" id="nextBtn">Next →</button>
+            </div>
+            <div class="feedback" id="feedback"></div>
+        </div>
+
+        <div id="resultsArea" class="results hide">
+            <h2>🎉 Game Complete!</h2>
+            <div class="final-score" id="finalScore">0 / 10</div>
+            <p id="resultMessage"></p>
+            <button class="restart-btn" id="restartBtn">Play Again →</button>
+        </div>
+    </div>
+
+    <script>
+        // ===== TW ALPHABET DATA WITH YOUR AUDIO FILES =====
+        // All 22 letters with paths to your individual sound files
+        const letters = [
+            { letter: "A", audioFile: "audio/twi-alphabet/letter-a.m4a" },
+            { letter: "B", audioFile: "audio/twi-alphabet/letter-b.m4a" },
+            { letter: "D", audioFile: "audio/twi-alphabet/letter-d.m4a" },
+            { letter: "E", audioFile: "audio/twi-alphabet/letter-e.m4a" },
+            { letter: "Ɛ", audioFile: "audio/twi-alphabet/letter-ɛ.m4a" },
+            { letter: "F", audioFile: "audio/twi-alphabet/letter-f.m4a" },
+            { letter: "G", audioFile: "audio/twi-alphabet/letter-g.m4a" },
+            { letter: "H", audioFile: "audio/twi-alphabet/letter-h.m4a" },
+            { letter: "I", audioFile: "audio/twi-alphabet/letter-i.m4a" },
+            { letter: "K", audioFile: "audio/twi-alphabet/letter-k.m4a" },
+            { letter: "L", audioFile: "audio/twi-alphabet/letter-l.m4a" },
+            { letter: "M", audioFile: "audio/twi-alphabet/letter-m.m4a" },
+            { letter: "N", audioFile: "audio/twi-alphabet/letter-n.m4a" },
+            { letter: "O", audioFile: "audio/twi-alphabet/letter-o.m4a" },
+            { letter: "Ɔ", audioFile: "audio/twi-alphabet/letter-ɔ.m4a" },
+            { letter: "P", audioFile: "audio/twi-alphabet/letter-p.m4a" },
+            { letter: "R", audioFile: "audio/twi-alphabet/letter-r.m4a" },
+            { letter: "S", audioFile: "audio/twi-alphabet/letter-s.m4a" },
+            { letter: "T", audioFile: "audio/twi-alphabet/letter-t.m4a" },
+            { letter: "U", audioFile: "audio/twi-alphabet/letter-u.m4a" },
+            { letter: "W", audioFile: "audio/twi-alphabet/letter-w.m4a" },
+            { letter: "Y", audioFile: "audio/twi-alphabet/letter-y.m4a" }
+        ];
+
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let answered = false;
+        let currentAudio = null;
+
+        // DOM Elements
+        const gameArea = document.getElementById('gameArea');
+        const resultsArea = document.getElementById('resultsArea');
+        const playSoundBtn = document.getElementById('playSoundBtn');
+        const optionsGrid = document.getElementById('optionsGrid');
+        const nextBtn = document.getElementById('nextBtn');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const counterDisplay = document.getElementById('counterDisplay');
+        const feedbackDiv = document.getElementById('feedback');
+        const finalScoreSpan = document.getElementById('finalScore');
+        const resultMessage = document.getElementById('resultMessage');
+        const restartBtn = document.getElementById('restartBtn');
+        const soundHintSpan = document.getElementById('soundHint');
+
+        // Play audio file
+        function playAudio(audioFile) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            currentAudio = new Audio(audioFile);
+            currentAudio.play().catch(error => {
+                console.error('Error playing audio:', error);
+                soundHintSpan.textContent = 'Audio loading... Click again';
+            });
+        }
+
+        // Get 10 random questions
+        function getRandomQuestions() {
+            const shuffled = [...letters];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled.slice(0, 10);
+        }
+
+        // Generate random options (3 wrong + 1 correct)
+        function generateOptions(correctLetter) {
+            const allLetters = letters.map(l => l.letter);
+            const otherLetters = allLetters.filter(l => l !== correctLetter);
+            const wrongLetters = [];
+            const shuffledOthers = [...otherLetters];
+            for (let i = shuffledOthers.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledOthers[i], shuffledOthers[j]] = [shuffledOthers[j], shuffledOthers[i]];
+            }
+            for (let i = 0; i < 3 && i < shuffledOthers.length; i++) {
+                wrongLetters.push(shuffledOthers[i]);
+            }
+            const options = [...wrongLetters, correctLetter];
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+            return options;
+        }
+
+        // Load current question
+        function loadQuestion() {
+            const question = currentQuestions[currentIndex];
+            if (!question) return;
+            
+            soundHintSpan.textContent = `Click the speaker to hear the sound`;
+            
+            const options = generateOptions(question.letter);
+            
+            optionsGrid.innerHTML = '';
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                btn.onclick = () => checkAnswer(opt, question.letter, btn);
+                optionsGrid.appendChild(btn);
+            });
+            
+            answered = false;
+            nextBtn.disabled = true;
+            feedbackDiv.innerHTML = '';
+            
+            counterDisplay.textContent = `Question ${currentIndex + 1} / ${currentQuestions.length}`;
+        }
+
+        // Play current question sound
+        function playCurrentSound() {
+            const question = currentQuestions[currentIndex];
+            if (question && question.audioFile) {
+                playAudio(question.audioFile);
+                soundHintSpan.textContent = `Listening... which letter makes this sound?`;
+            } else {
+                soundHintSpan.textContent = `Audio file not found`;
+            }
+        }
+
+        // Check answer
+        function checkAnswer(selected, correct, buttonElement) {
+            if (answered) return;
+            
+            answered = true;
+            
+            const allButtons = document.querySelectorAll('.option-btn');
+            
+            if (selected === correct) {
+                buttonElement.classList.add('correct');
+                score++;
+                feedbackDiv.innerHTML = '✅ Correct!';
+                feedbackDiv.style.color = '#2ecc71';
+            } else {
+                buttonElement.classList.add('wrong');
+                feedbackDiv.innerHTML = `❌ Wrong! The correct answer is ${correct}.`;
+                feedbackDiv.style.color = '#e74c3c';
+                
+                allButtons.forEach(btn => {
+                    if (btn.textContent === correct) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            allButtons.forEach(btn => {
+                btn.classList.add('disabled');
+                btn.disabled = true;
+            });
+            
+            nextBtn.disabled = false;
+            scoreDisplay.textContent = `Score: ${score}`;
+        }
+
+        // Next question
+        function nextQuestion() {
+            if (!answered) return;
+            
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+            
+            currentIndex++;
+            
+            if (currentIndex < currentQuestions.length) {
+                loadQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        // End game
+        function endGame() {
+            gameArea.classList.add('hide');
+            resultsArea.classList.remove('hide');
+            
+            finalScoreSpan.textContent = `${score} / ${currentQuestions.length}`;
+            
+            let message = '';
+            if (score === 10) {
+                message = 'Perfect! You know all the sounds! 🎉';
+            } else if (score >= 8) {
+                message = 'Great job! Practice the ones you missed. 👍🏾';
+            } else if (score >= 6) {
+                message = 'Good effort! Play again to improve. 💪🏾';
+            } else {
+                message = 'Keep practicing! Listen carefully and try again. 🇬🇭';
+            }
+            resultMessage.textContent = message;
+        }
+
+        // Restart game
+        function restartGame() {
+            currentQuestions = getRandomQuestions();
+            currentIndex = 0;
+            score = 0;
+            answered = false;
+            
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+            
+            scoreDisplay.textContent = `Score: 0`;
+            
+            gameArea.classList.remove('hide');
+            resultsArea.classList.add('hide');
+            
+            loadQuestion();
+        }
+
+        // Initialize game
+        function initGame() {
+            currentQuestions = getRandomQuestions();
+            currentIndex = 0;
+            score = 0;
+            answered = false;
+            
+            scoreDisplay.textContent = `Score: 0`;
+            
+            loadQuestion();
+            
+            playSoundBtn.onclick = playCurrentSound;
+            nextBtn.onclick = nextQuestion;
+            restartBtn.onclick = restartGame;
+        }
+
+        initGame();
+    </script>
+</body>
+</html>
