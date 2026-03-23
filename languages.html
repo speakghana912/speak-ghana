@@ -148,6 +148,23 @@
             font-size: 0.9rem;
         }
 
+        /* ===== PDF DOWNLOAD SECTION ===== */
+        .pdf-download-section {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+            border: 1px solid var(--gold);
+        }
+
+        .pdf-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
         /* ===== TOP BAR ===== */
         .top-bar {
             background: var(--black);
@@ -318,15 +335,6 @@
             max-width: 700px;
             margin: 0 auto;
             opacity: 0.95;
-        }
-
-        /* ===== PRICING DOCUMENTS BUTTONS ===== */
-        .pricing-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
         }
 
         /* ===== LANGUAGE SECTION ===== */
@@ -920,10 +928,6 @@
         <div class="container">
             <h1>Our Languages</h1>
             <p>Choose from five Ghanaian languages. Each with programs for adults, kids, and families.</p>
-            <div class="pricing-buttons">
-                <a href="pricing-adult.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Adult Pricing</a>
-                <a href="pricing-kids-teens.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Kids & Teens Pricing</a>
-            </div>
         </div>
     </section>
 
@@ -1223,6 +1227,13 @@
                 </div>
             </div>
 
+            <!-- Adult Pricing PDF Download -->
+            <div class="pdf-download-section">
+                <div class="pdf-buttons">
+                    <a href="pdf/pricing-adult.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Adult Pricing (PDF)</a>
+                </div>
+            </div>
+
             <!-- Scholarship & Certificate Section -->
             <div class="scholarship-section">
                 <div class="scholarship-flex">
@@ -1284,6 +1295,13 @@
                 </div>
                 <div style="text-align: center; margin-top: 2rem;">
                     <a href="kids-teens.html" class="btn btn-gold">View All Kids & Teen Programs →</a>
+                </div>
+            </div>
+
+            <!-- Kids & Teens Pricing PDF Download -->
+            <div class="pdf-download-section">
+                <div class="pdf-buttons">
+                    <a href="pdf/pricing-kids-teens.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Kids & Teens Pricing (PDF)</a>
                 </div>
             </div>
 
