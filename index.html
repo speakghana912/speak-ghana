@@ -37,6 +37,39 @@
             --shadow: rgba(0, 0, 0, 0.08);
         }
 
+        /* ===== SCHOLARSHIP BLINKING ANIMATION ===== */
+        @keyframes blink {
+            0% { background: linear-gradient(135deg, var(--gold), var(--red)); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
+            50% { background: linear-gradient(135deg, var(--red), var(--gold)); box-shadow: 0 0 20px 5px rgba(212, 163, 115, 0.6); }
+            100% { background: linear-gradient(135deg, var(--gold), var(--red)); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
+        }
+
+        .scholarship-blink {
+            animation: blink 1.5s ease-in-out infinite;
+            border-radius: 30px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .scholarship-blink:hover {
+            transform: scale(1.02);
+        }
+
+        .scholarship-blink h3 {
+            color: var(--black);
+            margin: 0 0 0.5rem;
+        }
+
+        .scholarship-blink p {
+            color: var(--black);
+            margin: 0;
+        }
+
         /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
@@ -157,46 +190,6 @@
         .btn-small {
             padding: 0.5rem 1.5rem;
             font-size: 0.9rem;
-        }
-
-        /* ===== SCHOLARSHIP BLINKING ANIMATION ===== */
-        @keyframes blink {
-            0% { background: linear-gradient(135deg, var(--gold), var(--red)); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
-            50% { background: linear-gradient(135deg, var(--red), var(--gold)); box-shadow: 0 0 20px 5px rgba(212, 163, 115, 0.6); }
-            100% { background: linear-gradient(135deg, var(--gold), var(--red)); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
-        }
-
-        .scholarship-blink {
-            animation: blink 1.5s ease-in-out infinite;
-            border-radius: 30px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .scholarship-blink:hover {
-            transform: scale(1.02);
-        }
-
-        .scholarship-blink h3 {
-            color: var(--black);
-            margin: 0 0 0.5rem;
-        }
-
-        .scholarship-blink p {
-            color: var(--black);
-            margin: 0;
-        }
-
-        /* ===== PRICING BUTTONS ===== */
-        .pricing-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin: 2rem 0;
         }
 
         /* ===== TOP BAR ===== */
@@ -420,33 +413,6 @@
             border-left: 4px solid var(--gold);
         }
 
-        .free-badge {
-            background: linear-gradient(135deg, var(--gold), var(--red));
-            color: var(--black);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            display: inline-block;
-            margin: 1rem 0;
-            font-weight: 700;
-            font-size: 1.2rem;
-            animation: pulse 2s infinite;
-        }
-
-        .free-badge a {
-            color: var(--black);
-            text-decoration: none;
-        }
-
-        .free-badge a:hover {
-            text-decoration: underline;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
         /* Welcome Video Section */
         .welcome-video-section {
             padding: 4rem 0;
@@ -544,7 +510,6 @@
             height: 100px;
             border-radius: 50%;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             box-shadow: 0 10px 20px var(--shadow);
@@ -573,54 +538,23 @@
             box-shadow: 0 20px 40px var(--shadow);
         }
 
-        /* ===== MARCH BANNER ===== */
-        .march-banner {
-            background: linear-gradient(135deg, var(--gold), var(--red));
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            margin: 3rem 0 2rem;
-            box-shadow: 0 20px 40px rgba(231, 111, 81, 0.2);
-        }
-
-        .march-banner h3 {
-            color: var(--black);
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .march-banner p {
-            color: var(--black);
-            font-size: 1.3rem;
-        }
-
-        .march-banner a {
-            color: var(--black);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .march-banner a:hover {
-            text-decoration: underline;
-        }
-
-        /* ===== MARCH ENROLLMENT FORM ===== */
-        .march-enrollment {
+        /* ===== ENROLLMENT FORM ===== */
+        .enrollment-section {
             background: linear-gradient(135deg, var(--gold), var(--red));
             border-radius: 30px;
             padding: 3rem;
-            margin: 0 0 4rem 0;
+            margin: 4rem 0;
             box-shadow: 0 20px 40px rgba(231, 111, 81, 0.3);
         }
 
-        .march-enrollment h3 {
+        .enrollment-section h3 {
             color: var(--black);
             text-align: center;
             font-size: 2rem;
             margin-bottom: 1rem;
         }
 
-        .march-enrollment p {
+        .enrollment-section p {
             color: var(--black);
             text-align: center;
             font-size: 1.2rem;
@@ -1391,14 +1325,11 @@
     <section class="hero">
         <div class="hero-split">
             <div class="hero-content">
-                <div class="free-badge">
-                    <a href="#march-enroll">🎉 MARCH 2026 – ALL LESSONS FREE! 🎉</a>
-                </div>
                 <h2>Akwaaba! — Welcome Home</h2>
                 <p>Reconnect with your roots through language, culture, and community. Ghanaian language classes for the global African diaspora.</p>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                     <a href="languages.html" class="btn btn-gold btn-large">Explore Languages</a>
-                    <a href="#march-enroll" class="btn btn-primary btn-large">Free Trial</a>
+                    <a href="#enroll" class="btn btn-primary btn-large">Start Learning</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -1409,14 +1340,6 @@
             </div>
         </div>
     </section>
-
-    <!-- PDF Download Buttons -->
-    <div class="container">
-        <div class="pricing-buttons">
-            <a href="pdf/pricing-adult.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Adult Pricing</a>
-            <a href="pdf/pricing-kids-teens.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Kids & Teens Pricing</a>
-        </div>
-    </div>
 
     <!-- Welcome Video Section -->
     <section class="welcome-video-section">
@@ -1436,7 +1359,7 @@
             <p style="margin-top: 0.5rem;">📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p>
         </a>
 
-        <!-- ===== QUIZ BANNER (Top of page) ===== -->
+        <!-- ===== QUIZ BANNER ===== -->
         <div class="quiz-banner">
             <div class="quiz-banner-content">
                 <div class="quiz-icon">📝</div>
@@ -1448,19 +1371,13 @@
             </div>
         </div>
 
-        <!-- March Banner -->
-        <div class="march-banner" id="march-banner">
-            <h3><a href="#march-enroll">🎉 MARCH 2026 – ALL LESSONS FREE! 🎉</a></h3>
-            <p>Try any class for free throughout March. No payment required. <a href="#march-enroll">Secure your spot for April →</a></p>
-        </div>
-
-        <!-- MARCH ENROLLMENT FORM -->
-        <div id="march-enroll" class="march-enrollment">
-            <h3>🎉 Sign Up for Free March Classes</h3>
-            <p>No payment required • Try any class • Secure your spot for April</p>
+        <!-- ENROLLMENT FORM -->
+        <div id="enroll" class="enrollment-section">
+            <h3>Start Your Language Journey Today</h3>
+            <p>Choose your language and package — we'll contact you within 24 hours</p>
             
             <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
-                <input type="hidden" name="form_type" value="March Free Classes">
+                <input type="hidden" name="form_type" value="Enrollment">
                 
                 <div class="form-row">
                     <div class="form-group">
@@ -1590,8 +1507,8 @@
                     <textarea name="notes" rows="3" placeholder="Tell us anything else you'd like us to know"></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn">Sign Up for Free March Classes</button>
-                <p style="text-align: center; margin-top: 1rem; color: var(--black);">We'll send you class details within 24 hours</p>
+                <button type="submit" class="submit-btn">Start Your Journey</button>
+                <p style="text-align: center; margin-top: 1rem; color: var(--black);">We'll contact you within 24 hours</p>
             </form>
         </div>
 
@@ -1667,7 +1584,7 @@
         <div class="values-preview">
             <span class="value-pill">🕊️ Sankofa</span>
             <span class="value-pill">🤝 Akwaaba</span>
-            <span class="value-pill">🌱 Kakra Kakra</span>
+            <span class="value-pill">🌱 Nkakrankakra</span>
             <span class="value-pill">👪 Abusua</span>
             <span class="value-pill">📈 Nkɔsoɔ</span>
         </div>
@@ -1761,9 +1678,9 @@
             <p style="font-size: 1.3rem; margin-bottom: 2rem;">Join hundreds of families reconnecting with their roots.</p>
             <div class="cta-buttons">
                 <a href="languages.html" class="btn btn-gold btn-large">Explore Languages</a>
-                <a href="#march-enroll" class="btn btn-primary btn-large">Free March Classes</a>
+                <a href="#enroll" class="btn btn-primary btn-large">Start Learning</a>
             </div>
-            <p style="margin-top: 2rem;">✨ Free trial classes available • No commitment ✨</p>
+            <p style="margin-top: 2rem;">✨ Try a class today • Flexible schedules ✨</p>
         </div>
     </div>
 
@@ -1835,12 +1752,7 @@
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
-                    let formName = 'unknown_form';
-                    if (this.id) formName = this.id;
-                    else if (this.name) formName = this.name;
-                    else if (this.classList.contains('enrollment-form')) formName = 'enrollment_form';
-                    else if (this.classList.contains('contact-form')) formName = 'contact_form';
-                    
+                    let formName = 'enrollment_form';
                     gtag('event', 'generate_lead', {
                         'event_category': 'engagement',
                         'event_label': formName
@@ -1917,6 +1829,17 @@
                     gtag('event', 'whatsapp_float_click', {
                         'event_category': 'contact',
                         'event_label': 'floating_whatsapp_button'
+                    });
+                });
+            }
+
+            // Track Scholarship Blink Click
+            const scholarshipLink = document.querySelector('.scholarship-blink');
+            if (scholarshipLink) {
+                scholarshipLink.addEventListener('click', function() {
+                    gtag('event', 'scholarship_click', {
+                        'event_category': 'engagement',
+                        'event_label': 'homepage_scholarship'
                     });
                 });
             }
