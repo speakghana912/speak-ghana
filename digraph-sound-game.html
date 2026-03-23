@@ -225,17 +225,18 @@
     </div>
 
     <script>
-        // ===== TW DIGRAPHS DATA WITH AUDIO FILES =====
+        // ===== DIGRAPHS DATA - MATCHING YOUR FILE NAMES =====
+        // Note: Your files are named "digraphs-dw.m4a", "digraphs-gy.m4a", etc.
         const digraphs = [
-            { digraph: "dw", audioFile: "audio/twi-alphabet/digraph-dw.m4a", example: "dwa (peel)" },
-            { digraph: "gy", audioFile: "audio/twi-alphabet/digraph-gy.m4a", example: "gyae (stop)" },
-            { digraph: "hy", audioFile: "audio/twi-alphabet/digraph-hy.m4a", example: "hyɛ (wear)" },
-            { digraph: "hw", audioFile: "audio/twi-alphabet/digraph-hw.m4a", example: "hwɛ (look)" },
-            { digraph: "kw", audioFile: "audio/twi-alphabet/digraph-kw.m4a", example: "kwadu (banana)" },
-            { digraph: "ky", audioFile: "audio/twi-alphabet/digraph-ky.m4a", example: "kyɛ (share)" },
-            { digraph: "ny", audioFile: "audio/twi-alphabet/digraph-ny.m4a", example: "nyaadowa (garden eggs)" },
-            { digraph: "nw", audioFile: "audio/twi-alphabet/digraph-nw.m4a", example: "nwa (snail)" },
-            { digraph: "tw", audioFile: "audio/twi-alphabet/digraph-tw.m4a", example: "twa (cut)" }
+            { digraph: "dw", audioFile: "audio/twi-alphabet/digraphs-dw.m4a", example: "dwa (peel)" },
+            { digraph: "gy", audioFile: "audio/twi-alphabet/digraphs-gy.m4a", example: "gyae (stop)" },
+            { digraph: "hy", audioFile: "audio/twi-alphabet/digraphs-hy.m4a", example: "hyɛ (wear)" },
+            { digraph: "hw", audioFile: "audio/twi-alphabet/digraphs-hw.m4a", example: "hwɛ (look)" },
+            { digraph: "kw", audioFile: "audio/twi-alphabet/digraphs-kw.m4a", example: "kwadu (banana)" },
+            { digraph: "ky", audioFile: "audio/twi-alphabet/digraphs-ky.m4a", example: "kyɛ (share)" },
+            { digraph: "ny", audioFile: "audio/twi-alphabet/digraphs-ny.m4a", example: "nyaadowa (garden eggs)" },
+            { digraph: "nw", audioFile: "audio/twi-alphabet/digraphs-nw.m4a", example: "nwa (snail)" },
+            { digraph: "tw", audioFile: "audio/twi-alphabet/digraphs-tw.m4a", example: "twa (cut)" }
         ];
 
         let currentQuestions = [];
@@ -335,7 +336,8 @@
                 playAudio(question.audioFile);
                 soundHintSpan.textContent = `Listening... which digraph is this? (${question.example})`;
             } else {
-                soundHintSpan.textContent = `Audio file not found`;
+                soundHintSpan.textContent = `Audio file not found: ${question?.audioFile}`;
+                console.error('Missing audio file:', question?.audioFile);
             }
         }
 
