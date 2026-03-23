@@ -37,6 +37,48 @@
             --shadow: rgba(0, 0, 0, 0.08);
         }
 
+        /* ===== SCHOLARSHIP BLINKING ANIMATION ===== */
+        @keyframes blink {
+            0% { background: linear-gradient(135deg, var(--gold), var(--red)); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
+            50% { background: linear-gradient(135deg, var(--red), var(--gold)); box-shadow: 0 0 20px 5px rgba(212, 163, 115, 0.6); }
+            100% { background: linear-gradient(135deg, var(--gold), var(--red)); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
+        }
+
+        .scholarship-blink {
+            animation: blink 1.5s ease-in-out infinite;
+            border-radius: 30px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .scholarship-blink:hover {
+            transform: scale(1.02);
+        }
+
+        .scholarship-blink h3 {
+            color: var(--black);
+            margin: 0 0 0.5rem;
+        }
+
+        .scholarship-blink p {
+            color: var(--black);
+            margin: 0;
+        }
+
+        /* ===== PRICING BUTTONS ===== */
+        .pricing-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
         /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
@@ -559,20 +601,27 @@
         }
 
         .package-price {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--green);
             margin: 1rem 0 0.5rem;
+            line-height: 1.4;
         }
 
         .package-price small {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--gray);
             font-weight: normal;
         }
 
-        .package-commitment {
+        .package-price .scholarship {
             font-size: 0.9rem;
+            color: var(--gold);
+            font-weight: normal;
+        }
+
+        .package-commitment {
+            font-size: 0.85rem;
             color: var(--gray);
             margin-bottom: 1.5rem;
         }
@@ -796,6 +845,37 @@
             margin: 2rem auto;
         }
 
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--green);
+        }
+
+        .faq-item h4 {
+            color: var(--green);
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-item p {
+            color: var(--gray);
+        }
+
         /* ===== FOOTER ===== */
         footer {
             background: var(--black);
@@ -855,7 +935,8 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
             .intro-grid,
-            .family-grid {
+            .family-grid,
+            .faq-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -950,6 +1031,21 @@
         </div>
     </section>
 
+    <!-- PDF Download Buttons -->
+    <div class="container">
+        <div class="pricing-buttons">
+            <a href="pdf/pricing-adult.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Adult Pricing</a>
+            <a href="pdf/pricing-kids-teens.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Kids & Teens Pricing</a>
+        </div>
+    </div>
+
+    <!-- Scholarship Blinking Section -->
+    <a href="contact.html" class="scholarship-blink" style="text-decoration: none; display: block;">
+        <h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3>
+        <p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
+        <p style="margin-top: 0.5rem;">📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p>
+    </a>
+
     <!-- Introduction Section -->
     <div class="container">
         <div class="intro-section">
@@ -987,6 +1083,7 @@
             <a href="#family" class="age-nav-link">Family Bundles</a>
             <a href="#pricing" class="age-nav-link">Pricing</a>
             <a href="#enroll" class="age-nav-link">Enroll</a>
+            <a href="#faq" class="age-nav-link">FAQ</a>
         </div>
 
         <!-- KIDS SECTION (Ages 5-12) -->
@@ -1016,8 +1113,11 @@
                             <li>Animals (kraman, akokɔ, agyinamoa)</li>
                             <li>Simple songs and rhymes</li>
                         </ul>
-                        <div class="package-price">$35 <small>/month</small></div>
-                        <div class="package-commitment">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            $35 / GHS 490 <small>/month</small><br>
+                            <span class="scholarship">Scholarship: $26.25 / GHS 367.50</span>
+                        </div>
+                        <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
@@ -1040,8 +1140,11 @@
                             <li>Days of the week and time</li>
                             <li>Ghanaian folktales (Ananse stories)</li>
                         </ul>
-                        <div class="package-price">$45 <small>/month</small></div>
-                        <div class="package-commitment">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            $45 / GHS 630 <small>/month</small><br>
+                            <span class="scholarship">Scholarship: $33.75 / GHS 472.50</span>
+                        </div>
+                        <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
@@ -1062,8 +1165,11 @@
                             <li>Family games and challenges</li>
                             <li>Learn together, practice together</li>
                         </ul>
-                        <div class="package-price">$65 <small>/family</small></div>
-                        <div class="package-commitment">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            $65 / GHS 910 <small>/family</small><br>
+                            <span class="scholarship">Scholarship: $48.75 / GHS 682.50</span>
+                        </div>
+                        <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
@@ -1088,30 +1194,22 @@
                             <li>Week 7: Numbers & Market Day</li>
                             <li>Week 8: Celebration & Showcase</li>
                         </ul>
-                        <div class="package-price">$180 <small>full 8 weeks</small></div>
-                        <p><small>Early Bird (by May 1): $160</small></p>
+                        <div class="package-price">
+                            $180 / GHS 2,520 <small>full 8 weeks</small><br>
+                            <span class="scholarship">Scholarship: $135 / GHS 1,890</span>
+                        </div>
+                        <p><small>Early Bird (by May 1): $160 / GHS 2,240</small></p>
                         <a href="#enroll" class="btn btn-primary btn-small">Register</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== KIDS GAMES FUN ZONE ===== -->
-        <!-- All 5 games placed here in a nice order -->
-
-        <!-- Game 1: Vocabulary Quiz -->
+        <!-- KIDS GAMES FUN ZONE -->
         <div id="kids-quiz"></div>
-
-        <!-- Game 2: Animal Match -->
         <div id="kids-animal-match"></div>
-
-        <!-- Game 3: Colors Game -->
         <div id="kids-colors"></div>
-
-        <!-- Game 4: Numbers Game -->
         <div id="kids-numbers"></div>
-
-        <!-- Game 5: Memory Game -->
         <div id="kids-memory"></div>
 
         <!-- TEENS SECTION (Ages 13-17) -->
@@ -1124,7 +1222,6 @@
                 </div>
             </div>
 
-            <!-- Teens Studying Image - Properly Integrated -->
             <div class="section-image">
                 <img src="images/teens-studying.png" alt="Teenagers learning Twi together">
                 <div class="image-caption">Teens connecting through language and culture</div>
@@ -1147,8 +1244,11 @@
                             <li>Texting and social media phrases</li>
                             <li>Talking about school, hobbies, crushes</li>
                         </ul>
-                        <div class="package-price">$55 <small>/month</small></div>
-                        <div class="package-commitment">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            $55 / GHS 770 <small>/month</small><br>
+                            <span class="scholarship">Scholarship: $41.25 / GHS 577.50</span>
+                        </div>
+                        <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
@@ -1172,8 +1272,11 @@
                             <li>Interviewing Ghanaian family members</li>
                             <li>Preparing for Ghana visit</li>
                         </ul>
-                        <div class="package-price">$95 <small>/month</small></div>
-                        <div class="package-commitment">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            $95 / GHS 1,330 <small>/month</small><br>
+                            <span class="scholarship">Scholarship: $71.25 / GHS 997.50</span>
+                        </div>
+                        <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
@@ -1194,7 +1297,10 @@
                             <li>School project support</li>
                             <li>Flexible scheduling</li>
                         </ul>
-                        <div class="package-price">$65 <small>/month</small></div>
+                        <div class="package-price">
+                            $65 / GHS 910 <small>/month</small><br>
+                            <span class="scholarship">Scholarship: $48.75 / GHS 682.50</span>
+                        </div>
                         <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
@@ -1211,7 +1317,10 @@
                             <li>More cultural discussions</li>
                             <li>Parent updates after each lesson</li>
                         </ul>
-                        <div class="package-price">$85 <small>/month</small></div>
+                        <div class="package-price">
+                            $85 / GHS 1,190 <small>/month</small><br>
+                            <span class="scholarship">Scholarship: $63.75 / GHS 892.50</span>
+                        </div>
                         <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
@@ -1234,8 +1343,11 @@
                             <li>Impress grandparents!</li>
                             <li>Projects: Video intro, song translation, family interview</li>
                         </ul>
-                        <div class="package-price">$360 <small>full 6 weeks</small></div>
-                        <p><small>Early Bird (by May 1): $320</small></p>
+                        <div class="package-price">
+                            $360 / GHS 5,040 <small>full 6 weeks</small><br>
+                            <span class="scholarship">Scholarship: $270 / GHS 3,780</span>
+                        </div>
+                        <p><small>Early Bird (by May 1): $320 / GHS 4,480</small></p>
                         <a href="#enroll" class="btn btn-primary btn-small">Register</a>
                     </div>
                 </div>
@@ -1251,7 +1363,8 @@
                 <div class="family-card">
                     <h3>👨‍👩‍👧‍👦 Family Pack (F1)</h3>
                     <p>Parents + Kids (2 adults + up to 3 kids)</p>
-                    <div class="price">$120 <small>/month</small></div>
+                    <div class="price">$120 / GHS 1,680 <small>/month</small></div>
+                    <p class="scholarship">Scholarship: $90 / GHS 1,260</p>
                     <ul>
                         <li>4 live family lessons per month</li>
                         <li>Adult workbook + Kids workbooks</li>
@@ -1265,7 +1378,8 @@
                 <div class="family-card">
                     <h3>📚 Heritage Homeschool (F2)</h3>
                     <p>Curriculum License for Homeschooling Families</p>
-                    <div class="price">$180 <small>/year</small></div>
+                    <div class="price">$180 / GHS 2,520 <small>/year</small></div>
+                    <p class="scholarship">Scholarship: $135 / GHS 1,890</p>
                     <ul>
                         <li>Full Speak Ghana Kids Curriculum (levels 1-3)</li>
                         <li>Video lessons for each topic</li>
@@ -1293,6 +1407,7 @@
                             <th>Frequency</th>
                             <th>Class Size</th>
                             <th>Price/Month</th>
+                            <th>Scholarship (25%)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1301,21 +1416,24 @@
                             <td>5-8</td>
                             <td>1x/30min</td>
                             <td>3-6</td>
-                            <td>$35</td>
+                            <td>$35 / GHS 490</td>
+                            <td>$26.25 / GHS 367.50</td>
                         </tr>
                         <tr>
                             <td class="package-name">K2: Twi Explorers</td>
                             <td>9-12</td>
                             <td>1x/45min</td>
                             <td>4-8</td>
-                            <td>$45</td>
+                            <td>$45 / GHS 630</td>
+                            <td>$33.75 / GHS 472.50</td>
                         </tr>
                         <tr>
                             <td class="package-name">K3: Siblings Special</td>
                             <td>5-12</td>
                             <td>1x/45min</td>
                             <td>Family</td>
-                            <td>$65/family</td>
+                            <td>$65 / GHS 910</td>
+                            <td>$48.75 / GHS 682.50</td>
                         </tr>
                         <tr>
                             <td class="package-name">K4: Summer Camp</td>
@@ -1323,34 +1441,39 @@
                             <td>2x/45min</td>
                             <td>4-8</td>
                             <td>$180 (8 wks)</td>
+                            <td>$135 (8 wks)</td>
                         </tr>
                         <tr>
                             <td class="package-name">T1: Teen Talk</td>
                             <td>13-17</td>
                             <td>1x/60min</td>
                             <td>4-8</td>
-                            <td>$55</td>
+                            <td>$55 / GHS 770</td>
+                            <td>$41.25 / GHS 577.50</td>
                         </tr>
                         <tr>
                             <td class="package-name">T2: Twi Fluency Fast</td>
                             <td>13-17</td>
                             <td>2x/60min</td>
                             <td>4-8</td>
-                            <td>$95</td>
+                            <td>$95 / GHS 1,330</td>
+                            <td>$71.25 / GHS 997.50</td>
                         </tr>
                         <tr>
                             <td class="package-name">T3: Private (45min)</td>
                             <td>13-17</td>
                             <td>1x/week</td>
                             <td>1-on-1</td>
-                            <td>$65</td>
+                            <td>$65 / GHS 910</td>
+                            <td>$48.75 / GHS 682.50</td>
                         </tr>
                         <tr>
                             <td class="package-name">T3: Private (60min)</td>
                             <td>13-17</td>
                             <td>1x/week</td>
                             <td>1-on-1</td>
-                            <td>$85</td>
+                            <td>$85 / GHS 1,190</td>
+                            <td>$63.75 / GHS 892.50</td>
                         </tr>
                         <tr>
                             <td class="package-name">T4: Teen Summer</td>
@@ -1358,13 +1481,15 @@
                             <td>3x/90min</td>
                             <td>4-8</td>
                             <td>$360 (6 wks)</td>
+                            <td>$270 (6 wks)</td>
                         </tr>
                         <tr>
                             <td class="package-name">F1: Family Pack</td>
                             <td>All</td>
                             <td>1x/60min</td>
                             <td>Family</td>
-                            <td>$120/family</td>
+                            <td>$120 / GHS 1,680</td>
+                            <td>$90 / GHS 1,260</td>
                         </tr>
                         <tr>
                             <td class="package-name">F2: Homeschool</td>
@@ -1372,6 +1497,7 @@
                             <td>Self-paced</td>
                             <td>Family</td>
                             <td>$180/year</td>
+                            <td>$135/year</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1384,11 +1510,44 @@
                     <p><strong>Refer a Friend:</strong> 1 month free for both</p>
                     <p><strong>Birthday Month:</strong> 10% off</p>
                     <p><strong>Military/Family:</strong> 10% off</p>
+                    <p><strong>3 months upfront:</strong> Save 10%</p>
+                    <p><strong>6 months upfront:</strong> Save 20%</p>
                 </div>
             </div>
         </section>
 
-        <!-- ENROLLMENT FORM SECTION (with redirect) -->
+        <!-- FAQ SECTION (NEW) -->
+        <section id="faq" class="faq-section">
+            <h2 class="center">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>What is the Speak One, Learn One Scholarship?</h4>
+                    <p>Ghana Card holders who already speak one Ghanaian language get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What is the Certificate of Achievement?</h4>
+                    <p>Complete 6 months of continuous learning and receive an official certificate signed by our founders, showing your child's language level and dedication.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What if my child misses a class?</h4>
+                    <p>Recordings are available for group classes. Private lessons can be rescheduled with 24-hour notice.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can siblings learn together?</h4>
+                    <p>Absolutely! Our Siblings Special package is designed for families with multiple children. Plus, sibling discount applies!</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What age is best to start?</h4>
+                    <p>We welcome learners from age 5! Younger children learn through play, while teens focus on conversation and cultural connection.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you offer a trial?</h4>
+                    <p>Yes! March classes are completely free. Try any class and see if our program is right for your child.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENROLLMENT FORM SECTION -->
         <section id="enroll" class="enrollment-section">
             <h2 class="center">Quick Enrollment Form</h2>
             <p style="text-align: center; margin-bottom: 3rem;">Fill this out and we'll contact you within 24 hours</p>
@@ -1409,7 +1568,16 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label>Phone</label>
-                            <input type="tel" name="phone" placeholder="+233 XX XXX XXXX">
+                            <div style="display: flex; gap: 0.5rem;">
+                                <select name="phone_code" style="width: 30%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 10px;">
+                                    <option value="+233">🇬🇭 +233 (Ghana)</option>
+                                    <option value="+1">🇺🇸 +1 (USA/Canada)</option>
+                                    <option value="+44">🇬🇧 +44 (UK)</option>
+                                    <option value="+49">🇩🇪 +49 (Germany)</option>
+                                    <option value="+33">🇫🇷 +33 (France)</option>
+                                </select>
+                                <input type="tel" name="phone" placeholder="Phone number" style="width: 70%;">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Child's Name *</label>
@@ -1431,36 +1599,16 @@
                     <div class="form-group">
                         <label>Which package? *</label>
                         <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="package" value="K1"> K1: Twi Tots (5-8)
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="package" value="K2"> K2: Twi Explorers (9-12)
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="package" value="K3"> K3: Siblings Special
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="package" value="K4"> K4: Summer Camp
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="package" value="T1"> T1: Teen Talk (13-17)
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="package" value="T2"> T2: Twi Fluency Fast
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="package" value="T3"> T3: Private 1-on-1
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="package" value="T4"> T4: Teen Summer
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="package" value="F1"> F1: Family Pack
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" name="package" value="F2"> F2: Homeschool
-                            </div>
+                            <div class="checkbox-item"><input type="checkbox" name="package" value="K1"> K1: Twi Tots (5-8)</div>
+                            <div class="checkbox-item"><input type="checkbox" name="package" value="K2"> K2: Twi Explorers (9-12)</div>
+                            <div class="checkbox-item"><input type="checkbox" name="package" value="K3"> K3: Siblings Special</div>
+                            <div class="checkbox-item"><input type="checkbox" name="package" value="K4"> K4: Summer Camp</div>
+                            <div class="checkbox-item"><input type="checkbox" name="package" value="T1"> T1: Teen Talk (13-17)</div>
+                            <div class="checkbox-item"><input type="checkbox" name="package" value="T2"> T2: Twi Fluency Fast</div>
+                            <div class="checkbox-item"><input type="checkbox" name="package" value="T3"> T3: Private 1-on-1</div>
+                            <div class="checkbox-item"><input type="checkbox" name="package" value="T4"> T4: Teen Summer</div>
+                            <div class="checkbox-item"><input type="checkbox" name="package" value="F1"> F1: Family Pack</div>
+                            <div class="checkbox-item"><input type="checkbox" name="package" value="F2"> F2: Homeschool</div>
                         </div>
                     </div>
 
@@ -1473,6 +1621,12 @@
                             <option value="WAT">WAT (Lagos)</option>
                             <option value="CAT">CAT (Johannesburg)</option>
                         </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="scholarship" value="yes"> I qualify for the Speak One, Learn One Scholarship (25% off - Ghana Card holder)
+                        </label>
                     </div>
 
                     <div class="form-group">
@@ -1545,291 +1699,44 @@
     <!-- Event Tracking for Google Analytics -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
             // Track Form Submissions
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
-                    // Get form name or ID for tracking
-                    let formName = 'unknown_form';
-                    if (this.id) formName = this.id;
-                    else if (this.name) formName = this.name;
-                    else if (this.classList.contains('enrollment-form')) formName = 'enrollment_form';
-                    else if (this.classList.contains('contact-form')) formName = 'contact_form';
-                    
-                    // Track the event
-                    gtag('event', 'form_submission', {
+                    let formName = 'kids_teens_enrollment';
+                    gtag('event', 'generate_lead', {
                         'event_category': 'engagement',
                         'event_label': formName
                     });
-                    
-                    console.log('Form submission tracked:', formName); // For testing
                 });
             });
             
             // Track PDF Downloads
-            const pdfLinks = document.querySelectorAll('a[href$=".pdf"], a[download]');
+            const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
             pdfLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    let pdfName = 'unknown_pdf';
-                    if (this.href) {
-                        const parts = this.href.split('/');
-                        pdfName = parts[parts.length - 1];
-                    }
-                    
+                link.addEventListener('click', function() {
+                    let pdfName = this.href.split('/').pop();
                     gtag('event', 'pdf_download', {
                         'event_category': 'resource',
                         'event_label': pdfName
                     });
-                    
-                    console.log('PDF download tracked:', pdfName); // For testing
                 });
             });
             
-            // Track WhatsApp Clicks
-            const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
-            whatsappLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    gtag('event', 'whatsapp_click', {
-                        'event_category': 'contact',
-                        'event_label': 'whatsapp_button'
+            // Track Scholarship Blink Click
+            const scholarshipLink = document.querySelector('.scholarship-blink');
+            if (scholarshipLink) {
+                scholarshipLink.addEventListener('click', function() {
+                    gtag('event', 'scholarship_click', {
+                        'event_category': 'engagement',
+                        'event_label': 'kids_teens_scholarship'
                     });
-                    
-                    console.log('WhatsApp click tracked'); // For testing
                 });
-            });
-            
-            // Track Phone Number Clicks
-            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-            phoneLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    gtag('event', 'phone_click', {
-                        'event_category': 'contact',
-                        'event_label': 'phone_number'
-                    });
-                    
-                    console.log('Phone click tracked');
-                });
-            });
-            
-            // Track Email Clicks
-            const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
-            emailLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    gtag('event', 'email_click', {
-                        'event_category': 'contact',
-                        'event_label': 'email_link'
-                    });
-                    
-                    console.log('Email click tracked');
-                });
-            });
-            
-            // Track Navigation Clicks (optional)
-            const navLinks = document.querySelectorAll('.nav-links a, .btn');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    const linkText = this.innerText.trim() || 'nav_link';
-                    gtag('event', 'navigation_click', {
-                        'event_category': 'navigation',
-                        'event_label': linkText
-                    });
-                    
-                    console.log('Navigation click tracked:', linkText);
-                });
-            });
-            
-        });
-    </script>
-
-    <!-- Sound Effects for Games - FIXED VERSION with Sound Control Button -->
-    <script>
-        // Sound Effects using Web Audio API - Fixed for browser autoplay policies
-        const SoundEffects = {
-            audioContext: null,
-            initialized: false,
-            soundEnabled: false,
-            
-            // Initialize audio context (must be called after user interaction)
-            init: function() {
-                if (this.initialized) return true;
-                if (!this.soundEnabled) return false;
-                
-                try {
-                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    this.initialized = true;
-                    console.log('Audio initialized successfully');
-                    return true;
-                } catch(e) {
-                    console.log('Audio initialization failed:', e);
-                    return false;
-                }
-            },
-            
-            enable: function() {
-                this.soundEnabled = true;
-                // Try to initialize and play a test sound
-                if (this.init()) {
-                    this.test();
-                }
-            },
-            
-            test: function() {
-                this.correct();
-            },
-            
-            correct: function() {
-                if (!this.soundEnabled || !this.init()) return;
-                try {
-                    const oscillator = this.audioContext.createOscillator();
-                    const gainNode = this.audioContext.createGain();
-                    
-                    oscillator.type = 'sine';
-                    oscillator.frequency.value = 800;
-                    gainNode.gain.value = 0.2;
-                    
-                    oscillator.connect(gainNode);
-                    gainNode.connect(this.audioContext.destination);
-                    
-                    oscillator.start();
-                    oscillator.stop(this.audioContext.currentTime + 0.15);
-                    
-                    if (this.audioContext.state === 'suspended') {
-                        this.audioContext.resume();
-                    }
-                } catch(e) {
-                    console.log('Error playing correct sound:', e);
-                }
-            },
-            
-            wrong: function() {
-                if (!this.soundEnabled || !this.init()) return;
-                try {
-                    const oscillator = this.audioContext.createOscillator();
-                    const gainNode = this.audioContext.createGain();
-                    
-                    oscillator.type = 'sawtooth';
-                    oscillator.frequency.value = 300;
-                    gainNode.gain.value = 0.15;
-                    
-                    oscillator.connect(gainNode);
-                    gainNode.connect(this.audioContext.destination);
-                    
-                    oscillator.start();
-                    oscillator.stop(this.audioContext.currentTime + 0.1);
-                    
-                    if (this.audioContext.state === 'suspended') {
-                        this.audioContext.resume();
-                    }
-                } catch(e) {
-                    console.log('Error playing wrong sound:', e);
-                }
-            },
-            
-            cheer: function() {
-                if (!this.soundEnabled || !this.init()) return;
-                try {
-                    const now = this.audioContext.currentTime;
-                    const notes = [600, 800, 1000];
-                    
-                    notes.forEach((freq, i) => {
-                        const oscillator = this.audioContext.createOscillator();
-                        const gainNode = this.audioContext.createGain();
-                        
-                        oscillator.type = 'sine';
-                        oscillator.frequency.value = freq;
-                        gainNode.gain.value = 0.15;
-                        
-                        oscillator.connect(gainNode);
-                        gainNode.connect(this.audioContext.destination);
-                        
-                        oscillator.start(now + i * 0.1);
-                        oscillator.stop(now + i * 0.1 + 0.2);
-                    });
-                    
-                    if (this.audioContext.state === 'suspended') {
-                        this.audioContext.resume();
-                    }
-                } catch(e) {
-                    console.log('Error playing cheer sound:', e);
-                }
             }
-        };
-
-        // Add a floating sound control button
-        document.addEventListener('DOMContentLoaded', function() {
-            // Create sound toggle button
-            const soundBtn = document.createElement('div');
-            soundBtn.id = 'sound-control';
-            soundBtn.innerHTML = '🔇';
-            soundBtn.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background: var(--gold);
-                color: var(--black);
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.5rem;
-                cursor: pointer;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-                z-index: 1000;
-                transition: all 0.3s;
-                border: 2px solid white;
-            `;
-            
-            soundBtn.addEventListener('click', function() {
-                if (!SoundEffects.soundEnabled) {
-                    // Enable sounds
-                    SoundEffects.enable();
-                    this.innerHTML = '🔊';
-                    this.style.background = 'var(--green)';
-                    
-                    // Show temporary message
-                    const msg = document.createElement('div');
-                    msg.innerHTML = '✓ Sound enabled!';
-                    msg.style.cssText = `
-                        position: fixed;
-                        bottom: 80px;
-                        right: 20px;
-                        background: var(--green);
-                        color: white;
-                        padding: 0.5rem 1rem;
-                        border-radius: 20px;
-                        font-size: 0.9rem;
-                        z-index: 1000;
-                        animation: fadeOut 2s forwards;
-                    `;
-                    document.body.appendChild(msg);
-                    setTimeout(() => msg.remove(), 2000);
-                } else {
-                    // Disable sounds
-                    SoundEffects.soundEnabled = false;
-                    this.innerHTML = '🔇';
-                    this.style.background = 'var(--gold)';
-                }
-            });
-            
-            document.body.appendChild(soundBtn);
-            
-            // Add fade out animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes fadeOut {
-                    0% { opacity: 1; }
-                    70% { opacity: 1; }
-                    100% { opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
         });
     </script>
 
-    <!-- ALL KIDS GAMES SCRIPTS (unchanged) -->
+    <!-- Kids Games Scripts -->
     <script src="kids-quiz.js"></script>
     <script src="kids-animal-match.js"></script>
     <script src="kids-colors.js"></script>
