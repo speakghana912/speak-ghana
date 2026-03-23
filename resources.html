@@ -107,7 +107,8 @@
         .material-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.2); }
         .material-icon { font-size: 3rem; margin-bottom: 1rem; }
         .material-card h3 { color: var(--gold); margin-bottom: 1rem; }
-        .download-btn { background: var(--gold); color: var(--black); padding: 0.8rem 1.5rem; border-radius: 50px; text-decoration: none; display: inline-block; margin-top: 1rem; font-weight: 600; }
+        .download-btn { background: var(--gold); color: var(--black); padding: 0.8rem 1.5rem; border-radius: 50px; text-decoration: none; display: inline-block; margin-top: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .download-btn:hover { background: white; transform: scale(1.05); }
         .certificate-section { background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 20px; padding: 2rem; margin: 2rem 0; color: white; text-align: center; }
         .blog-post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 2rem 0; }
         .blog-post-card { background: white; border-radius: 15px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
@@ -152,7 +153,7 @@
 
         <div id="quiz-popup" class="quiz-popup"><div class="quiz-popup-content"><button onclick="closeQuizPopup()" class="close-popup">×</button><h2 class="center">📝 Interactive Twi Alphabet Quiz</h2><div style="display:flex; justify-content:center; gap:1rem; margin:1rem 0;"><button onclick="loadSet(1)" class="quiz-nav-btn" id="set1-btn" style="background:var(--green); color:white;">Set 1: Basics</button><button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn">Set 2: Word Pairs</button><button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn">Set 3: Applied</button></div><div id="quiz-container" style="background:var(--cream); border-radius:20px; padding:2rem; max-height:400px; overflow-y:auto;"></div><div id="email-form-container" style="display:none; margin-top:2rem;"></div><div id="results-area" style="display:none; text-align:center;"></div><div style="margin-top:1rem; background:#eee; border-radius:50px; height:10px;"><div id="progress-bar" style="width:0%; height:100%; background:var(--green); border-radius:50px;"></div></div></div></div>
 
-        <!-- UPDATED FREE MATERIALS SECTION WITH ALL 3 GAMES -->
+        <!-- UPDATED FREE MATERIALS SECTION WITH ALL 3 GAMES + PDF TRACKING -->
         <div class="materials-section">
             <h2 class="center">📚 Free Learning Materials</h2>
             
@@ -176,7 +177,7 @@
                         <a href="digraph-sound-game.html" class="btn btn-gold" style="margin-top: 0.5rem; display: inline-block; background: var(--gold);">🎮 Play Game →</a>
                     </div>
                     <!-- Minimal Pair Challenge - NEW GAME -->
-                    <div class="material-card" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);">
+                    <div class="material-card" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); position: relative;">
                         <div style="position: absolute; top: -15px; left: -10px; background: var(--green); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: bold;">🎧 EAR TRAINING</div>
                         <div class="material-icon">🎧</div>
                         <h3>Minimal Pair Challenge</h3>
@@ -186,16 +187,16 @@
                 </div>
             </div>
             
-            <!-- PDF & AUDIO RESOURCES GRID -->
+            <!-- PDF & AUDIO RESOURCES GRID - WITH PDF DOWNLOAD TRACKING -->
             <div class="materials-grid">
-                <div class="material-card"><div class="material-icon">📄</div><h3>Greetings Cheat Sheet</h3><p>Essential Twi greetings and responses</p><a href="/pdfs/greetings-cheatsheet.pdf" download class="download-btn">Download PDF</a></div>
-                <div class="material-card"><div class="material-icon">🔤</div><h3>Alphabet & Pronunciation</h3><p>Learn the Twi alphabet with audio guide</p><a href="/pdfs/alphabet-pronunciation.pdf" download class="download-btn">Download PDF</a></div>
-                <div class="material-card"><div class="material-icon">🗣️</div><h3>100 Common Words</h3><p>Most frequently used Twi words for beginners</p><a href="/pdfs/100-common-words.pdf" download class="download-btn">Download PDF</a></div>
-                <div class="material-card"><div class="material-icon">👪</div><h3>Family Terms</h3><p>Complete guide to family vocabulary</p><a href="/pdfs/family-terms.pdf" download class="download-btn">Download PDF</a></div>
-                <div class="material-card"><div class="material-icon">📅</div><h3>Days & Months</h3><p>Calendar vocabulary in Twi</p><a href="/pdfs/days-months.pdf" download class="download-btn">Download PDF</a></div>
-                <div class="material-card"><div class="material-icon">💬</div><h3>Common Phrases</h3><p>Everyday conversations made easy</p><a href="/pdfs/common-phrases.pdf" download class="download-btn">Download PDF</a></div>
-                <div class="material-card"><div class="material-icon">🔊</div><h3>Complete Twi Alphabet (Audio)</h3><p>Listen to all 22 letters with correct pronunciation</p><audio controls><source src="audio/twi-alphabet/twi-alphabet-complete.m4a" type="audio/mp4"></audio><a href="audio/twi-alphabet/twi-alphabet-complete.m4a" download class="download-btn">Download Audio</a></div>
-                <div class="material-card"><div class="material-icon">🔤</div><h3>Twi Digraphs (Audio)</h3><p>Learn common two-letter combinations: dw, gy, hy, kw, ky, ny, tw, and more</p><audio controls><source src="audio/twi-alphabet/twi-digraphs.m4a" type="audio/mp4"></audio><a href="audio/twi-alphabet/twi-digraphs.m4a" download class="download-btn">Download Audio</a></div>
+                <div class="material-card"><div class="material-icon">📄</div><h3>Greetings Cheat Sheet</h3><p>Essential Twi greetings and responses</p><a href="/pdfs/greetings-cheatsheet.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': 'greetings_cheatsheet'});">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">🔤</div><h3>Alphabet & Pronunciation</h3><p>Learn the Twi alphabet with audio guide</p><a href="/pdfs/alphabet-pronunciation.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': 'alphabet_pronunciation'});">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">🗣️</div><h3>100 Common Words</h3><p>Most frequently used Twi words for beginners</p><a href="/pdfs/100-common-words.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': '100_common_words'});">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">👪</div><h3>Family Terms</h3><p>Complete guide to family vocabulary</p><a href="/pdfs/family-terms.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': 'family_terms'});">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">📅</div><h3>Days & Months</h3><p>Calendar vocabulary in Twi</p><a href="/pdfs/days-months.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': 'days_months'});">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">💬</div><h3>Common Phrases</h3><p>Everyday conversations made easy</p><a href="/pdfs/common-phrases.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': 'common_phrases'});">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">🔊</div><h3>Complete Twi Alphabet (Audio)</h3><p>Listen to all 22 letters with correct pronunciation</p><audio controls><source src="audio/twi-alphabet/twi-alphabet-complete.m4a" type="audio/mp4"></audio><a href="audio/twi-alphabet/twi-alphabet-complete.m4a" download class="download-btn" onclick="gtag('event', 'audio_download', {'event_category': 'resource', 'event_label': 'complete_alphabet_audio'});">Download Audio</a></div>
+                <div class="material-card"><div class="material-icon">🔤</div><h3>Twi Digraphs (Audio)</h3><p>Learn common two-letter combinations: dw, gy, hy, kw, ky, ny, tw, and more</p><audio controls><source src="audio/twi-alphabet/twi-digraphs.m4a" type="audio/mp4"></audio><a href="audio/twi-alphabet/twi-digraphs.m4a" download class="download-btn" onclick="gtag('event', 'audio_download', {'event_category': 'resource', 'event_label': 'digraphs_audio'});">Download Audio</a></div>
             </div>
             <p style="text-align: center; margin-top: 2rem;">✨ More materials added regularly - check back often! ✨</p>
         </div>
