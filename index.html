@@ -159,6 +159,46 @@
             font-size: 0.9rem;
         }
 
+        /* ===== SCHOLARSHIP BLINKING ANIMATION ===== */
+        @keyframes blink {
+            0% { background: linear-gradient(135deg, var(--gold), var(--red)); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
+            50% { background: linear-gradient(135deg, var(--red), var(--gold)); box-shadow: 0 0 20px 5px rgba(212, 163, 115, 0.6); }
+            100% { background: linear-gradient(135deg, var(--gold), var(--red)); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
+        }
+
+        .scholarship-blink {
+            animation: blink 1.5s ease-in-out infinite;
+            border-radius: 30px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .scholarship-blink:hover {
+            transform: scale(1.02);
+        }
+
+        .scholarship-blink h3 {
+            color: var(--black);
+            margin: 0 0 0.5rem;
+        }
+
+        .scholarship-blink p {
+            color: var(--black);
+            margin: 0;
+        }
+
+        /* ===== PRICING BUTTONS ===== */
+        .pricing-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
         /* ===== TOP BAR ===== */
         .top-bar {
             background: var(--black);
@@ -1370,6 +1410,14 @@
         </div>
     </section>
 
+    <!-- PDF Download Buttons -->
+    <div class="container">
+        <div class="pricing-buttons">
+            <a href="pdf/pricing-adult.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Adult Pricing</a>
+            <a href="pdf/pricing-kids-teens.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Kids & Teens Pricing</a>
+        </div>
+    </div>
+
     <!-- Welcome Video Section -->
     <section class="welcome-video-section">
         <div class="container">
@@ -1381,6 +1429,13 @@
 
     <!-- Main Content -->
     <div class="container">
+        <!-- ===== SCHOLARSHIP BLINKING SECTION ===== -->
+        <a href="contact.html" class="scholarship-blink" style="text-decoration: none; display: block;">
+            <h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3>
+            <p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
+            <p style="margin-top: 0.5rem;">📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p>
+        </a>
+
         <!-- ===== QUIZ BANNER (Top of page) ===== -->
         <div class="quiz-banner">
             <div class="quiz-banner-content">
@@ -1522,6 +1577,12 @@
                 <div class="form-group">
                     <label>How did you hear about us?</label>
                     <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
+                </div>
+
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" name="scholarship" value="yes"> I qualify for the Speak One, Learn One Scholarship (25% off - Ghana Card holder)
+                    </label>
                 </div>
 
                 <div class="form-group">
@@ -1676,6 +1737,14 @@
                     <p>Absolutely! Our Siblings Special package is designed for families with multiple children.</p>
                 </div>
                 <div class="faq-item">
+                    <h4>What is the Speak One, Learn One Scholarship?</h4>
+                    <p>Ghana Card holders who already speak one Ghanaian language get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What is the Certificate of Achievement?</h4>
+                    <p>Complete 6 months of continuous learning and receive an official certificate signed by our founders.</p>
+                </div>
+                <div class="faq-item">
                     <h4>What if we miss a class?</h4>
                     <p>Recordings available for group classes. Private lessons reschedule with 24h notice.</p>
                 </div>
@@ -1772,7 +1841,7 @@
                     else if (this.classList.contains('enrollment-form')) formName = 'enrollment_form';
                     else if (this.classList.contains('contact-form')) formName = 'contact_form';
                     
-                    gtag('event', 'form_submission', {
+                    gtag('event', 'generate_lead', {
                         'event_category': 'engagement',
                         'event_label': formName
                     });
