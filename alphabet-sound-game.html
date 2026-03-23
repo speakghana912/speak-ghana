@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twi Alphabet Sound Game | Speak Ghana</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZXFR0LFLH6');
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -193,6 +203,22 @@
         .hide {
             display: none;
         }
+        
+        .progress-bar {
+            margin: 1.5rem 0;
+            background: #eee;
+            border-radius: 20px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -213,10 +239,16 @@
                 <span class="question-counter" id="counterDisplay">Question 1 / 10</span>
                 <button class="next-btn" id="nextBtn">Next →</button>
             </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
             <div class="feedback" id="feedback"></div>
         </div>
 
         <div id="resultsArea" class="results hide">
+            <div class="perfect-badge" id="perfectBadge" style="background: #2ecc71; color: white; padding: 0.5rem 1rem; border-radius: 60px; display: inline-block; margin-bottom: 1rem; font-weight: bold; display: none;">🏆 PERFECT SCORE! 🏆</div>
             <h2>🎉 Game Complete!</h2>
             <div class="final-score" id="finalScore">0 / 10</div>
             <p id="resultMessage"></p>
@@ -225,6 +257,12 @@
     </div>
 
     <script>
+        // Track game start
+        gtag('event', 'game_start', {
+            'event_category': 'engagement',
+            'event_label': 'alphabet_sound_game'
+        });
+
         // ===== TW ALPHABET DATA WITH YOUR AUDIO FILES =====
         // All 22 letters with paths to your individual sound files
         const letters = [
@@ -257,6 +295,7 @@
         let score = 0;
         let answered = false;
         let currentAudio = null;
+        let mistakes = [];
 
         // DOM Elements
         const gameArea = document.getElementById('gameArea');
@@ -271,6 +310,8 @@
         const resultMessage = document.getElementById('resultMessage');
         const restartBtn = document.getElementById('restartBtn');
         const soundHintSpan = document.getElementById('soundHint');
+        const progressFill = document.getElementById('progressFill');
+        const perfectBadge = document.getElementById('perfectBadge');
 
         // Play audio file
         function playAudio(audioFile) {
@@ -295,7 +336,16 @@
             return shuffled.slice(0, 10);
         }
 
-        // Generate random options (3 wrong + 1 correct)
+        // Shuffle options array
+        function shuffleOptions(options) {
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+            return options;
+        }
+
+        // Generate random options (3 wrong + 1 correct) with shuffling
         function generateOptions(correctLetter) {
             const allLetters = letters.map(l => l.letter);
             const otherLetters = allLetters.filter(l => l !== correctLetter);
@@ -309,11 +359,8 @@
                 wrongLetters.push(shuffledOthers[i]);
             }
             const options = [...wrongLetters, correctLetter];
-            for (let i = options.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [options[i], options[j]] = [options[j], options[i]];
-            }
-            return options;
+            // Shuffle the final options
+            return shuffleOptions(options);
         }
 
         // Load current question
@@ -337,8 +384,11 @@
             answered = false;
             nextBtn.disabled = true;
             feedbackDiv.innerHTML = '';
+            feedbackDiv.style.color = '#666';
             
             counterDisplay.textContent = `Question ${currentIndex + 1} / ${currentQuestions.length}`;
+            const progressPercent = (currentIndex / currentQuestions.length) * 100;
+            progressFill.style.width = `${progressPercent}%`;
         }
 
         // Play current question sound
@@ -369,6 +419,12 @@
                 buttonElement.classList.add('wrong');
                 feedbackDiv.innerHTML = `❌ Wrong! The correct answer is ${correct}.`;
                 feedbackDiv.style.color = '#e74c3c';
+                
+                // Record mistake
+                mistakes.push({
+                    correct: correct,
+                    selected: selected
+                });
                 
                 allButtons.forEach(btn => {
                     if (btn.textContent === correct) {
@@ -408,19 +464,34 @@
             gameArea.classList.add('hide');
             resultsArea.classList.remove('hide');
             
-            finalScoreSpan.textContent = `${score} / ${currentQuestions.length}`;
+            const total = currentQuestions.length;
+            finalScoreSpan.textContent = `${score} / ${total}`;
             
             let message = '';
-            if (score === 10) {
+            if (score === total) {
                 message = 'Perfect! You know all the sounds! 🎉';
+                perfectBadge.style.display = 'inline-block';
             } else if (score >= 8) {
                 message = 'Great job! Practice the ones you missed. 👍🏾';
+                perfectBadge.style.display = 'none';
             } else if (score >= 6) {
                 message = 'Good effort! Play again to improve. 💪🏾';
+                perfectBadge.style.display = 'none';
             } else {
                 message = 'Keep practicing! Listen carefully and try again. 🇬🇭';
+                perfectBadge.style.display = 'none';
             }
+            
             resultMessage.textContent = message;
+            
+            // Track game completion in Google Analytics
+            gtag('event', 'game_complete', {
+                'event_category': 'engagement',
+                'event_label': 'alphabet_sound_game',
+                'score': score,
+                'total': total,
+                'percentage': Math.round((score / total) * 100)
+            });
         }
 
         // Restart game
@@ -429,17 +500,26 @@
             currentIndex = 0;
             score = 0;
             answered = false;
+            mistakes = [];
             
             if (currentAudio) {
                 currentAudio.pause();
             }
             
             scoreDisplay.textContent = `Score: 0`;
+            progressFill.style.width = '0%';
             
             gameArea.classList.remove('hide');
             resultsArea.classList.add('hide');
+            perfectBadge.style.display = 'none';
             
             loadQuestion();
+            
+            // Track game restart
+            gtag('event', 'game_restart', {
+                'event_category': 'engagement',
+                'event_label': 'alphabet_sound_game'
+            });
         }
 
         // Initialize game
@@ -448,6 +528,7 @@
             currentIndex = 0;
             score = 0;
             answered = false;
+            mistakes = [];
             
             scoreDisplay.textContent = `Score: 0`;
             
