@@ -152,14 +152,14 @@
 
         <div id="quiz-popup" class="quiz-popup"><div class="quiz-popup-content"><button onclick="closeQuizPopup()" class="close-popup">×</button><h2 class="center">📝 Interactive Twi Alphabet Quiz</h2><div style="display:flex; justify-content:center; gap:1rem; margin:1rem 0;"><button onclick="loadSet(1)" class="quiz-nav-btn" id="set1-btn" style="background:var(--green); color:white;">Set 1: Basics</button><button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn">Set 2: Word Pairs</button><button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn">Set 3: Applied</button></div><div id="quiz-container" style="background:var(--cream); border-radius:20px; padding:2rem; max-height:400px; overflow-y:auto;"></div><div id="email-form-container" style="display:none; margin-top:2rem;"></div><div id="results-area" style="display:none; text-align:center;"></div><div style="margin-top:1rem; background:#eee; border-radius:50px; height:10px;"><div id="progress-bar" style="width:0%; height:100%; background:var(--green); border-radius:50px;"></div></div></div></div>
 
-        <!-- UPDATED FREE MATERIALS SECTION WITH DIGRAPH GAME PROMINENTLY FEATURED -->
+        <!-- UPDATED FREE MATERIALS SECTION WITH ALL 3 GAMES -->
         <div class="materials-section">
             <h2 class="center">📚 Free Learning Materials</h2>
             
-            <!-- FEATURED INTERACTIVE GAMES SECTION - DIGRAPH GAME NOW PROMINENT -->
+            <!-- FEATURED INTERACTIVE GAMES SECTION - NOW WITH 3 GAMES -->
             <div style="background: rgba(255,255,255,0.2); border-radius: 25px; padding: 2rem; margin-bottom: 2.5rem;">
                 <h3 style="color: var(--gold); text-align: center; margin: 0 0 1.5rem 0; font-size: 1.8rem;">🎮 Interactive Learning Games</h3>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
                     <!-- Alphabet Sound Game -->
                     <div class="material-card" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);">
                         <div class="material-icon">🎵</div>
@@ -167,13 +167,21 @@
                         <p>Listen to the sound and match it to the correct letter — test your ear!</p>
                         <a href="alphabet-sound-game.html" class="btn btn-gold" style="margin-top: 0.5rem; display: inline-block;">🎮 Play Game →</a>
                     </div>
-                    <!-- DIGRAPH SOUND GAME - HIGHLIGHTED WITH SPECIAL BADGE -->
-                    <div class="material-card" style="background: rgba(255,255,255,0.25); border: 3px solid var(--gold); transform: scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.2); position: relative;">
+                    <!-- Digraph Sound Game -->
+                    <div class="material-card" style="background: rgba(255,255,255,0.25); border: 3px solid var(--gold); box-shadow: 0 8px 20px rgba(0,0,0,0.2); position: relative;">
                         <div style="position: absolute; top: -15px; right: -10px; background: var(--red); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">🔥 NEW</div>
                         <div class="material-icon">🔤</div>
                         <h3>Digraph Sound Game</h3>
                         <p>Practice common Twi digraphs: dw, gy, hy, kw, ky, ny, tw, and more!</p>
                         <a href="digraph-sound-game.html" class="btn btn-gold" style="margin-top: 0.5rem; display: inline-block; background: var(--gold);">🎮 Play Game →</a>
+                    </div>
+                    <!-- Minimal Pair Challenge - NEW GAME -->
+                    <div class="material-card" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);">
+                        <div style="position: absolute; top: -15px; left: -10px; background: var(--green); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: bold;">🎧 EAR TRAINING</div>
+                        <div class="material-icon">🎧</div>
+                        <h3>Minimal Pair Challenge</h3>
+                        <p>Test your ear! Can you tell the difference between gy/ky, hy/hw, ny/nw, and tw/dw?</p>
+                        <a href="minimal-pair-challenge.html" class="btn btn-gold" style="margin-top: 0.5rem; display: inline-block;">🎧 Play Game →</a>
                     </div>
                 </div>
             </div>
