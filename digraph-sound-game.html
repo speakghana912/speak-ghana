@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Digraph Sound Game | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #FDF8F2 0%, #F5E6D3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .game-container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: #2A9D8F;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .sound-card {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .play-button {
+            background: #D4A373;
+            border: none;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: #c49a6c;
+        }
+
+        .sound-hint {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .option-btn {
+            background: #FDF8F2;
+            border: 2px solid #2A9D8F;
+            border-radius: 60px;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: monospace;
+        }
+
+        .option-btn:hover {
+            background: #2A9D8F;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .option-btn.correct {
+            background: #2ecc71;
+            border-color: #2ecc71;
+            color: white;
+            pointer-events: none;
+        }
+
+        .option-btn.wrong {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            color: white;
+            pointer-events: none;
+        }
+
+        .option-btn.disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .score-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #FDF8F2;
+            border-radius: 60px;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2A9D8F;
+        }
+
+        .question-counter {
+            color: #666;
+        }
+
+        .next-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .next-btn:hover {
+            background: #1f7a6e;
+            transform: translateY(-2px);
+        }
+
+        .next-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            text-align: center;
+        }
+
+        .final-score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin: 1rem 0;
+        }
+
+        .restart-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container" id="gameContainer">
+        <h1>🎵 Match the Digraph Sound</h1>
+        <p class="subtitle">Listen to the sound, then click the matching digraph (dw, gy, hy, kw, ky, ny, tw, etc.)</p>
+
+        <div id="gameArea">
+            <div class="sound-card">
+                <button class="play-button" id="playSoundBtn">🔊</button>
+                <div class="sound-hint" id="soundHint">Click the speaker to hear the sound</div>
+            </div>
+
+            <div class="options-grid" id="optionsGrid"></div>
+
+            <div class="score-area">
+                <span class="score" id="scoreDisplay">Score: 0</span>
+                <span class="question-counter" id="counterDisplay">Question 1 / 9</span>
+                <button class="next-btn" id="nextBtn">Next →</button>
+            </div>
+            <div class="feedback" id="feedback"></div>
+        </div>
+
+        <div id="resultsArea" class="results hide">
+            <h2>🎉 Game Complete!</h2>
+            <div class="final-score" id="finalScore">0 / 9</div>
+            <p id="resultMessage"></p>
+            <button class="restart-btn" id="restartBtn">Play Again →</button>
+        </div>
+    </div>
+
+    <script>
+        // ===== TW DIGRAPHS DATA WITH YOUR AUDIO FILES =====
+        const digraphs = [
+            { digraph: "dw", audioFile: "audio/twi-alphabet/digraph-dw.m4a", example: "dwa (peel)" },
+            { digraph: "gy", audioFile: "audio/twi-alphabet/digraph-gy.m4a", example: "gyae (stop)" },
+            { digraph: "hy", audioFile: "audio/twi-alphabet/digraph-hy.m4a", example: "hyɛ (wear)" },
+            { digraph: "hw", audioFile: "audio/twi-alphabet/digraph-hw.m4a", example: "hwɛ (look)" },
+            { digraph: "kw", audioFile: "audio/twi-alphabet/digraph-kw.m4a", example: "kwadu (banana)" },
+            { digraph: "ky", audioFile: "audio/twi-alphabet/digraph-ky.m4a", example: "kyɛ (share)" },
+            { digraph: "ny", audioFile: "audio/twi-alphabet/digraph-ny.m4a", example: "nyaadowa (garden eggs)" },
+            { digraph: "nw", audioFile: "audio/twi-alphabet/digraph-nw.m4a", example: "nwa (snail)" },
+            { digraph: "tw", audioFile: "audio/twi-alphabet/digraph-tw.m4a", example: "twa (cut)" }
+        ];
+
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let answered = false;
+        let currentAudio = null;
+
+        // DOM Elements
+        const gameArea = document.getElementById('gameArea');
+        const resultsArea = document.getElementById('resultsArea');
+        const playSoundBtn = document.getElementById('playSoundBtn');
+        const optionsGrid = document.getElementById('optionsGrid');
+        const nextBtn = document.getElementById('nextBtn');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const counterDisplay = document.getElementById('counterDisplay');
+        const feedbackDiv = document.getElementById('feedback');
+        const finalScoreSpan = document.getElementById('finalScore');
+        const resultMessage = document.getElementById('resultMessage');
+        const restartBtn = document.getElementById('restartBtn');
+        const soundHintSpan = document.getElementById('soundHint');
+
+        // Play audio file
+        function playAudio(audioFile) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            currentAudio = new Audio(audioFile);
+            currentAudio.play().catch(error => {
+                console.error('Error playing audio:', error);
+                soundHintSpan.textContent = 'Audio loading... Click again';
+            });
+        }
+
+        // Get all 9 questions
+        function getQuestions() {
+            const shuffled = [...digraphs];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Generate random options (3 wrong + 1 correct)
+        function generateOptions(correctDigraph) {
+            const allDigraphs = digraphs.map(d => d.digraph);
+            const otherDigraphs = allDigraphs.filter(d => d !== correctDigraph);
+            const wrongDigraphs = [];
+            const shuffledOthers = [...otherDigraphs];
+            for (let i = shuffledOthers.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledOthers[i], shuffledOthers[j]] = [shuffledOthers[j], shuffledOthers[i]];
+            }
+            for (let i = 0; i < 3 && i < shuffledOthers.length; i++) {
+                wrongDigraphs.push(shuffledOthers[i]);
+            }
+            const options = [...wrongDigraphs, correctDigraph];
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+            return options;
+        }
+
+        // Load current question
+        function loadQuestion() {
+            const question = currentQuestions[currentIndex];
+            if (!question) return;
+            
+            soundHintSpan.textContent = `Click the speaker to hear the sound`;
+            
+            const options = generateOptions(question.digraph);
+            
+            optionsGrid.innerHTML = '';
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                btn.onclick = () => checkAnswer(opt, question.digraph, btn);
+                optionsGrid.appendChild(btn);
+            });
+            
+            answered = false;
+            nextBtn.disabled = true;
+            feedbackDiv.innerHTML = '';
+            
+            counterDisplay.textContent = `Question ${currentIndex + 1} / ${currentQuestions.length}`;
+        }
+
+        // Play current question sound
+        function playCurrentSound() {
+            const question = currentQuestions[currentIndex];
+            if (question && question.audioFile) {
+                playAudio(question.audioFile);
+                soundHintSpan.textContent = `Listening... which digraph is this? (${question.example})`;
+            } else {
+                soundHintSpan.textContent = `Audio file not found`;
+            }
+        }
+
+        // Check answer
+        function checkAnswer(selected, correct, buttonElement) {
+            if (answered) return;
+            
+            answered = true;
+            
+            const allButtons = document.querySelectorAll('.option-btn');
+            
+            if (selected === correct) {
+                buttonElement.classList.add('correct');
+                score++;
+                feedbackDiv.innerHTML = '✅ Correct!';
+                feedbackDiv.style.color = '#2ecc71';
+            } else {
+                buttonElement.classList.add('wrong');
+                feedbackDiv.innerHTML = `❌ Wrong! The correct answer is ${correct}.`;
+                feedbackDiv.style.color = '#e74c3c';
+                
+                allButtons.forEach(btn => {
+                    if (btn.textContent === correct) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            allButtons.forEach(btn => {
+                btn.classList.add('disabled');
+                btn.disabled = true;
+            });
+            
+            nextBtn.disabled = false;
+            scoreDisplay.textContent = `Score: ${score}`;
+        }
+
+        // Next question
+        function nextQuestion() {
+            if (!answered) return;
+            
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+            
+            currentIndex++;
+            
+            if (currentIndex < currentQuestions.length) {
+                loadQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        // End game
+        function endGame() {
+            gameArea.classList.add('hide');
+            resultsArea.classList.remove('hide');
+            
+            finalScoreSpan.textContent = `${score} / ${currentQuestions.length}`;
+            
+            let message = '';
+            if (score === currentQuestions.length) {
+                message = 'Perfect! You know all the digraphs! 🎉';
+            } else if (score >= 7) {
+                message = 'Great job! Practice the ones you missed. 👍🏾';
+            } else if (score >= 5) {
+                message = 'Good effort! Play again to improve. 💪🏾';
+            } else {
+                message = 'Keep practicing! Listen carefully and try again. 🇬🇭';
+            }
+            resultMessage.textContent = message;
+        }
+
+        // Restart game
+        function restartGame() {
+            currentQuestions = getQuestions();
+            currentIndex = 0;
+            score = 0;
+            answered = false;
+            
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+            
+            scoreDisplay.textContent = `Score: 0`;
+            
+            gameArea.classList.remove('hide');
+            resultsArea.classList.add('hide');
+            
+            loadQuestion();
+        }
+
+        // Initialize game
+        function initGame() {
+            currentQuestions = getQuestions();
+            currentIndex = 0;
+            score = 0;
+            answered = false;
+            
+            scoreDisplay.textContent = `Score: 0`;
+            
+            loadQuestion();
+            
+            playSoundBtn.onclick = playCurrentSound;
+            nextBtn.onclick = nextQuestion;
+            restartBtn.onclick = restartGame;
+        }
+
+        initGame();
+    </script>
+</body>
+</html>
