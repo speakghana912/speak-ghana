@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Speak Ghana | Twi Language School</title>
-    <meta name="description" content="Contact Speak Ghana for questions about Twi classes, enrollment, or partnerships. We're here to help you start your language journey.">
+    <meta name="description" content="Contact Speak Ghana for questions about Twi classes, enrollment, or partnerships. Apply for the Speak One, Learn One Scholarship for Ghana Card holders.">
     <!-- ABSOLUTE URL FAVICON -->
 <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
 <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
@@ -34,6 +34,84 @@
             --gray-light: #F0F0F0;
             --gray: #666666;
             --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== SCHOLARSHIP BLINKING ANIMATION ===== */
+        @keyframes blink {
+            0% { background: linear-gradient(135deg, var(--gold), var(--red)); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
+            50% { background: linear-gradient(135deg, var(--red), var(--gold)); box-shadow: 0 0 20px 5px rgba(212, 163, 115, 0.6); }
+            100% { background: linear-gradient(135deg, var(--gold), var(--red)); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
+        }
+
+        .scholarship-blink {
+            animation: blink 1.5s ease-in-out infinite;
+            border-radius: 30px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .scholarship-blink:hover {
+            transform: scale(1.02);
+        }
+
+        .scholarship-blink h3 {
+            color: var(--black);
+            margin: 0 0 0.5rem;
+        }
+
+        .scholarship-blink p {
+            color: var(--black);
+            margin: 0;
+        }
+
+        /* ===== QUICK LINKS SECTION ===== */
+        .quick-links-section {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .quick-link-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--black);
+            transition: transform 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-5px);
+            background: var(--gold);
+        }
+
+        .quick-link-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .quick-link-card h4 {
+            color: var(--green);
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-link-card:hover h4 {
+            color: var(--black);
         }
 
         /* ===== RESET & BASE STYLES ===== */
@@ -517,7 +595,7 @@
             opacity: 0.8;
         }
 
-        /* ===== MAP SECTION (UPDATED) ===== */
+        /* ===== MAP SECTION ===== */
         .map-section {
             background: white;
             border-radius: 30px;
@@ -821,7 +899,8 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
             .contact-grid,
-            .map-locations {
+            .map-locations,
+            .quick-links-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -887,7 +966,7 @@
     </style>
 </head>
 <body>
-    <!-- Top Contact Bar (UPDATED with professional email) -->
+    <!-- Top Contact Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="contact-info">
@@ -898,7 +977,7 @@
         </div>
     </div>
 
-    <!-- Header with clickable logo -->
+    <!-- Header -->
     <header>
         <div class="container header-content">
             <div class="logo">
@@ -917,7 +996,7 @@
         </div>
     </header>
 
-    <!-- Navigation (UPDATED) -->
+    <!-- Navigation -->
     <nav>
         <div class="container">
             <div class="nav-links">
@@ -942,10 +1021,40 @@
 
     <!-- Main Content -->
     <div class="container">
+        <!-- SCHOLARSHIP BLINKING SECTION -->
+        <a href="#scholarship-form" class="scholarship-blink" style="text-decoration: none; display: block;">
+            <h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3>
+            <p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
+            <p style="margin-top: 0.5rem;">📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p>
+            <p style="margin-top: 0.5rem;"><strong>Click here to apply →</strong></p>
+        </a>
+
+        <!-- Quick Links Section -->
+        <div class="quick-links-section">
+            <h3 class="center" style="margin-bottom: 1.5rem;">Quick Links</h3>
+            <div class="quick-links-grid">
+                <a href="#scholarship-form" class="quick-link-card">
+                    <div class="quick-link-icon">🎓</div>
+                    <h4>Apply for Scholarship</h4>
+                    <p>25% off for Ghana Card holders</p>
+                </a>
+                <a href="#contact-form" class="quick-link-card">
+                    <div class="quick-link-icon">📝</div>
+                    <h4>General Inquiry</h4>
+                    <p>Questions about classes or enrollment</p>
+                </a>
+                <a href="languages.html" class="quick-link-card">
+                    <div class="quick-link-icon">📚</div>
+                    <h4>View Packages</h4>
+                    <p>See our full pricing and programs</p>
+                </a>
+            </div>
+        </div>
+
         <!-- Contact Grid -->
         <div class="contact-grid">
-            <!-- Contact Form (UPDATED with redirect) -->
-            <div class="contact-form">
+            <!-- Contact Form (Updated with Scholarship Option) -->
+            <div id="contact-form" class="contact-form">
                 <h3 style="margin-top: 0;">Send Us a Message</h3>
                 <form action="https://formspree.io/f/mlgpodpb" method="POST" redirect="https://speakghana.org/thank-you.html">
                     <div class="form-row">
@@ -977,23 +1086,8 @@
                                 <option value="+234">🇳🇬 +234 (Nigeria)</option>
                                 <option value="+27">🇿🇦 +27 (South Africa)</option>
                                 <option value="+61">🇦🇺 +61 (Australia)</option>
-                                <option value="+41">🇨🇭 +41 (Switzerland)</option>
-                                <option value="+46">🇸🇪 +46 (Sweden)</option>
-                                <option value="+45">🇩🇰 +45 (Denmark)</option>
-                                <option value="+47">🇳🇴 +47 (Norway)</option>
-                                <option value="+358">🇫🇮 +358 (Finland)</option>
-                                <option value="+353">🇮🇪 +353 (Ireland)</option>
-                                <option value="+32">🇧🇪 +32 (Belgium)</option>
-                                <option value="+34">🇪🇸 +34 (Spain)</option>
-                                <option value="+39">🇮🇹 +39 (Italy)</option>
-                                <option value="+351">🇵🇹 +351 (Portugal)</option>
-                                <option value="+852">🇭🇰 +852 (Hong Kong)</option>
-                                <option value="+65">🇸🇬 +65 (Singapore)</option>
-                                <option value="+971">🇦🇪 +971 (UAE)</option>
-                                <option value="+966">🇸🇦 +966 (Saudi Arabia)</option>
-                                <option value="+974">🇶🇦 +974 (Qatar)</option>
                             </select>
-                            <input type="tel" name="phone" placeholder="Phone number" style="width: 70%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 10px; background: white;">
+                            <input type="tel" name="phone" placeholder="Phone number" style="width: 70%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 10px;">
                         </div>
                         <small style="color: var(--gray);">Include area code without the + sign</small>
                     </div>
@@ -1004,6 +1098,7 @@
                             <option value="">Select a topic</option>
                             <option value="general">General Question</option>
                             <option value="plans">Questions about Plans</option>
+                            <option value="scholarship">Scholarship Application</option>
                             <option value="textbook">Textbook Inquiry</option>
                             <option value="business">Business Package</option>
                             <option value="support">Support</option>
@@ -1014,6 +1109,12 @@
                     <div class="form-group">
                         <label>Message *</label>
                         <textarea name="message" required></textarea>
+                    </div>
+                    
+                    <div class="form-group" id="scholarship-form">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="scholarship" value="yes"> I qualify for the Speak One, Learn One Scholarship (25% off - Ghana Card holder who speaks one Ghanaian language)
+                        </label>
                     </div>
                     
                     <button type="submit" class="submit-btn">Send Message</button>
@@ -1111,7 +1212,7 @@
             </div>
         </div>
 
-        <!-- Map Section (UPDATED) -->
+        <!-- Map Section -->
         <div class="map-section">
             <h3 style="margin-top: 0;">Our Locations</h3>
             
@@ -1239,7 +1340,7 @@
         </div>
     </div>
 
-    <!-- Footer (UPDATED with professional email) -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1293,20 +1394,18 @@
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
-                    // Get form name or ID for tracking
                     let formName = 'unknown_form';
                     if (this.id) formName = this.id;
                     else if (this.name) formName = this.name;
                     else if (this.classList.contains('enrollment-form')) formName = 'enrollment_form';
                     else if (this.classList.contains('contact-form')) formName = 'contact_form';
                     
-                    // Track the event
                     gtag('event', 'generate_lead', {
                         'event_category': 'engagement',
                         'event_label': formName
                     });
                     
-                    console.log('Lead generated tracked:', formName); // For testing
+                    console.log('Lead generated tracked:', formName);
                 });
             });
             
@@ -1325,7 +1424,7 @@
                         'event_label': pdfName
                     });
                     
-                    console.log('PDF download tracked:', pdfName); // For testing
+                    console.log('PDF download tracked:', pdfName);
                 });
             });
             
@@ -1338,7 +1437,7 @@
                         'event_label': 'whatsapp_button'
                     });
                     
-                    console.log('WhatsApp click tracked'); // For testing
+                    console.log('WhatsApp click tracked');
                 });
             });
             
@@ -1368,7 +1467,7 @@
                 });
             });
             
-            // Track Navigation Clicks (optional)
+            // Track Navigation Clicks
             const navLinks = document.querySelectorAll('.nav-links a, .btn');
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -1382,6 +1481,16 @@
                 });
             });
             
+            // Track Scholarship Blink Click
+            const scholarshipLink = document.querySelector('.scholarship-blink');
+            if (scholarshipLink) {
+                scholarshipLink.addEventListener('click', function() {
+                    gtag('event', 'scholarship_click', {
+                        'event_category': 'engagement',
+                        'event_label': 'contact_page_scholarship'
+                    });
+                });
+            }
         });
     </script>
 </body>
