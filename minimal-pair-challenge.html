@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Pair Challenge | Twi Digraphs | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #FDF8F2 0%, #F5E6D3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .game-container {
+            max-width: 650px;
+            width: 100%;
+            background: white;
+            border-radius: 40px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: #2A9D8F;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .challenge-card {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .play-button {
+            background: #D4A373;
+            border: none;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .play-button:hover {
+            transform: scale(1.08);
+            background: #c49a6c;
+        }
+
+        .play-button:active {
+            transform: scale(0.98);
+        }
+
+        .sound-hint {
+            font-size: 1rem;
+            opacity: 0.95;
+            margin-top: 0.5rem;
+        }
+
+        .options-pair {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            background: #FDF8F2;
+            border: 3px solid #2A9D8F;
+            border-radius: 60px;
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: monospace;
+            min-width: 120px;
+        }
+
+        .option-btn:hover {
+            background: #2A9D8F;
+            color: white;
+            transform: translateY(-3px);
+            border-color: #2A9D8F;
+        }
+
+        .option-btn.correct {
+            background: #2ecc71;
+            border-color: #2ecc71;
+            color: white;
+            pointer-events: none;
+        }
+
+        .option-btn.wrong {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            color: white;
+            pointer-events: none;
+        }
+
+        .option-btn.disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .score-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: #FDF8F2;
+            border-radius: 60px;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2A9D8F;
+        }
+
+        .score span {
+            font-size: 1.8rem;
+            color: #E76F51;
+        }
+
+        .question-counter {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .next-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .next-btn:hover {
+            background: #1f7a6e;
+            transform: translateY(-2px);
+        }
+
+        .next-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .feedback.correct-feedback {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .feedback.wrong-feedback {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .results {
+            text-align: center;
+        }
+
+        .final-score {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin: 1rem 0;
+        }
+
+        .perfect-badge {
+            background: #2ecc71;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 60px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .restart-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .restart-btn:hover {
+            background: #1f7a6e;
+            transform: translateY(-2px);
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .progress-bar {
+            margin: 1.5rem 0;
+            background: #eee;
+            border-radius: 20px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 500px) {
+            .game-container { padding: 1.5rem; }
+            .option-btn { padding: 0.8rem 1.2rem; font-size: 1.2rem; min-width: 100px; }
+            .play-button { width: 80px; height: 80px; font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container" id="gameContainer">
+        <h1>
+            <span>🎧</span> Minimal Pair Challenge
+            <span>👂</span>
+        </h1>
+        <p class="subtitle">
+            Listen carefully! Choose the digraph sound you hear.<br>
+            Test your ear for similar Twi sounds: gy/ky, hy/hw, ny/nw, tw/dw
+        </p>
+
+        <div id="gameArea">
+            <div class="challenge-card">
+                <button class="play-button" id="playSoundBtn">🔊</button>
+                <div class="sound-hint" id="soundHint">Click the speaker to hear the sound</div>
+            </div>
+
+            <div class="options-pair" id="optionsGrid"></div>
+
+            <div class="score-area">
+                <div class="score">🎯 Score: <span id="scoreDisplay">0</span></div>
+                <div class="question-counter" id="counterDisplay">Question 1 / 8</div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <div class="feedback" id="feedback"></div>
+            
+            <button class="next-btn" id="nextBtn">Next Challenge →</button>
+        </div>
+
+        <div id="resultsArea" class="results hide">
+            <div class="perfect-badge" id="perfectBadge" style="display: none;">🏆 PERFECT SCORE! 🏆</div>
+            <h2>🎉 Challenge Complete!</h2>
+            <div class="final-score" id="finalScore">0 / 8</div>
+            <p id="resultMessage"></p>
+            <div id="weaknessHint" style="margin: 1rem 0; font-size: 0.9rem; color: #666;"></div>
+            <button class="restart-btn" id="restartBtn">Play Again →</button>
+        </div>
+    </div>
+
+    <script>
+        // ===== MINIMAL PAIRS USING YOUR EXISTING DIGRAPH AUDIO FILES =====
+        const challenges = [
+            { 
+                pair: "gy vs ky", 
+                correct: "gy", 
+                wrong: "ky", 
+                audioFile: "audio/twi-alphabet/digraphs-gy.m4a",
+                hint: "gy sounds like 'j' in 'jam' | ky sounds like 'ch' in 'cheese'"
+            },
+            { 
+                pair: "gy vs ky", 
+                correct: "ky", 
+                wrong: "gy", 
+                audioFile: "audio/twi-alphabet/digraphs-ky.m4a",
+                hint: "ky sounds like 'ch' in 'cheese' | gy sounds like 'j' in 'jam'"
+            },
+            { 
+                pair: "hy vs hw", 
+                correct: "hy", 
+                wrong: "hw", 
+                audioFile: "audio/twi-alphabet/digraphs-hy.m4a",
+                hint: "hy is breathy 'sh' sound | hw is like 'wh' in 'where'"
+            },
+            { 
+                pair: "hy vs hw", 
+                correct: "hw", 
+                wrong: "hy", 
+                audioFile: "audio/twi-alphabet/digraphs-hw.m4a",
+                hint: "hw is like 'wh' in 'where' | hy is breathy 'sh' sound"
+            },
+            { 
+                pair: "ny vs nw", 
+                correct: "ny", 
+                wrong: "nw", 
+                audioFile: "audio/twi-alphabet/digraphs-ny.m4a",
+                hint: "ny like 'ny' in 'canyon' | nw is nasal 'n' + 'w'"
+            },
+            { 
+                pair: "ny vs nw", 
+                correct: "nw", 
+                wrong: "ny", 
+                audioFile: "audio/twi-alphabet/digraphs-nw.m4a",
+                hint: "nw is nasal 'n' + 'w' | ny like 'ny' in 'canyon'"
+            },
+            { 
+                pair: "tw vs dw", 
+                correct: "tw", 
+                wrong: "dw", 
+                audioFile: "audio/twi-alphabet/digraphs-tw.m4a",
+                hint: "tw like 'chw' | dw like 'jw'"
+            },
+            { 
+                pair: "tw vs dw", 
+                correct: "dw", 
+                wrong: "tw", 
+                audioFile: "audio/twi-alphabet/digraphs-dw.m4a",
+                hint: "dw like 'jw' | tw like 'chw'"
+            }
+        ];
+
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let answered = false;
+        let currentAudio = null;
+        let mistakes = [];
+
+        // DOM Elements
+        const gameArea = document.getElementById('gameArea');
+        const resultsArea = document.getElementById('resultsArea');
+        const playSoundBtn = document.getElementById('playSoundBtn');
+        const optionsGrid = document.getElementById('optionsGrid');
+        const nextBtn = document.getElementById('nextBtn');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const counterDisplay = document.getElementById('counterDisplay');
+        const feedbackDiv = document.getElementById('feedback');
+        const finalScoreSpan = document.getElementById('finalScore');
+        const resultMessage = document.getElementById('resultMessage');
+        const restartBtn = document.getElementById('restartBtn');
+        const soundHintSpan = document.getElementById('soundHint');
+        const progressFill = document.getElementById('progressFill');
+        const perfectBadge = document.getElementById('perfectBadge');
+        const weaknessHint = document.getElementById('weaknessHint');
+
+        // Play audio file
+        function playAudio(audioFile) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            currentAudio = new Audio(audioFile);
+            currentAudio.play().catch(error => {
+                console.error('Error playing audio:', error);
+                soundHintSpan.textContent = '⚠️ Audio loading... Click again';
+            });
+        }
+
+        // Shuffle questions
+        function getQuestions() {
+            const shuffled = [...challenges];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Load current challenge
+        function loadChallenge() {
+            const challenge = currentQuestions[currentIndex];
+            if (!challenge) return;
+            
+            soundHintSpan.textContent = `Click the speaker to hear the sound`;
+            
+            // Create two buttons: correct and wrong options
+            optionsGrid.innerHTML = `
+                <button class="option-btn" data-value="${challenge.correct}">${challenge.correct.toUpperCase()}</button>
+                <button class="option-btn" data-value="${challenge.wrong}">${challenge.wrong.toUpperCase()}</button>
+            `;
+            
+            // Add click handlers
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => checkAnswer(btn.dataset.value, challenge.correct, btn));
+            });
+            
+            answered = false;
+            nextBtn.disabled = true;
+            feedbackDiv.innerHTML = '';
+            feedbackDiv.className = 'feedback';
+            
+            // Update counter and progress
+            counterDisplay.textContent = `Question ${currentIndex + 1} / ${currentQuestions.length}`;
+            const progressPercent = ((currentIndex) / currentQuestions.length) * 100;
+            progressFill.style.width = `${progressPercent}%`;
+        }
+
+        // Play current sound
+        function playCurrentSound() {
+            const challenge = currentQuestions[currentIndex];
+            if (challenge && challenge.audioFile) {
+                playAudio(challenge.audioFile);
+                soundHintSpan.textContent = `Listening... which digraph do you hear?`;
+            } else {
+                soundHintSpan.textContent = `⚠️ Audio file not found`;
+                console.error('Missing audio:', challenge?.audioFile);
+            }
+        }
+
+        // Check answer
+        function checkAnswer(selected, correct, buttonElement) {
+            if (answered) return;
+            
+            answered = true;
+            
+            const allButtons = document.querySelectorAll('.option-btn');
+            
+            if (selected === correct) {
+                buttonElement.classList.add('correct');
+                score++;
+                feedbackDiv.innerHTML = `✅ Correct! You heard ${correct.toUpperCase()}!`;
+                feedbackDiv.className = 'feedback correct-feedback';
+                
+                // Play a little celebration sound? (optional)
+            } else {
+                buttonElement.classList.add('wrong');
+                const challenge = currentQuestions[currentIndex];
+                feedbackDiv.innerHTML = `❌ Wrong! You heard ${correct.toUpperCase()}. ${challenge.hint}`;
+                feedbackDiv.className = 'feedback wrong-feedback';
+                
+                // Record mistake for review
+                mistakes.push({
+                    correct: correct,
+                    pair: challenge.pair,
+                    hint: challenge.hint
+                });
+            }
+            
+            // Mark correct answer if player got it wrong
+            if (selected !== correct) {
+                allButtons.forEach(btn => {
+                    if (btn.dataset.value === correct) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            allButtons.forEach(btn => {
+                btn.classList.add('disabled');
+                btn.disabled = true;
+            });
+            
+            nextBtn.disabled = false;
+            scoreDisplay.textContent = score;
+        }
+
+        // Next challenge
+        function nextChallenge() {
+            if (!answered) return;
+            
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+            
+            currentIndex++;
+            
+            if (currentIndex < currentQuestions.length) {
+                loadChallenge();
+            } else {
+                endGame();
+            }
+        }
+
+        // End game
+        function endGame() {
+            gameArea.classList.add('hide');
+            resultsArea.classList.remove('hide');
+            
+            const total = currentQuestions.length;
+            finalScoreSpan.textContent = `${score} / ${total}`;
+            
+            let message = '';
+            let weaknessText = '';
+            
+            if (score === total) {
+                message = 'Perfect! Your ear is finely tuned! 🎧👏🏾';
+                perfectBadge.style.display = 'inline-block';
+            } else if (score >= 6) {
+                message = `Great job! You got ${score} out of ${total}. Keep practicing the tricky pairs! 💪🏾`;
+                perfectBadge.style.display = 'none';
+            } else if (score >= 4) {
+                message = `Good effort! ${score}/${total}. Focus on the sounds you missed. 🎯`;
+                perfectBadge.style.display = 'none';
+            } else {
+                message = `Keep practicing! ${score}/${total}. Listen carefully to the hints. You'll get there! 🇬🇭`;
+                perfectBadge.style.display = 'none';
+            }
+            
+            // Show which pairs need practice
+            if (mistakes.length > 0) {
+                const uniquePairs = [...new Set(mistakes.map(m => m.pair))];
+                weaknessText = `📝 Practice these pairs: ${uniquePairs.join(', ')}`;
+                weaknessHint.textContent = weaknessText;
+            } else if (score !== total) {
+                weaknessHint.textContent = '📝 Review the digraph sounds and try again!';
+            } else {
+                weaknessHint.textContent = '🎯 Ready for more challenges? Check out the Alphabet Quiz!';
+            }
+            
+            resultMessage.textContent = message;
+        }
+
+        // Restart game
+        function restartGame() {
+            currentQuestions = getQuestions();
+            currentIndex = 0;
+            score = 0;
+            answered = false;
+            mistakes = [];
+            
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+            
+            scoreDisplay.textContent = '0';
+            progressFill.style.width = '0%';
+            
+            gameArea.classList.remove('hide');
+            resultsArea.classList.add('hide');
+            perfectBadge.style.display = 'none';
+            
+            loadChallenge();
+        }
+
+        // Initialize game
+        function initGame() {
+            currentQuestions = getQuestions();
+            currentIndex = 0;
+            score = 0;
+            answered = false;
+            mistakes = [];
+            
+            scoreDisplay.textContent = '0';
+            
+            loadChallenge();
+            
+            playSoundBtn.onclick = playCurrentSound;
+            nextBtn.onclick = nextChallenge;
+            restartBtn.onclick = restartGame;
+        }
+
+        initGame();
+    </script>
+</body>
+</html>
