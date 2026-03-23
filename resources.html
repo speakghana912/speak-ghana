@@ -84,6 +84,13 @@
             margin: 0 0 0.5rem;
         }
 
+        /* ===== AUDIO PLAYER STYLES ===== */
+        audio {
+            width: 100%;
+            margin: 1rem 0;
+            border-radius: 30px;
+        }
+
         /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
@@ -1996,6 +2003,29 @@
                     <p>Everyday conversations made easy</p>
                     <a href="/pdfs/common-phrases.pdf" download class="download-btn">Download PDF</a>
                 </div>
+                <!-- NEW AUDIO RESOURCES -->
+                <div class="material-card">
+                    <div class="material-icon">🔊</div>
+                    <h3>Complete Twi Alphabet (Audio)</h3>
+                    <p>Listen to all 22 letters with correct pronunciation</p>
+                    <audio controls>
+                        <source src="audio/twi-alphabet/twi-alphabet-complete.m4a" type="audio/mp4">
+                        <source src="audio/twi-alphabet/twi-alphabet-complete.m4a" type="audio/x-m4a">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="audio/twi-alphabet/twi-alphabet-complete.m4a" download class="download-btn">Download Audio</a>
+                </div>
+                <div class="material-card">
+                    <div class="material-icon">🔤</div>
+                    <h3>Twi Digraphs (Audio)</h3>
+                    <p>Learn common two-letter combinations: dw, gy, hy, kw, ky, ny, tw, and more</p>
+                    <audio controls>
+                        <source src="audio/twi-alphabet/twi-digraphs.m4a" type="audio/mp4">
+                        <source src="audio/twi-alphabet/twi-digraphs.m4a" type="audio/x-m4a">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="audio/twi-alphabet/twi-digraphs.m4a" download class="download-btn">Download Audio</a>
+                </div>
             </div>
             <p style="text-align: center; margin-top: 2rem;">✨ More materials added regularly - check back often! ✨</p>
         </div>
@@ -2069,7 +2099,7 @@
             <p style="margin-top: 2rem; color: var(--gray);">No spam. Unsubscribe anytime.</p>
         </div>
 
-        <!-- FAQ SECTION (UPDATED with Scholarship & Certificate) -->
+        <!-- FAQ SECTION -->
         <div class="faq-section">
             <h2 class="center">Frequently Asked Questions</h2>
             <div class="faq-grid">
