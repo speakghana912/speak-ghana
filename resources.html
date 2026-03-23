@@ -36,6 +36,54 @@
             --shadow: rgba(0, 0, 0, 0.08);
         }
 
+        /* ===== SCHOLARSHIP BLINKING ANIMATION ===== */
+        @keyframes blink {
+            0% { background: linear-gradient(135deg, var(--gold), var(--red)); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
+            50% { background: linear-gradient(135deg, var(--red), var(--gold)); box-shadow: 0 0 20px 5px rgba(212, 163, 115, 0.6); }
+            100% { background: linear-gradient(135deg, var(--gold), var(--red)); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
+        }
+
+        .scholarship-blink {
+            animation: blink 1.5s ease-in-out infinite;
+            border-radius: 30px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .scholarship-blink:hover {
+            transform: scale(1.02);
+        }
+
+        .scholarship-blink h3 {
+            color: var(--black);
+            margin: 0 0 0.5rem;
+        }
+
+        .scholarship-blink p {
+            color: var(--black);
+            margin: 0;
+        }
+
+        /* ===== CERTIFICATE SECTION ===== */
+        .certificate-section {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .certificate-section h3 {
+            color: var(--gold);
+            margin: 0 0 0.5rem;
+        }
+
         /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
@@ -1258,6 +1306,37 @@
             margin-top: 2rem;
         }
 
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--green);
+        }
+
+        .faq-item h4 {
+            color: var(--green);
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-item p {
+            color: var(--gray);
+        }
+
         /* ===== FOOTER ===== */
         footer {
             background: var(--black);
@@ -1323,7 +1402,8 @@
             .classes-grid,
             .tips-grid,
             .blog-post-grid,
-            .class-wheels-grid {
+            .class-wheels-grid,
+            .faq-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
@@ -1341,7 +1421,8 @@
             .tips-grid,
             .footer-grid,
             .blog-post-grid,
-            .class-wheels-grid {
+            .class-wheels-grid,
+            .faq-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -1579,6 +1660,13 @@
 
     <!-- Main Content -->
     <div class="container">
+        <!-- SCHOLARSHIP BLINKING SECTION -->
+        <a href="contact.html" class="scholarship-blink" style="text-decoration: none; display: block;">
+            <h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3>
+            <p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
+            <p style="margin-top: 0.5rem;">📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p>
+        </a>
+
         <!-- Blog Posts Section -->
         <div class="blog-section">
             <h2 class="center">📝 Latest Blog Posts</h2>
@@ -1912,6 +2000,13 @@
             <p style="text-align: center; margin-top: 2rem;">✨ More materials added regularly - check back often! ✨</p>
         </div>
 
+        <!-- Certificate Section -->
+        <div class="certificate-section">
+            <h3>📜 6-Month Certificate of Achievement</h3>
+            <p>Complete 6 months of continuous learning and receive an official certificate signed by our founders, showing your language level and dedication.</p>
+            <a href="languages.html" class="btn btn-gold" style="margin-top: 1rem; display: inline-block;">Explore Our Programs →</a>
+        </div>
+
         <!-- Newsletter Section -->
         <div class="newsletter-section">
             <h2 class="center">📧 Join Our Newsletter</h2>
@@ -1972,6 +2067,37 @@
             </div>
             
             <p style="margin-top: 2rem; color: var(--gray);">No spam. Unsubscribe anytime.</p>
+        </div>
+
+        <!-- FAQ SECTION (UPDATED with Scholarship & Certificate) -->
+        <div class="faq-section">
+            <h2 class="center">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>What is the Speak One, Learn One Scholarship?</h4>
+                    <p>Ghana Card holders who already speak one Ghanaian language get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What is the Certificate of Achievement?</h4>
+                    <p>Complete 6 months of continuous learning and receive an official certificate signed by our founders, showing your language level and dedication.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you have classes for kids?</h4>
+                    <p>Yes! We have specialized programs for ages 5-12 (Twi Tots, Twi Explorers) and teens 13-17.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What if I miss a class?</h4>
+                    <p>Recordings are available for group classes. Private lessons can be rescheduled with 24-hour notice.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can siblings learn together?</h4>
+                    <p>Absolutely! Our Siblings Special package is designed for families with multiple children.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What payment methods do you accept?</h4>
+                    <p>Mobile Money (MTN, Vodafone, AirtelTigo), Bank Transfer for Ghana. PayPal, Wise, and international transfers for diaspora.</p>
+                </div>
+            </div>
         </div>
 
         <!-- Social Media Section -->
@@ -2454,22 +2580,20 @@
     <script>
         function openQuizPopup() {
             document.getElementById('quiz-popup').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden';
             if (typeof loadSet === 'function') {
-                loadSet(1); // Load first set when opened
+                loadSet(1);
             }
         }
 
         function closeQuizPopup() {
             document.getElementById('quiz-popup').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restore scrolling
-            // Reset quiz state if needed
+            document.body.style.overflow = 'auto';
             if (typeof retakeQuiz === 'function') {
                 retakeQuiz();
             }
         }
 
-        // Close popup when clicking outside the content
         document.addEventListener('click', function(event) {
             const popup = document.getElementById('quiz-popup');
             if (event.target === popup) {
@@ -2477,7 +2601,6 @@
             }
         });
 
-        // Close popup with Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeQuizPopup();
@@ -2488,8 +2611,6 @@
     <!-- Event Tracking for Google Analytics -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
-            // Track Form Submissions
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
@@ -2506,7 +2627,6 @@
                 });
             });
             
-            // Track PDF Downloads
             const pdfLinks = document.querySelectorAll('a[href$=".pdf"], a[download]');
             pdfLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -2523,7 +2643,6 @@
                 });
             });
             
-            // Track WhatsApp Clicks
             const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
             whatsappLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -2534,7 +2653,6 @@
                 });
             });
             
-            // Track Phone Number Clicks
             const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
             phoneLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -2545,7 +2663,6 @@
                 });
             });
             
-            // Track Email Clicks
             const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
             emailLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -2556,7 +2673,6 @@
                 });
             });
             
-            // Track Navigation Clicks
             const navLinks = document.querySelectorAll('.nav-links a, .btn');
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -2568,7 +2684,6 @@
                 });
             });
 
-            // Track Quiz Launch
             const quizBtn = document.querySelector('.quiz-launch-btn');
             if (quizBtn) {
                 quizBtn.addEventListener('click', function() {
@@ -2579,7 +2694,6 @@
                 });
             }
 
-            // Track Blog Post Clicks
             const blogLinks = document.querySelectorAll('.blog-post-card');
             blogLinks.forEach(link => {
                 link.addEventListener('click', function() {
