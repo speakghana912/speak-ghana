@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minimal Pair Challenge | Twi Digraphs | Speak Ghana</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZXFR0LFLH6');
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -309,6 +319,12 @@
     </div>
 
     <script>
+        // Track game start
+        gtag('event', 'game_start', {
+            'event_category': 'engagement',
+            'event_label': 'minimal_pair_challenge'
+        });
+
         // ===== MINIMAL PAIRS USING YOUR EXISTING DIGRAPH AUDIO FILES =====
         const challenges = [
             { 
@@ -571,6 +587,15 @@
             }
             
             resultMessage.textContent = message;
+            
+            // Track game completion in Google Analytics
+            gtag('event', 'game_complete', {
+                'event_category': 'engagement',
+                'event_label': 'minimal_pair_challenge',
+                'score': score,
+                'total': total,
+                'percentage': Math.round((score / total) * 100)
+            });
         }
 
         // Restart game
@@ -593,6 +618,12 @@
             perfectBadge.style.display = 'none';
             
             loadChallenge();
+            
+            // Track game restart
+            gtag('event', 'game_restart', {
+                'event_category': 'engagement',
+                'event_label': 'minimal_pair_challenge'
+            });
         }
 
         // Initialize game
