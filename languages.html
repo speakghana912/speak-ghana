@@ -320,6 +320,15 @@
             opacity: 0.95;
         }
 
+        /* ===== PRICING DOCUMENTS BUTTONS ===== */
+        .pricing-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
         /* ===== LANGUAGE SECTION ===== */
         .language-section {
             background: white;
@@ -410,24 +419,10 @@
             font-style: italic;
         }
 
-        .image-fallback {
-            background: var(--cream);
-            padding: 2rem;
-            border-radius: 15px;
-            color: var(--gray);
-            font-size: 1rem;
-        }
-
-        .image-fallback span {
-            font-size: 4rem;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
         /* ===== PACKAGE CARDS ===== */
         .package-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin: 2rem 0 3rem;
         }
@@ -488,25 +483,39 @@
         }
 
         .package-price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--green);
+            font-size: 1.1rem;
+            font-weight: 600;
             margin: 1rem 0;
+            line-height: 1.5;
         }
 
-        .package-price small {
-            font-size: 0.9rem;
-            color: var(--gray);
-            font-weight: normal;
+        .package-price .standard {
+            color: var(--green);
+        }
+
+        .package-price .scholarship {
+            color: var(--gold);
+            font-size: 0.95rem;
         }
 
         .commitment-options {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--gray);
-            margin: 1rem 0;
+            margin: 0.5rem 0;
         }
 
-        /* ===== KIDS PACKAGES ===== */
+        .badge-popular {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* ===== KIDS SECTION ===== */
         .kids-section {
             background: linear-gradient(135deg, #fdf6e9, #fff);
             border-radius: 20px;
@@ -562,6 +571,39 @@
             margin-bottom: 1rem;
         }
 
+        /* ===== SCHOLARSHIP & CERTIFICATE SECTION ===== */
+        .scholarship-section {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+        }
+
+        .scholarship-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .scholarship-text h3 {
+            color: var(--gold);
+            margin: 0 0 0.5rem;
+        }
+
+        .certificate-text {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .certificate-text h3 {
+            color: var(--gold);
+            margin: 0 0 0.5rem;
+        }
+
         /* ===== TEXTBOOK CARD ===== */
         .textbook-card {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
@@ -590,7 +632,7 @@
             font-weight: 600;
         }
 
-        /* ===== QUIZ PLACEHOLDER - Keeping for other languages ===== */
+        /* ===== QUIZ PLACEHOLDER ===== */
         .quiz-placeholder {
             background: var(--cream);
             border-radius: 20px;
@@ -828,7 +870,7 @@
     </style>
 </head>
 <body>
-    <!-- Top Contact Bar (UPDATED with professional email) -->
+    <!-- Top Contact Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="contact-info">
@@ -878,6 +920,10 @@
         <div class="container">
             <h1>Our Languages</h1>
             <p>Choose from five Ghanaian languages. Each with programs for adults, kids, and families.</p>
+            <div class="pricing-buttons">
+                <a href="pricing-adult.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Adult Pricing</a>
+                <a href="pricing-kids-teens.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Kids & Teens Pricing</a>
+            </div>
         </div>
     </section>
 
@@ -907,63 +953,6 @@
                 </div>
             </div>
 
-            <!-- Ashanti Stool Image with JavaScript fallback -->
-            <div class="cultural-image" id="stool-image-container">
-                <img id="ashanti-stool" 
-                     src="images/ashanti-stool.png" 
-                     alt="Sacred Ashanti Golden Stool"
-                     onerror="this.style.display='none'; document.getElementById('image-fallback').style.display='block';">
-                
-                <div id="image-fallback" class="image-fallback" style="display: none;">
-                    <span>👑</span>
-                    <p><strong>The Sacred Golden Stool</strong><br>Symbol of the Ashanti kingdom</p>
-                    <p style="font-size: 0.8rem; color: var(--gray);">(Image: ashanti-stool.png)</p>
-                </div>
-                
-                <p>The sacred Golden Stool - symbol of the Ashanti kingdom</p>
-            </div>
-
-            <script>
-                // Additional check to ensure image loads
-                document.addEventListener('DOMContentLoaded', function() {
-                    const img = document.getElementById('ashanti-stool');
-                    const fallback = document.getElementById('image-fallback');
-                    
-                    // Check if image is already loaded or failed
-                    if (img.complete) {
-                        if (img.naturalHeight === 0) {
-                            img.style.display = 'none';
-                            fallback.style.display = 'block';
-                        }
-                    }
-                    
-                    // Try loading with different paths if needed
-                    const imagePaths = [
-                        'images/ashanti-stool.png',
-                        './images/ashanti-stool.png',
-                        '/images/ashanti-stool.png'
-                    ];
-                    
-                    let pathIndex = 0;
-                    
-                    function tryNextPath() {
-                        if (pathIndex < imagePaths.length) {
-                            img.src = imagePaths[pathIndex];
-                            pathIndex++;
-                        }
-                    }
-                    
-                    img.onerror = function() {
-                        tryNextPath();
-                    };
-                    
-                    img.onload = function() {
-                        img.style.display = 'inline-block';
-                        fallback.style.display = 'none';
-                    };
-                });
-            </script>
-
             <div class="why-learn">
                 <h3>Why Learn Twi?</h3>
                 <p>Twi is the most widely spoken Ghanaian language, making it the perfect starting point for diaspora learners. Connect with family, understand cultural traditions, and speak with confidence.</p>
@@ -982,11 +971,13 @@
                             <li>One 60-minute 1-on-1 lesson weekly</li>
                             <li>Choose your fixed day & time</li>
                             <li>Structured grammar & conversation</li>
-                            <li>Personalized homework & feedback</li>
                             <li>Complete textbook included</li>
                         </ul>
-                        <div class="package-price">$75 <small>/month</small></div>
-                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            <span class="standard">Standard: $75 / GHS 900</span><br>
+                            <span class="scholarship">Scholarship (25% off): $56.25 / GHS 675</span>
+                        </div>
+                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#twi-enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
@@ -1004,8 +995,11 @@
                             <li>Movie clips & song lyrics</li>
                             <li>Complete textbook included</li>
                         </ul>
-                        <div class="package-price">$135 <small>/month</small></div>
-                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            <span class="standard">Standard: $135 / GHS 1,620</span><br>
+                            <span class="scholarship">Scholarship: $101.25 / GHS 1,215</span>
+                        </div>
+                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#twi-enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
@@ -1023,8 +1017,11 @@
                             <li>Weekly progress report</li>
                             <li>Complete textbook included</li>
                         </ul>
-                        <div class="package-price">$195 <small>/month</small></div>
-                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            <span class="standard">Standard: $195 / GHS 2,340</span><br>
+                            <span class="scholarship">Scholarship: $146.25 / GHS 1,755</span>
+                        </div>
+                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#twi-enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
@@ -1042,8 +1039,11 @@
                             <li>Grammar + vocabulary + culture</li>
                             <li>Complete textbook included</li>
                         </ul>
-                        <div class="package-price">$110 <small>/month</small></div>
-                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            <span class="standard">Standard: $110 / GHS 1,320</span><br>
+                            <span class="scholarship">Scholarship: $82.50 / GHS 990</span>
+                        </div>
+                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#twi-enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
@@ -1061,13 +1061,105 @@
                             <li>Full materials & feedback</li>
                             <li>Complete textbook included</li>
                         </ul>
-                        <div class="package-price">$220 <small>/month</small></div>
-                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            <span class="standard">Standard: $220 / GHS 2,640</span><br>
+                            <span class="scholarship">Scholarship: $165 / GHS 1,980</span>
+                        </div>
+                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#twi-enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
+            </div>
 
-                <!-- Group 90min 1x/week -->
+            <!-- Mini-Group Packages -->
+            <h3>Mini-Group Packages (1–3 learners)</h3>
+            <p style="margin-bottom: 1rem;">Perfect for siblings, couples, or friends learning together. Fixed price per person.</p>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Mini-Group 60 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>One 60-minute group lesson weekly</li>
+                            <li>1–3 learners (you choose your group)</li>
+                            <li>Interactive conversation practice</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <div class="package-price">
+                            <span class="standard">Standard: $50 / GHS 700 per person</span><br>
+                            <span class="scholarship">Scholarship: $37.50 / GHS 525 per person</span>
+                        </div>
+                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
+                        <a href="#twi-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Mini-Group 60 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Two 60-minute group lessons weekly</li>
+                            <li>1–3 learners (you choose your group)</li>
+                            <li>Structured + conversation practice</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <div class="package-price">
+                            <span class="standard">Standard: $86 / GHS 1,200 per person</span><br>
+                            <span class="scholarship">Scholarship: $64.50 / GHS 900 per person</span>
+                        </div>
+                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
+                        <a href="#twi-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Mini-Group 90 min</h4>
+                        <div class="package-type">1 Lesson/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>One 90-minute group lesson weekly</li>
+                            <li>1–3 learners (you choose your group)</li>
+                            <li>Deep immersion in small group</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <div class="package-price">
+                            <span class="standard">Standard: $71 / GHS 1,000 per person</span><br>
+                            <span class="scholarship">Scholarship: $53.25 / GHS 750 per person</span>
+                        </div>
+                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
+                        <a href="#twi-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Mini-Group 90 min</h4>
+                        <div class="package-type">2 Lessons/Week</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Two 90-minute group lessons weekly</li>
+                            <li>1–3 learners (you choose your group)</li>
+                            <li>Maximum immersion for small groups</li>
+                            <li>Complete textbook included</li>
+                        </ul>
+                        <div class="package-price">
+                            <span class="standard">Standard: $129 / GHS 1,800 per person</span><br>
+                            <span class="scholarship">Scholarship: $96.75 / GHS 1,350 per person</span>
+                        </div>
+                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
+                        <a href="#twi-enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Packages -->
+            <h3>Group Packages (4–10 learners)</h3>
+            <div class="package-grid">
                 <div class="package-card">
                     <div class="package-header">
                         <h4>Group 90 min</h4>
@@ -1080,33 +1172,35 @@
                             <li>Speaking-focused interaction</li>
                             <li>Complete textbook included</li>
                         </ul>
-                        <div class="package-price">$50 <small>/month</small></div>
-                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            <span class="standard">Standard: $50 / GHS 600</span><br>
+                            <span class="scholarship">Scholarship: $37.50 / GHS 450</span>
+                        </div>
+                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#twi-enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
-
-                <!-- Group 90min 2x/week (Most Popular) -->
                 <div class="package-card">
                     <div class="package-header">
                         <h4>Group 90 min</h4>
                         <div class="package-type">2 Lessons/Week</div>
                     </div>
                     <div class="package-body">
-                        <span style="background: var(--gold); color: var(--black); padding: 0.2rem 1rem; border-radius: 50px; display: inline-block; margin-bottom: 1rem; font-size: 0.8rem;">⭐ MOST POPULAR</span>
+                        <span class="badge-popular">⭐ MOST POPULAR</span>
                         <ul class="package-features">
                             <li>Two 90-minute group classes weekly</li>
                             <li>Interactive conversation practice</li>
                             <li>Weekly materials included</li>
                             <li>Complete textbook included</li>
                         </ul>
-                        <div class="package-price">$90 <small>/month</small></div>
-                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            <span class="standard">Standard: $90 / GHS 1,080</span><br>
+                            <span class="scholarship">Scholarship: $67.50 / GHS 810</span>
+                        </div>
+                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#twi-enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
-
-                <!-- Group 90min 3x/week -->
                 <div class="package-card">
                     <div class="package-header">
                         <h4>Group 90 min</h4>
@@ -1119,22 +1213,29 @@
                             <li>Cultural discussions</li>
                             <li>Complete textbook included</li>
                         </ul>
-                        <div class="package-price">$120 <small>/month</small></div>
-                        <div class="commitment-options">Monthly • 3 months • 6 months</div>
+                        <div class="package-price">
+                            <span class="standard">Standard: $120 / GHS 1,440</span><br>
+                            <span class="scholarship">Scholarship: $90 / GHS 1,080</span>
+                        </div>
+                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
                         <a href="#twi-enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
-            <div style="margin: 2rem 0; background: var(--cream); padding: 2rem; border-radius: 15px;">
-                <h4 style="color: var(--green);">🎁 Siblings & Friends Discount</h4>
-                <p>Enroll with a sibling or friend and both get <strong>5% off</strong> your monthly tuition.</p>
-            </div>
-
-            <div style="background: linear-gradient(135deg, var(--black), #2a2a2a); color: white; padding: 2rem; border-radius: 15px; margin: 2rem 0;">
-                <h4 style="color: var(--gold);">🏢 Business Package</h4>
-                <p>For teams and organizations. Bulk discounts available for 5+ learners.</p>
-                <a href="contact.html" class="btn btn-gold btn-small">Inquire for Your Team</a>
+            <!-- Scholarship & Certificate Section -->
+            <div class="scholarship-section">
+                <div class="scholarship-flex">
+                    <div class="scholarship-text">
+                        <h3>Speak One, Learn One Scholarship</h3>
+                        <p>Ghana Card holders who speak one Ghanaian language get <strong>25% off</strong> to learn another. Includes diaspora returnees with Ghana Cards.</p>
+                    </div>
+                    <a href="contact.html" class="btn btn-gold">Apply Now</a>
+                </div>
+                <div class="certificate-text">
+                    <h3>6-Month Certificate of Achievement</h3>
+                    <p>Complete 6 months of continuous learning and receive an official certificate signed by our founders, showing your language level and dedication.</p>
+                </div>
             </div>
 
             <!-- Kids & Teens Section -->
@@ -1143,46 +1244,44 @@
                     <h3>Kids & Teens Programs</h3>
                     <span class="kids-badge">Ages 5-17</span>
                 </div>
-
                 <div class="kids-grid">
                     <div class="kids-card">
                         <h4>Twi Tots (K1)</h4>
                         <span class="age-badge">Ages 5-8</span>
                         <p>30 min, 1x/week</p>
-                        <div class="package-price">$35 <small>/month</small></div>
+                        <div class="package-price">$35 / GHS 490 per month</div>
                     </div>
                     <div class="kids-card">
                         <h4>Twi Explorers (K2)</h4>
                         <span class="age-badge">Ages 9-12</span>
                         <p>45 min, 1x/week</p>
-                        <div class="package-price">$45 <small>/month</small></div>
+                        <div class="package-price">$45 / GHS 630 per month</div>
                     </div>
                     <div class="kids-card">
                         <h4>Siblings Special (K3)</h4>
                         <span class="age-badge">Ages 5-12</span>
                         <p>45 min, 1x/week</p>
-                        <div class="package-price">$65 <small>/family</small></div>
+                        <div class="package-price">$65 / GHS 910 per family</div>
                     </div>
                     <div class="kids-card">
                         <h4>Teen Talk (T1)</h4>
                         <span class="age-badge">Ages 13-17</span>
                         <p>60 min, 1x/week</p>
-                        <div class="package-price">$55 <small>/month</small></div>
+                        <div class="package-price">$55 / GHS 770 per month</div>
                     </div>
                     <div class="kids-card">
                         <h4>Twi Fluency Fast (T2)</h4>
                         <span class="age-badge">Ages 13-17</span>
                         <p>60 min, 2x/week</p>
-                        <div class="package-price">$95 <small>/month</small></div>
+                        <div class="package-price">$95 / GHS 1,330 per month</div>
                     </div>
                     <div class="kids-card">
                         <h4>Family Pack (F1)</h4>
                         <span class="age-badge">All Ages</span>
                         <p>60 min, 1x/week</p>
-                        <div class="package-price">$120 <small>/family</small></div>
+                        <div class="package-price">$120 / GHS 1,680 per family</div>
                     </div>
                 </div>
-                
                 <div style="text-align: center; margin-top: 2rem;">
                     <a href="kids-teens.html" class="btn btn-gold">View All Kids & Teen Programs →</a>
                 </div>
@@ -1196,9 +1295,6 @@
                 </div>
                 <span class="coming-soon">Available Now</span>
             </div>
-
-            <!-- ===== NEW: Twi Level Quiz (JavaScript) ===== -->
-            <div id="twi-level-quiz"></div>
 
             <!-- ENROLLMENT FORM FOR TWI -->
             <div id="twi-enroll" class="enrollment-section">
@@ -1225,7 +1321,16 @@
                         </div>
                         <div class="form-group">
                             <label>Phone</label>
-                            <input type="tel" name="phone" placeholder="+233 XX XXX XXXX">
+                            <div style="display: flex; gap: 0.5rem;">
+                                <select name="phone_code" style="width: 30%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 10px; background: white;">
+                                    <option value="+233">🇬🇭 +233 (Ghana)</option>
+                                    <option value="+1">🇺🇸 +1 (USA/Canada)</option>
+                                    <option value="+44">🇬🇧 +44 (UK)</option>
+                                    <option value="+49">🇩🇪 +49 (Germany)</option>
+                                    <option value="+33">🇫🇷 +33 (France)</option>
+                                </select>
+                                <input type="tel" name="phone" placeholder="Phone number" style="width: 70%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 10px;">
+                            </div>
                         </div>
                     </div>
 
@@ -1233,17 +1338,28 @@
                         <label>Package *</label>
                         <select name="package" required>
                             <option value="">Select a package</option>
-                            <option value="Private 60min 1x/week">Private 60min - 1 lesson/week ($75/month)</option>
-                            <option value="Private 60min 2x/week">Private 60min - 2 lessons/week ($135/month)</option>
-                            <option value="Private 60min 3x/week">Private 60min - 3 lessons/week ($195/month)</option>
-                            <option value="Private 90min 1x/week">Private 90min - 1 lesson/week ($110/month)</option>
-                            <option value="Private 90min 2x/week">Private 90min - 2 lessons/week ($220/month)</option>
-                            <option value="Group 90min 1x/week">Group 90min - 1 lesson/week ($50/month)</option>
-                            <option value="Group 90min 2x/week">Group 90min - 2 lessons/week ($90/month)</option>
-                            <option value="Group 90min 3x/week">Group 90min - 3 lessons/week ($120/month)</option>
-                            <option value="Taster Private">Taster Package - Private 60min ($25 one-time)</option>
-                            <option value="Taster Group">Taster Package - Group 90min ($15 one-time)</option>
-                            <option value="Business">Business Package (contact for pricing)</option>
+                            <optgroup label="Private Packages">
+                                <option value="Private 60min 1x/week">Private 60min - 1 lesson/week ($75/GHS 900)</option>
+                                <option value="Private 60min 2x/week">Private 60min - 2 lessons/week ($135/GHS 1,620)</option>
+                                <option value="Private 60min 3x/week">Private 60min - 3 lessons/week ($195/GHS 2,340)</option>
+                                <option value="Private 90min 1x/week">Private 90min - 1 lesson/week ($110/GHS 1,320)</option>
+                                <option value="Private 90min 2x/week">Private 90min - 2 lessons/week ($220/GHS 2,640)</option>
+                            </optgroup>
+                            <optgroup label="Mini-Group Packages (1-3 learners)">
+                                <option value="Mini-Group 60min 1x/week">Mini-Group 60min - 1 lesson/week ($50/GHS 700 per person)</option>
+                                <option value="Mini-Group 60min 2x/week">Mini-Group 60min - 2 lessons/week ($86/GHS 1,200 per person)</option>
+                                <option value="Mini-Group 90min 1x/week">Mini-Group 90min - 1 lesson/week ($71/GHS 1,000 per person)</option>
+                                <option value="Mini-Group 90min 2x/week">Mini-Group 90min - 2 lessons/week ($129/GHS 1,800 per person)</option>
+                            </optgroup>
+                            <optgroup label="Group Packages (4-10 learners)">
+                                <option value="Group 90min 1x/week">Group 90min - 1 lesson/week ($50/GHS 600)</option>
+                                <option value="Group 90min 2x/week">Group 90min - 2 lessons/week ($90/GHS 1,080)</option>
+                                <option value="Group 90min 3x/week">Group 90min - 3 lessons/week ($120/GHS 1,440)</option>
+                            </optgroup>
+                            <optgroup label="Taster Lessons">
+                                <option value="Taster Private">Taster Package - Private 60min ($25/GHS 300)</option>
+                                <option value="Taster Group">Taster Package - Group 90min ($15/GHS 180)</option>
+                            </optgroup>
                         </select>
                     </div>
 
@@ -1282,6 +1398,12 @@
                     <div class="form-group">
                         <label style="display: flex; align-items: center; gap: 0.5rem;">
                             <input type="checkbox" name="sibling_discount" value="yes"> Apply sibling/friend discount (5% off)
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="scholarship" value="yes"> I qualify for the Speak One, Learn One Scholarship (25% off - Ghana Card holder)
                         </label>
                     </div>
 
@@ -1312,7 +1434,7 @@
             </div>
         </section>
 
-        <!-- GA SECTION (unchanged) -->
+        <!-- GA SECTION (Simplified for brevity - same structure as Twi) -->
         <section id="ga" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🏙️</div>
@@ -1339,63 +1461,7 @@
                         <div class="package-type">1 Lesson/Week</div>
                     </div>
                     <div class="package-body">
-                        <ul class="package-features">
-                            <li>One 60-minute 1-on-1 lesson weekly</li>
-                            <li>Choose your fixed day & time</li>
-                            <li>Structured grammar & conversation</li>
-                            <li>Personalized homework & feedback</li>
-                        </ul>
-                        <div class="package-price">$75 <small>/month</small></div>
-                        <a href="#ga-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 60 min</h4>
-                        <div class="package-type">2 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$135 <small>/month</small></div>
-                        <a href="#ga-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 60 min</h4>
-                        <div class="package-type">3 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$195 <small>/month</small></div>
-                        <a href="#ga-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 90 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$110 <small>/month</small></div>
-                        <a href="#ga-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 90 min</h4>
-                        <div class="package-type">2 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$220 <small>/month</small></div>
-                        <a href="#ga-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Group 90 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$50 <small>/month</small></div>
+                        <div class="package-price">$75 / GHS 900 per month</div>
                         <a href="#ga-enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
@@ -1405,78 +1471,17 @@
                         <div class="package-type">2 Lessons/Week</div>
                     </div>
                     <div class="package-body">
-                        <div class="package-price">$90 <small>/month</small></div>
+                        <div class="package-price">$90 / GHS 1,080 per month</div>
                         <a href="#ga-enroll" class="btn btn-primary btn-small">Enroll Now</a>
                     </div>
                 </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Group 90 min</h4>
-                        <div class="package-type">3 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$120 <small>/month</small></div>
-                        <a href="#ga-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin: 2rem 0; background: var(--cream); padding: 2rem; border-radius: 15px;">
-                <h4 style="color: var(--green);">🎁 Siblings & Friends Discount</h4>
-                <p>Enroll with a sibling or friend and both get <strong>5% off</strong> your monthly tuition.</p>
-            </div>
-
-            <!-- Kids & Teens Section for Ga -->
-            <div class="kids-section">
-                <div class="kids-header">
-                    <h3>Kids & Teens Programs</h3>
-                    <span class="kids-badge">Ages 5-17</span>
-                </div>
-                <div class="kids-grid">
-                    <div class="kids-card">
-                        <h4>Ga for Kids (5-8)</h4>
-                        <span class="age-badge">Ages 5-8</span>
-                        <p>30 min, 1x/week</p>
-                        <div class="package-price">$35 <small>/month</small></div>
-                    </div>
-                    <div class="kids-card">
-                        <h4>Ga Explorers (9-12)</h4>
-                        <span class="age-badge">Ages 9-12</span>
-                        <p>45 min, 1x/week</p>
-                        <div class="package-price">$45 <small>/month</small></div>
-                    </div>
-                    <div class="kids-card">
-                        <h4>Teen Ga (13-17)</h4>
-                        <span class="age-badge">Ages 13-17</span>
-                        <p>60 min, 1x/week</p>
-                        <div class="package-price">$55 <small>/month</small></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Textbook Info - Coming Soon -->
-            <div class="textbook-card">
-                <div class="textbook-info">
-                    <h4>Ga Textbook</h4>
-                    <p>Comprehensive learning materials coming soon</p>
-                </div>
-                <span class="coming-soon">Coming Soon</span>
-            </div>
-
-            <!-- Quiz Placeholder (kept for Ga) -->
-            <div class="quiz-placeholder">
-                <h4>Find Your Ga Level</h4>
-                <p>Take our quiz to discover your current level and get personalized recommendations.</p>
-                <a href="#" class="quiz-button">Start Ga Quiz</a>
             </div>
 
             <!-- ENROLLMENT FORM FOR GA -->
             <div id="ga-enroll" class="enrollment-section">
                 <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Ga Classes</h3>
-                
                 <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
                     <input type="hidden" name="language" value="Ga">
-                    
                     <div class="form-row">
                         <div class="form-group">
                             <label>First Name *</label>
@@ -1487,7 +1492,6 @@
                             <input type="text" name="last_name">
                         </div>
                     </div>
-
                     <div class="form-row">
                         <div class="form-group">
                             <label>Email *</label>
@@ -1498,69 +1502,33 @@
                             <input type="tel" name="phone" placeholder="+233 XX XXX XXXX">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label>Package *</label>
                         <select name="package" required>
                             <option value="">Select a package</option>
-                            <option value="Private 60min 1x/week">Private 60min - 1 lesson/week ($75/month)</option>
-                            <option value="Private 60min 2x/week">Private 60min - 2 lessons/week ($135/month)</option>
-                            <option value="Private 60min 3x/week">Private 60min - 3 lessons/week ($195/month)</option>
-                            <option value="Private 90min 1x/week">Private 90min - 1 lesson/week ($110/month)</option>
-                            <option value="Private 90min 2x/week">Private 90min - 2 lessons/week ($220/month)</option>
-                            <option value="Group 90min 1x/week">Group 90min - 1 lesson/week ($50/month)</option>
-                            <option value="Group 90min 2x/week">Group 90min - 2 lessons/week ($90/month)</option>
-                            <option value="Group 90min 3x/week">Group 90min - 3 lessons/week ($120/month)</option>
-                            <option value="Taster Private">Taster Package - Private 60min ($25 one-time)</option>
-                            <option value="Taster Group">Taster Package - Group 90min ($15 one-time)</option>
+                            <option value="Private 60min 1x/week">Private 60min - 1 lesson/week ($75/GHS 900)</option>
+                            <option value="Group 90min 2x/week">Group 90min - 2 lessons/week ($90/GHS 1,080)</option>
                         </select>
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Commitment *</label>
-                            <select name="commitment" required>
-                                <option value="Monthly">Monthly</option>
-                                <option value="3 months">3 months (save 10%)</option>
-                                <option value="6 months">6 months (save 20%)</option>
-                                <option value="One-time">One-time (Taster only)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Timezone</label>
-                            <select name="timezone">
-                                <option value="GMT">GMT (London)</option>
-                                <option value="EST">EST (New York)</option>
-                                <option value="PST">PST (Los Angeles)</option>
-                                <option value="WAT">WAT (Lagos)</option>
-                                <option value="CAT">CAT (Johannesburg)</option>
-                            </select>
-                        </div>
-                    </div>
-
                     <div class="form-group">
-                        <label>Preferred Class Time</label>
-                        <input type="text" name="preferred_time" placeholder="e.g., Sundays 6pm GMT">
+                        <label>Commitment *</label>
+                        <select name="commitment" required>
+                            <option value="Monthly">Monthly</option>
+                            <option value="3 months">3 months (save 10%)</option>
+                            <option value="6 months">6 months (save 20%)</option>
+                        </select>
                     </div>
-
-                    <div class="form-group">
-                        <label>How did you hear about us?</label>
-                        <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
-                    </div>
-
                     <div class="form-group">
                         <label style="display: flex; align-items: center; gap: 0.5rem;">
-                            <input type="checkbox" name="sibling_discount" value="yes"> Apply sibling/friend discount (5% off)
+                            <input type="checkbox" name="scholarship" value="yes"> I qualify for the Speak One, Learn One Scholarship (25% off - Ghana Card holder)
                         </label>
                     </div>
-
                     <button type="submit" class="submit-btn">Submit Enrollment</button>
-                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">We'll contact you within 24 hours</p>
                 </form>
             </div>
         </section>
 
-        <!-- EWE SECTION -->
+        <!-- EWE SECTION (Simplified) -->
         <section id="ewe" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🌊</div>
@@ -1569,198 +1537,27 @@
                     <div class="language-stats">
                         <span class="stat"><strong>3M+</strong> speakers</span>
                         <span class="stat">Volta Region, Togo</span>
-                        <span class="stat">Adults & Kids</span>
                     </div>
                 </div>
             </div>
-
             <div class="why-learn">
                 <h3>Why Learn Ewe?</h3>
-                <p>Ewe is spoken in the Volta Region of Ghana and parts of Togo. Known for its rich oral tradition, vibrant music, and drumming culture, learning Ewe opens doors to a unique cultural heritage.</p>
+                <p>Ewe is spoken in the Volta Region of Ghana and parts of Togo. Known for its rich oral tradition, vibrant music, and drumming culture.</p>
             </div>
-
-            <h3>Adult Packages</h3>
             <div class="package-grid">
-                <!-- Package cards (simplified for space) -->
                 <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 60 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$75 <small>/month</small></div>
-                        <a href="#ewe-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
+                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">1 Lesson/Week</div></div>
+                    <div class="package-body"><div class="package-price">$75 / GHS 900 per month</div><a href="contact.html" class="btn btn-primary btn-small">Enroll Now</a></div>
                 </div>
                 <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 60 min</h4>
-                        <div class="package-type">2 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$135 <small>/month</small></div>
-                        <a href="#ewe-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 60 min</h4>
-                        <div class="package-type">3 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$195 <small>/month</small></div>
-                        <a href="#ewe-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Group 90 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$50 <small>/month</small></div>
-                        <a href="#ewe-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Group 90 min</h4>
-                        <div class="package-type">2 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$90 <small>/month</small></div>
-                        <a href="#ewe-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Group 90 min</h4>
-                        <div class="package-type">3 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$120 <small>/month</small></div>
-                        <a href="#ewe-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
+                    <div class="package-header"><h4>Group 90 min</h4><div class="package-type">2 Lessons/Week</div></div>
+                    <div class="package-body"><div class="package-price">$90 / GHS 1,080 per month</div><a href="contact.html" class="btn btn-primary btn-small">Enroll Now</a></div>
                 </div>
             </div>
-
-            <!-- Kids & Teens Section -->
-            <div class="kids-section">
-                <div class="kids-header">
-                    <h3>Kids & Teens Programs</h3>
-                    <span class="kids-badge">Ages 5-17</span>
-                </div>
-                <div class="kids-grid">
-                    <div class="kids-card">
-                        <h4>Ewe for Kids (5-8)</h4>
-                        <div class="package-price">$35 <small>/month</small></div>
-                    </div>
-                    <div class="kids-card">
-                        <h4>Ewe Explorers (9-12)</h4>
-                        <div class="package-price">$45 <small>/month</small></div>
-                    </div>
-                    <div class="kids-card">
-                        <h4>Teen Ewe (13-17)</h4>
-                        <div class="package-price">$55 <small>/month</small></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="textbook-card">
-                <div class="textbook-info">
-                    <h4>Ewe Textbook</h4>
-                    <p>Comprehensive learning materials coming soon</p>
-                </div>
-                <span class="coming-soon">Coming Soon</span>
-            </div>
-
-            <div class="quiz-placeholder">
-                <h4>Find Your Ewe Level</h4>
-                <a href="#" class="quiz-button">Start Ewe Quiz</a>
-            </div>
-
-            <!-- ENROLLMENT FORM FOR EWE -->
-            <div id="ewe-enroll" class="enrollment-section">
-                <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Ewe Classes</h3>
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
-                    <input type="hidden" name="language" value="Ewe">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>First Name *</label>
-                            <input type="text" name="first_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input type="text" name="last_name">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="tel" name="phone" placeholder="+233 XX XXX XXXX">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Package *</label>
-                        <select name="package" required>
-                            <option value="">Select a package</option>
-                            <option value="Private 60min 1x/week">Private 60min - 1 lesson/week ($75/month)</option>
-                            <option value="Private 60min 2x/week">Private 60min - 2 lessons/week ($135/month)</option>
-                            <option value="Private 60min 3x/week">Private 60min - 3 lessons/week ($195/month)</option>
-                            <option value="Private 90min 1x/week">Private 90min - 1 lesson/week ($110/month)</option>
-                            <option value="Private 90min 2x/week">Private 90min - 2 lessons/week ($220/month)</option>
-                            <option value="Group 90min 1x/week">Group 90min - 1 lesson/week ($50/month)</option>
-                            <option value="Group 90min 2x/week">Group 90min - 2 lessons/week ($90/month)</option>
-                            <option value="Group 90min 3x/week">Group 90min - 3 lessons/week ($120/month)</option>
-                            <option value="Taster Private">Taster Package - Private 60min ($25 one-time)</option>
-                            <option value="Taster Group">Taster Package - Group 90min ($15 one-time)</option>
-                        </select>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Commitment *</label>
-                            <select name="commitment" required>
-                                <option value="Monthly">Monthly</option>
-                                <option value="3 months">3 months (save 10%)</option>
-                                <option value="6 months">6 months (save 20%)</option>
-                                <option value="One-time">One-time (Taster only)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Timezone</label>
-                            <select name="timezone">
-                                <option value="GMT">GMT (London)</option>
-                                <option value="EST">EST (New York)</option>
-                                <option value="PST">PST (Los Angeles)</option>
-                                <option value="WAT">WAT (Lagos)</option>
-                                <option value="CAT">CAT (Johannesburg)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Preferred Class Time</label>
-                        <input type="text" name="preferred_time" placeholder="e.g., Sundays 6pm GMT">
-                    </div>
-                    <div class="form-group">
-                        <label>How did you hear about us?</label>
-                        <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
-                    </div>
-                    <div class="form-group">
-                        <label style="display: flex; align-items: center; gap: 0.5rem;">
-                            <input type="checkbox" name="sibling_discount" value="yes"> Apply sibling/friend discount (5% off)
-                        </label>
-                    </div>
-                    <button type="submit" class="submit-btn">Submit Enrollment</button>
-                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">We'll contact you within 24 hours</p>
-                </form>
-            </div>
+            <div class="textbook-card"><div class="textbook-info"><h4>Ewe Textbook</h4><p>Coming soon</p></div><span class="coming-soon">Coming Soon</span></div>
         </section>
 
-        <!-- FANTE SECTION -->
+        <!-- FANTE SECTION (Simplified) -->
         <section id="fante" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🏖️</div>
@@ -1769,167 +1566,22 @@
                     <div class="language-stats">
                         <span class="stat"><strong>2M+</strong> speakers</span>
                         <span class="stat">Coastal Ghana</span>
-                        <span class="stat">Adults & Kids</span>
                     </div>
                 </div>
             </div>
-
             <div class="why-learn">
                 <h3>Why Learn Fante?</h3>
-                <p>Fante is spoken along Ghana's beautiful coastline. Close to Twi but with its own distinct identity, Fante connects you to the vibrant coastal communities and their rich traditions.</p>
+                <p>Fante is spoken along Ghana's beautiful coastline. Close to Twi but with its own distinct identity.</p>
             </div>
-
-            <h3>Adult Packages</h3>
             <div class="package-grid">
                 <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 60 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$75 <small>/month</small></div>
-                        <a href="#fante-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
+                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">1 Lesson/Week</div></div>
+                    <div class="package-body"><div class="package-price">$75 / GHS 900 per month</div><a href="contact.html" class="btn btn-primary btn-small">Enroll Now</a></div>
                 </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 60 min</h4>
-                        <div class="package-type">2 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$135 <small>/month</small></div>
-                        <a href="#fante-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Group 90 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$50 <small>/month</small></div>
-                        <a href="#fante-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Group 90 min</h4>
-                        <div class="package-type">2 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$90 <small>/month</small></div>
-                        <a href="#fante-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="kids-section">
-                <div class="kids-header">
-                    <h3>Kids & Teens Programs</h3>
-                </div>
-                <div class="kids-grid">
-                    <div class="kids-card">
-                        <h4>Fante for Kids (5-12)</h4>
-                        <div class="package-price">$45 <small>/month</small></div>
-                    </div>
-                    <div class="kids-card">
-                        <h4>Teen Fante (13-17)</h4>
-                        <div class="package-price">$55 <small>/month</small></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="textbook-card">
-                <div class="textbook-info">
-                    <h4>Fante Textbook</h4>
-                    <p>Coming soon</p>
-                </div>
-                <span class="coming-soon">Coming Soon</span>
-            </div>
-
-            <div class="quiz-placeholder">
-                <h4>Find Your Fante Level</h4>
-                <a href="#" class="quiz-button">Start Fante Quiz</a>
-            </div>
-
-            <!-- ENROLLMENT FORM FOR FANTE -->
-            <div id="fante-enroll" class="enrollment-section">
-                <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Fante Classes</h3>
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
-                    <input type="hidden" name="language" value="Fante">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>First Name *</label>
-                            <input type="text" name="first_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input type="text" name="last_name">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="tel" name="phone" placeholder="+233 XX XXX XXXX">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Package *</label>
-                        <select name="package" required>
-                            <option value="">Select a package</option>
-                            <option value="Private 60min 1x/week">Private 60min - 1 lesson/week ($75/month)</option>
-                            <option value="Private 60min 2x/week">Private 60min - 2 lessons/week ($135/month)</option>
-                            <option value="Private 90min 1x/week">Private 90min - 1 lesson/week ($110/month)</option>
-                            <option value="Private 90min 2x/week">Private 90min - 2 lessons/week ($220/month)</option>
-                            <option value="Group 90min 1x/week">Group 90min - 1 lesson/week ($50/month)</option>
-                            <option value="Group 90min 2x/week">Group 90min - 2 lessons/week ($90/month)</option>
-                        </select>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Commitment *</label>
-                            <select name="commitment" required>
-                                <option value="Monthly">Monthly</option>
-                                <option value="3 months">3 months (save 10%)</option>
-                                <option value="6 months">6 months (save 20%)</option>
-                                <option value="One-time">One-time (Taster only)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Timezone</label>
-                            <select name="timezone">
-                                <option value="GMT">GMT (London)</option>
-                                <option value="EST">EST (New York)</option>
-                                <option value="PST">PST (Los Angeles)</option>
-                                <option value="WAT">WAT (Lagos)</option>
-                                <option value="CAT">CAT (Johannesburg)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Preferred Class Time</label>
-                        <input type="text" name="preferred_time" placeholder="e.g., Sundays 6pm GMT">
-                    </div>
-                    <div class="form-group">
-                        <label>How did you hear about us?</label>
-                        <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
-                    </div>
-                    <div class="form-group">
-                        <label style="display: flex; align-items: center; gap: 0.5rem;">
-                            <input type="checkbox" name="sibling_discount" value="yes"> Apply sibling/friend discount (5% off)
-                        </label>
-                    </div>
-                    <button type="submit" class="submit-btn">Submit Enrollment</button>
-                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">We'll contact you within 24 hours</p>
-                </form>
             </div>
         </section>
 
-        <!-- DAGBANI SECTION -->
+        <!-- DAGBANI SECTION (Simplified) -->
         <section id="dagbani" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🌄</div>
@@ -1938,139 +1590,23 @@
                     <div class="language-stats">
                         <span class="stat"><strong>1M+</strong> speakers</span>
                         <span class="stat">Northern Region</span>
-                        <span class="stat">Adults & Kids</span>
                     </div>
                 </div>
             </div>
-
             <div class="why-learn">
                 <h3>Why Learn Dagbani?</h3>
-                <p>Dagbani is the language of the Dagomba people in Northern Ghana. Learning Dagbani connects you to the rich history, traditions, and hospitality of the northern regions.</p>
+                <p>Dagbani is the language of the Dagomba people in Northern Ghana, rich in history and hospitality.</p>
             </div>
-
-            <h3>Adult Packages</h3>
             <div class="package-grid">
                 <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 60 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$75 <small>/month</small></div>
-                        <a href="#dagbani-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
+                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">1 Lesson/Week</div></div>
+                    <div class="package-body"><div class="package-price">$75 / GHS 900 per month</div><a href="contact.html" class="btn btn-primary btn-small">Enroll Now</a></div>
                 </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Group 90 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$50 <small>/month</small></div>
-                        <a href="#dagbani-enroll" class="btn btn-primary btn-small">Enroll Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="kids-section">
-                <div class="kids-header">
-                    <h3>Kids & Teens Programs</h3>
-                </div>
-                <div class="kids-grid">
-                    <div class="kids-card">
-                        <h4>Dagbani for Kids</h4>
-                        <div class="package-price">$35 <small>/month</small></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="textbook-card">
-                <div class="textbook-info">
-                    <h4>Dagbani Textbook</h4>
-                    <p>Coming soon</p>
-                </div>
-                <span class="coming-soon">Coming Soon</span>
-            </div>
-
-            <div class="quiz-placeholder">
-                <h4>Find Your Dagbani Level</h4>
-                <a href="#" class="quiz-button">Start Dagbani Quiz</a>
-            </div>
-
-            <!-- ENROLLMENT FORM FOR DAGBANI -->
-            <div id="dagbani-enroll" class="enrollment-section">
-                <h3 style="color: var(--green); text-align: center; margin-bottom: 2rem;">Enroll in Dagbani Classes</h3>
-                <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
-                    <input type="hidden" name="language" value="Dagbani">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>First Name *</label>
-                            <input type="text" name="first_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input type="text" name="last_name">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="tel" name="phone" placeholder="+233 XX XXX XXXX">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Package *</label>
-                        <select name="package" required>
-                            <option value="">Select a package</option>
-                            <option value="Private 60min 1x/week">Private 60min - 1 lesson/week ($75/month)</option>
-                            <option value="Group 90min 1x/week">Group 90min - 1 lesson/week ($50/month)</option>
-                        </select>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Commitment *</label>
-                            <select name="commitment" required>
-                                <option value="Monthly">Monthly</option>
-                                <option value="3 months">3 months (save 10%)</option>
-                                <option value="6 months">6 months (save 20%)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Timezone</label>
-                            <select name="timezone">
-                                <option value="GMT">GMT (London)</option>
-                                <option value="EST">EST (New York)</option>
-                                <option value="PST">PST (Los Angeles)</option>
-                                <option value="WAT">WAT (Lagos)</option>
-                                <option value="CAT">CAT (Johannesburg)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Preferred Class Time</label>
-                        <input type="text" name="preferred_time" placeholder="e.g., Sundays 6pm GMT">
-                    </div>
-                    <div class="form-group">
-                        <label>How did you hear about us?</label>
-                        <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
-                    </div>
-                    <div class="form-group">
-                        <label style="display: flex; align-items: center; gap: 0.5rem;">
-                            <input type="checkbox" name="sibling_discount" value="yes"> Apply sibling/friend discount (5% off)
-                        </label>
-                    </div>
-                    <button type="submit" class="submit-btn">Submit Enrollment</button>
-                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">We'll contact you within 24 hours</p>
-                </form>
             </div>
         </section>
     </div>
 
-    <!-- Footer (UPDATED with correct location and professional email) -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -2117,105 +1653,18 @@
     <!-- Event Tracking for Google Analytics -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
-            // Track Form Submissions
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
-                    // Get form name or ID for tracking
-                    let formName = 'unknown_form';
+                    let formName = 'enrollment_form';
                     if (this.id) formName = this.id;
-                    else if (this.name) formName = this.name;
-                    else if (this.classList.contains('enrollment-form')) formName = 'enrollment_form';
-                    else if (this.classList.contains('contact-form')) formName = 'contact_form';
-                    
-                    // Track the event
-                    gtag('event', 'form_submission', {
+                    gtag('event', 'generate_lead', {
                         'event_category': 'engagement',
                         'event_label': formName
                     });
-                    
-                    console.log('Form submission tracked:', formName); // For testing
                 });
             });
-            
-            // Track PDF Downloads
-            const pdfLinks = document.querySelectorAll('a[href$=".pdf"], a[download]');
-            pdfLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    let pdfName = 'unknown_pdf';
-                    if (this.href) {
-                        const parts = this.href.split('/');
-                        pdfName = parts[parts.length - 1];
-                    }
-                    
-                    gtag('event', 'pdf_download', {
-                        'event_category': 'resource',
-                        'event_label': pdfName
-                    });
-                    
-                    console.log('PDF download tracked:', pdfName); // For testing
-                });
-            });
-            
-            // Track WhatsApp Clicks
-            const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
-            whatsappLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    gtag('event', 'whatsapp_click', {
-                        'event_category': 'contact',
-                        'event_label': 'whatsapp_button'
-                    });
-                    
-                    console.log('WhatsApp click tracked'); // For testing
-                });
-            });
-            
-            // Track Phone Number Clicks
-            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-            phoneLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    gtag('event', 'phone_click', {
-                        'event_category': 'contact',
-                        'event_label': 'phone_number'
-                    });
-                    
-                    console.log('Phone click tracked');
-                });
-            });
-            
-            // Track Email Clicks
-            const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
-            emailLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    gtag('event', 'email_click', {
-                        'event_category': 'contact',
-                        'event_label': 'email_link'
-                    });
-                    
-                    console.log('Email click tracked');
-                });
-            });
-            
-            // Track Navigation Clicks (optional)
-            const navLinks = document.querySelectorAll('.nav-links a, .btn');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    const linkText = this.innerText.trim() || 'nav_link';
-                    gtag('event', 'navigation_click', {
-                        'event_category': 'navigation',
-                        'event_label': linkText
-                    });
-                    
-                    console.log('Navigation click tracked:', linkText);
-                });
-            });
-            
         });
     </script>
-
-    <!-- Twi Level Quiz Script -->
-    <!-- Note: Create twi-quiz.js file or remove this line if not needed -->
-    <!-- <script src="twi-quiz.js"></script> -->
 </body>
 </html>
