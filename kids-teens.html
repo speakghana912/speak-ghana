@@ -70,13 +70,21 @@
             margin: 0;
         }
 
-        /* ===== PRICING BUTTONS ===== */
-        .pricing-buttons {
+        /* ===== PDF DOWNLOAD SECTION ===== */
+        .pdf-download-section {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+            border: 1px solid var(--gold);
+        }
+
+        .pdf-buttons {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             flex-wrap: wrap;
-            margin: 2rem 0;
         }
 
         /* ===== RESET & BASE STYLES ===== */
@@ -1031,14 +1039,6 @@
         </div>
     </section>
 
-    <!-- PDF Download Buttons -->
-    <div class="container">
-        <div class="pricing-buttons">
-            <a href="pdf/pricing-adult.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Adult Pricing</a>
-            <a href="pdf/pricing-kids-teens.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Kids & Teens Pricing</a>
-        </div>
-    </div>
-
     <!-- Scholarship Blinking Section -->
     <a href="contact.html" class="scholarship-blink" style="text-decoration: none; display: block;">
         <h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3>
@@ -1352,6 +1352,13 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Kids & Teens Pricing PDF Download (after all packages) -->
+            <div class="pdf-download-section">
+                <div class="pdf-buttons">
+                    <a href="pdf/pricing-kids-teens.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Kids & Teens Pricing (PDF)</a>
+                </div>
+            </div>
         </section>
 
         <!-- FAMILY BUNDLES SECTION -->
@@ -1516,7 +1523,7 @@
             </div>
         </section>
 
-        <!-- FAQ SECTION (NEW) -->
+        <!-- FAQ SECTION -->
         <section id="faq" class="faq-section">
             <h2 class="center">Frequently Asked Questions</h2>
             <div class="faq-grid">
@@ -1542,7 +1549,7 @@
                 </div>
                 <div class="faq-item">
                     <h4>Do you offer a trial?</h4>
-                    <p>Yes! March classes are completely free. Try any class and see if our program is right for your child.</p>
+                    <p>Yes! Contact us to schedule a free trial class and see if our program is right for your child.</p>
                 </div>
             </div>
         </section>
