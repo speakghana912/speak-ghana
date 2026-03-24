@@ -1,4 +1,4 @@
-// kids-quiz.js - UPDATED with auto-start after email
+// kids-quiz.js - UPDATED with modal popup for email
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let gameStarted = false;
     let playerEmail = "";
     let playerName = "";
+    let quizContentDiv = null;
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -53,13 +54,64 @@ document.addEventListener('DOMContentLoaded', function() {
         userAnswers = [];
     }
 
+    // Create modal popup
+    function showEmailModal(onSubmit) {
+        const existingModal = document.getElementById('game-email-modal');
+        if (existingModal) existingModal.remove();
+        
+        const modal = document.createElement('div');
+        modal.id = 'game-email-modal';
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        `;
+        
+        modal.innerHTML = `
+            <div style="background: white; border-radius: 30px; padding: 2rem; max-width: 400px; width: 90%; text-align: center; position: relative;">
+                <button id="close-modal" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--gray);">&times;</button>
+                <span style="font-size: 3rem;">🧸</span>
+                <h3 style="color: var(--green); margin: 0.5rem 0;">Free Quiz Access</h3>
+                <p style="color: var(--gray); margin-bottom: 1rem;">Enter your email to start playing!</p>
+                <form id="modal-email-form">
+                    <input type="email" id="modal-player-email" placeholder="parent@email.com" required 
+                           style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 30px; margin-bottom: 0.8rem; font-size: 1rem;">
+                    <input type="text" id="modal-player-name" placeholder="Child's name (optional)" 
+                           style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 30px; margin-bottom: 1rem; font-size: 1rem;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.8rem;">Start Quiz →</button>
+                </form>
+                <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--gray);">No spam. Unsubscribe anytime.</p>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        document.getElementById('close-modal').addEventListener('click', () => modal.remove());
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+        
+        document.getElementById('modal-email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            playerEmail = document.getElementById('modal-player-email').value;
+            playerName = document.getElementById('modal-player-name').value;
+            modal.remove();
+            onSubmit();
+        });
+    }
+
     function createGameContainer() {
         const gameSection = document.getElementById('kids-quiz');
         if (!gameSection) return;
 
         gameSection.innerHTML = `
-            <div class="game-container" style="background: linear-gradient(135deg, #FFEAA7, #FFD6A5); border-radius: 30px; padding: 1.5rem; margin: 2rem 0; border: 4px solid var(--gold);">
-                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <div class="game-container" style="background: linear-gradient(135deg, #FFEAA7, #FFD6A5); border-radius: 30px; padding: 1.5rem; margin: 2rem 0; border: 4px solid var(--gold); text-align: center;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
                     <span style="font-size: 3rem;">🧸</span>
                     <div>
                         <h3 style="color: var(--green); font-size: 1.8rem; margin: 0;">Twi Fun Quiz!</h3>
@@ -67,53 +119,30 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 
-                <div id="quiz-email-collect" style="text-align: center;">
-                    <div style="background: white; border-radius: 20px; padding: 2rem; margin: 1rem 0;">
-                        <span style="font-size: 3rem;">📧</span>
-                        <h4 style="color: var(--green); margin: 0.5rem 0;">Free Quiz Access</h4>
-                        <p style="color: var(--gray); margin-bottom: 1rem;">Enter your email to start playing!</p>
-                        <form id="email-collect-form">
-                            <input type="email" id="player-email" placeholder="parent@email.com" required 
-                                   style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 30px; margin-bottom: 0.8rem; font-size: 1rem;">
-                            <input type="text" id="player-name" placeholder="Child's name (optional)" 
-                                   style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 30px; margin-bottom: 1rem; font-size: 1rem;">
-                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.8rem;">Start Quiz →</button>
-                        </form>
-                        <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--gray);">No spam. Unsubscribe anytime.</p>
-                    </div>
-                </div>
+                <button id="play-quiz-btn" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.2rem;">🎮 Play Quiz</button>
                 
                 <div id="quiz-content" style="display: none;"></div>
                 <div id="quiz-results" style="display: none;"></div>
             </div>
         `;
 
-        // Handle email collection - AUTO START GAME AFTER SUBMIT
-        document.getElementById('email-collect-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            playerEmail = document.getElementById('player-email').value;
-            playerName = document.getElementById('player-name').value;
-            
-            // Add to MailerLite
-            addToMailerLite(playerEmail, playerName);
-            
-            // Track signup
-            gtag('event', 'game_email_signup', {
-                'event_category': 'engagement',
-                'event_label': 'kids_twi_quiz'
+        document.getElementById('play-quiz-btn').addEventListener('click', () => {
+            showEmailModal(() => {
+                addToMailerLite(playerEmail, playerName);
+                gtag('event', 'game_email_signup', {
+                    'event_category': 'engagement',
+                    'event_label': 'kids_twi_quiz'
+                });
+                document.getElementById('play-quiz-btn').style.display = 'none';
+                startNewGame();
+                startGame();
             });
-            
-            // Hide email form and START GAME IMMEDIATELY
-            document.getElementById('quiz-email-collect').style.display = 'none';
-            
-            // Start the quiz right away
-            startNewGame();
-            startGame();
         });
     }
 
     function startGame() {
-        document.getElementById('quiz-content').style.display = 'block';
+        quizContentDiv = document.getElementById('quiz-content');
+        quizContentDiv.style.display = 'block';
         
         gtag('event', 'game_start', {
             'event_category': 'engagement',
@@ -126,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showQuestion() {
         const q = currentQuestions[currentQuestionIndex];
-        const quizContent = document.getElementById('quiz-content');
         
         let optionsHtml = '';
         q.options.forEach((option, index) => {
@@ -142,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         });
 
-        quizContent.innerHTML = `
+        quizContentDiv.innerHTML = `
             <div>
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
                     <div style="background: white; height: 8px; border-radius: 10px; flex-grow: 1; overflow: hidden; border: 1px solid var(--gold);">
@@ -223,13 +251,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showResults() {
-        document.getElementById('quiz-content').style.display = 'none';
-        document.getElementById('quiz-results').style.display = 'block';
+        quizContentDiv.style.display = 'none';
+        const resultsDiv = document.getElementById('quiz-results');
+        resultsDiv.style.display = 'block';
         
         const percentage = Math.round((score / currentQuestions.length) * 100);
         let funEmoji = percentage >= 80 ? '🏆' : percentage >= 50 ? '🎉' : '🌱';
 
-        document.getElementById('quiz-results').innerHTML = `
+        resultsDiv.innerHTML = `
             <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 30px;">
                 <span style="font-size: 4rem;">${funEmoji}</span>
                 <h3 style="color: var(--green); font-size: 1.8rem; margin: 0.5rem 0;">Great job, ${playerName || 'champion'}!</h3>
@@ -247,10 +276,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         document.getElementById('play-again-btn').addEventListener('click', () => {
-            document.getElementById('quiz-results').style.display = 'none';
-            document.getElementById('quiz-email-collect').style.display = 'block';
-            document.getElementById('player-email').value = '';
-            document.getElementById('player-name').value = '';
+            resultsDiv.style.display = 'none';
+            document.getElementById('play-quiz-btn').style.display = 'block';
+            quizContentDiv.innerHTML = '';
             playerEmail = "";
             playerName = "";
         });
