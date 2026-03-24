@@ -1,4 +1,4 @@
-// Twi Level Quiz - 20 Questions with MailerLite Integration
+// Twi Level Quiz - 20 Questions with MailerLite Integration & Analytics
 // Add this to your languages.html page
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -188,6 +188,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('quiz-start').style.display = 'none';
         document.getElementById('quiz-content').style.display = 'block';
         
+        // Track quiz start
+        gtag('event', 'game_start', {
+            'event_category': 'engagement',
+            'event_label': 'twi_level_quiz_20q'
+        });
+        
         showQuestion();
     }
 
@@ -276,7 +282,15 @@ document.addEventListener('DOMContentLoaded', function() {
             currentQuestion++;
             showQuestion();
         } else {
-            // Quiz completed - show email form
+            // Quiz completed - track completion before showing email
+            gtag('event', 'quiz_complete_before_email', {
+                'event_category': 'engagement',
+                'event_label': 'twi_level_quiz_20q',
+                'score': score,
+                'total': questions.length,
+                'percentage': Math.round((score / questions.length) * 100)
+            });
+            
             showEmailForm();
         }
     }
@@ -300,6 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span style="font-size: 5rem;">🎉</span>
                 <h3 style="color: var(--green); font-size: 2rem; margin: 1rem 0;">You're almost done!</h3>
                 <p style="color: var(--gray); font-size: 1.2rem; margin-bottom: 2rem;">Enter your email to see your results and get personalized course recommendations.</p>
+                <p style="color: var(--gold); font-weight: 600; margin-bottom: 1rem;">⭐ Your score so far: ${score}/${questions.length}</p>
                 
                 <form id="quiz-email-form" style="max-width: 450px; margin: 0 auto;">
                     <div style="margin-bottom: 1.5rem;">
@@ -322,11 +337,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = document.getElementById('quiz-email-input').value;
             const name = document.getElementById('quiz-name-input').value;
             
-            // Send to Google Analytics
-            gtag('event', 'quiz_completed', {
+            // Track final quiz completion with email
+            gtag('event', 'game_complete', {
                 'event_category': 'engagement',
                 'event_label': 'twi_level_quiz_20q',
-                'value': score
+                'score': score,
+                'total': questions.length,
+                'percentage': Math.round((score / questions.length) * 100),
+                'level': getLevelName(score)
             });
 
             // Show results immediately (don't wait for MailerLite)
@@ -335,6 +353,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Send to MailerLite in the background
             addToMailerLite(email, name, score);
         });
+    }
+
+    // Helper function to get level name based on score
+    function getLevelName(score) {
+        if (score <= 7) return 'Beginner';
+        if (score <= 12) return 'Elementary';
+        if (score <= 16) return 'Intermediate';
+        return 'Advanced';
     }
 
     // ===== Function to add subscriber to MailerLite =====
@@ -499,6 +525,12 @@ document.addEventListener('DOMContentLoaded', function() {
             currentQuestion = 0;
             score = 0;
             userAnswers = [];
+            
+            // Track quiz restart
+            gtag('event', 'game_restart', {
+                'event_category': 'engagement',
+                'event_label': 'twi_level_quiz_20q'
+            });
         });
     }
 
