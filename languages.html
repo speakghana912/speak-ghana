@@ -14,7 +14,6 @@
     <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
 
     <!-- Google Analytics -->
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -640,33 +639,6 @@
             font-weight: 600;
         }
 
-        /* ===== QUIZ PLACEHOLDER ===== */
-        .quiz-placeholder {
-            background: var(--cream);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            margin: 2rem 0;
-        }
-
-        .quiz-button {
-            display: inline-block;
-            background: var(--green);
-            color: white;
-            padding: 1rem 3rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: all 0.3s;
-        }
-
-        .quiz-button:hover {
-            background: var(--gold);
-            color: var(--black);
-            transform: translateY(-3px);
-        }
-
         /* ===== ENROLLMENT FORM ===== */
         .enrollment-section {
             background: linear-gradient(135deg, #fdf6e9, #fff);
@@ -788,7 +760,7 @@
             color: white;
         }
 
-        /* ===== FOOTER ===== */
+        /* ===== FOOTER STYLES - MATCHING INDEX PAGE ===== */
         footer {
             background: var(--black);
             color: white;
@@ -796,7 +768,6 @@
             margin-top: 4rem;
             position: relative;
         }
-
         footer::before {
             content: '';
             position: absolute;
@@ -806,42 +777,73 @@
             height: 4px;
             background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
         }
-
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 3rem;
             margin-bottom: 3rem;
         }
-
         .footer-section h4 {
             color: var(--gold);
             margin-bottom: 1.5rem;
+            font-size: 1.2rem;
         }
-
         .footer-section a {
             color: rgba(255,255,255,0.8);
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
         }
-
         .footer-section a:hover {
             color: var(--gold);
+            transform: translateX(5px);
         }
-
         .copyright {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: rgba(255,255,255,0.6);
         }
-
         .motto-footer {
             color: var(--gold);
             font-size: 1.2rem;
             margin-top: 1rem;
+        }
+        .newsletter {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        .newsletter h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        .newsletter-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        .newsletter-btn:hover {
+            background: var(--red);
+            color: white;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -873,6 +875,15 @@
             
             .footer-grid {
                 grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-btn {
+                width: 100%;
             }
         }
     </style>
@@ -1452,7 +1463,7 @@
             </div>
         </section>
 
-        <!-- GA SECTION (Simplified for brevity - same structure as Twi) -->
+        <!-- GA SECTION -->
         <section id="ga" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🏙️</div>
@@ -1546,7 +1557,7 @@
             </div>
         </section>
 
-        <!-- EWE SECTION (Simplified) -->
+        <!-- EWE SECTION -->
         <section id="ewe" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🌊</div>
@@ -1575,7 +1586,7 @@
             <div class="textbook-card"><div class="textbook-info"><h4>Ewe Textbook</h4><p>Coming soon</p></div><span class="coming-soon">Coming Soon</span></div>
         </section>
 
-        <!-- FANTE SECTION (Simplified) -->
+        <!-- FANTE SECTION -->
         <section id="fante" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🏖️</div>
@@ -1599,7 +1610,7 @@
             </div>
         </section>
 
-        <!-- DAGBANI SECTION (Simplified) -->
+        <!-- DAGBANI SECTION -->
         <section id="dagbani" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🌄</div>
@@ -1624,7 +1635,7 @@
         </section>
     </div>
 
-    <!-- Footer -->
+    <!-- UPDATED FOOTER - MATCHING INDEX PAGE -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1634,6 +1645,7 @@
                     <p>🏗️ Accra Office (Opening Soon)</p>
                     <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
                     <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
+                    <p>💬 <a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
                 </div>
                 
                 <div class="footer-section">
@@ -1658,6 +1670,16 @@
                     <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
                     <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
                     <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
+                    <a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a>
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
+                            <div class="newsletter-form">
+                                <input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required>
+                                <button type="submit" class="newsletter-btn">Join</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             
@@ -1671,6 +1693,7 @@
     <!-- Event Tracking for Google Analytics -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Track Form Submissions
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
@@ -1679,6 +1702,29 @@
                     gtag('event', 'generate_lead', {
                         'event_category': 'engagement',
                         'event_label': formName
+                    });
+                });
+            });
+            
+            // Track Newsletter Signup
+            const newsletterForm = document.getElementById('footer-newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function() {
+                    gtag('event', 'newsletter_signup', {
+                        'event_category': 'engagement',
+                        'event_label': 'footer_newsletter'
+                    });
+                });
+            }
+            
+            // Track PDF Downloads
+            const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
+            pdfLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    let pdfName = this.href.split('/').pop();
+                    gtag('event', 'pdf_download', {
+                        'event_category': 'resource',
+                        'event_label': pdfName
                     });
                 });
             });
