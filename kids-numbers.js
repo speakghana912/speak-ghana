@@ -1,4 +1,4 @@
-// Kids Number Game - RANDOM VERSION with Sound Effects
+// Kids Number Game - RANDOM VERSION with Sound Effects & Analytics
 document.addEventListener('DOMContentLoaded', function() {
     
     const MAILERLITE_API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZjcwN2UyMWMxNmYyMjYyZGZjYTQ4ZWYzNWU0NDY5OGNhNzVkOWQxYTZmNWQ0YjlkNTIwM2JlY2M2NzQ0NWFkMTUyMWRmZjY1ODY3NDU1ZWIiLCJpYXQiOjE3NzM4MzA2ODUuNjQ0NjE3LCJuYmYiOjE3NzM4MzA2ODUuNjQ0NjE5LCJleHAiOjQ5Mjk1MDQyODUuNjM3OTc5LCJzdWIiOiIyMjE3MjQ2Iiwic2NvcGVzIjpbXX0.NukFhsIIW5aLhITNpa08eSMIAi7em6HnFp9Z7xf_9OIbuLaSX9mIxl8MDwgzYMfgh_McPwrChF5qTLsqmB_umHxbSe7H9_e8lkFU9h6wu56X94dFIB8mMm6e7YDqfM_COgyFD8iyp9SufBg9zAsEU84t8sLmXbhU9LkS8Xn8GIu69SOQcyeWyOxfuKTWHDpjSDbJ1aspmieDeOt6fk5ZrFGv7O2JxAe__IKkEdgzbxOMF3THiCy9owYSUGVxpoTXjGs1ULmvhNDDi5izxKkGHU-XYbr8HSGFlye4PY9zs7xX5vhMbS5NOgsFVHRdCf9WRCCGvqSPSl_G_-4_waAua3z8QuiIDEgugyqudefRdM6QyvWp5uRzh7WGH8TmR8VmWG8Vle2yYPpMC-BpWoDDPDEKKgUYCZJG1edHpbA-ECsTF9HvdS4OFS04Igq0BCSOhcW9STA8JZdm4bplPNacLsh7ZQOK7bde-bDSoI2xfU8eb1mntPNgRJadlxCvBYaNOV0q477iJG3kR8nY4Rpq5_vG6JtCsHNFfqR520JrhJW4rvV8Cr2iMN7qMzGheqm2ouqOfvRGV0FDkCsWq_uM3B6BmBCBpF7q_n9YY0c_uQy2JCu6M-gXh4z2XsOiMomCHzZPzpzpO78GGRZ5Te-OFTpXvEFVCjf9Q93BrvD-hVs';
@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let numbers = [];
     let currentQuestion = 0;
     let score = 0;
+    let gameStarted = false;
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -71,6 +72,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function startGame() {
         document.getElementById('number-start').style.display = 'none';
         document.getElementById('number-content').style.display = 'block';
+        
+        // Track game start
+        gtag('event', 'game_start', {
+            'event_category': 'engagement',
+            'event_label': 'kids_number_game'
+        });
+        
+        gameStarted = true;
         showQuestion();
     }
 
@@ -86,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
             { number: 1, twi: "Baako" },
             { number: 2, twi: "Mmienu" },
             { number: 3, twi: "Mmiɛnsa" },
-            { number: 4, twi: "Mnan" },
+            { number: 4, twi: "Ɛnan" },
             { number: 5, twi: "Enum" }
         ];
         const shuffledNumbers = shuffleArray([...numberOptions]);
@@ -162,6 +171,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 30px;">
                 <span style="font-size: 4rem;">🎉</span>
                 <h3 style="color: var(--green); font-size: 1.8rem; margin: 0.5rem 0;">Great counting!</h3>
+                <p style="font-size: 1rem; margin-bottom: 1rem;">⭐ ${score} out of ${numbers.length} correct!</p>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem;">🎯 ${Math.round((score / numbers.length) * 100)}% accuracy!</p>
                 <form id="number-email-form">
                     <input type="email" id="number-email-input" placeholder="parent@email.com" required 
                            style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 30px; margin-bottom: 0.8rem;">
@@ -177,7 +188,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = document.getElementById('number-email-input').value;
             const childName = document.getElementById('number-name-input').value;
             
-            gtag('event', 'kids_number_game_completed', { 'event_category': 'kids', 'value': score });
+            // Track game completion
+            gtag('event', 'game_complete', {
+                'event_category': 'engagement',
+                'event_label': 'kids_number_game',
+                'score': score,
+                'total': numbers.length,
+                'percentage': Math.round((score / numbers.length) * 100)
+            });
+            
             showResults(email, childName);
             addToMailerLite(email, childName, score);
         });
@@ -207,7 +226,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span style="font-size: 4rem;">🔢</span>
                 <h3 style="color: var(--green); font-size: 2.5rem; margin: 0.5rem 0;">${score}/${numbers.length}</h3>
                 <div style="background: var(--cream); border-radius: 20px; padding: 1rem; margin: 1rem 0;">
-                    <p style="font-size: 1rem;">✓ Sent to: ${email}</p>
+                    <p style="font-size: 1rem;">✓ Free worksheets sent to: ${email}</p>
+                    <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.5rem;">Check your inbox for more Twi counting fun!</p>
                 </div>
                 <button id="number-play-again" class="btn btn-primary" style="padding: 0.8rem 2rem;">Play Again! 🔄</button>
             </div>
@@ -216,6 +236,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('number-play-again').addEventListener('click', () => {
             document.getElementById('number-results').style.display = 'none';
             document.getElementById('number-start').style.display = 'block';
+            
+            // Track game restart
+            gtag('event', 'game_restart', {
+                'event_category': 'engagement',
+                'event_label': 'kids_number_game'
+            });
         });
     }
 
