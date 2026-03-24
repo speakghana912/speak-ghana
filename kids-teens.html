@@ -14,7 +14,6 @@
     <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
 
     <!-- Google Analytics -->
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -400,10 +399,6 @@
             display: flex;
             gap: 2rem;
             margin-top: 2rem;
-        }
-
-        .intro-stat {
-            text-align: center;
         }
 
         .intro-stat .number {
@@ -884,7 +879,7 @@
             color: var(--gray);
         }
 
-        /* ===== FOOTER ===== */
+        /* ===== FOOTER STYLES - MATCHING INDEX PAGE ===== */
         footer {
             background: var(--black);
             color: white;
@@ -892,7 +887,6 @@
             margin-top: 4rem;
             position: relative;
         }
-
         footer::before {
             content: '';
             position: absolute;
@@ -902,42 +896,73 @@
             height: 4px;
             background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
         }
-
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 3rem;
             margin-bottom: 3rem;
         }
-
         .footer-section h4 {
             color: var(--gold);
             margin-bottom: 1.5rem;
+            font-size: 1.2rem;
         }
-
         .footer-section a {
             color: rgba(255,255,255,0.8);
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
         }
-
         .footer-section a:hover {
             color: var(--gold);
+            transform: translateX(5px);
         }
-
         .copyright {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: rgba(255,255,255,0.6);
         }
-
         .motto-footer {
             color: var(--gold);
             font-size: 1.2rem;
             margin-top: 1rem;
+        }
+        .newsletter {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        .newsletter h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        .newsletter-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        .newsletter-btn:hover {
+            background: var(--red);
+            color: white;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -969,6 +994,7 @@
             
             .footer-grid {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
             
             h2 {
@@ -982,11 +1008,19 @@
             .commitment-quote {
                 font-size: 1.5rem;
             }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Top Contact Bar (UPDATED with professional email) -->
+    <!-- Top Contact Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="contact-info">
@@ -1353,7 +1387,7 @@
                 </div>
             </div>
 
-            <!-- Kids & Teens Pricing PDF Download (after all packages) -->
+            <!-- Kids & Teens Pricing PDF Download -->
             <div class="pdf-download-section">
                 <div class="pdf-buttons">
                     <a href="pdf/pricing-kids-teens.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Kids & Teens Pricing (PDF)</a>
@@ -1418,94 +1452,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="package-name">K1: Twi Tots</td>
-                            <td>5-8</td>
-                            <td>1x/30min</td>
-                            <td>3-6</td>
-                            <td>$35 / GHS 490</td>
-                            <td>$26.25 / GHS 367.50</td>
-                        </tr>
-                        <tr>
-                            <td class="package-name">K2: Twi Explorers</td>
-                            <td>9-12</td>
-                            <td>1x/45min</td>
-                            <td>4-8</td>
-                            <td>$45 / GHS 630</td>
-                            <td>$33.75 / GHS 472.50</td>
-                        </tr>
-                        <tr>
-                            <td class="package-name">K3: Siblings Special</td>
-                            <td>5-12</td>
-                            <td>1x/45min</td>
-                            <td>Family</td>
-                            <td>$65 / GHS 910</td>
-                            <td>$48.75 / GHS 682.50</td>
-                        </tr>
-                        <tr>
-                            <td class="package-name">K4: Summer Camp</td>
-                            <td>6-12</td>
-                            <td>2x/45min</td>
-                            <td>4-8</td>
-                            <td>$180 (8 wks)</td>
-                            <td>$135 (8 wks)</td>
-                        </tr>
-                        <tr>
-                            <td class="package-name">T1: Teen Talk</td>
-                            <td>13-17</td>
-                            <td>1x/60min</td>
-                            <td>4-8</td>
-                            <td>$55 / GHS 770</td>
-                            <td>$41.25 / GHS 577.50</td>
-                        </tr>
-                        <tr>
-                            <td class="package-name">T2: Twi Fluency Fast</td>
-                            <td>13-17</td>
-                            <td>2x/60min</td>
-                            <td>4-8</td>
-                            <td>$95 / GHS 1,330</td>
-                            <td>$71.25 / GHS 997.50</td>
-                        </tr>
-                        <tr>
-                            <td class="package-name">T3: Private (45min)</td>
-                            <td>13-17</td>
-                            <td>1x/week</td>
-                            <td>1-on-1</td>
-                            <td>$65 / GHS 910</td>
-                            <td>$48.75 / GHS 682.50</td>
-                        </tr>
-                        <tr>
-                            <td class="package-name">T3: Private (60min)</td>
-                            <td>13-17</td>
-                            <td>1x/week</td>
-                            <td>1-on-1</td>
-                            <td>$85 / GHS 1,190</td>
-                            <td>$63.75 / GHS 892.50</td>
-                        </tr>
-                        <tr>
-                            <td class="package-name">T4: Teen Summer</td>
-                            <td>13-17</td>
-                            <td>3x/90min</td>
-                            <td>4-8</td>
-                            <td>$360 (6 wks)</td>
-                            <td>$270 (6 wks)</td>
-                        </tr>
-                        <tr>
-                            <td class="package-name">F1: Family Pack</td>
-                            <td>All</td>
-                            <td>1x/60min</td>
-                            <td>Family</td>
-                            <td>$120 / GHS 1,680</td>
-                            <td>$90 / GHS 1,260</td>
-                        </tr>
-                        <tr>
-                            <td class="package-name">F2: Homeschool</td>
-                            <td>K-12</td>
-                            <td>Self-paced</td>
-                            <td>Family</td>
-                            <td>$180/year</td>
-                            <td>$135/year</td>
-                        </tr>
+                        <tr><td class="package-name">K1: Twi Tots</td><td>5-8</td><td>1x/30min</td><td>3-6</td><td>$35 / GHS 490</td><td>$26.25 / GHS 367.50</td></tr>
+                        <tr><td class="package-name">K2: Twi Explorers</td><td>9-12</td><td>1x/45min</td><td>4-8</td><td>$45 / GHS 630</td><td>$33.75 / GHS 472.50</td></tr>
+                        <tr><td class="package-name">K3: Siblings Special</td><td>5-12</td><td>1x/45min</td><td>Family</td><td>$65 / GHS 910</td><td>$48.75 / GHS 682.50</td></tr>
+                        <tr><td class="package-name">K4: Summer Camp</td><td>6-12</td><td>2x/45min</td><td>4-8</td><td>$180 (8 wks)</td><td>$135 (8 wks)</td></tr>
+                        <tr><td class="package-name">T1: Teen Talk</td><td>13-17</td><td>1x/60min</td><td>4-8</td><td>$55 / GHS 770</td><td>$41.25 / GHS 577.50</td></tr>
+                        <tr><td class="package-name">T2: Twi Fluency Fast</td><td>13-17</td><td>2x/60min</td><td>4-8</td><td>$95 / GHS 1,330</td><td>$71.25 / GHS 997.50</td></tr>
+                        <tr><td class="package-name">T3: Private (45min)</td><td>13-17</td><td>1x/week</td><td>1-on-1</td><td>$65 / GHS 910</td><td>$48.75 / GHS 682.50</td></tr>
+                        <tr><td class="package-name">T3: Private (60min)</td><td>13-17</td><td>1x/week</td><td>1-on-1</td><td>$85 / GHS 1,190</td><td>$63.75 / GHS 892.50</td></tr>
+                        <tr><td class="package-name">T4: Teen Summer</td><td>13-17</td><td>3x/90min</td><td>4-8</td><td>$360 (6 wks)</td><td>$270 (6 wks)</td></tr>
+                        <tr><td class="package-name">F1: Family Pack</td><td>All</td><td>1x/60min</td><td>Family</td><td>$120 / GHS 1,680</td><td>$90 / GHS 1,260</td></tr>
+                        <tr><td class="package-name">F2: Homeschool</td><td>K-12</td><td>Self-paced</td><td>Family</td><td>$180/year</td><td>$135/year</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -1659,7 +1616,7 @@
         </section>
     </div>
 
-    <!-- Footer (UPDATED with correct location and professional email) -->
+    <!-- UPDATED FOOTER - MATCHING INDEX PAGE -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1669,6 +1626,7 @@
                     <p>🏗️ Accra Office (Opening Soon)</p>
                     <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
                     <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
+                    <p>💬 <a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
                 </div>
                 
                 <div class="footer-section">
@@ -1693,6 +1651,16 @@
                     <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
                     <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
                     <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
+                    <a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a>
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
+                            <div class="newsletter-form">
+                                <input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required>
+                                <button type="submit" class="newsletter-btn">Join</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             
@@ -1717,6 +1685,17 @@
                     });
                 });
             });
+            
+            // Track Newsletter Signup
+            const newsletterForm = document.getElementById('footer-newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function() {
+                    gtag('event', 'newsletter_signup', {
+                        'event_category': 'engagement',
+                        'event_label': 'footer_newsletter'
+                    });
+                });
+            }
             
             // Track PDF Downloads
             const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
