@@ -798,6 +798,96 @@
             font-size: 1.1rem;
         }
 
+        /* ===== PRICING OVERVIEW SECTION ===== */
+        .pricing-overview {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: 0 20px 40px var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .pricing-card {
+            background: var(--cream);
+            padding: 1.8rem;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .pricing-card.popular {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(42,157,143,0.3);
+        }
+
+        .pricing-card.popular h3 {
+            color: var(--gold);
+        }
+
+        .pricing-card.popular .price {
+            color: white;
+        }
+
+        .pricing-card.popular .price small {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .pricing-card.popular .scholarship {
+            color: var(--gold);
+        }
+
+        .pricing-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+        }
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--green);
+            margin: 0.5rem 0;
+        }
+
+        .price small {
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+
+        .scholarship {
+            font-size: 0.85rem;
+            color: var(--gold);
+            margin-top: 0.3rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+
+        .pricing-features li {
+            margin: 0.3rem 0;
+        }
+
         /* ===== FAQ SECTION ===== */
         .faq-section {
             background: var(--white);
@@ -1030,7 +1120,8 @@
             }
             
             .languages-grid,
-            .form-row {
+            .form-row,
+            .pricing-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
@@ -1069,7 +1160,8 @@
         }
 
         @media (max-width: 768px) {
-            .languages-grid {
+            .languages-grid,
+            .pricing-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -1472,6 +1564,66 @@
                     <div class="testimonial-text">My teenager actually looks forward to Twi class. The teen program is perfect for her.</div>
                     <div class="testimonial-author">— Kwame, USA (Parent)</div>
                 </div>
+            </div>
+        </div>
+
+        <!-- ===== NEW PRICING OVERVIEW SECTION ===== -->
+        <div class="pricing-overview">
+            <h2 style="color: var(--green); margin-bottom: 0.5rem;">💰 Flexible Plans for Every Learner</h2>
+            <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem;">Transparent pricing. No hidden fees. Free textbook included.</p>
+            
+            <div class="pricing-grid">
+                <!-- Kids Package -->
+                <div class="pricing-card">
+                    <div class="pricing-icon">🧒</div>
+                    <h3>Kids (5-12)</h3>
+                    <div class="price">$35 <small>/ GHS 490</small></div>
+                    <div class="scholarship">🎓 Scholarship: $26.25 / GHS 367.50</div>
+                    <ul class="pricing-features">
+                        <li>30-45 min lessons</li>
+                        <li>Play-based learning</li>
+                        <li>Songs & stories</li>
+                        <li>Fun activities</li>
+                    </ul>
+                </div>
+                
+                <!-- Most Popular - Private 60min 2x/week -->
+                <div class="pricing-card popular">
+                    <div class="pricing-icon">⭐</div>
+                    <h3>Most Popular</h3>
+                    <div class="price">$135 <small>/ GHS 1,620</small></div>
+                    <div class="scholarship">🎓 Scholarship: $101.25 / GHS 1,215</div>
+                    <ul class="pricing-features">
+                        <li>Private 60min • 2x/week</li>
+                        <li>1 structured + 1 conversation</li>
+                        <li>✓ Full textbook included</li>
+                        <li>✓ Progress reports</li>
+                    </ul>
+                </div>
+                
+                <!-- Group Packages -->
+                <div class="pricing-card">
+                    <div class="pricing-icon">👥</div>
+                    <h3>Group Classes</h3>
+                    <div class="price">$50 <small>/ GHS 600</small></div>
+                    <div class="scholarship">🎓 Scholarship: $37.50 / GHS 450</div>
+                    <ul class="pricing-features">
+                        <li>90min • 1x/week</li>
+                        <li>Learn with others</li>
+                        <li>Interactive conversations</li>
+                        <li>Supportive environment</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="background: var(--gold); padding: 1rem; border-radius: 50px; display: inline-block; margin-bottom: 1.5rem;">
+                <span>🎓 Ghana Card Holders → <strong>25% off</strong> with Speak One, Learn One Scholarship</span>
+            </div>
+            
+            <div>
+                <a href="languages.html" class="btn btn-primary btn-large">See Full Pricing & Packages →</a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">Kids (5-12) • Teens (13-17) • Adults • Private & Group • Family Bundles</p>
+                <p style="font-size: 0.85rem; color: var(--gray);">💰 USD via PayPal/Wise | 🇬🇭 GHS via Mobile Money/Bank Transfer</p>
             </div>
         </div>
 
