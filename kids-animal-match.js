@@ -1,4 +1,4 @@
-// kids-animal-match.js - UPDATED with email-first approach
+// kids-animal-match.js - UPDATED with auto-start after email
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 
-                <!-- EMAIL COLLECTION FIRST -->
+                <!-- EMAIL COLLECTION FIRST - AUTO STARTS GAME -->
                 <div id="game-email-collect" style="text-align: center;">
                     <div style="background: white; border-radius: 20px; padding: 2rem; margin: 1rem 0;">
                         <span style="font-size: 3rem;">📧</span>
@@ -75,16 +75,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 
-                <div id="game-start" style="display: none;">
-                    <button id="start-game-btn" class="btn btn-primary" style="padding: 0.8rem 2rem;">Start Game →</button>
-                </div>
-                
                 <div id="game-content" style="display: none;"></div>
                 <div id="game-results" style="display: none;"></div>
             </div>
         `;
 
-        // Handle email collection
+        // Handle email collection - AUTO START GAME AFTER SUBMIT
         document.getElementById('email-collect-form').addEventListener('submit', function(e) {
             e.preventDefault();
             playerEmail = document.getElementById('player-email').value;
@@ -99,19 +95,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 'event_label': 'kids_animal_match_game'
             });
             
-            // Show start button
+            // Hide email form and START GAME IMMEDIATELY
             document.getElementById('game-email-collect').style.display = 'none';
-            document.getElementById('game-start').style.display = 'block';
-        });
-        
-        document.getElementById('start-game-btn').addEventListener('click', () => {
+            
+            // Start the game right away
             startNewGame();
             startGame();
         });
     }
 
     function startGame() {
-        document.getElementById('game-start').style.display = 'none';
         document.getElementById('game-content').style.display = 'block';
         
         // Track game start
