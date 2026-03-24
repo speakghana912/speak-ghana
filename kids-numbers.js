@@ -1,10 +1,10 @@
-// Kids Number Game - RANDOM VERSION with Sound Effects & Analytics
+// kids-numbers.js - UPDATED with email-first approach
+
 document.addEventListener('DOMContentLoaded', function() {
     
     const MAILERLITE_API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZjcwN2UyMWMxNmYyMjYyZGZjYTQ4ZWYzNWU0NDY5OGNhNzVkOWQxYTZmNWQ0YjlkNTIwM2JlY2M2NzQ0NWFkMTUyMWRmZjY1ODY3NDU1ZWIiLCJpYXQiOjE3NzM4MzA2ODUuNjQ0NjE3LCJuYmYiOjE3NzM4MzA2ODUuNjQ0NjE5LCJleHAiOjQ5Mjk1MDQyODUuNjM3OTc5LCJzdWIiOiIyMjE3MjQ2Iiwic2NvcGVzIjpbXX0.NukFhsIIW5aLhITNpa08eSMIAi7em6HnFp9Z7xf_9OIbuLaSX9mIxl8MDwgzYMfgh_McPwrChF5qTLsqmB_umHxbSe7H9_e8lkFU9h6wu56X94dFIB8mMm6e7YDqfM_COgyFD8iyp9SufBg9zAsEU84t8sLmXbhU9LkS8Xn8GIu69SOQcyeWyOxfuKTWHDpjSDbJ1aspmieDeOt6fk5ZrFGv7O2JxAe__IKkEdgzbxOMF3THiCy9owYSUGVxpoTXjGs1ULmvhNDDi5izxKkGHU-XYbr8HSGFlye4PY9zs7xX5vhMbS5NOgsFVHRdCf9WRCCGvqSPSl_G_-4_waAua3z8QuiIDEgugyqudefRdM6QyvWp5uRzh7WGH8TmR8VmWG8Vle2yYPpMC-BpWoDDPDEKKgUYCZJG1edHpbA-ECsTF9HvdS4OFS04Igq0BCSOhcW9STA8JZdm4bplPNacLsh7ZQOK7bde-bDSoI2xfU8eb1mntPNgRJadlxCvBYaNOV0q477iJG3kR8nY4Rpq5_vG6JtCsHNFfqR520JrhJW4rvV8Cr2iMN7qMzGheqm2ouqOfvRGV0FDkCsWq_uM3B6BmBCBpF7q_n9YY0c_uQy2JCu6M-gXh4z2XsOiMomCHzZPzpzpO78GGRZ5Te-OFTpXvEFVCjf9Q93BrvD-hVs';
     const KIDS_GROUP_ID = '182277545531541431';
 
-    // Number pool - will randomize which animals appear
     const numberPool = [
         { number: 1, twi: "Baako", emoji: "🐘" },
         { number: 2, twi: "Mmienu", emoji: "🐘" },
@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentQuestion = 0;
     let score = 0;
     let gameStarted = false;
+    let playerEmail = "";
+    let playerName = "";
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -32,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function startNewGame() {
-        // Pick 5 random number questions
         const shuffledPool = shuffleArray([...numberPool]);
         numbers = shuffledPool.slice(0, 5);
         currentQuestion = 0;
@@ -53,16 +54,47 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 
-                <div id="number-start" style="text-align: center;">
+                <div id="number-email-collect" style="text-align: center;">
+                    <div style="background: white; border-radius: 20px; padding: 2rem; margin: 1rem 0;">
+                        <span style="font-size: 3rem;">📧</span>
+                        <h4 style="color: var(--green); margin: 0.5rem 0;">Free Game Access</h4>
+                        <p style="color: var(--gray); margin-bottom: 1rem;">Enter your email to start playing!</p>
+                        <form id="email-collect-form">
+                            <input type="email" id="player-email" placeholder="parent@email.com" required 
+                                   style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 30px; margin-bottom: 0.8rem; font-size: 1rem;">
+                            <input type="text" id="player-name" placeholder="Child's name (optional)" 
+                                   style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 30px; margin-bottom: 1rem; font-size: 1rem;">
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.8rem;">Start Game →</button>
+                        </form>
+                        <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--gray);">No spam. Unsubscribe anytime.</p>
+                    </div>
+                </div>
+                
+                <div id="number-start" style="display: none;">
                     <button id="start-number-btn" class="btn btn-primary" style="padding: 0.8rem 2rem;">Start Counting →</button>
                 </div>
                 
                 <div id="number-content" style="display: none;"></div>
-                <div id="number-email" style="display: none;"></div>
                 <div id="number-results" style="display: none;"></div>
             </div>
         `;
 
+        document.getElementById('email-collect-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            playerEmail = document.getElementById('player-email').value;
+            playerName = document.getElementById('player-name').value;
+            
+            addToMailerLite(playerEmail, playerName);
+            
+            gtag('event', 'game_email_signup', {
+                'event_category': 'engagement',
+                'event_label': 'kids_number_game'
+            });
+            
+            document.getElementById('number-email-collect').style.display = 'none';
+            document.getElementById('number-start').style.display = 'block';
+        });
+        
         document.getElementById('start-number-btn').addEventListener('click', () => {
             startNewGame();
             startGame();
@@ -73,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('number-start').style.display = 'none';
         document.getElementById('number-content').style.display = 'block';
         
-        // Track game start
         gtag('event', 'game_start', {
             'event_category': 'engagement',
             'event_label': 'kids_number_game'
@@ -87,10 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const num = numbers[currentQuestion];
         const gameContent = document.getElementById('number-content');
         
-        // Create animal string
         const animals = num.emoji.repeat(num.number);
         
-        // Shuffle number options
         const numberOptions = [
             { number: 1, twi: "Baako" },
             { number: 2, twi: "Mmienu" },
@@ -152,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             showQuestion();
                         } else {
                             if (window.SoundEffects) SoundEffects.cheer();
-                            showEmailForm();
+                            showResults();
                         }
                     }, 800);
                 } else {
@@ -164,45 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function showEmailForm() {
-        document.getElementById('number-content').style.display = 'none';
-        document.getElementById('number-email').style.display = 'block';
-        document.getElementById('number-email').innerHTML = `
-            <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 30px;">
-                <span style="font-size: 4rem;">🎉</span>
-                <h3 style="color: var(--green); font-size: 1.8rem; margin: 0.5rem 0;">Great counting!</h3>
-                <p style="font-size: 1rem; margin-bottom: 1rem;">⭐ ${score} out of ${numbers.length} correct!</p>
-                <p style="font-size: 0.9rem; margin-bottom: 1rem;">🎯 ${Math.round((score / numbers.length) * 100)}% accuracy!</p>
-                <form id="number-email-form">
-                    <input type="email" id="number-email-input" placeholder="parent@email.com" required 
-                           style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 30px; margin-bottom: 0.8rem;">
-                    <input type="text" id="number-name-input" placeholder="Child's name (optional)" 
-                           style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 30px; margin-bottom: 1rem;">
-                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.8rem;">Get Free Worksheets →</button>
-                </form>
-            </div>
-        `;
-
-        document.getElementById('number-email-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('number-email-input').value;
-            const childName = document.getElementById('number-name-input').value;
-            
-            // Track game completion
-            gtag('event', 'game_complete', {
-                'event_category': 'engagement',
-                'event_label': 'kids_number_game',
-                'score': score,
-                'total': numbers.length,
-                'percentage': Math.round((score / numbers.length) * 100)
-            });
-            
-            showResults(email, childName);
-            addToMailerLite(email, childName, score);
-        });
-    }
-
-    function addToMailerLite(email, childName, score) {
+    function addToMailerLite(email, childName) {
         fetch('https://connect.mailerlite.com/api/subscribers', {
             method: 'POST',
             headers: {
@@ -211,37 +202,40 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({
                 email: email,
-                fields: { name: childName || 'Number Game Parent', child_name: childName || '', game_type: 'Number Game', game_score: score.toString() },
+                fields: { name: childName || 'Number Game Parent', child_name: childName || '', game_type: 'Number Game' },
                 groups: [KIDS_GROUP_ID],
                 status: 'active'
             })
         }).catch(error => console.error('Error:', error));
     }
 
-    function showResults(email, childName) {
-        document.getElementById('number-email').style.display = 'none';
+    function showResults() {
+        document.getElementById('number-content').style.display = 'none';
         document.getElementById('number-results').style.display = 'block';
         document.getElementById('number-results').innerHTML = `
             <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 30px;">
-                <span style="font-size: 4rem;">🔢</span>
-                <h3 style="color: var(--green); font-size: 2.5rem; margin: 0.5rem 0;">${score}/${numbers.length}</h3>
-                <div style="background: var(--cream); border-radius: 20px; padding: 1rem; margin: 1rem 0;">
-                    <p style="font-size: 1rem;">✓ Free worksheets sent to: ${email}</p>
-                    <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.5rem;">Check your inbox for more Twi counting fun!</p>
-                </div>
-                <button id="number-play-again" class="btn btn-primary" style="padding: 0.8rem 2rem;">Play Again! 🔄</button>
+                <span style="font-size: 4rem;">🎉</span>
+                <h3 style="color: var(--green); font-size: 1.8rem; margin: 0.5rem 0;">Great counting, ${playerName || 'champion'}!</h3>
+                <p style="font-size: 2rem; font-weight: bold; color: var(--green);">${score}/${numbers.length}</p>
+                <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 1rem;">✓ Free worksheets sent to: ${playerEmail}</p>
+                <button id="play-again-btn" class="btn btn-primary" style="padding: 0.8rem 2rem;">Play Again! 🔄</button>
             </div>
         `;
 
-        document.getElementById('number-play-again').addEventListener('click', () => {
+        gtag('event', 'game_complete', {
+            'event_category': 'engagement',
+            'event_label': 'kids_number_game',
+            'score': score,
+            'total': numbers.length
+        });
+
+        document.getElementById('play-again-btn').addEventListener('click', () => {
             document.getElementById('number-results').style.display = 'none';
-            document.getElementById('number-start').style.display = 'block';
-            
-            // Track game restart
-            gtag('event', 'game_restart', {
-                'event_category': 'engagement',
-                'event_label': 'kids_number_game'
-            });
+            document.getElementById('number-email-collect').style.display = 'block';
+            document.getElementById('player-email').value = '';
+            document.getElementById('player-name').value = '';
+            playerEmail = "";
+            playerName = "";
         });
     }
 
