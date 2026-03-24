@@ -118,9 +118,100 @@
         .social-section { background: linear-gradient(135deg, var(--gold), #c49a6c); border-radius: 30px; padding: 3rem; margin: 4rem 0; text-align: center; }
         .social-grid, .media-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
         .social-card, .media-card, .faq-item { background: rgba(255,255,255,0.2); padding: 1.5rem; border-radius: 20px; text-decoration: none; color: inherit; }
-        footer { background: var(--black); color: white; padding: 4rem 0 2rem; margin-top: 4rem; }
-        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; margin-bottom: 3rem; }
-        @media (max-width: 768px) { .classes-grid, .class-wheels-grid, .materials-grid, .blog-post-grid, .social-grid, .media-grid, .faq-grid, .footer-grid, .tips-grid { grid-template-columns: 1fr; } .wheel-canvas { width: 240px; height: 240px; } }
+        
+        /* ===== FOOTER STYLES - MATCHING INDEX PAGE ===== */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
+        }
+        .footer-section a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+        .motto-footer {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+        .newsletter {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        .newsletter h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        .newsletter-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        .newsletter-btn:hover {
+            background: var(--red);
+            color: white;
+        }
+        
+        @media (max-width: 768px) { 
+            .classes-grid, .class-wheels-grid, .materials-grid, .blog-post-grid, .social-grid, .media-grid, .faq-grid, .footer-grid, .tips-grid { grid-template-columns: 1fr; } 
+            .wheel-canvas { width: 240px; height: 240px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .newsletter-form { flex-direction: column; }
+            .newsletter-btn { width: 100%; }
+        }
         audio { width: 100%; margin: 0.5rem 0; border-radius: 30px; }
     </style>
 </head>
@@ -210,7 +301,60 @@
         <div class="faq-section"><h2 class="center">FAQ</h2><div class="faq-grid"><div class="faq-item"><h4>Speak One, Learn One Scholarship?</h4><p>Ghana Card holders get 25% off to learn another language.</p></div><div class="faq-item"><h4>Certificate of Achievement?</h4><p>Complete 6 months of learning for an official certificate.</p></div><div class="faq-item"><h4>Classes for kids?</h4><p>Yes! Specialized programs for ages 5-12 and teens.</p></div><div class="faq-item"><h4>Miss a class?</h4><p>Recordings available for group classes.</p></div></div></div>
     </div>
 
-    <footer><div class="container"><div class="footer-grid"><div class="footer-section"><h4>Speak Ghana</h4><p>📍 Osu, Accra, Ghana</p><p>📞 +233 55 226 3323</p></div><div class="footer-section"><h4>Quick Links</h4><a href="about.html">About</a><a href="languages.html">Languages</a><a href="resources.html">Resources</a></div><div class="footer-section"><h4>Follow Us</h4><a href="#">YouTube</a><a href="#">Instagram</a></div><div class="footer-section"><h4>Resources</h4><a href="#">Greetings Cheat Sheet</a><a href="#">Alphabet Guide</a></div></div><div class="copyright"><p>© 2026 Speak Ghana Language School</p><div>Reconnect. Speak. Thrive.</div></div></div></footer>
+    <!-- UPDATED FOOTER - MATCHING INDEX PAGE -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>🏗️ Accra Office (Opening Soon)</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
+                    <p>💬 <a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Programs</h4>
+                    <a href="languages.html">Adult Classes</a>
+                    <a href="kids-teens.html">Kids (5-12)</a>
+                    <a href="kids-teens.html">Teens (13-17)</a>
+                    <a href="languages.html">Family Packages</a>
+                    <a href="contact.html">Scholarship Program</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="resources.html">Free Resources</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
+                    <a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a>
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
+                            <div class="newsletter-form">
+                                <input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required>
+                                <button type="submit" class="newsletter-btn">Join</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
+            </div>
+        </div>
+    </footer>
 
     <script>
         const classVocab = {
@@ -237,6 +381,19 @@
         function submitQuiz(){ let qs=quizSets[currentSet]; let score=0; for(let i=0;i<qs.length;i++){ let user=document.getElementById(`ans-${i}`)?.value.trim().toLowerCase(); let correct=qs[i].a.toLowerCase(); if(user===correct) score++; } document.getElementById('email-form-container').style.display='block'; window.quizScore=score; window.quizTotal=qs.length; }
         function submitEmail(){ let email=document.getElementById('quiz-email')?.value; if(!email){ alert('Please enter email'); return; } let score=window.quizScore||0, total=window.quizTotal||10; document.getElementById('email-form-container').style.display='none'; let resultsDiv=document.getElementById('results-area'); resultsDiv.style.display='block'; resultsDiv.innerHTML=`<div style="background:var(--green); color:white; padding:2rem; border-radius:20px;"><h3>Your Score: ${score}/${total}</h3><p>${score/total>=0.7?'Great job! Keep practicing!':'Keep learning! Review the alphabet.'}</p><button onclick="closeQuizPopup()" class="btn btn-gold">Close</button></div>`; gtag('event','quiz_completed',{score:score,total:total}); }
         window.openQuizPopup=openQuizPopup; window.closeQuizPopup=closeQuizPopup; window.loadSet=loadSet; window.submitQuiz=submitQuiz; window.submitEmail=submitEmail; window.spinWheel=spinWheel; window.checkAnswer=checkAnswer; window.nextWord=nextWord; window.resetWheel=resetWheel;
+        
+        // Track newsletter signup from footer
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterForm = document.getElementById('footer-newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function() {
+                    gtag('event', 'newsletter_signup', {
+                        'event_category': 'engagement',
+                        'event_label': 'footer_newsletter'
+                    });
+                });
+            }
+        });
     </script>
 </body>
 </html>
