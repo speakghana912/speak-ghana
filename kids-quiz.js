@@ -1,4 +1,4 @@
-// kids-quiz.js - UPDATED with email-first approach
+// kids-quiz.js - UPDATED with auto-start after email
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -45,6 +45,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return { ...question, options: options, correct: newCorrect };
     }
 
+    function startNewGame() {
+        const shuffledPool = shuffleArray([...questionPool]);
+        currentQuestions = shuffledPool.slice(0, 10).map(q => shuffleOptions(q));
+        currentQuestionIndex = 0;
+        score = 0;
+        userAnswers = [];
+    }
+
     function createGameContainer() {
         const gameSection = document.getElementById('kids-quiz');
         if (!gameSection) return;
@@ -75,43 +83,36 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 
-                <div id="quiz-start" style="display: none;">
-                    <button id="start-quiz-btn" class="btn btn-primary" style="padding: 0.8rem 2rem;">Start Quiz →</button>
-                </div>
-                
                 <div id="quiz-content" style="display: none;"></div>
                 <div id="quiz-results" style="display: none;"></div>
             </div>
         `;
 
+        // Handle email collection - AUTO START GAME AFTER SUBMIT
         document.getElementById('email-collect-form').addEventListener('submit', function(e) {
             e.preventDefault();
             playerEmail = document.getElementById('player-email').value;
             playerName = document.getElementById('player-name').value;
             
+            // Add to MailerLite
             addToMailerLite(playerEmail, playerName);
             
+            // Track signup
             gtag('event', 'game_email_signup', {
                 'event_category': 'engagement',
                 'event_label': 'kids_twi_quiz'
             });
             
+            // Hide email form and START GAME IMMEDIATELY
             document.getElementById('quiz-email-collect').style.display = 'none';
-            document.getElementById('quiz-start').style.display = 'block';
+            
+            // Start the quiz right away
+            startNewGame();
+            startGame();
         });
-        
-        document.getElementById('start-quiz-btn').addEventListener('click', startGame);
     }
 
     function startGame() {
-        const shuffledPool = shuffleArray([...questionPool]);
-        currentQuestions = shuffledPool.slice(0, 10).map(q => shuffleOptions(q));
-        
-        currentQuestionIndex = 0;
-        score = 0;
-        userAnswers = [];
-        
-        document.getElementById('quiz-start').style.display = 'none';
         document.getElementById('quiz-content').style.display = 'block';
         
         gtag('event', 'game_start', {
