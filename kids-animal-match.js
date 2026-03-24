@@ -1,4 +1,4 @@
-// Kids Animal Match Game - RANDOM VERSION with Sound Effects
+// Kids Animal Match Game - RANDOM VERSION with Sound Effects & Analytics
 document.addEventListener('DOMContentLoaded', function() {
     
     const MAILERLITE_API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZjcwN2UyMWMxNmYyMjYyZGZjYTQ4ZWYzNWU0NDY5OGNhNzVkOWQxYTZmNWQ0YjlkNTIwM2JlY2M2NzQ0NWFkMTUyMWRmZjY1ODY3NDU1ZWIiLCJpYXQiOjE3NzM4MzA2ODUuNjQ0NjE3LCJuYmYiOjE3NzM4MzA2ODUuNjQ0NjE5LCJleHAiOjQ5Mjk1MDQyODUuNjM3OTc5LCJzdWIiOiIyMjE3MjQ2Iiwic2NvcGVzIjpbXX0.NukFhsIIW5aLhITNpa08eSMIAi7em6HnFp9Z7xf_9OIbuLaSX9mIxl8MDwgzYMfgh_McPwrChF5qTLsqmB_umHxbSe7H9_e8lkFU9h6wu56X94dFIB8mMm6e7YDqfM_COgyFD8iyp9SufBg9zAsEU84t8sLmXbhU9LkS8Xn8GIu69SOQcyeWyOxfuKTWHDpjSDbJ1aspmieDeOt6fk5ZrFGv7O2JxAe__IKkEdgzbxOMF3THiCy9owYSUGVxpoTXjGs1ULmvhNDDi5izxKkGHU-XYbr8HSGFlye4PY9zs7xX5vhMbS5NOgsFVHRdCf9WRCCGvqSPSl_G_-4_waAua3z8QuiIDEgugyqudefRdM6QyvWp5uRzh7WGH8TmR8VmWG8Vle2yYPpMC-BpWoDDPDEKKgUYCZJG1edHpbA-ECsTF9HvdS4OFS04Igq0BCSOhcW9STA8JZdm4bplPNacLsh7ZQOK7bde-bDSoI2xfU8eb1mntPNgRJadlxCvBYaNOV0q477iJG3kR8nY4Rpq5_vG6JtCsHNFfqR520JrhJW4rvV8Cr2iMN7qMzGheqm2ouqOfvRGV0FDkCsWq_uM3B6BmBCBpF7q_n9YY0c_uQy2JCu6M-gXh4z2XsOiMomCHzZPzpzpO78GGRZ5Te-OFTpXvEFVCjf9Q93BrvD-hVs';
@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let selectedAnimal = null;
     let gameCompleted = false;
     let attempts = 0;
+    let gameStarted = false;
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -74,6 +75,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function startGame() {
         document.getElementById('game-start').style.display = 'none';
         document.getElementById('game-content').style.display = 'block';
+        
+        // Track game start
+        gtag('event', 'game_start', {
+            'event_category': 'engagement',
+            'event_label': 'kids_animal_match_game'
+        });
+        
+        gameStarted = true;
         showGame();
     }
 
@@ -183,6 +192,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('reset-game-btn').addEventListener('click', () => {
             startNewGame();
             showGame();
+            
+            // Track game restart
+            gtag('event', 'game_restart', {
+                'event_category': 'engagement',
+                'event_label': 'kids_animal_match_game'
+            });
         });
     }
 
@@ -193,6 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 30px;">
                 <span style="font-size: 3rem;">🏆</span>
                 <h3 style="color: var(--green); font-size: 1.8rem; margin: 0.5rem 0;">You did it!</h3>
+                <p style="font-size: 1rem; margin-bottom: 1rem;">⭐ ${matchedPairs} out of ${animals.length} matched!</p>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem;">🎯 ${attempts} total attempts</p>
                 <form id="game-email-form">
                     <input type="email" id="game-email-input" placeholder="parent@email.com" required 
                            style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 30px; margin-bottom: 0.8rem;">
@@ -208,7 +225,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = document.getElementById('game-email-input').value;
             const childName = document.getElementById('game-name-input').value;
             
-            gtag('event', 'kids_animal_game_completed', { 'event_category': 'kids' });
+            // Track game completion
+            gtag('event', 'game_complete', {
+                'event_category': 'engagement',
+                'event_label': 'kids_animal_match_game',
+                'score': matchedPairs,
+                'total': animals.length,
+                'attempts': attempts
+            });
+            
             showResults(email, childName);
             addToMailerLite(email, childName);
         });
@@ -237,7 +262,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <div style="text-align: center; padding: 1.5rem; background: white; border-radius: 30px;">
                 <span style="font-size: 3rem;">🐾</span>
                 <h3 style="color: var(--green); font-size: 1.8rem; margin: 0.5rem 0;">Thanks for playing!</h3>
-                <p style="font-size: 1rem; margin-bottom: 1rem;">✓ Sent to: ${email}</p>
+                <p style="font-size: 1rem; margin-bottom: 1rem;">✓ Free games sent to: ${email}</p>
+                <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 1rem;">Check your inbox for more Twi learning fun!</p>
                 <button id="play-again-btn" class="btn btn-primary" style="padding: 0.8rem 2rem;">Play Again! 🔄</button>
             </div>
         `;
@@ -245,6 +271,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('play-again-btn').addEventListener('click', () => {
             document.getElementById('game-results').style.display = 'none';
             document.getElementById('game-start').style.display = 'block';
+            
+            // Track game restart from results
+            gtag('event', 'game_restart', {
+                'event_category': 'engagement',
+                'event_label': 'kids_animal_match_game'
+            });
         });
     }
 
