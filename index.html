@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Speak Ghana - Learn Twi Online | Reconnect with Your Roots</title>
-<meta name="description" content="Learn Twi online with native Ghanaian teachers. Free resources, live classes, and cultural immersion for diaspora learners. Start speaking Twi today!">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speak Ghana - Learn Twi Online | Reconnect with Your Roots</title>
+    <meta name="description" content="Learn Twi online with native Ghanaian teachers. Free resources, live classes, and cultural immersion for diaspora learners. Start speaking Twi today!">
     
     <!-- ABSOLUTE URL FAVICON -->
     <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
@@ -14,7 +14,6 @@
     <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
 
     <!-- Google Analytics -->
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -461,83 +460,6 @@
             line-height: 1;
         }
 
-        /* ===== QUIZ SECTION ===== */
-        .quiz-section {
-            background: var(--cream);
-            border-radius: 30px;
-            padding: 4rem;
-            margin: 4rem 0;
-            text-align: center;
-            border: 3px dashed var(--gold);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quiz-section::before {
-            content: '📝';
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            font-size: 10rem;
-            opacity: 0.05;
-            transform: rotate(15deg);
-        }
-
-        .quiz-section h2 {
-            color: var(--green);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .quiz-section p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        .quiz-stats {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .stat-circle {
-            background: white;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 20px var(--shadow);
-            border: 3px solid var(--gold);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--green);
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-
-        /* ===== QUIZ CONTAINER STYLES (from twi-quiz.js) ===== */
-        .quiz-container {
-            background: var(--cream);
-            border-radius: 30px;
-            padding: 3rem;
-            margin: 3rem 0;
-            border: 3px solid var(--gold);
-            box-shadow: 0 20px 40px var(--shadow);
-        }
-
         /* ===== ENROLLMENT FORM ===== */
         .enrollment-section {
             background: linear-gradient(135deg, var(--gold), var(--red));
@@ -827,92 +749,6 @@
             font-weight: 600;
         }
 
-        /* ===== SKILL LEVELS ===== */
-        .skill-levels {
-            margin: 4rem 0;
-        }
-
-        .level-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .level-card {
-            background: var(--white);
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 20px var(--shadow);
-            border-top: 4px solid var(--gold);
-            transition: transform 0.3s;
-        }
-
-        .level-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .level-card h3 {
-            color: var(--green);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .level-card p {
-            color: var(--gray);
-        }
-
-        /* ===== PROGRESS ROADMAP ===== */
-        .roadmap {
-            background: linear-gradient(135deg, var(--green), #1f7a6e);
-            border-radius: 30px;
-            padding: 4rem;
-            margin: 4rem 0;
-            color: white;
-        }
-
-        .roadmap h2 {
-            color: white;
-        }
-
-        .roadmap-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .roadmap-step {
-            text-align: center;
-            position: relative;
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--gold);
-            color: var(--black);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 0 auto 1.5rem;
-        }
-
-        .roadmap-step h4 {
-            color: var(--gold);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .roadmap-step p {
-            color: rgba(255,255,255,0.9);
-            line-height: 1.6;
-        }
-
         /* ===== TESTIMONIAL SECTION ===== */
         .testimonial-preview {
             background: var(--white);
@@ -1120,7 +956,7 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
         }
 
         .footer-section a:hover {
@@ -1201,8 +1037,6 @@
             .featured-grid,
             .comparison-grid,
             .pain-points,
-            .level-grid,
-            .roadmap-steps,
             .testimonial-grid,
             .faq-grid,
             .footer-grid {
@@ -1589,7 +1423,7 @@
             <span class="value-pill">📈 Nkɔsoɔ</span>
         </div>
 
-        <!-- ===== TWI LEVEL QUIZ SECTION (from twi-quiz.js) ===== -->
+        <!-- ===== TWI LEVEL QUIZ SECTION ===== -->
         <div id="twi-level-quiz"></div>
 
         <!-- Value Proposition -->
@@ -1694,6 +1528,7 @@
                     <p>🏗️ Accra Office (Opening Soon)</p>
                     <p>📞 +233 55 226 3323</p>
                     <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
+                    <p>💬 <a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
                 </div>
                 
                 <div class="footer-section">
@@ -1702,6 +1537,7 @@
                     <a href="kids-teens.html">Kids (5-12)</a>
                     <a href="kids-teens.html">Teens (13-17)</a>
                     <a href="languages.html">Family Packages</a>
+                    <a href="contact.html">Scholarship Program</a>
                 </div>
                 
                 <div class="footer-section">
@@ -1709,7 +1545,7 @@
                     <a href="about.html">About Us</a>
                     <a href="contact.html">Contact</a>
                     <a href="blog.html">Blog</a>
-                    <a href="resources.html">Resources</a>
+                    <a href="resources.html">Free Resources</a>
                 </div>
                 
                 <div class="footer-section">
@@ -1717,12 +1553,15 @@
                     <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
                     <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
                     <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
+                    <a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a>
                     <div class="newsletter">
                         <h4>Newsletter</h4>
-                        <div class="newsletter-form">
-                            <input type="email" placeholder="Email" class="newsletter-input">
-                            <button class="newsletter-btn">Join</button>
-                        </div>
+                        <form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
+                            <div class="newsletter-form">
+                                <input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required>
+                                <button type="submit" class="newsletter-btn">Join</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -1753,12 +1592,24 @@
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
                     let formName = 'enrollment_form';
+                    if (this.id === 'footer-newsletter-form') formName = 'footer_newsletter';
                     gtag('event', 'generate_lead', {
                         'event_category': 'engagement',
                         'event_label': formName
                     });
                 });
             });
+            
+            // Track Newsletter Signup
+            const newsletterForm = document.getElementById('footer-newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function() {
+                    gtag('event', 'newsletter_signup', {
+                        'event_category': 'engagement',
+                        'event_label': 'footer_newsletter'
+                    });
+                });
+            }
             
             // Track PDF Downloads
             const pdfLinks = document.querySelectorAll('a[href$=".pdf"], a[download]');
