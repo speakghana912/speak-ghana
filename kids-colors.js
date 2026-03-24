@@ -1,4 +1,4 @@
-// kids-colors.js - UPDATED with email-first approach
+// kids-colors.js - UPDATED with auto-start after email
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 
-                <!-- EMAIL COLLECTION FIRST -->
+                <!-- EMAIL COLLECTION FIRST - AUTO STARTS GAME -->
                 <div id="color-email-collect" style="text-align: center;">
                     <div style="background: white; border-radius: 20px; padding: 2rem; margin: 1rem 0;">
                         <span style="font-size: 3rem;">📧</span>
@@ -69,15 +69,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 
-                <div id="color-start" style="display: none;">
-                    <button id="start-color-btn" class="btn btn-primary" style="padding: 0.8rem 2rem;">Start Game →</button>
-                </div>
-                
                 <div id="color-content" style="display: none;"></div>
                 <div id="color-results" style="display: none;"></div>
             </div>
         `;
 
+        // Handle email collection - AUTO START GAME AFTER SUBMIT
         document.getElementById('email-collect-form').addEventListener('submit', function(e) {
             e.preventDefault();
             playerEmail = document.getElementById('player-email').value;
@@ -90,18 +87,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 'event_label': 'kids_color_game'
             });
             
+            // Hide email form and START GAME IMMEDIATELY
             document.getElementById('color-email-collect').style.display = 'none';
-            document.getElementById('color-start').style.display = 'block';
-        });
-        
-        document.getElementById('start-color-btn').addEventListener('click', () => {
+            
+            // Start the game right away
             startNewGame();
             startGame();
         });
     }
 
     function startGame() {
-        document.getElementById('color-start').style.display = 'none';
         document.getElementById('color-content').style.display = 'block';
         
         gtag('event', 'game_start', {
