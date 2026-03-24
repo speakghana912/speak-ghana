@@ -13,7 +13,6 @@
 <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
 
     <!-- Google Analytics -->
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -492,7 +491,6 @@
             transform: translateY(-15px);
         }
 
-        /* Balanced photo sizing - shows faces well without excessive height */
         .team-photo {
             width: 100%;
             height: 280px;
@@ -738,7 +736,7 @@
             color: var(--gray);
         }
 
-        /* ===== FOOTER ===== */
+        /* ===== FOOTER STYLES - MATCHING INDEX PAGE ===== */
         footer {
             background: var(--black);
             color: white;
@@ -746,7 +744,6 @@
             margin-top: 4rem;
             position: relative;
         }
-
         footer::before {
             content: '';
             position: absolute;
@@ -756,42 +753,73 @@
             height: 4px;
             background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
         }
-
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 3rem;
             margin-bottom: 3rem;
         }
-
         .footer-section h4 {
             color: var(--gold);
             margin-bottom: 1.5rem;
+            font-size: 1.2rem;
         }
-
         .footer-section a {
             color: rgba(255,255,255,0.8);
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
         }
-
         .footer-section a:hover {
             color: var(--gold);
+            transform: translateX(5px);
         }
-
         .copyright {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: rgba(255,255,255,0.6);
         }
-
         .motto-footer {
             color: var(--gold);
             font-size: 1.2rem;
             margin-top: 1rem;
+        }
+        .newsletter {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        .newsletter h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        .newsletter-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        .newsletter-btn:hover {
+            background: var(--red);
+            color: white;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -828,6 +856,7 @@
             
             .footer-grid {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
             
             .header-content {
@@ -849,6 +878,14 @@
 
             .team-photo {
                 height: 240px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-btn {
+                width: 100%;
             }
         }
     </style>
@@ -966,7 +1003,7 @@
             </div>
         </div>
 
-        <!-- ===== SCHOLARSHIP & CERTIFICATE SECTION (NEW) ===== -->
+        <!-- Scholarship Section -->
         <div class="scholarship-section">
             <h3>🎓 Speak One, Learn One Scholarship</h3>
             <p><strong>25% OFF for Ghana Card Holders</strong> — Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
@@ -1008,9 +1045,7 @@
         <div class="team-section">
             <h2 class="center">Meet Our Founders</h2>
             
-            <!-- Founders Grid -->
             <div class="founders-grid">
-                <!-- Richard Asiamah -->
                 <div class="team-card">
                     <div class="team-photo">
                         <img src="images/richard.jpg" alt="Richard Asiamah">
@@ -1023,7 +1058,6 @@
                     </div>
                 </div>
 
-                <!-- Charlotte Tetebea Asiamah -->
                 <div class="team-card">
                     <div class="team-photo">
                         <img src="images/charlotte.jpg" alt="Charlotte Tetebea Asiamah">
@@ -1040,7 +1074,6 @@
 
             <h2 class="center">Our Instructors</h2>
             <div class="team-grid">
-                <!-- Michael -->
                 <div class="team-card">
                     <div class="team-photo">
                         <img src="images/michael.jpg" alt="Michael Agyepong Nkansah">
@@ -1053,7 +1086,6 @@
                     </div>
                 </div>
 
-                <!-- Evelyn -->
                 <div class="team-card">
                     <div class="team-photo">
                         <img src="images/evelyn.jpg" alt="Evelyn Mensah">
@@ -1132,13 +1164,11 @@
                 </div>
             </div>
 
-            <!-- Accra Skyline Image -->
             <div class="accra-skyline">
                 <img src="images/accra-skyline.png" alt="Accra skyline at sunset">
                 <p>Our future Accra office location</p>
             </div>
 
-            <!-- Interactive Map -->
             <div class="map-container">
                 <div class="map-overlay">
                     <strong>📍 KNUST Campus, Kumasi</strong>
@@ -1212,7 +1242,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- UPDATED FOOTER - MATCHING INDEX PAGE -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1220,34 +1250,43 @@
                     <h4>Speak Ghana</h4>
                     <p>📍 KNUST Campus, Kumasi</p>
                     <p>🏗️ Accra Office (Opening Soon)</p>
+                    <p>📞 +233 55 226 3323</p>
                     <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
-                    <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="about.html">About Us</a>
-                    <a href="languages.html">Languages</a>
-                    <a href="kids-teens.html">Kids & Teens</a>
-                    <a href="resources.html">Free Resources</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="blog.html">Blog</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube: @SpeakGhana</a>
-                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram: @speak_ghana</a>
-                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok: @speakghana0</a>
+                    <p>💬 <a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
                 </div>
                 
                 <div class="footer-section">
                     <h4>Programs</h4>
-                    <a href="languages.html#twi">Twi</a>
-                    <a href="languages.html#ga">Ga</a>
-                    <a href="languages.html#ewe">Ewe</a>
-                    <a href="languages.html#fante">Fante</a>
-                    <a href="languages.html#dagbani">Dagbani</a>
+                    <a href="languages.html">Adult Classes</a>
+                    <a href="kids-teens.html">Kids (5-12)</a>
+                    <a href="kids-teens.html">Teens (13-17)</a>
+                    <a href="languages.html">Family Packages</a>
+                    <a href="contact.html">Scholarship Program</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="resources.html">Free Resources</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
+                    <a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a>
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
+                            <div class="newsletter-form">
+                                <input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required>
+                                <button type="submit" class="newsletter-btn">Join</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             
@@ -1277,6 +1316,17 @@
                     });
                 });
             });
+            
+            // Track Newsletter Signup
+            const newsletterForm = document.getElementById('footer-newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function() {
+                    gtag('event', 'newsletter_signup', {
+                        'event_category': 'engagement',
+                        'event_label': 'footer_newsletter'
+                    });
+                });
+            }
             
             // Track PDF Downloads
             const pdfLinks = document.querySelectorAll('a[href$=".pdf"], a[download]');
