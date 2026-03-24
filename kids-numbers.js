@@ -1,4 +1,4 @@
-// kids-numbers.js - UPDATED with email-first approach
+// kids-numbers.js - UPDATED with auto-start after email
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 
+                <!-- EMAIL COLLECTION FIRST - AUTO STARTS GAME -->
                 <div id="number-email-collect" style="text-align: center;">
                     <div style="background: white; border-radius: 20px; padding: 2rem; margin: 1rem 0;">
                         <span style="font-size: 3rem;">📧</span>
@@ -70,15 +71,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
                 
-                <div id="number-start" style="display: none;">
-                    <button id="start-number-btn" class="btn btn-primary" style="padding: 0.8rem 2rem;">Start Counting →</button>
-                </div>
-                
                 <div id="number-content" style="display: none;"></div>
                 <div id="number-results" style="display: none;"></div>
             </div>
         `;
 
+        // Handle email collection - AUTO START GAME AFTER SUBMIT
         document.getElementById('email-collect-form').addEventListener('submit', function(e) {
             e.preventDefault();
             playerEmail = document.getElementById('player-email').value;
@@ -91,18 +89,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 'event_label': 'kids_number_game'
             });
             
+            // Hide email form and START GAME IMMEDIATELY
             document.getElementById('number-email-collect').style.display = 'none';
-            document.getElementById('number-start').style.display = 'block';
-        });
-        
-        document.getElementById('start-number-btn').addEventListener('click', () => {
+            
+            // Start the game right away
             startNewGame();
             startGame();
         });
     }
 
     function startGame() {
-        document.getElementById('number-start').style.display = 'none';
         document.getElementById('number-content').style.display = 'block';
         
         gtag('event', 'game_start', {
