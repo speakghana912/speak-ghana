@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vowel Sound Match | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #FDF8F2 0%, #F5E6D3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .game-container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            border-radius: 40px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+        h1 { 
+            color: #2A9D8F; 
+            margin-bottom: 0.5rem; 
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .subtitle { color: #666; margin-bottom: 2rem; font-size: 0.9rem; }
+        .sound-card {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+        .play-btn {
+            background: #D4A373;
+            border: none;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            font-size: 3rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .play-btn:hover { transform: scale(1.08); background: #c49a6c; }
+        .play-btn:active { transform: scale(0.98); }
+        .example-word {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            letter-spacing: 1px;
+        }
+        .sound-hint { font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem; }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .option-btn {
+            background: #FDF8F2;
+            border: 3px solid #2A9D8F;
+            border-radius: 60px;
+            padding: 1.2rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: monospace;
+        }
+        .option-btn:hover { 
+            background: #2A9D8F; 
+            color: white; 
+            transform: translateY(-5px);
+            border-color: #2A9D8F;
+        }
+        .option-btn.correct { 
+            background: #2ecc71; 
+            border-color: #2ecc71; 
+            color: white; 
+            pointer-events: none;
+            transform: scale(1.02);
+        }
+        .option-btn.wrong { 
+            background: #e74c3c; 
+            border-color: #e74c3c; 
+            color: white; 
+            pointer-events: none;
+        }
+        .option-btn.disabled { pointer-events: none; opacity: 0.6; }
+        .next-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        .next-btn:hover { background: #1f7a6e; transform: translateY(-2px); }
+        .next-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+        .score-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            background: #FDF8F2;
+            border-radius: 60px;
+        }
+        .score-badge {
+            background: var(--green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        .progress-bar {
+            margin: 1rem 0;
+            background: #eee;
+            border-radius: 20px;
+            height: 10px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            border-radius: 20px;
+            transition: width 0.3s;
+        }
+        .feedback { 
+            margin-bottom: 1rem; 
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 50px;
+        }
+        .feedback.correct-feedback { background: #2ecc71; color: white; }
+        .feedback.wrong-feedback { background: #e74c3c; color: white; }
+        .results { text-align: center; }
+        .final-score { font-size: 4rem; font-weight: bold; color: #2A9D8F; margin: 1rem 0; }
+        .perfect-badge {
+            background: #2ecc71;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .hide { display: none; }
+        @media (max-width: 600px) {
+            .game-container { padding: 1.5rem; }
+            .options-grid { grid-template-columns: 1fr; }
+            .example-word { font-size: 1.3rem; }
+            .play-btn { width: 80px; height: 80px; font-size: 2.5rem; }
+            .option-btn { font-size: 1.1rem; padding: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container" id="gameContainer">
+        <h1>
+            <span>🔊</span> Vowel Sound Match
+            <span>🎧</span>
+        </h1>
+        <p class="subtitle">Listen to the sound, then find the matching vowel</p>
+
+        <div id="gameArea">
+            <div class="sound-card">
+                <button class="play-btn" id="playSoundBtn">🔊</button>
+                <div class="example-word" id="exampleWord">?</div>
+                <div class="sound-hint" id="soundHint">Tap the speaker to hear the sound</div>
+            </div>
+
+            <div class="options-grid" id="optionsGrid"></div>
+
+            <div class="score-area">
+                <span class="score-badge">⭐ <span id="scoreDisplay">0</span></span>
+                <span id="counterDisplay">🎯 1 / 10</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="feedback" id="feedback"></div>
+            <button class="next-btn" id="nextBtn" disabled>Next Sound →</button>
+        </div>
+
+        <div id="resultsArea" class="results hide">
+            <div class="perfect-badge" id="perfectBadge" style="display: none;">🏆 PERFECT! 🏆</div>
+            <div class="final-score" id="finalScore">0 / 10</div>
+            <p id="resultMessage"></p>
+            <button id="restartBtn" class="next-btn" style="margin-top: 1rem;">🎮 Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        // Vowel sounds with your audio files and example words
+        const vowels = [
+            { symbol: "i", audioFile: "audio/twi-alphabet/letter-i.m4a", example: "sika", meaning: "money" },
+            { symbol: "ɪ", audioFile: "audio/twi-alphabet/letter-ɪ.m4a", example: "sekan", meaning: "knife" },
+            { symbol: "u", audioFile: "audio/twi-alphabet/letter-u.m4a", example: "duku", meaning: "headwrap" },
+            { symbol: "ʊ", audioFile: "audio/twi-alphabet/letter-ʊ.m4a", example: "ɛpo", meaning: "ocean" },
+            { symbol: "e", audioFile: "audio/twi-alphabet/letter-e.m4a", example: "efie", meaning: "house" },
+            { symbol: "ɛ", audioFile: "audio/twi-alphabet/letter-ɛ.m4a", example: "ɛdan", meaning: "building" },
+            { symbol: "o", audioFile: "audio/twi-alphabet/letter-o.m4a", example: "odwan", meaning: "sheep" },
+            { symbol: "ɔ", audioFile: "audio/twi-alphabet/letter-ɔ.m4a", example: "ɔdɔ", meaning: "love" },
+            { symbol: "æ", audioFile: "audio/twi-alphabet/letter-æ.m4a", example: "ani", meaning: "eye" },
+            { symbol: "a", audioFile: "audio/twi-alphabet/letter-a.m4a", example: "aboa", meaning: "animal" }
+        ];
+
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let answered = false;
+        let currentAudio = null;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function getRandomQuestions() {
+            const shuffled = shuffleArray([...vowels]);
+            return shuffled.slice(0, 10);
+        }
+
+        function generateOptions(correctSymbol) {
+            const otherVowels = vowels.filter(v => v.symbol !== correctSymbol);
+            const shuffledOthers = shuffleArray([...otherVowels]);
+            const wrong = shuffledOthers.slice(0, 3);
+            const correct = vowels.find(v => v.symbol === correctSymbol);
+            const options = [...wrong, correct];
+            return shuffleArray(options);
+        }
+
+        function loadQuestion() {
+            const q = currentQuestions[currentIndex];
+            if (!q) return;
+            
+            document.getElementById('exampleWord').innerHTML = `${q.example} (${q.meaning})`;
+            document.getElementById('soundHint').innerHTML = `🔊 Tap the speaker to hear the vowel sound in "${q.example}"`;
+            
+            const options = generateOptions(q.symbol);
+            const optionsGrid = document.getElementById('optionsGrid');
+            optionsGrid.innerHTML = '';
+            
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerHTML = `/ ${opt.symbol} /`;
+                btn.dataset.symbol = opt.symbol;
+                btn.onclick = () => checkAnswer(opt.symbol, q.symbol, btn);
+                optionsGrid.appendChild(btn);
+            });
+            
+            answered = false;
+            document.getElementById('nextBtn').disabled = true;
+            document.getElementById('feedback').innerHTML = '';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('counterDisplay').innerHTML = `🎯 ${currentIndex + 1} / ${currentQuestions.length}`;
+            const progress = (currentIndex / currentQuestions.length) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+        }
+
+        function playCurrentSound() {
+            const q = currentQuestions[currentIndex];
+            if (!q || !q.audioFile) {
+                document.getElementById('soundHint').innerHTML = '🔊 Sound loading...';
+                return;
+            }
+            
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            
+            currentAudio = new Audio(q.audioFile);
+            currentAudio.play().catch(error => {
+                console.error('Error playing audio:', error);
+                document.getElementById('soundHint').innerHTML = '🔊 Tap again to hear the sound';
+            });
+            
+            document.getElementById('soundHint').innerHTML = `🎧 Listening... which vowel sound is in "${q.example}"?`;
+        }
+
+        function checkAnswer(selected, correct, buttonElement) {
+            if (answered) return;
+            answered = true;
+            
+            const allButtons = document.querySelectorAll('.option-btn');
+            const q = currentQuestions[currentIndex];
+            
+            if (selected === correct) {
+                buttonElement.classList.add('correct');
+                score++;
+                document.getElementById('feedback').innerHTML = '✅ Match! Great ear!';
+                document.getElementById('feedback').className = 'feedback correct-feedback';
+            } else {
+                buttonElement.classList.add('wrong');
+                document.getElementById('feedback').innerHTML = `❌ The sound was / ${correct} / - like in "${q.example}"`;
+                document.getElementById('feedback').className = 'feedback wrong-feedback';
+                
+                allButtons.forEach(btn => {
+                    if (btn.dataset.symbol === correct) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            allButtons.forEach(btn => {
+                btn.classList.add('disabled');
+                btn.disabled = true;
+            });
+            
+            document.getElementById('nextBtn').disabled = false;
+            document.getElementById('scoreDisplay').innerHTML = score;
+        }
+
+        function nextQuestion() {
+            if (!answered) return;
+            if (currentAudio) currentAudio.pause();
+            currentIndex++;
+            if (currentIndex < currentQuestions.length) {
+                loadQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            document.getElementById('gameArea').classList.add('hide');
+            document.getElementById('resultsArea').classList.remove('hide');
+            const total = currentQuestions.length;
+            document.getElementById('finalScore').innerHTML = `${score} / ${total}`;
+            
+            let message = '';
+            if (score === total) {
+                message = 'Amazing! You matched every sound! 🎉';
+                document.getElementById('perfectBadge').style.display = 'inline-block';
+            } else if (score >= 8) {
+                message = 'Great job! You\'re getting the hang of Twi vowels! 👏🏾';
+                document.getElementById('perfectBadge').style.display = 'none';
+            } else if (score >= 6) {
+                message = 'Good effort! Play again to master the sounds! 💪🏾';
+                document.getElementById('perfectBadge').style.display = 'none';
+            } else {
+                message = 'Keep practicing! Listen carefully and try again! 🇬🇭';
+                document.getElementById('perfectBadge').style.display = 'none';
+            }
+            document.getElementById('resultMessage').innerHTML = message;
+            
+            gtag('event', 'game_complete', {
+                'event_category': 'engagement',
+                'event_label': 'vowel_sound_match',
+                'score': score,
+                'total': total
+            });
+        }
+
+        function restartGame() {
+            currentQuestions = getRandomQuestions();
+            currentIndex = 0;
+            score = 0;
+            answered = false;
+            if (currentAudio) currentAudio.pause();
+            document.getElementById('scoreDisplay').innerHTML = '0';
+            document.getElementById('gameArea').classList.remove('hide');
+            document.getElementById('resultsArea').classList.add('hide');
+            loadQuestion();
+            gtag('event', 'game_restart', { 'event_category': 'engagement', 'event_label': 'vowel_sound_match' });
+        }
+
+        function init() {
+            currentQuestions = getRandomQuestions();
+            currentIndex = 0;
+            score = 0;
+            answered = false;
+            document.getElementById('scoreDisplay').innerHTML = '0';
+            loadQuestion();
+            document.getElementById('playSoundBtn').onclick = playCurrentSound;
+            document.getElementById('nextBtn').onclick = nextQuestion;
+            document.getElementById('restartBtn').onclick = restartGame;
+            gtag('event', 'game_start', { 'event_category': 'engagement', 'event_label': 'vowel_sound_match' });
+        }
+        
+        init();
+    </script>
+</body>
+</html>
