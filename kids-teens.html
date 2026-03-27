@@ -352,6 +352,52 @@
             background: var(--green);
         }
 
+        /* ===== HAMBURGER MENU STYLES ===== */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--black);
+            padding: 0.5rem;
+            z-index: 101;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1.5rem;
+                top: 0.8rem;
+            }
+            
+            nav {
+                position: relative;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 0.5rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         /* ===== PAGE HERO ===== */
         .page-hero {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
@@ -882,7 +928,7 @@
             color: var(--gray);
         }
 
-        /* ===== GAME CONTAINER STYLES - FIX SCROLLING ISSUES ===== */
+        /* ===== GAME CONTAINER STYLES ===== */
         .game-container {
             background: white;
             border-radius: 30px;
@@ -906,7 +952,6 @@
             padding-right: 0.5rem;
         }
 
-        /* Mobile adjustments */
         @media (max-width: 768px) {
             #quiz-content, #color-content, #memory-content, #number-content, #game-content,
             #animal-match-content {
@@ -918,7 +963,7 @@
             }
         }
 
-        /* ===== FOOTER STYLES - MATCHING INDEX PAGE ===== */
+        /* ===== FOOTER STYLES ===== */
         footer {
             background: var(--black);
             color: white;
@@ -1004,22 +1049,18 @@
             color: white;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
             .intro-grid,
             .family-grid,
             .faq-grid {
                 grid-template-columns: 1fr;
             }
-            
             .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
             .form-row {
                 grid-template-columns: 1fr;
             }
-            
             .checkbox-group {
                 grid-template-columns: 1fr;
             }
@@ -1030,28 +1071,22 @@
                 position: static;
                 border-radius: 20px;
             }
-            
             .footer-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
             h2 {
                 font-size: 2rem;
             }
-            
             .page-hero h1 {
                 font-size: 2.5rem;
             }
-            
             .commitment-quote {
                 font-size: 1.5rem;
             }
-            
             .newsletter-form {
                 flex-direction: column;
             }
-            
             .newsletter-btn {
                 width: 100%;
             }
@@ -1089,16 +1124,17 @@
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Navigation with Hamburger Menu -->
     <nav>
-        <div class="container">
-            <div class="nav-links">
+        <div class="container" style="position: relative;">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="languages.html">Languages</a>
                 <a href="kids-teens.html" class="active">Kids & Teens</a>
                 <a href="resources.html">Resources</a>
-                <a href="concierge.html">🤝 Concierge</a>
+                <a href="concierge.html">Concierge</a>
                 <a href="contact.html">Contact</a>
                 <a href="blog.html">Blog</a>
             </div>
@@ -1427,7 +1463,6 @@
                 </div>
             </div>
 
-            <!-- Kids & Teens Pricing PDF Download -->
             <div class="pdf-download-section">
                 <div class="pdf-buttons">
                     <a href="pdf/pricing-kids-teens.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Kids & Teens Pricing (PDF)</a>
@@ -1480,9 +1515,9 @@
             <h2 class="center">Pricing Summary – Kids & Teens</h2>
             
             <div class="table-container">
-                 <table>
+                <table>
                     <thead>
-                         <tr>
+                        <tr>
                             <th>Package</th>
                             <th>Age</th>
                             <th>Frequency</th>
@@ -1656,7 +1691,7 @@
         </section>
     </div>
 
-    <!-- UPDATED FOOTER - MATCHING INDEX PAGE -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1711,18 +1746,36 @@
         </div>
     </footer>
 
-    <!-- Event Tracking for Google Analytics -->
+    <!-- Event Tracking with Hamburger Menu -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('show');
+                });
+                
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('show');
+                    });
+                });
+            }
+            
             // Track Form Submissions
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
                     let formName = 'kids_teens_enrollment';
-                    gtag('event', 'generate_lead', {
-                        'event_category': 'engagement',
-                        'event_label': formName
-                    });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'generate_lead', {
+                            'event_category': 'engagement',
+                            'event_label': formName
+                        });
+                    }
                 });
             });
             
@@ -1730,10 +1783,12 @@
             const newsletterForm = document.getElementById('footer-newsletter-form');
             if (newsletterForm) {
                 newsletterForm.addEventListener('submit', function() {
-                    gtag('event', 'newsletter_signup', {
-                        'event_category': 'engagement',
-                        'event_label': 'footer_newsletter'
-                    });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'newsletter_signup', {
+                            'event_category': 'engagement',
+                            'event_label': 'footer_newsletter'
+                        });
+                    }
                 });
             }
             
@@ -1742,10 +1797,12 @@
             pdfLinks.forEach(link => {
                 link.addEventListener('click', function() {
                     let pdfName = this.href.split('/').pop();
-                    gtag('event', 'pdf_download', {
-                        'event_category': 'resource',
-                        'event_label': pdfName
-                    });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'pdf_download', {
+                            'event_category': 'resource',
+                            'event_label': pdfName
+                        });
+                    }
                 });
             });
             
@@ -1753,10 +1810,12 @@
             const scholarshipLink = document.querySelector('.scholarship-blink');
             if (scholarshipLink) {
                 scholarshipLink.addEventListener('click', function() {
-                    gtag('event', 'scholarship_click', {
-                        'event_category': 'engagement',
-                        'event_label': 'kids_teens_scholarship'
-                    });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'scholarship_click', {
+                            'event_category': 'engagement',
+                            'event_label': 'kids_teens_scholarship'
+                        });
+                    }
                 });
             }
         });
