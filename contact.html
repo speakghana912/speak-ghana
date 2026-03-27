@@ -376,6 +376,52 @@
             background: var(--green);
         }
 
+        /* ===== HAMBURGER MENU STYLES ===== */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--black);
+            padding: 0.5rem;
+            z-index: 101;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1.5rem;
+                top: 0.8rem;
+            }
+            
+            nav {
+                position: relative;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 0.5rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         /* ===== PAGE HERO ===== */
         .page-hero {
             background: linear-gradient(135deg, #2A9D8F20, #D4A37320);
@@ -397,80 +443,162 @@
             margin: 0 auto;
         }
 
-        /* ===== CONTACT GRID ===== */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin: 4rem 0;
+        /* ===== MODAL POPUP STYLES ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.25s ease;
         }
-
-        /* ===== CONTACT FORM ===== */
-        .contact-form {
-            background: white;
-            border-radius: 30px;
-            padding: 3rem;
-            box-shadow: 0 20px 40px var(--shadow);
-            border: 1px solid rgba(0,0,0,0.05);
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-
+        
+        .modal-container {
+            background: linear-gradient(135deg, var(--cream), white);
+            width: 90%;
+            max-width: 650px;
+            max-height: 85vh;
+            border-radius: 32px;
+            overflow-y: auto;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            padding: 1.3rem 2rem;
+            border-radius: 32px 32px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .modal-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .modal-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 1.6rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: var(--red);
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .contact-modal-form {
+            width: 100%;
+        }
+        
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
-
+        
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
-            color: var(--green);
+            color: var(--black);
+            font-size: 0.9rem;
         }
-
+        
         .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--cream);
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-            font-family: inherit;
+            padding: 0.7rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            background: white;
+            transition: all 0.2s;
         }
-
+        
         .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(42,157,143,0.15);
         }
-
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
+        
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
-
+        
         .submit-btn {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
             color: white;
-            padding: 1rem 2rem;
+            padding: 0.9rem 2rem;
             border: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             width: 100%;
+            margin-top: 0.5rem;
         }
-
+        
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(42,157,143,0.35);
+        }
+        
+        .modal-note {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .modal-header h3 {
+                font-size: 1.2rem;
+            }
         }
 
         /* ===== CONTACT INFO CARD ===== */
@@ -927,7 +1055,6 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
-            .contact-grid,
             .map-locations,
             .quick-links-grid {
                 grid-template-columns: 1fr;
@@ -960,10 +1087,6 @@
             }
             
             .legal-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-row {
                 grid-template-columns: 1fr;
             }
             
@@ -1034,16 +1157,17 @@
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Navigation with Hamburger Menu -->
     <nav>
-        <div class="container">
-            <div class="nav-links">
+        <div class="container" style="position: relative;">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="languages.html">Languages</a>
                 <a href="kids-teens.html">Kids & Teens</a>
                 <a href="resources.html">Resources</a>
-                <a href="concierge.html">🤝 Concierge</a>
+                <a href="concierge.html">Concierge</a>
                 <a href="contact.html" class="active">Contact</a>
                 <a href="blog.html">Blog</a>
             </div>
@@ -1061,7 +1185,7 @@
     <!-- Main Content -->
     <div class="container">
         <!-- SCHOLARSHIP BLINKING SECTION -->
-        <a href="#scholarship-form" class="scholarship-blink" style="text-decoration: none; display: block;">
+        <a href="#" class="scholarship-blink" id="openScholarshipModalBtn" style="text-decoration: none; display: block;">
             <h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3>
             <p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
             <p style="margin-top: 0.5rem;">📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p>
@@ -1072,16 +1196,16 @@
         <div class="quick-links-section">
             <h3 class="center" style="margin-bottom: 1.5rem;">Quick Links</h3>
             <div class="quick-links-grid">
-                <a href="#scholarship-form" class="quick-link-card">
+                <button class="quick-link-card" id="openScholarshipModalBtn2" style="background: var(--cream); border: none; width: 100%; cursor: pointer;">
                     <div class="quick-link-icon">🎓</div>
                     <h4>Apply for Scholarship</h4>
                     <p>25% off for Ghana Card holders</p>
-                </a>
-                <a href="#contact-form" class="quick-link-card">
+                </button>
+                <button class="quick-link-card" id="openContactModalBtn" style="background: var(--cream); border: none; width: 100%; cursor: pointer;">
                     <div class="quick-link-icon">📝</div>
                     <h4>General Inquiry</h4>
                     <p>Questions about classes or enrollment</p>
-                </a>
+                </button>
                 <a href="languages.html" class="quick-link-card">
                     <div class="quick-link-icon">📚</div>
                     <h4>View Packages</h4>
@@ -1090,137 +1214,69 @@
             </div>
         </div>
 
-        <!-- Contact Grid -->
-        <div class="contact-grid">
-            <!-- Contact Form -->
-            <div id="contact-form" class="contact-form">
-                <h3 style="margin-top: 0;">Send Us a Message</h3>
-                <form action="https://formspree.io/f/mlgpodpb" method="POST">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>First Name *</label>
-                            <input type="text" name="first_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input type="text" name="last_name">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Email *</label>
-                        <input type="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <select name="phone_code" style="width: 30%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 10px; background: white;">
-                                <option value="+233">🇬🇭 +233 (Ghana)</option>
-                                <option value="+1">🇺🇸 +1 (USA/Canada)</option>
-                                <option value="+44">🇬🇧 +44 (UK)</option>
-                                <option value="+49">🇩🇪 +49 (Germany)</option>
-                                <option value="+33">🇫🇷 +33 (France)</option>
-                                <option value="+31">🇳🇱 +31 (Netherlands)</option>
-                                <option value="+234">🇳🇬 +234 (Nigeria)</option>
-                                <option value="+27">🇿🇦 +27 (South Africa)</option>
-                                <option value="+61">🇦🇺 +61 (Australia)</option>
-                            </select>
-                            <input type="tel" name="phone" placeholder="Phone number" style="width: 70%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 10px;">
-                        </div>
-                        <small style="color: var(--gray);">Include area code without the + sign</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Subject *</label>
-                        <select name="subject" required>
-                            <option value="">Select a topic</option>
-                            <option value="general">General Question</option>
-                            <option value="plans">Questions about Plans</option>
-                            <option value="scholarship">Scholarship Application</option>
-                            <option value="textbook">Textbook Inquiry</option>
-                            <option value="business">Business Package</option>
-                            <option value="support">Support</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Message *</label>
-                        <textarea name="message" required></textarea>
-                    </div>
-                    
-                    <div class="form-group" id="scholarship-form">
-                        <label style="display: flex; align-items: center; gap: 0.5rem;">
-                            <input type="checkbox" name="scholarship" value="yes"> I qualify for the Speak One, Learn One Scholarship (25% off - Ghana Card holder who speaks one Ghanaian language)
-                        </label>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-                <p style="text-align: center; margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">We'll respond within 24 hours</p>
+        <!-- Contact Information Card (removed inline form) -->
+        <div class="info-card" style="margin-bottom: 2rem;">
+            <h3 style="margin-top: 0;">Contact Information</h3>
+            
+            <div class="info-item">
+                <div class="info-icon">📍</div>
+                <div class="info-content">
+                    <h4>Main Office (Kumasi)</h4>
+                    <p>KNUST Campus, Kumasi</p>
+                    <p>Ashanti Region, Ghana</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">📍</div>
+                <div class="info-content">
+                    <h4>Accra Office</h4>
+                    <p>Opening Soon</p>
+                    <p><a href="about.html">Learn more on About page →</a></p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">📧</div>
+                <div class="info-content">
+                    <h4>Email Us</h4>
+                    <p><a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
+                    <p>Response within 24 hours</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">📞</div>
+                <div class="info-content">
+                    <h4>Call Us</h4>
+                    <p><a href="tel:+233552263323">+233 55 226 3323</a></p>
+                    <p>Mon-Fri, 9am-7pm GMT</p>
+                </div>
+            </div>
+            
+            <div class="info-item">
+                <div class="info-icon">💬</div>
+                <div class="info-content">
+                    <h4>WhatsApp</h4>
+                    <p><a href="https://wa.me/233552263323">+233 55 226 3323</a></p>
+                    <a href="https://wa.me/233552263323" class="whatsapp-btn">
+                        💬 Chat on WhatsApp
+                    </a>
+                </div>
             </div>
 
-            <!-- Contact Information -->
-            <div class="info-card">
-                <h3 style="margin-top: 0;">Contact Information</h3>
-                
-                <div class="info-item">
-                    <div class="info-icon">📍</div>
-                    <div class="info-content">
-                        <h4>Main Office (Kumasi)</h4>
-                        <p>KNUST Campus, Kumasi</p>
-                        <p>Ashanti Region, Ghana</p>
-                    </div>
+            <div class="info-item">
+                <div class="info-icon">📱</div>
+                <div class="info-content">
+                    <h4>Follow Us</h4>
+                    <p><a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube: @SpeakGhana</a></p>
+                    <p><a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram: @speak_ghana</a></p>
+                    <p><a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok: @speakghana0</a></p>
                 </div>
-                
-                <div class="info-item">
-                    <div class="info-icon">📍</div>
-                    <div class="info-content">
-                        <h4>Accra Office</h4>
-                        <p>Opening Soon</p>
-                        <p><a href="about.html">Learn more on About page →</a></p>
-                    </div>
-                </div>
-                
-                <div class="info-item">
-                    <div class="info-icon">📧</div>
-                    <div class="info-content">
-                        <h4>Email Us</h4>
-                        <p><a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
-                        <p>Response within 24 hours</p>
-                    </div>
-                </div>
-                
-                <div class="info-item">
-                    <div class="info-icon">📞</div>
-                    <div class="info-content">
-                        <h4>Call Us</h4>
-                        <p><a href="tel:+233552263323">+233 55 226 3323</a></p>
-                        <p>Mon-Fri, 9am-7pm GMT</p>
-                    </div>
-                </div>
-                
-                <div class="info-item">
-                    <div class="info-icon">💬</div>
-                    <div class="info-content">
-                        <h4>WhatsApp</h4>
-                        <p><a href="https://wa.me/233552263323">+233 55 226 3323</a></p>
-                        <a href="https://wa.me/233552263323" class="whatsapp-btn">
-                            💬 Chat on WhatsApp
-                        </a>
-                    </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-icon">📱</div>
-                    <div class="info-content">
-                        <h4>Follow Us</h4>
-                        <p><a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube: @SpeakGhana</a></p>
-                        <p><a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram: @speak_ghana</a></p>
-                        <p><a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok: @speakghana0</a></p>
-                    </div>
-                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button id="openContactModalBtn2" class="btn btn-primary btn-large" style="background: linear-gradient(135deg, var(--green), #1f7a6e);">Send us a message →</button>
             </div>
         </div>
 
@@ -1375,11 +1431,150 @@
             <h3>Still have questions?</h3>
             <p style="font-size: 1.2rem; margin: 1rem 0;">Check our frequently asked questions or reach out directly.</p>
             <a href="about.html#faq" class="btn btn-gold">View FAQ</a>
-            <a href="mailto:info@speakghana.org" class="btn btn-primary" style="margin-left: 1rem;">Email Us</a>
+            <button id="openContactModalBtn3" class="btn btn-primary" style="margin-left: 1rem;">Email Us</button>
         </div>
     </div>
 
-    <!-- UPDATED FOOTER - MATCHING INDEX PAGE -->
+    <!-- ===== MODAL POPUP FOR CONTACT FORM ===== -->
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>📝 Send Us a Message</h3>
+                <button class="modal-close" id="closeContactModalBtn">✕</button>
+            </div>
+            <div class="modal-body">
+                <form class="contact-modal-form" action="https://formspree.io/f/mlgpodpb" method="POST">
+                    <input type="hidden" name="form_type" value="Contact_Modal">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <select name="phone_code" style="width: 30%; padding: 0.7rem; border: 2px solid #e2e8f0; border-radius: 12px;">
+                                <option value="+233">🇬🇭 +233 (Ghana)</option>
+                                <option value="+1">🇺🇸 +1 (USA/Canada)</option>
+                                <option value="+44">🇬🇧 +44 (UK)</option>
+                                <option value="+49">🇩🇪 +49 (Germany)</option>
+                                <option value="+33">🇫🇷 +33 (France)</option>
+                            </select>
+                            <input type="tel" name="phone" placeholder="Phone number" style="width: 70%;">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Subject *</label>
+                        <select name="subject" required>
+                            <option value="">Select a topic</option>
+                            <option value="general">General Question</option>
+                            <option value="plans">Questions about Plans</option>
+                            <option value="textbook">Textbook Inquiry</option>
+                            <option value="business">Business Package</option>
+                            <option value="support">Support</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Message *</label>
+                        <textarea name="message" rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                    <p class="modal-note">We'll respond within 24 hours</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL POPUP FOR SCHOLARSHIP FORM ===== -->
+    <div id="scholarshipModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>🎓 Speak One, Learn One Scholarship</h3>
+                <button class="modal-close" id="closeScholarshipModalBtn">✕</button>
+            </div>
+            <div class="modal-body">
+                <form class="contact-modal-form" action="https://formspree.io/f/mlgpodpb" method="POST">
+                    <input type="hidden" name="form_type" value="Scholarship_Application">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>WhatsApp / Phone *</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Which language do you already speak? *</label>
+                        <select name="existing_language" required>
+                            <option value="">Select a language</option>
+                            <option value="Twi">Twi (Akan)</option>
+                            <option value="Ga">Ga</option>
+                            <option value="Ewe">Ewe</option>
+                            <option value="Fante">Fante</option>
+                            <option value="Dagbani">Dagbani</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Which language would you like to learn? *</label>
+                        <select name="desired_language" required>
+                            <option value="">Select a language</option>
+                            <option value="Twi">Twi (Akan)</option>
+                            <option value="Ga">Ga</option>
+                            <option value="Ewe">Ewe</option>
+                            <option value="Fante">Fante</option>
+                            <option value="Dagbani">Dagbani</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="ghana_card" value="yes" required> I confirm I have a valid Ghana Card
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Additional information</label>
+                        <textarea name="message" rows="3" placeholder="Tell us about your language journey..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Apply for Scholarship</button>
+                    <p class="modal-note">We'll contact you within 48 hours</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -1431,87 +1626,136 @@
         </div>
     </footer>
 
-    <!-- Event Tracking for Google Analytics -->
+    <!-- JavaScript for Modals -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Track Form Submissions
-            const forms = document.querySelectorAll('form');
-            forms.forEach(form => {
-                form.addEventListener('submit', function() {
-                    let formName = 'contact_form';
-                    if (this.id) formName = this.id;
-                    
-                    gtag('event', 'generate_lead', {
-                        'event_category': 'engagement',
-                        'event_label': formName
-                    });
-                });
-            });
+            // Hamburger Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
             
-            // Track Newsletter Signup
-            const newsletterForm = document.getElementById('footer-newsletter-form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function() {
-                    gtag('event', 'newsletter_signup', {
-                        'event_category': 'engagement',
-                        'event_label': 'footer_newsletter'
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('show');
+                });
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('show');
                     });
                 });
             }
             
-            // Track WhatsApp Clicks
-            const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
-            whatsappLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    gtag('event', 'whatsapp_click', {
-                        'event_category': 'contact',
-                        'event_label': 'whatsapp_button'
+            // Contact Modal Elements
+            const contactModal = document.getElementById('contactModal');
+            const openContactBtns = document.querySelectorAll('#openContactModalBtn, #openContactModalBtn2, #openContactModalBtn3');
+            const closeContactBtn = document.getElementById('closeContactModalBtn');
+            
+            // Scholarship Modal Elements
+            const scholarshipModal = document.getElementById('scholarshipModal');
+            const openScholarshipBtns = document.querySelectorAll('#openScholarshipModalBtn, #openScholarshipModalBtn2');
+            const closeScholarshipBtn = document.getElementById('closeScholarshipModalBtn');
+            
+            // Open Contact Modal
+            openContactBtns.forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        contactModal.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'contact_modal_open', { 'event_category': 'engagement', 'event_label': 'contact_form' });
+                        }
                     });
+                }
+            });
+            
+            // Close Contact Modal
+            if (closeContactBtn) {
+                closeContactBtn.addEventListener('click', function() {
+                    contactModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+            
+            // Open Scholarship Modal
+            openScholarshipBtns.forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        scholarshipModal.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'scholarship_modal_open', { 'event_category': 'engagement', 'event_label': 'scholarship_form' });
+                        }
+                    });
+                }
+            });
+            
+            // Close Scholarship Modal
+            if (closeScholarshipBtn) {
+                closeScholarshipBtn.addEventListener('click', function() {
+                    scholarshipModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === contactModal) {
+                    contactModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+                if (e.target === scholarshipModal) {
+                    scholarshipModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Close with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (contactModal && contactModal.style.display === 'flex') {
+                        contactModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                    if (scholarshipModal && scholarshipModal.style.display === 'flex') {
+                        scholarshipModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+            });
+            
+            // Track Form Submissions
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function() {
+                    let formName = 'contact_modal';
+                    if (this.id === 'footer-newsletter-form') formName = 'footer_newsletter';
+                    if (this.querySelector('input[name="form_type"]')?.value === 'Scholarship_Application') formName = 'scholarship_application';
+                    
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'generate_lead', {
+                            'event_category': 'engagement',
+                            'event_label': formName
+                        });
+                    }
+                    setTimeout(() => {
+                        if (contactModal) contactModal.style.display = 'none';
+                        if (scholarshipModal) scholarshipModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }, 800);
                 });
             });
             
-            // Track Phone Number Clicks
-            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-            phoneLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    gtag('event', 'phone_click', {
-                        'event_category': 'contact',
-                        'event_label': 'phone_number'
-                    });
-                });
-            });
-            
-            // Track Email Clicks
-            const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
-            emailLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    gtag('event', 'email_click', {
-                        'event_category': 'contact',
-                        'event_label': 'email_link'
-                    });
-                });
-            });
-            
-            // Track Navigation Clicks
-            const navLinks = document.querySelectorAll('.nav-links a, .btn');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    const linkText = this.innerText.trim() || 'nav_link';
-                    gtag('event', 'navigation_click', {
-                        'event_category': 'navigation',
-                        'event_label': linkText
-                    });
-                });
-            });
-            
-            // Track Scholarship Blink Click
-            const scholarshipLink = document.querySelector('.scholarship-blink');
-            if (scholarshipLink) {
-                scholarshipLink.addEventListener('click', function() {
-                    gtag('event', 'scholarship_click', {
-                        'event_category': 'engagement',
-                        'event_label': 'contact_page_scholarship'
-                    });
+            // Newsletter Signup
+            const newsletterForm = document.getElementById('footer-newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function() {
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'newsletter_signup', {
+                            'event_category': 'engagement',
+                            'event_label': 'footer_newsletter'
+                        });
+                    }
                 });
             }
         });
