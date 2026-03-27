@@ -64,6 +64,53 @@
         .nav-links { display: flex; justify-content: center; gap: 2.5rem; padding: 1rem 0; flex-wrap: wrap; }
         .nav-links a { color: var(--black); text-decoration: none; font-weight: 500; position: relative; }
         .nav-links a.active { color: var(--green); font-weight: 600; }
+        
+        /* ===== HAMBURGER MENU STYLES ===== */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--black);
+            padding: 0.5rem;
+            z-index: 101;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1.5rem;
+                top: 0.8rem;
+            }
+            
+            nav {
+                position: relative;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 0.5rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
         .page-hero { background: linear-gradient(135deg, #2A9D8F20, #D4A37320); padding: 4rem 0; text-align: center; }
         .page-hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
         .scholarship-blink { animation: blink 1.5s ease-in-out infinite; border-radius: 30px; padding: 1.5rem; margin: 2rem 0; text-align: center; cursor: pointer; background: linear-gradient(135deg, var(--gold), var(--red)); text-decoration: none; display: block; }
@@ -218,7 +265,24 @@
 <body>
     <div class="top-bar"><div class="container"><div class="contact-info"><a href="mailto:info@speakghana.org">📧 info@speakghana.org</a><a href="tel:+233552263323">📞 +233 55 226 3323</a><a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a></div></div></div>
     <header><div class="container header-content"><div class="logo"><a href="index.html"><div class="logo-text"><h1>Speak <span>Ghana</span></h1><p>Reconnect. Speak. Thrive.</p></div></a></div><div class="motto-badge">Reconnect. Speak. Thrive.<span>Your journey home begins here</span></div></div></header>
-    <nav><div class="container"><div class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="languages.html">Languages</a><a href="kids-teens.html">Kids & Teens</a><a href="resources.html" class="active">Resources</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a></div></div></nav>
+    
+    <!-- Navigation with Hamburger Menu -->
+    <nav>
+        <div class="container" style="position: relative;">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="languages.html">Languages</a>
+                <a href="kids-teens.html">Kids & Teens</a>
+                <a href="resources.html" class="active">Resources</a>
+                <a href="concierge.html">Concierge</a>
+                <a href="contact.html">Contact</a>
+                <a href="blog.html">Blog</a>
+            </div>
+        </div>
+    </nav>
+    
     <div class="page-hero"><div class="container"><h1>Learning Resources</h1><p>Free materials, blog posts, and media to support your Twi journey</p></div></div>
     <div class="container">
         <a href="contact.html" class="scholarship-blink"><h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3><p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p><p>📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p></a>
@@ -244,11 +308,11 @@
 
         <div id="quiz-popup" class="quiz-popup"><div class="quiz-popup-content"><button onclick="closeQuizPopup()" class="close-popup">×</button><h2 class="center">📝 Interactive Twi Alphabet Quiz</h2><div style="display:flex; justify-content:center; gap:1rem; margin:1rem 0;"><button onclick="loadSet(1)" class="quiz-nav-btn" id="set1-btn" style="background:var(--green); color:white;">Set 1: Basics</button><button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn">Set 2: Word Pairs</button><button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn">Set 3: Applied</button></div><div id="quiz-container" style="background:var(--cream); border-radius:20px; padding:2rem; max-height:400px; overflow-y:auto;"></div><div id="email-form-container" style="display:none; margin-top:2rem;"></div><div id="results-area" style="display:none; text-align:center;"></div><div style="margin-top:1rem; background:#eee; border-radius:50px; height:10px;"><div id="progress-bar" style="width:0%; height:100%; background:var(--green); border-radius:50px;"></div></div></div></div>
 
-        <!-- UPDATED FREE MATERIALS SECTION WITH 5 GAMES -->
+        <!-- FREE MATERIALS SECTION WITH 5 GAMES -->
         <div class="materials-section">
             <h2 class="center">📚 Free Learning Materials</h2>
             
-            <!-- FEATURED INTERACTIVE GAMES SECTION - NOW WITH 5 GAMES -->
+            <!-- FEATURED INTERACTIVE GAMES SECTION - WITH 5 GAMES -->
             <div style="background: rgba(255,255,255,0.2); border-radius: 25px; padding: 2rem; margin-bottom: 2.5rem;">
                 <h3 style="color: var(--gold); text-align: center; margin: 0 0 1.5rem 0; font-size: 1.8rem;">🎮 Interactive Learning Games</h3>
                 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;">
@@ -317,7 +381,7 @@
         <div class="faq-section"><h2 class="center">FAQ</h2><div class="faq-grid"><div class="faq-item"><h4>Speak One, Learn One Scholarship?</h4><p>Ghana Card holders get 25% off to learn another language.</p></div><div class="faq-item"><h4>Certificate of Achievement?</h4><p>Complete 6 months of learning for an official certificate.</p></div><div class="faq-item"><h4>Classes for kids?</h4><p>Yes! Specialized programs for ages 5-12 and teens.</p></div><div class="faq-item"><h4>Miss a class?</h4><p>Recordings available for group classes.</p></div></div></div>
     </div>
 
-    <!-- UPDATED FOOTER - MATCHING INDEX PAGE -->
+    <!-- FOOTER - MATCHING INDEX PAGE -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -373,6 +437,22 @@
     </footer>
 
     <script>
+        // Hamburger Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+            
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('show');
+                });
+            });
+        }
+        
         const classVocab = {
             groupA: { name: "Group A", time: "Sunday 5-6pm", words: [{twi:"edinnsiananmu",english:"pronoun"},{twi:"adeyɔ",english:"verb"},{twi:"edin asɛm",english:"noun"},{twi:"ɔyɛfoɔ",english:"subject"},{twi:"ɔkasamu",english:"sentence"},{twi:"Efie Dwumadie",english:"homework"},{twi:"yɛn",english:"we/us"},{twi:"yɛ suaa",english:"we learned"}] },
             groupB: { name: "Group B", time: "Sunday 7-8pm", words: [{twi:"ɔkasamu",english:"sentence"},{twi:"adeyɔ",english:"verb"},{twi:"edin asɛm",english:"noun"},{twi:"edinnsiananmu",english:"pronoun"},{twi:"ɔyɛfoɔ",english:"subject"},{twi:"nsiesie",english:"correction"},{twi:"wowɔ ha sei",english:"are you here?"},{twi:"aane, mewɔ ha sei",english:"yes, i'm here"}] },
