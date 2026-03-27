@@ -166,7 +166,7 @@
         .social-grid, .media-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
         .social-card, .media-card, .faq-item { background: rgba(255,255,255,0.2); padding: 1.5rem; border-radius: 20px; text-decoration: none; color: inherit; }
         
-        /* ===== FOOTER STYLES - MATCHING INDEX PAGE ===== */
+        /* ===== FOOTER STYLES ===== */
         footer {
             background: var(--black);
             color: white;
@@ -252,74 +252,83 @@
             color: white;
         }
         
-        /* ===== IMPROVED MOBILE RESPONSIVE FOR GAMES ===== */
         @media (max-width: 768px) { 
             .classes-grid, .class-wheels-grid, .materials-grid, .blog-post-grid, .social-grid, .media-grid, .faq-grid, .footer-grid, .tips-grid { grid-template-columns: 1fr; } 
             .wheel-canvas { width: 240px; height: 240px; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .newsletter-form { flex-direction: column; }
             .newsletter-btn { width: 100%; }
-            
-            /* Improved game containers for mobile */
-            .wheel-card {
-                padding: 1rem;
-            }
-            .wheel-container {
-                transform: scale(0.9);
-            }
-            .vocab-list-small {
-                max-height: 200px;
-                overflow-y: auto;
-            }
-            .current-word {
-                font-size: 1.2rem;
-            }
-            .quiz-popup-content {
-                margin: 1rem;
-                padding: 1rem;
-            }
-            .quiz-nav-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
-            .quiz-launch-btn {
-                font-size: 1rem;
-                padding: 0.8rem 1.5rem;
-            }
-            .game-grid-container {
-                gap: 1rem;
-            }
-            .material-card {
-                padding: 1.2rem;
-            }
-            .material-icon {
-                font-size: 2rem;
-            }
-            .material-card h3 {
-                font-size: 1.1rem;
-            }
         }
-        
-        /* Game container for better mobile layout */
-        .game-grid-container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
-        }
-        
-        @media (max-width: 1024px) {
-            .game-grid-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .game-grid-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
         audio { width: 100%; margin: 0.5rem 0; border-radius: 30px; }
+        
+        /* New sections styling */
+        .free-trial-banner {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 30px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 40px rgba(42,157,143,0.3);
+        }
+        .lead-magnet {
+            background: var(--cream);
+            border-radius: 30px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            text-align: center;
+            border: 2px solid var(--gold);
+        }
+        .success-stories {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+        .testimonial-card {
+            background: var(--cream);
+            padding: 1.8rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--gold);
+            transition: transform 0.3s;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 0.2rem;
+        }
+        .testimonial-location {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        .lead-magnet-form {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 500px;
+            margin: 1.5rem auto;
+            flex-wrap: wrap;
+        }
+        .lead-magnet-input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+        .small-note {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -347,6 +356,14 @@
     <div class="container">
         <a href="contact.html" class="scholarship-blink"><h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3><p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p><p>📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p></a>
 
+        <!-- 🔥 #1 FREE TRIAL CLASS BANNER -->
+        <div class="free-trial-banner">
+            <span style="font-size: 3rem;">🎁</span>
+            <h2 style="color: white; margin-bottom: 0.5rem;">Try Your First Twi Class FREE!</h2>
+            <p style="font-size: 1.2rem;">No credit card required. Meet a teacher. Experience our method.</p>
+            <a href="contact.html" class="btn btn-gold" style="margin-top: 1rem; display: inline-block; background: var(--gold); color: var(--black);">Claim Your Free Class →</a>
+        </div>
+
         <div class="blog-section"><h2 class="center">📝 Latest Blog Posts</h2><div class="blog-post-grid">
             <a href="blog-post-top-10-songs.html" class="blog-post-card"><div class="blog-post-image">🎵</div><div class="blog-post-content"><h3 class="blog-post-title">Top 10 Ghanaian Songs to Learn Twi</h3><p>Learn Twi through music with our curated list of top Ghanaian songs.</p><span>Read More →</span></div></a>
             <a href="blog-post-family-terms.html" class="blog-post-card"><div class="blog-post-image">👪</div><div class="blog-post-content"><h3 class="blog-post-title">Complete Guide to Family Terms in Twi</h3><p>Master family vocabulary with our comprehensive guide.</p><span>Read More →</span></div></a>
@@ -363,20 +380,33 @@
         </div>
         <div class="tips-section"><h3>📝 How to Join:</h3><div class="tips-grid"><div>1️⃣ Click "Request Access" above</div><div>2️⃣ Fill out the quick form</div><div>3️⃣ We'll email you the Zoom link</div><div>4️⃣ Join class and start speaking! 🗣️</div></div><div class="see-you" style="text-align:center; margin-top:1rem;">✨ See you in class! ✨</div></div></div>
 
+        <!-- #2 LEAD MAGNET (EMAIL CAPTURE) -->
+        <div class="lead-magnet">
+            <span style="font-size: 3rem;">📚</span>
+            <h3 style="color: var(--green);">Get Your FREE "Essential Twi Phrases for Diaspora" E-book</h3>
+            <p>50+ phrases • Audio pronunciation • Cultural notes</p>
+            <form id="lead-magnet-form" class="lead-magnet-form" action="https://formspree.io/f/mlgpodpb" method="POST">
+                <input type="hidden" name="form_type" value="Lead_Magnet_Ebook">
+                <input type="email" name="email" placeholder="Your email address" required class="lead-magnet-input">
+                <button type="submit" class="btn btn-primary" style="background: var(--green);">Download Free →</button>
+            </form>
+            <p class="small-note">No spam. Unsubscribe anytime. We'll also send you Twi tips!</p>
+        </div>
+
         <div class="vocab-week-section"><div class="vocab-week-title"><h2>🎡 Weekly Vocabulary Review</h2><p>Spin the wheel and test yourself!</p></div><div class="class-wheels-grid" id="vocabWheelsContainer"></div></div>
 
         <div class="quiz-launch"><div class="quiz-reminder-note"><p>📘 <strong>Based on what we studied on Alphabets</strong> — take this quiz to refresh and prepare for next class.</p><p>30 questions covering everything we learned last weekend.</p></div><button onclick="openQuizPopup()" class="quiz-launch-btn">📝 Take the Twi Alphabet Quiz →</button><p style="margin-top:1rem;">3 sets • 30 questions • Test your knowledge!</p></div>
 
         <div id="quiz-popup" class="quiz-popup"><div class="quiz-popup-content"><button onclick="closeQuizPopup()" class="close-popup">×</button><h2 class="center">📝 Interactive Twi Alphabet Quiz</h2><div style="display:flex; justify-content:center; gap:1rem; margin:1rem 0; flex-wrap:wrap;"><button onclick="loadSet(1)" class="quiz-nav-btn" id="set1-btn" style="background:var(--green); color:white;">Set 1: Basics</button><button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn">Set 2: Word Pairs</button><button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn">Set 3: Applied</button></div><div id="quiz-container" style="background:var(--cream); border-radius:20px; padding:2rem; max-height:400px; overflow-y:auto;"></div><div id="email-form-container" style="display:none; margin-top:2rem;"></div><div id="results-area" style="display:none; text-align:center;"></div><div style="margin-top:1rem; background:#eee; border-radius:50px; height:10px;"><div id="progress-bar" style="width:0%; height:100%; background:var(--green); border-radius:50px;"></div></div></div></div>
 
-        <!-- FREE MATERIALS SECTION WITH 5 GAMES - IMPROVED MOBILE LAYOUT -->
+        <!-- FREE MATERIALS SECTION WITH 5 GAMES -->
         <div class="materials-section">
             <h2 class="center">📚 Free Learning Materials</h2>
             
-            <!-- FEATURED INTERACTIVE GAMES SECTION - IMPROVED MOBILE GRID -->
+            <!-- FEATURED INTERACTIVE GAMES SECTION - WITH 5 GAMES -->
             <div style="background: rgba(255,255,255,0.2); border-radius: 25px; padding: 2rem; margin-bottom: 2.5rem;">
                 <h3 style="color: var(--gold); text-align: center; margin: 0 0 1.5rem 0; font-size: 1.8rem;">🎮 Interactive Learning Games</h3>
-                <div class="game-grid-container">
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;">
                     <!-- Alphabet Sound Game -->
                     <div class="material-card" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);">
                         <div class="material-icon">🎵</div>
@@ -386,11 +416,11 @@
                     </div>
                     <!-- Digraph Sound Game -->
                     <div class="material-card" style="background: rgba(255,255,255,0.25); border: 3px solid var(--gold); box-shadow: 0 8px 20px rgba(0,0,0,0.2); position: relative;">
-                        <div style="position: absolute; top: -15px; right: -10px; background: var(--red); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">🔥 NEW</div>
+                        <div style="position: absolute; top: -15px; right: -10px; background: var(--red); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: bold;">🔥 NEW</div>
                         <div class="material-icon">🔤</div>
                         <h3>Digraph Sound Game</h3>
                         <p>Practice common Twi digraphs: dw, gy, hy, kw, ky, ny, tw, and more!</p>
-                        <a href="digraph-sound-game.html" class="btn btn-gold" style="margin-top: 0.5rem; display: inline-block; background: var(--gold);">🎮 Play Game →</a>
+                        <a href="digraph-sound-game.html" class="btn btn-gold" style="margin-top: 0.5rem; display: inline-block;">🎮 Play Game →</a>
                     </div>
                     <!-- Minimal Pair Challenge -->
                     <div class="material-card" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); position: relative;">
@@ -431,6 +461,36 @@
                 <div class="material-card"><div class="material-icon">🔤</div><h3>Twi Digraphs (Audio)</h3><p>Learn common two-letter combinations: dw, gy, hy, kw, ky, ny, tw, and more</p><audio controls><source src="audio/twi-alphabet/twi-digraphs.m4a" type="audio/mp4"></audio><a href="audio/twi-alphabet/twi-digraphs.m4a" download class="download-btn" onclick="gtag('event', 'audio_download', {'event_category': 'resource', 'event_label': 'digraphs_audio'});">Download Audio</a></div>
             </div>
             <p style="text-align: center; margin-top: 2rem;">✨ More materials added regularly - check back often! ✨</p>
+        </div>
+
+        <!-- #3 STUDENT SUCCESS STORIES (Social Proof) -->
+        <div class="success-stories">
+            <h2 class="center">Real Students, Real Results 🇬🇭</h2>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I couldn't speak to my grandmother in Twi. After 3 months with Speak Ghana, we had our first full conversation. Worth every cedi!"</p>
+                    <p class="testimonial-author">— Abena, London</p>
+                    <p class="testimonial-location">Student since 2025</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"My teenager was resistant at first. Now she actually looks forward to her Twi class every week. Game-changer for our family!"</p>
+                    <p class="testimonial-author">— Kwame, New York</p>
+                    <p class="testimonial-location">Parent of teen student</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I've tried language apps before, but nothing compares to live classes with native speakers. My confidence has skyrocketed!"</p>
+                    <p class="testimonial-author">— Sarah, Manchester</p>
+                    <p class="testimonial-location">Student since 2024</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The kids program is amazing! My 8-year-old now greets me in Twi every morning. So proud of her heritage."</p>
+                    <p class="testimonial-author">— Nana, Toronto</p>
+                    <p class="testimonial-location">Parent of K1 student</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="languages.html" class="btn btn-primary">Join Our Success Stories →</a>
+            </div>
         </div>
 
         <div class="certificate-section"><h3>📜 6-Month Certificate of Achievement</h3><p>Complete 6 months of continuous learning and receive an official certificate signed by our founders.</p><a href="languages.html" class="btn btn-gold">Explore Our Programs →</a></div>
@@ -516,7 +576,6 @@
         
         // Function to open enrollment modal from any page
         window.openEnrollmentModal = function() {
-            // If modal exists on this page, open it
             const modal = document.getElementById('enrollmentModal');
             if (modal) {
                 modal.style.display = 'flex';
@@ -525,10 +584,22 @@
                     gtag('event', 'enrollment_modal_open', { 'event_category': 'engagement', 'event_label': 'modal_opened' });
                 }
             } else {
-                // If modal doesn't exist on this page, redirect to contact page
                 window.location.href = 'contact.html';
             }
         };
+        
+        // Track lead magnet form submission
+        const leadMagnetForm = document.getElementById('lead-magnet-form');
+        if (leadMagnetForm) {
+            leadMagnetForm.addEventListener('submit', function() {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'lead_magnet_download', {
+                        'event_category': 'engagement',
+                        'event_label': 'ebook_phrases'
+                    });
+                }
+            });
+        }
         
         const classVocab = {
             groupA: { name: "Group A", time: "Sunday 5-6pm", words: [{twi:"edinnsiananmu",english:"pronoun"},{twi:"adeyɔ",english:"verb"},{twi:"edin asɛm",english:"noun"},{twi:"ɔyɛfoɔ",english:"subject"},{twi:"ɔkasamu",english:"sentence"},{twi:"Efie Dwumadie",english:"homework"},{twi:"yɛn",english:"we/us"},{twi:"yɛ suaa",english:"we learned"}] },
