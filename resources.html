@@ -117,7 +117,7 @@
         .free-classes-section, .blog-section, .vocab-week-section, .faq-section, .media-section { background: white; border-radius: 30px; padding: 3rem; margin: 3rem 0; box-shadow: 0 20px 40px var(--shadow); }
         .classes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
         .class-card { background: var(--cream); border-radius: 20px; padding: 2rem; border-left: 4px solid var(--green); }
-        .zoom-btn { background: var(--green); color: white; padding: 1rem; border-radius: 50px; text-decoration: none; display: block; text-align: center; margin: 1rem 0; }
+        .request-btn { background: var(--green); color: white; padding: 0.8rem; border-radius: 50px; text-decoration: none; display: block; text-align: center; margin: 1rem 0 0; border: none; font-weight: 600; cursor: pointer; width: 100%; }
         .tips-section { background: var(--green); color: white; border-radius: 20px; padding: 2rem; margin-top: 2rem; }
         .tips-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
         .vocab-week-section { border: 2px solid var(--gold); }
@@ -252,13 +252,73 @@
             color: white;
         }
         
+        /* ===== IMPROVED MOBILE RESPONSIVE FOR GAMES ===== */
         @media (max-width: 768px) { 
             .classes-grid, .class-wheels-grid, .materials-grid, .blog-post-grid, .social-grid, .media-grid, .faq-grid, .footer-grid, .tips-grid { grid-template-columns: 1fr; } 
             .wheel-canvas { width: 240px; height: 240px; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .newsletter-form { flex-direction: column; }
             .newsletter-btn { width: 100%; }
+            
+            /* Improved game containers for mobile */
+            .wheel-card {
+                padding: 1rem;
+            }
+            .wheel-container {
+                transform: scale(0.9);
+            }
+            .vocab-list-small {
+                max-height: 200px;
+                overflow-y: auto;
+            }
+            .current-word {
+                font-size: 1.2rem;
+            }
+            .quiz-popup-content {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            .quiz-nav-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            .quiz-launch-btn {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
+            .game-grid-container {
+                gap: 1rem;
+            }
+            .material-card {
+                padding: 1.2rem;
+            }
+            .material-icon {
+                font-size: 2rem;
+            }
+            .material-card h3 {
+                font-size: 1.1rem;
+            }
         }
+        
+        /* Game container for better mobile layout */
+        .game-grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .game-grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .game-grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         audio { width: 100%; margin: 0.5rem 0; border-radius: 30px; }
     </style>
 </head>
@@ -293,29 +353,30 @@
             <a href="blog-post-diaspora-story.html" class="blog-post-card"><div class="blog-post-image">🌍</div><div class="blog-post-content"><h3 class="blog-post-title">A Diaspora Story: Finding Home Through Language</h3><p>Reconnecting with Ghanaian roots through Twi.</p><span>Read More →</span></div></a>
         </div><div class="all-posts-btn"><a href="blog.html" class="btn btn-outline">View All Posts →</a></div></div>
 
-        <div class="free-classes-section"><h2 class="center">🎓 Free Online Twi Classes</h2><div class="welcome-banner" style="background:var(--gold); padding:1rem; border-radius:50px; text-align:center;">🎉 First class this week! Akwaaba! 🇬🇭</div>
+        <!-- UPDATED: Free Classes Section - ZOOM LINKS REMOVED, replaced with Request Access buttons -->
+        <div class="free-classes-section"><h2 class="center">🎓 Free Online Twi Classes</h2><div class="welcome-banner" style="background:var(--gold); padding:1rem; border-radius:50px; text-align:center;">🎉 Classes open to registered students! Request access below. 🇬🇭</div>
         <div class="classes-grid">
-            <div class="class-card"><h3>Group A</h3><p><strong>Sunday 5-6pm</strong></p><a href="https://us06web.zoom.us/j/85236961457?pwd=uRi4BuuTjchQH0hVvsPBqGui56plwD.1" target="_blank" class="zoom-btn">🔗 Join Group A on Zoom</a><p>Meeting ID: 852 3696 1457<br>Passcode: 516641</p></div>
-            <div class="class-card"><h3>Group B</h3><p><strong>Sunday 7-8pm</strong></p><a href="https://us06web.zoom.us/j/81010571284?pwd=0tmVrGHktUaiJHfQXj1iOGRobDTahr.1" target="_blank" class="zoom-btn">🔗 Join Group B on Zoom</a><p>Meeting ID: 810 1057 1284<br>Passcode: 294001</p></div>
-            <div class="class-card"><h3>Group C</h3><p><strong>Saturday 7-8pm</strong></p><a href="https://us06web.zoom.us/j/84400250790?pwd=a3qf3QbuaJQhad9poQqz9yiQD5Le7Q.1" target="_blank" class="zoom-btn">🔗 Join Group C on Zoom</a><p>Meeting ID: 844 0025 0790<br>Passcode: 760981</p></div>
-            <div class="class-card"><h3>Group D</h3><p><strong>Sunday 2-3pm</strong></p><a href="https://us06web.zoom.us/j/87892941105?pwd=sIjQdHqKSAO4dS7NKEW4JaHRv6QRUT.1" target="_blank" class="zoom-btn">🔗 Join Group D on Zoom</a><p>Meeting ID: 878 9294 1105<br>Passcode: 535853</p></div>
+            <div class="class-card"><h3>Group A</h3><p><strong>Sunday 5-6pm GMT</strong></p><p>Beginner-friendly • Greetings & introductions</p><button class="request-btn open-enrollment-modal" onclick="openEnrollmentModal()">📝 Request Access →</button></div>
+            <div class="class-card"><h3>Group B</h3><p><strong>Sunday 7-8pm GMT</strong></p><p>Conversation practice • Vocabulary building</p><button class="request-btn open-enrollment-modal" onclick="openEnrollmentModal()">📝 Request Access →</button></div>
+            <div class="class-card"><h3>Group C</h3><p><strong>Saturday 7-8pm GMT</strong></p><p>Interactive games • Real conversations</p><button class="request-btn open-enrollment-modal" onclick="openEnrollmentModal()">📝 Request Access →</button></div>
+            <div class="class-card"><h3>Group D</h3><p><strong>Sunday 2-3pm GMT</strong></p><p>Family-friendly • All ages welcome</p><button class="request-btn open-enrollment-modal" onclick="openEnrollmentModal()">📝 Request Access →</button></div>
         </div>
-        <div class="tips-section"><h3>📝 Quick Tips:</h3><div class="tips-grid"><div>1️⃣ Click your group link</div><div>2️⃣ Test audio/video</div><div>3️⃣ Have textbook ready</div><div>4️⃣ Come ready to speak! 🗣️</div></div><div class="see-you" style="text-align:center; margin-top:1rem;">See you in class! ✨</div></div></div>
+        <div class="tips-section"><h3>📝 How to Join:</h3><div class="tips-grid"><div>1️⃣ Click "Request Access" above</div><div>2️⃣ Fill out the quick form</div><div>3️⃣ We'll email you the Zoom link</div><div>4️⃣ Join class and start speaking! 🗣️</div></div><div class="see-you" style="text-align:center; margin-top:1rem;">✨ See you in class! ✨</div></div></div>
 
         <div class="vocab-week-section"><div class="vocab-week-title"><h2>🎡 Weekly Vocabulary Review</h2><p>Spin the wheel and test yourself!</p></div><div class="class-wheels-grid" id="vocabWheelsContainer"></div></div>
 
         <div class="quiz-launch"><div class="quiz-reminder-note"><p>📘 <strong>Based on what we studied on Alphabets</strong> — take this quiz to refresh and prepare for next class.</p><p>30 questions covering everything we learned last weekend.</p></div><button onclick="openQuizPopup()" class="quiz-launch-btn">📝 Take the Twi Alphabet Quiz →</button><p style="margin-top:1rem;">3 sets • 30 questions • Test your knowledge!</p></div>
 
-        <div id="quiz-popup" class="quiz-popup"><div class="quiz-popup-content"><button onclick="closeQuizPopup()" class="close-popup">×</button><h2 class="center">📝 Interactive Twi Alphabet Quiz</h2><div style="display:flex; justify-content:center; gap:1rem; margin:1rem 0;"><button onclick="loadSet(1)" class="quiz-nav-btn" id="set1-btn" style="background:var(--green); color:white;">Set 1: Basics</button><button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn">Set 2: Word Pairs</button><button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn">Set 3: Applied</button></div><div id="quiz-container" style="background:var(--cream); border-radius:20px; padding:2rem; max-height:400px; overflow-y:auto;"></div><div id="email-form-container" style="display:none; margin-top:2rem;"></div><div id="results-area" style="display:none; text-align:center;"></div><div style="margin-top:1rem; background:#eee; border-radius:50px; height:10px;"><div id="progress-bar" style="width:0%; height:100%; background:var(--green); border-radius:50px;"></div></div></div></div>
+        <div id="quiz-popup" class="quiz-popup"><div class="quiz-popup-content"><button onclick="closeQuizPopup()" class="close-popup">×</button><h2 class="center">📝 Interactive Twi Alphabet Quiz</h2><div style="display:flex; justify-content:center; gap:1rem; margin:1rem 0; flex-wrap:wrap;"><button onclick="loadSet(1)" class="quiz-nav-btn" id="set1-btn" style="background:var(--green); color:white;">Set 1: Basics</button><button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn">Set 2: Word Pairs</button><button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn">Set 3: Applied</button></div><div id="quiz-container" style="background:var(--cream); border-radius:20px; padding:2rem; max-height:400px; overflow-y:auto;"></div><div id="email-form-container" style="display:none; margin-top:2rem;"></div><div id="results-area" style="display:none; text-align:center;"></div><div style="margin-top:1rem; background:#eee; border-radius:50px; height:10px;"><div id="progress-bar" style="width:0%; height:100%; background:var(--green); border-radius:50px;"></div></div></div></div>
 
-        <!-- FREE MATERIALS SECTION WITH 5 GAMES -->
+        <!-- FREE MATERIALS SECTION WITH 5 GAMES - IMPROVED MOBILE LAYOUT -->
         <div class="materials-section">
             <h2 class="center">📚 Free Learning Materials</h2>
             
-            <!-- FEATURED INTERACTIVE GAMES SECTION - WITH 5 GAMES -->
+            <!-- FEATURED INTERACTIVE GAMES SECTION - IMPROVED MOBILE GRID -->
             <div style="background: rgba(255,255,255,0.2); border-radius: 25px; padding: 2rem; margin-bottom: 2.5rem;">
                 <h3 style="color: var(--gold); text-align: center; margin: 0 0 1.5rem 0; font-size: 1.8rem;">🎮 Interactive Learning Games</h3>
-                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;">
+                <div class="game-grid-container">
                     <!-- Alphabet Sound Game -->
                     <div class="material-card" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);">
                         <div class="material-icon">🎵</div>
@@ -347,7 +408,7 @@
                         <p>Look at the picture, choose the correct Twi word. Learn 20+ essential words from our lessons!</p>
                         <a href="vocabulary-quiz.html" class="btn btn-gold" style="margin-top: 0.5rem; display: inline-block;">📸 Play Quiz →</a>
                     </div>
-                    <!-- Vowel Sound Match - NEW GAME -->
+                    <!-- Vowel Sound Match -->
                     <div class="material-card" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);">
                         <div style="position: absolute; top: -15px; left: -10px; background: var(--red); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: bold;">🔊 NEW</div>
                         <div class="material-icon">🔊</div>
@@ -358,7 +419,7 @@
                 </div>
             </div>
             
-            <!-- PDF & AUDIO RESOURCES GRID - WITH PDF DOWNLOAD TRACKING -->
+            <!-- PDF & AUDIO RESOURCES GRID - UNCHANGED -->
             <div class="materials-grid">
                 <div class="material-card"><div class="material-icon">📄</div><h3>Greetings Cheat Sheet</h3><p>Essential Twi greetings and responses</p><a href="/pdfs/greetings-cheatsheet.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': 'greetings_cheatsheet'});">Download PDF</a></div>
                 <div class="material-card"><div class="material-icon">🔤</div><h3>Alphabet & Pronunciation</h3><p>Learn the Twi alphabet with audio guide</p><a href="/pdfs/alphabet-pronunciation.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': 'alphabet_pronunciation'});">Download PDF</a></div>
@@ -452,6 +513,22 @@
                 });
             });
         }
+        
+        // Function to open enrollment modal from any page
+        window.openEnrollmentModal = function() {
+            // If modal exists on this page, open it
+            const modal = document.getElementById('enrollmentModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                if (typeof gtag === 'function') {
+                    gtag('event', 'enrollment_modal_open', { 'event_category': 'engagement', 'event_label': 'modal_opened' });
+                }
+            } else {
+                // If modal doesn't exist on this page, redirect to contact page
+                window.location.href = 'contact.html';
+            }
+        };
         
         const classVocab = {
             groupA: { name: "Group A", time: "Sunday 5-6pm", words: [{twi:"edinnsiananmu",english:"pronoun"},{twi:"adeyɔ",english:"verb"},{twi:"edin asɛm",english:"noun"},{twi:"ɔyɛfoɔ",english:"subject"},{twi:"ɔkasamu",english:"sentence"},{twi:"Efie Dwumadie",english:"homework"},{twi:"yɛn",english:"we/us"},{twi:"yɛ suaa",english:"we learned"}] },
