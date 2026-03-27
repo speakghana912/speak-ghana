@@ -191,6 +191,52 @@
             border-bottom-color: var(--green);
         }
 
+        /* ===== HAMBURGER MENU STYLES ===== */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--black);
+            padding: 0.5rem;
+            z-index: 101;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1.5rem;
+                top: 0.8rem;
+            }
+            
+            nav {
+                position: relative;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 0.5rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         /* Hero Section */
         .hero-concierge {
             background: linear-gradient(135deg, rgba(30,30,30,0.85), rgba(42,157,143,0.9)), url('https://images.unsplash.com/photo-1523800503107-5bc3ba2a6f81?w=1600&h=600&fit=crop');
@@ -498,14 +544,15 @@
 </header>
 
 <nav>
-    <div class="container">
-        <div class="nav-links">
+    <div class="container" style="position: relative;">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="languages.html">Languages</a>
             <a href="kids-teens.html">Kids & Teens</a>
             <a href="resources.html">Resources</a>
-            <a href="concierge.html" class="active">🇬🇭 Sankofa Concierge</a>
+            <a href="concierge.html" class="active">Sankofa Concierge</a>
             <a href="contact.html">Contact</a>
         </div>
     </div>
@@ -616,6 +663,24 @@
 </div>
 
 <script>
+    // Hamburger Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('show');
+        });
+        
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+            });
+        });
+    }
+    
+    // Modal functionality
     const modal = document.getElementById('conciergeModal');
     const openBtns = document.querySelectorAll('.open-modal');
     const closeBtn = document.getElementById('closeModalBtn');
