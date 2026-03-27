@@ -460,24 +460,34 @@
             line-height: 1;
         }
 
-        /* ===== MODAL ENROLLMENT FORM - POPUP STYLES ===== */
+        /* ===== ENROLLMENT SECTION - COMPACT VERSION (BUTTON ONLY) ===== */
+        .enrollment-trigger-section {
+            margin: 4rem 0;
+        }
+        
         .enrollment-trigger-btn {
-            background: linear-gradient(135deg, var(--gold), #c49a6c);
-            color: var(--black);
+            background: linear-gradient(135deg, var(--gold), var(--red));
             border: none;
+            border-radius: 60px;
+            padding: 1.2rem 2.5rem;
             font-size: 1.3rem;
-            padding: 1rem 2rem;
+            font-weight: 700;
+            color: var(--black);
             cursor: pointer;
-            margin: 1rem 0;
-            box-shadow: 0 10px 25px rgba(212, 163, 115, 0.3);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(231, 111, 81, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            width: auto;
         }
         
         .enrollment-trigger-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(212, 163, 115, 0.4);
+            box-shadow: 0 15px 35px rgba(231, 111, 81, 0.4);
         }
-
+        
+        /* ===== MODAL POPUP STYLES ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -485,40 +495,40 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
-            animation: fadeIn 0.3s ease;
+            animation: fadeIn 0.25s ease;
         }
-
+        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
+        
         .modal-container {
             background: linear-gradient(135deg, var(--cream), white);
             width: 90%;
             max-width: 750px;
             max-height: 85vh;
-            border-radius: 30px;
+            border-radius: 32px;
             overflow-y: auto;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
             position: relative;
             animation: slideUp 0.3s ease;
         }
-
+        
         @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
+            from { transform: translateY(40px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-
+        
         .modal-header {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
-            padding: 1.5rem 2rem;
-            border-radius: 30px 30px 0 0;
+            padding: 1.3rem 2rem;
+            border-radius: 32px 32px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -527,45 +537,45 @@
             top: 0;
             z-index: 10;
         }
-
+        
         .modal-header h3 {
             color: white;
             margin: 0;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
         }
-
+        
         .modal-close {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             width: 40px;
             height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
+        
         .modal-close:hover {
             background: var(--red);
             transform: rotate(90deg);
         }
-
+        
         .modal-body {
             padding: 2rem;
         }
-
+        
         .enrollment-form {
             width: 100%;
         }
-
+        
         .form-group {
             margin-bottom: 1.2rem;
         }
-
+        
         .form-group label {
             display: block;
             margin-bottom: 0.4rem;
@@ -573,33 +583,33 @@
             color: var(--black);
             font-size: 0.9rem;
         }
-
+        
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 0.7rem;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #e2e8f0;
             border-radius: 12px;
             font-size: 0.95rem;
             background: white;
-            transition: all 0.3s;
+            transition: all 0.2s;
         }
-
+        
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--green);
-            box-shadow: 0 0 0 3px rgba(42,157,143,0.1);
+            box-shadow: 0 0 0 3px rgba(42,157,143,0.15);
         }
-
+        
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
-
+        
         .submit-btn {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
             color: white;
@@ -611,129 +621,1090 @@
             cursor: pointer;
             transition: all 0.3s;
             width: 100%;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
-
+        
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(42,157,143,0.3);
+            box-shadow: 0 8px 20px rgba(42,157,143,0.35);
         }
-
-        .modal-body .small-note {
+        
+        .modal-note {
             text-align: center;
             margin-top: 1rem;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--gray);
-        }
-
-        /* Compact enrollment bar */
-        .enrollment-compact-bar {
-            background: linear-gradient(135deg, var(--gold), var(--red));
-            border-radius: 60px;
-            padding: 1rem 2rem;
-            margin: 2rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            box-shadow: 0 10px 25px rgba(231,111,81,0.2);
-        }
-        
-        .enrollment-compact-bar p {
-            color: var(--black);
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin: 0;
-        }
-        
-        .enrollment-compact-bar p span {
-            font-size: 1.3rem;
         }
         
         @media (max-width: 768px) {
-            .form-row { grid-template-columns: 1fr; }
-            .modal-header h3 { font-size: 1.3rem; }
-            .enrollment-compact-bar { flex-direction: column; text-align: center; }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .modal-header h3 {
+                font-size: 1.3rem;
+            }
+            .enrollment-trigger-btn {
+                font-size: 1.1rem;
+                padding: 1rem 1.8rem;
+            }
         }
-        
-        /* rest of original styles continue */
-        .languages-section, .featured-grid, .values-preview, .word-of-day, .value-proposition, .testimonial-preview, .pricing-overview, .faq-section, .cta-section, footer {
-            /* keep all existing styles */
+
+        /* ===== LANGUAGES SECTION ===== */
+        .languages-section {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
         }
-        
-        .languages-section { background: var(--white); border-radius: 30px; padding: 4rem; margin: 4rem 0; box-shadow: 0 20px 40px var(--shadow); }
-        .languages-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin: 3rem 0; }
-        .language-card { background: var(--cream); padding: 2rem 1rem; border-radius: 20px; text-align: center; transition: all 0.3s; border: 1px solid rgba(0,0,0,0.05); }
-        .language-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px var(--shadow); border-color: var(--gold); }
-        .language-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-        .language-card h3 { color: var(--green); margin-bottom: 0.5rem; font-size: 1.3rem; }
-        .language-speakers { color: var(--gold); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem; }
-        .language-region { color: var(--gray); font-size: 0.8rem; margin-bottom: 1rem; }
-        .language-badge { display: inline-block; background: var(--green); color: white; padding: 0.2rem 1rem; border-radius: 50px; font-size: 0.8rem; margin-top: 0.5rem; }
-        .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 3rem 0; }
-        .feature-card { background: white; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 15px 30px var(--shadow); transition: all 0.3s; border: 1px solid rgba(0,0,0,0.05); }
-        .feature-card:hover { transform: translateY(-15px); }
-        .feature-icon { font-size: 3.5rem; margin-bottom: 1.5rem; }
-        .values-preview { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin: 3rem 0; }
-        .value-pill { background: white; padding: 0.8rem 2rem; border-radius: 50px; box-shadow: 0 5px 15px var(--shadow); font-weight: 600; color: var(--green); transition: all 0.3s; }
-        .word-of-day { background: linear-gradient(135deg, #2A9D8F, #1f7a6e); border-radius: 30px; padding: 2rem; margin: 3rem 0; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .wotd-word { font-size: 3rem; font-weight: 700; color: white; }
-        .value-proposition { background: var(--white); border-radius: 30px; padding: 4rem; margin: 4rem 0; }
-        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 3rem 0; }
-        .pain-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 3rem 0; }
-        .testimonial-preview { background: var(--white); border-radius: 30px; padding: 4rem; margin: 4rem 0; }
-        .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        .pricing-overview { background: white; border-radius: 30px; padding: 3rem; margin: 3rem 0; text-align: center; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        .faq-section { background: var(--white); border-radius: 30px; padding: 4rem; margin: 4rem 0; }
-        .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-        .cta-section { background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 30px; padding: 5rem 4rem; text-align: center; color: white; margin: 4rem 0; }
-        footer { background: var(--black); color: white; padding: 4rem 0 2rem; margin-top: 4rem; position: relative; }
-        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; margin-bottom: 3rem; }
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; display: flex; align-items: center; gap: 0.8rem; box-shadow: 0 10px 25px rgba(37,211,102,0.4); z-index: 999; transition: all 0.3s; border: 2px solid white; }
-        @media (max-width: 968px) { .languages-grid, .pricing-grid, .comparison-grid, .pain-points, .testimonial-grid, .faq-grid, .footer-grid { grid-template-columns: 1fr; } .hero-split { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { .languages-grid, .pricing-grid { grid-template-columns: 1fr; } }
+
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .language-card {
+            background: var(--cream);
+            padding: 2rem 1rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .language-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow);
+            border-color: var(--gold);
+        }
+
+        .language-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .language-card h3 {
+            color: var(--green);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .language-speakers {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .language-region {
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .language-badge {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== FEATURED SECTION ===== */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 15px 30px var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            color: var(--green);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        /* ===== VALUES PREVIEW ===== */
+        .values-preview {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .value-pill {
+            background: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px var(--shadow);
+            font-weight: 600;
+            color: var(--green);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .value-pill:hover {
+            background: var(--green);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* ===== WORD OF THE DAY WIDGET STYLES ===== */
+        .word-of-day {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .wotd-icon {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .wotd-word {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin: 0.5rem 0;
+            letter-spacing: 1px;
+        }
+
+        .wotd-meaning {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .wotd-badge {
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== VALUE PROPOSITION SECTION ===== */
+        .value-proposition {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .comparison-item {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--green);
+        }
+
+        .comparison-item h3 {
+            color: var(--green);
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+
+        .comparison-item p {
+            color: var(--gray);
+            line-height: 2;
+        }
+
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .pain-point {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--cream);
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .pain-point:hover {
+            transform: translateY(-10px);
+        }
+
+        .pain-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pain-point h4 {
+            color: var(--black);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .solution-badge {
+            background: var(--green);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* ===== TESTIMONIAL SECTION ===== */
+        .testimonial-preview {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .testimonial-card {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            border-left: 4px solid var(--gold);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--gold);
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            color: var(--green);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* ===== PRICING OVERVIEW SECTION ===== */
+        .pricing-overview {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: 0 20px 40px var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .pricing-card {
+            background: var(--cream);
+            padding: 1.8rem;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .pricing-card.popular {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(42,157,143,0.3);
+        }
+
+        .pricing-card.popular h3 {
+            color: var(--gold);
+        }
+
+        .pricing-card.popular .price {
+            color: white;
+        }
+
+        .pricing-card.popular .price small {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .pricing-card.popular .scholarship {
+            color: var(--gold);
+        }
+
+        .pricing-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+        }
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--green);
+            margin: 0.5rem 0;
+        }
+
+        .price small {
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+
+        .scholarship {
+            font-size: 0.85rem;
+            color: var(--gold);
+            margin-top: 0.3rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+
+        .pricing-features li {
+            margin: 0.3rem 0;
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--green);
+            transition: transform 0.3s;
+        }
+
+        .faq-item:hover {
+            transform: translateX(10px);
+        }
+
+        .faq-item h4 {
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .faq-item p {
+            color: var(--gray);
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 30px;
+            padding: 5rem 4rem;
+            text-align: center;
+            color: white;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 3rem;
+        }
+
+        .cta-section h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 3rem 0 2rem;
+        }
+
+        /* ===== FLOATING WHATSAPP BUTTON ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            font-size: 1.1rem;
+            backdrop-filter: blur(5px);
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: #20ba5a;
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+        }
+
+        .whatsapp-float span {
+            font-size: 1rem;
+        }
+
+        @keyframes pulse-whatsapp {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 20px 35px rgba(37, 211, 102, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .motto-footer {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .newsletter h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+
+        .newsletter-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--red);
+            color: white;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .hero-split {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-image {
+                height: 400px;
+            }
+            
+            .languages-grid,
+            .form-row,
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .featured-grid,
+            .comparison-grid,
+            .pain-points,
+            .testimonial-grid,
+            .faq-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .whatsapp-float span {
+                display: none;
+            }
+            
+            .whatsapp-float img {
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .languages-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content {
+                padding: 3rem 1.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-banner-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .wotd-word {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Top Contact Bar -->
-    <div class="top-bar"><div class="container"><div class="contact-info"><a href="mailto:info@speakghana.org">📧 info@speakghana.org</a><a href="tel:+233552263323">📞 +233 55 226 3323</a><a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a></div></div></div>
-    <header><div class="container header-content"><div class="logo"><a href="https://speakghana.org"><img src="images/speako.jpg" alt="Speak Ghana"><div class="logo-text"><h1>Speak <span>Ghana</span></h1><p>Reconnect. Speak. Thrive.</p></div></a></div><div class="motto-badge">Reconnect. Speak. Thrive.<span>Your journey home begins here</span></div></div></header>
-    <nav><div class="container"><div class="nav-links"><a href="index.html" class="active">Home</a><a href="about.html">About</a><a href="languages.html">Languages</a><a href="kids-teens.html">Kids & Teens</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a></div></div></nav>
-    
-    <section class="hero"><div class="hero-split"><div class="hero-content"><h2>Akwaaba! — Welcome Home</h2><p>Reconnect with your roots through language, culture, and community. Ghanaian language classes for the global African diaspora.</p><div style="display: flex; gap: 1rem; flex-wrap: wrap;"><a href="languages.html" class="btn btn-gold btn-large">Explore Languages</a><button class="btn btn-primary btn-large enrollment-trigger-btn" style="background: linear-gradient(135deg, var(--green), #1f7a6e);">Start Learning</button></div></div><div class="hero-image"><img src="images/return.png" alt="Diasporans returning to Ghana"><div class="image-overlay-text"><span style="font-size: 1.5rem;">🇬🇭 Reconnect. Speak. Thrive.</span></div></div></div></section>
-    
-    <section class="welcome-video-section"><div class="container"><div style="max-width: 800px; margin: 0 auto; border-radius: 20px; overflow: hidden;"><iframe width="100%" height="450" src="https://www.youtube.com/embed/ZUmaywLYSv0?si=69yhM9LVnCaRy0s4" title="Welcome to Speak Ghana" frameborder="0" allowfullscreen></iframe></div></div></section>
-    
-    <div class="container">
-        <a href="contact.html" class="scholarship-blink"><h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3><p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another.</p><p>📜 Plus: Certificate of Achievement after 6 months!</p></a>
-        
-        <div class="quiz-banner"><div class="quiz-banner-content"><div class="quiz-icon">📝</div><div class="quiz-banner-text"><h3>Test Your Twi Level!</h3><p>20-question quiz • Free • Get personalized course recommendations</p></div><a href="#twi-level-quiz" class="btn btn-gold btn-large">Start Quiz →</a></div></div>
-        
-        <!-- COMPACT ENROLLMENT BAR - Triggers modal -->
-        <div class="enrollment-compact-bar">
-            <p><span>🚀</span> Ready to speak Twi, Ga, or Ewe?</p>
-            <button class="btn btn-primary enrollment-trigger-btn" style="background: var(--black); color: white; padding: 0.8rem 2rem;">📝 Enroll Now →</button>
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="mailto:info@speakghana.org">📧 info@speakghana.org</a>
+                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+            </div>
         </div>
-        
-        <!-- Languages Section -->
-        <div class="languages-section"><h2 class="center">We Teach 5 Ghanaian Languages</h2><p style="text-align: center;">Find your language and start your journey home</p><div class="languages-grid"><div class="language-card"><div class="language-icon">🗣️</div><h3>Twi (Akan)</h3><div class="language-speakers">9M+ speakers</div><div class="language-region">Southern/Central Ghana</div><span class="language-badge">Adults & Kids</span></div><div class="language-card"><div class="language-icon">🏙️</div><h3>Ga</h3><div class="language-speakers">600k+ speakers</div><div class="language-region">Accra region</div><span class="language-badge">Adults & Kids</span></div><div class="language-card"><div class="language-icon">🌊</div><h3>Ewe</h3><div class="language-speakers">3M+ speakers</div><div class="language-region">Volta Region</div><span class="language-badge">Adults & Kids</span></div><div class="language-card"><div class="language-icon">🏖️</div><h3>Fante</h3><div class="language-speakers">2M+ speakers</div><div class="language-region">Coastal Ghana</div><span class="language-badge">Adults & Kids</span></div><div class="language-card"><div class="language-icon">🌄</div><h3>Dagbani</h3><div class="language-speakers">1M+ speakers</div><div class="language-region">Northern Region</div><span class="language-badge">Adults & Kids</span></div></div><div style="text-align: center;"><a href="languages.html" class="btn btn-gold">Explore All Languages →</a></div></div>
-        
-        <h2 class="center">Why Families Choose Us</h2><div class="featured-grid"><div class="feature-card"><div class="feature-icon">🗣️</div><h3>Speak from Day One</h3><p>Our 80/20 method means you talk 80% of class time.</p></div><div class="feature-card"><div class="feature-icon">🌍</div><h3>Connect with Roots</h3><p>Learn proverbs, culture, and traditions.</p></div><div class="feature-card"><div class="feature-icon">👥</div><h3>All Ages Welcome</h3><p>From toddlers to grandparents.</p></div></div>
-        
-        <div class="word-of-day"><div class="wotd-badge">📖 WORD OF THE DAY</div><div class="wotd-icon" id="wotd-icon">📖</div><div class="wotd-word" id="wotd-word">Loading...</div><div class="wotd-meaning" id="wotd-meaning"></div><button id="wotd-sound" class="btn" style="background: white; color: #2A9D8F;">🔊 Listen</button></div>
-        
-        <div id="twi-level-quiz"></div>
-        
-        <div class="value-proposition"><h2 class="center">Why Choose Speak Ghana?</h2><div class="comparison-grid"><div class="comparison-item"><h3>📱 Language Apps</h3><p>• Algorithms, not humans<br>• No real conversation<br>• No cultural context</p></div><div class="comparison-item"><h3>🇬🇭 Speak Ghana</h3><p>• Native speakers<br>• Real conversations<br>• Cultural immersion</p></div></div><div class="pain-points"><div class="pain-point"><div class="pain-icon">😫</div><h4>Tired of apps that don't work?</h4><span class="solution-badge">We focus on speaking</span></div><div class="pain-point"><div class="pain-icon">🗣️</div><h4>Can't practice with native speakers?</h4><span class="solution-badge">Live classes with real teachers</span></div><div class="pain-point"><div class="pain-icon">👨‍👩‍👧</div><h4>Kids not learning their heritage?</h4><span class="solution-badge">Special kids & teen programs</span></div></div></div>
-        
-        <div class="testimonial-preview"><h2 class="center">What Families Say</h2><div class="testimonial-grid"><div class="testimonial-card"><div class="testimonial-text">Learning Twi opened doors to connect with my husband's family. Our kids love the classes!</div><div class="testimonial-author">— Sarah, UK</div></div><div class="testimonial-card"><div class="testimonial-text">My teenager actually looks forward to Twi class.</div><div class="testimonial-author">— Kwame, USA</div></div></div></div>
-        
-        <div class="cta-section"><h2>Ready to Start Your Family's Journey?</h2><p style="font-size: 1.3rem;">Join hundreds of families reconnecting with their roots.</p><div class="cta-buttons"><a href="languages.html" class="btn btn-gold btn-large">Explore Languages</a><button class="btn btn-primary btn-large enrollment-trigger-btn">Start Learning</button></div></div>
     </div>
-    
-    <!-- MODAL OVERLAY WITH ENROLLMENT FORM (POPUP) -->
+
+    <!-- Header with clickable logo -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="https://speakghana.org">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="languages.html">Languages</a>
+                <a href="kids-teens.html">Kids & Teens</a>
+                <a href="resources.html">Resources</a>
+                <a href="contact.html">Contact</a>
+                <a href="blog.html">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-split">
+            <div class="hero-content">
+                <h2>Akwaaba! — Welcome Home</h2>
+                <p>Reconnect with your roots through language, culture, and community. Ghanaian language classes for the global African diaspora.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="languages.html" class="btn btn-gold btn-large">Explore Languages</a>
+                    <button class="btn btn-primary btn-large open-enrollment-modal" style="background: linear-gradient(135deg, var(--green), #1f7a6e);">Start Learning</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/return.png" alt="Diasporans returning to Ghana">
+                <div class="image-overlay-text">
+                    <span style="font-size: 1.5rem;">🇬🇭 Reconnect. Speak. Thrive.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Welcome Video Section -->
+    <section class="welcome-video-section">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                <iframe width="100%" height="450" src="https://www.youtube.com/embed/ZUmaywLYSv0?si=69yhM9LVnCaRy0s4" title="Welcome to Speak Ghana" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- ===== SCHOLARSHIP BLINKING SECTION ===== -->
+        <a href="contact.html" class="scholarship-blink" style="text-decoration: none; display: block;">
+            <h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3>
+            <p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
+            <p style="margin-top: 0.5rem;">📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p>
+        </a>
+
+        <!-- ===== QUIZ BANNER ===== -->
+        <div class="quiz-banner">
+            <div class="quiz-banner-content">
+                <div class="quiz-icon">📝</div>
+                <div class="quiz-banner-text">
+                    <h3>Test Your Twi Level!</h3>
+                    <p>20-question quiz • Free • Get personalized course recommendations</p>
+                </div>
+                <a href="#twi-level-quiz" class="btn btn-gold btn-large" style="background: var(--gold); color: var(--black); border: none; cursor: pointer;">Start Quiz →</a>
+            </div>
+        </div>
+
+        <!-- COMPACT ENROLLMENT BUTTON - REPLACES THE LARGE FORM SECTION -->
+        <div class="enrollment-trigger-section" style="text-align: center;">
+            <button class="enrollment-trigger-btn open-enrollment-modal">
+                ✨ Start Your Language Journey Today ✨
+            </button>
+            <p style="margin-top: 0.8rem; color: var(--gray); font-size: 0.9rem;">Choose your language and package — we'll contact you within 24 hours</p>
+        </div>
+
+        <!-- Languages Section -->
+        <div class="languages-section">
+            <h2 class="center">We Teach 5 Ghanaian Languages</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">Find your language and start your journey home</p>
+            
+            <div class="languages-grid">
+                <div class="language-card">
+                    <div class="language-icon">🗣️</div>
+                    <h3>Twi (Akan)</h3>
+                    <div class="language-speakers">9M+ speakers</div>
+                    <div class="language-region">Southern/Central Ghana</div>
+                    <span class="language-badge">Adults & Kids</span>
+                </div>
+                <div class="language-card">
+                    <div class="language-icon">🏙️</div>
+                    <h3>Ga</h3>
+                    <div class="language-speakers">600k+ speakers</div>
+                    <div class="language-region">Accra region</div>
+                    <span class="language-badge">Adults & Kids</span>
+                </div>
+                <div class="language-card">
+                    <div class="language-icon">🌊</div>
+                    <h3>Ewe</h3>
+                    <div class="language-speakers">3M+ speakers</div>
+                    <div class="language-region">Volta Region</div>
+                    <span class="language-badge">Adults & Kids</span>
+                </div>
+                <div class="language-card">
+                    <div class="language-icon">🏖️</div>
+                    <h3>Fante</h3>
+                    <div class="language-speakers">2M+ speakers</div>
+                    <div class="language-region">Coastal Ghana</div>
+                    <span class="language-badge">Adults & Kids</span>
+                </div>
+                <div class="language-card">
+                    <div class="language-icon">🌄</div>
+                    <h3>Dagbani</h3>
+                    <div class="language-speakers">1M+ speakers</div>
+                    <div class="language-region">Northern Region</div>
+                    <span class="language-badge">Adults & Kids</span>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="languages.html" class="btn btn-gold">Explore All Languages →</a>
+            </div>
+        </div>
+
+        <!-- Featured Section -->
+        <h2 class="center">Why Families Choose Us</h2>
+        <div class="featured-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🗣️</div>
+                <h3>Speak from Day One</h3>
+                <p>Our 80/20 method means you talk 80% of class time. Learn by speaking, not just listening.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Connect with Roots</h3>
+                <p>Learn proverbs, culture, and traditions that connect you to home. Perfect for diaspora families.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>All Ages Welcome</h3>
+                <p>From toddlers to grandparents - we have programs for every generation.</p>
+            </div>
+        </div>
+
+        <!-- Values Preview -->
+        <div class="values-preview">
+            <span class="value-pill">🕊️ Sankofa</span>
+            <span class="value-pill">🤝 Akwaaba</span>
+            <span class="value-pill">🌱 Nkakrankakra</span>
+            <span class="value-pill">👪 Abusua</span>
+            <span class="value-pill">📈 Nkɔsoɔ</span>
+        </div>
+
+        <!-- ===== WORD OF THE DAY WIDGET ===== -->
+        <div class="word-of-day">
+            <div class="wotd-badge">📖 WORD OF THE DAY</div>
+            <div class="wotd-icon" id="wotd-icon">📖</div>
+            <div class="wotd-word" id="wotd-word">Loading...</div>
+            <div class="wotd-meaning" id="wotd-meaning"></div>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button id="wotd-sound" class="btn" style="background: white; color: #2A9D8F; border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem;">🔊 Listen</button>
+                <button id="wotd-share" class="btn" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem;">📤 Share</button>
+            </div>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.8rem; margin-top: 1.5rem;">
+                <span id="wotd-counter">Day 1 of 50</span> • Check back tomorrow for a new word!
+            </p>
+        </div>
+
+        <!-- ===== TWI LEVEL QUIZ SECTION ===== -->
+        <div id="twi-level-quiz"></div>
+
+        <!-- Value Proposition -->
+        <div class="value-proposition">
+            <h2 class="center">Why Choose Speak Ghana?</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>📱 Language Apps</h3>
+                    <p>• Algorithms, not humans<br>• No real conversation<br>• No cultural context<br>• One-size-fits-all</p>
+                </div>
+                <div class="comparison-item">
+                    <h3>🇬🇭 Speak Ghana</h3>
+                    <p>• Native speakers<br>• Real conversations<br>• Cultural immersion<br>• Age-appropriate programs</p>
+                </div>
+            </div>
+
+            <div class="pain-points">
+                <div class="pain-point">
+                    <div class="pain-icon">😫</div>
+                    <h4>Tired of apps that don't work?</h4>
+                    <span class="solution-badge">We focus on speaking</span>
+                </div>
+                <div class="pain-point">
+                    <div class="pain-icon">🗣️</div>
+                    <h4>Can't practice with native speakers?</h4>
+                    <span class="solution-badge">Live classes with real teachers</span>
+                </div>
+                <div class="pain-point">
+                    <div class="pain-icon">👨‍👩‍👧</div>
+                    <h4>Kids not learning their heritage?</h4>
+                    <span class="solution-badge">Special kids & teen programs</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonial-preview">
+            <h2 class="center">What Families Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">Learning Twi opened doors to connect with my husband's family. Our kids love the classes!</div>
+                    <div class="testimonial-author">— Sarah, UK (Parent)</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">My teenager actually looks forward to Twi class. The teen program is perfect for her.</div>
+                    <div class="testimonial-author">— Kwame, USA (Parent)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== NEW PRICING OVERVIEW SECTION ===== -->
+        <div class="pricing-overview">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <span style="background: var(--green); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.9rem; display: inline-block; margin-bottom: 1rem;">💰 Transparent Pricing</span>
+                <h2 style="color: var(--green); margin-bottom: 0.5rem;">Start from just <span style="color: var(--red);">$35/month</span> for kids or <span style="color: var(--red);">$135/month</span> for adults</h2>
+                <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem;">Flexible plans. No hidden fees. Free textbook included.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Kids Package -->
+                <div class="pricing-card">
+                    <div class="pricing-icon">🧒</div>
+                    <h3>Kids (5-12)</h3>
+                    <div class="price">$35 <small>/ GHS 490</small></div>
+                    <div class="scholarship">🎓 Scholarship: $26.25 / GHS 367.50</div>
+                    <ul class="pricing-features">
+                        <li>30-45 min lessons</li>
+                        <li>Play-based learning</li>
+                        <li>Songs & stories</li>
+                        <li>Fun activities</li>
+                    </ul>
+                    <a href="kids-teens.html" class="btn btn-outline btn-small" style="margin-top: 0.5rem; display: inline-block;">Learn More →</a>
+                </div>
+                
+                <!-- Most Popular - Private 60min 2x/week -->
+                <div class="pricing-card popular">
+                    <div class="pricing-icon">⭐</div>
+                    <h3>Most Popular</h3>
+                    <div class="price">$135 <small>/ GHS 1,620</small></div>
+                    <div class="scholarship">🎓 Scholarship: $101.25 / GHS 1,215</div>
+                    <ul class="pricing-features">
+                        <li>Private 60min • 2x/week</li>
+                        <li>1 structured + 1 conversation</li>
+                        <li>✓ Full textbook included</li>
+                        <li>✓ Progress reports</li>
+                    </ul>
+                    <a href="languages.html#twi" class="btn btn-outline btn-small" style="margin-top: 0.5rem; display: inline-block; border-color: white; color: white;">Learn More →</a>
+                </div>
+                
+                <!-- Group Packages -->
+                <div class="pricing-card">
+                    <div class="pricing-icon">👥</div>
+                    <h3>Group Classes</h3>
+                    <div class="price">$50 <small>/ GHS 600</small></div>
+                    <div class="scholarship">🎓 Scholarship: $37.50 / GHS 450</div>
+                    <ul class="pricing-features">
+                        <li>90min • 1x/week</li>
+                        <li>Learn with others</li>
+                        <li>Interactive conversations</li>
+                        <li>Supportive environment</li>
+                    </ul>
+                    <a href="languages.html#group" class="btn btn-outline btn-small" style="margin-top: 0.5rem; display: inline-block;">Learn More →</a>
+                </div>
+            </div>
+            
+            <div style="background: var(--gold); padding: 1rem; border-radius: 50px; display: inline-block; margin-bottom: 1.5rem;">
+                <span>🎓 Ghana Card Holders → <strong>25% off</strong> with Speak One, Learn One Scholarship</span>
+            </div>
+            
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                <a href="languages.html" class="btn btn-primary btn-large">See Full Pricing & Packages →</a>
+                <button class="btn btn-gold btn-large open-enrollment-modal">Enroll Now</button>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">Kids (5-12) • Teens (13-17) • Adults • Private & Group • Family Bundles</p>
+            <p style="font-size: 0.85rem; color: var(--gray);">💰 USD via PayPal/Wise | 🇬🇭 GHS via Mobile Money/Bank Transfer</p>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-section">
+            <h2 class="center">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>Do you have classes for kids?</h4>
+                    <p>Yes! We have specialized programs for ages 5-12 (Twi Tots, Twi Explorers) and teens 13-17.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can siblings learn together?</h4>
+                    <p>Absolutely! Our Siblings Special package is designed for families with multiple children.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What is the Speak One, Learn One Scholarship?</h4>
+                    <p>Ghana Card holders who already speak one Ghanaian language get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What is the Certificate of Achievement?</h4>
+                    <p>Complete 6 months of continuous learning and receive an official certificate signed by our founders.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What if we miss a class?</h4>
+                    <p>Recordings available for group classes. Private lessons reschedule with 24h notice.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Is there a discount for families?</h4>
+                    <p>Yes! Family Pack available and sibling discounts apply to all packages.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h2>Ready to Start Your Family's Journey?</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Join hundreds of families reconnecting with their roots.</p>
+            <div class="cta-buttons">
+                <a href="languages.html" class="btn btn-gold btn-large">Explore Languages</a>
+                <button class="btn btn-primary btn-large open-enrollment-modal">Start Learning</button>
+            </div>
+            <p style="margin-top: 2rem;">✨ Try a class today • Flexible schedules ✨</p>
+        </div>
+    </div>
+
+    <!-- ===== MODAL POPUP WITH ENROLLMENT FORM ===== -->
     <div id="enrollmentModal" class="modal-overlay">
         <div class="modal-container">
             <div class="modal-header">
@@ -743,93 +1714,389 @@
             <div class="modal-body">
                 <form class="enrollment-form" action="https://formspree.io/f/mlgpodpb" method="POST">
                     <input type="hidden" name="form_type" value="Enrollment">
+                    
                     <div class="form-row">
-                        <div class="form-group"><label>First Name *</label><input type="text" name="first_name" required></div>
-                        <div class="form-group"><label>Last Name</label><input type="text" name="last_name"></div>
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name">
+                        </div>
                     </div>
+
                     <div class="form-row">
-                        <div class="form-group"><label>Email *</label><input type="email" name="email" required></div>
-                        <div class="form-group"><label>Phone</label><div style="display: flex; gap: 0.5rem;"><select name="phone_code" style="width: 30%;"><option value="+233">🇬🇭 +233</option><option value="+1">🇺🇸 +1</option><option value="+44">🇬🇧 +44</option></select><input type="tel" name="phone" placeholder="Number" style="width: 70%;"></div></div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <select name="phone_code" style="width: 30%; padding: 0.7rem; border: 2px solid #e2e8f0; border-radius: 12px;">
+                                    <option value="+233">🇬🇭 +233</option>
+                                    <option value="+1">🇺🇸 +1</option>
+                                    <option value="+44">🇬🇧 +44</option>
+                                    <option value="+49">🇩🇪 +49</option>
+                                    <option value="+33">🇫🇷 +33</option>
+                                </select>
+                                <input type="tel" name="phone" placeholder="Phone number" style="width: 70%;">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group"><label>Which language? *</label><select name="language" required><option value="">Select</option><option value="Twi">Twi (Akan)</option><option value="Ga">Ga</option><option value="Ewe">Ewe</option><option value="Fante">Fante</option><option value="Dagbani">Dagbani</option></select></div>
-                    <div class="form-group"><label>Class Type *</label><select name="class_type" required><option value="">Select</option><option value="Private 60min">Private 60min</option><option value="Private 90min">Private 90min</option><option value="Group 90min">Group 90min</option><option value="Kids (5-12)">Kids Program</option><option value="Teens (13-17)">Teens Program</option></select></div>
-                    <div class="form-row"><div class="form-group"><label>Preferred Day</label><select name="preferred_day"><option value="">Any</option><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select></div><div class="form-group"><label>Preferred Time</label><select name="preferred_time"><option value="">Any</option><option value="6pm GMT">6pm GMT</option><option value="7pm GMT">7pm GMT</option></select></div></div>
-                    <div class="form-group"><label>Timezone</label><select name="timezone"><option value="GMT">GMT (London)</option><option value="EST">EST (New York)</option><option value="PST">PST (Los Angeles)</option></select></div>
-                    <div class="form-group"><label>How did you hear about us?</label><input type="text" name="referral" placeholder="Instagram, friend, TikTok"></div>
-                    <div class="form-group"><label><input type="checkbox" name="scholarship" value="yes"> I qualify for Speak One, Learn One Scholarship (25% off - Ghana Card holder)</label></div>
-                    <div class="form-group"><label>Questions?</label><textarea name="notes" rows="2" placeholder="Anything else?"></textarea></div>
-                    <button type="submit" class="submit-btn">✨ Start Your Journey ✨</button>
-                    <p class="small-note">We'll contact you within 24 hours • 100% free consultation</p>
+
+                    <div class="form-group">
+                        <label>Which language are you interested in? *</label>
+                        <select name="language" required>
+                            <option value="">Select a language</option>
+                            <option value="Twi">Twi (Akan)</option>
+                            <option value="Ga">Ga</option>
+                            <option value="Ewe">Ewe</option>
+                            <option value="Fante">Fante</option>
+                            <option value="Dagbani">Dagbani</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Which class are you interested in? *</label>
+                        <select name="class_type" required>
+                            <option value="">Select a class</option>
+                            <option value="Private 60min">Private 60min</option>
+                            <option value="Private 90min">Private 90min</option>
+                            <option value="Group 90min">Group 90min</option>
+                            <option value="Kids (5-12)">Kids Program (5-12)</option>
+                            <option value="Teens (13-17)">Teens Program (13-17)</option>
+                            <option value="Not sure">Not sure yet</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Preferred Day</label>
+                            <select name="preferred_day">
+                                <option value="">Any</option>
+                                <option value="Sunday">Sunday</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Time</label>
+                            <select name="preferred_time">
+                                <option value="">Any</option>
+                                <option value="6pm GMT">6pm GMT</option>
+                                <option value="7pm GMT">7pm GMT</option>
+                                <option value="Other">Other (specify below)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Timezone</label>
+                        <select name="timezone">
+                            <option value="GMT">GMT (London)</option>
+                            <option value="EST">EST (New York)</option>
+                            <option value="PST">PST (Los Angeles)</option>
+                            <option value="WAT">WAT (Lagos)</option>
+                            <option value="CAT">CAT (Johannesburg)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>How did you hear about us?</label>
+                        <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="scholarship" value="yes"> I qualify for the Speak One, Learn One Scholarship (25% off - Ghana Card holder)
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Questions or special requests?</label>
+                        <textarea name="notes" rows="2" placeholder="Tell us anything else you'd like us to know"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Start Your Journey</button>
+                    <p class="modal-note">We'll contact you within 24 hours</p>
                 </form>
             </div>
         </div>
     </div>
-    
-    <footer><div class="container"><div class="footer-grid"><div class="footer-section"><h4>Speak Ghana</h4><p>📍 KNUST Campus, Kumasi</p><p>📞 +233 55 226 3323</p><p>📧 info@speakghana.org</p></div><div class="footer-section"><h4>Programs</h4><a href="languages.html">Adult Classes</a><a href="kids-teens.html">Kids (5-12)</a><a href="kids-teens.html">Teens (13-17)</a></div><div class="footer-section"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="resources.html">Free Resources</a></div><div class="footer-section"><h4>Connect</h4><a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a><a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a></div></div><div class="copyright"><p>© 2026 Speak Ghana Language School. All rights reserved.</p><div class="motto-footer">Reconnect. Speak. Thrive.</div></div></div></footer>
-    
-    <a href="https://wa.me/233552263323?text=Hi%20Speak%20Ghana!%20I%20have%20a%20question" class="whatsapp-float" target="_blank"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.06.6 4.06 1.74 5.8L2.1 22l4.43-1.61c1.67.98 3.6 1.51 5.6 1.51 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z'/%3E%3C/svg%3E" width="24"><span>Chat</span></a>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>🏗️ Accra Office (Opening Soon)</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
+                    <p>💬 <a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Programs</h4>
+                    <a href="languages.html">Adult Classes</a>
+                    <a href="kids-teens.html">Kids (5-12)</a>
+                    <a href="kids-teens.html">Teens (13-17)</a>
+                    <a href="languages.html">Family Packages</a>
+                    <a href="contact.html">Scholarship Program</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="resources.html">Free Resources</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
+                    <a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a>
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
+                            <div class="newsletter-form">
+                                <input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required>
+                                <button type="submit" class="newsletter-btn">Join</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/233552263323?text=Hi%20Speak%20Ghana!%20I%20have%20a%20question%20about%20your%20language%20classes." 
+       class="whatsapp-float" 
+       target="_blank">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.06.6 4.06 1.74 5.8L2.1 22l4.43-1.61c1.67.98 3.6 1.51 5.6 1.51 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.24c-1.71 0-3.37-.48-4.8-1.38l-.34-.2-3.03 1.1 1.07-2.98-.19-.35c-.95-1.5-1.46-3.24-1.46-5.02 0-4.66 3.8-8.46 8.46-8.46s8.46 3.8 8.46 8.46-3.79 8.46-8.46 8.46zm4.63-6.36c-.25-.12-1.47-.73-1.7-.81-.23-.08-.39-.12-.56.12-.17.24-.64.81-.78.98-.14.17-.29.19-.54.07-.25-.12-1.06-.39-2.02-1.24-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.56-1.35-.77-1.85-.2-.49-.4-.42-.56-.43-.14-.01-.31-.01-.48-.01s-.44.06-.66.3c-.23.24-.87.85-.87 2.08 0 1.23.89 2.42 1.02 2.58.13.16 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z'/%3E%3C/svg%3E" 
+             alt="WhatsApp"
+             style="width: 24px; height: 24px;">
+        <span>Chat with us</span>
+    </a>
+
+    <!-- Event Tracking for Google Analytics (unchanged) -->
     <script>
-        // Modal functionality
-        const modal = document.getElementById('enrollmentModal');
-        const openBtns = document.querySelectorAll('.enrollment-trigger-btn');
-        const closeBtn = document.getElementById('closeModalBtn');
-        
-        function openModal() {
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            if (typeof gtag === 'function') {
-                gtag('event', 'enrollment_modal_open', { 'event_category': 'engagement', 'event_label': 'modal_opened' });
-            }
-        }
-        
-        function closeModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
-        openBtns.forEach(btn => btn.addEventListener('click', openModal));
-        if (closeBtn) closeBtn.addEventListener('click', closeModal);
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
-        });
-        
-        // Form submission tracking
-        const enrollmentForm = document.querySelector('.enrollment-form');
-        if (enrollmentForm) {
-            enrollmentForm.addEventListener('submit', function() {
-                if (typeof gtag === 'function') {
-                    gtag('event', 'generate_lead', { 'event_category': 'engagement', 'event_label': 'modal_enrollment' });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modal functionality
+            const modal = document.getElementById('enrollmentModal');
+            const openBtns = document.querySelectorAll('.open-enrollment-modal');
+            const closeBtn = document.getElementById('closeModalBtn');
+            
+            function openModal() {
+                if (modal) {
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'enrollment_modal_open', { 'event_category': 'engagement', 'event_label': 'modal_opened' });
+                    }
                 }
-                setTimeout(() => closeModal(), 500);
+            }
+            
+            function closeModal() {
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+            
+            openBtns.forEach(btn => btn.addEventListener('click', openModal));
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
             });
-        }
-        
-        // Word of the Day (simplified version)
-        const wordBank = [
-            { word: "Akwaaba", meaning: "Welcome", icon: "🤝", audio: "" },
-            { word: "Medaase", meaning: "Thank you", icon: "🙏", audio: "" },
-            { word: "Maakye", meaning: "Good morning", icon: "🌅", audio: "" }
-        ];
-        function getWordOfDay() { return wordBank[Math.floor(Math.random() * wordBank.length)]; }
-        function updateWordOfDay() {
-            const w = getWordOfDay();
-            document.getElementById('wotd-icon').textContent = w.icon;
-            document.getElementById('wotd-word').textContent = w.word;
-            document.getElementById('wotd-meaning').textContent = w.meaning;
-        }
-        document.addEventListener('DOMContentLoaded', updateWordOfDay);
-        
-        // track additional GA events
-        document.querySelectorAll('.scholarship-blink').forEach(el => {
-            el.addEventListener('click', () => { if(typeof gtag === 'function') gtag('event', 'scholarship_click', { 'event_label': 'homepage_scholarship' }); });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal && modal.style.display === 'flex') closeModal();
+            });
+            
+            // Track Form Submissions
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function() {
+                    let formName = 'enrollment_form';
+                    if (this.id === 'footer-newsletter-form') formName = 'footer_newsletter';
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'generate_lead', {
+                            'event_category': 'engagement',
+                            'event_label': formName
+                        });
+                    }
+                    if (modal) setTimeout(() => closeModal(), 500);
+                });
+            });
+            
+            // Newsletter Signup
+            const newsletterForm = document.getElementById('footer-newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function() {
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'newsletter_signup', {
+                            'event_category': 'engagement',
+                            'event_label': 'footer_newsletter'
+                        });
+                    }
+                });
+            }
+            
+            // WhatsApp Clicks
+            const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
+            whatsappLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'whatsapp_click', {
+                            'event_category': 'contact',
+                            'event_label': 'whatsapp_button'
+                        });
+                    }
+                });
+            });
+            
+            // Phone Number Clicks
+            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+            phoneLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'phone_click', {
+                            'event_category': 'contact',
+                            'event_label': 'phone_number'
+                        });
+                    }
+                });
+            });
+            
+            // Navigation Clicks
+            const navLinks = document.querySelectorAll('.nav-links a, .btn:not(.open-enrollment-modal)');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const linkText = this.innerText.trim() || 'nav_link';
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'navigation_click', {
+                            'event_category': 'navigation',
+                            'event_label': linkText
+                        });
+                    }
+                });
+            });
+            
+            // Scholarship Blink Click
+            const scholarshipLink = document.querySelector('.scholarship-blink');
+            if (scholarshipLink) {
+                scholarshipLink.addEventListener('click', function() {
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'scholarship_click', {
+                            'event_category': 'engagement',
+                            'event_label': 'homepage_scholarship'
+                        });
+                    }
+                });
+            }
         });
     </script>
+
+    <!-- Word of the Day Widget Script (unchanged) -->
+    <script>
+        const wordBank = [
+            { word: "Akwaaba", meaning: "Welcome", icon: "🤝", audio: "audio/words/akwaaba.m4a" },
+            { word: "Maakye", meaning: "Good morning", icon: "🌅", audio: "audio/words/maakye.m4a" },
+            { word: "Maaha", meaning: "Good afternoon", icon: "☀️", audio: "audio/words/maaha.m4a" },
+            { word: "Maadwo", meaning: "Good evening", icon: "🌙", audio: "audio/words/maadwo.m4a" },
+            { word: "Medaase", meaning: "Thank you", icon: "🙏", audio: "audio/words/medaase.m4a" },
+            { word: "Yoo", meaning: "Okay / Yes", icon: "👍", audio: "audio/words/yoo.m4a" },
+            { word: "Da yie", meaning: "Good night / Sleep well", icon: "😴", audio: "audio/words/da-yie.m4a" },
+            { word: "Maame", meaning: "Mother", icon: "👩", audio: "audio/words/maame.m4a" },
+            { word: "Agya", meaning: "Father", icon: "👨", audio: "audio/words/agya.m4a" },
+            { word: "Nana", meaning: "Grandparent", icon: "👵", audio: "audio/words/nana.m4a" },
+            { word: "Ɔba", meaning: "Child", icon: "👶", audio: "audio/words/oba.m4a" },
+            { word: "Wo ho te sɛn?", meaning: "How are you?", icon: "💬", audio: "audio/words/wo-ho-te-sen.m4a" },
+            { word: "Me ho yɛ", meaning: "I am fine", icon: "😊", audio: "audio/words/me-ho-ye.m4a" },
+            { word: "Fufu", meaning: "Fufu", icon: "🍲", audio: "audio/words/fufu.m4a" },
+            { word: "Banku", meaning: "Banku", icon: "🍚", audio: "audio/words/banku.m4a" },
+            { word: "Kraman", meaning: "Dog", icon: "🐶", audio: "audio/words/kraman.m4a" },
+            { word: "Kɔkɔɔ", meaning: "Red", icon: "🔴", audio: "audio/words/kɔkɔɔ.m4a" }
+        ];
+
+        function getWordOfDay() {
+            const startDate = new Date(2025, 0, 1);
+            const today = new Date();
+            const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+            const index = daysSinceStart % wordBank.length;
+            return { word: wordBank[index], index: index };
+        }
+
+        function updateWordOfDay() {
+            const { word, index } = getWordOfDay();
+            const wotdIcon = document.getElementById('wotd-icon');
+            const wotdWord = document.getElementById('wotd-word');
+            const wotdMeaning = document.getElementById('wotd-meaning');
+            const wotdCounter = document.getElementById('wotd-counter');
+            if (wotdIcon) wotdIcon.textContent = word.icon;
+            if (wotdWord) wotdWord.textContent = word.word;
+            if (wotdMeaning) wotdMeaning.textContent = word.meaning;
+            if (wotdCounter) wotdCounter.textContent = `Day ${index + 1} of ${wordBank.length}`;
+            
+            const currentAudio = new Audio(word.audio);
+            const listenBtn = document.getElementById('wotd-sound');
+            if (listenBtn) {
+                listenBtn.onclick = () => {
+                    currentAudio.play().catch(e => console.log('Audio play failed:', e));
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'word_of_day_listened', { 'event_category': 'engagement', 'event_label': word.word });
+                    }
+                    listenBtn.style.transform = 'scale(0.95)';
+                    setTimeout(() => { listenBtn.style.transform = 'scale(1)'; }, 200);
+                };
+            }
+            
+            const shareBtn = document.getElementById('wotd-share');
+            if (shareBtn) {
+                shareBtn.onclick = () => {
+                    const shareText = `Today's Twi word: ${word.word} - ${word.meaning} 🎧 Learn Twi with Speak Ghana!`;
+                    if (navigator.share) {
+                        navigator.share({
+                            title: `Twi Word of the Day: ${word.word}`,
+                            text: shareText,
+                            url: window.location.href
+                        });
+                    } else {
+                        navigator.clipboard.writeText(`${shareText}\n\n${window.location.href}`);
+                        alert('📋 Copied to clipboard! Share with your friends.');
+                    }
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'word_of_day_shared', { 'event_category': 'engagement', 'event_label': word.word });
+                    }
+                };
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', updateWordOfDay);
+        if (typeof gtag === 'function') {
+            gtag('event', 'word_of_day_view', { 'event_category': 'engagement', 'event_label': 'widget' });
+        }
+    </script>
+
+    <!-- Twi Level Quiz Script -->
     <script src="twi-quiz.js"></script>
 </body>
 </html>
