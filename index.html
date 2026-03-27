@@ -674,6 +674,44 @@
             transform: translateY(-3px);
         }
 
+        /* ===== WORD OF THE DAY WIDGET STYLES ===== */
+        .word-of-day {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .wotd-icon {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .wotd-word {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin: 0.5rem 0;
+            letter-spacing: 1px;
+        }
+
+        .wotd-meaning {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .wotd-badge {
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
         /* ===== VALUE PROPOSITION SECTION ===== */
         .value-proposition {
             background: var(--white);
@@ -1198,6 +1236,10 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .wotd-word {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -1513,6 +1555,21 @@
             <span class="value-pill">🌱 Nkakrankakra</span>
             <span class="value-pill">👪 Abusua</span>
             <span class="value-pill">📈 Nkɔsoɔ</span>
+        </div>
+
+        <!-- ===== WORD OF THE DAY WIDGET ===== -->
+        <div class="word-of-day">
+            <div class="wotd-badge">📖 WORD OF THE DAY</div>
+            <div class="wotd-icon" id="wotd-icon">📖</div>
+            <div class="wotd-word" id="wotd-word">Loading...</div>
+            <div class="wotd-meaning" id="wotd-meaning"></div>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button id="wotd-sound" class="btn" style="background: white; color: #2A9D8F; border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem;">🔊 Listen</button>
+                <button id="wotd-share" class="btn" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem;">📤 Share</button>
+            </div>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.8rem; margin-top: 1.5rem;">
+                <span id="wotd-counter">Day 1 of 50</span> • Check back tomorrow for a new word!
+            </p>
         </div>
 
         <!-- ===== TWI LEVEL QUIZ SECTION ===== -->
@@ -1854,6 +1911,128 @@
                 });
             }
         });
+    </script>
+
+    <!-- Word of the Day Widget Script -->
+    <script>
+        // Complete word bank with emoji/icon for each word
+        const wordBank = [
+            // Greetings (7)
+            { word: "Akwaaba", meaning: "Welcome", icon: "🤝", audio: "audio/words/akwaaba.m4a" },
+            { word: "Maakye", meaning: "Good morning", icon: "🌅", audio: "audio/words/maakye.m4a" },
+            { word: "Maaha", meaning: "Good afternoon", icon: "☀️", audio: "audio/words/maaha.m4a" },
+            { word: "Maadwo", meaning: "Good evening", icon: "🌙", audio: "audio/words/maadwo.m4a" },
+            { word: "Medaase", meaning: "Thank you", icon: "🙏", audio: "audio/words/medaase.m4a" },
+            { word: "Yoo", meaning: "Okay / Yes", icon: "👍", audio: "audio/words/yoo.m4a" },
+            { word: "Da yie", meaning: "Good night / Sleep well", icon: "😴", audio: "audio/words/da-yie.m4a" },
+            
+            // Family & People (10)
+            { word: "Maame", meaning: "Mother", icon: "👩", audio: "audio/words/maame.m4a" },
+            { word: "Agya", meaning: "Father", icon: "👨", audio: "audio/words/agya.m4a" },
+            { word: "Nana", meaning: "Grandparent", icon: "👵", audio: "audio/words/nana.m4a" },
+            { word: "Ɔba", meaning: "Child", icon: "👶", audio: "audio/words/oba.m4a" },
+            { word: "Yɛn", meaning: "We / Us", icon: "👥", audio: "audio/words/yen.m4a" },
+            { word: "Wo", meaning: "You", icon: "👉", audio: "audio/words/wo.m4a" },
+            { word: "Me", meaning: "I / Me", icon: "🙋", audio: "audio/words/me.m4a" },
+            { word: "Onua", meaning: "Sibling", icon: "👫", audio: "audio/words/onua.m4a" },
+            { word: "Yɔnko", meaning: "Friend", icon: "👬", audio: "audio/words/yonko.m4a" },
+            { word: "Ɔkyerɛkyerɛni", meaning: "Teacher", icon: "👩‍🏫", audio: "audio/words/okyerɛkyerɛni.m4a" },
+            
+            // Common Phrases (10)
+            { word: "Wo ho te sɛn?", meaning: "How are you?", icon: "💬", audio: "audio/words/wo-ho-te-sen.m4a" },
+            { word: "Me ho yɛ", meaning: "I am fine", icon: "😊", audio: "audio/words/me-ho-ye.m4a" },
+            { word: "Me din de...", meaning: "My name is...", icon: "📛", audio: "audio/words/me-din-de.m4a" },
+            { word: "Wofiri he?", meaning: "Where are you from?", icon: "🌍", audio: "audio/words/wofiri-he.m4a" },
+            { word: "Mefiri...", meaning: "I am from...", icon: "📍", audio: "audio/words/mefiri.m4a" },
+            { word: "Worekɔ he?", meaning: "Where are you going?", icon: "🚶", audio: "audio/words/woreko-he.m4a" },
+            { word: "Merekɔ fie", meaning: "I'm going home", icon: "🏠", audio: "audio/words/merekɔ-fie.m4a" },
+            { word: "Ɛyɛ", meaning: "It is good", icon: "✅", audio: "audio/words/eye.m4a" },
+            { word: "Mepa wo kyɛw", meaning: "Please", icon: "🙏", audio: "audio/words/mepa-wo-kyew.m4a" },
+            { word: "Nante yie", meaning: "Goodbye / Go well", icon: "👋", audio: "audio/words/nante-yie.m4a" },
+            
+            // Food & Drink (10)
+            { word: "Fufu", meaning: "Fufu", icon: "🍲", audio: "audio/words/fufu.m4a" },
+            { word: "Banku", meaning: "Banku", icon: "🍚", audio: "audio/words/banku.m4a" },
+            { word: "Nsuo", meaning: "Water", icon: "💧", audio: "audio/words/nsuo.m4a" },
+            { word: "Koko", meaning: "Porridge", icon: "🥣", audio: "audio/words/koko.m4a" },
+            { word: "Nkate", meaning: "Peanuts", icon: "🥜", audio: "audio/words/nkate.m4a" },
+            { word: "Abɛ", meaning: "Palm nut", icon: "🌴", audio: "audio/words/abe.m4a" },
+            { word: "Dɔkono", meaning: "Kenkey", icon: "🍞", audio: "audio/words/dokono.m4a" },
+            { word: "Ɛmo", meaning: "Rice", icon: "🍚", audio: "audio/words/emo.m4a" },
+            { word: "Akokɔnam", meaning: "Chicken meat", icon: "🍗", audio: "audio/words/akokɔnam.m4a" },
+            { word: "Nkyenam", meaning: "Fish", icon: "🐟", audio: "audio/words/nkyenam.m4a" },
+            
+            // Animals (9)
+            { word: "Kraman", meaning: "Dog", icon: "🐶", audio: "audio/words/kraman.m4a" },
+            { word: "Agyinamoa", meaning: "Cat", icon: "🐱", audio: "audio/words/agyinamoa.m4a" },
+            { word: "Akokɔ", meaning: "Chicken (live)", icon: "🐔", audio: "audio/words/akoko.m4a" },
+            { word: "Ɔsono", meaning: "Elephant", icon: "🐘", audio: "audio/words/osono.m4a" },
+            { word: "Nantwie", meaning: "Cow", icon: "🐮", audio: "audio/words/nantwie.m4a" },
+            { word: "Odwan", meaning: "Sheep", icon: "🐑", audio: "audio/words/odwan.m4a" },
+            { word: "Mpataa", meaning: "Fish (small)", icon: "🐟", audio: "audio/words/mpataa.m4a" },
+            { word: "Dɛnkyem", meaning: "Crocodile", icon: "🐊", audio: "audio/words/denkyem.m4a" },
+            { word: "Ɔkwakuo", meaning: "Monkey", icon: "🐒", audio: "audio/words/okwakuo.m4a" },
+            
+            // Colors (4)
+            { word: "Kɔkɔɔ", meaning: "Red", icon: "🔴", audio: "audio/words/kɔkɔɔ.m4a" },
+            { word: "Tuntum", meaning: "Black", icon: "⚫", audio: "audio/words/tuntum.m4a" },
+            { word: "Fitaa", meaning: "White", icon: "⚪", audio: "audio/words/fitaa.m4a" },
+            { word: "Bibire", meaning: "Blue", icon: "🔵", audio: "audio/words/bibire.m4a" }
+        ];
+
+        // Get word for today (same for all users - based on date)
+        function getWordOfDay() {
+            const startDate = new Date(2025, 0, 1);
+            const today = new Date();
+            const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+            const index = daysSinceStart % wordBank.length;
+            return { word: wordBank[index], index: index };
+        }
+
+        // Update the widget
+        function updateWordOfDay() {
+            const { word, index } = getWordOfDay();
+            
+            document.getElementById('wotd-icon').textContent = word.icon;
+            document.getElementById('wotd-word').textContent = word.word;
+            document.getElementById('wotd-meaning').textContent = word.meaning;
+            document.getElementById('wotd-counter').textContent = `Day ${index + 1} of ${wordBank.length}`;
+            
+            const currentAudio = new Audio(word.audio);
+            
+            const listenBtn = document.getElementById('wotd-sound');
+            listenBtn.onclick = () => {
+                currentAudio.play().catch(e => console.log('Audio play failed:', e));
+                gtag('event', 'word_of_day_listened', {
+                    'event_category': 'engagement',
+                    'event_label': word.word
+                });
+                listenBtn.style.transform = 'scale(0.95)';
+                setTimeout(() => { listenBtn.style.transform = 'scale(1)'; }, 200);
+            };
+            
+            const shareBtn = document.getElementById('wotd-share');
+            shareBtn.onclick = () => {
+                const shareText = `Today's Twi word: ${word.word} - ${word.meaning} 🎧 Learn Twi with Speak Ghana!`;
+                if (navigator.share) {
+                    navigator.share({
+                        title: `Twi Word of the Day: ${word.word}`,
+                        text: shareText,
+                        url: window.location.href
+                    });
+                } else {
+                    navigator.clipboard.writeText(`${shareText}\n\n${window.location.href}`);
+                    alert('📋 Copied to clipboard! Share with your friends.');
+                }
+                gtag('event', 'word_of_day_shared', {
+                    'event_category': 'engagement',
+                    'event_label': word.word
+                });
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', updateWordOfDay);
+        gtag('event', 'word_of_day_view', { 'event_category': 'engagement', 'event_label': 'widget' });
     </script>
 
     <!-- Add the Twi Level Quiz JavaScript file -->
