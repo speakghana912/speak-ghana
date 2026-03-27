@@ -197,6 +197,7 @@
             color: white;
             padding: 0.8rem 0;
             border-bottom: 4px solid var(--gold);
+            position: relative;
         }
 
         .contact-info {
@@ -343,24 +344,33 @@
             background: var(--green);
         }
 
-        /* ===== HAMBURGER MENU STYLES ===== */
+        /* ===== HAMBURGER MENU STYLES - IMPROVED VISIBILITY ===== */
         .menu-toggle {
             display: none;
-            background: none;
+            background: var(--gold);
             border: none;
-            font-size: 1.8rem;
+            font-size: 2rem;
             cursor: pointer;
             color: var(--black);
-            padding: 0.5rem;
+            padding: 0.5rem 1rem;
             z-index: 101;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
         }
 
-        @media (max-width: 768px) {
+        .menu-toggle:hover {
+            background: var(--green);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 968px) {
             .menu-toggle {
                 display: block;
                 position: absolute;
-                right: 1.5rem;
-                top: 0.8rem;
+                right: 1rem;
+                top: 0.5rem;
             }
             
             nav {
@@ -387,6 +397,31 @@
                 width: 100%;
                 text-align: center;
             }
+        }
+
+        /* ===== BACK TO TOP BUTTON ===== */
+        #backToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 150px;
+            right: 20px;
+            z-index: 98;
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        #backToTopBtn:hover {
+            transform: translateY(-3px);
+            background: var(--gold);
+            color: var(--black);
         }
 
         /* ===== HERO SECTION ===== */
@@ -506,7 +541,7 @@
             line-height: 1;
         }
 
-        /* ===== ENROLLMENT SECTION - COMPACT VERSION (BUTTON ONLY) ===== */
+        /* ===== ENROLLMENT SECTION - COMPACT VERSION ===== */
         .enrollment-trigger-section {
             margin: 4rem 0;
         }
@@ -1145,8 +1180,8 @@
         /* ===== FLOATING WHATSAPP BUTTON ===== */
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 80px;
+            right: 20px;
             background: #25D366;
             color: white;
             padding: 1rem 2rem;
@@ -1454,7 +1489,7 @@
     <!-- Navigation with Hamburger Menu -->
     <nav>
         <div class="container" style="position: relative;">
-            <button class="menu-toggle" id="menuToggle">☰</button>
+            <button class="menu-toggle" id="menuToggle">☰ Menu</button>
             <div class="nav-links" id="navLinks">
                 <a href="index.html" class="active">Home</a>
                 <a href="about.html">About</a>
@@ -1981,7 +2016,10 @@
         <span>Chat with us</span>
     </a>
 
-    <!-- Event Tracking for Google Analytics (unchanged) -->
+    <!-- Back to Top Button -->
+    <button onclick="scrollToTop()" id="backToTopBtn" title="Go to top">⬆️ Top</button>
+
+    <!-- Event Tracking for Google Analytics -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Hamburger Menu Toggle
@@ -1993,13 +2031,35 @@
                     navLinks.classList.toggle('show');
                 });
                 
-                // Close menu when clicking a link
                 navLinks.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', () => {
                         navLinks.classList.remove('show');
                     });
                 });
             }
+            
+            // Back to Top functionality
+            window.scrollFunction = function() {
+                const btn = document.getElementById("backToTopBtn");
+                if (btn) {
+                    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                        btn.style.display = "block";
+                    } else {
+                        btn.style.display = "none";
+                    }
+                }
+            };
+            
+            window.onscroll = function() {
+                scrollFunction();
+            };
+            
+            window.scrollToTop = function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            };
             
             // Modal functionality
             const modal = document.getElementById('enrollmentModal');
@@ -2118,7 +2178,7 @@
         });
     </script>
 
-    <!-- Word of the Day Widget Script (unchanged) -->
+    <!-- Word of the Day Widget Script -->
     <script>
         const wordBank = [
             { word: "Akwaaba", meaning: "Welcome", icon: "🤝", audio: "audio/words/akwaaba.m4a" },
@@ -2202,7 +2262,7 @@
     <!-- Twi Level Quiz Script -->
     <script src="twi-quiz.js"></script>
 
-    <!-- ADD Tawk.to Script HERE -->
+    <!-- Tawk.to Live Chat Script -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
