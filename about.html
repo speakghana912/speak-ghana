@@ -313,6 +313,52 @@
             background: var(--green);
         }
 
+        /* ===== HAMBURGER MENU STYLES ===== */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--black);
+            padding: 0.5rem;
+            z-index: 101;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1.5rem;
+                top: 0.8rem;
+            }
+            
+            nav {
+                position: relative;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 0.5rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         /* ===== PAGE HERO ===== */
         .page-hero {
             background: linear-gradient(135deg, #2A9D8F20, #D4A37320);
@@ -921,16 +967,17 @@
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Navigation with Hamburger Menu -->
     <nav>
-        <div class="container">
-            <div class="nav-links">
+        <div class="container" style="position: relative;">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="about.html" class="active">About</a>
                 <a href="languages.html">Languages</a>
                 <a href="kids-teens.html">Kids & Teens</a>
                 <a href="resources.html">Resources</a>
-                <a href="concierge.html">🤝 Concierge</a>
+                <a href="concierge.html">Concierge</a>
                 <a href="contact.html">Contact</a>
                 <a href="blog.html">Blog</a>
             </div>
@@ -1262,7 +1309,7 @@
                     <a href="kids-teens.html">Kids (5-12)</a>
                     <a href="kids-teens.html">Teens (13-17)</a>
                     <a href="languages.html">Family Packages</a>
-                    <a href="concierge.html">🤝 Sankofa Concierge</a>
+                    <a href="concierge.html">Sankofa Concierge</a>
                     <a href="contact.html">Scholarship Program</a>
                 </div>
                 
@@ -1299,9 +1346,26 @@
         </div>
     </footer>
 
-    <!-- Event Tracking -->
+    <!-- Event Tracking with Hamburger Menu -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('show');
+                });
+                
+                // Close menu when clicking a link
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('show');
+                    });
+                });
+            }
+            
             // Track Form Submissions
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
@@ -1381,8 +1445,8 @@
             });
             
             // Track Navigation Clicks
-            const navLinks = document.querySelectorAll('.nav-links a, .btn');
-            navLinks.forEach(link => {
+            const navLinkElements = document.querySelectorAll('.nav-links a, .btn');
+            navLinkElements.forEach(link => {
                 link.addEventListener('click', function() {
                     const linkText = this.innerText.trim() || 'nav_link';
                     gtag('event', 'navigation_click', {
