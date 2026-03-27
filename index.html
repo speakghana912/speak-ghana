@@ -343,6 +343,52 @@
             background: var(--green);
         }
 
+        /* ===== HAMBURGER MENU STYLES ===== */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--black);
+            padding: 0.5rem;
+            z-index: 101;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1.5rem;
+                top: 0.8rem;
+            }
+            
+            nav {
+                position: relative;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 0.5rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         /* ===== HERO SECTION ===== */
         .hero {
             background: linear-gradient(135deg, rgba(30, 30, 30, 0.85), rgba(42, 157, 143, 0.85));
@@ -1250,6 +1296,38 @@
             color: white;
         }
 
+        /* ===== CONCIERGE PROMO SECTION ===== */
+        .concierge-promo {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 30px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .concierge-promo h3 {
+            color: var(--gold);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.8rem;
+        }
+        
+        .concierge-promo p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .concierge-promo .btn-gold {
+            background: var(--gold);
+            color: var(--black);
+            margin-top: 0.5rem;
+        }
+        
+        .concierge-promo .btn-gold:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
             .hero-split {
@@ -1278,10 +1356,6 @@
             .header-content {
                 flex-direction: column;
                 text-align: center;
-            }
-            
-            .nav-links {
-                gap: 1rem;
             }
 
             .whatsapp-float {
@@ -1344,38 +1418,6 @@
                 font-size: 2rem;
             }
         }
-        
-        /* ===== CONCIERGE PROMO SECTION ===== */
-        .concierge-promo {
-            background: linear-gradient(135deg, var(--green), #1f7a6e);
-            border-radius: 30px;
-            padding: 2.5rem;
-            margin: 3rem 0;
-            text-align: center;
-            color: white;
-        }
-        
-        .concierge-promo h3 {
-            color: var(--gold);
-            margin: 0 0 0.5rem 0;
-            font-size: 1.8rem;
-        }
-        
-        .concierge-promo p {
-            margin: 0.5rem 0;
-            font-size: 1.1rem;
-        }
-        
-        .concierge-promo .btn-gold {
-            background: var(--gold);
-            color: var(--black);
-            margin-top: 0.5rem;
-        }
-        
-        .concierge-promo .btn-gold:hover {
-            background: white;
-            transform: translateY(-3px);
-        }
     </style>
 </head>
 <body>
@@ -1409,16 +1451,17 @@
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Navigation with Hamburger Menu -->
     <nav>
-        <div class="container">
-            <div class="nav-links">
+        <div class="container" style="position: relative;">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div class="nav-links" id="navLinks">
                 <a href="index.html" class="active">Home</a>
                 <a href="about.html">About</a>
                 <a href="languages.html">Languages</a>
                 <a href="kids-teens.html">Kids & Teens</a>
                 <a href="resources.html">Resources</a>
-                <a href="concierge.html">🤝 Sankofa Concierge</a>
+                <a href="concierge.html">Concierge</a>
                 <a href="contact.html">Contact</a>
                 <a href="blog.html">Blog</a>
             </div>
@@ -1483,7 +1526,7 @@
             <p style="margin-top: 0.8rem; color: var(--gray); font-size: 0.9rem;">Choose your language and package — we'll contact you within 24 hours</p>
         </div>
 
-        <!-- ===== NEW CONCIERGE PROMO SECTION ===== -->
+        <!-- ===== CONCIERGE PROMO SECTION ===== -->
         <div class="concierge-promo">
             <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;">
                 <span style="font-size: 3rem;">🤝</span>
@@ -1639,7 +1682,7 @@
             </div>
         </div>
 
-        <!-- ===== NEW PRICING OVERVIEW SECTION ===== -->
+        <!-- ===== PRICING OVERVIEW SECTION ===== -->
         <div class="pricing-overview">
             <div style="text-align: center; margin-bottom: 1rem;">
                 <span style="background: var(--green); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.9rem; display: inline-block; margin-bottom: 1rem;">💰 Transparent Pricing</span>
@@ -1648,7 +1691,6 @@
             </div>
             
             <div class="pricing-grid">
-                <!-- Kids Package -->
                 <div class="pricing-card">
                     <div class="pricing-icon">🧒</div>
                     <h3>Kids (5-12)</h3>
@@ -1663,7 +1705,6 @@
                     <a href="kids-teens.html" class="btn btn-outline btn-small" style="margin-top: 0.5rem; display: inline-block;">Learn More →</a>
                 </div>
                 
-                <!-- Most Popular - Private 60min 2x/week -->
                 <div class="pricing-card popular">
                     <div class="pricing-icon">⭐</div>
                     <h3>Most Popular</h3>
@@ -1678,7 +1719,6 @@
                     <a href="languages.html#twi" class="btn btn-outline btn-small" style="margin-top: 0.5rem; display: inline-block; border-color: white; color: white;">Learn More →</a>
                 </div>
                 
-                <!-- Group Packages -->
                 <div class="pricing-card">
                     <div class="pricing-icon">👥</div>
                     <h3>Group Classes</h3>
@@ -1895,7 +1935,7 @@
                     <a href="kids-teens.html">Teens (13-17)</a>
                     <a href="languages.html">Family Packages</a>
                     <a href="contact.html">Scholarship Program</a>
-                    <a href="concierge.html">🤝 Sankofa Concierge</a>
+                    <a href="concierge.html">Sankofa Concierge</a>
                 </div>
                 
                 <div class="footer-section">
@@ -1944,6 +1984,23 @@
     <!-- Event Tracking for Google Analytics (unchanged) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('show');
+                });
+                
+                // Close menu when clicking a link
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('show');
+                    });
+                });
+            }
+            
             // Modal functionality
             const modal = document.getElementById('enrollmentModal');
             const openBtns = document.querySelectorAll('.open-enrollment-modal');
@@ -2033,8 +2090,8 @@
             });
             
             // Navigation Clicks
-            const navLinks = document.querySelectorAll('.nav-links a, .btn:not(.open-enrollment-modal)');
-            navLinks.forEach(link => {
+            const navLinkElements = document.querySelectorAll('.nav-links a, .btn:not(.open-enrollment-modal)');
+            navLinkElements.forEach(link => {
                 link.addEventListener('click', function() {
                     const linkText = this.innerText.trim() || 'nav_link';
                     if (typeof gtag === 'function') {
