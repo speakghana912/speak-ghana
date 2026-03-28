@@ -140,7 +140,7 @@
         .vocab-list-small { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; justify-content: center; }
         .vocab-pill { background: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; }
         
-        /* ===== QUIZ POPUP STYLES (just for container, no JS) ===== */
+        /* ===== QUIZ POPUP STYLES ===== */
         .quiz-launch {
             text-align: center;
             margin: 3rem 0;
@@ -388,6 +388,52 @@
             margin-top: 0.5rem;
         }
         
+        /* Class Recordings Section */
+        .recordings-section {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+        .recording-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+        .recording-card:hover {
+            transform: translateY(-5px);
+        }
+        .recording-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--green);
+            margin-bottom: 0.5rem;
+        }
+        .recording-meta {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            margin: 1rem 0;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+        
         @media (max-width: 768px) { 
             .classes-grid, .class-wheels-grid, .materials-grid, .blog-post-grid, .social-grid, .media-grid, .faq-grid, .footer-grid, .tips-grid { grid-template-columns: 1fr; } 
             .wheel-canvas { width: 240px; height: 240px; }
@@ -396,6 +442,7 @@
             .newsletter-btn { width: 100%; }
             .quiz-popup-content { padding: 1.5rem; margin: 1rem; }
             .quiz-nav-btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
+            .recordings-section { padding: 1.5rem; }
         }
         audio { width: 100%; margin: 0.5rem 0; border-radius: 30px; }
     </style>
@@ -462,9 +509,31 @@
             <p class="small-note">No spam. Unsubscribe anytime. We'll also send you Twi tips!</p>
         </div>
 
+        <!-- CLASS RECORDINGS SECTION (NEW) -->
+        <div class="recordings-section">
+            <h2 class="center">📹 Class Recordings</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Missed a class? Catch up anytime! 🎬</p>
+            
+            <div class="recording-card">
+                <div class="recording-title">🔤 Beginner Twi: Alphabet, Words & Sentences</div>
+                <div class="recording-meta">📅 March 22, 2026 | 👩🏾‍🏫 Teacher: Charlotte | 👩🏾‍🎓 Students: Adelaide & Adelina</div>
+                <div class="video-wrapper">
+                    <iframe src="https://zoom.us/clips/embed/95lyyM9MSgSenyYQIGX8nA" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <p><strong>📘 In this class:</strong> Learn the Twi alphabet (22 letters including Ɛ and Ɔ), build basic words, and form simple sentences. Perfect for absolute beginners!</p>
+                    <p style="margin-top: 0.5rem;"><strong>📝 Free resources:</strong> <a href="#" style="color: var(--green);">Alphabet Guide</a> • <a href="#" style="color: var(--green);">100 Words List</a></p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 1rem;">
+                <p style="color: var(--gray);">🔒 More class recordings added weekly — check back soon!</p>
+            </div>
+        </div>
+
         <div class="vocab-week-section"><div class="vocab-week-title"><h2>🎡 Weekly Vocabulary Review</h2><p>Spin the wheel and test yourself!</p></div><div class="class-wheels-grid" id="vocabWheelsContainer"></div></div>
 
-        <!-- QUIZ LAUNCH BUTTON - Opens popup with YOUR alphabets-quiz.js -->
+        <!-- QUIZ LAUNCH BUTTON -->
         <div class="quiz-launch">
             <div class="quiz-reminder-note">
                 <p>📘 <span style="font-weight: 700; color: var(--green);">Based on what we studied on Alphabets</span> — it is necessary to take this quiz to refresh our brain and keep us prepared for our next class.</p>
@@ -476,7 +545,7 @@
             <p style="margin-top: 1rem; color: var(--gray);">3 sets • 30 questions • Test your knowledge from our free classes!</p>
         </div>
 
-        <!-- QUIZ POPUP MODAL - This is where YOUR quiz from alphabets-quiz.js will load -->
+        <!-- QUIZ POPUP MODAL -->
         <div id="quiz-popup" class="quiz-popup">
             <div class="quiz-popup-content">
                 <button onclick="closeQuizPopup()" class="close-popup">×</button>
@@ -493,10 +562,8 @@
                     <h3 id="current-quiz-title" style="color: var(--green);">Set 1: Basics</h3>
                 </div>
 
-                <!-- Quiz container - alphabets-quiz.js will render questions here -->
                 <div id="quiz-container" style="background: var(--cream); border-radius: 20px; padding: 2rem; max-height: 500px; overflow-y: auto;"></div>
 
-                <!-- Email capture form (controlled by alphabets-quiz.js) -->
                 <div id="email-form-container" style="display: none; margin-top: 2rem;">
                     <div style="background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 20px; padding: 2rem; text-align: center; color: white;">
                         <h3 style="color: white; margin-bottom: 1rem;">📧 Get Your Results + Free Guides!</h3>
@@ -513,7 +580,6 @@
                     </div>
                 </div>
 
-                <!-- Results area (controlled by alphabets-quiz.js) -->
                 <div id="results-area" style="text-align: center; margin-top: 2rem; display: none;">
                     <div style="background: var(--green); color: white; padding: 2rem; border-radius: 20px;">
                         <h3 style="color: white; margin-bottom: 1rem;" id="results-title">Your Score</h3>
@@ -523,7 +589,6 @@
                     </div>
                 </div>
 
-                <!-- Progress bar -->
                 <div style="margin-top: 2rem; background: var(--cream); border-radius: 50px; height: 10px; overflow: hidden;">
                     <div id="progress-bar" style="width: 0%; height: 100%; background: var(--green); transition: width 0.3s;"></div>
                 </div>
@@ -608,7 +673,7 @@
             if (typeof gtag === 'function') gtag('event', 'lead_magnet_download', { 'event_category': 'engagement', 'event_label': 'ebook_phrases' });
         });
         
-        // Quiz Popup Functions - These just open/close the popup. The actual quiz logic is in alphabets-quiz.js
+        // Quiz Popup Functions
         function openQuizPopup() {
             document.getElementById('quiz-popup').style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -653,7 +718,7 @@
         window.spinWheel=spinWheel; window.checkAnswer=checkAnswer; window.nextWord=nextWord; window.resetWheel=resetWheel;
     </script>
 
-    <!-- THIS IS YOUR QUIZ - alphabets-quiz.js (the real one) -->
+    <!-- YOUR QUIZ - alphabets-quiz.js -->
     <script src="alphabets-quiz.js"></script>
 </body>
 </html>
