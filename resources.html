@@ -139,14 +139,92 @@
         .score-small { background: var(--green); color: white; padding: 0.3rem 1rem; border-radius: 50px; display: inline-block; }
         .vocab-list-small { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; justify-content: center; }
         .vocab-pill { background: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; }
-        .quiz-launch { text-align: center; margin: 3rem 0; }
-        .quiz-reminder-note { background: var(--cream); border-left: 6px solid var(--gold); padding: 1.5rem; border-radius: 20px; max-width: 800px; margin: 0 auto 2rem; }
-        .quiz-launch-btn { font-size: 1.3rem; padding: 1.2rem 3rem; background: linear-gradient(135deg, var(--green), #1f7a6e); color: white; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-        .quiz-popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; overflow-y: auto; padding: 2rem; }
-        .quiz-popup-content { max-width: 1000px; margin: 2rem auto; background: white; border-radius: 30px; padding: 2rem; position: relative; }
-        .close-popup { position: absolute; top: 20px; right: 20px; background: var(--red); color: white; width: 40px; height: 40px; border-radius: 50%; border: none; font-size: 1.5rem; cursor: pointer; }
-        .quiz-nav-btn { padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; border: none; }
+        
+        /* ===== REAL TWI ALPHABET QUIZ SECTION ===== */
+        .quiz-container {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .question-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s;
+        }
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .option-btn {
+            background: white;
+            border: 2px solid var(--cream);
+            border-radius: 50px;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            font-family: inherit;
+        }
+        .option-btn:hover {
+            border-color: var(--green);
+            background: var(--green);
+            color: white;
+            transform: translateX(5px);
+        }
+        .option-btn.correct-highlight {
+            background: #2ecc71;
+            border-color: #2ecc71;
+            color: white;
+        }
+        .option-btn.wrong-highlight {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            color: white;
+        }
+        .quiz-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .score-display {
+            background: var(--green);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        .quiz-footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--cream);
+        }
+        @media (max-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         .materials-section { background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 30px; padding: 4rem; color: white; margin: 4rem 0; }
         .materials-section h2 { color: white; }
         .materials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 3rem 0; }
@@ -252,15 +330,6 @@
             color: white;
         }
         
-        @media (max-width: 768px) { 
-            .classes-grid, .class-wheels-grid, .materials-grid, .blog-post-grid, .social-grid, .media-grid, .faq-grid, .footer-grid, .tips-grid { grid-template-columns: 1fr; } 
-            .wheel-canvas { width: 240px; height: 240px; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .newsletter-form { flex-direction: column; }
-            .newsletter-btn { width: 100%; }
-        }
-        audio { width: 100%; margin: 0.5rem 0; border-radius: 30px; }
-        
         /* New sections styling */
         .free-trial-banner {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
@@ -329,6 +398,15 @@
             color: var(--gray);
             margin-top: 0.5rem;
         }
+        
+        @media (max-width: 768px) { 
+            .classes-grid, .class-wheels-grid, .materials-grid, .blog-post-grid, .social-grid, .media-grid, .faq-grid, .footer-grid, .tips-grid { grid-template-columns: 1fr; } 
+            .wheel-canvas { width: 240px; height: 240px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .newsletter-form { flex-direction: column; }
+            .newsletter-btn { width: 100%; }
+        }
+        audio { width: 100%; margin: 0.5rem 0; border-radius: 30px; }
     </style>
 </head>
 <body>
@@ -356,7 +434,7 @@
     <div class="container">
         <a href="contact.html" class="scholarship-blink"><h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3><p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p><p>📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p></a>
 
-        <!-- 🔥 #1 FREE TRIAL CLASS BANNER -->
+        <!-- 🔥 FREE TRIAL CLASS BANNER -->
         <div class="free-trial-banner">
             <span style="font-size: 3rem;">🎁</span>
             <h2 style="color: white; margin-bottom: 0.5rem;">Try Your First Twi Class FREE!</h2>
@@ -370,7 +448,7 @@
             <a href="blog-post-diaspora-story.html" class="blog-post-card"><div class="blog-post-image">🌍</div><div class="blog-post-content"><h3 class="blog-post-title">A Diaspora Story: Finding Home Through Language</h3><p>Reconnecting with Ghanaian roots through Twi.</p><span>Read More →</span></div></a>
         </div><div class="all-posts-btn"><a href="blog.html" class="btn btn-outline">View All Posts →</a></div></div>
 
-        <!-- UPDATED: Free Classes Section - ZOOM LINKS REMOVED, replaced with Request Access buttons -->
+        <!-- Free Classes Section - ZOOM LINKS REMOVED, replaced with Request Access buttons -->
         <div class="free-classes-section"><h2 class="center">🎓 Free Online Twi Classes</h2><div class="welcome-banner" style="background:var(--gold); padding:1rem; border-radius:50px; text-align:center;">🎉 Classes open to registered students! Request access below. 🇬🇭</div>
         <div class="classes-grid">
             <div class="class-card"><h3>Group A</h3><p><strong>Sunday 5-6pm GMT</strong></p><p>Beginner-friendly • Greetings & introductions</p><button class="request-btn open-enrollment-modal" onclick="openEnrollmentModal()">📝 Request Access →</button></div>
@@ -380,7 +458,7 @@
         </div>
         <div class="tips-section"><h3>📝 How to Join:</h3><div class="tips-grid"><div>1️⃣ Click "Request Access" above</div><div>2️⃣ Fill out the quick form</div><div>3️⃣ We'll email you the Zoom link</div><div>4️⃣ Join class and start speaking! 🗣️</div></div><div class="see-you" style="text-align:center; margin-top:1rem;">✨ See you in class! ✨</div></div></div>
 
-        <!-- #2 LEAD MAGNET (EMAIL CAPTURE) -->
+        <!-- LEAD MAGNET (Email Capture) -->
         <div class="lead-magnet">
             <span style="font-size: 3rem;">📚</span>
             <h3 style="color: var(--green);">Get Your FREE "Essential Twi Phrases for Diaspora" E-book</h3>
@@ -395,52 +473,61 @@
 
         <div class="vocab-week-section"><div class="vocab-week-title"><h2>🎡 Weekly Vocabulary Review</h2><p>Spin the wheel and test yourself!</p></div><div class="class-wheels-grid" id="vocabWheelsContainer"></div></div>
 
-        <div class="quiz-launch"><div class="quiz-reminder-note"><p>📘 <strong>Based on what we studied on Alphabets</strong> — take this quiz to refresh and prepare for next class.</p><p>30 questions covering everything we learned last weekend.</p></div><button onclick="openQuizPopup()" class="quiz-launch-btn">📝 Take the Twi Alphabet Quiz →</button><p style="margin-top:1rem;">3 sets • 30 questions • Test your knowledge!</p></div>
+        <!-- REAL TWI ALPHABET QUIZ (FULLY WORKING) -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <h2 class="center">📝 Twi Alphabet Quiz</h2>
+                <p>Test your knowledge of the Twi alphabet! Match each letter to its sound or name.</p>
+            </div>
+            <div id="quiz-questions-container"></div>
+            <div class="quiz-controls">
+                <button id="prev-btn" class="btn btn-outline" style="display: none;">← Previous</button>
+                <div class="score-display" id="score-display">Score: 0/26</div>
+                <button id="next-btn" class="btn btn-primary">Next →</button>
+            </div>
+            <div class="quiz-footer">
+                <button id="submit-quiz-btn" class="btn btn-gold" style="display: none;">Submit Quiz →</button>
+                <div id="quiz-results" style="margin-top: 1rem; display: none;"></div>
+            </div>
+        </div>
 
-        <div id="quiz-popup" class="quiz-popup"><div class="quiz-popup-content"><button onclick="closeQuizPopup()" class="close-popup">×</button><h2 class="center">📝 Interactive Twi Alphabet Quiz</h2><div style="display:flex; justify-content:center; gap:1rem; margin:1rem 0; flex-wrap:wrap;"><button onclick="loadSet(1)" class="quiz-nav-btn" id="set1-btn" style="background:var(--green); color:white;">Set 1: Basics</button><button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn">Set 2: Word Pairs</button><button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn">Set 3: Applied</button></div><div id="quiz-container" style="background:var(--cream); border-radius:20px; padding:2rem; max-height:400px; overflow-y:auto;"></div><div id="email-form-container" style="display:none; margin-top:2rem;"></div><div id="results-area" style="display:none; text-align:center;"></div><div style="margin-top:1rem; background:#eee; border-radius:50px; height:10px;"><div id="progress-bar" style="width:0%; height:100%; background:var(--green); border-radius:50px;"></div></div></div></div>
-
-        <!-- FREE MATERIALS SECTION WITH 5 GAMES -->
+        <!-- FREE MATERIALS SECTION -->
         <div class="materials-section">
             <h2 class="center">📚 Free Learning Materials</h2>
             
-            <!-- FEATURED INTERACTIVE GAMES SECTION - WITH 5 GAMES -->
+            <!-- FEATURED INTERACTIVE GAMES SECTION -->
             <div style="background: rgba(255,255,255,0.2); border-radius: 25px; padding: 2rem; margin-bottom: 2.5rem;">
                 <h3 style="color: var(--gold); text-align: center; margin: 0 0 1.5rem 0; font-size: 1.8rem;">🎮 Interactive Learning Games</h3>
                 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;">
-                    <!-- Alphabet Sound Game -->
                     <div class="material-card" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);">
                         <div class="material-icon">🎵</div>
                         <h3>Alphabet Sound Game</h3>
                         <p>Listen to the sound and match it to the correct letter — test your ear!</p>
                         <a href="alphabet-sound-game.html" class="btn btn-gold" style="margin-top: 0.5rem; display: inline-block;">🎮 Play Game →</a>
                     </div>
-                    <!-- Digraph Sound Game -->
-                    <div class="material-card" style="background: rgba(255,255,255,0.25); border: 3px solid var(--gold); box-shadow: 0 8px 20px rgba(0,0,0,0.2); position: relative;">
-                        <div style="position: absolute; top: -15px; right: -10px; background: var(--red); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: bold;">🔥 NEW</div>
+                    <div class="material-card" style="background: rgba(255,255,255,0.25); border: 3px solid var(--gold); position: relative;">
+                        <div style="position: absolute; top: -15px; right: -10px; background: var(--red); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem;">🔥 NEW</div>
                         <div class="material-icon">🔤</div>
                         <h3>Digraph Sound Game</h3>
                         <p>Practice common Twi digraphs: dw, gy, hy, kw, ky, ny, tw, and more!</p>
                         <a href="digraph-sound-game.html" class="btn btn-gold" style="margin-top: 0.5rem; display: inline-block;">🎮 Play Game →</a>
                     </div>
-                    <!-- Minimal Pair Challenge -->
                     <div class="material-card" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); position: relative;">
-                        <div style="position: absolute; top: -15px; left: -10px; background: var(--green); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: bold;">🎧 EAR TRAINING</div>
+                        <div style="position: absolute; top: -15px; left: -10px; background: var(--green); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem;">🎧 EAR TRAINING</div>
                         <div class="material-icon">🎧</div>
                         <h3>Minimal Pair Challenge</h3>
                         <p>Test your ear! Can you tell the difference between gy/ky, hy/hw, ny/nw, and tw/dw?</p>
                         <a href="minimal-pair-challenge.html" class="btn btn-gold" style="margin-top: 0.5rem; display: inline-block;">🎧 Play Game →</a>
                     </div>
-                    <!-- Vocabulary Quiz -->
                     <div class="material-card" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);">
-                        <div style="position: absolute; top: -15px; right: -10px; background: var(--green); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: bold;">📸 NEW</div>
+                        <div style="position: absolute; top: -15px; right: -10px; background: var(--green); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem;">📸 NEW</div>
                         <div class="material-icon">📸</div>
                         <h3>Vocabulary Quiz</h3>
-                        <p>Look at the picture, choose the correct Twi word. Learn 20+ essential words from our lessons!</p>
+                        <p>Look at the picture, choose the correct Twi word. Learn 20+ essential words!</p>
                         <a href="vocabulary-quiz.html" class="btn btn-gold" style="margin-top: 0.5rem; display: inline-block;">📸 Play Quiz →</a>
                     </div>
-                    <!-- Vowel Sound Match -->
                     <div class="material-card" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);">
-                        <div style="position: absolute; top: -15px; left: -10px; background: var(--red); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: bold;">🔊 NEW</div>
+                        <div style="position: absolute; top: -15px; left: -10px; background: var(--red); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem;">🔊 NEW</div>
                         <div class="material-icon">🔊</div>
                         <h3>Vowel Sound Match</h3>
                         <p>Listen to the sound, match it to the vowel symbol. Learn all 10 Twi vowel sounds!</p>
@@ -449,48 +536,30 @@
                 </div>
             </div>
             
-            <!-- PDF & AUDIO RESOURCES GRID - UNCHANGED -->
+            <!-- PDF & AUDIO RESOURCES GRID -->
             <div class="materials-grid">
-                <div class="material-card"><div class="material-icon">📄</div><h3>Greetings Cheat Sheet</h3><p>Essential Twi greetings and responses</p><a href="/pdfs/greetings-cheatsheet.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': 'greetings_cheatsheet'});">Download PDF</a></div>
-                <div class="material-card"><div class="material-icon">🔤</div><h3>Alphabet & Pronunciation</h3><p>Learn the Twi alphabet with audio guide</p><a href="/pdfs/alphabet-pronunciation.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': 'alphabet_pronunciation'});">Download PDF</a></div>
-                <div class="material-card"><div class="material-icon">🗣️</div><h3>100 Common Words</h3><p>Most frequently used Twi words for beginners</p><a href="/pdfs/100-common-words.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': '100_common_words'});">Download PDF</a></div>
-                <div class="material-card"><div class="material-icon">👪</div><h3>Family Terms</h3><p>Complete guide to family vocabulary</p><a href="/pdfs/family-terms.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': 'family_terms'});">Download PDF</a></div>
-                <div class="material-card"><div class="material-icon">📅</div><h3>Days & Months</h3><p>Calendar vocabulary in Twi</p><a href="/pdfs/days-months.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': 'days_months'});">Download PDF</a></div>
-                <div class="material-card"><div class="material-icon">💬</div><h3>Common Phrases</h3><p>Everyday conversations made easy</p><a href="/pdfs/common-phrases.pdf" download class="download-btn" onclick="gtag('event', 'pdf_download', {'event_category': 'resource', 'event_label': 'common_phrases'});">Download PDF</a></div>
-                <div class="material-card"><div class="material-icon">🔊</div><h3>Complete Twi Alphabet (Audio)</h3><p>Listen to all 22 letters with correct pronunciation</p><audio controls><source src="audio/twi-alphabet/twi-alphabet-complete.m4a" type="audio/mp4"></audio><a href="audio/twi-alphabet/twi-alphabet-complete.m4a" download class="download-btn" onclick="gtag('event', 'audio_download', {'event_category': 'resource', 'event_label': 'complete_alphabet_audio'});">Download Audio</a></div>
-                <div class="material-card"><div class="material-icon">🔤</div><h3>Twi Digraphs (Audio)</h3><p>Learn common two-letter combinations: dw, gy, hy, kw, ky, ny, tw, and more</p><audio controls><source src="audio/twi-alphabet/twi-digraphs.m4a" type="audio/mp4"></audio><a href="audio/twi-alphabet/twi-digraphs.m4a" download class="download-btn" onclick="gtag('event', 'audio_download', {'event_category': 'resource', 'event_label': 'digraphs_audio'});">Download Audio</a></div>
+                <div class="material-card"><div class="material-icon">📄</div><h3>Greetings Cheat Sheet</h3><p>Essential Twi greetings and responses</p><a href="/pdfs/greetings-cheatsheet.pdf" download class="download-btn">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">🔤</div><h3>Alphabet & Pronunciation</h3><p>Learn the Twi alphabet with audio guide</p><a href="/pdfs/alphabet-pronunciation.pdf" download class="download-btn">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">🗣️</div><h3>100 Common Words</h3><p>Most frequently used Twi words for beginners</p><a href="/pdfs/100-common-words.pdf" download class="download-btn">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">👪</div><h3>Family Terms</h3><p>Complete guide to family vocabulary</p><a href="/pdfs/family-terms.pdf" download class="download-btn">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">📅</div><h3>Days & Months</h3><p>Calendar vocabulary in Twi</p><a href="/pdfs/days-months.pdf" download class="download-btn">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">💬</div><h3>Common Phrases</h3><p>Everyday conversations made easy</p><a href="/pdfs/common-phrases.pdf" download class="download-btn">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">🔊</div><h3>Complete Twi Alphabet (Audio)</h3><audio controls><source src="audio/twi-alphabet/twi-alphabet-complete.m4a" type="audio/mp4"></audio><a href="audio/twi-alphabet/twi-alphabet-complete.m4a" download class="download-btn">Download Audio</a></div>
+                <div class="material-card"><div class="material-icon">🔤</div><h3>Twi Digraphs (Audio)</h3><audio controls><source src="audio/twi-alphabet/twi-digraphs.m4a" type="audio/mp4"></audio><a href="audio/twi-alphabet/twi-digraphs.m4a" download class="download-btn">Download Audio</a></div>
             </div>
             <p style="text-align: center; margin-top: 2rem;">✨ More materials added regularly - check back often! ✨</p>
         </div>
 
-        <!-- #3 STUDENT SUCCESS STORIES (Social Proof) -->
+        <!-- STUDENT SUCCESS STORIES -->
         <div class="success-stories">
             <h2 class="center">Real Students, Real Results 🇬🇭</h2>
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"I couldn't speak to my grandmother in Twi. After 3 months with Speak Ghana, we had our first full conversation. Worth every cedi!"</p>
-                    <p class="testimonial-author">— Abena, London</p>
-                    <p class="testimonial-location">Student since 2025</p>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"My teenager was resistant at first. Now she actually looks forward to her Twi class every week. Game-changer for our family!"</p>
-                    <p class="testimonial-author">— Kwame, New York</p>
-                    <p class="testimonial-location">Parent of teen student</p>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"I've tried language apps before, but nothing compares to live classes with native speakers. My confidence has skyrocketed!"</p>
-                    <p class="testimonial-author">— Sarah, Manchester</p>
-                    <p class="testimonial-location">Student since 2024</p>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"The kids program is amazing! My 8-year-old now greets me in Twi every morning. So proud of her heritage."</p>
-                    <p class="testimonial-author">— Nana, Toronto</p>
-                    <p class="testimonial-location">Parent of K1 student</p>
-                </div>
+                <div class="testimonial-card"><p class="testimonial-text">"I couldn't speak to my grandmother in Twi. After 3 months, we had our first full conversation. Worth every cedi!"</p><p class="testimonial-author">— Abena, London</p><p class="testimonial-location">Student since 2025</p></div>
+                <div class="testimonial-card"><p class="testimonial-text">"My teenager was resistant at first. Now she actually looks forward to her Twi class every week!"</p><p class="testimonial-author">— Kwame, New York</p><p class="testimonial-location">Parent of teen student</p></div>
+                <div class="testimonial-card"><p class="testimonial-text">"I've tried language apps before, but nothing compares to live classes with native speakers. My confidence has skyrocketed!"</p><p class="testimonial-author">— Sarah, Manchester</p><p class="testimonial-location">Student since 2024</p></div>
+                <div class="testimonial-card"><p class="testimonial-text">"The kids program is amazing! My 8-year-old now greets me in Twi every morning. So proud of her heritage."</p><p class="testimonial-author">— Nana, Toronto</p><p class="testimonial-location">Parent of K1 student</p></div>
             </div>
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="languages.html" class="btn btn-primary">Join Our Success Stories →</a>
-            </div>
+            <div style="text-align: center; margin-top: 2rem;"><a href="languages.html" class="btn btn-primary">Join Our Success Stories →</a></div>
         </div>
 
         <div class="certificate-section"><h3>📜 6-Month Certificate of Achievement</h3><p>Complete 6 months of continuous learning and receive an official certificate signed by our founders.</p><a href="languages.html" class="btn btn-gold">Explore Our Programs →</a></div>
@@ -502,58 +571,16 @@
         <div class="faq-section"><h2 class="center">FAQ</h2><div class="faq-grid"><div class="faq-item"><h4>Speak One, Learn One Scholarship?</h4><p>Ghana Card holders get 25% off to learn another language.</p></div><div class="faq-item"><h4>Certificate of Achievement?</h4><p>Complete 6 months of learning for an official certificate.</p></div><div class="faq-item"><h4>Classes for kids?</h4><p>Yes! Specialized programs for ages 5-12 and teens.</p></div><div class="faq-item"><h4>Miss a class?</h4><p>Recordings available for group classes.</p></div></div></div>
     </div>
 
-    <!-- FOOTER - MATCHING INDEX PAGE -->
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Speak Ghana</h4>
-                    <p>📍 KNUST Campus, Kumasi</p>
-                    <p>🏗️ Accra Office (Opening Soon)</p>
-                    <p>📞 +233 55 226 3323</p>
-                    <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
-                    <p>💬 <a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Programs</h4>
-                    <a href="languages.html">Adult Classes</a>
-                    <a href="kids-teens.html">Kids (5-12)</a>
-                    <a href="kids-teens.html">Teens (13-17)</a>
-                    <a href="languages.html">Family Packages</a>
-                    <a href="contact.html">Scholarship Program</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <a href="about.html">About Us</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="resources.html">Free Resources</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
-                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
-                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
-                    <a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a>
-                    <div class="newsletter">
-                        <h4>Newsletter</h4>
-                        <form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
-                            <div class="newsletter-form">
-                                <input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required>
-                                <button type="submit" class="newsletter-btn">Join</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <div class="footer-section"><h4>Speak Ghana</h4><p>📍 KNUST Campus, Kumasi</p><p>🏗️ Accra Office (Opening Soon)</p><p>📞 +233 55 226 3323</p><p>📧 info@speakghana.org</p><p>💬 WhatsApp: +233 55 226 3323</p></div>
+                <div class="footer-section"><h4>Programs</h4><a href="languages.html">Adult Classes</a><a href="kids-teens.html">Kids (5-12)</a><a href="kids-teens.html">Teens (13-17)</a><a href="languages.html">Family Packages</a><a href="contact.html">Scholarship Program</a></div>
+                <div class="footer-section"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a><a href="resources.html">Free Resources</a></div>
+                <div class="footer-section"><h4>Connect</h4><a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a><a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a><a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a><a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a><div class="newsletter"><h4>Newsletter</h4><form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank"><div class="newsletter-form"><input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required><button type="submit" class="newsletter-btn">Join</button></div></form></div></div>
             </div>
-            
-            <div class="copyright">
-                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
-                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
-            </div>
+            <div class="copyright"><p>© 2026 Speak Ghana Language School. All rights reserved.</p><div class="motto-footer">Reconnect. Speak. Thrive.</div></div>
         </div>
     </footer>
 
@@ -561,46 +588,142 @@
         // Hamburger Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
-        
         if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('show');
-            });
-            
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('show');
-                });
-            });
+            menuToggle.addEventListener('click', function() { navLinks.classList.toggle('show'); });
+            navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('show'); }); });
         }
         
-        // Function to open enrollment modal from any page
         window.openEnrollmentModal = function() {
             const modal = document.getElementById('enrollmentModal');
-            if (modal) {
-                modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                if (typeof gtag === 'function') {
-                    gtag('event', 'enrollment_modal_open', { 'event_category': 'engagement', 'event_label': 'modal_opened' });
-                }
-            } else {
-                window.location.href = 'contact.html';
-            }
+            if (modal) { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; if (typeof gtag === 'function') gtag('event', 'enrollment_modal_open', { 'event_category': 'engagement' }); }
+            else { window.location.href = 'contact.html'; }
         };
         
-        // Track lead magnet form submission
-        const leadMagnetForm = document.getElementById('lead-magnet-form');
-        if (leadMagnetForm) {
-            leadMagnetForm.addEventListener('submit', function() {
-                if (typeof gtag === 'function') {
-                    gtag('event', 'lead_magnet_download', {
-                        'event_category': 'engagement',
-                        'event_label': 'ebook_phrases'
-                    });
-                }
+        document.getElementById('lead-magnet-form')?.addEventListener('submit', function() { if (typeof gtag === 'function') gtag('event', 'lead_magnet_download', { 'event_category': 'engagement', 'event_label': 'ebook_phrases' }); });
+        
+        // ===== REAL TWI ALPHABET QUIZ =====
+        const alphabetQuestions = [
+            { letter: "A", sound: "ah (as in father)", options: ["ah", "ay", "ee", "oh"] },
+            { letter: "B", sound: "bee (like English B)", options: ["bee", "buh", "bay", "bih"] },
+            { letter: "D", sound: "dee (like English D)", options: ["dee", "duh", "day", "dih"] },
+            { letter: "E", sound: "ay (as in say)", options: ["ay", "eh", "ee", "ah"] },
+            { letter: "Ɛ", sound: "eh (as in bed)", options: ["eh", "ay", "ee", "ah"] },
+            { letter: "F", sound: "fee (like English F)", options: ["fee", "fuh", "fay", "fih"] },
+            { letter: "G", sound: "gee (like English G)", options: ["gee", "guh", "gay", "gih"] },
+            { letter: "H", sound: "hee (like English H)", options: ["hee", "huh", "hay", "hih"] },
+            { letter: "I", sound: "ee (as in see)", options: ["ee", "ih", "ay", "ah"] },
+            { letter: "K", sound: "kay (like English K)", options: ["kay", "kuh", "kee", "kih"] },
+            { letter: "L", sound: "lee (like English L)", options: ["lee", "luh", "lay", "lih"] },
+            { letter: "M", sound: "mee (like English M)", options: ["mee", "muh", "may", "mih"] },
+            { letter: "N", sound: "nee (like English N)", options: ["nee", "nuh", "nay", "nih"] },
+            { letter: "O", sound: "oh (as in go)", options: ["oh", "aw", "oo", "ah"] },
+            { letter: "Ɔ", sound: "aw (as in law)", options: ["aw", "oh", "oo", "ah"] },
+            { letter: "P", sound: "pee (like English P)", options: ["pee", "puh", "pay", "pih"] },
+            { letter: "R", sound: "ree (like English R)", options: ["ree", "ruh", "ray", "rih"] },
+            { letter: "S", sound: "see (like English S)", options: ["see", "suh", "say", "sih"] },
+            { letter: "T", sound: "tee (like English T)", options: ["tee", "tuh", "tay", "tih"] },
+            { letter: "U", sound: "oo (as in moon)", options: ["oo", "uh", "ee", "oh"] },
+            { letter: "W", sound: "wee (like English W)", options: ["wee", "wuh", "way", "wih"] },
+            { letter: "Y", sound: "yee (like English Y)", options: ["yee", "yuh", "yay", "yih"] }
+        ];
+        
+        let currentIndex = 0;
+        let userAnswers = new Array(alphabetQuestions.length).fill(null);
+        
+        function renderCurrentQuestion() {
+            const q = alphabetQuestions[currentIndex];
+            const container = document.getElementById('quiz-questions-container');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-quiz-btn');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-text">📖 What is the sound of the Twi letter <strong style="color: var(--green); font-size: 2rem;">${q.letter}</strong>?</div>
+                    <div class="options-grid" id="options-grid-${currentIndex}">
+                        ${q.options.map((opt, optIdx) => `
+                            <button class="option-btn" data-opt-index="${optIdx}" data-value="${opt}" ${userAnswers[currentIndex] === opt ? 'style="background: var(--green); color: white; border-color: var(--green);"' : ''}>
+                                ${opt.toUpperCase()}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const selectedValue = btn.dataset.value;
+                    userAnswers[currentIndex] = selectedValue;
+                    renderCurrentQuestion();
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'quiz_answer', { 'event_category': 'engagement', 'event_label': `Q${currentIndex + 1}` });
+                    }
+                });
             });
+            
+            prevBtn.style.display = currentIndex > 0 ? 'inline-block' : 'none';
+            if (currentIndex === alphabetQuestions.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-block';
+            } else {
+                nextBtn.style.display = 'inline-block';
+                submitBtn.style.display = 'none';
+            }
+            
+            updateScoreDisplay();
         }
         
+        function updateScoreDisplay() {
+            const answered = userAnswers.filter(a => a !== null).length;
+            document.getElementById('score-display').innerHTML = `Score: ${answered}/${alphabetQuestions.length}`;
+        }
+        
+        function calculateScore() {
+            let correct = 0;
+            for (let i = 0; i < alphabetQuestions.length; i++) {
+                if (userAnswers[i] === alphabetQuestions[i].sound) correct++;
+            }
+            return correct;
+        }
+        
+        function showResults() {
+            const correct = calculateScore();
+            const total = alphabetQuestions.length;
+            const percentage = Math.round((correct / total) * 100);
+            const resultsDiv = document.getElementById('quiz-results');
+            resultsDiv.style.display = 'block';
+            let message = '';
+            if (percentage >= 80) message = '🎉 Excellent! You know the Twi alphabet well! Ready for the next level?';
+            else if (percentage >= 50) message = '📚 Good effort! Keep practicing the sounds.';
+            else message = '💪 Keep going! Review the audio guides and try again.';
+            resultsDiv.innerHTML = `
+                <div style="background: var(--green); color: white; padding: 2rem; border-radius: 20px;">
+                    <h3>Your Score: ${correct}/${total} (${percentage}%)</h3>
+                    <p style="margin: 1rem 0;">${message}</p>
+                    <button onclick="location.reload()" class="btn btn-gold" style="background: var(--gold); color: var(--black);">🔄 Take Quiz Again</button>
+                    <a href="languages.html" class="btn btn-primary" style="margin-left: 1rem;">🎓 Start Learning →</a>
+                </div>
+            `;
+            document.getElementById('quiz-questions-container').style.display = 'none';
+            document.getElementById('prev-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
+            document.getElementById('submit-quiz-btn').style.display = 'none';
+            if (typeof gtag === 'function') {
+                gtag('event', 'quiz_completed', { 'event_category': 'engagement', 'event_label': 'alphabet_quiz', 'value': correct });
+            }
+        }
+        
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            if (currentIndex > 0) { currentIndex--; renderCurrentQuestion(); }
+        });
+        document.getElementById('next-btn').addEventListener('click', () => {
+            if (currentIndex < alphabetQuestions.length - 1) { currentIndex++; renderCurrentQuestion(); }
+        });
+        document.getElementById('submit-quiz-btn').addEventListener('click', showResults);
+        
+        renderCurrentQuestion();
+        
+        // Vocabulary Wheels
         const classVocab = {
             groupA: { name: "Group A", time: "Sunday 5-6pm", words: [{twi:"edinnsiananmu",english:"pronoun"},{twi:"adeyɔ",english:"verb"},{twi:"edin asɛm",english:"noun"},{twi:"ɔyɛfoɔ",english:"subject"},{twi:"ɔkasamu",english:"sentence"},{twi:"Efie Dwumadie",english:"homework"},{twi:"yɛn",english:"we/us"},{twi:"yɛ suaa",english:"we learned"}] },
             groupB: { name: "Group B", time: "Sunday 7-8pm", words: [{twi:"ɔkasamu",english:"sentence"},{twi:"adeyɔ",english:"verb"},{twi:"edin asɛm",english:"noun"},{twi:"edinnsiananmu",english:"pronoun"},{twi:"ɔyɛfoɔ",english:"subject"},{twi:"nsiesie",english:"correction"},{twi:"wowɔ ha sei",english:"are you here?"},{twi:"aane, mewɔ ha sei",english:"yes, i'm here"}] },
@@ -617,30 +740,9 @@
         function updateScore(gId){ document.getElementById(`score-${gId}`).innerHTML=`Score: ${wheelStates[gId].score||0}`; }
         function createAllWheels(){ let container=document.getElementById('vocabWheelsContainer'); if(!container) return; container.innerHTML=''; for(let [gId,gData] of Object.entries(classVocab)){ wheelStates[gId]={currentRotation:0,isSpinning:false,score:0,selectedWord:null}; let card=document.createElement('div'); card.className='wheel-card'; card.innerHTML=`<div class="wheel-header"><h3>${gData.name}</h3><span>${gData.time}</span></div><div class="wheel-container"><div class="pointer-small"></div><canvas id="canvas-${gId}" width="280" height="280" class="wheel-canvas"></canvas></div><div class="wheel-controls"><button class="wheel-btn wheel-btn-spin" onclick="spinWheel('${gId}')">🎡 Spin</button><button class="wheel-btn wheel-btn-reset" onclick="resetWheel('${gId}')">🔄 Reset</button></div><div id="word-box-${gId}" class="current-word-box"><div id="current-word-${gId}" class="current-word">???</div><div id="question-${gId}">Spin to get a word!</div></div><div id="answer-area-${gId}" style="display:none;"><div class="answer-area"><input id="answer-input-${gId}" class="answer-input-small" placeholder="English meaning..."><button class="answer-btn-small" onclick="checkAnswer('${gId}')">Check</button></div></div><div id="feedback-${gId}" class="feedback-small"></div><div style="display:flex; justify-content:space-between;"><span id="score-${gId}" class="score-small">Score: 0</span><button id="next-btn-${gId}" class="next-btn-small" onclick="nextWord('${gId}')" style="display:none;">Next Word</button></div><div class="vocab-list-small">${gData.words.map(w=>`<div class="vocab-pill">${w.twi} - ${w.english}</div>`).join('')}</div>`; container.appendChild(card); setTimeout(()=>drawWheel(gId,gData.words),50); } }
         document.addEventListener('DOMContentLoaded',createAllWheels);
-        function openQuizPopup(){ document.getElementById('quiz-popup').style.display='block'; document.body.style.overflow='hidden'; if(typeof loadSet==='function') loadSet(1); else loadSet(1); }
-        function closeQuizPopup(){ document.getElementById('quiz-popup').style.display='none'; document.body.style.overflow='auto'; }
-        const quizSets={1:[{q:"What is 'A' in Twi?",a:"A"},{q:"What is 'B'?",a:"B"},{q:"What is 'D'?",a:"D"},{q:"What is 'E'?",a:"E"},{q:"What is 'Ɛ'?",a:"Ɛ"},{q:"What is 'F'?",a:"F"},{q:"What is 'G'?",a:"G"},{q:"What is 'H'?",a:"H"},{q:"What is 'I'?",a:"I"},{q:"What is 'K'?",a:"K"}],2:[{q:"'DW' represents?",a:"dw"},{q:"'GY' represents?",a:"gy"},{q:"'KY' represents?",a:"ky"},{q:"'NY' represents?",a:"ny"},{q:"'TW' represents?",a:"tw"}],3:[{q:"'A' pronunciation?",a:"ah"},{q:"'Ɛ' pronunciation?",a:"eh"},{q:"'Ɔ' pronunciation?",a:"oh"},{q:"'GY' sound?",a:"j"},{q:"'KY' sound?",a:"ch"}]};
-        let currentSet=1,userAnswers={},totalQuestions=10;
-        function loadSet(set){ currentSet=set; userAnswers={}; let qs=quizSets[set]||quizSets[1]; totalQuestions=qs.length; document.getElementById('quiz-container').innerHTML=qs.map((q,i)=>`<div style="margin-bottom:1rem;"><p><strong>${i+1}. ${q.q}</strong></p><input type="text" id="ans-${i}" placeholder="Your answer" style="padding:0.5rem; width:100%; border-radius:50px; border:1px solid #ccc;"></div>`).join('')+'<button onclick="submitQuiz()" class="btn btn-primary" style="margin-top:1rem;">Submit Answers</button>'; document.getElementById('email-form-container').style.display='none'; document.getElementById('results-area').style.display='none'; document.getElementById('progress-bar').style.width='0%'; }
-        function submitQuiz(){ let qs=quizSets[currentSet]; let score=0; for(let i=0;i<qs.length;i++){ let user=document.getElementById(`ans-${i}`)?.value.trim().toLowerCase(); let correct=qs[i].a.toLowerCase(); if(user===correct) score++; } document.getElementById('email-form-container').style.display='block'; window.quizScore=score; window.quizTotal=qs.length; }
-        function submitEmail(){ let email=document.getElementById('quiz-email')?.value; if(!email){ alert('Please enter email'); return; } let score=window.quizScore||0, total=window.quizTotal||10; document.getElementById('email-form-container').style.display='none'; let resultsDiv=document.getElementById('results-area'); resultsDiv.style.display='block'; resultsDiv.innerHTML=`<div style="background:var(--green); color:white; padding:2rem; border-radius:20px;"><h3>Your Score: ${score}/${total}</h3><p>${score/total>=0.7?'Great job! Keep practicing!':'Keep learning! Review the alphabet.'}</p><button onclick="closeQuizPopup()" class="btn btn-gold">Close</button></div>`; gtag('event','quiz_completed',{score:score,total:total}); }
-        window.openQuizPopup=openQuizPopup; window.closeQuizPopup=closeQuizPopup; window.loadSet=loadSet; window.submitQuiz=submitQuiz; window.submitEmail=submitEmail; window.spinWheel=spinWheel; window.checkAnswer=checkAnswer; window.nextWord=nextWord; window.resetWheel=resetWheel;
-        
-        // Track newsletter signup from footer
-        document.addEventListener('DOMContentLoaded', function() {
-            const newsletterForm = document.getElementById('footer-newsletter-form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function() {
-                    gtag('event', 'newsletter_signup', {
-                        'event_category': 'engagement',
-                        'event_label': 'footer_newsletter'
-                    });
-                });
-            }
-        });
+        document.getElementById('footer-newsletter-form')?.addEventListener('submit', function() { if (typeof gtag === 'function') gtag('event', 'newsletter_signup', { 'event_category': 'engagement', 'event_label': 'footer_newsletter' }); });
+        window.spinWheel=spinWheel; window.checkAnswer=checkAnswer; window.nextWord=nextWord; window.resetWheel=resetWheel;
     </script>
-
-    <!-- ADD Tawk.to Script HERE -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
@@ -652,6 +754,5 @@
     s0.parentNode.insertBefore(s1,s0);
     })();
     </script>
-    <!-- End Tawk.to Script -->
 </body>
 </html>
