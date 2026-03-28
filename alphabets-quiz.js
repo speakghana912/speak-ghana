@@ -140,7 +140,7 @@
         .vocab-list-small { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; justify-content: center; }
         .vocab-pill { background: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; }
         
-        /* ===== QUIZ POPUP STYLES ===== */
+        /* ===== QUIZ POPUP STYLES (just for container, no JS) ===== */
         .quiz-launch {
             text-align: center;
             margin: 3rem 0;
@@ -464,7 +464,7 @@
 
         <div class="vocab-week-section"><div class="vocab-week-title"><h2>🎡 Weekly Vocabulary Review</h2><p>Spin the wheel and test yourself!</p></div><div class="class-wheels-grid" id="vocabWheelsContainer"></div></div>
 
-        <!-- QUIZ LAUNCH BUTTON - Uses alphabets-quiz.js -->
+        <!-- QUIZ LAUNCH BUTTON - Opens popup with YOUR alphabets-quiz.js -->
         <div class="quiz-launch">
             <div class="quiz-reminder-note">
                 <p>📘 <span style="font-weight: 700; color: var(--green);">Based on what we studied on Alphabets</span> — it is necessary to take this quiz to refresh our brain and keep us prepared for our next class.</p>
@@ -476,7 +476,7 @@
             <p style="margin-top: 1rem; color: var(--gray);">3 sets • 30 questions • Test your knowledge from our free classes!</p>
         </div>
 
-        <!-- QUIZ POPUP MODAL - Uses alphabets-quiz.js -->
+        <!-- QUIZ POPUP MODAL - This is where YOUR quiz from alphabets-quiz.js will load -->
         <div id="quiz-popup" class="quiz-popup">
             <div class="quiz-popup-content">
                 <button onclick="closeQuizPopup()" class="close-popup">×</button>
@@ -493,8 +493,10 @@
                     <h3 id="current-quiz-title" style="color: var(--green);">Set 1: Basics</h3>
                 </div>
 
+                <!-- Quiz container - alphabets-quiz.js will render questions here -->
                 <div id="quiz-container" style="background: var(--cream); border-radius: 20px; padding: 2rem; max-height: 500px; overflow-y: auto;"></div>
 
+                <!-- Email capture form (controlled by alphabets-quiz.js) -->
                 <div id="email-form-container" style="display: none; margin-top: 2rem;">
                     <div style="background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 20px; padding: 2rem; text-align: center; color: white;">
                         <h3 style="color: white; margin-bottom: 1rem;">📧 Get Your Results + Free Guides!</h3>
@@ -511,6 +513,7 @@
                     </div>
                 </div>
 
+                <!-- Results area (controlled by alphabets-quiz.js) -->
                 <div id="results-area" style="text-align: center; margin-top: 2rem; display: none;">
                     <div style="background: var(--green); color: white; padding: 2rem; border-radius: 20px;">
                         <h3 style="color: white; margin-bottom: 1rem;" id="results-title">Your Score</h3>
@@ -520,6 +523,7 @@
                     </div>
                 </div>
 
+                <!-- Progress bar -->
                 <div style="margin-top: 2rem; background: var(--cream); border-radius: 50px; height: 10px; overflow: hidden;">
                     <div id="progress-bar" style="width: 0%; height: 100%; background: var(--green); transition: width 0.3s;"></div>
                 </div>
@@ -534,11 +538,11 @@
             <div style="background: rgba(255,255,255,0.2); border-radius: 25px; padding: 2rem; margin-bottom: 2.5rem;">
                 <h3 style="color: var(--gold); text-align: center; margin: 0 0 1.5rem 0; font-size: 1.8rem;">🎮 Interactive Learning Games</h3>
                 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;">
-                    <div class="material-card"><div class="material-icon">🎵</div><h3>Alphabet Sound Game</h3><p>Listen and match!</p><a href="alphabet-sound-game.html" class="btn btn-gold">Play Game →</a></div>
-                    <div class="material-card"><div class="material-icon">🔤</div><h3>Digraph Sound Game</h3><p>Practice dw, gy, hy, kw, ky, ny, tw!</p><a href="digraph-sound-game.html" class="btn btn-gold">Play Game →</a></div>
-                    <div class="material-card"><div class="material-icon">🎧</div><h3>Minimal Pair Challenge</h3><p>Test your ear!</p><a href="minimal-pair-challenge.html" class="btn btn-gold">Play Game →</a></div>
-                    <div class="material-card"><div class="material-icon">📸</div><h3>Vocabulary Quiz</h3><p>Picture-based learning</p><a href="vocabulary-quiz.html" class="btn btn-gold">Play Quiz →</a></div>
-                    <div class="material-card"><div class="material-icon">🔊</div><h3>Vowel Sound Match</h3><p>Learn all 10 vowel sounds!</p><a href="vowel-sound-match.html" class="btn btn-gold">Play Game →</a></div>
+                    <div class="material-card"><div class="material-icon">🎵</div><h3>Alphabet Sound Game</h3><a href="alphabet-sound-game.html" class="btn btn-gold">Play Game →</a></div>
+                    <div class="material-card"><div class="material-icon">🔤</div><h3>Digraph Sound Game</h3><a href="digraph-sound-game.html" class="btn btn-gold">Play Game →</a></div>
+                    <div class="material-card"><div class="material-icon">🎧</div><h3>Minimal Pair Challenge</h3><a href="minimal-pair-challenge.html" class="btn btn-gold">Play Game →</a></div>
+                    <div class="material-card"><div class="material-icon">📸</div><h3>Vocabulary Quiz</h3><a href="vocabulary-quiz.html" class="btn btn-gold">Play Quiz →</a></div>
+                    <div class="material-card"><div class="material-icon">🔊</div><h3>Vowel Sound Match</h3><a href="vowel-sound-match.html" class="btn btn-gold">Play Game →</a></div>
                 </div>
             </div>
             
@@ -604,7 +608,7 @@
             if (typeof gtag === 'function') gtag('event', 'lead_magnet_download', { 'event_category': 'engagement', 'event_label': 'ebook_phrases' });
         });
         
-        // Quiz Popup Functions
+        // Quiz Popup Functions - These just open/close the popup. The actual quiz logic is in alphabets-quiz.js
         function openQuizPopup() {
             document.getElementById('quiz-popup').style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -649,7 +653,7 @@
         window.spinWheel=spinWheel; window.checkAnswer=checkAnswer; window.nextWord=nextWord; window.resetWheel=resetWheel;
     </script>
 
-    <!-- THIS IS THE REAL QUIZ - alphabets-quiz.js -->
+    <!-- THIS IS YOUR QUIZ - alphabets-quiz.js (the real one) -->
     <script src="alphabets-quiz.js"></script>
 </body>
 </html>
