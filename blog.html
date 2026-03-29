@@ -393,6 +393,18 @@
             color: white;
             font-size: 5rem;
             position: relative;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .featured-image .emoji-fallback {
+            font-size: 5rem;
         }
 
         .featured-tag {
@@ -404,6 +416,7 @@
             padding: 0.5rem 1.5rem;
             border-radius: 50px;
             font-weight: 600;
+            z-index: 2;
         }
 
         .featured-content {
@@ -456,6 +469,19 @@
             align-items: center;
             justify-content: center;
             color: white;
+            font-size: 3rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .blog-image .emoji-fallback {
             font-size: 3rem;
         }
 
@@ -621,6 +647,8 @@
 
         .popular-post:last-child {
             border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
         .popular-image {
@@ -633,11 +661,21 @@
             justify-content: center;
             color: white;
             font-size: 1.5rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .popular-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
         }
 
         .popular-content h4 {
             font-size: 1rem;
             margin-bottom: 0.3rem;
+            line-height: 1.3;
         }
 
         .popular-content a {
@@ -699,18 +737,29 @@
             border: 1px solid rgba(255,255,255,0.3);
             color: white;
             margin-bottom: 1rem;
+            width: 100%;
         }
 
         .newsletter-widget .search-input::placeholder {
             color: rgba(255,255,255,0.7);
         }
 
-        .newsletter-widget .search-btn {
+        .newsletter-widget .newsletter-submit-btn {
             background: var(--gold);
             color: var(--black);
             width: 100%;
             border-radius: 50px;
             padding: 1rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .newsletter-widget .newsletter-submit-btn:hover {
+            background: var(--red);
+            color: white;
         }
 
         /* ===== PAGINATION ===== */
@@ -757,7 +806,7 @@
             color: var(--gray);
         }
 
-        /* ===== FOOTER STYLES - MATCHING INDEX PAGE ===== */
+        /* ===== FOOTER STYLES ===== */
         footer {
             background: var(--black);
             color: white;
@@ -785,12 +834,18 @@
             margin-bottom: 1.5rem;
             font-size: 1.2rem;
         }
+        .footer-section p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
         .footer-section a {
             color: rgba(255,255,255,0.8);
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
             transition: all 0.3s;
+            font-size: 0.95rem;
         }
         .footer-section a:hover {
             color: var(--gold);
@@ -980,6 +1035,7 @@
                     <h3>Categories</h3>
                     <ul class="category-list">
                         <li><a href="#" data-category="all" class="category-filter active">All Posts <span class="category-count" id="all-count">0</span></a></li>
+                        <li><a href="#" data-category="Student Stories" class="category-filter">Student Stories <span class="category-count" id="student-stories-count">0</span></a></li>
                         <li><a href="#" data-category="Language Journey" class="category-filter">Language Journey <span class="category-count" id="language-journey-count">0</span></a></li>
                         <li><a href="#" data-category="Teaching Stories" class="category-filter">Teaching Stories <span class="category-count" id="teaching-stories-count">0</span></a></li>
                         <li><a href="#" data-category="Culture" class="category-filter">Culture <span class="category-count" id="culture-count">0</span></a></li>
@@ -1008,7 +1064,7 @@
                     <p>Get weekly Twi tips and cultural insights</p>
                     <form id="sidebar-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
                         <input type="email" name="fields[email]" class="search-input" placeholder="Your email" required>
-                        <button type="submit" class="search-btn">Subscribe</button>
+                        <button type="submit" class="newsletter-submit-btn">Subscribe</button>
                     </form>
                 </div>
             </div>
@@ -1040,6 +1096,7 @@
                 
                 <div class="footer-section">
                     <h4>Blog Categories</h4>
+                    <a href="#" data-category="Student Stories">Student Stories</a>
                     <a href="#" data-category="Language Journey">Language Journey</a>
                     <a href="#" data-category="Teaching Stories">Teaching Stories</a>
                     <a href="#" data-category="Culture">Culture</a>
@@ -1076,20 +1133,164 @@
 
     <!-- Blog Data and Script with Hamburger Menu -->
     <script>
-        // Blog posts data
+        // Blog posts data — newest first
         const blogPosts = [
-            { id: 1, title: "I Learned Russian From Scratch and Got My Master's Degree. You Can Learn Twi Too.", excerpt: "I moved to Russia without knowing a single word. Two years later, I walked across the stage to receive my Master's degree — in Russian. Here's how I did it.", date: "March 20, 2026", author: "Richard Asiamah", category: "Language Journey", image: "🎓", url: "blog-post-russia-masters.html", tags: ["languagejourney", "russia", "mastersdegree", "motivation"] },
-            { id: 2, title: "From Russia to Ghana: What Those Kids Taught Me About Language", excerpt: "Before I started Speak Ghana, I taught English in a Russian kindergarten. They taught me everything I know about how people really learn.", date: "March 20, 2026", author: "Richard Asiamah", category: "Teaching Stories", image: "🇷🇺", url: "blog-post-russia.html", tags: ["teachingstories", "russia", "languagelearning"] },
-            { id: 3, title: "Top 10 Ghanaian Songs to Learn Twi", excerpt: "Learn Twi through music! Here are 10 verified songs with lyric breakdowns to help you learn faster.", date: "March 18, 2026", author: "Speak Ghana Team", category: "Culture", image: "🎵", url: "blog-post-top-10-songs.html", tags: ["music", "culture", "beginner"] },
-            { id: 4, title: "10 Twi Phrases Every Visitor to Ghana Should Know", excerpt: "Essential greetings and phrases to help you connect with locals during your visit to Ghana.", date: "March 17, 2026", author: "Speak Ghana Team", category: "Beginner Tips", image: "🗣️", url: "blog-post-10-twi-phrases.html", tags: ["beginner", "phrases", "travel"] },
-            { id: 5, title: "The Meaning Behind Adinkra Symbols: Nyansapo and the Wisdom Knot", excerpt: "Discover the deep wisdom of Ghana's sacred Adinkra symbols, and why the Nyansapo represents the journey of language learning.", date: "March 15, 2026", author: "Speak Ghana Team", category: "Culture", image: "🧠", url: "blog-post-adinkra-symbols.html", tags: ["culture", "adinkra", "nyansapo"] },
-            { id: 6, title: "Why Learning Twi Helped Me Reconnect with My Grandmother", excerpt: "One student's emotional journey of learning Twi to speak with her Ghanaian grandmother for the first time.", date: "March 5, 2026", author: "Student Story", category: "Diaspora Stories", image: "🌍", url: "blog-post-diaspora-story.html", tags: ["diaspora", "family", "connection"] },
-            { id: 7, title: "The 80/20 Method: Why You Learn Faster by Speaking More", excerpt: "Our teaching philosophy explained: why students talk 80% of class time and how it accelerates learning.", date: "February 20, 2026", author: "Richard Asiamah", category: "Learning Tips", image: "📚", url: "blog-post-80-20-method.html", tags: ["learning", "method", "speaking"] },
-            { id: 8, title: "Family Terms in Twi: How to Address Relatives Correctly", excerpt: "Learn the proper Twi words for family members and understand Ghanaian family structure.", date: "February 15, 2026", author: "Speak Ghana Team", category: "Vocabulary", image: "👪", url: "blog-post-family-terms.html", tags: ["vocabulary", "family", "culture"] }
+            {
+                id: 9,
+                title: "From Syllables to Sentences: Adelaide's First Month with Speak Ghana",
+                excerpt: "After just one month of lessons, Adelaide can form real Twi sentences, read the alphabet confidently, and loves every class. Here's her story.",
+                date: "March 29, 2026",
+                author: "Speak Ghana Team",
+                category: "Student Stories",
+                image: "🌟",
+                photo: "images/adelaide.png",
+                url: "blog-post-adelaide-testimonial.html",
+                tags: ["studentstory", "testimonial", "twi", "beginner", "diaspora"]
+            },
+            {
+                id: 1,
+                title: "I Learned Russian From Scratch and Got My Master's Degree. You Can Learn Twi Too.",
+                excerpt: "I moved to Russia without knowing a single word. Two years later, I walked across the stage to receive my Master's degree — in Russian. Here's how I did it.",
+                date: "March 20, 2026",
+                author: "Richard Asiamah",
+                category: "Language Journey",
+                image: "🎓",
+                photo: null,
+                url: "blog-post-russia-masters.html",
+                tags: ["languagejourney", "russia", "mastersdegree", "motivation"]
+            },
+            {
+                id: 2,
+                title: "From Russia to Ghana: What Those Kids Taught Me About Language",
+                excerpt: "Before I started Speak Ghana, I taught English in a Russian kindergarten. They taught me everything I know about how people really learn.",
+                date: "March 20, 2026",
+                author: "Richard Asiamah",
+                category: "Teaching Stories",
+                image: "🇷🇺",
+                photo: null,
+                url: "blog-post-russia.html",
+                tags: ["teachingstories", "russia", "languagelearning"]
+            },
+            {
+                id: 3,
+                title: "Top 10 Ghanaian Songs to Learn Twi",
+                excerpt: "Learn Twi through music! Here are 10 verified songs with lyric breakdowns to help you learn faster.",
+                date: "March 18, 2026",
+                author: "Speak Ghana Team",
+                category: "Culture",
+                image: "🎵",
+                photo: null,
+                url: "blog-post-top-10-songs.html",
+                tags: ["music", "culture", "beginner"]
+            },
+            {
+                id: 4,
+                title: "10 Twi Phrases Every Visitor to Ghana Should Know",
+                excerpt: "Essential greetings and phrases to help you connect with locals during your visit to Ghana.",
+                date: "March 17, 2026",
+                author: "Speak Ghana Team",
+                category: "Beginner Tips",
+                image: "🗣️",
+                photo: null,
+                url: "blog-post-10-twi-phrases.html",
+                tags: ["beginner", "phrases", "travel"]
+            },
+            {
+                id: 5,
+                title: "The Meaning Behind Adinkra Symbols: Nyansapo and the Wisdom Knot",
+                excerpt: "Discover the deep wisdom of Ghana's sacred Adinkra symbols, and why the Nyansapo represents the journey of language learning.",
+                date: "March 15, 2026",
+                author: "Speak Ghana Team",
+                category: "Culture",
+                image: "🧠",
+                photo: null,
+                url: "blog-post-adinkra-symbols.html",
+                tags: ["culture", "adinkra", "nyansapo"]
+            },
+            {
+                id: 6,
+                title: "Why Learning Twi Helped Me Reconnect with My Grandmother",
+                excerpt: "One student's emotional journey of learning Twi to speak with her Ghanaian grandmother for the first time.",
+                date: "March 5, 2026",
+                author: "Student Story",
+                category: "Diaspora Stories",
+                image: "🌍",
+                photo: null,
+                url: "blog-post-diaspora-story.html",
+                tags: ["diaspora", "family", "connection"]
+            },
+            {
+                id: 7,
+                title: "The 80/20 Method: Why You Learn Faster by Speaking More",
+                excerpt: "Our teaching philosophy explained: why students talk 80% of class time and how it accelerates learning.",
+                date: "February 20, 2026",
+                author: "Richard Asiamah",
+                category: "Learning Tips",
+                image: "📚",
+                photo: null,
+                url: "blog-post-80-20-method.html",
+                tags: ["learning", "method", "speaking"]
+            },
+            {
+                id: 8,
+                title: "Family Terms in Twi: How to Address Relatives Correctly",
+                excerpt: "Learn the proper Twi words for family members and understand Ghanaian family structure.",
+                date: "February 15, 2026",
+                author: "Speak Ghana Team",
+                category: "Vocabulary",
+                image: "👪",
+                photo: null,
+                url: "blog-post-family-terms.html",
+                tags: ["vocabulary", "family", "culture"]
+            }
         ];
 
         let currentFilter = "all";
         let currentSearch = "";
+
+        // Helper: render image block for featured post
+        function featuredImageHTML(post) {
+            if (post.photo) {
+                return `
+                    <div class="featured-image" style="padding:0;">
+                        <span class="featured-tag">Featured</span>
+                        <img src="${post.photo}" alt="${post.title}" onerror="this.style.display='none';this.parentElement.querySelector('.emoji-fallback').style.display='block';">
+                        <span class="emoji-fallback" style="display:none;">${post.image}</span>
+                    </div>
+                `;
+            }
+            return `
+                <div class="featured-image">
+                    <span class="featured-tag">Featured</span>
+                    <span class="emoji-fallback">${post.image}</span>
+                </div>
+            `;
+        }
+
+        // Helper: render image block for card
+        function cardImageHTML(post) {
+            if (post.photo) {
+                return `
+                    <div class="blog-image" style="padding:0;">
+                        <img src="${post.photo}" alt="${post.title}" onerror="this.style.display='none';this.parentElement.querySelector('.emoji-fallback').style.display='flex';">
+                        <span class="emoji-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:3rem;">${post.image}</span>
+                    </div>
+                `;
+            }
+            return `<div class="blog-image"><span class="emoji-fallback">${post.image}</span></div>`;
+        }
+
+        // Helper: render image block for popular posts
+        function popularImageHTML(post) {
+            if (post.photo) {
+                return `
+                    <div class="popular-image">
+                        <img src="${post.photo}" alt="${post.title}" onerror="this.style.display='none';this.parentElement.textContent='${post.image}';">
+                    </div>
+                `;
+            }
+            return `<div class="popular-image">${post.image}</div>`;
+        }
 
         // Render blog posts
         function renderPosts() {
@@ -1124,17 +1325,14 @@
                 return;
             }
             
-            // Featured post (first post, only if no search)
             let html = '';
             
+            // Featured post (first post, only if no filter/search active)
             if (currentSearch === "" && currentFilter === "all") {
                 const featured = blogPosts[0];
                 html += `
                     <div class="featured-post">
-                        <div class="featured-image">
-                            <span class="featured-tag">Featured</span>
-                            ${featured.image}
-                        </div>
+                        ${featuredImageHTML(featured)}
                         <div class="featured-content">
                             <div class="featured-meta">
                                 <span>📅 ${featured.date}</span>
@@ -1147,8 +1345,7 @@
                         </div>
                     </div>
                 `;
-                
-                // Remove featured from filtered list for grid
+                // Remove featured from grid list
                 filteredPosts = filteredPosts.filter(post => post.id !== featured.id);
             }
             
@@ -1160,11 +1357,11 @@
                 filteredPosts.forEach(post => {
                     html += `
                         <div class="blog-card">
-                            <div class="blog-image">${post.image}</div>
+                            ${cardImageHTML(post)}
                             <div class="blog-content">
                                 <div class="blog-meta">
                                     <span>📅 ${post.date}</span>
-                                    <span>⏱ ${Math.floor(post.excerpt.split(' ').length / 50) + 3} min read</span>
+                                    <span>⏱ ${Math.max(3, Math.floor(post.excerpt.split(' ').length / 50) + 3)} min read</span>
                                 </div>
                                 <span class="blog-category">${post.category}</span>
                                 <h3>${post.title}</h3>
@@ -1185,6 +1382,7 @@
         function updateCounts() {
             const counts = {
                 all: blogPosts.length,
+                "Student Stories": blogPosts.filter(p => p.category === "Student Stories").length,
                 "Language Journey": blogPosts.filter(p => p.category === "Language Journey").length,
                 "Teaching Stories": blogPosts.filter(p => p.category === "Teaching Stories").length,
                 "Culture": blogPosts.filter(p => p.category === "Culture").length,
@@ -1195,6 +1393,7 @@
             };
             
             document.getElementById('all-count').textContent = counts.all;
+            document.getElementById('student-stories-count').textContent = counts["Student Stories"];
             document.getElementById('language-journey-count').textContent = counts["Language Journey"];
             document.getElementById('teaching-stories-count').textContent = counts["Teaching Stories"];
             document.getElementById('culture-count').textContent = counts["Culture"];
@@ -1206,12 +1405,12 @@
         
         // Render popular posts
         function renderPopularPosts() {
-            const popular = [...blogPosts].slice(0, 5);
+            const popular = blogPosts.slice(0, 5);
             let html = '';
             popular.forEach(post => {
                 html += `
                     <div class="popular-post">
-                        <div class="popular-image">${post.image}</div>
+                        ${popularImageHTML(post)}
                         <div class="popular-content">
                             <h4><a href="${post.url}">${post.title}</a></h4>
                             <div class="popular-date">${post.date}</div>
@@ -1254,9 +1453,11 @@
                 if (link.dataset.category === currentFilter) {
                     link.classList.add('active');
                     link.style.fontWeight = 'bold';
+                    link.style.color = 'var(--green)';
                 } else {
                     link.classList.remove('active');
                     link.style.fontWeight = 'normal';
+                    link.style.color = '';
                 }
             });
         }
@@ -1280,7 +1481,6 @@
                     navLinks.classList.toggle('show');
                 });
                 
-                // Close menu when clicking a link
                 navLinks.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', () => {
                         navLinks.classList.remove('show');
@@ -1322,7 +1522,7 @@
                 });
             }
             
-            // Category filters
+            // Category filters (sidebar)
             document.querySelectorAll('.category-filter').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1370,7 +1570,6 @@
     <!-- Event Tracking for Google Analytics -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Track Navigation Clicks
             const navLinks = document.querySelectorAll('.nav-links a, .btn, .read-more');
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -1386,7 +1585,7 @@
         });
     </script>
 
-    <!-- ADD Tawk.to Script HERE -->
+    <!-- Tawk.to Script -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
