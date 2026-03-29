@@ -1020,6 +1020,182 @@
             font-size: 1.1rem;
         }
 
+        /* ===== ADELAIDE SPOTLIGHT CARD ===== */
+        .adelaide-spotlight {
+            background: linear-gradient(135deg, var(--cream), white);
+            border-radius: 24px;
+            padding: 2rem 2.5rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            border: 2px solid rgba(212, 163, 115, 0.3);
+            box-shadow: 0 15px 40px var(--shadow);
+            margin: 2rem 0 0;
+            grid-column: 1 / -1;
+        }
+
+        .adelaide-photo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top center;
+            border: 4px solid var(--gold);
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .adelaide-content {
+            flex: 1;
+        }
+
+        .adelaide-content .testimonial-text {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .adelaide-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .adelaide-name {
+            color: var(--green);
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .adelaide-flag {
+            font-size: 1.2rem;
+        }
+
+        .adelaide-badge {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.25rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .adelaide-read-more {
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-left: auto;
+            white-space: nowrap;
+            transition: color 0.3s;
+        }
+
+        .adelaide-read-more:hover {
+            color: var(--red);
+        }
+
+        @media (max-width: 768px) {
+            .adelaide-spotlight {
+                flex-direction: column;
+                text-align: center;
+            }
+            .adelaide-meta {
+                justify-content: center;
+            }
+            .adelaide-read-more {
+                margin-left: 0;
+            }
+        }
+
+        /* ===== SURVEY REVIEWS STRIP ===== */
+        .reviews-strip {
+            background: linear-gradient(135deg, var(--black), #2a2a2a);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 2rem 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reviews-strip::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
+        }
+
+        .reviews-strip-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .reviews-strip-header h3 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin: 0 0 0.3rem;
+        }
+
+        .reviews-strip-header p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        .star-rating {
+            color: var(--gold);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.3rem;
+        }
+
+        .reviews-scroller {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .review-chip {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 1.3rem 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .review-chip:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .review-chip .star-rating {
+            font-size: 0.9rem;
+        }
+
+        .review-chip p {
+            color: rgba(255,255,255,0.88);
+            font-style: italic;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .review-chip .reviewer {
+            color: var(--gold);
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .reviews-scroller {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .reviews-scroller {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         /* ===== PRICING OVERVIEW SECTION ===== */
         .pricing-overview {
             background: white;
@@ -1217,18 +1393,9 @@
         }
 
         @keyframes pulse-whatsapp {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 20px 35px rgba(37, 211, 102, 0.6);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            }
+            0% { transform: scale(1); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 20px 35px rgba(37, 211, 102, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
         }
 
         /* ===== FOOTER ===== */
@@ -1243,9 +1410,7 @@
         footer::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
         }
@@ -1261,6 +1426,11 @@
             color: var(--gold);
             margin-bottom: 1.5rem;
             font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 0.5rem;
         }
 
         .footer-section a {
@@ -1553,7 +1723,7 @@
             </div>
         </div>
 
-        <!-- COMPACT ENROLLMENT BUTTON - REPLACES THE LARGE FORM SECTION -->
+        <!-- COMPACT ENROLLMENT BUTTON -->
         <div class="enrollment-trigger-section" style="text-align: center;">
             <button class="enrollment-trigger-btn open-enrollment-modal">
                 ✨ Start Your Language Journey Today ✨
@@ -1702,9 +1872,11 @@
             </div>
         </div>
 
-        <!-- Testimonials -->
+        <!-- ===== TESTIMONIALS — with Adelaide spotlight + survey reviews ===== -->
         <div class="testimonial-preview">
             <h2 class="center">What Families Say</h2>
+
+            <!-- Original 2 testimonial cards -->
             <div class="testimonial-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-text">Learning Twi opened doors to connect with my husband's family. Our kids love the classes!</div>
@@ -1713,6 +1885,68 @@
                 <div class="testimonial-card">
                     <div class="testimonial-text">My teenager actually looks forward to Twi class. The teen program is perfect for her.</div>
                     <div class="testimonial-author">— Kwame, USA (Parent)</div>
+                </div>
+
+                <!-- Adelaide spotlight — spans full width -->
+                <div class="adelaide-spotlight">
+                    <img
+                        src="images/adelaide.png"
+                        alt="Adelaide Daniels — Speak Ghana student, UK"
+                        class="adelaide-photo"
+                        onerror="this.style.display='none'"
+                    >
+                    <div class="adelaide-content">
+                        <div class="star-rating">★★★★★</div>
+                        <p class="testimonial-text">
+                            After just one month of lessons, Adelaide — a UK-based Ghanaian diaspora learner — can already form real Twi sentences, read the alphabet with confidence, and name her favourite book in Twi. She credits the patience and humour of the teaching team for making every class something she genuinely looks forward to.
+                        </p>
+                        <div class="adelaide-meta">
+                            <span class="adelaide-name">Adelaide Daniels (Kakra)</span>
+                            <span class="adelaide-flag">🇬🇧</span>
+                            <span class="adelaide-badge">March 2026 Cohort</span>
+                            <a href="blog-post-adelaide-testimonial.html" class="adelaide-read-more">Read her full story →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SURVEY REVIEWS STRIP ===== -->
+            <div class="reviews-strip">
+                <div class="reviews-strip-header">
+                    <h3>⭐ Verified Student Reviews — March 2026</h3>
+                    <p>From our end-of-term survey · 11 responses · Average rating 4.5 / 5</p>
+                </div>
+                <div class="reviews-scroller">
+                    <div class="review-chip">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"The patience, the commitment and the resources to ensure we learn. I'm extremely happy we connected — happy to spread the word!"</p>
+                        <span class="reviewer">— Anonymous student</span>
+                    </div>
+                    <div class="review-chip">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"The teachers are super helpful and kind. They help us learn fast and are encouraging. They make learning Twi so much more fun!"</p>
+                        <span class="reviewer">— Anonymous student</span>
+                    </div>
+                    <div class="review-chip">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"I love the interactive engagement. The structure is very helpful — they make sure you're understanding every step of the way."</p>
+                        <span class="reviewer">— Anonymous student</span>
+                    </div>
+                    <div class="review-chip">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"I love these lessons and I'm so glad I started learning with Speak Ghana. I'm very grateful I found this and will recommend to others!"</p>
+                        <span class="reviewer">— Anonymous student</span>
+                    </div>
+                    <div class="review-chip">
+                        <div class="star-rating">★★★★☆</div>
+                        <p>"Richard is patient and makes sure we understand the words and meanings. The dedication of the teachers and their consistency keeps me coming back."</p>
+                        <span class="reviewer">— Anonymous student</span>
+                    </div>
+                    <div class="review-chip">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"The interest and commitment the teachers take in us, plus the visual learning techniques — it really works. You can see progress every single week."</p>
+                        <span class="reviewer">— Anonymous student</span>
+                    </div>
                 </div>
             </div>
         </div>
