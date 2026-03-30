@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portal | Speak Ghana</title>
-    <meta name="description" content="Student portal for Speak Ghana students. Access class recordings, assignments, WhatsApp group, and class schedule.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Student Portal | Speak Ghana - Private Resources</title>
+    <meta name="description" content="Student portal for Speak Ghana students. Access private class recordings, exclusive worksheets, assignments, and community resources.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
@@ -267,23 +267,97 @@
             margin-bottom: 1.5rem;
         }
         .card-icon {
-            font-size: 2.5rem;
+            font-size: 2rem;
             background: var(--cream);
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 20px;
+            border-radius: 18px;
             color: var(--green);
         }
         .card-header h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin: 0;
         }
         .card-header h2::after {
             display: none;
         }
+        
+        /* Private Resources Grid */
+        .private-resources-section {
+            background: linear-gradient(135deg, #fff5e8, white);
+            border-radius: 28px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+        .private-badge {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--red);
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .private-badge-lock {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--green);
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .private-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .private-item {
+            background: white;
+            border-radius: 20px;
+            padding: 1.2rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+        .private-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow);
+            border-color: var(--gold);
+        }
+        .private-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .private-item h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            color: var(--green);
+        }
+        .private-item p {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        .download-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: var(--green);
+            font-size: 0.8rem;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
         .recording-list, .assignment-list {
             list-style: none;
         }
@@ -324,7 +398,7 @@
             gap: 0.8rem;
             background: #25D366;
             color: white;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
@@ -338,9 +412,10 @@
         .reminder-note {
             background: var(--cream);
             border-left: 4px solid var(--gold);
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 12px;
             margin-top: 1rem;
+            font-size: 0.85rem;
         }
 
         /* Footer */
@@ -373,11 +448,16 @@
         }
 
         @media (max-width: 768px) {
-            .portal-grid {
+            .portal-grid, .private-grid {
                 grid-template-columns: 1fr;
             }
             .container {
                 padding: 0 1.5rem;
+            }
+        }
+        @media (max-width: 968px) {
+            .private-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -424,6 +504,7 @@
                 <a href="kids-teens.html">Kids & Teens</a>
                 <a href="resources.html">Resources</a>
                 <a href="concierge.html">Concierge</a>
+                <a href="student-portal.html" class="active">🎓 Portal</a>
                 <a href="contact.html">Contact</a>
                 <a href="blog.html">Blog</a>
             </div>
@@ -434,7 +515,7 @@
     <div id="passwordOverlay" class="password-overlay">
         <div class="password-box">
             <h2>🔐 Student Portal</h2>
-            <p>Enter the password to access class resources.</p>
+            <p>Enter the password to access private resources.</p>
             <input type="password" id="passwordInput" placeholder="Enter password">
             <button onclick="checkPassword()">Access Portal →</button>
             <div id="errorMsg" class="error-msg"></div>
@@ -447,13 +528,69 @@
         <div class="page-hero">
             <div class="container">
                 <h1>🎓 Student Portal</h1>
-                <p>Welcome, student! Access your class materials, recordings, and resources here.</p>
+                <p>Welcome, student! Access your private class materials, exclusive resources, and community.</p>
             </div>
         </div>
 
         <div class="container">
-            <div class="portal-grid">
+            <!-- PRIVATE RESOURCES SECTION - ONLY VISIBLE TO LOGGED-IN STUDENTS -->
+            <div class="private-resources-section">
+                <span class="private-badge">🔒 EXCLUSIVE</span>
+                <span class="private-badge-lock">👥 Students Only</span>
+                <h2 style="color: var(--green); margin-bottom: 0.5rem;">📚 Private Resources</h2>
+                <p style="color: var(--gray); margin-bottom: 1rem;">Exclusive materials not available on the public site — just for enrolled students.</p>
                 
+                <div class="private-grid">
+                    <!-- Bonus E-book -->
+                    <div class="private-item">
+                        <div class="private-icon">📘</div>
+                        <h4>Bonus E-book</h4>
+                        <p>"Advanced Twi Phrases for Conversations"</p>
+                        <a href="/pdfs/advanced-twi-phrases.pdf" download class="download-link">Download PDF →</a>
+                    </div>
+                    <!-- Worksheet Pack -->
+                    <div class="private-item">
+                        <div class="private-icon">📝</div>
+                        <h4>Worksheet Pack</h4>
+                        <p>10 printable worksheets with answer keys</p>
+                        <a href="/pdfs/worksheet-pack.pdf" download class="download-link">Download →</a>
+                    </div>
+                    <!-- Audio Drills -->
+                    <div class="private-item">
+                        <div class="private-icon">🎧</div>
+                        <h4>Pronunciation Drills</h4>
+                        <p>Audio files for perfecting tones</p>
+                        <a href="/audio/pronunciation-drills.zip" download class="download-link">Download MP3s →</a>
+                    </div>
+                    <!-- Progress Tracker -->
+                    <div class="private-item">
+                        <div class="private-icon">📊</div>
+                        <h4>Progress Tracker</h4>
+                        <p>Excel sheet to track your learning journey</p>
+                        <a href="/pdfs/progress-tracker.xlsx" download class="download-link">Download →</a>
+                    </div>
+                    <!-- Certificate Template -->
+                    <div class="private-item">
+                        <div class="private-icon">🎓</div>
+                        <h4>Certificate Template</h4>
+                        <p>Your personalized achievement certificate</p>
+                        <a href="/pdfs/certificate-template.pdf" download class="download-link">Download →</a>
+                    </div>
+                    <!-- Flashcard Deck -->
+                    <div class="private-item">
+                        <div class="private-icon">🃏</div>
+                        <h4>Flashcard Deck</h4>
+                        <p>Printable flashcards for 100+ words</p>
+                        <a href="/pdfs/flashcards.pdf" download class="download-link">Download →</a>
+                    </div>
+                </div>
+                
+                <div class="reminder-note" style="margin-top: 1.5rem; background: #e8f5e9;">
+                    <i class="fas fa-plus-circle"></i> <strong>New resources added every month!</strong> Check back regularly.
+                </div>
+            </div>
+
+            <div class="portal-grid">
                 <!-- Class Recordings Card -->
                 <div class="portal-card">
                     <div class="card-header">
@@ -463,11 +600,11 @@
                     <ul class="recording-list">
                         <li><a href="https://zoom.us/clips/embed/95lyyM9MSgSenyYQIGX8nA" target="_blank"><i class="fas fa-play-circle"></i> Beginner Twi: Alphabet & Words (Charlotte) - March 22</a></li>
                         <li><a href="https://zoom.us/clips/embed/daVBRMzoQPCQoWCxKtciiw" target="_blank"><i class="fas fa-play-circle"></i> Beginner Twi: Alphabet & Sentences (Richard) - March 22</a></li>
-                        <li><a href="#"><i class="fas fa-play-circle"></i> Coming soon: Group A - Greetings Lesson</a></li>
-                        <li><a href="#"><i class="fas fa-play-circle"></i> Coming soon: Group B - Family Terms</a></li>
+                        <li><a href="#"><i class="fas fa-play-circle"></i> Private: Greetings Lesson (March 29)</a></li>
+                        <li><a href="#"><i class="fas fa-play-circle"></i> Private: Family Terms Lesson (April 5)</a></li>
                     </ul>
                     <div class="reminder-note">
-                        <i class="fas fa-info-circle"></i> Recordings are added weekly. Check back after each class!
+                        <i class="fas fa-info-circle"></i> Private recordings added within 24 hours after each class.
                     </div>
                 </div>
 
@@ -478,9 +615,10 @@
                         <h2>Assignments</h2>
                     </div>
                     <ul class="assignment-list">
-                        <li><a href="#" target="_blank"><i class="fas fa-download"></i> Week 1: Alphabet Practice Sheet (PDF)</a></li>
-                        <li><a href="#" target="_blank"><i class="fas fa-download"></i> Week 2: Family Terms Worksheet</a></li>
-                        <li><a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Submit Homework via Google Form →</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> Week 1: Alphabet Practice Sheet (PDF)</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> Week 2: Family Terms Worksheet</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> Week 3: Sentence Formation Exercise</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> Submit Homework via Google Form →</a></li>
                     </ul>
                     <div class="reminder-note">
                         <i class="fas fa-clock"></i> Assignments due before next class. Late submissions accepted with 24h notice.
@@ -522,14 +660,14 @@
                 </div>
             </div>
 
-            <!-- Resources Section -->
+            <!-- Quick Resources Section -->
             <div style="background: white; border-radius: 28px; padding: 2rem; margin: 2rem 0;">
-                <h2 style="color: var(--green); margin-bottom: 1rem;">📚 Quick Resources</h2>
+                <h2 style="color: var(--green); margin-bottom: 1rem;">📚 Quick Reference</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
                     <a href="/pdfs/alphabet-pronunciation.pdf" download class="btn btn-outline" style="text-align: center;">🔤 Alphabet Guide (PDF)</a>
                     <a href="/pdfs/family-terms.pdf" download class="btn btn-outline" style="text-align: center;">👪 Family Terms (PDF)</a>
                     <a href="/pdfs/100-common-words.pdf" download class="btn btn-outline" style="text-align: center;">📖 100 Common Words</a>
-                    <a href="resources.html" class="btn btn-primary" style="text-align: center;">🎮 All Resources →</a>
+                    <a href="resources.html" class="btn btn-primary" style="text-align: center;">🎮 All Public Resources →</a>
                 </div>
             </div>
         </div>
@@ -565,37 +703,31 @@
     </footer>
 
     <script>
-        // Set your portal password here
-        const PORTAL_PASSWORD = "speakghana2026"; // Change this to your desired password
+        // Set your portal password here — CHANGE THIS
+        const PORTAL_PASSWORD = "speakghana2026";
 
         function checkPassword() {
             const input = document.getElementById('passwordInput').value;
             const errorDiv = document.getElementById('errorMsg');
             
             if (input === PORTAL_PASSWORD) {
-                // Password correct — show portal content
                 document.getElementById('passwordOverlay').style.display = 'none';
                 document.getElementById('portalContent').style.display = 'block';
                 document.body.style.overflow = 'auto';
-                
-                // Store that user is authenticated for this session
                 sessionStorage.setItem('portalAuthenticated', 'true');
-                
-                // Track in Google Analytics
                 if (typeof gtag === 'function') {
                     gtag('event', 'student_portal_login', { 'event_category': 'engagement', 'event_label': 'portal_access' });
                 }
             } else {
                 errorDiv.textContent = '❌ Incorrect password. Please try again.';
                 document.getElementById('passwordInput').value = '';
-                
                 if (typeof gtag === 'function') {
                     gtag('event', 'portal_login_failed', { 'event_category': 'engagement', 'event_label': 'failed_attempt' });
                 }
             }
         }
 
-        // Check if user already authenticated in this session
+        // Check if already authenticated in this session
         if (sessionStorage.getItem('portalAuthenticated') === 'true') {
             document.getElementById('passwordOverlay').style.display = 'none';
             document.getElementById('portalContent').style.display = 'block';
@@ -621,6 +753,20 @@
                 });
             });
         }
+
+        // Track private resource downloads
+        const privateItems = document.querySelectorAll('.private-item .download-link');
+        privateItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const resourceName = this.closest('.private-item')?.querySelector('h4')?.innerText || 'unknown';
+                if (typeof gtag === 'function') {
+                    gtag('event', 'private_resource_download', {
+                        'event_category': 'engagement',
+                        'event_label': resourceName
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
