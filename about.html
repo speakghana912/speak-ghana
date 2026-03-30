@@ -21,6 +21,9 @@
       gtag('config', 'G-ZXFR0LFLH6');
     </script>
 
+    <!-- Font Awesome for dropdown chevron -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         /* ===== MODERN COLOR PALETTE ===== */
         :root {
@@ -313,24 +316,46 @@
             background: var(--green);
         }
 
-        /* ===== HAMBURGER MENU STYLES ===== */
-        .menu-toggle {
+        /* Dropdown styles for mobile */
+        .dropdown-item {
+            display: contents;
+        }
+        
+        .dropdown-toggle {
             display: none;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--black);
-            padding: 0.5rem;
-            z-index: 101;
+        }
+        
+        .dropdown-submenu {
+            display: contents;
         }
 
-        @media (max-width: 768px) {
+        /* ===== HAMBURGER MENU STYLES WITH DROPDOWN ===== */
+        .menu-toggle {
+            display: none;
+            background: var(--gold);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--black);
+            padding: 0.5rem 1rem;
+            z-index: 101;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle:hover {
+            background: var(--green);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 968px) {
             .menu-toggle {
                 display: block;
                 position: absolute;
-                right: 1.5rem;
-                top: 0.8rem;
+                right: 1rem;
+                top: 0.5rem;
             }
             
             nav {
@@ -340,22 +365,112 @@
             .nav-links {
                 display: none;
                 flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-                padding: 1rem 0;
+                align-items: stretch;
+                gap: 0;
+                padding: 0;
                 width: 100%;
                 background: white;
                 box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                max-height: 80vh;
+                overflow-y: auto;
             }
             
             .nav-links.show {
                 display: flex;
             }
             
-            .nav-links a {
-                padding: 0.5rem 1rem;
+            /* Main nav items */
+            .nav-links > a,
+            .nav-links > .dropdown-item {
+                padding: 1rem 1.5rem;
                 width: 100%;
-                text-align: center;
+                text-align: left;
+                border-bottom: 1px solid var(--cream);
+                font-weight: 600;
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+                color: var(--black);
+                text-decoration: none;
+                background: white;
+            }
+            
+            .nav-links > a {
+                border-bottom: 1px solid var(--cream);
+            }
+            
+            /* Dropdown toggle button style */
+            .dropdown-toggle {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                background: white;
+                border: none;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--black);
+                cursor: pointer;
+                padding: 0;
+                font-family: inherit;
+            }
+            
+            .dropdown-toggle i {
+                transition: transform 0.3s;
+                font-size: 0.9rem;
+                color: var(--gray);
+            }
+            
+            .dropdown-toggle.open i {
+                transform: rotate(180deg);
+            }
+            
+            /* Submenu styles */
+            .dropdown-submenu {
+                display: none;
+                flex-direction: column;
+                background: var(--cream);
+                margin-top: 0.5rem;
+                border-radius: 12px;
+                overflow: hidden;
+                width: 100%;
+            }
+            
+            .dropdown-submenu.show {
+                display: flex;
+            }
+            
+            .dropdown-submenu a {
+                padding: 0.8rem 1.5rem 0.8rem 2.5rem;
+                text-decoration: none;
+                color: var(--gray);
+                font-weight: 500;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                font-size: 0.95rem;
+                display: block;
+            }
+            
+            .dropdown-submenu a:last-child {
+                border-bottom: none;
+            }
+            
+            .dropdown-submenu a:hover {
+                color: var(--green);
+                background: rgba(42,157,143,0.1);
+            }
+            
+            .dropdown-submenu a.active {
+                color: var(--green);
+                font-weight: 600;
+            }
+            
+            .dropdown-item {
+                display: block;
+                padding: 0 !important;
+                flex-direction: column;
+                align-items: stretch !important;
             }
         }
 
@@ -967,19 +1082,42 @@
         </div>
     </header>
 
-    <!-- Navigation with Hamburger Menu -->
+    <!-- Navigation with Dropdown Menu -->
     <nav>
         <div class="container" style="position: relative;">
-            <button class="menu-toggle" id="menuToggle">☰</button>
+            <button class="menu-toggle" id="menuToggle">☰ Menu</button>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
+                
+                <!-- Learn Dropdown -->
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownLearnBtn">
+                        <span>📚 Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownLearnMenu">
+                        <a href="languages.html">Languages</a>
+                        <a href="kids-teens.html">Kids & Teens</a>
+                        <a href="concierge.html">Concierge</a>
+                    </div>
+                </div>
+                
+                <!-- Resources Dropdown -->
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownResourcesBtn">
+                        <span>📖 Resources</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownResourcesMenu">
+                        <a href="resources.html">Free Resources</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="student-portal.html">Student Portal</a>
+                    </div>
+                </div>
+                
+                <a href="students.html">👥 Students</a>
                 <a href="about.html" class="active">About</a>
-                <a href="languages.html">Languages</a>
-                <a href="kids-teens.html">Kids & Teens</a>
-                <a href="resources.html">Resources</a>
-                <a href="concierge.html">Concierge</a>
                 <a href="contact.html">Contact</a>
-                <a href="blog.html">Blog</a>
             </div>
         </div>
     </nav>
@@ -1311,6 +1449,7 @@
                     <a href="languages.html">Family Packages</a>
                     <a href="concierge.html">Sankofa Concierge</a>
                     <a href="contact.html">Scholarship Program</a>
+                    <a href="student-portal.html">🎓 Student Portal</a>
                 </div>
                 
                 <div class="footer-section">
@@ -1346,7 +1485,7 @@
         </div>
     </footer>
 
-    <!-- Event Tracking with Hamburger Menu -->
+    <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Hamburger Menu Toggle
@@ -1357,14 +1496,68 @@
                 menuToggle.addEventListener('click', function() {
                     navLinks.classList.toggle('show');
                 });
-                
-                // Close menu when clicking a link
-                navLinks.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navLinks.classList.remove('show');
-                    });
+            }
+            
+            // Dropdown functionality
+            const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
+            const dropdownLearnMenu = document.getElementById('dropdownLearnMenu');
+            const dropdownResourcesBtn = document.getElementById('dropdownResourcesBtn');
+            const dropdownResourcesMenu = document.getElementById('dropdownResourcesMenu');
+            
+            if (dropdownLearnBtn && dropdownLearnMenu) {
+                dropdownLearnBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dropdownLearnMenu.classList.toggle('show');
+                    dropdownLearnBtn.classList.toggle('open');
+                    if (dropdownResourcesMenu && dropdownResourcesMenu.classList.contains('show')) {
+                        dropdownResourcesMenu.classList.remove('show');
+                        dropdownResourcesBtn.classList.remove('open');
+                    }
                 });
             }
+            
+            if (dropdownResourcesBtn && dropdownResourcesMenu) {
+                dropdownResourcesBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dropdownResourcesMenu.classList.toggle('show');
+                    dropdownResourcesBtn.classList.toggle('open');
+                    if (dropdownLearnMenu && dropdownLearnMenu.classList.contains('show')) {
+                        dropdownLearnMenu.classList.remove('show');
+                        dropdownLearnBtn.classList.remove('open');
+                    }
+                });
+            }
+            
+            // Close dropdowns when clicking on a link
+            document.querySelectorAll('.dropdown-submenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 968) {
+                        navLinks.classList.remove('show');
+                    }
+                });
+            });
+            
+            // Close menu when clicking a regular link
+            document.querySelectorAll('.nav-links > a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 968) {
+                        navLinks.classList.remove('show');
+                    }
+                });
+            });
+            
+            // Handle window resize - reset menu if resizing to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 968) {
+                    if (navLinks) navLinks.classList.remove('show');
+                    if (dropdownLearnMenu) dropdownLearnMenu.classList.remove('show');
+                    if (dropdownResourcesMenu) dropdownResourcesMenu.classList.remove('show');
+                    if (dropdownLearnBtn) dropdownLearnBtn.classList.remove('open');
+                    if (dropdownResourcesBtn) dropdownResourcesBtn.classList.remove('open');
+                }
+            });
             
             // Track Form Submissions
             const forms = document.querySelectorAll('form');
@@ -1376,10 +1569,12 @@
                     else if (this.classList.contains('enrollment-form')) formName = 'enrollment_form';
                     else if (this.classList.contains('contact-form')) formName = 'contact_form';
                     
-                    gtag('event', 'form_submission', {
-                        'event_category': 'engagement',
-                        'event_label': formName
-                    });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'form_submission', {
+                            'event_category': 'engagement',
+                            'event_label': formName
+                        });
+                    }
                 });
             });
             
@@ -1387,10 +1582,12 @@
             const newsletterForm = document.getElementById('footer-newsletter-form');
             if (newsletterForm) {
                 newsletterForm.addEventListener('submit', function() {
-                    gtag('event', 'newsletter_signup', {
-                        'event_category': 'engagement',
-                        'event_label': 'footer_newsletter'
-                    });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'newsletter_signup', {
+                            'event_category': 'engagement',
+                            'event_label': 'footer_newsletter'
+                        });
+                    }
                 });
             }
             
@@ -1404,10 +1601,12 @@
                         pdfName = parts[parts.length - 1];
                     }
                     
-                    gtag('event', 'pdf_download', {
-                        'event_category': 'resource',
-                        'event_label': pdfName
-                    });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'pdf_download', {
+                            'event_category': 'resource',
+                            'event_label': pdfName
+                        });
+                    }
                 });
             });
             
@@ -1415,10 +1614,12 @@
             const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
             whatsappLinks.forEach(link => {
                 link.addEventListener('click', function() {
-                    gtag('event', 'whatsapp_click', {
-                        'event_category': 'contact',
-                        'event_label': 'whatsapp_button'
-                    });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'whatsapp_click', {
+                            'event_category': 'contact',
+                            'event_label': 'whatsapp_button'
+                        });
+                    }
                 });
             });
             
@@ -1426,10 +1627,12 @@
             const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
             phoneLinks.forEach(link => {
                 link.addEventListener('click', function() {
-                    gtag('event', 'phone_click', {
-                        'event_category': 'contact',
-                        'event_label': 'phone_number'
-                    });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'phone_click', {
+                            'event_category': 'contact',
+                            'event_label': 'phone_number'
+                        });
+                    }
                 });
             });
             
@@ -1437,10 +1640,12 @@
             const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
             emailLinks.forEach(link => {
                 link.addEventListener('click', function() {
-                    gtag('event', 'email_click', {
-                        'event_category': 'contact',
-                        'event_label': 'email_link'
-                    });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'email_click', {
+                            'event_category': 'contact',
+                            'event_label': 'email_link'
+                        });
+                    }
                 });
             });
             
@@ -1449,16 +1654,18 @@
             navLinkElements.forEach(link => {
                 link.addEventListener('click', function() {
                     const linkText = this.innerText.trim() || 'nav_link';
-                    gtag('event', 'navigation_click', {
-                        'event_category': 'navigation',
-                        'event_label': linkText
-                    });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'navigation_click', {
+                            'event_category': 'navigation',
+                            'event_label': linkText
+                        });
+                    }
                 });
             });
         });
     </script>
 
-    <!-- ADD Tawk.to Script HERE -->
+    <!-- ADD Tawk.to Script -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
