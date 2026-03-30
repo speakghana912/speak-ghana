@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>From Syllables to Sentences: Adelaide’s First Month with Speak Ghana</title>
+    <title>From Syllables to Sentences: Adelaide's First Month with Speak Ghana</title>
     <meta name="description" content="Adelaide Daniels shares her journey learning Twi with Speak Ghana. After one month, she's forming sentences, mastering syllables, and reconnecting with her roots.">
     
     <!-- Favicons -->
@@ -166,6 +166,71 @@
         .nav-links a.active { color: var(--green); font-weight: 600; }
         .nav-links a.active::after { width: 100%; background: var(--green); }
 
+        /* ===== HAMBURGER MENU ===== */
+        .menu-toggle {
+            display: none;
+            background: var(--gold);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--black);
+            padding: 0.5rem 1rem;
+            z-index: 101;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .menu-toggle:hover {
+            background: var(--green);
+            color: white;
+            transform: scale(1.05);
+        }
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 0.5rem;
+            }
+            nav { position: relative; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            .nav-links.show { display: flex; }
+            .nav-links a { padding: 0.5rem 1rem; width: 100%; text-align: center; }
+        }
+
+        /* ===== BACK TO TOP BUTTON ===== */
+        #backToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 150px;
+            right: 20px;
+            z-index: 98;
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        #backToTopBtn:hover {
+            transform: translateY(-3px);
+            background: var(--gold);
+            color: var(--black);
+        }
+
         /* ===== BLOG POST STYLES ===== */
         .blog-container {
             max-width: 900px;
@@ -181,19 +246,28 @@
         }
         .featured-image-large {
             width: 100%;
-            height: 420px;
+            height: auto;
+            min-height: 300px;
             border-radius: 20px;
             margin-bottom: 2rem;
             overflow: hidden;
             box-shadow: 0 10px 30px var(--shadow);
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .featured-image-large img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
             transition: transform 0.5s ease;
+            display: block;
         }
-        .featured-image-large:hover img { transform: scale(1.03); }
+        .featured-image-large:hover img {
+            transform: scale(1.02);
+        }
         .post-header { text-align: center; margin-bottom: 2rem; }
         .post-meta { color: var(--gray); margin-bottom: 1rem; font-size: 0.95rem; }
         .post-header h1 {
@@ -275,6 +349,7 @@
             padding: 2rem;
             margin: 2rem 0;
             box-shadow: 0 10px 30px var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
         }
         .comment-form textarea {
             width: 100%;
@@ -301,7 +376,9 @@
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s;
         }
+        .comment-submit:hover { transform: translateY(-2px); }
         .comment-list { margin-top: 2rem; }
         .comment {
             background: var(--cream);
@@ -403,7 +480,7 @@
         @media (max-width: 768px) {
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .blog-post { padding: 1.5rem; }
-            .featured-image-large { height: 250px; }
+            .featured-image-large { min-height: 200px; }
             .post-header h1 { font-size: 1.8rem; }
             .newsletter-form { flex-direction: column; }
             .newsletter-btn { width: 100%; }
@@ -445,10 +522,11 @@
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Navigation with Hamburger Menu -->
     <nav>
-        <div class="container">
-            <div class="nav-links">
+        <div class="container" style="position: relative;">
+            <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="languages.html">Languages</a>
@@ -465,7 +543,7 @@
     <div class="blog-container">
         <div class="blog-post">
 
-            <!-- Featured Image -->
+            <!-- Featured Image - FIXED: Now shows full photo without cropping -->
             <div class="featured-image-large">
                 <img src="images/adelaide.png" alt="Adelaide Daniels - Speak Ghana Twi Student">
             </div>
@@ -607,36 +685,64 @@
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button onclick="scrollToTop()" id="backToTopBtn" title="Go to top">⬆️ Top</button>
+
     <script>
+        // Hamburger Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() { navLinks.classList.toggle('show'); });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => { navLinks.classList.remove('show'); });
+            });
+        }
+
+        // Back to Top
+        window.scrollFunction = function() {
+            const btn = document.getElementById("backToTopBtn");
+            if (btn) {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    btn.style.display = "block";
+                } else {
+                    btn.style.display = "none";
+                }
+            }
+        };
+        window.onscroll = function() { scrollFunction(); };
+        window.scrollToTop = function() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
         // ===== SHARE FUNCTIONS =====
         const pageUrl = encodeURIComponent(window.location.href);
         const pageTitle = encodeURIComponent(document.title);
 
         function shareOnTwitter() {
             window.open(`https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`, '_blank', 'width=600,height=400');
-            gtag('event', 'share_twitter', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
+            if (typeof gtag === 'function') gtag('event', 'share_twitter', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
         }
         function shareOnFacebook() {
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank', 'width=600,height=400');
-            gtag('event', 'share_facebook', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
+            if (typeof gtag === 'function') gtag('event', 'share_facebook', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
         }
         function shareOnWhatsApp() {
             window.open(`https://wa.me/?text=${pageTitle}%20${pageUrl}`, '_blank');
-            gtag('event', 'share_whatsapp', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
+            if (typeof gtag === 'function') gtag('event', 'share_whatsapp', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
         }
         function shareOnLinkedIn() {
             window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`, '_blank', 'width=600,height=400');
-            gtag('event', 'share_linkedin', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
+            if (typeof gtag === 'function') gtag('event', 'share_linkedin', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
         }
         function copyPageLink() {
             navigator.clipboard.writeText(window.location.href);
             alert('📋 Link copied to clipboard! Share with your friends.');
-            gtag('event', 'copy_link', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
+            if (typeof gtag === 'function') gtag('event', 'copy_link', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
         }
 
         // ===== COMMENTS SECTION =====
         let comments = [];
-
         function loadComments() {
             const saved = localStorage.getItem('adelaide_comments');
             if (saved) {
@@ -644,7 +750,6 @@
                 renderComments();
             }
         }
-
         function renderComments() {
             const commentList = document.getElementById('comment-list');
             if (comments.length === 0) {
@@ -663,7 +768,6 @@
             });
             commentList.innerHTML = html;
         }
-
         function escapeHtml(str) {
             if (!str) return '';
             return str.replace(/[&<>]/g, function(m) {
@@ -671,41 +775,32 @@
                 if (m === '<') return '&lt;';
                 if (m === '>') return '&gt;';
                 return m;
-            }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-                return c;
             });
         }
-
         function addComment() {
             const nameInput = document.getElementById('comment-name');
             const textInput = document.getElementById('comment-text');
             const name = nameInput.value.trim();
             const text = textInput.value.trim();
-
             if (!name || !text) {
                 alert('Please enter both your name and a comment.');
                 return;
             }
-
             const now = new Date();
             const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-
-            comments.unshift({
-                name: name,
-                text: text,
-                date: dateStr
-            });
-
+            comments.unshift({ name: name, text: text, date: dateStr });
             localStorage.setItem('adelaide_comments', JSON.stringify(comments));
             renderComments();
-
             nameInput.value = '';
             textInput.value = '';
-
-            gtag('event', 'blog_comment', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
+            if (typeof gtag === 'function') gtag('event', 'blog_comment', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
         }
-
         document.addEventListener('DOMContentLoaded', loadComments);
+
+        // Newsletter tracking
+        document.getElementById('footer-newsletter-form')?.addEventListener('submit', function() {
+            if (typeof gtag === 'function') gtag('event', 'newsletter_signup', { 'event_category': 'engagement', 'event_label': 'footer_newsletter' });
+        });
     </script>
 </body>
 </html>
