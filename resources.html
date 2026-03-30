@@ -21,6 +21,9 @@
       gtag('config', 'G-ZXFR0LFLH6');
     </script>
 
+    <!-- Font Awesome for dropdown chevron -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         :root {
             --gold: #D4A373;
@@ -65,24 +68,46 @@
         .nav-links a { color: var(--black); text-decoration: none; font-weight: 500; position: relative; }
         .nav-links a.active { color: var(--green); font-weight: 600; }
         
-        /* ===== HAMBURGER MENU STYLES ===== */
+        /* Dropdown styles for mobile */
+        .dropdown-item {
+            display: contents;
+        }
+        
+        .dropdown-toggle {
+            display: none;
+        }
+        
+        .dropdown-submenu {
+            display: contents;
+        }
+        
+        /* ===== HAMBURGER MENU STYLES WITH DROPDOWN ===== */
         .menu-toggle {
             display: none;
-            background: none;
+            background: var(--gold);
             border: none;
-            font-size: 1.8rem;
+            font-size: 2rem;
             cursor: pointer;
             color: var(--black);
-            padding: 0.5rem;
+            padding: 0.5rem 1rem;
             z-index: 101;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
         }
 
-        @media (max-width: 768px) {
+        .menu-toggle:hover {
+            background: var(--green);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 968px) {
             .menu-toggle {
                 display: block;
                 position: absolute;
-                right: 1.5rem;
-                top: 0.8rem;
+                right: 1rem;
+                top: 0.5rem;
             }
             
             nav {
@@ -92,22 +117,112 @@
             .nav-links {
                 display: none;
                 flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-                padding: 1rem 0;
+                align-items: stretch;
+                gap: 0;
+                padding: 0;
                 width: 100%;
                 background: white;
                 box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                max-height: 80vh;
+                overflow-y: auto;
             }
             
             .nav-links.show {
                 display: flex;
             }
             
-            .nav-links a {
-                padding: 0.5rem 1rem;
+            /* Main nav items */
+            .nav-links > a,
+            .nav-links > .dropdown-item {
+                padding: 1rem 1.5rem;
                 width: 100%;
-                text-align: center;
+                text-align: left;
+                border-bottom: 1px solid var(--cream);
+                font-weight: 600;
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+                color: var(--black);
+                text-decoration: none;
+                background: white;
+            }
+            
+            .nav-links > a {
+                border-bottom: 1px solid var(--cream);
+            }
+            
+            /* Dropdown toggle button style */
+            .dropdown-toggle {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                background: white;
+                border: none;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--black);
+                cursor: pointer;
+                padding: 0;
+                font-family: inherit;
+            }
+            
+            .dropdown-toggle i {
+                transition: transform 0.3s;
+                font-size: 0.9rem;
+                color: var(--gray);
+            }
+            
+            .dropdown-toggle.open i {
+                transform: rotate(180deg);
+            }
+            
+            /* Submenu styles */
+            .dropdown-submenu {
+                display: none;
+                flex-direction: column;
+                background: var(--cream);
+                margin-top: 0.5rem;
+                border-radius: 12px;
+                overflow: hidden;
+                width: 100%;
+            }
+            
+            .dropdown-submenu.show {
+                display: flex;
+            }
+            
+            .dropdown-submenu a {
+                padding: 0.8rem 1.5rem 0.8rem 2.5rem;
+                text-decoration: none;
+                color: var(--gray);
+                font-weight: 500;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                font-size: 0.95rem;
+                display: block;
+            }
+            
+            .dropdown-submenu a:last-child {
+                border-bottom: none;
+            }
+            
+            .dropdown-submenu a:hover {
+                color: var(--green);
+                background: rgba(42,157,143,0.1);
+            }
+            
+            .dropdown-submenu a.active {
+                color: var(--green);
+                font-weight: 600;
+            }
+            
+            .dropdown-item {
+                display: block;
+                padding: 0 !important;
+                flex-direction: column;
+                align-items: stretch !important;
             }
         }
         
@@ -455,19 +570,42 @@
     <div class="top-bar"><div class="container"><div class="contact-info"><a href="mailto:info@speakghana.org">📧 info@speakghana.org</a><a href="tel:+233552263323">📞 +233 55 226 3323</a><a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a></div></div></div>
     <header><div class="container header-content"><div class="logo"><a href="index.html"><div class="logo-text"><h1>Speak <span>Ghana</span></h1><p>Reconnect. Speak. Thrive.</p></div></a></div><div class="motto-badge">Reconnect. Speak. Thrive.<span>Your journey home begins here</span></div></div></header>
     
-    <!-- Navigation with Hamburger Menu -->
+    <!-- Navigation with Dropdown Menu -->
     <nav>
         <div class="container" style="position: relative;">
-            <button class="menu-toggle" id="menuToggle">☰</button>
+            <button class="menu-toggle" id="menuToggle">☰ Menu</button>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
+                
+                <!-- Learn Dropdown -->
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownLearnBtn">
+                        <span>📚 Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownLearnMenu">
+                        <a href="languages.html">Languages</a>
+                        <a href="kids-teens.html">Kids & Teens</a>
+                        <a href="concierge.html">Concierge</a>
+                    </div>
+                </div>
+                
+                <!-- Resources Dropdown -->
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownResourcesBtn">
+                        <span>📖 Resources</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownResourcesMenu">
+                        <a href="resources.html" class="active">Free Resources</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="student-portal.html">Student Portal</a>
+                    </div>
+                </div>
+                
+                <a href="students.html">👥 Students</a>
                 <a href="about.html">About</a>
-                <a href="languages.html">Languages</a>
-                <a href="kids-teens.html">Kids & Teens</a>
-                <a href="resources.html" class="active">Resources</a>
-                <a href="concierge.html">Concierge</a>
                 <a href="contact.html">Contact</a>
-                <a href="blog.html">Blog</a>
             </div>
         </div>
     </nav>
@@ -656,7 +794,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section"><h4>Speak Ghana</h4><p>📍 KNUST Campus, Kumasi</p><p>📞 +233 55 226 3323</p><p>📧 info@speakghana.org</p></div>
-                <div class="footer-section"><h4>Programs</h4><a href="languages.html">Adult Classes</a><a href="kids-teens.html">Kids & Teens</a><a href="languages.html">Family Packages</a></div>
+                <div class="footer-section"><h4>Programs</h4><a href="languages.html">Adult Classes</a><a href="kids-teens.html">Kids & Teens</a><a href="languages.html">Family Packages</a><a href="student-portal.html">🎓 Student Portal</a></div>
                 <div class="footer-section"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a></div>
                 <div class="footer-section"><h4>Connect</h4><a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a><a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a><a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a><div class="newsletter"><h4>Newsletter</h4><form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank"><div class="newsletter-form"><input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required><button type="submit" class="newsletter-btn">Join</button></div></form></div></div>
             </div>
@@ -668,10 +806,73 @@
         // Hamburger Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
+        
         if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', function() { navLinks.classList.toggle('show'); });
-            navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('show'); }); });
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
         }
+        
+        // Dropdown functionality
+        const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
+        const dropdownLearnMenu = document.getElementById('dropdownLearnMenu');
+        const dropdownResourcesBtn = document.getElementById('dropdownResourcesBtn');
+        const dropdownResourcesMenu = document.getElementById('dropdownResourcesMenu');
+        
+        if (dropdownLearnBtn && dropdownLearnMenu) {
+            dropdownLearnBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownLearnMenu.classList.toggle('show');
+                dropdownLearnBtn.classList.toggle('open');
+                if (dropdownResourcesMenu && dropdownResourcesMenu.classList.contains('show')) {
+                    dropdownResourcesMenu.classList.remove('show');
+                    dropdownResourcesBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        if (dropdownResourcesBtn && dropdownResourcesMenu) {
+            dropdownResourcesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownResourcesMenu.classList.toggle('show');
+                dropdownResourcesBtn.classList.toggle('open');
+                if (dropdownLearnMenu && dropdownLearnMenu.classList.contains('show')) {
+                    dropdownLearnMenu.classList.remove('show');
+                    dropdownLearnBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        // Close dropdowns when clicking on a link
+        document.querySelectorAll('.dropdown-submenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        // Close menu when clicking a regular link
+        document.querySelectorAll('.nav-links > a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        // Handle window resize - reset menu if resizing to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 968) {
+                if (navLinks) navLinks.classList.remove('show');
+                if (dropdownLearnMenu) dropdownLearnMenu.classList.remove('show');
+                if (dropdownResourcesMenu) dropdownResourcesMenu.classList.remove('show');
+                if (dropdownLearnBtn) dropdownLearnBtn.classList.remove('open');
+                if (dropdownResourcesBtn) dropdownResourcesBtn.classList.remove('open');
+            }
+        });
         
         window.openEnrollmentModal = function() {
             window.location.href = 'contact.html';
