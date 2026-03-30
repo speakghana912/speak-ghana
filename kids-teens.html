@@ -92,6 +92,155 @@
             flex-wrap: wrap;
         }
 
+        /* ===== MODAL POPUP STYLES ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.25s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-container {
+            background: linear-gradient(135deg, var(--cream), white);
+            width: 90%;
+            max-width: 700px;
+            max-height: 85vh;
+            border-radius: 32px;
+            overflow-y: auto;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            padding: 1.3rem 2rem;
+            border-radius: 32px 32px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .modal-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .modal-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 1.6rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: var(--red);
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .enrollment-modal-form {
+            width: 100%;
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            color: var(--black);
+            font-size: 0.9rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.7rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            background: white;
+            transition: all 0.2s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(42,157,143,0.15);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(42,157,143,0.35);
+        }
+        
+        .modal-note {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
         /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
@@ -908,89 +1057,6 @@
             text-align: left;
         }
 
-        /* ===== ENROLLMENT FORM ===== */
-        .enrollment-section {
-            background: white;
-            border-radius: 30px;
-            padding: 4rem;
-            margin: 4rem 0;
-            box-shadow: 0 20px 40px var(--shadow);
-        }
-
-        .enrollment-form {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--green);
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid var(--cream);
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--green);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.8rem;
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .checkbox-item input[type="checkbox"] {
-            width: auto;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, var(--green), #1f7a6e);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.4);
-        }
-
         /* ===== COMMITMENT SECTION ===== */
         .commitment-section {
             background: linear-gradient(135deg, var(--gold), var(--red));
@@ -1330,7 +1396,6 @@
             <a href="#teens" class="age-nav-link">Teens (13-17)</a>
             <a href="#family" class="age-nav-link">Family Bundles</a>
             <a href="#pricing" class="age-nav-link">Pricing</a>
-            <a href="#enroll" class="age-nav-link">Enroll</a>
             <a href="#faq" class="age-nav-link">FAQ</a>
         </div>
 
@@ -1366,7 +1431,7 @@
                             <span class="scholarship">Scholarship: $26.25 / GHS 367.50</span>
                         </div>
                         <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                        <button onclick="openEnrollmentModal('Kids - Twi Tots (K1)', 'Ages 5-8')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1393,7 +1458,7 @@
                             <span class="scholarship">Scholarship: $33.75 / GHS 472.50</span>
                         </div>
                         <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                        <button onclick="openEnrollmentModal('Kids - Twi Explorers (K2)', 'Ages 9-12')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1418,7 +1483,7 @@
                             <span class="scholarship">Scholarship: $48.75 / GHS 682.50</span>
                         </div>
                         <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                        <button onclick="openEnrollmentModal('Kids - Siblings Special (K3)', 'Family Program')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1447,7 +1512,7 @@
                             <span class="scholarship">Scholarship: $135 / GHS 1,890</span>
                         </div>
                         <p><small>Early Bird (by May 1): $160 / GHS 2,240</small></p>
-                        <a href="#enroll" class="btn btn-primary btn-small">Register</a>
+                        <button onclick="openEnrollmentModal('Kids - Summer Camp (K4)', 'Ages 6-12')" class="btn btn-primary btn-small">Register</button>
                     </div>
                 </div>
             </div>
@@ -1497,7 +1562,7 @@
                             <span class="scholarship">Scholarship: $41.25 / GHS 577.50</span>
                         </div>
                         <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                        <button onclick="openEnrollmentModal('Teens - Teen Talk (T1)', 'Ages 13-17')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1525,7 +1590,7 @@
                             <span class="scholarship">Scholarship: $71.25 / GHS 997.50</span>
                         </div>
                         <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                        <button onclick="openEnrollmentModal('Teens - Twi Fluency Fast (T2)', 'Ages 13-17')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1549,7 +1614,7 @@
                             $65 / GHS 910 <small>/month</small><br>
                             <span class="scholarship">Scholarship: $48.75 / GHS 682.50</span>
                         </div>
-                        <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                        <button onclick="openEnrollmentModal('Teens - Private 45min (T3)', 'Ages 13-17')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
                 </div>
                 <div class="package-card">
@@ -1569,7 +1634,7 @@
                             $85 / GHS 1,190 <small>/month</small><br>
                             <span class="scholarship">Scholarship: $63.75 / GHS 892.50</span>
                         </div>
-                        <a href="#enroll" class="btn btn-primary btn-small">Enroll Now</a>
+                        <button onclick="openEnrollmentModal('Teens - Private 60min (T3)', 'Ages 13-17')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1596,7 +1661,7 @@
                             <span class="scholarship">Scholarship: $270 / GHS 3,780</span>
                         </div>
                         <p><small>Early Bird (by May 1): $320 / GHS 4,480</small></p>
-                        <a href="#enroll" class="btn btn-primary btn-small">Register</a>
+                        <button onclick="openEnrollmentModal('Teens - Summer Intensive (T4)', 'Ages 13-17')" class="btn btn-primary btn-small">Register</button>
                     </div>
                 </div>
             </div>
@@ -1626,7 +1691,7 @@
                         <li>"Family Challenge" activities</li>
                         <li>Access to all cultural materials</li>
                     </ul>
-                    <a href="#enroll" class="btn btn-gold btn-small" style="margin-top: 1rem;">Register</a>
+                    <button onclick="openEnrollmentModal('Family - Family Pack (F1)', 'All Ages')" class="btn btn-gold btn-small" style="margin-top: 1rem;">Register</button>
                 </div>
 
                 <div class="family-card">
@@ -1643,7 +1708,7 @@
                         <li>Certificate for each level</li>
                     </ul>
                     <p><small>Add-on coaching: +$30/month</small></p>
-                    <a href="#enroll" class="btn btn-gold btn-small" style="margin-top: 1rem;">Register</a>
+                    <button onclick="openEnrollmentModal('Family - Heritage Homeschool (F2)', 'Homeschool Curriculum')" class="btn btn-gold btn-small" style="margin-top: 1rem;">Register</button>
                 </div>
             </div>
         </section>
@@ -1724,13 +1789,32 @@
             </div>
         </section>
 
-        <!-- ENROLLMENT FORM SECTION -->
-        <section id="enroll" class="enrollment-section">
-            <h2 class="center">Quick Enrollment Form</h2>
-            <p style="text-align: center; margin-bottom: 3rem;">Fill this out and we'll contact you within 24 hours</p>
+        <!-- COMMITMENT SECTION -->
+        <section class="commitment-section">
+            <h2 class="center">Our Commitment to Young Learners</h2>
+            <div class="commitment-quote">
+                "Sankofa – Go back and get it. For our children, for our future."
+            </div>
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 2rem auto;">
+                At Speak Ghana, we believe every child and teen deserves to know where they come from, speak with their grandparents, feel proud of their heritage, and belong to a community.
+            </p>
+            <p style="font-size: 1.1rem;">We don't just teach words. We build identity, confidence, and connection – one young learner at a time.</p>
+        </section>
+    </div>
 
-            <div class="enrollment-form">
-                <form action="https://formspree.io/f/mlgpodpb" method="POST">
+    <!-- ENROLLMENT MODAL POPUP -->
+    <div id="enrollmentModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>👧🧒 Enroll Your Child in Classes</h3>
+                <button class="modal-close" id="closeModalBtn">✕</button>
+            </div>
+            <div class="modal-body">
+                <form class="enrollment-modal-form" action="https://formspree.io/f/mlgpodpb" method="POST">
+                    <input type="hidden" name="form_type" value="Kids_Teens_Enrollment">
+                    <input type="hidden" name="selected_package" id="modal-package" value="">
+                    <input type="hidden" name="selected_age" id="modal-age" value="">
+                    
                     <div class="form-row">
                         <div class="form-group">
                             <label>Parent/Guardian Name *</label>
@@ -1741,12 +1825,12 @@
                             <input type="email" name="email" required>
                         </div>
                     </div>
-
+                    
                     <div class="form-row">
                         <div class="form-group">
                             <label>Phone</label>
                             <div style="display: flex; gap: 0.5rem;">
-                                <select name="phone_code" style="width: 30%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 10px;">
+                                <select name="phone_code" style="width: 30%; padding: 0.7rem; border: 2px solid #e2e8f0; border-radius: 12px;">
                                     <option value="+233">🇬🇭 +233 (Ghana)</option>
                                     <option value="+1">🇺🇸 +1 (USA/Canada)</option>
                                     <option value="+44">🇬🇧 +44 (UK)</option>
@@ -1761,7 +1845,7 @@
                             <input type="text" name="child_name" required>
                         </div>
                     </div>
-
+                    
                     <div class="form-row">
                         <div class="form-group">
                             <label>Child's Age *</label>
@@ -1772,23 +1856,7 @@
                             <input type="text" name="preferred_time" placeholder="e.g., Saturdays 10am">
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label>Which package? *</label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-item"><input type="checkbox" name="package" value="K1"> K1: Twi Tots (5-8)</div>
-                            <div class="checkbox-item"><input type="checkbox" name="package" value="K2"> K2: Twi Explorers (9-12)</div>
-                            <div class="checkbox-item"><input type="checkbox" name="package" value="K3"> K3: Siblings Special</div>
-                            <div class="checkbox-item"><input type="checkbox" name="package" value="K4"> K4: Summer Camp</div>
-                            <div class="checkbox-item"><input type="checkbox" name="package" value="T1"> T1: Teen Talk (13-17)</div>
-                            <div class="checkbox-item"><input type="checkbox" name="package" value="T2"> T2: Twi Fluency Fast</div>
-                            <div class="checkbox-item"><input type="checkbox" name="package" value="T3"> T3: Private 1-on-1</div>
-                            <div class="checkbox-item"><input type="checkbox" name="package" value="T4"> T4: Teen Summer</div>
-                            <div class="checkbox-item"><input type="checkbox" name="package" value="F1"> F1: Family Pack</div>
-                            <div class="checkbox-item"><input type="checkbox" name="package" value="F2"> F2: Homeschool</div>
-                        </div>
-                    </div>
-
+                    
                     <div class="form-group">
                         <label>Timezone</label>
                         <select name="timezone">
@@ -1799,34 +1867,28 @@
                             <option value="CAT">CAT (Johannesburg)</option>
                         </select>
                     </div>
-
+                    
                     <div class="form-group">
                         <label style="display: flex; align-items: center; gap: 0.5rem;">
                             <input type="checkbox" name="scholarship" value="yes"> I qualify for the Speak One, Learn One Scholarship (25% off - Ghana Card holder)
                         </label>
                     </div>
-
+                    
                     <div class="form-group">
                         <label>How did you hear about us?</label>
                         <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
                     </div>
-
+                    
+                    <div class="form-group">
+                        <label>Questions or special requests?</label>
+                        <textarea name="notes" rows="3" placeholder="Tell us anything else"></textarea>
+                    </div>
+                    
                     <button type="submit" class="submit-btn">Submit Enrollment</button>
+                    <p class="modal-note">We'll contact you within 24 hours</p>
                 </form>
             </div>
-        </section>
-
-        <!-- COMMITMENT SECTION -->
-        <section class="commitment-section">
-            <h2 class="center">Our Commitment to Young Learners</h2>
-            <div class="commitment-quote">
-                "Sankofa – Go back and get it. For our children, for our future."
-            </div>
-            <p style="font-size: 1.2rem; max-width: 800px; margin: 2rem auto;">
-                At Speak Ghana, we believe every child and teen deserves to know where they come from, speak with their grandparents, feel proud of their heritage, and belong to a community.
-            </p>
-            <p style="font-size: 1.1rem;">We don't just teach words. We build identity, confidence, and connection – one young learner at a time.</p>
-        </section>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -1885,7 +1947,7 @@
         </div>
     </footer>
 
-    <!-- Event Tracking with Hamburger Menu -->
+    <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Hamburger Menu Toggle
@@ -1959,17 +2021,57 @@
                 }
             });
             
+            // Modal functionality
+            const modal = document.getElementById('enrollmentModal');
+            const closeBtn = document.getElementById('closeModalBtn');
+            
+            window.openEnrollmentModal = function(packageName, ageRange) {
+                document.getElementById('modal-package').value = packageName;
+                document.getElementById('modal-age').value = ageRange;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                if (typeof gtag === 'function') {
+                    gtag('event', 'kids_teens_enrollment_modal_open', { 'event_category': 'engagement', 'event_label': packageName });
+                }
+            };
+            
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+            
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
             // Track Form Submissions
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
                 form.addEventListener('submit', function() {
                     let formName = 'kids_teens_enrollment';
+                    if (this.id === 'footer-newsletter-form') formName = 'footer_newsletter';
                     if (typeof gtag === 'function') {
                         gtag('event', 'generate_lead', {
                             'event_category': 'engagement',
                             'event_label': formName
                         });
                     }
+                    if (modal) setTimeout(() => {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }, 500);
                 });
             });
             
@@ -2022,7 +2124,7 @@
     <script src="kids-numbers.js"></script>
     <script src="kids-memory.js"></script>
 
-    <!-- ADD Tawk.to Script HERE -->
+    <!-- Tawk.to Script -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
