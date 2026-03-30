@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>From Syllables to Sentences: Adelaide’s First Month with Speak Ghana</title>
+    <meta name="description" content="Adelaide Daniels shares her journey learning Twi with Speak Ghana. After one month, she's forming sentences, mastering syllables, and reconnecting with her roots.">
     
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
@@ -22,7 +23,7 @@
     </script>
 
     <style>
-        /* ===== SAME STYLES AS YOUR PREVIOUS BLOG POST ===== */
+        /* ===== MODERN COLOR PALETTE ===== */
         :root {
             --gold: #D4A373;
             --green: #2A9D8F;
@@ -34,19 +35,148 @@
             --gray: #666666;
             --shadow: rgba(0, 0, 0, 0.08);
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--black);
             background-color: var(--cream);
         }
-        .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid var(--gold);
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .contact-info a:hover { color: var(--gold); }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+        }
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+        .logo-text h1 span { color: var(--gold); }
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: var(--gold);
+            font-weight: 500;
+            text-align: right;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover { color: var(--red); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: var(--green); font-weight: 600; }
+        .nav-links a.active::after { width: 100%; background: var(--green); }
+
+        /* ===== BLOG POST STYLES ===== */
+        .blog-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
         .blog-post {
             background: white;
             border-radius: 30px;
-            padding: 4rem;
-            margin: 4rem 0;
+            padding: 3rem;
+            margin: 3rem 0;
             box-shadow: 0 20px 40px var(--shadow);
         }
         .featured-image-large {
@@ -63,15 +193,13 @@
             object-fit: cover;
             transition: transform 0.5s ease;
         }
-        .featured-image-large:hover img {
-            transform: scale(1.03);
-        }
-        .post-header { text-align: center; margin-bottom: 3rem; }
+        .featured-image-large:hover img { transform: scale(1.03); }
+        .post-header { text-align: center; margin-bottom: 2rem; }
         .post-meta { color: var(--gray); margin-bottom: 1rem; font-size: 0.95rem; }
         .post-header h1 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             color: var(--green);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             line-height: 1.3;
         }
         .author-bio {
@@ -91,12 +219,107 @@
             border: 3px solid white;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+        .author-image img { width: 100%; height: 100%; object-fit: cover; }
+        .symbol-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--gold);
+        }
+        .symbol-card strong { color: var(--green); }
+        .blog-post h2 { margin: 2rem 0 1rem; color: var(--green); }
+        .blog-post p { margin-bottom: 1.2rem; color: var(--gray); }
+        .blog-post ol { margin: 1rem 0 1.5rem 1.8rem; }
+        .blog-post li { margin-bottom: 0.8rem; }
+
+        /* ===== SHARE SECTION ===== */
+        .share-section {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .share-btn:hover { transform: translateY(-3px); }
+        .share-twitter { background: #1DA1F2; color: white; }
+        .share-facebook { background: #4267B2; color: white; }
+        .share-whatsapp { background: #25D366; color: white; }
+        .share-linkedin { background: #0077B5; color: white; }
+        .copy-link-btn { background: var(--green); color: white; }
+
+        /* ===== COMMENTS SECTION ===== */
+        .comments-section {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        .comment-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--cream);
+            border-radius: 20px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            margin-bottom: 1rem;
+        }
+        .comment-form input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--cream);
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+        .comment-submit {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .comment-list { margin-top: 2rem; }
+        .comment {
+            background: var(--cream);
+            padding: 1rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+        .comment-name { font-weight: 700; color: var(--green); margin-bottom: 0.3rem; }
+        .comment-text { color: var(--gray); }
+        .comment-date { font-size: 0.7rem; color: var(--gray); margin-top: 0.3rem; }
+
+        /* ===== CTA BOX ===== */
         .cta-box {
             background: linear-gradient(135deg, var(--gold), var(--red));
             border-radius: 20px;
-            padding: 3rem;
+            padding: 2.5rem;
             text-align: center;
-            margin: 3rem 0;
+            margin: 2rem 0;
         }
         .cta-button {
             display: inline-block;
@@ -107,16 +330,142 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
+            margin-top: 1rem;
         }
-        .cta-button:hover { transform: translateY(-3px); }
+        .cta-button:hover { transform: translateY(-3px); background: var(--green); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
+        }
+        .footer-section a:hover { color: var(--gold); transform: translateX(5px); }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+        .motto-footer { color: var(--gold); font-size: 1.2rem; margin-top: 1rem; }
+        .newsletter {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        .newsletter h4 { color: var(--gold); margin-bottom: 1rem; }
+        .newsletter-form { display: flex; gap: 0.5rem; }
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        .newsletter-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .blog-post { padding: 1.5rem; }
+            .featured-image-large { height: 250px; }
+            .post-header h1 { font-size: 1.8rem; }
+            .newsletter-form { flex-direction: column; }
+            .newsletter-btn { width: 100%; }
+        }
+        @media (max-width: 968px) {
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="mailto:info@speakghana.org">📧 info@speakghana.org</a>
+                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header with clickable logo -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="languages.html">Languages</a>
+                <a href="kids-teens.html">Kids & Teens</a>
+                <a href="resources.html">Resources</a>
+                <a href="concierge.html">Concierge</a>
+                <a href="contact.html">Contact</a>
+                <a href="blog.html">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Content -->
+    <div class="blog-container">
         <div class="blog-post">
 
-            <!-- Adelaide's Photo - Large & Highly Visible -->
+            <!-- Featured Image -->
             <div class="featured-image-large">
                 <img src="images/adelaide.png" alt="Adelaide Daniels - Speak Ghana Twi Student">
             </div>
@@ -127,7 +476,7 @@
                     <span>👤 by Speak Ghana Team</span>
                     <span>📁 Student Stories</span>
                 </div>
-                <h1>From Syllables to Sentences: Adelaide’s First Month with Speak Ghana</h1>
+                <h1>From Syllables to Sentences: Adelaide's First Month with Speak Ghana</h1>
             </div>
 
             <!-- Author Bio -->
@@ -137,20 +486,19 @@
                 </div>
                 <div>
                     <strong style="color: var(--green);">Adelaide Daniels (Kakra)</strong><br>
-                    <p style="margin-top: 0.3rem;">Speak Ghana Student – March 2026 Cohort</p>
+                    <p style="margin-top: 0.3rem;">Speak Ghana Student – March 2026 Cohort | UK-based diaspora learner</p>
                 </div>
             </div>
 
             <p><strong>"I have been taking lessons for a month now, and I am now able to form simple sentences from the words I have been taught."</strong></p>
 
-            <p>The teachers are very attentive and help whenever I need it. I love that there are 2 teachers — one helps more with speaking, and when you need something written down or have simple questions, another teacher is available in the chat.</p>
+            <p>The teachers are very attentive and help whenever I need it. I love that there are multiple teachers — one helps more with speaking, and when you need something written down or have simple questions, another teacher is available in the chat.</p>
 
             <p>I feel confident reading the alphabet and I love how vocabulary is so naturally built throughout the lessons. The teachers are also funny and very kind, so it makes the lessons more enjoyable and fun!</p>
 
-            <p>I love the pacing of the class — it’s slow enough that you can go over things to ensure understanding, but fast enough that you can see the progress every week with reading, speaking and writing!</p>
+            <p>I love the pacing of the class — it's slow enough that you can go over things to ensure understanding, but fast enough that you can see the progress every week with reading, speaking and writing!</p>
 
-            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">Syllables Adelaide Has Mastered</h2>
-
+            <h2>Syllables Adelaide Has Mastered</h2>
             <div class="symbol-card">
                 <strong>GY</strong> — Gye (take), Gyina (stand/stop)<br>
                 <strong>HY</strong> — Hyia (meet), Ahyɛn (vehicle)<br>
@@ -162,24 +510,202 @@
                 <strong>TW</strong> — Twa (cut), Twitwa (chop e.g food)
             </div>
 
-            <h2 style="color: var(--green); margin: 3rem 0 1.5rem;">Real Sentences Adelaide Can Now Say</h2>
-
+            <h2>Real Sentences Adelaide Can Now Say</h2>
             <ol>
-                <li><strong>Nwoma a m’ani gye ho pa ara ne Matilda</strong> — My favourite book is Matilda</li>
-                <li><strong>Merekɔtwa amango dua no</strong> — I’m going to chop the mango tree</li>
+                <li><strong>Nwoma a m'ani gye ho pa ara ne Matilda</strong> — My favourite book is Matilda</li>
+                <li><strong>Merekɔtwa amango dua no</strong> — I'm going to chop the mango tree</li>
                 <li><strong>Hwɛ! Me Maame ho yɛ fɛ!</strong> — Look! My mum is beautiful!</li>
                 <li><strong>Kyerɛ me kwan no</strong> — Show me the way</li>
                 <li><strong>Mehyiaa me nua no anɔpa yi</strong> — I met my sibling this morning</li>
             </ol>
 
+            <!-- ===== SHARE THIS STORY SECTION ===== -->
+            <div class="share-section">
+                <h3 style="color: var(--green);">📢 Share Adelaide's Story</h3>
+                <p style="color: var(--gray);">Know someone who would be inspired? Share this story with them.</p>
+                <div class="share-buttons">
+                    <button class="share-btn share-twitter" onclick="shareOnTwitter()">🐦 Twitter</button>
+                    <button class="share-btn share-facebook" onclick="shareOnFacebook()">📘 Facebook</button>
+                    <button class="share-btn share-whatsapp" onclick="shareOnWhatsApp()">💬 WhatsApp</button>
+                    <button class="share-btn share-linkedin" onclick="shareOnLinkedIn()">🔗 LinkedIn</button>
+                    <button class="share-btn copy-link-btn" onclick="copyPageLink()">📋 Copy Link</button>
+                </div>
+            </div>
+
+            <!-- ===== COMMENTS SECTION ===== -->
+            <div class="comments-section" id="comments">
+                <h3 style="color: var(--green); margin-bottom: 1rem;">💬 Leave a Comment</h3>
+                <div class="comment-form">
+                    <input type="text" id="comment-name" placeholder="Your name" style="width: 100%; padding: 0.8rem; border: 2px solid var(--cream); border-radius: 50px; margin-bottom: 1rem;">
+                    <textarea id="comment-text" rows="3" placeholder="Share your thoughts..."></textarea>
+                    <button class="comment-submit" onclick="addComment()">Post Comment</button>
+                </div>
+                <div class="comment-list" id="comment-list">
+                    <p style="color: var(--gray); text-align: center;">No comments yet. Be the first to share your thoughts!</p>
+                </div>
+            </div>
+
+            <!-- CTA Box -->
             <div class="cta-box">
-                <h3>Ready to start your own Twi journey?</h3>
-                <p>Join hundreds of diaspora learners who are already speaking Twi with confidence.</p>
+                <h3 style="color: var(--black);">Ready to start your own Twi journey?</h3>
+                <p style="color: var(--black);">Join hundreds of diaspora learners who are already speaking Twi with confidence.</p>
                 <a href="https://speakghana.org" class="cta-button">View Our April Classes →</a>
             </div>
 
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>🏗️ Accra Office (Opening Soon)</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
+                    <p>💬 <a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Programs</h4>
+                    <a href="languages.html">Adult Classes</a>
+                    <a href="kids-teens.html">Kids (5-12)</a>
+                    <a href="kids-teens.html">Teens (13-17)</a>
+                    <a href="languages.html">Family Packages</a>
+                    <a href="contact.html">Scholarship Program</a>
+                    <a href="concierge.html">Sankofa Concierge</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="resources.html">Free Resources</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
+                    <a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a>
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
+                            <div class="newsletter-form">
+                                <input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required>
+                                <button type="submit" class="newsletter-btn">Join</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
+                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== SHARE FUNCTIONS =====
+        const pageUrl = encodeURIComponent(window.location.href);
+        const pageTitle = encodeURIComponent(document.title);
+
+        function shareOnTwitter() {
+            window.open(`https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`, '_blank', 'width=600,height=400');
+            gtag('event', 'share_twitter', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
+        }
+        function shareOnFacebook() {
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank', 'width=600,height=400');
+            gtag('event', 'share_facebook', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
+        }
+        function shareOnWhatsApp() {
+            window.open(`https://wa.me/?text=${pageTitle}%20${pageUrl}`, '_blank');
+            gtag('event', 'share_whatsapp', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
+        }
+        function shareOnLinkedIn() {
+            window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`, '_blank', 'width=600,height=400');
+            gtag('event', 'share_linkedin', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
+        }
+        function copyPageLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert('📋 Link copied to clipboard! Share with your friends.');
+            gtag('event', 'copy_link', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
+        }
+
+        // ===== COMMENTS SECTION =====
+        let comments = [];
+
+        function loadComments() {
+            const saved = localStorage.getItem('adelaide_comments');
+            if (saved) {
+                comments = JSON.parse(saved);
+                renderComments();
+            }
+        }
+
+        function renderComments() {
+            const commentList = document.getElementById('comment-list');
+            if (comments.length === 0) {
+                commentList.innerHTML = '<p style="color: var(--gray); text-align: center;">No comments yet. Be the first to share your thoughts!</p>';
+                return;
+            }
+            let html = '';
+            comments.forEach(comment => {
+                html += `
+                    <div class="comment">
+                        <div class="comment-name">${escapeHtml(comment.name)}</div>
+                        <div class="comment-text">${escapeHtml(comment.text)}</div>
+                        <div class="comment-date">${comment.date}</div>
+                    </div>
+                `;
+            });
+            commentList.innerHTML = html;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+                return c;
+            });
+        }
+
+        function addComment() {
+            const nameInput = document.getElementById('comment-name');
+            const textInput = document.getElementById('comment-text');
+            const name = nameInput.value.trim();
+            const text = textInput.value.trim();
+
+            if (!name || !text) {
+                alert('Please enter both your name and a comment.');
+                return;
+            }
+
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+            comments.unshift({
+                name: name,
+                text: text,
+                date: dateStr
+            });
+
+            localStorage.setItem('adelaide_comments', JSON.stringify(comments));
+            renderComments();
+
+            nameInput.value = '';
+            textInput.value = '';
+
+            gtag('event', 'blog_comment', { 'event_category': 'engagement', 'event_label': 'adelaide_story' });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadComments);
+    </script>
 </body>
 </html>
