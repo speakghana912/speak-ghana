@@ -554,6 +554,7 @@
             <a href="resources.html">Resources</a>
             <a href="concierge.html" class="active">Sankofa Concierge</a>
             <a href="contact.html">Contact</a>
+            <a href="blog.html">Blog</a>
         </div>
     </div>
 </nav>
@@ -691,20 +692,20 @@
     window.addEventListener('click', (e) => { if(e.target === modal) closeModalFunc(); });
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && modal.style.display === 'flex') closeModalFunc(); });
     document.querySelector('form')?.addEventListener('submit', function() { if(typeof gtag === 'function') gtag('event', 'concierge_submit', { 'event_category': 'conversion' }); setTimeout(() => closeModalFunc(), 800); });
-    </script>
+</script>
 
-    <!-- ADD Tawk.to Script HERE -->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/69c6e0467a89d01c3c2d3244/1jkodo5c8';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-    <!-- End Tawk.to Script -->
+<!-- Tawk.to Live Chat Script -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/69c6e0467a89d01c3c2d3244/1jkodo5c8';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!-- End Tawk.to Script -->
 </body>
 </html>
