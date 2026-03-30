@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From London to Ghana: Adelina's Twi Journey | Speak Ghana Blog</title>
+    <meta name="description" content="Adelina (Panyin), a UK-based Ghanaian diaspora learner, shares how Speak Ghana helped her learn Twi in just one month. Read her inspiring journey.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZXFR0LFLH6');
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--cream);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.7rem 0;
+            font-size: 0.85rem;
+            border-bottom: 3px solid var(--gold);
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .contact-info a:hover { color: var(--gold); }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.2rem 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        .logo img {
+            height: 65px;
+            width: auto;
+            border-radius: 10px;
+        }
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: white;
+        }
+        .logo-text h1 span { color: var(--gold); }
+        .logo-text p { font-size: 0.8rem; opacity: 0.9; }
+
+        nav {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            border-bottom: 1px solid #eee;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0.8rem 0;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.3rem 0;
+            transition: color 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--green);
+            border-bottom-color: var(--green);
+        }
+
+        /* Dropdown styles for mobile */
+        .dropdown-item { display: contents; }
+        .dropdown-toggle { display: none; }
+        .dropdown-submenu { display: contents; }
+
+        .menu-toggle {
+            display: none;
+            background: var(--gold);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--black);
+            padding: 0.5rem 1rem;
+            z-index: 101;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .menu-toggle:hover {
+            background: var(--green);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 0.5rem;
+            }
+            nav { position: relative; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            .nav-links.show { display: flex; }
+            .nav-links > a, .nav-links > .dropdown-item {
+                padding: 1rem 1.5rem;
+                width: 100%;
+                text-align: left;
+                border-bottom: 1px solid var(--cream);
+                font-weight: 600;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: var(--black);
+                text-decoration: none;
+                background: white;
+            }
+            .dropdown-toggle {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                background: white;
+                border: none;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--black);
+                cursor: pointer;
+                padding: 0;
+                font-family: inherit;
+            }
+            .dropdown-toggle i { transition: transform 0.3s; font-size: 0.9rem; color: var(--gray); }
+            .dropdown-toggle.open i { transform: rotate(180deg); }
+            .dropdown-submenu {
+                display: none;
+                flex-direction: column;
+                background: var(--cream);
+                margin-top: 0.5rem;
+                border-radius: 12px;
+                overflow: hidden;
+                width: 100%;
+            }
+            .dropdown-submenu.show { display: flex; }
+            .dropdown-submenu a {
+                padding: 0.8rem 1.5rem 0.8rem 2.5rem;
+                text-decoration: none;
+                color: var(--gray);
+                font-weight: 500;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                font-size: 0.95rem;
+                display: block;
+            }
+            .dropdown-submenu a:last-child { border-bottom: none; }
+            .dropdown-submenu a:hover { color: var(--green); background: rgba(42,157,143,0.1); }
+            .dropdown-item { display: block; padding: 0 !important; flex-direction: column; align-items: stretch !important; }
+        }
+
+        /* Blog Post Styles */
+        .blog-post {
+            background: white;
+            border-radius: 32px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .blog-header h1 {
+            font-size: 2.5rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .blog-meta {
+            color: var(--gray);
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .featured-image {
+            background: linear-gradient(135deg, var(--green), var(--gold));
+            border-radius: 24px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .featured-image .placeholder {
+            font-size: 6rem;
+            text-align: center;
+            color: white;
+        }
+
+        .blog-content h2 {
+            color: var(--green);
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .blog-content h2::after {
+            display: none;
+        }
+
+        .blog-content h3 {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .blog-content p {
+            color: var(--gray);
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .vocab-box {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--gold);
+        }
+
+        .vocab-box h3 {
+            margin-top: 0;
+            color: var(--green);
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .vocab-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .vocab-card:hover {
+            transform: translateY(-3px);
+        }
+        .vocab-letter {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--green);
+            margin-bottom: 0.5rem;
+        }
+        .vocab-word {
+            font-weight: 600;
+            color: var(--black);
+            font-size: 0.9rem;
+        }
+        .vocab-meaning {
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .sentence-box {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .sentence-icon {
+            font-size: 2rem;
+        }
+        .sentence-twi {
+            flex: 2;
+            font-weight: 600;
+            color: var(--green);
+        }
+        .sentence-english {
+            flex: 2;
+            color: var(--gray);
+        }
+
+        .testimonial-quote {
+            background: linear-gradient(135deg, var(--cream), white);
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .testimonial-quote i {
+            font-size: 2rem;
+            color: var(--gold);
+            opacity: 0.5;
+        }
+
+        .testimonial-quote p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--black);
+            margin: 1rem 0;
+        }
+
+        .testimonial-author {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .twin-note {
+            background: linear-gradient(135deg, var(--gold), #c49a6c);
+            border-radius: 16px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+            color: var(--black);
+            font-size: 0.9rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: var(--gold);
+            margin-top: 0;
+        }
+
+        .cta-box .btn {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .cta-box .btn:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .footer-section a:hover { color: var(--gold); }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .blog-post { padding: 1.5rem; }
+            .blog-header h1 { font-size: 1.8rem; }
+            .featured-image { height: 250px; }
+            .vocab-grid { grid-template-columns: repeat(2, 1fr); }
+            .sentence-box { flex-direction: column; text-align: center; }
+            .container { padding: 0 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="mailto:info@speakghana.org"><i class="fas fa-envelope"></i> info@speakghana.org</a>
+                <a href="tel:+233552263323"><i class="fas fa-phone-alt"></i> +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323"><i class="fab fa-whatsapp"></i> WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge" style="background: rgba(255,255,255,0.12); padding: 0.5rem 1.2rem; border-radius: 40px;">
+                <i class="fas fa-blog"></i> Blog
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation with Dropdown Menu -->
+    <nav>
+        <div class="container" style="position: relative;">
+            <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownLearnBtn">
+                        <span>📚 Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownLearnMenu">
+                        <a href="languages.html">Languages</a>
+                        <a href="kids-teens.html">Kids & Teens</a>
+                        <a href="concierge.html">Concierge</a>
+                    </div>
+                </div>
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownResourcesBtn">
+                        <span>📖 Resources</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownResourcesMenu">
+                        <a href="resources.html">Free Resources</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="student-portal.html">Student Portal</a>
+                    </div>
+                </div>
+                <a href="students.html">👥 Students</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Content -->
+    <div class="container">
+        <div class="blog-post">
+            <div class="blog-header">
+                <span class="blog-category">📖 Student Story</span>
+                <h1>From London to Ghana: Adelina's Twi Journey</h1>
+                <div class="blog-meta">
+                    <span><i class="far fa-calendar-alt"></i> March 30, 2026</span>
+                    <span><i class="far fa-user"></i> By Adelina Daniels (Panyin)</span>
+                    <span><i class="far fa-clock"></i> 4 min read</span>
+                </div>
+            </div>
+
+            <!-- Featured Image with Adelina's Photo -->
+            <div class="featured-image">
+                <img src="images/Adelina.jpg" alt="Adelina Daniels (Panyin) - Speak Ghana student from London, UK" onerror="this.parentElement.innerHTML='<div class=placeholder><i class=\'fas fa-heart\' style=\'color: white; font-size: 5rem;\'></i><p style=\'color: white; margin-top: 1rem;\'>🇬🇭 London → Ghana 🇬🇭</p></div>'">
+            </div>
+
+            <div class="twin-note">
+                👯‍♀️ <strong>Fun fact:</strong> Adelina and Adelaide are twins! Adelina is the older twin (Panyin) and Adelaide is the younger twin (Kakra). Both are learning Twi with Speak Ghana!
+            </div>
+
+            <div class="blog-content">
+                <p>As a Ghanaian born in the UK, I've always felt a deep pull toward my roots. But there was one thing missing: the ability to speak Twi.</p>
+
+                <p>I could understand bits and pieces from what my parents said at home, but I could never respond. Every family gathering felt like I was on the outside looking in. I knew it was time to finally learn.</p>
+
+                <p>That's when I found Speak Ghana.</p>
+
+                <h2>📚 One Month Later...</h2>
+
+                <div class="testimonial-quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>I've learned so much in a month and I'm glad I chose to learn with Speak Ghana. The teachers are so amazing!</p>
+                    <i class="fas fa-quote-right"></i>
+                    <div class="testimonial-author">— Adelina Daniels (Panyin) 🇬🇭🇬🇧</div>
+                </div>
+
+                <p>Just one month ago, I couldn't form a single sentence in Twi. Now? I'm putting together phrases, understanding more of what my family says, and feeling more connected to my heritage than ever before.</p>
+
+                <h2>👩🏾‍🏫 Learning with Tetebea & Richard</h2>
+
+                <p>I've been learning with Tetebea and Richard, and they are so great at matching the classes to our level and pace. They don't just teach — they truly care about our progress.</p>
+
+                <p>What I love most is that they are always available. During lesson time, they answer every question. And outside of lesson time? They're still there to help. It's been an absolute pleasure to be their student.</p>
+
+                <h2>🎯 Why This Works</h2>
+
+                <p>The classes are structured perfectly — not too fast, not too slow. Every week, I can see my progress. Reading, writing, speaking — it's all improving.</p>
+
+                <p>I know with their help, I'll be fluent by the time I travel back home to Ghana. And honestly? I'm so excited by that!</p>
+
+                <h2>💬 Twi Words I Learned This Week</h2>
+
+                <div class="vocab-box">
+                    <h3>📖 Twi Consonants & Vocabulary</h3>
+                    <div class="vocab-grid">
+                        <div class="vocab-card">
+                            <div class="vocab-letter">Dw</div>
+                            <div class="vocab-word">Adwuma</div>
+                            <div class="vocab-meaning">work</div>
+                            <div class="vocab-word">Adwoa</div>
+                            <div class="vocab-meaning">Monday-born lady</div>
+                        </div>
+                        <div class="vocab-card">
+                            <div class="vocab-letter">Gy</div>
+                            <div class="vocab-word">Gye</div>
+                            <div class="vocab-meaning">take</div>
+                            <div class="vocab-word">Agya</div>
+                            <div class="vocab-meaning">elder/father</div>
+                        </div>
+                        <div class="vocab-card">
+                            <div class="vocab-letter">Hy</div>
+                            <div class="vocab-word">Hyia</div>
+                            <div class="vocab-meaning">to meet</div>
+                            <div class="vocab-word">Hyira</div>
+                            <div class="vocab-meaning">bless</div>
+                        </div>
+                        <div class="vocab-card">
+                            <div class="vocab-letter">Hw</div>
+                            <div class="vocab-word">Hwan</div>
+                            <div class="vocab-meaning">who</div>
+                            <div class="vocab-word">Hyehwɛ</div>
+                            <div class="vocab-meaning">to search</div>
+                            <div class="vocab-word">Ahwɛhyɛ</div>
+                            <div class="vocab-meaning">mirror</div>
+                        </div>
+                        <div class="vocab-card">
+                            <div class="vocab-letter">Kw</div>
+                            <div class="vocab-word">Kwasida</div>
+                            <div class="vocab-meaning">Saturday</div>
+                            <div class="vocab-word">Kwan</div>
+                            <div class="vocab-meaning">road</div>
+                        </div>
+                        <div class="vocab-card">
+                            <div class="vocab-letter">Ky</div>
+                            <div class="vocab-word">Ɔkyɛna</div>
+                            <div class="vocab-meaning">tomorrow</div>
+                            <div class="vocab-word">Akyire</div>
+                            <div class="vocab-meaning">behind/after</div>
+                        </div>
+                        <div class="vocab-card">
+                            <div class="vocab-letter">Ny</div>
+                            <div class="vocab-word">Nyame</div>
+                            <div class="vocab-meaning">God</div>
+                            <div class="vocab-word">Nyankopɔn</div>
+                            <div class="vocab-meaning">Almighty God</div>
+                        </div>
+                        <div class="vocab-card">
+                            <div class="vocab-letter">Nw</div>
+                            <div class="vocab-word">Nwoma</div>
+                            <div class="vocab-meaning">book/letter</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>📝 Sentences I Can Now Say</h2>
+
+                <div class="vocab-box">
+                    <div class="sentence-box">
+                        <div class="sentence-icon">🍌</div>
+                        <div class="sentence-twi"><strong>Mepɛ sɛ medi kwadu no ɔkyena</strong></div>
+                        <div class="sentence-english">I want to eat the banana tomorrow</div>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="sentence-icon">✍️</div>
+                        <div class="sentence-twi"><strong>Twerɛ ma me</strong></div>
+                        <div class="sentence-english">Write for me</div>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="sentence-icon">🍲</div>
+                        <div class="sentence-twi"><strong>Merebɛdi banku ne nyaadowa frɔeɛ</strong></div>
+                        <div class="sentence-english">I will eat banku and garden eggs stew</div>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="sentence-icon">🤝</div>
+                        <div class="sentence-twi"><strong>Yerebɛkyɛ aduane no</strong></div>
+                        <div class="sentence-english">We will share the food</div>
+                    </div>
+                    <div class="sentence-box">
+                        <div class="sentence-icon">👟</div>
+                        <div class="sentence-twi"><strong>Hyɛ wo mpaboa</strong></div>
+                        <div class="sentence-english">Wear your slippers</div>
+                    </div>
+                </div>
+
+                <h2>❤️ My Honest Recommendation</h2>
+
+                <div class="testimonial-quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>I truly recommend these classes for anyone interested in learning Twi!</p>
+                    <i class="fas fa-quote-right"></i>
+                    <div class="testimonial-author">— Adelina Daniels (Panyin)</div>
+                </div>
+
+                <p>If you're in the diaspora and you've been putting off learning Twi — stop waiting. This is your sign.</p>
+
+                <p>The teachers are amazing, the community is supportive, and the progress is real. In just one month, I've gone from knowing nothing to forming sentences.</p>
+
+                <p>Imagine what you could achieve in three months. Six months. A year.</p>
+
+                <p>By the time you travel back home, you could be speaking with your grandparents, understanding the music, and feeling truly connected.</p>
+
+                <p><strong>Don't wait another year. Start today.</strong></p>
+
+                <div class="cta-box">
+                    <h3>✨ Ready to Start Your Twi Journey?</h3>
+                    <p>Join Adelina (Panyin), Adelaide (Kakra), and hundreds of other students learning Twi with Speak Ghana.</p>
+                    <a href="languages.html" class="btn">Explore Our Classes →</a>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">🎓 25% Scholarship for Ghana Card holders</p>
+                </div>
+
+                <p><em>Medaase! 🙏</em></p>
+                <p><strong>— Adelina Daniels (Panyin)</strong><br>
+                Speak Ghana Student, UK</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 info@speakghana.org</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="languages.html">Languages</a>
+                    <a href="resources.html">Resources</a>
+                    <a href="student-portal.html">Student Portal</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School — Blog</p>
+                <div style="margin-top: 0.5rem; font-size: 0.85rem;">Reconnect. Speak. Thrive.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        }
+        
+        // Dropdown functionality
+        const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
+        const dropdownLearnMenu = document.getElementById('dropdownLearnMenu');
+        const dropdownResourcesBtn = document.getElementById('dropdownResourcesBtn');
+        const dropdownResourcesMenu = document.getElementById('dropdownResourcesMenu');
+        
+        if (dropdownLearnBtn && dropdownLearnMenu) {
+            dropdownLearnBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownLearnMenu.classList.toggle('show');
+                dropdownLearnBtn.classList.toggle('open');
+                if (dropdownResourcesMenu && dropdownResourcesMenu.classList.contains('show')) {
+                    dropdownResourcesMenu.classList.remove('show');
+                    dropdownResourcesBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        if (dropdownResourcesBtn && dropdownResourcesMenu) {
+            dropdownResourcesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownResourcesMenu.classList.toggle('show');
+                dropdownResourcesBtn.classList.toggle('open');
+                if (dropdownLearnMenu && dropdownLearnMenu.classList.contains('show')) {
+                    dropdownLearnMenu.classList.remove('show');
+                    dropdownLearnBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        document.querySelectorAll('.dropdown-submenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.nav-links > a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 968) {
+                if (navLinks) navLinks.classList.remove('show');
+                if (dropdownLearnMenu) dropdownLearnMenu.classList.remove('show');
+                if (dropdownResourcesMenu) dropdownResourcesMenu.classList.remove('show');
+                if (dropdownLearnBtn) dropdownLearnBtn.classList.remove('open');
+                if (dropdownResourcesBtn) dropdownResourcesBtn.classList.remove('open');
+            }
+        });
+    </script>
+
+    <!-- Tawk.to Script -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/69c6e0467a89d01c3c2d3244/1jkodo5c8';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+</body>
+</html>
