@@ -22,6 +22,9 @@
         gtag('config', 'G-ZXFR0LFLH6');
     </script>
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -355,7 +358,7 @@
         }
         .author-image img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* Improved Syllable Cards */
+        /* Syllable Cards */
         .syllables-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -559,12 +562,12 @@
         }
         .cta-button:hover { transform: translateY(-3px); background: var(--green); }
 
-        /* Footer */
+        /* Footer - MATCHING SITE WIDE FOOTER */
         footer {
             background: var(--black);
             color: white;
             padding: 4rem 0 2rem;
-            margin-top: 2rem;
+            margin-top: 4rem;
             position: relative;
         }
         footer::before {
@@ -587,28 +590,47 @@
             margin-bottom: 1.5rem;
             font-size: 1.2rem;
         }
+        .footer-section p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
         .footer-section a {
             color: rgba(255,255,255,0.8);
             text-decoration: none;
             display: block;
             margin-bottom: 0.8rem;
             transition: all 0.3s;
+            font-size: 0.95rem;
         }
-        .footer-section a:hover { color: var(--gold); transform: translateX(5px); }
+        .footer-section a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
         .copyright {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: rgba(255,255,255,0.6);
         }
-        .motto-footer { color: var(--gold); font-size: 1.2rem; margin-top: 1rem; }
+        .motto-footer {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
         .newsletter {
             background: rgba(255,255,255,0.05);
             padding: 2rem;
             border-radius: 15px;
         }
-        .newsletter h4 { color: var(--gold); margin-bottom: 1rem; }
-        .newsletter-form { display: flex; gap: 0.5rem; }
+        .newsletter h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
         .newsletter-input {
             flex: 1;
             padding: 0.8rem;
@@ -624,19 +646,46 @@
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        .newsletter-btn:hover {
+            background: var(--red);
+            color: white;
+        }
+
+        @media (max-width: 968px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .syllables-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         @media (max-width: 768px) {
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .blog-post { padding: 1.5rem; }
-            .featured-image-large { min-height: 200px; }
-            .post-header h1 { font-size: 1.8rem; }
-            .newsletter-form { flex-direction: column; }
-            .newsletter-btn { width: 100%; }
-            .syllables-grid { grid-template-columns: repeat(2, 1fr); }
-            .sentence-box { flex-direction: column; text-align: center; }
-        }
-        @media (max-width: 968px) {
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .blog-post {
+                padding: 1.5rem;
+            }
+            .featured-image-large {
+                min-height: 200px;
+            }
+            .post-header h1 {
+                font-size: 1.8rem;
+            }
+            .sentence-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+            .newsletter-btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -806,7 +855,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer - STANDARD SITE-WIDE FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -814,7 +863,7 @@
                     <h4>Speak Ghana</h4>
                     <p>📍 KNUST Campus, Kumasi</p>
                     <p>🏗️ Accra Office (Opening Soon)</p>
-                    <p>📞 +233 55 226 3323</p>
+                    <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
                     <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
                     <p>💬 <a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
                 </div>
@@ -837,9 +886,9 @@
                 </div>
                 <div class="footer-section">
                     <h4>Connect</h4>
-                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
-                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
-                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube: @SpeakGhana</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram: @speak_ghana</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok: @speakghana0</a>
                     <a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a>
                     <div class="newsletter">
                         <h4>Newsletter</h4>
