@@ -69,6 +69,76 @@
             margin: 0;
         }
 
+        /* Adelina Feature Section */
+        .adelina-feature {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        .adelina-photo {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        .adelina-photo img {
+            width: 100%;
+            max-width: 280px;
+            height: 280px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 3px solid var(--gold);
+            object-fit: cover;
+            object-position: top 20% center;
+        }
+        .adelina-content {
+            flex: 2;
+        }
+        .adelina-stars {
+            color: var(--gold);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+        .adelina-quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--black);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        .adelina-name {
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 0.3rem;
+        }
+        .adelina-twin-note {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 0.8rem 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+        @media (max-width: 768px) {
+            .adelina-feature {
+                flex-direction: column;
+                text-align: center;
+            }
+            .adelina-quote {
+                font-size: 1.1rem;
+            }
+            .adelina-twin-note {
+                justify-content: center;
+            }
+        }
+
         /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
@@ -1863,6 +1933,27 @@
             <p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
             <p style="margin-top: 0.5rem;">📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p>
         </a>
+
+        <!-- ===== ADELINA'S FEATURE SECTION ===== -->
+        <div class="adelina-feature">
+            <div class="adelina-photo">
+                <img src="images/Adelina.jpeg" alt="Adelina Daniels (Panyin) - Speak Ghana student from London, UK">
+            </div>
+            <div class="adelina-content">
+                <div class="adelina-stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
+                <div class="adelina-quote">"I've learned so much in a month and I'm glad I chose to learn with Speak Ghana. The teachers are so amazing!"</div>
+                <div class="adelina-name">— Adelina Daniels (Panyin)</div>
+                <p style="color: var(--gray); margin-bottom: 0.8rem;">Speak Ghana Student, UK</p>
+                <div class="adelina-twin-note">
+                    <span style="font-size: 1.5rem;">👯‍♀️</span>
+                    <span style="font-size: 0.9rem; color: var(--black);"><strong>Fun fact:</strong> Adelina and her twin sister Adelaide are both learning Twi with us!</span>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <a href="blog-post-adelina-testimonial.html" class="btn btn-outline" style="border-color: var(--green); color: var(--green); margin-right: 1rem;">📖 Read Adelina's Full Story →</a>
+                    <a href="languages.html" class="btn btn-primary" style="background: var(--green);">🇬🇭 Start Your Journey →</a>
+                </div>
+            </div>
+        </div>
 
         <!-- ===== QUIZ BANNER ===== -->
         <div class="quiz-banner">
