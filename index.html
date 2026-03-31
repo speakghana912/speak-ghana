@@ -2442,13 +2442,14 @@
         });
     </script>
 
-    <!-- Word of the Day Widget Script -->
+    <!-- Word of the Day Widget Script (with working share button) -->
     <script>
         const wordBank = [
             { word: "Akwaaba", meaning: "Welcome", icon: "🤝", audio: "audio/words/akwaaba.m4a" },
             { word: "Maakye", meaning: "Good morning", icon: "🌅", audio: "audio/words/maakye.m4a" },
             { word: "Medaase", meaning: "Thank you", icon: "🙏", audio: "audio/words/medaase.m4a" }
         ];
+        
         function getWordOfDay() {
             const startDate = new Date(2025, 0, 1);
             const today = new Date();
@@ -2456,6 +2457,7 @@
             const index = daysSinceStart % wordBank.length;
             return { word: wordBank[index], index: index };
         }
+        
         function updateWordOfDay() {
             const { word, index } = getWordOfDay();
             const wotdIcon = document.getElementById('wotd-icon');
@@ -2467,6 +2469,7 @@
             if(wotdMeaning) wotdMeaning.textContent = word.meaning;
             if(wotdCounter) wotdCounter.textContent = `Day ${index + 1} of ${wordBank.length}`;
             
+            // Listen button functionality
             const currentAudio = new Audio(word.audio);
             const listenBtn = document.getElementById('wotd-sound');
             if(listenBtn) {
@@ -2477,7 +2480,56 @@
                     setTimeout(() => { listenBtn.style.transform = 'scale(1)'; }, 200);
                 };
             }
+            
+            // Share button functionality (FIXED)
+            const shareBtn = document.getElementById('wotd-share');
+            if(shareBtn) {
+                const newShareBtn = shareBtn.cloneNode(true);
+                shareBtn.parentNode.replaceChild(newShareBtn, shareBtn);
+                
+                newShareBtn.onclick = async () => {
+                    const shareText = `📖 Word of the Day from Speak Ghana: "${word.word}" — ${word.meaning} ${word.icon}\n\nLearn Twi and reconnect with your roots! 🇬🇭`;
+                    const shareUrl = window.location.href;
+                    
+                    if (navigator.share) {
+                        try {
+                            await navigator.share({
+                                title: `Word of the Day: ${word.word}`,
+                                text: shareText,
+                                url: shareUrl
+                            });
+                            if(typeof gtag === 'function') gtag('event', 'word_of_day_shared', { 'event_category': 'engagement', 'event_label': word.word, 'method': 'native' });
+                        } catch (err) {
+                            if (err.name !== 'AbortError') {
+                                fallbackCopy(shareText + '\n\n' + shareUrl, word.word);
+                            }
+                        }
+                    } else {
+                        fallbackCopy(shareText + '\n\n' + shareUrl, word.word);
+                    }
+                };
+            }
+            
+            function fallbackCopy(text, wordLabel) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const shareBtn = document.getElementById('wotd-share');
+                    if(shareBtn) {
+                        const originalText = shareBtn.innerHTML;
+                        shareBtn.innerHTML = '✅ Copied!';
+                        shareBtn.style.background = '#2A9D8F';
+                        setTimeout(() => {
+                            shareBtn.innerHTML = originalText;
+                            shareBtn.style.background = '';
+                        }, 2000);
+                    }
+                    if(typeof gtag === 'function') gtag('event', 'word_of_day_shared', { 'event_category': 'engagement', 'event_label': wordLabel, 'method': 'clipboard' });
+                }).catch(err => {
+                    console.error('Clipboard copy failed:', err);
+                    alert('Press Ctrl+C to copy: ' + text);
+                });
+            }
         }
+        
         document.addEventListener('DOMContentLoaded', updateWordOfDay);
         if(typeof gtag === 'function') gtag('event', 'word_of_day_view', { 'event_category': 'engagement', 'event_label': 'widget' });
     </script>
