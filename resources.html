@@ -343,6 +343,18 @@
         .social-grid, .media-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
         .social-card, .media-card, .faq-item { background: rgba(255,255,255,0.2); padding: 1.5rem; border-radius: 20px; text-decoration: none; color: inherit; }
         
+        /* Portal CTA Section */
+        .portal-cta {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 40px rgba(42,157,143,0.3);
+        }
+        .portal-cta h3 { color: var(--gold); margin-bottom: 0.5rem; }
+        
         /* ===== FOOTER STYLES ===== */
         footer {
             background: var(--black);
@@ -439,28 +451,13 @@
             color: white;
             box-shadow: 0 20px 40px rgba(42,157,143,0.3);
         }
-        .ebook-video-section {
+        .ebook-section {
             background: white;
             border-radius: 30px;
             padding: 3rem;
             margin: 3rem 0;
             box-shadow: 0 20px 40px var(--shadow);
-        }
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 20px;
-            margin: 1.5rem 0;
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
+            text-align: center;
         }
         .success-stories {
             background: white;
@@ -493,77 +490,23 @@
             font-size: 0.8rem;
             color: var(--gray);
         }
-        .lead-magnet-form {
-            display: flex;
-            gap: 0.5rem;
-            max-width: 500px;
-            margin: 1.5rem auto;
-            flex-wrap: wrap;
-        }
-        .lead-magnet-input {
-            flex: 1;
-            padding: 0.8rem 1.2rem;
-            border: 2px solid var(--gold);
-            border-radius: 50px;
-            font-size: 1rem;
-        }
         .small-note {
             font-size: 0.75rem;
             color: var(--gray);
             margin-top: 0.5rem;
         }
         
-        /* Class Recordings Section */
-        .recordings-section {
-            background: white;
-            border-radius: 30px;
-            padding: 3rem;
-            margin: 3rem 0;
-            box-shadow: 0 20px 40px var(--shadow);
-        }
-        .recordings-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-        .recording-card {
-            background: var(--cream);
-            border-radius: 20px;
-            padding: 1.5rem;
-            transition: transform 0.3s;
-        }
-        .recording-card:hover {
-            transform: translateY(-5px);
-        }
-        .recording-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--green);
-            margin-bottom: 0.5rem;
-        }
-        .recording-meta {
-            color: var(--gray);
-            font-size: 0.85rem;
-            margin-bottom: 0.8rem;
-        }
-        @media (max-width: 968px) {
-            .recordings-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        audio { width: 100%; margin: 0.5rem 0; border-radius: 30px; }
         
         @media (max-width: 768px) { 
-            .class-wheels-grid, .materials-grid, .blog-post-grid, .social-grid, .media-grid, .faq-grid, .footer-grid, .tips-grid { grid-template-columns: 1fr; } 
+            .class-wheels-grid, .materials-grid, .blog-post-grid, .social-grid, .media-grid, .faq-grid, .footer-grid { grid-template-columns: 1fr; } 
             .wheel-canvas { width: 240px; height: 240px; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .newsletter-form { flex-direction: column; }
             .newsletter-btn { width: 100%; }
             .quiz-popup-content { padding: 1.5rem; margin: 1rem; }
             .quiz-nav-btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
-            .recordings-section { padding: 1.5rem; }
-            .ebook-video-section { padding: 1.5rem; }
         }
-        audio { width: 100%; margin: 0.5rem 0; border-radius: 30px; }
     </style>
 </head>
 <body>
@@ -622,60 +565,36 @@
             <a href="contact.html" class="btn btn-gold" style="margin-top: 1rem; display: inline-block; background: var(--gold); color: var(--black);">Claim Your Free Class →</a>
         </div>
 
+        <!-- PORTAL CTA - Replace the old recordings section -->
+        <div class="portal-cta">
+            <span style="font-size: 3rem;">🔐</span>
+            <h3>Full Class Recordings & Textbook</h3>
+            <p style="font-size: 1.1rem;">Get access to all lesson recordings, complete textbook, worksheets, and exclusive materials.</p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                <a href="student-portal.html" class="btn btn-gold" style="background: var(--gold); color: var(--black);">Access Student Portal →</a>
+                <a href="languages.html" class="btn btn-outline" style="border-color: white; color: white;">Enroll to Get Access →</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">🔒 <strong>Current students:</strong> Password provided after enrollment.</p>
+        </div>
+
         <div class="blog-section"><h2 class="center">📝 Latest Blog Posts</h2><div class="blog-post-grid">
             <a href="blog-post-top-10-songs.html" class="blog-post-card"><div class="blog-post-image">🎵</div><div class="blog-post-content"><h3 class="blog-post-title">Top 10 Ghanaian Songs to Learn Twi</h3><p>Learn Twi through music with our curated list of top Ghanaian songs.</p><span>Read More →</span></div></a>
             <a href="blog-post-family-terms.html" class="blog-post-card"><div class="blog-post-image">👪</div><div class="blog-post-content"><h3 class="blog-post-title">Complete Guide to Family Terms in Twi</h3><p>Master family vocabulary with our comprehensive guide.</p><span>Read More →</span></div></a>
             <a href="blog-post-diaspora-story.html" class="blog-post-card"><div class="blog-post-image">🌍</div><div class="blog-post-content"><h3 class="blog-post-title">A Diaspora Story: Finding Home Through Language</h3><p>Reconnecting with Ghanaian roots through Twi.</p><span>Read More →</span></div></a>
         </div><div class="all-posts-btn"><a href="blog.html" class="btn btn-outline">View All Posts →</a></div></div>
 
-        <!-- E-BOOK VIDEO SECTION WITH DIRECT PDF DOWNLOAD -->
-        <div class="ebook-video-section">
+        <!-- E-BOOK SECTION (Video removed, kept PDF) -->
+        <div class="ebook-section">
             <h2 class="center">📘 FREE E-book: Essential Twi Phrases for Diaspora</h2>
             <p style="text-align: center; margin-bottom: 1rem;">50+ phrases • Greetings • Family terms • Numbers • Cultural tips</p>
-            <div class="video-wrapper">
-                <iframe src="https://zoom.us/clips/embed/FNd5xZLGRGiP40LOSJmc9Q" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-            </div>
             <div style="text-align: center; margin-top: 1.5rem;">
                 <a href="/pdfs/essential-twi-phrases-ebook.pdf" download class="btn btn-primary" style="background: var(--green); padding: 1rem 2.5rem; font-size: 1.2rem;">📥 Download Free E-book (PDF)</a>
                 <p style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">No sign-up required. Click and download instantly.</p>
             </div>
         </div>
 
-        <!-- CLASS RECORDINGS SECTION -->
-        <div class="recordings-section">
-            <h2 class="center">📹 Class Recordings</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">Missed a class? Catch up anytime! 🎬</p>
-            
-            <div class="recordings-grid">
-                <!-- Video 1: Charlotte with Adelaide & Adelina (UK) -->
-                <div class="recording-card">
-                    <div class="recording-title">🔤 Beginner Twi: Alphabet, Words & Sentences</div>
-                    <div class="recording-meta">📅 March 22, 2026 | 👩🏾‍🏫 Teacher: Charlotte | 👩🏾‍🎓 Students: Adelaide & Adelina (UK)</div>
-                    <div class="video-wrapper" style="margin: 0.5rem 0;">
-                        <iframe src="https://zoom.us/clips/embed/95lyyM9MSgSenyYQIGX8nA" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-                    </div>
-                    <div style="margin-top: 0.8rem;">
-                        <p><strong>📘 In this class:</strong> Learn the Twi alphabet (22 letters including Ɛ and Ɔ), build basic words, and form simple sentences.</p>
-                    </div>
-                </div>
-
-                <!-- Video 2: Richard with Wanueka (Canada) -->
-                <div class="recording-card">
-                    <div class="recording-title">🎯 Beginner Twi: Alphabet, Words & Sentences</div>
-                    <div class="recording-meta">📅 March 22, 2026 | 👨🏾‍🏫 Teacher: Richard | 👩🏾‍🎓 Student: Wanueka (Canada)</div>
-                    <div class="video-wrapper" style="margin: 0.5rem 0;">
-                        <iframe src="https://zoom.us/clips/embed/daVBRMzoQPCQoWCxKtciiw" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-                    </div>
-                    <div style="margin-top: 0.8rem;">
-                        <p><strong>📘 In this class:</strong> Review of Twi alphabet, pronunciation practice (focus on Ɛ and Ɔ), building words, and forming simple sentences.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 2rem;">
-                <p style="color: var(--gray);">🔒 More class recordings added weekly — check back soon!</p>
-            </div>
-        </div>
+        <!-- CLASS RECORDINGS SECTION - REPLACED WITH PORTAL CTA -->
+        <!-- (Original recordings removed - moved to Student Portal) -->
 
         <div class="vocab-week-section"><div class="vocab-week-title"><h2>🎡 Weekly Vocabulary Review</h2><p>Spin the wheel and test yourself!</p></div><div class="class-wheels-grid" id="vocabWheelsContainer"></div></div>
 
@@ -787,7 +706,7 @@
         
         <div class="media-section"><h2 class="center">🎬 Recommended Ghanaian Media</h2><div class="media-grid"><div class="media-card"><h3>🎵 Songs</h3><ul><li>"Things Fall Apart" - Kofi Kinaata</li><li>"Jeje" - Kuami Eugene</li><li>"Angela" - Sarkodie</li></ul></div><div class="media-card"><h3>🎬 Movies</h3><ul><li>"Azali" (2018)</li><li>"The Burial of Kojo"</li><li>"Keteke" (2017)</li></ul></div><div class="media-card"><h3>🎤 Artists</h3><ul><li>Sarkodie</li><li>Stonebwoy</li><li>Shatta Wale</li></ul></div></div></div>
 
-        <div class="faq-section"><h2 class="center">FAQ</h2><div class="faq-grid"><div class="faq-item"><h4>Speak One, Learn One Scholarship?</h4><p>Ghana Card holders get 25% off to learn another language.</p></div><div class="faq-item"><h4>Certificate of Achievement?</h4><p>Complete 6 months of learning for an official certificate.</p></div><div class="faq-item"><h4>Classes for kids?</h4><p>Yes! Specialized programs for ages 5-12 and teens.</p></div><div class="faq-item"><h4>Miss a class?</h4><p>Recordings available for group classes.</p></div></div></div>
+        <div class="faq-section"><h2 class="center">FAQ</h2><div class="faq-grid"><div class="faq-item"><h4>Speak One, Learn One Scholarship?</h4><p>Ghana Card holders get 25% off to learn another language.</p></div><div class="faq-item"><h4>Certificate of Achievement?</h4><p>Complete 6 months of learning for an official certificate.</p></div><div class="faq-item"><h4>Classes for kids?</h4><p>Yes! Specialized programs for ages 5-12 and teens.</p></div><div class="faq-item"><h4>Miss a class?</h4><p>Recordings available for group classes (in Student Portal).</p></div></div></div>
     </div>
 
     <footer>
@@ -903,7 +822,7 @@
             if (typeof gtag === 'function') gtag('event', 'newsletter_signup', { 'event_category': 'engagement', 'event_label': 'footer_newsletter' });
         });
         
-        // Vocabulary Wheels (keep existing)
+        // Vocabulary Wheels
         const classVocab = {
             groupA: { name: "Group A", time: "Sunday 5-6pm", words: [{twi:"edinnsiananmu",english:"pronoun"},{twi:"adeyɔ",english:"verb"},{twi:"edin asɛm",english:"noun"},{twi:"ɔyɛfoɔ",english:"subject"},{twi:"ɔkasamu",english:"sentence"},{twi:"Efie Dwumadie",english:"homework"},{twi:"yɛn",english:"we/us"},{twi:"yɛ suaa",english:"we learned"}] },
             groupB: { name: "Group B", time: "Sunday 7-8pm", words: [{twi:"ɔkasamu",english:"sentence"},{twi:"adeyɔ",english:"verb"},{twi:"edin asɛm",english:"noun"},{twi:"edinnsiananmu",english:"pronoun"},{twi:"ɔyɛfoɔ",english:"subject"},{twi:"nsiesie",english:"correction"},{twi:"wowɔ ha sei",english:"are you here?"},{twi:"aane, mewɔ ha sei",english:"yes, i'm here"}] },
