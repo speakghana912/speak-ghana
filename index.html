@@ -2077,7 +2077,7 @@
                 <button id="wotd-share" class="btn" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem;">📤 Share</button>
             </div>
             <p style="color: rgba(255,255,255,0.7); font-size: 0.8rem; margin-top: 1.5rem;">
-                <span id="wotd-counter">Day 1 of 50</span> • Check back tomorrow for a new word!
+                <span id="wotd-counter"></span> • Check back tomorrow for a new word!
             </p>
         </div>
 
@@ -2176,7 +2176,7 @@
         <div class="pricing-overview">
             <div style="text-align: center; margin-bottom: 1rem;">
                 <span style="background: var(--green); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.9rem; display: inline-block; margin-bottom: 1rem;">💰 Transparent Pricing</span>
-                <h2 style="color: var(--green); margin-bottom: 0.5rem;">Start from just <span style="color: var(--red);">$35/month</span> for kids or <span style="color: var(--red);">$135/month</span> for adults</h2>
+                <h2 style="color: var(--green); margin-bottom: 0.5rem;">Start from just <span style="color: var(--red);">$35/month</span> for kids or <span style="color: var(--red);">$75/month</span> for private classes</h2>
                 <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem;">Flexible plans. No hidden fees. Free textbook included.</p>
             </div>
             
@@ -2191,17 +2191,17 @@
                 </div>
                 <div class="pricing-card popular">
                     <div class="pricing-icon">⭐</div>
-                    <h3>Most Popular</h3>
-                    <div class="price">$135 <small>/ GHS 1,620</small></div>
-                    <div class="scholarship">🎓 Scholarship: $101.25 / GHS 1,215</div>
-                    <ul class="pricing-features"><li>Private 60min • 2x/week</li><li>1 structured + 1 conversation</li><li>✓ Full textbook included</li><li>✓ Progress reports</li></ul>
+                    <h3>Private Classes</h3>
+                    <div class="price">$75 <small>/ month</small></div>
+                    <div class="scholarship">🎓 Scholarship: $56.25 / month</div>
+                    <ul class="pricing-features"><li>Private 60min • 1x/week</li><li>Choose your day & time</li><li>✓ Full textbook included</li><li>✓ Progress reports</li></ul>
                     <a href="languages.html#twi" class="btn btn-outline btn-small" style="border-color: white; color: white;">Learn More →</a>
                 </div>
                 <div class="pricing-card">
                     <div class="pricing-icon">👥</div>
                     <h3>Group Classes</h3>
-                    <div class="price">$50 <small>/ GHS 600</small></div>
-                    <div class="scholarship">🎓 Scholarship: $37.50 / GHS 450</div>
+                    <div class="price">$50 <small>/ month</small></div>
+                    <div class="scholarship">🎓 Scholarship: $37.50 / month</div>
                     <ul class="pricing-features"><li>90min • 1x/week</li><li>Learn with others</li><li>Interactive conversations</li><li>Supportive environment</li></ul>
                     <a href="languages.html#group" class="btn btn-outline btn-small">Learn More →</a>
                 </div>
@@ -2445,16 +2445,66 @@
         });
     </script>
 
-    <!-- Word of the Day Widget Script (with working share button) -->
+    <!-- Word of the Day Widget Script (Random from 50 words/phrases) -->
     <script>
         const wordBank = [
             { word: "Akwaaba", meaning: "Welcome", icon: "🤝", audio: "audio/words/akwaaba.m4a" },
             { word: "Maakye", meaning: "Good morning", icon: "🌅", audio: "audio/words/maakye.m4a" },
-            { word: "Medaase", meaning: "Thank you", icon: "🙏", audio: "audio/words/medaase.m4a" }
+            { word: "Medaase", meaning: "Thank you", icon: "🙏", audio: "audio/words/medaase.m4a" },
+            { word: "Wo ho te sɛn?", meaning: "How are you?", icon: "👋", audio: "audio/words/wohotesen.m4a" },
+            { word: "Me ho yɛ", meaning: "I am fine", icon: "😊", audio: "audio/words/mehoye.m4a" },
+            { word: "Mepɛ sɛ", meaning: "I want to", icon: "💭", audio: "audio/words/mepese.m4a" },
+            { word: "Mefiri", meaning: "I come from", icon: "📍", audio: "audio/words/mefiri.m4a" },
+            { word: "Da yie", meaning: "Good night", icon: "🌙", audio: "audio/words/dayie.m4a" },
+            { word: "Ɛyɛ sɛn?", meaning: "How much?", icon: "💰", audio: "audio/words/eyesɛn.m4a" },
+            { word: "Moni ho!", meaning: "Congratulations!", icon: "🎉", audio: "audio/words/moniho.m4a" },
+            { word: "Mepa wo kyɛw", meaning: "Please / Excuse me", icon: "🙏", audio: "audio/words/mepawokyɛw.m4a" },
+            { word: "Kɔkɔɔ", meaning: "Sorry", icon: "😔", audio: "audio/words/kɔkɔɔ.m4a" },
+            { word: "Yɛfrɛ wo", meaning: "You're welcome", icon: "🤗", audio: "audio/words/yɛfrɛwo.m4a" },
+            { word: "Me dɔ wo", meaning: "I love you", icon: "❤️", audio: "audio/words/medɔwo.m4a" },
+            { word: "Maaha", meaning: "Good afternoon", icon: "☀️", audio: "audio/words/maaha.m4a" },
+            { word: "Mema wo adwo", meaning: "Good evening", icon: "🌆", audio: "audio/words/memawoadwo.m4a" },
+            { word: "Baako", meaning: "One", icon: "1️⃣", audio: "audio/words/baako.m4a" },
+            { word: "Abien", meaning: "Two", icon: "2️⃣", audio: "audio/words/abien.m4a" },
+            { word: "Abiesa", meaning: "Three", icon: "3️⃣", audio: "audio/words/abiesa.m4a" },
+            { word: "Anan", meaning: "Four", icon: "4️⃣", audio: "audio/words/anan.m4a" },
+            { word: "Anum", meaning: "Five", icon: "5️⃣", audio: "audio/words/anum.m4a" },
+            { word: "Nsia", meaning: "Six", icon: "6️⃣", audio: "audio/words/nsia.m4a" },
+            { word: "Nson", meaning: "Seven", icon: "7️⃣", audio: "audio/words/nson.m4a" },
+            { word: "Nwɔtwe", meaning: "Eight", icon: "8️⃣", audio: "audio/words/nwɔtwe.m4a" },
+            { word: "Nkron", meaning: "Nine", icon: "9️⃣", audio: "audio/words/nkron.m4a" },
+            { word: "Du", meaning: "Ten", icon: "🔟", audio: "audio/words/du.m4a" },
+            { word: "Sankofa", meaning: "Return and get it", icon: "🕊️", audio: "audio/words/sankofa.m4a" },
+            { word: "Nkakrankakra", meaning: "Little by little", icon: "🐢", audio: "audio/words/nkakrankakra.m4a" },
+            { word: "Abusua", meaning: "Family", icon: "👪", audio: "audio/words/abusua.m4a" },
+            { word: "Nkɔsoɔ", meaning: "Progress", icon: "📈", audio: "audio/words/nkɔsoɔ.m4a" },
+            { word: "Moni ho", meaning: "Congratulations", icon: "🎊", audio: "audio/words/moniho.m4a" },
+            { word: "Yɛbɛhyia bio", meaning: "We will meet again", icon: "🤝", audio: "audio/words/yɛbɛhyiabio.m4a" },
+            { word: "Nyame", meaning: "God", icon: "🙏", audio: "audio/words/nyame.m4a" },
+            { word: "Ɔba", meaning: "Child", icon: "👶", audio: "audio/words/ɔba.m4a" },
+            { word: "Agya", meaning: "Father", icon: "👨", audio: "audio/words/agya.m4a" },
+            { word: "Maame", meaning: "Mother", icon: "👩", audio: "audio/words/maame.m4a" },
+            { word: "Nana", meaning: "Grandparent", icon: "👵", audio: "audio/words/nana.m4a" },
+            { word: "Enu", meaning: "Sibling", icon: "👫", audio: "audio/words/enu.m4a" },
+            { word: "Banku", meaning: "Traditional dish", icon: "🍲", audio: "audio/words/banku.m4a" },
+            { word: "Jollof", meaning: "Rice dish", icon: "🍚", audio: "audio/words/jollof.m4a" },
+            { word: "Fufu", meaning: "Staple food", icon: "🥣", audio: "audio/words/fufu.m4a" },
+            { word: "Kente", meaning: "Traditional cloth", icon: "👘", audio: "audio/words/kente.m4a" },
+            { word: "Adinkra", meaning: "Symbols", icon: "🔣", audio: "audio/words/adinkra.m4a" },
+            { word: "Azonto", meaning: "Dance", icon: "💃", audio: "audio/words/azonto.m4a" },
+            { word: "Highlife", meaning: "Music genre", icon: "🎵", audio: "audio/words/highlife.m4a" },
+            { word: "Kwame", meaning: "Saturday-born male", icon: "👨", audio: "audio/words/kwame.m4a" },
+            { word: "Adwoa", meaning: "Monday-born female", icon: "👩", audio: "audio/words/adwoa.m4a" },
+            { word: "Kojo", meaning: "Monday-born male", icon: "👨", audio: "audio/words/kojo.m4a" },
+            { word: "Abena", meaning: "Tuesday-born female", icon: "👩", audio: "audio/words/abena.m4a" },
+            { word: "Kofi", meaning: "Friday-born male", icon: "👨", audio: "audio/words/kofi.m4a" },
+            { word: "Ama", meaning: "Saturday-born female", icon: "👩", audio: "audio/words/ama.m4a" }
         ];
         
+        // Get random word of the day (new one each day)
         function getWordOfDay() {
-            const startDate = new Date(2025, 0, 1);
+            const startDate = new Date();
+            startDate.setFullYear(2025, 0, 1);
             const today = new Date();
             const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
             const index = daysSinceStart % wordBank.length;
@@ -2476,11 +2526,15 @@
             const currentAudio = new Audio(word.audio);
             const listenBtn = document.getElementById('wotd-sound');
             if(listenBtn) {
-                listenBtn.onclick = () => {
+                // Remove existing listener to avoid duplicates
+                const newListenBtn = listenBtn.cloneNode(true);
+                listenBtn.parentNode.replaceChild(newListenBtn, listenBtn);
+                
+                newListenBtn.onclick = () => {
                     currentAudio.play().catch(e => console.log('Audio play failed:', e));
                     if(typeof gtag === 'function') gtag('event', 'word_of_day_listened', { 'event_category': 'engagement', 'event_label': word.word });
-                    listenBtn.style.transform = 'scale(0.95)';
-                    setTimeout(() => { listenBtn.style.transform = 'scale(1)'; }, 200);
+                    newListenBtn.style.transform = 'scale(0.95)';
+                    setTimeout(() => { newListenBtn.style.transform = 'scale(1)'; }, 200);
                 };
             }
             
