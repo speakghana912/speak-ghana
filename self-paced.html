@@ -311,7 +311,7 @@
             opacity: 0.95;
         }
 
-        /* Course Catalog */
+        /* Course Catalog - Simplified */
         .course-catalog {
             padding: 4rem 0;
         }
@@ -327,79 +327,31 @@
         .section-header p {
             color: var(--gray);
         }
-        .course-grid {
+        .levels-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
-        .course-card {
+        .level-card {
             background: white;
-            border-radius: 24px;
-            padding: 1.8rem;
-            box-shadow: 0 10px 30px var(--shadow);
-            transition: transform 0.3s;
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow);
             border: 1px solid rgba(0,0,0,0.05);
         }
-        .course-card:hover {
-            transform: translateY(-5px);
-        }
-        .course-level {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--black);
-            padding: 0.2rem 1rem;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        .course-card h3 {
-            font-size: 1.4rem;
+        .level-icon {
+            font-size: 2rem;
             margin-bottom: 0.5rem;
-            color: var(--black);
         }
-        .course-description {
-            color: var(--gray);
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+        .level-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
         }
-        .course-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
+        .level-card p {
             font-size: 0.85rem;
             color: var(--gray);
-        }
-        .course-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-        .course-price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--green);
-            margin-bottom: 1rem;
-        }
-        .course-price small {
-            font-size: 0.8rem;
-            font-weight: normal;
-            color: var(--gray);
-        }
-        .btn-outline-course {
-            background: transparent;
-            border: 2px solid var(--green);
-            color: var(--green);
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-        .btn-outline-course:hover {
-            background: var(--green);
-            color: white;
         }
 
         /* Sample Lesson */
@@ -428,7 +380,7 @@
             border-radius: 20px;
         }
 
-        /* Pricing Tiers */
+        /* Pricing Tiers - Monthly Only */
         .pricing-section {
             background: linear-gradient(135deg, #fff5e8, white);
             border-radius: 30px;
@@ -517,6 +469,15 @@
         .btn-pricing:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(42,157,143,0.3);
+        }
+        .offer-badge {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         /* Testimonials */
@@ -633,8 +594,8 @@
             .pricing-grid, .testimonial-grid, .faq-grid {
                 grid-template-columns: 1fr;
             }
-            .course-grid {
-                grid-template-columns: 1fr;
+            .levels-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             .container {
                 padding: 0 1.5rem;
@@ -724,110 +685,77 @@
     </div>
 
     <div class="container">
-        <!-- Course Catalog -->
+        <!-- Course Levels Overview -->
         <div class="course-catalog">
             <div class="section-header">
-                <h2>Certificate Pathways</h2>
-                <p>Stackable credentials — complete one level, then move to the next</p>
+                <h2>What You'll Learn</h2>
+                <p>5 certificate levels — from complete beginner to cultural fluency</p>
             </div>
-            <div class="course-grid">
-                <div class="course-card">
-                    <span class="course-level">Beginner 1</span>
-                    <h3>Twi Greetings & Basics</h3>
-                    <p class="course-description">Learn to greet, introduce yourself, and master the Twi alphabet.</p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-calendar-alt"></i> 4 weeks</span>
-                        <span><i class="fas fa-clock"></i> 1-2 hrs/week</span>
-                    </div>
-                    <div class="course-price">$99 <small>one-time</small></div>
-                    <a href="#pricing" class="btn-outline-course">Enroll →</a>
+            <div class="levels-grid">
+                <div class="level-card">
+                    <div class="level-icon">👋</div>
+                    <h3>Beginner 1</h3>
+                    <p>Greetings, introductions, alphabet, numbers 1-20</p>
                 </div>
-                <div class="course-card">
-                    <span class="course-level">Beginner 2</span>
-                    <h3>Family & Home</h3>
-                    <p class="course-description">Master family terms, home vocabulary, and basic sentences.</p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-calendar-alt"></i> 4 weeks</span>
-                        <span><i class="fas fa-clock"></i> 1-2 hrs/week</span>
-                    </div>
-                    <div class="course-price">$99 <small>one-time</small></div>
-                    <a href="#pricing" class="btn-outline-course">Enroll →</a>
+                <div class="level-card">
+                    <div class="level-icon">🏠</div>
+                    <h3>Beginner 2</h3>
+                    <p>Family terms, home vocabulary, basic sentences</p>
                 </div>
-                <div class="course-card">
-                    <span class="course-level">Intermediate</span>
-                    <h3>Conversational Twi</h3>
-                    <p class="course-description">Full sentences, market bargaining, and everyday conversations.</p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-calendar-alt"></i> 6 weeks</span>
-                        <span><i class="fas fa-clock"></i> 2-3 hrs/week</span>
-                    </div>
-                    <div class="course-price">$149 <small>one-time</small></div>
-                    <a href="#pricing" class="btn-outline-course">Enroll →</a>
+                <div class="level-card">
+                    <div class="level-icon">💬</div>
+                    <h3>Intermediate</h3>
+                    <p>Full conversations, market bargaining, everyday Twi</p>
                 </div>
-                <div class="course-card">
-                    <span class="course-level">Business</span>
+                <div class="level-card">
+                    <div class="level-icon">💼</div>
                     <h3>Business Twi</h3>
-                    <p class="course-description">Negotiation, meetings, professional protocol, and workplace communication.</p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-calendar-alt"></i> 6 weeks</span>
-                        <span><i class="fas fa-clock"></i> 2-3 hrs/week</span>
-                    </div>
-                    <div class="course-price">$199 <small>one-time</small></div>
-                    <a href="#pricing" class="btn-outline-course">Enroll →</a>
+                    <p>Negotiation, meetings, professional protocol</p>
                 </div>
-                <div class="course-card">
-                    <span class="course-level">Cultural Fluency</span>
-                    <h3>Twi Proverbs & Traditions</h3>
-                    <p class="course-description">Proverbs, Adinkra symbols, festivals, and cultural etiquette.</p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-calendar-alt"></i> 8 weeks</span>
-                        <span><i class="fas fa-clock"></i> 2-3 hrs/week</span>
-                    </div>
-                    <div class="course-price">$249 <small>one-time</small></div>
-                    <a href="#pricing" class="btn-outline-course">Enroll →</a>
-                </div>
-                <div class="course-card">
-                    <span class="course-level">Bundle</span>
-                    <h3>All 5 Certificates</h3>
-                    <p class="course-description">Complete all levels and earn the "Speak Ghana Certified" credential.</p>
-                    <div class="course-meta">
-                        <span><i class="fas fa-calendar-alt"></i> 28 weeks</span>
-                        <span><i class="fas fa-clock"></i> Self-paced</span>
-                    </div>
-                    <div class="course-price">$499 <small>save $200</small></div>
-                    <a href="#pricing" class="btn-outline-course">Enroll →</a>
+                <div class="level-card">
+                    <div class="level-icon">🕊️</div>
+                    <h3>Cultural Fluency</h3>
+                    <p>Proverbs, Adinkra symbols, festivals, etiquette</p>
                 </div>
             </div>
         </div>
 
         <!-- Sample Free Lesson -->
         <div class="sample-lesson">
-            <span class="course-level" style="background: var(--green); color: white;">FREE PREVIEW</span>
+            <span class="offer-badge" style="background: var(--green);">🎁 FREE PREVIEW</span>
             <h3 style="margin-top: 1rem;">Try a Sample Lesson</h3>
             <p>Watch one of our beginner lessons — no payment required.</p>
             <div class="video-wrapper">
                 <iframe src="https://zoom.us/clips/embed/95lyyM9MSgSenyYQIGX8nA" frameborder="0" allowfullscreen></iframe>
             </div>
-            <p style="margin-top: 1rem; color: var(--gray);">📘 Full course includes 20+ videos, PDFs, worksheets, and quizzes.</p>
+            <p style="margin-top: 1rem; color: var(--gray);">📘 Full course includes 50+ videos, PDFs, worksheets, and quizzes.</p>
         </div>
 
-        <!-- Pricing Tiers (Monthly Subscription) -->
+        <!-- Pricing Tiers (Monthly Only) -->
         <div id="pricing" class="pricing-section">
             <div class="section-header">
                 <h2>Choose Your Plan</h2>
-                <p>Monthly subscription — access all courses. Cancel anytime.</p>
+                <p>Monthly subscription — access ALL 5 levels. Cancel anytime.</p>
             </div>
+            
+            <!-- Launch Offer Banner -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="offer-badge">🎉 LAUNCH OFFER</span>
+                <p style="margin-top: 0.5rem; font-size: 1rem;"><strong>First 10 students get 20% off first 3 months.</strong> Use code: <strong>SELFPACED20</strong></p>
+            </div>
+            
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3>Basic</h3>
                     <div class="price">$10<span>/month</span></div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> All course videos</li>
+                        <li><i class="fas fa-check"></i> All 5 levels (50+ videos)</li>
                         <li><i class="fas fa-check"></i> PDF downloads</li>
+                        <li><i class="fas fa-check"></i> Complete textbook (300+ pages)</li>
                         <li><i class="fas fa-times"></i> Worksheets</li>
-                        <li><i class="fas fa-times"></i> Quizzes</li>
+                        <li><i class="fas fa-times"></i> Quizzes & assessments</li>
                         <li><i class="fas fa-times"></i> Certificates</li>
-                        <li><i class="fas fa-times"></i> Live Q&A</li>
+                        <li><i class="fas fa-times"></i> Live Q&A with teacher</li>
                     </ul>
                     <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Basic%20Self-Paced%20($10/month)" class="btn-pricing">Enroll →</a>
                 </div>
@@ -836,12 +764,13 @@
                     <h3>Standard</h3>
                     <div class="price">$20<span>/month</span></div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> All course videos</li>
+                        <li><i class="fas fa-check"></i> All 5 levels (50+ videos)</li>
                         <li><i class="fas fa-check"></i> PDF downloads</li>
+                        <li><i class="fas fa-check"></i> Complete textbook (300+ pages)</li>
                         <li><i class="fas fa-check"></i> Worksheets</li>
-                        <li><i class="fas fa-check"></i> Quizzes</li>
-                        <li><i class="fas fa-check"></i> Certificates</li>
-                        <li><i class="fas fa-times"></i> Live Q&A</li>
+                        <li><i class="fas fa-check"></i> Quizzes & assessments</li>
+                        <li><i class="fas fa-check"></i> Certificates for each level</li>
+                        <li><i class="fas fa-times"></i> Live Q&A with teacher</li>
                     </ul>
                     <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Standard%20Self-Paced%20($20/month)" class="btn-pricing">Enroll →</a>
                 </div>
@@ -849,11 +778,12 @@
                     <h3>Premium</h3>
                     <div class="price">$30<span>/month</span></div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> All course videos</li>
+                        <li><i class="fas fa-check"></i> All 5 levels (50+ videos)</li>
                         <li><i class="fas fa-check"></i> PDF downloads</li>
+                        <li><i class="fas fa-check"></i> Complete textbook (300+ pages)</li>
                         <li><i class="fas fa-check"></i> Worksheets</li>
-                        <li><i class="fas fa-check"></i> Quizzes</li>
-                        <li><i class="fas fa-check"></i> Certificates</li>
+                        <li><i class="fas fa-check"></i> Quizzes & assessments</li>
+                        <li><i class="fas fa-check"></i> Certificates for each level</li>
                         <li><i class="fas fa-check"></i> Monthly live Q&A with teacher</li>
                     </ul>
                     <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Premium%20Self-Paced%20($30/month)" class="btn-pricing">Enroll →</a>
@@ -861,6 +791,9 @@
             </div>
             <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--gray);">
                 🔐 After payment, you'll receive a password to access all course materials.
+            </p>
+            <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--gray);">
+                <i class="fas fa-graduation-cap"></i> Complete all 5 levels and earn the "Speak Ghana Certified" credential.
             </p>
         </div>
 
@@ -907,7 +840,7 @@
                 </div>
                 <div class="faq-item">
                     <h4>Do I get a certificate?</h4>
-                    <p>Yes. Standard and Premium plans include certificates of completion for each level. The Bundle includes the "Speak Ghana Certified" credential.</p>
+                    <p>Yes. Standard and Premium plans include certificates for each level. Complete all 5 levels for the "Speak Ghana Certified" credential.</p>
                 </div>
                 <div class="faq-item">
                     <h4>What's the difference between Self-Paced and Live Classes?</h4>
