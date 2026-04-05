@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>For Organizations | Speak Ghana - Twi Training for Teams</title>
+    <meta name="description" content="Corporate Twi training for expats, NGOs, diaspora organizations, and businesses. Custom packages, volume discounts, and certificates for all participants.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZXFR0LFLH6');
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray-light: #F5F5F5;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: var(--black);
+            background-color: var(--cream);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.7rem 0;
+            font-size: 0.85rem;
+            border-bottom: 3px solid var(--gold);
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .contact-info a:hover { color: var(--gold); }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.2rem 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        .logo img {
+            height: 65px;
+            width: auto;
+            border-radius: 10px;
+        }
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: white;
+        }
+        .logo-text h1 span { color: var(--gold); }
+        .logo-text p { font-size: 0.8rem; opacity: 0.9; }
+
+        nav {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            border-bottom: 1px solid #eee;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0.8rem 0;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.3rem 0;
+            transition: color 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--green);
+            border-bottom-color: var(--green);
+        }
+
+        /* Dropdown styles for mobile */
+        .dropdown-item {
+            display: contents;
+        }
+        
+        .dropdown-toggle {
+            display: none;
+        }
+        
+        .dropdown-submenu {
+            display: contents;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--gold);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--black);
+            padding: 0.5rem 1rem;
+            z-index: 101;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle:hover {
+            background: var(--green);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 0.5rem;
+            }
+            
+            nav {
+                position: relative;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links > a,
+            .nav-links > .dropdown-item {
+                padding: 1rem 1.5rem;
+                width: 100%;
+                text-align: left;
+                border-bottom: 1px solid var(--cream);
+                font-weight: 600;
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+                color: var(--black);
+                text-decoration: none;
+                background: white;
+            }
+            
+            .nav-links > a {
+                border-bottom: 1px solid var(--cream);
+            }
+            
+            .dropdown-toggle {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                background: white;
+                border: none;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--black);
+                cursor: pointer;
+                padding: 0;
+                font-family: inherit;
+            }
+            
+            .dropdown-toggle i {
+                transition: transform 0.3s;
+                font-size: 0.9rem;
+                color: var(--gray);
+            }
+            
+            .dropdown-toggle.open i {
+                transform: rotate(180deg);
+            }
+            
+            .dropdown-submenu {
+                display: none;
+                flex-direction: column;
+                background: var(--cream);
+                margin-top: 0.5rem;
+                border-radius: 12px;
+                overflow: hidden;
+                width: 100%;
+            }
+            
+            .dropdown-submenu.show {
+                display: flex;
+            }
+            
+            .dropdown-submenu a {
+                padding: 0.8rem 1.5rem 0.8rem 2.5rem;
+                text-decoration: none;
+                color: var(--gray);
+                font-weight: 500;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                font-size: 0.95rem;
+                display: block;
+            }
+            
+            .dropdown-submenu a:last-child {
+                border-bottom: none;
+            }
+            
+            .dropdown-submenu a:hover {
+                color: var(--green);
+                background: rgba(42,157,143,0.1);
+            }
+            
+            .dropdown-submenu a.active {
+                color: var(--green);
+                font-weight: 600;
+            }
+            
+            .dropdown-item {
+                display: block;
+                padding: 0 !important;
+                flex-direction: column;
+                align-items: stretch !important;
+            }
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* Who We Serve */
+        .who-we-serve {
+            padding: 4rem 0;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--green);
+            margin-bottom: 0.5rem;
+        }
+        .section-header p {
+            color: var(--gray);
+        }
+        .serve-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        .serve-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 20px var(--shadow);
+            transition: transform 0.3s;
+        }
+        .serve-card:hover {
+            transform: translateY(-5px);
+        }
+        .serve-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .serve-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .serve-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: linear-gradient(135deg, #fff5e8, white);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .benefit-icon {
+            font-size: 1.8rem;
+            color: var(--green);
+        }
+        .benefit-text h4 {
+            margin-bottom: 0.3rem;
+        }
+        .benefit-text p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Packages Section */
+        .packages-section {
+            padding: 3rem 0;
+        }
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .package-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px var(--shadow);
+            transition: transform 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+        .package-card.popular {
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .package-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .package-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .package-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--green);
+        }
+        .package-price small {
+            font-size: 0.8rem;
+            font-weight: normal;
+            color: var(--gray);
+        }
+        .package-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        .package-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .package-features li i.fa-check {
+            color: var(--green);
+            width: 20px;
+        }
+        .package-features li i.fa-times {
+            color: var(--red);
+            width: 20px;
+        }
+        .btn-inquire {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .btn-inquire:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42,157,143,0.3);
+        }
+
+        /* Bulk Discount */
+        .bulk-discount {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            border-left: 4px solid var(--gold);
+        }
+
+        /* Inquiry Form */
+        .inquiry-section {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--cream);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42,157,143,0.3);
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            color: white;
+        }
+        .testimonials-section h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        /* FAQ */
+        .faq-section {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .faq-item h4 {
+            color: var(--green);
+            margin-bottom: 0.5rem;
+        }
+        .faq-item p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--gold), #c49a6c);
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        .cta-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .btn-cta {
+            background: var(--green);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .btn-cta:hover {
+            background: var(--black);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 968px) {
+            .serve-grid, .packages-grid, .testimonial-grid, .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="mailto:info@speakghana.org"><i class="fas fa-envelope"></i> info@speakghana.org</a>
+                <a href="tel:+233552263323"><i class="fas fa-phone-alt"></i> +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323"><i class="fab fa-whatsapp"></i> WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge" style="background: rgba(255,255,255,0.12); padding: 0.5rem 1.2rem; border-radius: 40px;">
+                <i class="fas fa-building"></i> Corporate Training
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container" style="position: relative;">
+            <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownLearnBtn">
+                        <span>📚 Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownLearnMenu">
+                        <a href="languages.html">Languages</a>
+                        <a href="self-paced.html">Self-Paced</a>
+                        <a href="kids-teens.html">Kids & Teens</a>
+                        <a href="concierge.html">Concierge</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownResourcesBtn">
+                        <span>📖 Resources</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownResourcesMenu">
+                        <a href="resources.html">Free Resources</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="student-portal.html">Student Portal</a>
+                    </div>
+                </div>
+                
+                <a href="for-organizations.html" class="active">🏢 For Organizations</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="container">
+            <h1>🏢 Twi Training for Organizations</h1>
+            <p>Equip your team with Twi language and cultural skills. Custom packages for expats, NGOs, diaspora organizations, and corporations.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Who We Serve -->
+        <div class="who-we-serve">
+            <div class="section-header">
+                <h2>Who We Serve</h2>
+                <p>Tailored training for organizations of all sizes</p>
+            </div>
+            <div class="serve-grid">
+                <div class="serve-card">
+                    <div class="serve-icon"><i class="fas fa-globe-americas"></i></div>
+                    <h3>Expatriates</h3>
+                    <p>Foreign employees, diplomats, and their families</p>
+                </div>
+                <div class="serve-card">
+                    <div class="serve-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>NGOs & Missionaries</h3>
+                    <p>Field workers, volunteers, and humanitarian staff</p>
+                </div>
+                <div class="serve-card">
+                    <div class="serve-icon"><i class="fas fa-users"></i></div>
+                    <h3>Diaspora Organizations</h3>
+                    <p>Associations helping members reconnect with Ghana</p>
+                </div>
+                <div class="serve-card">
+                    <div class="serve-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Corporations</h3>
+                    <p>Businesses with Ghanaian partners or operations</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefits -->
+        <div class="benefits-section">
+            <div class="section-header">
+                <h2>Why Invest in Twi Training?</h2>
+                <p>Language skills that transform your organization</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-handshake"></i></div>
+                    <div class="benefit-text">
+                        <h4>Stronger Relationships</h4>
+                        <p>Build trust with Ghanaian partners, clients, and communities through language and cultural respect.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-chart-simple"></i></div>
+                    <div class="benefit-text">
+                        <h4>Increased Effectiveness</h4>
+                        <p>Staff who speak Twi navigate markets, negotiations, and daily operations more efficiently.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-heart"></i></div>
+                    <div class="benefit-text">
+                        <h4>Cultural Competence</h4>
+                        <p>Understand proverbs, greetings, and protocols that show respect and build credibility.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-award"></i></div>
+                    <div class="benefit-text">
+                        <h4>Employee Satisfaction</h4>
+                        <p>Expatriates and diaspora staff feel more connected and effective when they can communicate locally.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Packages -->
+        <div class="packages-section">
+            <div class="section-header">
+                <h2>Corporate Packages</h2>
+                <p>Flexible options for any team size</p>
+            </div>
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Standard</h3>
+                        <div class="package-price">$1,500</div>
+                        <small>for up to 10 learners</small>
+                    </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> 10 live sessions (90 min each)</li>
+                        <li><i class="fas fa-check"></i> All learning materials (PDFs)</li>
+                        <li><i class="fas fa-check"></i> Certificate for each participant</li>
+                        <li><i class="fas fa-check"></i> WhatsApp group for questions</li>
+                        <li><i class="fas fa-check"></i> Flexible scheduling</li>
+                        <li><i class="fas fa-times"></i> Progress reports</li>
+                        <li><i class="fas fa-times"></i> Branded certificates</li>
+                    </ul>
+                    <a href="#inquiry" class="btn-inquire">Request Quote →</a>
+                </div>
+                <div class="package-card popular">
+                    <div class="popular-badge">⭐ MOST POPULAR</div>
+                    <div class="package-header">
+                        <h3>Premium</h3>
+                        <div class="package-price">$2,500</div>
+                        <small>for up to 10 learners</small>
+                    </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> 20 live sessions (90 min each)</li>
+                        <li><i class="fas fa-check"></i> All learning materials (PDFs + worksheets)</li>
+                        <li><i class="fas fa-check"></i> Certificate for each participant</li>
+                        <li><i class="fas fa-check"></i> WhatsApp group for questions</li>
+                        <li><i class="fas fa-check"></i> Flexible scheduling</li>
+                        <li><i class="fas fa-check"></i> Monthly progress reports</li>
+                        <li><i class="fas fa-check"></i> Branded certificates (with your logo)</li>
+                    </ul>
+                    <a href="#inquiry" class="btn-inquire">Request Quote →</a>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Custom</h3>
+                        <div class="package-price">Tailored</div>
+                        <small>to your specific needs</small>
+                    </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Custom curriculum (e.g., Business Twi, Medical Twi)</li>
+                        <li><i class="fas fa-check"></i> Any number of sessions</li>
+                        <li><i class="fas fa-check"></i> Any group size (5-50+ learners)</li>
+                        <li><i class="fas fa-check"></i> On-site or online delivery</li>
+                        <li><i class="fas fa-check"></i> Full customization</li>
+                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                    </ul>
+                    <a href="#inquiry" class="btn-inquire">Contact Us →</a>
+                </div>
+            </div>
+            
+            <div class="bulk-discount">
+                <i class="fas fa-tag"></i> <strong>Bulk Discounts:</strong> 5-9 learners → extra 5% off | 10+ learners → extra 10% off + free onboarding session for HR/manager
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials-section">
+            <h2>What Our Corporate Clients Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Speak Ghana provided excellent Twi training for our expatriate team. The cultural context was invaluable."</p>
+                    <p class="testimonial-author">— HR Manager, International NGO</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Our diaspora association members loved the classes. Many are now able to speak with their grandparents in Twi for the first time."</p>
+                    <p class="testimonial-author">— Program Director, Diaspora Organization</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The progress reports helped us track our team's development. Highly professional and effective."</p>
+                    <p class="testimonial-author">— Operations Lead, Multinational Corporation</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Flexible scheduling and native teachers made all the difference. Our staff now engages confidently with local partners."</p>
+                    <p class="testimonial-author">— Country Director, Development Agency</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inquiry Form -->
+        <div id="inquiry" class="inquiry-section">
+            <div class="section-header">
+                <h2>Request a Custom Quote</h2>
+                <p>Tell us about your organization and we'll design a package that fits your needs</p>
+            </div>
+            <form action="https://formspree.io/f/mlgpodpb" method="POST" id="corporate-inquiry-form">
+                <input type="hidden" name="form_type" value="Corporate Inquiry">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Organization Name *</label>
+                        <input type="text" name="organization" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Name *</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Number of Learners *</label>
+                        <select name="learners_count" required>
+                            <option value="">Select</option>
+                            <option value="1-5">1-5</option>
+                            <option value="6-10">6-10</option>
+                            <option value="11-20">11-20</option>
+                            <option value="21-50">21-50</option>
+                            <option value="50+">50+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Format</label>
+                        <select name="format">
+                            <option value="Online">Online (Zoom)</option>
+                            <option value="In-person">In-person (Accra/Kumasi)</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Interested Package</label>
+                        <select name="package_interest">
+                            <option value="Standard">Standard ($1,500)</option>
+                            <option value="Premium">Premium ($2,500)</option>
+                            <option value="Custom">Custom</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Additional Information</label>
+                        <textarea name="message" rows="4" placeholder="Tell us about your team, goals, preferred schedule, or any special requirements..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Send Inquiry →</button>
+            </form>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-section">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about corporate training</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>How many learners can you accommodate?</h4>
+                    <p>We can train groups from 5 to 50+ learners. Larger groups receive additional discounts.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can you customize the curriculum?</h4>
+                    <p>Absolutely. We can focus on Business Twi, Medical Twi, or any specific context your team needs.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you offer in-person training?</h4>
+                    <p>Yes, in Accra and Kumasi. We can also deliver training at your office or preferred location.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What materials are included?</h4>
+                    <p>PDFs, worksheets, audio files, and digital certificates. Premium package includes branded certificates.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How do you measure progress?</h4>
+                    <p>We provide monthly progress reports, including attendance, participation, and language assessments.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can we do a trial session?</h4>
+                    <p>Yes. We offer a complimentary 60-minute demo session for organizations considering our training.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h3>Ready to Equip Your Team?</h3>
+            <p>Contact us to discuss your organization's Twi training needs.</p>
+            <a href="#inquiry" class="btn-cta">Request a Quote →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 info@speakghana.org</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Programs</h4>
+                    <a href="languages.html">Live Classes</a>
+                    <a href="self-paced.html">Self-Paced Courses</a>
+                    <a href="for-organizations.html">For Organizations</a>
+                    <a href="kids-teens.html">Kids & Teens</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="resources.html">Free Resources</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="student-portal.html">Student Portal</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                    <a href="https://wa.me/233552263323" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School — Corporate Training</p>
+                <div style="margin-top: 0.5rem; font-size: 0.85rem;">Reconnect. Speak. Thrive.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        }
+        
+        // Dropdown functionality
+        const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
+        const dropdownLearnMenu = document.getElementById('dropdownLearnMenu');
+        const dropdownResourcesBtn = document.getElementById('dropdownResourcesBtn');
+        const dropdownResourcesMenu = document.getElementById('dropdownResourcesMenu');
+        
+        if (dropdownLearnBtn && dropdownLearnMenu) {
+            dropdownLearnBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownLearnMenu.classList.toggle('show');
+                dropdownLearnBtn.classList.toggle('open');
+                if (dropdownResourcesMenu && dropdownResourcesMenu.classList.contains('show')) {
+                    dropdownResourcesMenu.classList.remove('show');
+                    dropdownResourcesBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        if (dropdownResourcesBtn && dropdownResourcesMenu) {
+            dropdownResourcesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownResourcesMenu.classList.toggle('show');
+                dropdownResourcesBtn.classList.toggle('open');
+                if (dropdownLearnMenu && dropdownLearnMenu.classList.contains('show')) {
+                    dropdownLearnMenu.classList.remove('show');
+                    dropdownLearnBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        document.querySelectorAll('.dropdown-submenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.nav-links > a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 968) {
+                if (navLinks) navLinks.classList.remove('show');
+                if (dropdownLearnMenu) dropdownLearnMenu.classList.remove('show');
+                if (dropdownResourcesMenu) dropdownResourcesMenu.classList.remove('show');
+                if (dropdownLearnBtn) dropdownLearnBtn.classList.remove('open');
+                if (dropdownResourcesBtn) dropdownResourcesBtn.classList.remove('open');
+            }
+        });
+
+        // Form tracking
+        const inquiryForm = document.getElementById('corporate-inquiry-form');
+        if (inquiryForm) {
+            inquiryForm.addEventListener('submit', function() {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'corporate_inquiry_submit', { 'event_category': 'engagement', 'event_label': 'corporate_inquiry' });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
