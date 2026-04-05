@@ -172,6 +172,30 @@
             transform: scale(1.05);
         }
 
+        /* Fix dropdown links - remove underline */
+        .dropdown-submenu a {
+            text-decoration: none !important;
+            border-bottom: none !important;
+            display: block;
+            padding: 0.8rem 1.5rem 0.8rem 2.5rem;
+            color: var(--gray);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .dropdown-submenu a:hover {
+            text-decoration: none !important;
+            border-bottom: none !important;
+            color: var(--green);
+            background: rgba(42,157,143,0.1);
+            padding-left: 2.8rem;
+        }
+
+        .dropdown-submenu a::after {
+            display: none !important;
+        }
+
         @media (max-width: 968px) {
             .menu-toggle {
                 display: block;
@@ -676,7 +700,7 @@
                         <a href="resources.html">Free Resources</a>
                         <a href="blog.html">Blog</a>
                         <a href="student-portal.html">Live Class Portal</a>
-                        <a href="https://portal.speakghana.org">📚 Self-Paced Portal</a>
+                        <a href="https://portal.speakghana.org" target="_blank">📚 Self-Paced Portal</a>
                     </div>
                 </div>
                 
