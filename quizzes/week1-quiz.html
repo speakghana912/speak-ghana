@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 Quiz: Twi Alphabet & Sounds | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #FDF8F2;
+            color: #1E1E1E;
+            line-height: 1.6;
+        }
+        .quiz-header {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .quiz-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .quiz-info {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-left: 4px solid #D4A373;
+        }
+        .quiz-question {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .quiz-question.correct {
+            border-left: 4px solid #2A9D8F;
+            background: #f0faf8;
+        }
+        .quiz-question.incorrect {
+            border-left: 4px solid #E76F51;
+            background: #fef5f2;
+        }
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1E1E1E;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .quiz-options label {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+        .quiz-options label:hover {
+            background: #FDF8F2;
+        }
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .feedback {
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        .feedback.correct {
+            display: block;
+            background: #d4f5ef;
+            color: #1f7a6e;
+        }
+        .feedback.incorrect {
+            display: block;
+            background: #fde5dd;
+            color: #E76F51;
+        }
+        .quiz-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42,157,143,0.3);
+        }
+        .btn-secondary {
+            background: #D4A373;
+            color: #1E1E1E;
+        }
+        .btn-secondary:hover {
+            background: #c49a6c;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: white;
+            border: 2px solid #2A9D8F;
+            color: #2A9D8F;
+        }
+        .btn-outline:hover {
+            background: #2A9D8F;
+            color: white;
+        }
+        .score-section {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            margin-top: 2rem;
+            display: none;
+        }
+        .score-section.show {
+            display: block;
+        }
+        .score-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2A9D8F;
+        }
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 30px;
+            height: 8px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.3s;
+        }
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 9px;
+            color: rgba(0,0,0,0.1);
+            pointer-events: none;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .quiz-header h1 { font-size: 1.5rem; }
+            .btn { padding: 0.6rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-header">
+        <div class="container">
+            <h1>📝 Week 1 Quiz: Twi Alphabet & Sounds</h1>
+            <p>Test your knowledge of the Twi alphabet, vowels, and consonants</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="quiz-info">
+            <p><strong>📋 Quiz Information:</strong></p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li>10 multiple choice questions</li>
+                <li>Based on Chapter 1: Twi Alphabet & Sounds</li>
+                <li>Passing score: 70% (7 out of 10)</li>
+                <li>You can retake the quiz as many times as you want</li>
+            </ul>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="quiz-question" data-question="1" data-correct="B">
+                <div class="question-text">1. How many letters are in the Twi alphabet?</div>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q1" value="A"> A) 26 letters</label>
+                    <label><input type="radio" name="q1" value="B"> B) 22 letters</label>
+                    <label><input type="radio" name="q1" value="C"> C) 24 letters</label>
+                    <label><input type="radio" name="q1" value="D"> D) 20 letters</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-question" data-question="2" data-correct="B">
+                <div class="question-text">2. Which Twi letter sounds like the 'e' in "bed"?</div>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q2" value="A"> A) E</label>
+                    <label><input type="radio" name="q2" value="B"> B) Ɛ</label>
+                    <label><input type="radio" name="q2" value="C"> C) I</label>
+                    <label><input type="radio" name="q2" value="D"> D) Ɔ</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-question" data-question="3" data-correct="D">
+                <div class="question-text">3. Which letter sounds like 'aw' in "law"?</div>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q3" value="A"> A) O</label>
+                    <label><input type="radio" name="q3" value="B"> B) U</label>
+                    <label><input type="radio" name="q3" value="C"> C) Ɛ</label>
+                    <label><input type="radio" name="q3" value="D"> D) Ɔ</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="quiz-question" data-question="4" data-correct="C">
+                <div class="question-text">4. What is the Twi word for "welcome"?</div>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q4" value="A"> A) Medaase</label>
+                    <label><input type="radio" name="q4" value="B"> B) Maakye</label>
+                    <label><input type="radio" name="q4" value="C"> C) Akwaaba</label>
+                    <label><input type="radio" name="q4" value="D"> D) Yɛbɛhyia bio</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="quiz-question" data-question="5" data-correct="B">
+                <div class="question-text">5. How many vowel sounds does Twi have?</div>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q5" value="A"> A) 5</label>
+                    <label><input type="radio" name="q5" value="B"> B) 10</label>
+                    <label><input type="radio" name="q5" value="C"> C) 7</label>
+                    <label><input type="radio" name="q5" value="D"> D) 12</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="quiz-question" data-question="6" data-correct="A">
+                <div class="question-text">6. Which of these is a Twi consonant blend (digraph)?</div>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q6" value="A"> A) ky</label>
+                    <label><input type="radio" name="q6" value="B"> B) ch</label>
+                    <label><input type="radio" name="q6" value="C"> C) sh</label>
+                    <label><input type="radio" name="q6" value="D"> D) th</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="quiz-question" data-question="7" data-correct="A">
+                <div class="question-text">7. What is the correct Twi word for "love"?</div>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q7" value="A"> A) ɔdɔ</label>
+                    <label><input type="radio" name="q7" value="B"> B) ɛyɛ</label>
+                    <label><input type="radio" name="q7" value="C"> C) fie</label>
+                    <label><input type="radio" name="q7" value="D"> D) sika</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="quiz-question" data-question="8" data-correct="B">
+                <div class="question-text">8. How many consonants (including digraphs) are in Twi?</div>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q8" value="A"> A) 15</label>
+                    <label><input type="radio" name="q8" value="B"> B) 24</label>
+                    <label><input type="radio" name="q8" value="C"> C) 20</label>
+                    <label><input type="radio" name="q8" value="D"> D) 22</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="quiz-question" data-question="9" data-correct="C">
+                <div class="question-text">9. Which word means "Thank you" in Twi?</div>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q9" value="A"> A) Akwaaba</label>
+                    <label><input type="radio" name="q9" value="B"> B) Mepa wo kyɛw</label>
+                    <label><input type="radio" name="q9" value="C"> C) Medaase</label>
+                    <label><input type="radio" name="q9" value="D"> D) Maakye</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="quiz-question" data-question="10" data-correct="B">
+                <div class="question-text">10. Which letters are NOT in the English alphabet but ARE in Twi?</div>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q10" value="A"> A) C and J</label>
+                    <label><input type="radio" name="q10" value="B"> B) Ɛ and Ɔ</label>
+                    <label><input type="radio" name="q10" value="C"> C) Q and X</label>
+                    <label><input type="radio" name="q10" value="D"> D) V and Z</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="quiz-actions">
+                <button type="button" class="btn btn-secondary" onclick="resetQuiz()">⟳ Reset Answers</button>
+                <button type="button" class="btn btn-primary" onclick="submitQuiz()">Submit Quiz ✓</button>
+            </div>
+        </form>
+
+        <div id="scoreSection" class="score-section">
+            <h3>🎉 Quiz Complete!</h3>
+            <p>Your Score:</p>
+            <div class="score-number" id="scoreNumber">0/10</div>
+            <p id="scoreMessage"></p>
+            <button class="btn btn-primary" onclick="retakeQuiz()">Retake Quiz ↻</button>
+            <br><br>
+            <a href="https://portal.speakghana.org" class="btn btn-outline">← Back to Portal</a>
+        </div>
+    </div>
+
+    <div class="watermark">
+        Speak Ghana Language School | Licensed Student - Do Not Share
+    </div>
+
+    <script>
+        let quizSubmitted = false;
+
+        function updateProgress() {
+            let total = 10;
+            let answered = 0;
+            for (let i = 1; i <= total; i++) {
+                let radios = document.getElementsByName('q' + i);
+                for (let j = 0; j < radios.length; j++) {
+                    if (radios[j].checked) {
+                        answered++;
+                        break;
+                    }
+                }
+            }
+            let percent = (answered / total) * 100;
+            document.getElementById('progressFill').style.width = percent + '%';
+        }
+
+        function attachRadioListeners() {
+            for (let i = 1; i <= 10; i++) {
+                let radios = document.getElementsByName('q' + i);
+                for (let j = 0; j < radios.length; j++) {
+                    radios[j].addEventListener('change', function() {
+                        updateProgress();
+                        if (quizSubmitted) {
+                            let questionDiv = this.closest('.quiz-question');
+                            questionDiv.classList.remove('correct', 'incorrect');
+                            let feedbackDiv = questionDiv.querySelector('.feedback');
+                            feedbackDiv.classList.remove('correct', 'incorrect');
+                            feedbackDiv.style.display = 'none';
+                        }
+                    });
+                }
+            }
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            let total = 10;
+            
+            for (let i = 1; i <= total; i++) {
+                let selected = null;
+                let radios = document.getElementsByName('q' + i);
+                let questionDiv = document.querySelector('.quiz-question[data-question="' + i + '"]');
+                let correctAnswer = questionDiv.getAttribute('data-correct');
+                let feedbackDiv = questionDiv.querySelector('.feedback');
+                
+                for (let j = 0; j < radios.length; j++) {
+                    if (radios[j].checked) {
+                        selected = radios[j].value;
+                        break;
+                    }
+                }
+                
+                if (selected === correctAnswer) {
+                    score++;
+                    questionDiv.classList.add('correct');
+                    questionDiv.classList.remove('incorrect');
+                    feedbackDiv.innerHTML = '✅ Correct! Well done.';
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.classList.remove('incorrect');
+                    feedbackDiv.style.display = 'block';
+                } else {
+                    questionDiv.classList.add('incorrect');
+                    questionDiv.classList.remove('correct');
+                    let correctLetter = correctAnswer;
+                    let correctText = "";
+                    let options = questionDiv.querySelectorAll('.quiz-options label');
+                    for (let k = 0; k < options.length; k++) {
+                        if (options[k].querySelector('input').value === correctAnswer) {
+                            correctText = options[k].innerText;
+                            break;
+                        }
+                    }
+                    feedbackDiv.innerHTML = '❌ Incorrect. The correct answer is ' + correctLetter + ': ' + correctText;
+                    feedbackDiv.classList.add('incorrect');
+                    feedbackDiv.classList.remove('correct');
+                    feedbackDiv.style.display = 'block';
+                }
+            }
+            
+            quizSubmitted = true;
+            
+            let percentage = (score / total) * 100;
+            let message = "";
+            let passed = percentage >= 70;
+            
+            if (passed) {
+                message = "🎉 Congratulations! You passed the quiz! Keep up the great work!";
+                if (typeof gtag === 'function') {
+                    gtag('event', 'quiz_passed', { 'event_category': 'engagement', 'event_label': 'week1_quiz' });
+                }
+            } else {
+                message = "📚 Keep studying! Review Chapter 1 and try again. You can do it!";
+                if (typeof gtag === 'function') {
+                    gtag('event', 'quiz_failed', { 'event_category': 'engagement', 'event_label': 'week1_quiz' });
+                }
+            }
+            
+            document.getElementById('scoreNumber').innerHTML = score + '/' + total;
+            document.getElementById('scoreMessage').innerHTML = message;
+            document.getElementById('scoreSection').classList.add('show');
+            
+            // Scroll to score section
+            document.getElementById('scoreSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Mark lesson as complete in localStorage
+            let completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            if (!completed.includes('week1_quiz')) {
+                completed.push('week1_quiz');
+                localStorage.setItem('completedLessons', JSON.stringify(completed));
+            }
+        }
+        
+        function resetQuiz() {
+            for (let i = 1; i <= 10; i++) {
+                let radios = document.getElementsByName('q' + i);
+                for (let j = 0; j < radios.length; j++) {
+                    radios[j].checked = false;
+                }
+                let questionDiv = document.querySelector('.quiz-question[data-question="' + i + '"]');
+                questionDiv.classList.remove('correct', 'incorrect');
+                let feedbackDiv = questionDiv.querySelector('.feedback');
+                feedbackDiv.classList.remove('correct', 'incorrect');
+                feedbackDiv.style.display = 'none';
+            }
+            quizSubmitted = false;
+            updateProgress();
+            document.getElementById('scoreSection').classList.remove('show');
+        }
+        
+        function retakeQuiz() {
+            resetQuiz();
+        }
+        
+        attachRadioListeners();
+        updateProgress();
+        
+        // Check if user is authenticated (portal session)
+        if (!sessionStorage.getItem('selfPacedAuthenticated')) {
+            // Optional: show warning but still allow quiz
+            console.log('Quiz accessed outside portal');
+        }
+    </script>
+</body>
+</html>
