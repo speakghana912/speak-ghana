@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Millionaire Quiz | Twi Comprehensive | Speak Ghana</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#2A9D8F,#1f7a6e);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:2rem;}
+        .game-container{background:white;border-radius:40px;max-width:800px;width:100%;padding:2rem;box-shadow:0 30px 50px rgba(0,0,0,0.2);text-align:center;}
+        .game-header h1{color:#2A9D8F;}
+        .prize-area{background:linear-gradient(135deg,#D4A373,#c49a6c);padding:1rem;border-radius:20px;margin:1rem 0;}
+        .prize-money{font-size:1.5rem;font-weight:800;color:#1E1E1E;}
+        .question-area{background:#1a1a1a;border-radius:30px;padding:2rem;margin:1.5rem 0;}
+        .question-text{font-size:1.3rem;color:white;font-weight:600;}
+        .options-area{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0;}
+        .option-btn{background:#FDF8F2;border:2px solid #e2e8f0;border-radius:16px;padding:1rem;font-size:1rem;cursor:pointer;transition:all 0.2s;text-align:left;}
+        .option-btn:hover{background:#2A9D8F;color:white;}
+        .option-btn.disabled{opacity:0.5;pointer-events:none;}
+        .feedback{padding:1rem;border-radius:16px;margin:1rem 0;display:none;}
+        .feedback.correct{display:block;background:#d4f5ef;color:#1f7a6e;}
+        .feedback.incorrect{display:block;background:#fde5dd;color:#E76F51;}
+        .next-btn{background:#2A9D8F;color:white;border:none;padding:1rem;border-radius:50px;font-weight:600;cursor:pointer;width:100%;display:none;}
+        .next-btn.show{display:block;}
+        .game-end{display:none;text-align:center;}
+        .game-end.show{display:block;}
+        .restart-btn{background:#2A9D8F;color:white;border:none;padding:1rem 2rem;border-radius:50px;cursor:pointer;margin-top:1rem;}
+        .lifelines{display:flex;justify-content:center;gap:1rem;margin:1rem 0;}
+        .lifeline-btn{background:#FDF8F2;border:1px solid #e2e8f0;padding:0.5rem 1rem;border-radius:50px;cursor:pointer;font-size:0.8rem;}
+        .lifeline-btn.disabled{opacity:0.5;cursor:not-allowed;}
+        @media (max-width:600px){.options-area{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-header"><h1>💰 Millionaire Quiz</h1><p>Test your Twi knowledge!</p></div>
+    <div class="prize-area"><div class="prize-money" id="prizeMoney">💰 Question 1 of 15</div></div>
+    <div class="question-area"><div class="question-text" id="questionText">Loading...</div></div>
+    <div class="lifelines"><button class="lifeline-btn" id="fiftyBtn">🎲 50:50</button><button class="lifeline-btn" id="skipBtn">⏭️ Skip</button></div>
+    <div class="options-area" id="optionsArea"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="nextBtn">Next Question →</button>
+    <div class="game-end" id="gameEnd"><h2>🏆 Game Over! 🏆</h2><p>You answered <span id="finalCorrect">0</span> out of 15 correctly!</p><button class="restart-btn" id="restartBtn">Play Again ↻</button></div>
+</div>
+<script>
+const questions=[
+{text:"What is 'Good morning' in Twi?",options:["Maadwo","Maakye","Maaha","Akwaaba"],correct:1},
+{text:"What does 'Medaase' mean?",options:["Welcome","Thank you","Please","Goodbye"],correct:1},
+{text:"What is 10 in Twi?",options:["Du","Aduonu","Ɔha","Baako"],correct:0},
+{text:"How do you say 'I am fine'?",options:["Wo ho te sɛn?","Me ho yɛ","Ɛyɛ sɛn?","Medaase"],correct:1},
+{text:"What is 'Welcome' in Twi?",options:["Akwaaba","Maakye","Medaase","Da yie"],correct:0},
+{text:"What is 5 in Twi?",options:["Nnan","Nnum","Nsia","Nson"],correct:1},
+{text:"How do you say 'Thank you'?",options:["Mepa wo kyɛw","Akwaaba","Medaase","Da yie"],correct:2},
+{text:"What does 'Mepa wo kyɛw' mean?",options:["Thank you","Welcome","Please/Excuse me","Good night"],correct:2},
+{text:"What is 20 in Twi?",options:["Du du","Aduonu","Aduasa","Ɔha"],correct:1},
+{text:"How do you say 'My name is...'?",options:["Wo din de...","Me din de...","Wofiri he?","Mete..."],correct:1},
+{text:"What does 'Ɛyɛ sɛn?' mean?",options:["How are you?","How much is it?","What is your name?","Where are you from?"],correct:1},
+{text:"What is 3 in Twi?",options:["Baako","Mmienu","Mmiɛnsa","Nnan"],correct:2},
+{text:"How do you say 'Goodbye'?",options:["Akwaaba","Medaase","Yɛbɛhyia bio","Maakye"],correct:2},
+{text:"What does 'Wofiri he?' mean?",options:["Where do you live?","Where are you from?","What is your name?","How are you?"],correct:1},
+{text:"What is 100 in Twi?",options:["Aduonkron","Apem","Ɔha","Mpem"],correct:2}];
+let currentIndex=0,score=0,answered=false,fiftyUsed=false,skipUsed=false,currentOptionsCopy=null;
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function loadQuestion(){answered=false;const q=questions[currentIndex];document.getElementById('prizeMoney').innerHTML='💰 Question '+(currentIndex+1)+' of 15';document.getElementById('questionText').innerHTML=q.text;document.getElementById('feedback').className='feedback';document.getElementById('feedback').style.display='none';document.getElementById('nextBtn').classList.remove('show');currentOptionsCopy=[...q.options];const container=document.getElementById('optionsArea');container.innerHTML='';currentOptionsCopy.forEach((opt,idx)=>{const btn=document.createElement('button');btn.className='option-btn';btn.innerText=String.fromCharCode(65+idx)+') '+opt;btn.onclick=()=>checkAnswer(idx);container.appendChild(btn);});document.querySelectorAll('.option-btn').forEach(btn=>{btn.classList.remove('disabled');btn.disabled=false;});document.getElementById('fiftyBtn').classList.remove('disabled');document.getElementById('skipBtn').classList.remove('disabled');fiftyUsed=false;skipUsed=false;}
+function applyFiftyFifty(){if(fiftyUsed)return;const q=questions[currentIndex];const wrongIndices=[];for(let i=0;i<q.options.length;i++){if(i!==q.correct)wrongIndices.push(i);}const toRemove=wrongIndices.slice(0,2);const container=document.getElementById('optionsArea');const btns=container.children;for(let i=0;i<btns.length;i++){if(toRemove.includes(i)){btns[i].style.display='none';}}fiftyUsed=true;document.getElementById('fiftyBtn').classList.add('disabled');}
+function applySkip(){if(skipUsed)return;skipUsed=true;document.getElementById('skipBtn').classList.add('disabled');nextQuestion();}
+function checkAnswer(selected){if(answered)return;answered=true;const q=questions[currentIndex];const isCorrect=(selected===q.correct);if(isCorrect){score++;showFeedback(true,'✅ Correct! +1 point');}else{const correctLetter=String.fromCharCode(65+q.correct);showFeedback(false,'❌ Incorrect! The correct answer is '+correctLetter+') '+q.options[q.correct]);}document.getElementById('nextBtn').classList.add('show');document.querySelectorAll('.option-btn').forEach(btn=>{btn.classList.add('disabled');btn.disabled=true;});}
+function showFeedback(isCorrect,msg){const fd=document.getElementById('feedback');fd.innerText=msg;fd.className=isCorrect?'feedback correct':'feedback incorrect';fd.style.display='block';}
+function nextQuestion(){currentIndex++;if(currentIndex<questions.length){loadQuestion();}else{endGame();}}
+function endGame(){document.getElementById('finalCorrect').innerHTML=score;document.querySelector('.game-container > div:not(.game-end)').style.display='none';document.getElementById('gameEnd').classList.add('show');}
+function restartGame(){score=0;currentIndex=0;document.querySelector('.game-container > div:not(.game-end)').style.display='block';document.getElementById('gameEnd').classList.remove('show');const container=document.getElementById('optionsArea');if(container.children){for(let i=0;i<container.children.length;i++){if(container.children[i].style)container.children[i].style.display='';}}loadQuestion();}
+document.getElementById('nextBtn').addEventListener('click',nextQuestion);
+document.getElementById('restartBtn').addEventListener('click',restartGame);
+document.getElementById('fiftyBtn').addEventListener('click',applyFiftyFifty);
+document.getElementById('skipBtn').addEventListener('click',applySkip);
+loadQuestion();
+</script>
+</body>
+</html>

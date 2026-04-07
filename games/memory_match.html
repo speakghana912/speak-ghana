@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Memory Match | Twi Vocabulary Game | Speak Ghana</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#2A9D8F,#1f7a6e);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:2rem;}
+        .game-container{background:white;border-radius:40px;max-width:800px;width:100%;padding:2rem;box-shadow:0 30px 50px rgba(0,0,0,0.2);text-align:center;}
+        .game-header h1{color:#2A9D8F;}
+        .stats{display:flex;justify-content:space-between;background:#FDF8F2;padding:1rem;border-radius:20px;margin:1rem 0;}
+        .moves-box,.matches-box{background:white;padding:0.5rem 1rem;border-radius:50px;font-weight:600;}
+        .card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1.5rem 0;}
+        .card{aspect-ratio:1;background:linear-gradient(135deg,#2A9D8F,#1f7a6e);border-radius:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;font-weight:600;color:white;text-align:center;padding:0.5rem;transition:all 0.3s;box-shadow:0 4px 8px rgba(0,0,0,0.1);}
+        .card.flipped{background:white;color:#2A9D8F;border:2px solid #2A9D8F;transform:scale(0.98);}
+        .card.matched{background:#D4A373;color:white;cursor:default;opacity:0.7;transform:scale(0.95);}
+        .card.matched::after{content:"✓";margin-left:5px;}
+        .game-end{display:none;text-align:center;margin-top:1rem;}
+        .game-end.show{display:block;}
+        .restart-btn{background:#2A9D8F;color:white;border:none;padding:0.8rem 2rem;border-radius:50px;cursor:pointer;margin-top:1rem;}
+        .message{background:#d4f5ef;padding:0.8rem;border-radius:16px;margin:1rem 0;color:#1f7a6e;display:none;}
+        .message.show{display:block;}
+        @media (max-width:600px){.card-grid{grid-template-columns:repeat(3,1fr);}.card{font-size:0.8rem;}}
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-header"><h1>🧠 Memory Match</h1><p>Match Twi words with their English meanings!</p></div>
+    <div class="stats"><div class="moves-box">🔄 Moves: <span id="moves">0</span></div><div class="matches-box">✅ Matches: <span id="matches">0</span>/<span id="totalMatches">0</span></div></div>
+    <div class="card-grid" id="cardGrid"></div>
+    <div class="message" id="message">🎉 You found a match! 🎉</div>
+    <div class="game-end" id="gameEnd"><h2>🎉 Perfect Memory! 🎉</h2><p>You completed the game in <span id="finalMoves">0</span> moves!</p><button class="restart-btn" id="restartBtn">Play Again ↻</button></div>
+</div>
+<script>
+const vocabulary=[
+{twi:'Akwaaba',eng:'Welcome'},{twi:'Medaase',eng:'Thank you'},{twi:'Mepa wo kyɛw',eng:'Please'},{twi:'Maakye',eng:'Good morning'},{twi:'Maaha',eng:'Good afternoon'},{twi:'Maadwo',eng:'Good evening'},{twi:'Da yie',eng:'Good night'},{twi:'Yɛbɛhyia bio',eng:'Goodbye'},{twi:'Me ho yɛ',eng:'I am fine'},{twi:'Wo din de sɛn?',eng:'What is your name?'}];
+let cards=[],flippedCards=[],matchedCards=[],moves=0,matches=0,lockBoard=false;
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function initGame(){cards=[];vocabulary.forEach((item,idx)=>{cards.push({id:idx*2,type:'twi',value:item.twi,pairId:idx});cards.push({id:idx*2+1,type:'eng',value:item.eng,pairId:idx});});cards=shuffle(cards);flippedCards=[];matchedCards=[];moves=0;matches=0;lockBoard=false;document.getElementById('moves').innerText=moves;document.getElementById('matches').innerText=matches;document.getElementById('totalMatches').innerText=vocabulary.length;document.getElementById('message').classList.remove('show');document.getElementById('gameEnd').classList.remove('show');renderCards();}
+function renderCards(){const grid=document.getElementById('cardGrid');grid.innerHTML='';cards.forEach((card,idx)=>{const cardDiv=document.createElement('div');cardDiv.className='card';if(matchedCards.includes(idx)){cardDiv.classList.add('matched');cardDiv.innerText='✓';}else if(flippedCards.includes(idx)){cardDiv.classList.add('flipped');cardDiv.innerText=card.value;}else{cardDiv.innerText='?';}cardDiv.onclick=()=>flipCard(idx);grid.appendChild(cardDiv);});}
+function flipCard(idx){if(lockBoard)return;if(matchedCards.includes(idx))return;if(flippedCards.includes(idx))return;flippedCards.push(idx);renderCards();if(flippedCards.length===2){moves++;document.getElementById('moves').innerText=moves;lockBoard=true;setTimeout(checkMatch,800);}}
+function checkMatch(){const card1=cards[flippedCards[0]];const card2=cards[flippedCards[1]];if(card1.pairId===card2.pairId){matches++;document.getElementById('matches').innerText=matches;matchedCards.push(flippedCards[0],flippedCards[1]);document.getElementById('message').classList.add('show');setTimeout(()=>{document.getElementById('message').classList.remove('show');},1000);if(matches===vocabulary.length){endGame();}}else{const msgDiv=document.getElementById('message');msgDiv.innerText='❌ Not a match! Try again!';msgDiv.classList.add('show');msgDiv.style.background='#fde5dd';msgDiv.style.color='#E76F51';setTimeout(()=>{msgDiv.classList.remove('show');msgDiv.style.background='#d4f5ef';msgDiv.style.color='#1f7a6e';},1000);}flippedCards=[];lockBoard=false;renderCards();}
+function endGame(){document.getElementById('finalMoves').innerText=moves;document.getElementById('gameEnd').classList.add('show');}
+document.getElementById('restartBtn').addEventListener('click',initGame);
+initGame();
+</script>
+</body>
+</html>

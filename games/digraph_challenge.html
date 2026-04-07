@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Digraph Challenge | Twi Special Sounds | Speak Ghana</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#2A9D8F,#1f7a6e);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:2rem;}
+        .game-container{background:white;border-radius:40px;max-width:800px;width:100%;padding:2rem;box-shadow:0 30px 50px rgba(0,0,0,0.2);text-align:center;}
+        .game-header h1{color:#2A9D8F;}
+        .score-area{display:flex;justify-content:space-between;background:#FDF8F2;padding:1rem;border-radius:20px;margin:1rem 0;}
+        .listen-area{background:linear-gradient(135deg,#1a1a1a,#2A9D8F);border-radius:30px;padding:2rem;margin:1.5rem 0;cursor:pointer;}
+        .listen-icon{font-size:4rem;color:white;}
+        .digraph-display{font-size:3rem;font-weight:800;color:#2A9D8F;margin:1rem 0;}
+        .options-area{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0;}
+        .option-btn{background:#FDF8F2;border:2px solid #e2e8f0;border-radius:16px;padding:1rem;font-size:1.1rem;font-weight:600;cursor:pointer;}
+        .option-btn:hover{background:#2A9D8F;color:white;}
+        .feedback{padding:1rem;border-radius:16px;margin:1rem 0;display:none;}
+        .feedback.correct{display:block;background:#d4f5ef;color:#1f7a6e;}
+        .feedback.incorrect{display:block;background:#fde5dd;color:#E76F51;}
+        .next-btn{background:#D4A373;color:#1E1E1E;border:none;padding:1rem;border-radius:50px;font-weight:600;cursor:pointer;width:100%;display:none;}
+        .next-btn.show{display:block;}
+        .game-end{display:none;text-align:center;}
+        .game-end.show{display:block;}
+        .restart-btn{background:#2A9D8F;color:white;border:none;padding:1rem 2rem;border-radius:50px;cursor:pointer;}
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-header"><h1>🔊 Digraph Challenge</h1><p>Master Twi special sounds!</p></div>
+    <div class="score-area"><div class="score-box">🏆 Score: <span id="score">0</span></div><div class="question-counter">📋 <span id="currentQ">1</span>/<span id="totalQ">9</span></div></div>
+    <div class="listen-area" id="listenArea"><div class="listen-icon">🔊</div><div class="listen-text">Click to hear the digraph sound</div></div>
+    <div class="options-area" id="optionsArea"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="nextBtn">Next Digraph →</button>
+    <div class="game-end" id="gameEnd"><h2>🎉 Digraph Master! 🎉</h2><p>Your score:</p><div class="final-score" id="finalScore">0/9</div><button class="restart-btn" id="restartBtn">Try Again ↻</button></div>
+</div>
+<script>
+const AUDIO_BASE='https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/';
+const digraphs=[
+{digraph:'dw',audio:'digraphs-dw.m4a',options:['dw','tw','kw','gw']},
+{digraph:'gy',audio:'digraphs-gy.m4a',options:['gy','ky','by','dy']},
+{digraph:'hw',audio:'digraphs-hw.m4a',options:['hw','hw','kw','gw']},
+{digraph:'hy',audio:'digraphs-hy.m4a',options:['hy','ky','gy','by']},
+{digraph:'kw',audio:'digraphs-kw.m4a',options:['kw','kw','gw','dw']},
+{digraph:'ky',audio:'digraphs-ky.m4a',options:['ky','ky','gy','hy']},
+{digraph:'ny',audio:'digraphs-ny.m4a',options:['ny','ny','nw','ng']},
+{digraph:'nw',audio:'digraphs-nw.m4a',options:['nw','nw','ny','ng']},
+{digraph:'tw',audio:'digraphs-tw.m4a',options:['tw','dw','kw','pw']}];
+let currentQuestions=[],currentIndex=0,score=0,answered=false,currentAudio=null;
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function playAudio(file){if(currentAudio){currentAudio.pause();currentAudio.currentTime=0;}currentAudio=new Audio(AUDIO_BASE+file);currentAudio.play().catch(e=>console.log('Audio error:',e));}
+function loadQuestion(){answered=false;const q=currentQuestions[currentIndex];document.getElementById('currentQ').innerText=currentIndex+1;document.getElementById('feedback').className='feedback';document.getElementById('feedback').style.display='none';document.getElementById('nextBtn').classList.remove('show');const shuffledOpts=shuffle([...q.options]);const container=document.getElementById('optionsArea');container.innerHTML='';shuffledOpts.forEach(opt=>{const btn=document.createElement('button');btn.className='option-btn';btn.innerText=opt;btn.onclick=()=>checkAnswer(opt);container.appendChild(btn);});}
+function checkAnswer(selected){if(answered)return;answered=true;const q=currentQuestions[currentIndex];const isCorrect=selected===q.digraph;if(isCorrect){score++;document.getElementById('score').innerText=score;showFeedback(true,'✅ Correct! '+q.digraph+' sounds exactly like that!');}else{showFeedback(false,'❌ Incorrect! The correct digraph is "'+q.digraph+'".');}document.getElementById('nextBtn').classList.add('show');}
+function showFeedback(isCorrect,msg){const fd=document.getElementById('feedback');fd.innerText=msg;fd.className=isCorrect?'feedback correct':'feedback incorrect';fd.style.display='block';}
+function nextQuestion(){currentIndex++;if(currentIndex<currentQuestions.length){loadQuestion();}else{endGame();}}
+function endGame(){const total=currentQuestions.length;const pct=Math.round((score/total)*100);document.getElementById('finalScore').innerHTML=score+'/'+total+' ('+pct+'%)';document.querySelector('.game-container > div:not(.game-end)').style.display='none';document.getElementById('gameEnd').classList.add('show');}
+function restartGame(){score=0;currentIndex=0;document.getElementById('score').innerText='0';document.querySelector('.game-container > div:not(.game-end)').style.display='block';document.getElementById('gameEnd').classList.remove('show');currentQuestions=shuffle([...digraphs]);loadQuestion();}
+document.getElementById('listenArea').addEventListener('click',()=>{if(currentQuestions[currentIndex])playAudio(currentQuestions[currentIndex].audio);});
+document.getElementById('nextBtn').addEventListener('click',nextQuestion);
+document.getElementById('restartBtn').addEventListener('click',restartGame);
+currentQuestions=shuffle([...digraphs]);document.getElementById('totalQ').innerText=currentQuestions.length;loadQuestion();
+</script>
+</body>
+</html>
