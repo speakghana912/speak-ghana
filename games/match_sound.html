@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Match the Sound | Twi Alphabet Game | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .game-container {
+            background: white;
+            border-radius: 40px;
+            max-width: 800px;
+            width: 100%;
+            padding: 2rem;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .game-header h1 {
+            color: #2A9D8F;
+            margin-bottom: 0.5rem;
+        }
+        .game-header p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        .score-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #FDF8F2;
+            padding: 1rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+        .score-box, .question-counter {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        .score-box span, .question-counter span {
+            color: #2A9D8F;
+            font-size: 1.2rem;
+        }
+        .listen-area {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .listen-area:hover {
+            transform: scale(1.02);
+        }
+        .listen-icon {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        .listen-text {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+        .options-area {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .option-btn {
+            background: #FDF8F2;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #1E1E1E;
+        }
+        .option-btn:hover {
+            background: #2A9D8F;
+            color: white;
+            border-color: #2A9D8F;
+            transform: translateY(-2px);
+        }
+        .option-btn.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .feedback {
+            padding: 1rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            display: none;
+        }
+        .feedback.correct {
+            display: block;
+            background: #d4f5ef;
+            color: #1f7a6e;
+        }
+        .feedback.incorrect {
+            display: block;
+            background: #fde5dd;
+            color: #E76F51;
+        }
+        .next-btn {
+            background: linear-gradient(135deg, #D4A373, #c49a6c);
+            color: #1E1E1E;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            display: none;
+        }
+        .next-btn.show {
+            display: block;
+        }
+        .next-btn:hover {
+            transform: translateY(-2px);
+            background: #2A9D8F;
+            color: white;
+        }
+        .game-end {
+            text-align: center;
+            display: none;
+        }
+        .game-end.show {
+            display: block;
+        }
+        .final-score {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2A9D8F;
+            margin: 1rem 0;
+        }
+        .restart-btn {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .watermark {
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            color: #ccc;
+        }
+        @media (max-width: 600px) {
+            .options-area {
+                grid-template-columns: 1fr;
+            }
+            .game-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>🎧 Match the Sound</h1>
+            <p>Listen to the audio and click the correct Twi letter!</p>
+        </div>
+
+        <div class="score-area">
+            <div class="score-box">🏆 Score: <span id="score">0</span></div>
+            <div class="question-counter">📋 Question <span id="currentQ">1</span>/<span id="totalQ">10</span></div>
+        </div>
+
+        <div class="listen-area" id="listenArea">
+            <div class="listen-icon">🔊</div>
+            <div class="listen-text">Click here to play the sound</div>
+        </div>
+
+        <div class="options-area" id="optionsArea"></div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="next-btn" id="nextBtn">Next Question →</button>
+
+        <div class="game-end" id="gameEnd">
+            <h2>🎉 Game Complete! 🎉</h2>
+            <p>Your final score:</p>
+            <div class="final-score" id="finalScore">0/10</div>
+            <p id="congratsMsg"></p>
+            <button class="restart-btn" id="restartBtn">Play Again ↻</button>
+        </div>
+
+        <div class="watermark">
+            Speak Ghana Language School | Learn Twi the fun way!
+        </div>
+    </div>
+
+    <script>
+        // Audio base URL - UPDATE THIS TO YOUR GITHUB RAW URL
+        const AUDIO_BASE = 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/';
+        
+        // Question Bank
+        const allQuestions = [
+            { audio: 'letter-a.m4a', correct: 'A', options: ['A', 'E', 'I', 'O'] },
+            { audio: 'letter-b.m4a', correct: 'B', options: ['B', 'D', 'P', 'G'] },
+            { audio: 'letter-d.m4a', correct: 'D', options: ['D', 'B', 'T', 'G'] },
+            { audio: 'letter-e.m4a', correct: 'E', options: ['E', 'I', 'Ɛ', 'A'] },
+            { audio: 'letter-ɛ.m4a', correct: 'Ɛ', options: ['Ɛ', 'E', 'Ɔ', 'A'] },
+            { audio: 'letter-f.m4a', correct: 'F', options: ['F', 'V', 'S', 'H'] },
+            { audio: 'letter-g.m4a', correct: 'G', options: ['G', 'J', 'K', 'C'] },
+            { audio: 'letter-h.m4a', correct: 'H', options: ['H', 'K', 'G', 'J'] },
+            { audio: 'letter-i.m4a', correct: 'I', options: ['I', 'E', 'Ɛ', 'A'] },
+            { audio: 'letter-k.m4a', correct: 'K', options: ['K', 'C', 'G', 'Q'] },
+            { audio: 'letter-l.m4a', correct: 'L', options: ['L', 'R', 'M', 'N'] },
+            { audio: 'letter-m.m4a', correct: 'M', options: ['M', 'N', 'W', 'Y'] },
+            { audio: 'letter-n.m4a', correct: 'N', options: ['N', 'M', 'Ñ', 'Ŋ'] },
+            { audio: 'letter-o.m4a', correct: 'O', options: ['O', 'Ɔ', 'U', 'A'] },
+            { audio: 'letter-ɔ.m4a', correct: 'Ɔ', options: ['Ɔ', 'O', 'U', 'Ɛ'] },
+            { audio: 'letter-p.m4a', correct: 'P', options: ['P', 'B', 'D', 'T'] },
+            { audio: 'letter-r.m4a', correct: 'R', options: ['R', 'L', 'W', 'Y'] },
+            { audio: 'letter-s.m4a', correct: 'S', options: ['S', 'C', 'Z', 'X'] },
+            { audio: 'letter-t.m4a', correct: 'T', options: ['T', 'D', 'P', 'K'] },
+            { audio: 'letter-u.m4a', correct: 'U', options: ['U', 'Ʊ', 'O', 'Ɔ'] },
+            { audio: 'letter-w.m4a', correct: 'W', options: ['W', 'V', 'Y', 'U'] },
+            { audio: 'letter-y.m4a', correct: 'Y', options: ['Y', 'W', 'J', 'I'] },
+            // Digraphs
+            { audio: 'digraphs-dw.m4a', correct: 'dw', options: ['dw', 'tw', 'kw', 'gw'] },
+            { audio: 'digraphs-gy.m4a', correct: 'gy', options: ['gy', 'ky', 'by', 'dy'] },
+            { audio: 'digraphs-hw.m4a', correct: 'hw', options: ['hw', 'hw', 'kw', 'gw'] },
+            { audio: 'digraphs-hy.m4a', correct: 'hy', options: ['hy', 'ky', 'gy', 'by'] },
+            { audio: 'digraphs-kw.m4a', correct: 'kw', options: ['kw', 'kw', 'gw', 'dw'] },
+            { audio: 'digraphs-ky.m4a', correct: 'ky', options: ['ky', 'ky', 'gy', 'hy'] },
+            { audio: 'digraphs-ny.m4a', correct: 'ny', options: ['ny', 'ny', 'nw', 'ng'] },
+            { audio: 'digraphs-nw.m4a', correct: 'nw', options: ['nw', 'nw', 'ny', 'ng'] },
+            { audio: 'digraphs-tw.m4a', correct: 'tw', options: ['tw', 'dw', 'kw', 'pw'] }
+        ];
+
+        // Game variables
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let answered = false;
+        let currentAudio = null;
+
+        // Select 10 random questions
+        function selectRandomQuestions() {
+            const shuffled = [...allQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled.slice(0, 10);
+        }
+
+        // Shuffle options for a question
+        function shuffleOptions(options) {
+            const shuffled = [...options];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Play audio
+        function playAudio(audioFile) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            const audioUrl = AUDIO_BASE + audioFile;
+            currentAudio = new Audio(audioUrl);
+            currentAudio.play().catch(e => console.log('Audio play failed:', e));
+        }
+
+        // Load current question
+        function loadQuestion() {
+            answered = false;
+            const q = currentQuestions[currentIndex];
+            
+            document.getElementById('currentQ').innerText = currentIndex + 1;
+            
+            const feedbackDiv = document.getElementById('feedback');
+            feedbackDiv.className = 'feedback';
+            feedbackDiv.style.display = 'none';
+            document.getElementById('nextBtn').classList.remove('show');
+            
+            const allOptions = document.querySelectorAll('.option-btn');
+            allOptions.forEach(btn => {
+                btn.classList.remove('disabled');
+                btn.disabled = false;
+            });
+            
+            const shuffledOpts = shuffleOptions([...q.options]);
+            
+            const optionsArea = document.getElementById('optionsArea');
+            optionsArea.innerHTML = '';
+            shuffledOpts.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt.toUpperCase();
+                btn.onclick = () => checkAnswer(opt);
+                optionsArea.appendChild(btn);
+            });
+        }
+
+        // Check answer
+        function checkAnswer(selected) {
+            if (answered) return;
+            answered = true;
+            
+            const q = currentQuestions[currentIndex];
+            const isCorrect = (selected === q.correct);
+            
+            if (isCorrect) {
+                score++;
+                document.getElementById('score').innerText = score;
+                showFeedback(true, '✅ Correct! Well done!');
+            } else {
+                showFeedback(false, '❌ Incorrect! The correct answer is "' + q.correct.toUpperCase() + '".');
+            }
+            
+            const allOptions = document.querySelectorAll('.option-btn');
+            allOptions.forEach(btn => {
+                btn.classList.add('disabled');
+                btn.disabled = true;
+            });
+            
+            document.getElementById('nextBtn').classList.add('show');
+        }
+
+        function showFeedback(isCorrect, message) {
+            const feedbackDiv = document.getElementById('feedback');
+            feedbackDiv.innerText = message;
+            feedbackDiv.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
+            feedbackDiv.style.display = 'block';
+        }
+
+        // Next question
+        function nextQuestion() {
+            currentIndex++;
+            if (currentIndex < currentQuestions.length) {
+                loadQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        // End game
+        function endGame() {
+            const total = currentQuestions.length;
+            const percentage = Math.round((score / total) * 100);
+            
+            document.getElementById('finalScore').innerHTML = score + '/' + total + ' (' + percentage + '%)';
+            
+            let message = '';
+            if (percentage >= 90) {
+                message = '🏆 Amazing! You are a Twi alphabet master! 🏆';
+            } else if (percentage >= 70) {
+                message = '🎉 Great job! Keep practicing and you will master all the sounds! 🎉';
+            } else if (percentage >= 50) {
+                message = '👍 Good effort! Try again to improve your score! 👍';
+            } else {
+                message = '📚 Keep studying! Review the alphabet and try again. You can do it! 📚';
+            }
+            document.getElementById('congratsMsg').innerHTML = message;
+            
+            document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
+            document.getElementById('gameEnd').classList.add('show');
+        }
+
+        // Restart game
+        function restartGame() {
+            score = 0;
+            currentIndex = 0;
+            document.getElementById('score').innerText = '0';
+            
+            document.querySelector('.game-container > div:not(.game-end)').style.display = 'block';
+            document.getElementById('gameEnd').classList.remove('show');
+            
+            currentQuestions = selectRandomQuestions();
+            
+            loadQuestion();
+        }
+
+        // Listen area click
+        function setupListenArea() {
+            const listenArea = document.getElementById('listenArea');
+            listenArea.addEventListener('click', () => {
+                if (currentQuestions[currentIndex]) {
+                    playAudio(currentQuestions[currentIndex].audio);
+                }
+            });
+        }
+
+        // Initialize game
+        function initGame() {
+            currentQuestions = selectRandomQuestions();
+            document.getElementById('totalQ').innerText = currentQuestions.length;
+            loadQuestion();
+            setupListenArea();
+            
+            document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+            document.getElementById('restartBtn').addEventListener('click', restartGame);
+        }
+
+        initGame();
+    </script>
+</body>
+</html>
