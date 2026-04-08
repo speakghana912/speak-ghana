@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Brain Challenge | Twi Vocabulary Master | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .game-container {
+            background: white;
+            border-radius: 48px;
+            max-width: 800px;
+            width: 100%;
+            padding: 2rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+        }
+        .game-header h1 {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+        }
+        .game-header p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            background: #FDF8F2;
+            padding: 1rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .stat-card {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .stat-card span {
+            color: #2A9D8F;
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+        .timer-area {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            border-radius: 30px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .timer-text {
+            color: white;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+        .timer-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #D4A373;
+            font-family: monospace;
+        }
+        .word-area {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            border-radius: 40px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .twi-word {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+        .word-pronunciation {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+        .options-area {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .option-btn {
+            background: #FDF8F2;
+            border: 2px solid #e2e8f0;
+            border-radius: 60px;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .option-btn:hover {
+            background: #2A9D8F;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .option-btn.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .option-btn.correct {
+            background: #2A9D8F;
+            color: white;
+            border-color: #2A9D8F;
+        }
+        .option-btn.wrong {
+            background: #E76F51;
+            color: white;
+            border-color: #E76F51;
+        }
+        .feedback {
+            padding: 0.8rem;
+            border-radius: 60px;
+            margin-bottom: 1rem;
+            display: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .feedback.correct {
+            display: block;
+            background: #d4f5ef;
+            color: #1f7a6e;
+        }
+        .feedback.incorrect {
+            display: block;
+            background: #fde5dd;
+            color: #E76F51;
+        }
+        .next-btn {
+            background: #D4A373;
+            color: #1E1E1E;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            display: none;
+        }
+        .next-btn.show {
+            display: block;
+        }
+        .game-end {
+            display: none;
+            text-align: center;
+        }
+        .game-end.show {
+            display: block;
+        }
+        .final-score {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2A9D8F;
+            margin: 1rem 0;
+        }
+        .restart-btn {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .powerups {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .powerup {
+            background: #FDF8F2;
+            border: 1px solid #e2e8f0;
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .powerup:hover {
+            background: #D4A373;
+            color: white;
+        }
+        .powerup.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .watermark {
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            color: #ccc;
+        }
+        .level-badge {
+            display: inline-block;
+            background: #E76F51;
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            margin-bottom: 0.5rem;
+        }
+        @media (max-width: 600px) {
+            .options-area {
+                grid-template-columns: 1fr;
+            }
+            .twi-word {
+                font-size: 2rem;
+            }
+            .timer-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-header">
+        <h1>🧠 BRAIN CHALLENGE</h1>
+        <p>Match the Twi word to its English meaning | Time pressure + Power-ups</p>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">🏆 SCORE: <span id="score">0</span></div>
+        <div class="stat-card">⚡ STREAK: <span id="streak">0</span></div>
+        <div class="stat-card">🎯 LEVEL: <span id="level">1</span></div>
+        <div class="stat-card">📋 <span id="currentQ">1</span>/<span id="totalQ">20</span></div>
+    </div>
+
+    <div class="timer-area">
+        <div class="timer-text">⏱️ TIME LEFT</div>
+        <div class="timer-number" id="timer">5</div>
+    </div>
+
+    <div class="word-area">
+        <div class="level-badge" id="levelBadge">⚡ QUICK MODE</div>
+        <div class="twi-word" id="twiWord">Loading...</div>
+        <div class="word-pronunciation" id="pronunciation"></div>
+    </div>
+
+    <div class="powerups">
+        <div class="powerup" id="skipPowerup">⏭️ SKIP (3 left)</div>
+        <div class="powerup" id="hintPowerup">💡 HINT (2 left)</div>
+        <div class="powerup" id="extraTimePowerup">⏰ +3 SEC (1 left)</div>
+    </div>
+
+    <div class="options-area" id="optionsArea"></div>
+
+    <div class="feedback" id="feedback"></div>
+
+    <button class="next-btn" id="nextBtn">NEXT WORD →</button>
+
+    <div class="game-end" id="gameEnd">
+        <div style="font-size: 4rem;">🏆</div>
+        <h2>Challenge Complete!</h2>
+        <p>Your final score:</p>
+        <div class="final-score" id="finalScore">0/20</div>
+        <p id="congratsMsg"></p>
+        <button class="restart-btn" id="restartBtn">🔄 PLAY AGAIN</button>
+    </div>
+
+    <div class="watermark">
+        Speak Ghana Language School | Brain Challenge Mode
+    </div>
+</div>
+
+<script>
+    const vocabulary = [
+        { twi: "abɛ", english: "palm-nut" }, { twi: "bankye", english: "cassava" },
+        { twi: "din", english: "name" }, { twi: "efie", english: "house" },
+        { twi: "ɛyɛ", english: "it is" }, { twi: "fa", english: "take" },
+        { twi: "Ghana", english: "Ghana" }, { twi: "kasa", english: "speak / language" },
+        { twi: "me", english: "me / my" }, { twi: "obi", english: "someone" },
+        { twi: "ɔdɔ", english: "love" }, { twi: "papa", english: "father / good" },
+        { twi: "sukuu", english: "school" }, { twi: "wo", english: "you / your" },
+        { twi: "yɛ", english: "do / make / be" }, { twi: "sika", english: "money" },
+        { twi: "bisa", english: "ask" }, { twi: "didi", english: "eat" },
+        { twi: "sekan", english: "knife" }, { twi: "nante", english: "walk" },
+        { twi: "duku", english: "headwrap" }, { twi: "banku", english: "banku (food)" },
+        { twi: "ɛpo", english: "ocean" }, { twi: "ewiase", english: "world" },
+        { twi: "ɛdan", english: "building" }, { twi: "ani", english: "eye" },
+        { twi: "aburo", english: "corn" }, { twi: "aboa", english: "animal" },
+        { twi: "nana", english: "grandparent" }, { twi: "atadeɛ", english: "dress" }
+    ];
+
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let score = 0;
+    let streak = 0;
+    let level = 1;
+    let timeLeft = 5;
+    let timerInterval = null;
+    let answered = false;
+    let totalQuestions = 20;
+    let powerUps = { skip: 3, hint: 2, extraTime: 1 };
+
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    function selectRandomQuestions() {
+        let selected = shuffleArray([...vocabulary]);
+        while (selected.length < totalQuestions) {
+            selected = selected.concat(shuffleArray([...vocabulary]));
+        }
+        return selected.slice(0, totalQuestions);
+    }
+
+    function getRandomOptions(correctWord, count = 3) {
+        const otherWords = vocabulary.filter(w => w.english !== correctWord.english);
+        const shuffledOthers = shuffleArray([...otherWords]);
+        const options = [correctWord.english];
+        for (let i = 0; i < count; i++) {
+            if (shuffledOthers[i] && !options.includes(shuffledOthers[i].english)) {
+                options.push(shuffledOthers[i].english);
+            }
+        }
+        return shuffleArray(options);
+    }
+
+    function stopTimer() {
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+    }
+
+    function startTimer() {
+        stopTimer();
+        timerInterval = setInterval(() => {
+            if (!answered && timeLeft > 0) {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft;
+                if (timeLeft === 0) {
+                    // Time's up - auto incorrect
+                    clearInterval(timerInterval);
+                    if (!answered) {
+                        autoFail();
+                    }
+                }
+            } else if (timeLeft <= 0) {
+                stopTimer();
+            }
+        }, 1000);
+    }
+
+    function autoFail() {
+        answered = true;
+        const q = currentQuestions[currentIndex];
+        streak = 0;
+        document.getElementById('streak').innerText = streak;
+        showFeedback(false, '⏰ TIME\'S UP! "' + q.twi + '" means "' + q.english + '".');
+        disableOptions();
+        document.getElementById('nextBtn').classList.add('show');
+        stopTimer();
+    }
+
+    function disableOptions() {
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.classList.add('disabled');
+            btn.disabled = true;
+        });
+    }
+
+    function updateLevel() {
+        if (score >= 15) level = 5;
+        else if (score >= 10) level = 4;
+        else if (score >= 6) level = 3;
+        else if (score >= 3) level = 2;
+        else level = 1;
+        
+        document.getElementById('level').innerText = level;
+        
+        // Adjust time based on level
+        if (level === 1) timeLeft = 8;
+        else if (level === 2) timeLeft = 6;
+        else if (level === 3) timeLeft = 5;
+        else if (level === 4) timeLeft = 4;
+        else timeLeft = 3;
+        
+        document.getElementById('timer').innerText = timeLeft;
+        
+        let levelText = '';
+        if (level === 1) levelText = '🐢 RELAX MODE';
+        else if (level === 2) levelText = '🚶 NORMAL MODE';
+        else if (level === 3) levelText = '🏃 FAST MODE';
+        else if (level === 4) levelText = '⚡ INSANE MODE';
+        else levelText = '💀 MASTER MODE';
+        document.getElementById('levelBadge').innerText = levelText;
+    }
+
+    function loadQuestion() {
+        answered = false;
+        const q = currentQuestions[currentIndex];
+        
+        document.getElementById('twiWord').innerHTML = q.twi;
+        document.getElementById('pronunciation').innerHTML = '';
+        document.getElementById('currentQ').innerText = currentIndex + 1;
+        document.getElementById('feedback').className = 'feedback';
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('nextBtn').classList.remove('show');
+        
+        const options = getRandomOptions(q, 3);
+        
+        const optionsArea = document.getElementById('optionsArea');
+        optionsArea.innerHTML = '';
+        options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => checkAnswer(btn, opt);
+            optionsArea.appendChild(btn);
+        });
+        
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.classList.remove('disabled');
+            btn.disabled = false;
+            btn.classList.remove('correct', 'wrong');
+        });
+        
+        updateLevel();
+        startTimer();
+    }
+
+    function checkAnswer(btn, selected) {
+        if (answered) return;
+        answered = true;
+        stopTimer();
+        
+        const q = currentQuestions[currentIndex];
+        const isCorrect = (selected === q.english);
+        
+        if (isCorrect) {
+            score++;
+            streak++;
+            btn.classList.add('correct');
+            document.getElementById('score').innerText = score;
+            document.getElementById('streak').innerText = streak;
+            showFeedback(true, '✅ CORRECT! +' + (level * 10) + ' points');
+        } else {
+            streak = 0;
+            document.getElementById('streak').innerText = streak;
+            btn.classList.add('wrong');
+            showFeedback(false, '❌ WRONG! "' + q.twi + '" means "' + q.english + '".');
+            
+            // Highlight correct answer
+            document.querySelectorAll('.option-btn').forEach(button => {
+                if (button.innerText === q.english) {
+                    button.classList.add('correct');
+                }
+            });
+        }
+        
+        disableOptions();
+        document.getElementById('nextBtn').classList.add('show');
+    }
+
+    function showFeedback(isCorrect, message) {
+        const feedbackDiv = document.getElementById('feedback');
+        feedbackDiv.innerText = message;
+        feedbackDiv.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
+        feedbackDiv.style.display = 'block';
+    }
+
+    function nextQuestion() {
+        currentIndex++;
+        if (currentIndex < currentQuestions.length) {
+            loadQuestion();
+        } else {
+            endGame();
+        }
+    }
+
+    function skipQuestion() {
+        if (powerUps.skip <= 0) {
+            alert('No skips left! Answer the question or wait for time to run out.');
+            return;
+        }
+        if (answered) return;
+        
+        powerUps.skip--;
+        document.getElementById('skipPowerup').innerText = `⏭️ SKIP (${powerUps.skip} left)`;
+        if (powerUps.skip === 0) document.getElementById('skipPowerup').classList.add('disabled');
+        
+        stopTimer();
+        nextQuestion();
+    }
+
+    function useHint() {
+        if (powerUps.hint <= 0) {
+            alert('No hints left!');
+            return;
+        }
+        if (answered) return;
+        
+        powerUps.hint--;
+        document.getElementById('hintPowerup').innerText = `💡 HINT (${powerUps.hint} left)`;
+        if (powerUps.hint === 0) document.getElementById('hintPowerup').classList.add('disabled');
+        
+        const q = currentQuestions[currentIndex];
+        const firstLetter = q.english.charAt(0).toUpperCase();
+        const length = q.english.length;
+        showFeedback(false, `💡 HINT: The word starts with "${firstLetter}" and has ${length} letters.`);
+    }
+
+    function addExtraTime() {
+        if (powerUps.extraTime <= 0) {
+            alert('No extra time left!');
+            return;
+        }
+        if (answered) return;
+        
+        powerUps.extraTime--;
+        document.getElementById('extraTimePowerup').innerText = `⏰ +3 SEC (${powerUps.extraTime} left)`;
+        if (powerUps.extraTime === 0) document.getElementById('extraTimePowerup').classList.add('disabled');
+        
+        timeLeft += 3;
+        document.getElementById('timer').innerText = timeLeft;
+        showFeedback(false, '⏰ +3 seconds added!');
+        setTimeout(() => {
+            document.getElementById('feedback').style.display = 'none';
+        }, 1000);
+    }
+
+    function endGame() {
+        const percentage = Math.round((score / totalQuestions) * 100);
+        document.getElementById('finalScore').innerHTML = score + '/' + totalQuestions + ' (' + percentage + '%)';
+        
+        let message = '';
+        if (percentage >= 80) message = '🏆 BRAIN MASTER! You crushed the challenge! 🏆';
+        else if (percentage >= 60) message = '🎉 GREAT! You have solid vocabulary skills! 🎉';
+        else if (percentage >= 40) message = '👍 GOOD EFFORT! Practice more and try again! 👍';
+        else message = '📚 KEEP STUDYING! Review the lesson and come back stronger! 📚';
+        document.getElementById('congratsMsg').innerHTML = message;
+        
+        document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
+        document.getElementById('gameEnd').classList.add('show');
+    }
+
+    function restartGame() {
+        score = 0;
+        streak = 0;
+        currentIndex = 0;
+        powerUps = { skip: 3, hint: 2, extraTime: 1 };
+        document.getElementById('score').innerText = '0';
+        document.getElementById('streak').innerText = '0';
+        document.getElementById('skipPowerup').innerText = '⏭️ SKIP (3 left)';
+        document.getElementById('hintPowerup').innerText = '💡 HINT (2 left)';
+        document.getElementById('extraTimePowerup').innerText = '⏰ +3 SEC (1 left)';
+        document.getElementById('skipPowerup').classList.remove('disabled');
+        document.getElementById('hintPowerup').classList.remove('disabled');
+        document.getElementById('extraTimePowerup').classList.remove('disabled');
+        
+        document.querySelector('.game-container > div:not(.game-end)').style.display = 'block';
+        document.getElementById('gameEnd').classList.remove('show');
+        
+        currentQuestions = selectRandomQuestions();
+        document.getElementById('totalQ').innerText = currentQuestions.length;
+        loadQuestion();
+    }
+
+    function initGame() {
+        currentQuestions = selectRandomQuestions();
+        document.getElementById('totalQ').innerText = currentQuestions.length;
+        loadQuestion();
+        
+        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+        document.getElementById('restartBtn').addEventListener('click', restartGame);
+        document.getElementById('skipPowerup').addEventListener('click', skipQuestion);
+        document.getElementById('hintPowerup').addEventListener('click', useHint);
+        document.getElementById('extraTimePowerup').addEventListener('click', addExtraTime);
+    }
+
+    initGame();
+</script>
+</body>
+</html>
