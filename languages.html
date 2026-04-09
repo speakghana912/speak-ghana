@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Learn Twi, Ga, Ewe & More | Ghanaian Language Courses</title>
     <meta name="description" content="Learn Twi, Ga, Ewe, Fante, and Dagbani with native speakers. Group and private classes for all levels. Join our global community of learners.">
     
@@ -22,11 +22,10 @@
       gtag('config', 'G-ZXFR0LFLH6');
     </script>
 
-    <!-- Font Awesome for dropdown chevron -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* ===== MODERN COLOR PALETTE ===== */
         :root {
             --gold: #D4A373;
             --green: #2A9D8F;
@@ -39,7 +38,6 @@
             --shadow: rgba(0, 0, 0, 0.08);
         }
 
-        /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -63,7 +61,6 @@
             padding: 5rem 0;
         }
 
-        /* ===== TYPOGRAPHY ===== */
         h1, h2, h3, h4 {
             font-weight: 600;
             line-height: 1.2;
@@ -104,18 +101,16 @@
             color: var(--green);
         }
 
-        /* ===== BUTTONS ===== */
         .btn {
             display: inline-block;
             padding: 0.9rem 2.2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s;
             cursor: pointer;
             border: none;
             font-size: 1rem;
-            letter-spacing: 0.5px;
         }
 
         .btn-primary {
@@ -132,17 +127,11 @@
         .btn-gold {
             background: linear-gradient(135deg, var(--gold), #c49a6c);
             color: var(--black);
-            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
         }
 
         .btn-gold:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(212, 163, 115, 0.4);
-        }
-
-        .btn-large {
-            font-size: 1.2rem;
-            padding: 1rem 3rem;
+            background: #c49a6c;
         }
 
         .btn-small {
@@ -150,24 +139,7 @@
             font-size: 0.9rem;
         }
 
-        /* ===== PDF DOWNLOAD SECTION ===== */
-        .pdf-download-section {
-            background: var(--cream);
-            border-radius: 20px;
-            padding: 1.5rem;
-            text-align: center;
-            margin: 2rem 0;
-            border: 1px solid var(--gold);
-        }
-
-        .pdf-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        /* ===== TOP BAR ===== */
+        /* Top Bar */
         .top-bar {
             background: var(--black);
             color: white;
@@ -196,7 +168,7 @@
             color: var(--gold);
         }
 
-        /* ===== HEADER WITH CLICKABLE LOGO ===== */
+        /* Header */
         header {
             background: linear-gradient(135deg, #1a1a1a, var(--green));
             color: white;
@@ -242,7 +214,6 @@
         .logo-text p {
             color: rgba(255,255,255,0.9);
             font-size: 0.9rem;
-            letter-spacing: 1px;
         }
 
         .motto-badge {
@@ -256,15 +227,9 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .motto-badge span {
-            display: block;
-            color: white;
-            font-size: 0.9rem;
-        }
-
-        /* ===== NAVIGATION ===== */
+        /* Navigation */
         nav {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px var(--shadow);
             position: sticky;
@@ -319,7 +284,6 @@
             background: var(--green);
         }
 
-        /* Dropdown styles for mobile */
         .dropdown-item {
             display: contents;
         }
@@ -332,7 +296,6 @@
             display: contents;
         }
 
-        /* ===== HAMBURGER MENU STYLES WITH DROPDOWN ===== */
         .menu-toggle {
             display: none;
             background: var(--gold);
@@ -382,7 +345,6 @@
                 display: flex;
             }
             
-            /* Main nav items */
             .nav-links > a,
             .nav-links > .dropdown-item {
                 padding: 1rem 1.5rem;
@@ -400,11 +362,6 @@
                 background: white;
             }
             
-            .nav-links > a {
-                border-bottom: 1px solid var(--cream);
-            }
-            
-            /* Dropdown toggle button style */
             .dropdown-toggle {
                 display: flex;
                 justify-content: space-between;
@@ -430,7 +387,6 @@
                 transform: rotate(180deg);
             }
             
-            /* Submenu styles */
             .dropdown-submenu {
                 display: none;
                 flex-direction: column;
@@ -455,20 +411,6 @@
                 display: block;
             }
             
-            .dropdown-submenu a:last-child {
-                border-bottom: none;
-            }
-            
-            .dropdown-submenu a:hover {
-                color: var(--green);
-                background: rgba(42,157,143,0.1);
-            }
-            
-            .dropdown-submenu a.active {
-                color: var(--green);
-                font-weight: 600;
-            }
-            
             .dropdown-item {
                 display: block;
                 padding: 0 !important;
@@ -477,472 +419,27 @@
             }
         }
 
-        /* ===== PAGE HERO ===== */
+        /* Page Hero */
         .page-hero {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
             color: white;
-            padding: 5rem 0;
+            padding: 4rem 0;
             text-align: center;
         }
 
         .page-hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
 
         .page-hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto;
             opacity: 0.95;
         }
 
-        /* ===== MODAL POPUP STYLES ===== */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.25s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .modal-container {
-            background: linear-gradient(135deg, var(--cream), white);
-            width: 90%;
-            max-width: 700px;
-            max-height: 85vh;
-            border-radius: 32px;
-            overflow-y: auto;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-            position: relative;
-            animation: slideUp 0.3s ease;
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(40px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .modal-header {
-            background: linear-gradient(135deg, var(--green), #1f7a6e);
-            padding: 1.3rem 2rem;
-            border-radius: 32px 32px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        
-        .modal-header h3 {
-            color: white;
-            margin: 0;
-            font-size: 1.5rem;
-        }
-        
-        .modal-close {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 1.6rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-close:hover {
-            background: var(--red);
-            transform: rotate(90deg);
-        }
-        
-        .modal-body {
-            padding: 2rem;
-        }
-        
-        .enrollment-modal-form {
-            width: 100%;
-        }
-        
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-            color: var(--black);
-            font-size: 0.9rem;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.7rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            background: white;
-            transition: all 0.2s;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--green);
-            box-shadow: 0 0 0 3px rgba(42,157,143,0.15);
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        .submit-btn {
-            background: linear-gradient(135deg, var(--green), #1f7a6e);
-            color: white;
-            padding: 0.9rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            margin-top: 0.5rem;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(42,157,143,0.35);
-        }
-        
-        .modal-note {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 0.75rem;
-            color: var(--gray);
-        }
-
-        /* ===== LANGUAGE SECTION ===== */
-        .language-section {
-            background: white;
-            border-radius: 30px;
-            padding: 4rem;
-            margin: 4rem 0;
-            box-shadow: 0 20px 40px var(--shadow);
-            scroll-margin-top: 100px;
-        }
-
-        .language-header {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .language-icon-large {
-            font-size: 4rem;
-            background: var(--cream);
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .language-title h2 {
-            margin-bottom: 0.5rem;
-        }
-
-        .language-title h2::after {
-            display: none;
-        }
-
-        .language-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            background: var(--cream);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.95rem;
-        }
-
-        .stat strong {
-            color: var(--green);
-        }
-
-        .why-learn {
-            background: var(--cream);
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            border-left: 4px solid var(--gold);
-        }
-
-        /* ===== PACKAGE CARDS ===== */
-        .package-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0 3rem;
-        }
-
-        .package-card {
-            background: var(--cream);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px var(--shadow);
-            transition: transform 0.3s;
-        }
-
-        .package-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .package-header {
-            background: linear-gradient(135deg, var(--black), #2a2a2a);
-            color: var(--gold);
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .package-header h4 {
-            color: var(--gold);
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .package-type {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
-            margin-top: 0.3rem;
-        }
-
-        .package-body {
-            padding: 1.5rem;
-        }
-
-        .package-features {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-
-        .package-features li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-            font-size: 0.95rem;
-        }
-
-        .package-features li::before {
-            content: '✓';
-            color: var(--green);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        .package-price {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 1rem 0;
-            line-height: 1.5;
-        }
-
-        .package-price .standard {
-            color: var(--green);
-        }
-
-        .package-price .scholarship {
-            color: var(--gold);
-            font-size: 0.95rem;
-        }
-
-        .commitment-options {
-            font-size: 0.85rem;
-            color: var(--gray);
-            margin: 0.5rem 0;
-        }
-
-        .badge-popular {
-            background: var(--gold);
-            color: var(--black);
-            padding: 0.2rem 1rem;
-            border-radius: 50px;
-            display: inline-block;
-            margin-bottom: 1rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* ===== KIDS SECTION ===== */
-        .kids-section {
-            background: linear-gradient(135deg, #fdf6e9, #fff);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border: 2px dashed var(--gold);
-        }
-
-        .kids-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .kids-header h3 {
-            margin: 0;
-        }
-
-        .kids-badge {
-            background: var(--green);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-        }
-
-        .kids-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .kids-card {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px var(--shadow);
-        }
-
-        .kids-card h4 {
-            color: var(--green);
-            margin-bottom: 0.5rem;
-        }
-
-        .age-badge {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--black);
-            padding: 0.2rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-        }
-
-        /* ===== SCHOLARSHIP & CERTIFICATE SECTION ===== */
-        .scholarship-section {
-            background: linear-gradient(135deg, var(--green), #1f7a6e);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            color: white;
-        }
-
-        .scholarship-flex {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .scholarship-text h3 {
-            color: var(--gold);
-            margin: 0 0 0.5rem;
-        }
-
-        .certificate-text {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .certificate-text h3 {
-            color: var(--gold);
-            margin: 0 0 0.5rem;
-        }
-
-        /* ===== TEXTBOOK CARD ===== */
-        .textbook-card {
-            background: linear-gradient(135deg, var(--green), #1f7a6e);
-            border-radius: 20px;
-            padding: 2rem;
-            color: white;
-            margin: 2rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .textbook-info h4 {
-            color: var(--gold);
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .coming-soon {
-            background: var(--gold);
-            color: var(--black);
-            padding: 0.5rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-        }
-
-        /* ===== FAQ ===== */
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .faq-item {
-            background: var(--cream);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid var(--green);
-        }
-
-        .faq-item h4 {
-            color: var(--green);
-            margin-bottom: 0.8rem;
-        }
-
-        /* ===== LANGUAGE NAVIGATOR ===== */
+        /* Language Navigator */
         .language-navigator {
             background: white;
             border-radius: 60px;
@@ -976,147 +473,351 @@
             color: white;
         }
 
-        /* ===== FOOTER STYLES ===== */
+        /* Language Section */
+        .language-section {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+            scroll-margin-top: 100px;
+        }
+
+        .language-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .language-icon-large {
+            font-size: 3rem;
+            background: var(--cream);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .language-title h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .language-title h2::after {
+            display: none;
+        }
+
+        .language-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: var(--cream);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+        }
+
+        .stat strong {
+            color: var(--green);
+        }
+
+        /* Package Grid - Simplified */
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .package-card {
+            background: var(--cream);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .package-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .package-header {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .package-header h4 {
+            color: white;
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        .package-type {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+        }
+
+        .package-body {
+            padding: 1.5rem;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .package-features li {
+            margin-bottom: 0.6rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .package-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            color: var(--green);
+        }
+
+        .package-price small {
+            font-size: 0.8rem;
+            font-weight: normal;
+            color: var(--gray);
+        }
+
+        .badge-popular {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Self-Paced Card */
+        .self-paced-card {
+            background: linear-gradient(135deg, #fff5e8, white);
+            border: 2px solid var(--gold);
+            border-radius: 24px;
+            padding: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .self-paced-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .self-paced-badge {
+            background: var(--green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+
+        .self-paced-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .feature-tag {
+            background: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            border: 1px solid var(--cream);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .self-paced-plans {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .plan-tag {
+            background: var(--cream);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .plan-tag span {
+            color: var(--green);
+        }
+
+        /* Scholarship Section */
+        .scholarship-section {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+        }
+
+        .scholarship-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .scholarship-text h3 {
+            color: var(--gold);
+            margin: 0 0 0.5rem;
+        }
+
+        .certificate-text {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .certificate-text h3 {
+            color: var(--gold);
+            margin: 0 0 0.5rem;
+        }
+
+        /* Footer */
         footer {
             background: var(--black);
             color: white;
-            padding: 4rem 0 2rem;
-            margin-top: 4rem;
-            position: relative;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
         }
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
-        }
+
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            margin-bottom: 3rem;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
+
         .footer-section h4 {
             color: var(--gold);
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
+            margin-bottom: 1rem;
         }
+
         .footer-section a {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
             display: block;
-            margin-bottom: 0.8rem;
-            transition: all 0.3s;
+            margin-bottom: 0.5rem;
         }
+
         .footer-section a:hover {
             color: var(--gold);
-            transform: translateX(5px);
         }
+
         .copyright {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.6);
         }
+
         .motto-footer {
             color: var(--gold);
-            font-size: 1.2rem;
-            margin-top: 1rem;
+            font-size: 1rem;
+            margin-top: 0.5rem;
         }
+
         .newsletter {
             background: rgba(255,255,255,0.05);
-            padding: 2rem;
+            padding: 1rem;
             border-radius: 15px;
         }
-        .newsletter h4 {
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
+
         .newsletter-form {
             display: flex;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
+
         .newsletter-input {
             flex: 1;
-            padding: 0.8rem;
+            padding: 0.6rem;
             border: none;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
+
         .newsletter-btn {
             background: var(--gold);
             color: var(--black);
             border: none;
-            padding: 0.8rem 1.5rem;
+            padding: 0.6rem 1rem;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-        .newsletter-btn:hover {
-            background: var(--red);
-            color: white;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 968px) {
-            .language-navigator {
-                position: static;
-                border-radius: 20px;
-            }
-            
-            .faq-grid,
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            .page-hero h1 {
+                font-size: 2rem;
+            }
             .language-header {
                 flex-direction: column;
                 text-align: center;
             }
-            
-            .language-stats {
-                justify-content: center;
-            }
-            
             .footer-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
-            .newsletter-form {
-                flex-direction: column;
-            }
-            
-            .newsletter-btn {
-                width: 100%;
+            .package-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Top Contact Bar -->
+    <!-- Top Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="contact-info">
-                <a href="mailto:info@speakghana.org">📧 info@speakghana.org</a>
-                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
-                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+                <a href="mailto:info@speakghana.org"><i class="fas fa-envelope"></i> info@speakghana.org</a>
+                <a href="tel:+233552263323"><i class="fas fa-phone-alt"></i> +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323"><i class="fab fa-whatsapp"></i> WhatsApp: +233 55 226 3323</a>
             </div>
         </div>
     </div>
 
-    <!-- Header with clickable logo -->
+    <!-- Header -->
     <header>
         <div class="container header-content">
             <div class="logo">
@@ -1135,14 +836,13 @@
         </div>
     </header>
 
-    <!-- Navigation with Dropdown Menu -->
+    <!-- Navigation -->
     <nav>
         <div class="container" style="position: relative;">
             <button class="menu-toggle" id="menuToggle">☰ Menu</button>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 
-                <!-- Learn Dropdown -->
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownLearnBtn">
                         <span>📚 Learn</span>
@@ -1155,7 +855,6 @@
                     </div>
                 </div>
                 
-                <!-- Resources Dropdown -->
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownResourcesBtn">
                         <span>📖 Resources</span>
@@ -1168,7 +867,6 @@
                     </div>
                 </div>
                 
-                <a href="students.html">👥 Students</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
@@ -1176,14 +874,14 @@
     </nav>
 
     <!-- Page Hero -->
-    <section class="page-hero">
+    <div class="page-hero">
         <div class="container">
             <h1>Our Languages</h1>
-            <p>Choose from five Ghanaian languages. Each with programs for adults, kids, and families.</p>
+            <p>Choose from five Ghanaian languages. Learn with live teachers or self-paced.</p>
         </div>
-    </section>
+    </div>
 
-    <!-- Language Navigator (Quick Jump) -->
+    <!-- Language Navigator -->
     <div class="container">
         <div class="language-navigator">
             <a href="#twi" class="lang-nav-link active">Twi</a>
@@ -1204,19 +902,13 @@
                     <div class="language-stats">
                         <span class="stat"><strong>9M+</strong> speakers</span>
                         <span class="stat">Southern/Central Ghana</span>
-                        <span class="stat">Adults & Kids</span>
                     </div>
                 </div>
             </div>
 
-            <div class="why-learn">
-                <h3>Why Learn Twi?</h3>
-                <p>Twi is the most widely spoken Ghanaian language, making it the perfect starting point for diaspora learners. Connect with family, understand cultural traditions, and speak with confidence.</p>
-            </div>
-
-            <h3>Adult Packages</h3>
+            <!-- Private Classes -->
+            <h3>Private Classes</h3>
             <div class="package-grid">
-                <!-- Private 60min 1x/week -->
                 <div class="package-card">
                     <div class="package-header">
                         <h4>Private 60 min</h4>
@@ -1227,62 +919,15 @@
                             <li>One 60-minute 1-on-1 lesson weekly</li>
                             <li>Choose your fixed day & time</li>
                             <li>Structured grammar & conversation</li>
-                            <li>Complete textbook included</li>
+                            <li>PDF textbook included</li>
+                            <li>Worksheets & practice materials</li>
+                            <li>Quizzes to test progress</li>
+                            <li>Certificate upon completion</li>
                         </ul>
-                        <div class="package-price">
-                            <span class="standard">Standard: $75 / month</span><br>
-                            <span class="scholarship">Scholarship (25% off): $56.25 / month</span>
-                        </div>
-                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
+                        <div class="package-price">$75 <small>/ month</small></div>
                         <button onclick="openEnrollmentModal('Twi', 'Private 60min 1x/week')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
                 </div>
-
-                <!-- Private 60min 2x/week -->
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 60 min</h4>
-                        <div class="package-type">2 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>Two 60-minute 1-on-1 lessons weekly</li>
-                            <li>1 structured + 1 speaking practice</li>
-                            <li>Movie clips & song lyrics</li>
-                            <li>Complete textbook included</li>
-                        </ul>
-                        <div class="package-price">
-                            <span class="standard">Standard: $135 / month</span><br>
-                            <span class="scholarship">Scholarship: $101.25 / month</span>
-                        </div>
-                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Private 60min 2x/week')" class="btn btn-primary btn-small">Enroll Now</button>
-                    </div>
-                </div>
-
-                <!-- Private 60min 3x/week -->
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 60 min</h4>
-                        <div class="package-type">3 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>Three 60-minute 1-on-1 lessons weekly</li>
-                            <li>Intensive learning + speaking</li>
-                            <li>Weekly progress report</li>
-                            <li>Complete textbook included</li>
-                        </ul>
-                        <div class="package-price">
-                            <span class="standard">Standard: $195 / month</span><br>
-                            <span class="scholarship">Scholarship: $146.25 / month</span>
-                        </div>
-                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Private 60min 3x/week')" class="btn btn-primary btn-small">Enroll Now</button>
-                    </div>
-                </div>
-
-                <!-- Private 90min 1x/week -->
                 <div class="package-card">
                     <div class="package-header">
                         <h4>Private 90 min</h4>
@@ -1293,128 +938,19 @@
                             <li>One 90-minute 1-on-1 lesson weekly</li>
                             <li>Deep immersion sessions</li>
                             <li>Grammar + vocabulary + culture</li>
-                            <li>Complete textbook included</li>
+                            <li>PDF textbook included</li>
+                            <li>Worksheets & practice materials</li>
+                            <li>Quizzes to test progress</li>
+                            <li>Certificate upon completion</li>
                         </ul>
-                        <div class="package-price">
-                            <span class="standard">Standard: $110 / month</span><br>
-                            <span class="scholarship">Scholarship: $82.50 / month</span>
-                        </div>
-                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
+                        <div class="package-price">$110 <small>/ month</small></div>
                         <button onclick="openEnrollmentModal('Twi', 'Private 90min 1x/week')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
                 </div>
-
-                <!-- Private 90min 2x/week -->
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 90 min</h4>
-                        <div class="package-type">2 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>Two 90-minute 1-on-1 lessons weekly</li>
-                            <li>Ultimate private package</li>
-                            <li>Full materials & feedback</li>
-                            <li>Complete textbook included</li>
-                        </ul>
-                        <div class="package-price">
-                            <span class="standard">Standard: $220 / month</span><br>
-                            <span class="scholarship">Scholarship: $165 / month</span>
-                        </div>
-                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Private 90min 2x/week')" class="btn btn-primary btn-small">Enroll Now</button>
-                    </div>
-                </div>
             </div>
 
-            <!-- Mini-Group Packages -->
-            <h3>Mini-Group Packages (1–3 learners)</h3>
-            <p style="margin-bottom: 1rem;">Perfect for siblings, couples, or friends learning together. Fixed price per person.</p>
-            <div class="package-grid">
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Mini-Group 60 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>One 60-minute group lesson weekly</li>
-                            <li>1–3 learners (you choose your group)</li>
-                            <li>Interactive conversation practice</li>
-                            <li>Complete textbook included</li>
-                        </ul>
-                        <div class="package-price">
-                            <span class="standard">Standard: $50 / month per person</span><br>
-                            <span class="scholarship">Scholarship: $37.50 / month per person</span>
-                        </div>
-                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Mini-Group 60min 1x/week')" class="btn btn-primary btn-small">Enroll Now</button>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Mini-Group 60 min</h4>
-                        <div class="package-type">2 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>Two 60-minute group lessons weekly</li>
-                            <li>1–3 learners (you choose your group)</li>
-                            <li>Structured + conversation practice</li>
-                            <li>Complete textbook included</li>
-                        </ul>
-                        <div class="package-price">
-                            <span class="standard">Standard: $86 / month per person</span><br>
-                            <span class="scholarship">Scholarship: $64.50 / month per person</span>
-                        </div>
-                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Mini-Group 60min 2x/week')" class="btn btn-primary btn-small">Enroll Now</button>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Mini-Group 90 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>One 90-minute group lesson weekly</li>
-                            <li>1–3 learners (you choose your group)</li>
-                            <li>Deep immersion in small group</li>
-                            <li>Complete textbook included</li>
-                        </ul>
-                        <div class="package-price">
-                            <span class="standard">Standard: $71 / month per person</span><br>
-                            <span class="scholarship">Scholarship: $53.25 / month per person</span>
-                        </div>
-                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Mini-Group 90min 1x/week')" class="btn btn-primary btn-small">Enroll Now</button>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Mini-Group 90 min</h4>
-                        <div class="package-type">2 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>Two 90-minute group lessons weekly</li>
-                            <li>1–3 learners (you choose your group)</li>
-                            <li>Maximum immersion for small groups</li>
-                            <li>Complete textbook included</li>
-                        </ul>
-                        <div class="package-price">
-                            <span class="standard">Standard: $129 / month per person</span><br>
-                            <span class="scholarship">Scholarship: $96.75 / month per person</span>
-                        </div>
-                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Mini-Group 90min 2x/week')" class="btn btn-primary btn-small">Enroll Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Group Packages -->
-            <h3>Group Packages (4–10 learners)</h3>
+            <!-- Group Classes -->
+            <h3>Group Classes (4-10 learners)</h3>
             <div class="package-grid">
                 <div class="package-card">
                     <div class="package-header">
@@ -1424,15 +960,14 @@
                     <div class="package-body">
                         <ul class="package-features">
                             <li>One 90-minute group class weekly</li>
-                            <li>Flexible group scheduling</li>
-                            <li>Speaking-focused interaction</li>
-                            <li>Complete textbook included</li>
+                            <li>Interactive conversation practice</li>
+                            <li>Learn with peers</li>
+                            <li>PDF textbook included</li>
+                            <li>Worksheets & practice materials</li>
+                            <li>Quizzes to test progress</li>
+                            <li>Certificate upon completion</li>
                         </ul>
-                        <div class="package-price">
-                            <span class="standard">Standard: $50 / month</span><br>
-                            <span class="scholarship">Scholarship: $37.50 / month</span>
-                        </div>
-                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
+                        <div class="package-price">$50 <small>/ month</small></div>
                         <button onclick="openEnrollmentModal('Twi', 'Group 90min 1x/week')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
                 </div>
@@ -1445,156 +980,59 @@
                         <span class="badge-popular">⭐ MOST POPULAR</span>
                         <ul class="package-features">
                             <li>Two 90-minute group classes weekly</li>
+                            <li>Faster progress with more practice</li>
                             <li>Interactive conversation practice</li>
-                            <li>Weekly materials included</li>
-                            <li>Complete textbook included</li>
+                            <li>PDF textbook included</li>
+                            <li>Worksheets & practice materials</li>
+                            <li>Quizzes to test progress</li>
+                            <li>Certificate upon completion</li>
                         </ul>
-                        <div class="package-price">
-                            <span class="standard">Standard: $90 / month</span><br>
-                            <span class="scholarship">Scholarship: $67.50 / month</span>
-                        </div>
-                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
+                        <div class="package-price">$90 <small>/ month</small></div>
                         <button onclick="openEnrollmentModal('Twi', 'Group 90min 2x/week')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
                 </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Group 90 min</h4>
-                        <div class="package-type">3 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>Three 90-minute group classes weekly</li>
-                            <li>Intensive immersion</li>
-                            <li>Cultural discussions</li>
-                            <li>Complete textbook included</li>
-                        </ul>
-                        <div class="package-price">
-                            <span class="standard">Standard: $120 / month</span><br>
-                            <span class="scholarship">Scholarship: $90 / month</span>
-                        </div>
-                        <div class="commitment-options">Save 10% (3 months) • Save 20% (6 months)</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Group 90min 3x/week')" class="btn btn-primary btn-small">Enroll Now</button>
-                    </div>
-                </div>
             </div>
 
-            <!-- Adult Pricing PDF Download -->
-            <div class="pdf-download-section">
-                <div class="pdf-buttons">
-                    <a href="pdfs/pricing-adult.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Adult Pricing (PDF)</a>
+            <!-- Self-Paced Courses -->
+            <div class="self-paced-card">
+                <div class="self-paced-header">
+                    <h3 style="margin: 0;">📚 Self-Paced Courses</h3>
+                    <span class="self-paced-badge">Learn Anytime, Anywhere</span>
                 </div>
+                <p>Learn at your own rhythm. No fixed class times. Start immediately after enrollment.</p>
+                <div class="self-paced-features">
+                    <span class="feature-tag"><i class="fas fa-video"></i> 50+ Video Lessons</span>
+                    <span class="feature-tag"><i class="fas fa-file-pdf"></i> PDF Textbooks</span>
+                    <span class="feature-tag"><i class="fas fa-edit"></i> Worksheets</span>
+                    <span class="feature-tag"><i class="fas fa-gamepad"></i> Fun Games</span>
+                    <span class="feature-tag"><i class="fas fa-question-circle"></i> Quizzes</span>
+                    <span class="feature-tag"><i class="fas fa-certificate"></i> Certificates</span>
+                </div>
+                <div class="self-paced-plans">
+                    <div class="plan-tag">🎬 Basic: <span>$10</span>/month</div>
+                    <div class="plan-tag">⭐ Standard: <span>$20</span>/month</div>
+                    <div class="plan-tag">🎓 Premium: <span>$30</span>/month <small>(+ Live Q&A)</small></div>
+                </div>
+                <a href="https://www.speakghana.org/self-paced" class="btn btn-gold btn-small" style="margin-top: 1rem; display: inline-block;">Explore Self-Paced →</a>
             </div>
 
-            <!-- Scholarship & Certificate Section -->
+            <!-- Scholarship & Certificate -->
             <div class="scholarship-section">
                 <div class="scholarship-flex">
                     <div class="scholarship-text">
                         <h3>Speak One, Learn One Scholarship</h3>
-                        <p>Ghana Card holders who speak one Ghanaian language get <strong>25% off</strong> to learn another. Includes diaspora returnees with Ghana Cards.</p>
+                        <p>Ghana Card holders get <strong>25% off</strong> to learn another language. Includes diaspora returnees.</p>
                     </div>
                     <a href="contact.html" class="btn btn-gold">Apply Now</a>
                 </div>
                 <div class="certificate-text">
-                    <h3>6-Month Certificate of Achievement</h3>
-                    <p>Complete 6 months of continuous learning and receive an official certificate signed by our founders, showing your language level and dedication.</p>
-                </div>
-            </div>
-
-            <!-- Kids & Teens Section -->
-            <div class="kids-section">
-                <div class="kids-header">
-                    <h3>Kids & Teens Programs</h3>
-                    <span class="kids-badge">Ages 5-17</span>
-                </div>
-                <div class="kids-grid">
-                    <div class="kids-card">
-                        <h4>Twi Tots (K1)</h4>
-                        <span class="age-badge">Ages 5-8</span>
-                        <p>30 min, 1x/week</p>
-                        <div class="package-price">$35 / month</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Kids - Twi Tots (K1)')" class="btn btn-primary btn-small" style="margin-top: 0.5rem;">Enroll Now</button>
-                    </div>
-                    <div class="kids-card">
-                        <h4>Twi Explorers (K2)</h4>
-                        <span class="age-badge">Ages 9-12</span>
-                        <p>45 min, 1x/week</p>
-                        <div class="package-price">$45 / month</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Kids - Twi Explorers (K2)')" class="btn btn-primary btn-small" style="margin-top: 0.5rem;">Enroll Now</button>
-                    </div>
-                    <div class="kids-card">
-                        <h4>Siblings Special (K3)</h4>
-                        <span class="age-badge">Ages 5-12</span>
-                        <p>45 min, 1x/week</p>
-                        <div class="package-price">$65 / month per family</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Kids - Siblings Special (K3)')" class="btn btn-primary btn-small" style="margin-top: 0.5rem;">Enroll Now</button>
-                    </div>
-                    <div class="kids-card">
-                        <h4>Teen Talk (T1)</h4>
-                        <span class="age-badge">Ages 13-17</span>
-                        <p>60 min, 1x/week</p>
-                        <div class="package-price">$55 / month</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Teens - Teen Talk (T1)')" class="btn btn-primary btn-small" style="margin-top: 0.5rem;">Enroll Now</button>
-                    </div>
-                    <div class="kids-card">
-                        <h4>Twi Fluency Fast (T2)</h4>
-                        <span class="age-badge">Ages 13-17</span>
-                        <p>60 min, 2x/week</p>
-                        <div class="package-price">$95 / month</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Teens - Twi Fluency Fast (T2)')" class="btn btn-primary btn-small" style="margin-top: 0.5rem;">Enroll Now</button>
-                    </div>
-                    <div class="kids-card">
-                        <h4>Family Pack (F1)</h4>
-                        <span class="age-badge">All Ages</span>
-                        <p>60 min, 1x/week</p>
-                        <div class="package-price">$120 / month per family</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Family - Family Pack (F1)')" class="btn btn-primary btn-small" style="margin-top: 0.5rem;">Enroll Now</button>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 2rem;">
-                    <a href="kids-teens.html" class="btn btn-gold">View All Kids & Teen Programs →</a>
-                </div>
-            </div>
-
-            <!-- Kids & Teens Pricing PDF Download -->
-            <div class="pdf-download-section">
-                <div class="pdf-buttons">
-                    <a href="pdfs/pricing-kids-teens.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Kids & Teens Pricing (PDF)</a>
-                </div>
-            </div>
-
-            <!-- Textbook Info -->
-            <div class="textbook-card">
-                <div class="textbook-info">
-                    <h4>The Complete Twi Textbook</h4>
-                    <p>32 chapters • 300+ pages • Grammar guides • Cultural notes • Exercises</p>
-                </div>
-                <span class="coming-soon">Available Now</span>
-            </div>
-
-            <!-- FAQ -->
-            <h3>Frequently Asked Questions</h3>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h4>What if I miss a class?</h4>
-                    <p>Recordings are available for group classes. Private lessons can be rescheduled with 24-hour notice.</p>
-                </div>
-                <div class="faq-item">
-                    <h4>Can I switch plans later?</h4>
-                    <p>Yes! You can upgrade or downgrade your plan at any time. Changes take effect the following month.</p>
-                </div>
-                <div class="faq-item">
-                    <h4>Is the textbook really free?</h4>
-                    <p>Absolutely! Every paid lesson plan includes the complete textbook (digital copy).</p>
-                </div>
-                <div class="faq-item">
-                    <h4>What if I'm not happy with my teacher?</h4>
-                    <p>No problem! Request a change and we'll match you with a different teacher at no extra cost.</p>
+                    <h3>Certificate of Achievement</h3>
+                    <p>Complete 6 months of continuous learning and receive an official certificate.</p>
                 </div>
             </div>
         </section>
 
-        <!-- GA SECTION -->
+        <!-- GA SECTION (Simplified - same structure) -->
         <section id="ga" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🏙️</div>
@@ -1603,38 +1041,23 @@
                     <div class="language-stats">
                         <span class="stat"><strong>600k+</strong> speakers</span>
                         <span class="stat">Accra region</span>
-                        <span class="stat">Adults & Kids</span>
                     </div>
                 </div>
             </div>
-
-            <div class="why-learn">
-                <h3>Why Learn Ga?</h3>
-                <p>Ga is the language of Ghana's capital, Accra. With a rich history dating back centuries, learning Ga connects you to the vibrant culture and traditions of the Ga people.</p>
-            </div>
-
-            <h3>Adult Packages</h3>
             <div class="package-grid">
                 <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 60 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$75 / month</div>
-                        <button onclick="openEnrollmentModal('Ga', 'Private 60min 1x/week')" class="btn btn-primary btn-small">Enroll Now</button>
-                    </div>
+                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">1 Lesson/Week</div></div>
+                    <div class="package-body"><div class="package-price">$75 <small>/ month</small></div><button onclick="openEnrollmentModal('Ga', 'Private 60min')" class="btn btn-primary btn-small">Enroll Now</button></div>
                 </div>
                 <div class="package-card">
-                    <div class="package-header">
-                        <h4>Group 90 min</h4>
-                        <div class="package-type">2 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <div class="package-price">$90 / month</div>
-                        <button onclick="openEnrollmentModal('Ga', 'Group 90min 2x/week')" class="btn btn-primary btn-small">Enroll Now</button>
-                    </div>
+                    <div class="package-header"><h4>Group 90 min</h4><div class="package-type">2 Lessons/Week</div></div>
+                    <div class="package-body"><div class="package-price">$90 <small>/ month</small></div><button onclick="openEnrollmentModal('Ga', 'Group 90min')" class="btn btn-primary btn-small">Enroll Now</button></div>
                 </div>
+            </div>
+            <div class="self-paced-card">
+                <h3 style="margin: 0 0 0.5rem;">📚 Self-Paced Ga Course</h3>
+                <p>Coming soon. Join the waitlist to be notified.</p>
+                <a href="contact.html" class="btn btn-gold btn-small">Join Waitlist →</a>
             </div>
         </section>
 
@@ -1644,27 +1067,15 @@
                 <div class="language-icon-large">🌊</div>
                 <div class="language-title">
                     <h2>Ewe</h2>
-                    <div class="language-stats">
-                        <span class="stat"><strong>3M+</strong> speakers</span>
-                        <span class="stat">Volta Region, Togo</span>
-                    </div>
+                    <div class="language-stats"><span class="stat"><strong>3M+</strong> speakers</span><span class="stat">Volta Region</span></div>
                 </div>
-            </div>
-            <div class="why-learn">
-                <h3>Why Learn Ewe?</h3>
-                <p>Ewe is spoken in the Volta Region of Ghana and parts of Togo. Known for its rich oral tradition, vibrant music, and drumming culture.</p>
             </div>
             <div class="package-grid">
                 <div class="package-card">
                     <div class="package-header"><h4>Private 60 min</h4><div class="package-type">1 Lesson/Week</div></div>
-                    <div class="package-body"><div class="package-price">$75 / month</div><button onclick="openEnrollmentModal('Ewe', 'Private 60min 1x/week')" class="btn btn-primary btn-small">Enroll Now</button></div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header"><h4>Group 90 min</h4><div class="package-type">2 Lessons/Week</div></div>
-                    <div class="package-body"><div class="package-price">$90 / month</div><button onclick="openEnrollmentModal('Ewe', 'Group 90min 2x/week')" class="btn btn-primary btn-small">Enroll Now</button></div>
+                    <div class="package-body"><div class="package-price">$75 <small>/ month</small></div><button onclick="openEnrollmentModal('Ewe', 'Private 60min')" class="btn btn-primary btn-small">Enroll Now</button></div>
                 </div>
             </div>
-            <div class="textbook-card"><div class="textbook-info"><h4>Ewe Textbook</h4><p>Coming soon</p></div><span class="coming-soon">Coming Soon</span></div>
         </section>
 
         <!-- FANTE SECTION -->
@@ -1673,20 +1084,13 @@
                 <div class="language-icon-large">🏖️</div>
                 <div class="language-title">
                     <h2>Fante</h2>
-                    <div class="language-stats">
-                        <span class="stat"><strong>2M+</strong> speakers</span>
-                        <span class="stat">Coastal Ghana</span>
-                    </div>
+                    <div class="language-stats"><span class="stat"><strong>2M+</strong> speakers</span><span class="stat">Coastal Ghana</span></div>
                 </div>
-            </div>
-            <div class="why-learn">
-                <h3>Why Learn Fante?</h3>
-                <p>Fante is spoken along Ghana's beautiful coastline. Close to Twi but with its own distinct identity.</p>
             </div>
             <div class="package-grid">
                 <div class="package-card">
                     <div class="package-header"><h4>Private 60 min</h4><div class="package-type">1 Lesson/Week</div></div>
-                    <div class="package-body"><div class="package-price">$75 / month</div><button onclick="openEnrollmentModal('Fante', 'Private 60min 1x/week')" class="btn btn-primary btn-small">Enroll Now</button></div>
+                    <div class="package-body"><div class="package-price">$75 <small>/ month</small></div><button onclick="openEnrollmentModal('Fante', 'Private 60min')" class="btn btn-primary btn-small">Enroll Now</button></div>
                 </div>
             </div>
         </section>
@@ -1697,106 +1101,16 @@
                 <div class="language-icon-large">🌄</div>
                 <div class="language-title">
                     <h2>Dagbani</h2>
-                    <div class="language-stats">
-                        <span class="stat"><strong>1M+</strong> speakers</span>
-                        <span class="stat">Northern Region</span>
-                    </div>
+                    <div class="language-stats"><span class="stat"><strong>1M+</strong> speakers</span><span class="stat">Northern Region</span></div>
                 </div>
-            </div>
-            <div class="why-learn">
-                <h3>Why Learn Dagbani?</h3>
-                <p>Dagbani is the language of the Dagomba people in Northern Ghana, rich in history and hospitality.</p>
             </div>
             <div class="package-grid">
                 <div class="package-card">
                     <div class="package-header"><h4>Private 60 min</h4><div class="package-type">1 Lesson/Week</div></div>
-                    <div class="package-body"><div class="package-price">$75 / month</div><button onclick="openEnrollmentModal('Dagbani', 'Private 60min 1x/week')" class="btn btn-primary btn-small">Enroll Now</button></div>
+                    <div class="package-body"><div class="package-price">$75 <small>/ month</small></div><button onclick="openEnrollmentModal('Dagbani', 'Private 60min')" class="btn btn-primary btn-small">Enroll Now</button></div>
                 </div>
             </div>
         </section>
-    </div>
-
-    <!-- ENROLLMENT MODAL POPUP -->
-    <div id="enrollmentModal" class="modal-overlay">
-        <div class="modal-container">
-            <div class="modal-header">
-                <h3>🇬🇭 Enroll in Classes</h3>
-                <button class="modal-close" id="closeModalBtn">✕</button>
-            </div>
-            <div class="modal-body">
-                <form class="enrollment-modal-form" action="https://formspree.io/f/mlgpodpb" method="POST">
-                    <input type="hidden" name="form_type" value="Enrollment">
-                    <input type="hidden" name="selected_language" id="modal-language" value="">
-                    <input type="hidden" name="selected_package" id="modal-package" value="">
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>First Name *</label>
-                            <input type="text" name="first_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input type="text" name="last_name">
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <div style="display: flex; gap: 0.5rem;">
-                                <select name="phone_code" style="width: 30%; padding: 0.7rem; border: 2px solid #e2e8f0; border-radius: 12px;">
-                                    <option value="+233">🇬🇭 +233 (Ghana)</option>
-                                    <option value="+1">🇺🇸 +1 (USA/Canada)</option>
-                                    <option value="+44">🇬🇧 +44 (UK)</option>
-                                    <option value="+49">🇩🇪 +49 (Germany)</option>
-                                    <option value="+33">🇫🇷 +33 (France)</option>
-                                </select>
-                                <input type="tel" name="phone" placeholder="Phone number" style="width: 70%;">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Preferred Class Time</label>
-                        <input type="text" name="preferred_time" placeholder="e.g., Sundays 6pm GMT">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Timezone</label>
-                        <select name="timezone">
-                            <option value="GMT">GMT (London)</option>
-                            <option value="EST">EST (New York)</option>
-                            <option value="PST">PST (Los Angeles)</option>
-                            <option value="WAT">WAT (Lagos)</option>
-                            <option value="CAT">CAT (Johannesburg)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>How did you hear about us?</label>
-                        <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label style="display: flex; align-items: center; gap: 0.5rem;">
-                            <input type="checkbox" name="scholarship" value="yes"> I qualify for the Speak One, Learn One Scholarship (25% off - Ghana Card holder)
-                        </label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Questions or special requests?</label>
-                        <textarea name="notes" rows="3" placeholder="Tell us anything else"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Submit Enrollment</button>
-                    <p class="modal-note">We'll contact you within 24 hours</p>
-                </form>
-            </div>
-        </div>
     </div>
 
     <!-- Footer -->
@@ -1806,12 +1120,9 @@
                 <div class="footer-section">
                     <h4>Speak Ghana</h4>
                     <p>📍 KNUST Campus, Kumasi</p>
-                    <p>🏗️ Accra Office (Opening Soon)</p>
-                    <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
-                    <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
-                    <p>💬 <a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 info@speakghana.org</p>
                 </div>
-                
                 <div class="footer-section">
                     <h4>Languages</h4>
                     <a href="#twi">Twi (Akan)</a>
@@ -1819,26 +1130,21 @@
                     <a href="#ewe">Ewe</a>
                     <a href="#fante">Fante</a>
                     <a href="#dagbani">Dagbani</a>
-                    <a href="student-portal.html">🎓 Student Portal</a>
                 </div>
-                
                 <div class="footer-section">
                     <h4>Programs</h4>
                     <a href="#twi">Adult Classes</a>
-                    <a href="kids-teens.html">Kids (5-12)</a>
-                    <a href="kids-teens.html">Teens (13-17)</a>
-                    <a href="#twi">Family Packages</a>
+                    <a href="kids-teens.html">Kids & Teens</a>
+                    <a href="https://www.speakghana.org/self-paced">Self-Paced</a>
                 </div>
-                
                 <div class="footer-section">
                     <h4>Connect</h4>
-                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
-                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
-                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
-                    <a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://wa.me/233552263323" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                     <div class="newsletter">
                         <h4>Newsletter</h4>
-                        <form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
+                        <form action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
                             <div class="newsletter-form">
                                 <input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required>
                                 <button type="submit" class="newsletter-btn">Join</button>
@@ -1847,7 +1153,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="copyright">
                 <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
                 <div class="motto-footer">Reconnect. Speak. Thrive.</div>
@@ -1855,155 +1160,89 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script>
-        // Hamburger Menu and Dropdown functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menuToggle');
-            const navLinks = document.getElementById('navLinks');
-            
-            if (menuToggle && navLinks) {
-                menuToggle.addEventListener('click', function() {
-                    navLinks.classList.toggle('show');
-                });
-            }
-            
-            // Dropdown functionality
-            const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
-            const dropdownLearnMenu = document.getElementById('dropdownLearnMenu');
-            const dropdownResourcesBtn = document.getElementById('dropdownResourcesBtn');
-            const dropdownResourcesMenu = document.getElementById('dropdownResourcesMenu');
-            
-            if (dropdownLearnBtn && dropdownLearnMenu) {
-                dropdownLearnBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    dropdownLearnMenu.classList.toggle('show');
-                    dropdownLearnBtn.classList.toggle('open');
-                    if (dropdownResourcesMenu && dropdownResourcesMenu.classList.contains('show')) {
-                        dropdownResourcesMenu.classList.remove('show');
-                        dropdownResourcesBtn.classList.remove('open');
-                    }
-                });
-            }
-            
-            if (dropdownResourcesBtn && dropdownResourcesMenu) {
-                dropdownResourcesBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    dropdownResourcesMenu.classList.toggle('show');
-                    dropdownResourcesBtn.classList.toggle('open');
-                    if (dropdownLearnMenu && dropdownLearnMenu.classList.contains('show')) {
-                        dropdownLearnMenu.classList.remove('show');
-                        dropdownLearnBtn.classList.remove('open');
-                    }
-                });
-            }
-            
-            // Close dropdowns when clicking on a link
-            document.querySelectorAll('.dropdown-submenu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (window.innerWidth <= 968) {
-                        navLinks.classList.remove('show');
-                    }
-                });
+        // Navigation Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
             });
-            
-            // Close menu when clicking a regular link
-            document.querySelectorAll('.nav-links > a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (window.innerWidth <= 968) {
-                        navLinks.classList.remove('show');
-                    }
-                });
-            });
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 968) {
-                    if (navLinks) navLinks.classList.remove('show');
-                    if (dropdownLearnMenu) dropdownLearnMenu.classList.remove('show');
-                    if (dropdownResourcesMenu) dropdownResourcesMenu.classList.remove('show');
-                    if (dropdownLearnBtn) dropdownLearnBtn.classList.remove('open');
-                    if (dropdownResourcesBtn) dropdownResourcesBtn.classList.remove('open');
+        }
+        
+        // Dropdown functionality
+        const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
+        const dropdownLearnMenu = document.getElementById('dropdownLearnMenu');
+        const dropdownResourcesBtn = document.getElementById('dropdownResourcesBtn');
+        const dropdownResourcesMenu = document.getElementById('dropdownResourcesMenu');
+        
+        if (dropdownLearnBtn && dropdownLearnMenu) {
+            dropdownLearnBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownLearnMenu.classList.toggle('show');
+                dropdownLearnBtn.classList.toggle('open');
+                if (dropdownResourcesMenu && dropdownResourcesMenu.classList.contains('show')) {
+                    dropdownResourcesMenu.classList.remove('show');
+                    dropdownResourcesBtn.classList.remove('open');
                 }
             });
-            
-            // Modal functionality
-            const modal = document.getElementById('enrollmentModal');
-            const closeBtn = document.getElementById('closeModalBtn');
-            
-            window.openEnrollmentModal = function(language, packageName) {
-                document.getElementById('modal-language').value = language;
-                document.getElementById('modal-package').value = packageName;
-                modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                if (typeof gtag === 'function') {
-                    gtag('event', 'enrollment_modal_open', { 'event_category': 'engagement', 'event_label': language + ' - ' + packageName });
-                }
-            };
-            
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function() {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                });
-            }
-            
-            window.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
+        }
+        
+        if (dropdownResourcesBtn && dropdownResourcesMenu) {
+            dropdownResourcesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownResourcesMenu.classList.toggle('show');
+                dropdownResourcesBtn.classList.toggle('open');
+                if (dropdownLearnMenu && dropdownLearnMenu.classList.contains('show')) {
+                    dropdownLearnMenu.classList.remove('show');
+                    dropdownLearnBtn.classList.remove('open');
                 }
             });
-            
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal.style.display === 'flex') {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
+        }
+        
+        // Close dropdowns when clicking on a link
+        document.querySelectorAll('.dropdown-submenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
                 }
-            });
-            
-            // Form tracking
-            const forms = document.querySelectorAll('form');
-            forms.forEach(form => {
-                form.addEventListener('submit', function() {
-                    let formName = 'enrollment_form';
-                    if (this.id === 'footer-newsletter-form') formName = 'footer_newsletter';
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'generate_lead', { 'event_category': 'engagement', 'event_label': formName });
-                    }
-                    if (modal) setTimeout(() => {
-                        modal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }, 500);
-                });
-            });
-            
-            // Newsletter tracking
-            const newsletterForm = document.getElementById('footer-newsletter-form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function() {
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'newsletter_signup', { 'event_category': 'engagement', 'event_label': 'footer_newsletter' });
-                    }
-                });
-            }
-            
-            // PDF tracking
-            const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
-            pdfLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    let pdfName = this.href.split('/').pop();
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'pdf_download', { 'event_category': 'resource', 'event_label': pdfName });
-                    }
-                });
             });
         });
+        
+        document.querySelectorAll('.nav-links > a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 968) {
+                if (navLinks) navLinks.classList.remove('show');
+                if (dropdownLearnMenu) dropdownLearnMenu.classList.remove('show');
+                if (dropdownResourcesMenu) dropdownResourcesMenu.classList.remove('show');
+                if (dropdownLearnBtn) dropdownLearnBtn.classList.remove('open');
+                if (dropdownResourcesBtn) dropdownResourcesBtn.classList.remove('open');
+            }
+        });
+        
+        // Enrollment Modal function (simplified - just redirect to WhatsApp)
+        function openEnrollmentModal(language, packageName) {
+            const message = `Hi Richard, I'm interested in ${language} - ${packageName}. Can you please provide more information?`;
+            const url = `https://wa.me/233552263323?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+            
+            if (typeof gtag === 'function') {
+                gtag('event', 'enrollment_click', { 'event_category': 'engagement', 'event_label': language + ' - ' + packageName });
+            }
+        }
     </script>
 
-    <!-- Tawk.to Script -->
+    <!-- Tawk.to Live Chat -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
@@ -2015,6 +1254,5 @@
     s0.parentNode.insertBefore(s1,s0);
     })();
     </script>
-    <!-- End Tawk.to Script -->
 </body>
 </html>
