@@ -516,6 +516,7 @@
         .self-paced-card h4 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
+            color: var(--green);
         }
 
         .self-paced-price {
@@ -642,7 +643,34 @@
             margin: 0.5rem 0;
         }
 
-        /* Custom Packages Section */
+        /* Guarantee Badge */
+        .guarantee-badge {
+            background: linear-gradient(135deg, var(--gold), #c49a6c);
+            border-radius: 50px;
+            padding: 0.3rem 1rem;
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Perks Section */
+        .perks-section {
+            background: linear-gradient(135deg, #fff5e8, white);
+            border-radius: 16px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+            border: 1px solid var(--gold);
+        }
+
+        .perks-section p {
+            font-size: 0.8rem;
+            margin: 0.3rem 0;
+        }
+
+        /* Custom Packages */
         .custom-packages {
             background: linear-gradient(135deg, #fff5e8, white);
             border: 2px solid var(--gold);
@@ -1029,10 +1057,10 @@
                 </div>
             </div>
 
-            <!-- Self-Paced Courses - TOP -->
+            <!-- Self-Paced Courses -->
             <div class="self-paced-section">
                 <div class="self-paced-title">
-                    <h3>📚 Self-Paced (Start Anytime)</h3>
+                    <h3>📚 Self-Paced</h3>
                 </div>
                 <div class="self-paced-grid">
                     <div class="self-paced-card">
@@ -1072,8 +1100,8 @@
                 </div>
             </div>
 
-            <!-- Group Classes - $50 (CHEAPER FIRST) -->
-            <h3>Group Classes (Relatively Small)</h3>
+            <!-- Group Classes -->
+            <h3>👥 Group Classes (Relatively Small)</h3>
             <div class="package-grid">
                 <div class="package-card">
                     <div class="package-header">
@@ -1081,9 +1109,12 @@
                         <div class="package-type">Weekly</div>
                     </div>
                     <div class="package-body">
+                        <div class="guarantee-badge">🎯 Speak confidently or your money back</div>
                         <ul class="package-features">
-                            <li>Learn with peers</li>
+                            <li>Learn with peers in a supportive environment</li>
                             <li>Interactive conversation practice</li>
+                            <li>Cultural immersion lessons</li>
+                            <li>Audio & video resources (songs, lyrics, movie clips)</li>
                             <li>PDF textbook included</li>
                             <li>Worksheets & practice materials</li>
                             <li>Quizzes to test progress</li>
@@ -1091,13 +1122,18 @@
                         </ul>
                         <div class="package-price">$50 <small>/ month</small></div>
                         <div class="discount-note">💰 Pay as low as $45/month with 3-month commit • $40/month with 6-month commit</div>
+                        <div class="perks-section">
+                            <p>🎁 <strong>Loyalty Perk:</strong> 10% discount on next level after 3 months</p>
+                            <p>👥 <strong>Referral Perk:</strong> Bring a friend → both get 15% off for 1 month</p>
+                            <p>🏆 <strong>Perfect Attendance:</strong> Free bonus lesson every 4 weeks</p>
+                        </div>
                         <button onclick="openEnrollmentModal('Twi', 'Group 90min Weekly')" class="btn btn-primary">Enroll Now</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Live Zoom Classes - $75 -->
-            <h3>Live Zoom Classes</h3>
+            <!-- Live Zoom Classes -->
+            <h3>🎥 Live Zoom Classes</h3>
             <div class="package-grid">
                 <div class="package-card">
                     <div class="package-header">
@@ -1105,9 +1141,14 @@
                         <div class="package-type">Weekly</div>
                     </div>
                     <div class="package-body">
+                        <div class="guarantee-badge">🎯 Speak confidently or your money back</div>
                         <ul class="package-features">
-                            <li>Direct access to your teacher</li>
+                            <li>Direct 1-on-1 access to your teacher</li>
                             <li>Choose your day and time</li>
+                            <li>Personalized learning path</li>
+                            <li>Cultural immersion lessons</li>
+                            <li>Audio & video resources (songs, lyrics, movie clips)</li>
+                            <li>Real-time pronunciation correction</li>
                             <li>PDF textbook included</li>
                             <li>Worksheets & practice materials</li>
                             <li>Quizzes to test progress</li>
@@ -1115,6 +1156,12 @@
                         </ul>
                         <div class="package-price">$75 <small>/ month</small></div>
                         <div class="discount-note">💰 Pay as low as $67.50/month with 3-month commit • $60/month with 6-month commit</div>
+                        <div class="perks-section">
+                            <p>🎁 <strong>Loyalty Perk:</strong> 10% discount on next level after 3 months</p>
+                            <p>👥 <strong>Referral Perk:</strong> Bring a friend → both get 15% off for 1 month</p>
+                            <p>🏆 <strong>Perfect Attendance:</strong> Free bonus lesson every 4 weeks</p>
+                            <p>📹 <strong>Lesson Recordings:</strong> Review anytime</p>
+                        </div>
                         <button onclick="openEnrollmentModal('Twi', 'Live Zoom 60min Weekly')" class="btn btn-primary">Enroll Now</button>
                     </div>
                 </div>
@@ -1123,8 +1170,8 @@
             <!-- Custom Packages -->
             <div class="custom-packages">
                 <h4>📞 Personalized Learning Packages Available</h4>
-                <p>Family packages • Siblings packages • Custom schedules • Group rates for organizations</p>
-                <p style="margin-top: 0.5rem;">Contact us to design a package that fits your needs.</p>
+                <p>👨‍👩‍👧‍👦 Family packages • 👫 Siblings packages • 🏢 Corporate rates • 🗓️ Custom schedules</p>
+                <p style="margin-top: 0.5rem;">Contact us to design a package that fits your needs and budget.</p>
             </div>
 
             <!-- Scholarship & Certificate -->
