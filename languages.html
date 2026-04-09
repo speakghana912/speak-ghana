@@ -642,6 +642,27 @@
             margin: 0.5rem 0;
         }
 
+        /* Custom Packages Section */
+        .custom-packages {
+            background: linear-gradient(135deg, #fff5e8, white);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .custom-packages h4 {
+            color: var(--green);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .custom-packages p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
         /* Scholarship Section */
         .scholarship-section {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
@@ -1018,8 +1039,8 @@
                         <h4>Basic</h4>
                         <div class="self-paced-price">$10 <small>/month</small></div>
                         <ul class="self-paced-features">
-                            <li>50+ video lessons</li>
-                            <li>PDF textbooks (300+ pages)</li>
+                            <li>Video lessons</li>
+                            <li>PDF textbooks for each topic</li>
                             <li>Fun learning games</li>
                         </ul>
                         <button onclick="openEnrollmentModal('Twi', 'Self-Paced Basic')" class="btn btn-primary">Enroll Now</button>
@@ -1029,8 +1050,8 @@
                         <h4>Standard</h4>
                         <div class="self-paced-price">$20 <small>/month</small></div>
                         <ul class="self-paced-features">
-                            <li>50+ video lessons</li>
-                            <li>PDF textbooks (300+ pages)</li>
+                            <li>Video lessons</li>
+                            <li>PDF textbooks for each topic</li>
                             <li>Worksheets & practice materials</li>
                             <li>Quizzes & assessments</li>
                             <li>Fun learning games</li>
@@ -1051,32 +1072,8 @@
                 </div>
             </div>
 
-            <!-- Private Classes -->
-            <h3>Private Classes (1-on-1)</h3>
-            <div class="package-grid">
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 60 min</h4>
-                        <div class="package-type">Weekly</div>
-                    </div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>Direct access to your teacher</li>
-                            <li>Choose your day and time</li>
-                            <li>PDF textbook included</li>
-                            <li>Worksheets & practice materials</li>
-                            <li>Quizzes to test progress</li>
-                            <li>Certificate upon completion</li>
-                        </ul>
-                        <div class="package-price">$75 <small>/ month</small></div>
-                        <div class="discount-note">💰 Pay as low as $67.50/month with 3-month commit • $60/month with 6-month commit</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Private 60min Weekly')" class="btn btn-primary">Enroll Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Group Classes -->
-            <h3>Group Classes (4-10 learners)</h3>
+            <!-- Group Classes - $50 (CHEAPER FIRST) -->
+            <h3>Group Classes (Relatively Small)</h3>
             <div class="package-grid">
                 <div class="package-card">
                     <div class="package-header">
@@ -1097,6 +1094,37 @@
                         <button onclick="openEnrollmentModal('Twi', 'Group 90min Weekly')" class="btn btn-primary">Enroll Now</button>
                     </div>
                 </div>
+            </div>
+
+            <!-- Live Zoom Classes - $75 -->
+            <h3>Live Zoom Classes</h3>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>Live Zoom 60 min</h4>
+                        <div class="package-type">Weekly</div>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Direct access to your teacher</li>
+                            <li>Choose your day and time</li>
+                            <li>PDF textbook included</li>
+                            <li>Worksheets & practice materials</li>
+                            <li>Quizzes to test progress</li>
+                            <li>Certificate upon completion</li>
+                        </ul>
+                        <div class="package-price">$75 <small>/ month</small></div>
+                        <div class="discount-note">💰 Pay as low as $67.50/month with 3-month commit • $60/month with 6-month commit</div>
+                        <button onclick="openEnrollmentModal('Twi', 'Live Zoom 60min Weekly')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Packages -->
+            <div class="custom-packages">
+                <h4>📞 Personalized Learning Packages Available</h4>
+                <p>Family packages • Siblings packages • Custom schedules • Group rates for organizations</p>
+                <p style="margin-top: 0.5rem;">Contact us to design a package that fits your needs.</p>
             </div>
 
             <!-- Scholarship & Certificate -->
@@ -1151,19 +1179,23 @@
             </div>
             <div class="package-grid">
                 <div class="package-card">
-                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
-                    <div class="package-body">
-                        <div class="package-price">$75 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Ga', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
-                    </div>
-                </div>
-                <div class="package-card">
                     <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly</div></div>
                     <div class="package-body">
                         <div class="package-price">$50 <small>/ month</small></div>
                         <button onclick="openEnrollmentModal('Ga', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
                     </div>
                 </div>
+                <div class="package-card">
+                    <div class="package-header"><h4>Live Zoom 60 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-body">
+                        <div class="package-price">$75 <small>/ month</small></div>
+                        <button onclick="openEnrollmentModal('Ga', 'Live Zoom 60min')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="custom-packages">
+                <h4>📞 Family & Siblings Packages Available</h4>
+                <p>Contact us for customized pricing for families and groups.</p>
             </div>
         </section>
 
@@ -1178,10 +1210,17 @@
             </div>
             <div class="package-grid">
                 <div class="package-card">
-                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-body">
+                        <div class="package-price">$50 <small>/ month</small></div>
+                        <button onclick="openEnrollmentModal('Ewe', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header"><h4>Live Zoom 60 min</h4><div class="package-type">Weekly</div></div>
                     <div class="package-body">
                         <div class="package-price">$75 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Ewe', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                        <button onclick="openEnrollmentModal('Ewe', 'Live Zoom 60min')" class="btn btn-primary">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1198,10 +1237,17 @@
             </div>
             <div class="package-grid">
                 <div class="package-card">
-                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-body">
+                        <div class="package-price">$50 <small>/ month</small></div>
+                        <button onclick="openEnrollmentModal('Fante', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header"><h4>Live Zoom 60 min</h4><div class="package-type">Weekly</div></div>
                     <div class="package-body">
                         <div class="package-price">$75 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Fante', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                        <button onclick="openEnrollmentModal('Fante', 'Live Zoom 60min')" class="btn btn-primary">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1218,10 +1264,17 @@
             </div>
             <div class="package-grid">
                 <div class="package-card">
-                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-body">
+                        <div class="package-price">$50 <small>/ month</small></div>
+                        <button onclick="openEnrollmentModal('Dagbani', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header"><h4>Live Zoom 60 min</h4><div class="package-type">Weekly</div></div>
                     <div class="package-body">
                         <div class="package-price">$75 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Dagbani', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                        <button onclick="openEnrollmentModal('Dagbani', 'Live Zoom 60min')" class="btn btn-primary">Enroll Now</button>
                     </div>
                 </div>
             </div>
