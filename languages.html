@@ -6,7 +6,7 @@
     <title>Learn Twi, Ga, Ewe & More | Ghanaian Language Courses</title>
     <meta name="description" content="Learn Twi, Ga, Ewe, Fante, and Dagbani with native speakers. Group and private classes for all levels. Join our global community of learners.">
     
-    <!-- ABSOLUTE URL FAVICON -->
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
     <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
@@ -57,10 +57,6 @@
             padding: 0 2rem;
         }
 
-        section {
-            padding: 5rem 0;
-        }
-
         h1, h2, h3, h4 {
             font-weight: 600;
             line-height: 1.2;
@@ -85,16 +81,6 @@
             border-radius: 2px;
         }
 
-        h2.center {
-            display: block;
-            text-align: center;
-        }
-
-        h2.center::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
         h3 {
             font-size: 1.8rem;
             margin: 2rem 0 1.5rem;
@@ -103,25 +89,24 @@
 
         .btn {
             display: inline-block;
-            padding: 0.9rem 2.2rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
             cursor: pointer;
             border: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
             color: white;
-            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3);
         }
 
         .btn-gold {
@@ -130,13 +115,7 @@
         }
 
         .btn-gold:hover {
-            transform: translateY(-3px);
-            background: #c49a6c;
-        }
-
-        .btn-small {
-            padding: 0.5rem 1.5rem;
-            font-size: 0.9rem;
+            transform: translateY(-2px);
         }
 
         /* Top Bar */
@@ -160,7 +139,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: color 0.3s;
         }
 
@@ -173,7 +152,6 @@
             background: linear-gradient(135deg, #1a1a1a, var(--green));
             color: white;
             padding: 1.5rem 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         .header-content {
@@ -192,18 +170,13 @@
         }
 
         .logo img {
-            height: 70px;
+            height: 65px;
             width: auto;
             border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .logo:hover img {
-            transform: scale(1.05);
         }
 
         .logo-text h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: white;
         }
 
@@ -213,18 +186,18 @@
 
         .logo-text p {
             color: rgba(255,255,255,0.9);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .motto-badge {
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 50px;
             color: var(--gold);
             font-weight: 500;
             text-align: right;
-            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
         }
 
         /* Navigation */
@@ -241,8 +214,8 @@
         .nav-links {
             display: flex;
             justify-content: center;
-            gap: 2.5rem;
-            padding: 1rem 0;
+            gap: 2rem;
+            padding: 0.8rem 0;
             flex-wrap: wrap;
         }
 
@@ -270,18 +243,9 @@
             color: var(--red);
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
         .nav-links a.active {
             color: var(--green);
             font-weight: 600;
-        }
-
-        .nav-links a.active::after {
-            width: 100%;
-            background: var(--green);
         }
 
         .dropdown-item {
@@ -304,16 +268,8 @@
             cursor: pointer;
             color: var(--black);
             padding: 0.5rem 1rem;
-            z-index: 101;
             border-radius: 8px;
             font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .menu-toggle:hover {
-            background: var(--green);
-            color: white;
-            transform: scale(1.05);
         }
 
         @media (max-width: 968px) {
@@ -336,7 +292,6 @@
                 padding: 0;
                 width: 100%;
                 background: white;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
                 max-height: 80vh;
                 overflow-y: auto;
             }
@@ -352,7 +307,6 @@
                 text-align: left;
                 border-bottom: 1px solid var(--cream);
                 font-weight: 600;
-                position: relative;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -374,13 +328,10 @@
                 color: var(--black);
                 cursor: pointer;
                 padding: 0;
-                font-family: inherit;
             }
             
             .dropdown-toggle i {
                 transition: transform 0.3s;
-                font-size: 0.9rem;
-                color: var(--gray);
             }
             
             .dropdown-toggle.open i {
@@ -406,8 +357,7 @@
                 text-decoration: none;
                 color: var(--gray);
                 font-weight: 500;
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 display: block;
             }
             
@@ -423,44 +373,44 @@
         .page-hero {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
             color: white;
-            padding: 4rem 0;
+            padding: 3rem 0;
             text-align: center;
         }
 
         .page-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .page-hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             max-width: 700px;
             margin: 0 auto;
-            opacity: 0.95;
         }
 
         /* Language Navigator */
         .language-navigator {
             background: white;
             border-radius: 60px;
-            padding: 1rem;
+            padding: 0.8rem;
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
-            margin: 2rem 0 3rem;
+            margin: 2rem 0 2rem;
             box-shadow: 0 10px 30px var(--shadow);
             position: sticky;
-            top: 80px;
+            top: 70px;
             z-index: 99;
         }
 
         .lang-nav-link {
-            padding: 0.8rem 1.8rem;
+            padding: 0.6rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             color: var(--black);
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s;
         }
 
@@ -477,8 +427,8 @@
         .language-section {
             background: white;
             border-radius: 30px;
-            padding: 3rem;
-            margin: 3rem 0;
+            padding: 2rem;
+            margin: 2rem 0;
             box-shadow: 0 20px 40px var(--shadow);
             scroll-margin-top: 100px;
         }
@@ -486,16 +436,16 @@
         .language-header {
             display: flex;
             align-items: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
         }
 
         .language-icon-large {
-            font-size: 3rem;
+            font-size: 2.5rem;
             background: var(--cream);
-            width: 80px;
-            height: 80px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -503,7 +453,8 @@
         }
 
         .language-title h2 {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
+            font-size: 1.8rem;
         }
 
         .language-title h2::after {
@@ -512,178 +463,191 @@
 
         .language-stats {
             display: flex;
-            gap: 1.5rem;
-            margin-top: 0.5rem;
+            gap: 1rem;
+            margin-top: 0.3rem;
             flex-wrap: wrap;
         }
 
         .stat {
             background: var(--cream);
-            padding: 0.3rem 1rem;
+            padding: 0.2rem 0.8rem;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
         }
 
         .stat strong {
             color: var(--green);
         }
 
-        /* Package Grid - Simplified */
+        /* Self-Paced Section */
+        .self-paced-section {
+            margin-bottom: 2rem;
+        }
+
+        .self-paced-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .self-paced-title h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .self-paced-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .self-paced-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .self-paced-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .self-paced-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .self-paced-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--green);
+            margin: 0.5rem 0;
+        }
+
+        .self-paced-price small {
+            font-size: 0.8rem;
+            font-weight: normal;
+            color: var(--gray);
+        }
+
+        .self-paced-features {
+            list-style: none;
+            margin: 1rem 0;
+            text-align: left;
+        }
+
+        .self-paced-features li {
+            margin-bottom: 0.4rem;
+            padding-left: 1.3rem;
+            position: relative;
+            font-size: 0.85rem;
+        }
+
+        .self-paced-features li::before {
+            content: '✓';
+            color: var(--green);
+            position: absolute;
+            left: 0;
+        }
+
+        .popular-badge {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* Package Grid */
         .package-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
         }
 
         .package-card {
             background: var(--cream);
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 20px var(--shadow);
             transition: transform 0.3s;
         }
 
         .package-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
         }
 
         .package-header {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
             color: white;
-            padding: 1.5rem;
+            padding: 1rem;
             text-align: center;
         }
 
         .package-header h4 {
             color: white;
             margin: 0;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .package-type {
             color: rgba(255,255,255,0.85);
-            font-size: 0.85rem;
-            margin-top: 0.3rem;
+            font-size: 0.75rem;
+            margin-top: 0.2rem;
         }
 
         .package-body {
-            padding: 1.5rem;
+            padding: 1.2rem;
         }
 
         .package-features {
             list-style: none;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .package-features li {
-            margin-bottom: 0.6rem;
-            padding-left: 1.5rem;
+            margin-bottom: 0.4rem;
+            padding-left: 1.3rem;
             position: relative;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .package-features li::before {
             content: '✓';
             color: var(--green);
-            font-weight: bold;
             position: absolute;
             left: 0;
         }
 
         .package-price {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
             color: var(--green);
         }
 
         .package-price small {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: normal;
             color: var(--gray);
         }
 
-        .badge-popular {
-            background: var(--gold);
-            color: var(--black);
-            padding: 0.2rem 1rem;
-            border-radius: 50px;
-            display: inline-block;
-            margin-bottom: 1rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-
-        /* Self-Paced Card */
-        .self-paced-card {
-            background: linear-gradient(135deg, #fff5e8, white);
-            border: 2px solid var(--gold);
-            border-radius: 24px;
-            padding: 1.8rem;
-            margin: 2rem 0;
-        }
-
-        .self-paced-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .self-paced-badge {
-            background: var(--green);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-        }
-
-        .self-paced-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .feature-tag {
-            background: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            border: 1px solid var(--cream);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .self-paced-plans {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .plan-tag {
-            background: var(--cream);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .plan-tag span {
-            color: var(--green);
+        .discount-note {
+            font-size: 0.7rem;
+            color: var(--gray);
+            margin: 0.5rem 0;
         }
 
         /* Scholarship Section */
         .scholarship-section {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
             border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
             color: white;
         }
 
@@ -692,43 +656,175 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 2rem;
+            gap: 1rem;
         }
 
         .scholarship-text h3 {
             color: var(--gold);
-            margin: 0 0 0.5rem;
+            margin: 0 0 0.3rem;
+            font-size: 1.2rem;
+        }
+
+        .scholarship-text p {
+            font-size: 0.85rem;
         }
 
         .certificate-text {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
             border-top: 1px solid rgba(255,255,255,0.2);
         }
 
         .certificate-text h3 {
             color: var(--gold);
-            margin: 0 0 0.5rem;
+            margin: 0 0 0.3rem;
+            font-size: 1.2rem;
+        }
+
+        .certificate-text p {
+            font-size: 0.85rem;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-container {
+            background: linear-gradient(135deg, var(--cream), white);
+            width: 90%;
+            max-width: 650px;
+            max-height: 85vh;
+            border-radius: 28px;
+            overflow-y: auto;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            padding: 1rem 1.5rem;
+            border-radius: 28px 28px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        .modal-close {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 1.4rem;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: var(--red);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .enrollment-modal-form {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            color: var(--black);
+            font-size: 0.85rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.6rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            background: white;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .modal-note {
+            text-align: center;
+            margin-top: 0.8rem;
+            font-size: 0.7rem;
+            color: var(--gray);
         }
 
         /* Footer */
         footer {
             background: var(--black);
             color: white;
-            padding: 3rem 0 2rem;
-            margin-top: 3rem;
+            padding: 2rem 0 1.5rem;
+            margin-top: 2rem;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .footer-section h4 {
             color: var(--gold);
             margin-bottom: 1rem;
+            font-size: 1rem;
         }
 
         .footer-section a {
@@ -736,6 +832,7 @@
             text-decoration: none;
             display: block;
             margin-bottom: 0.5rem;
+            font-size: 0.85rem;
         }
 
         .footer-section a:hover {
@@ -744,19 +841,20 @@
 
         .copyright {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1rem;
             border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.75rem;
         }
 
         .motto-footer {
             color: var(--gold);
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-top: 0.5rem;
         }
 
         .newsletter {
             background: rgba(255,255,255,0.05);
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 15px;
         }
 
@@ -768,28 +866,32 @@
 
         .newsletter-input {
             flex: 1;
-            padding: 0.6rem;
+            padding: 0.5rem;
             border: none;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .newsletter-btn {
             background: var(--gold);
             color: var(--black);
             border: none;
-            padding: 0.6rem 1rem;
+            padding: 0.5rem 1rem;
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
+            font-size: 0.8rem;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 0 1.5rem;
+                padding: 0 1rem;
             }
             .page-hero h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+            .self-paced-grid {
+                grid-template-columns: 1fr;
             }
             .language-header {
                 flex-direction: column;
@@ -799,7 +901,7 @@
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            .package-grid {
+            .form-row {
                 grid-template-columns: 1fr;
             }
         }
@@ -877,7 +979,7 @@
     <div class="page-hero">
         <div class="container">
             <h1>Our Languages</h1>
-            <p>Choose from five Ghanaian languages. Learn with live teachers or self-paced.</p>
+            <p>Choose from five Ghanaian languages. Self-paced or live with a teacher.</p>
         </div>
     </div>
 
@@ -906,45 +1008,69 @@
                 </div>
             </div>
 
+            <!-- Self-Paced Courses - TOP -->
+            <div class="self-paced-section">
+                <div class="self-paced-title">
+                    <h3>📚 Self-Paced (Start Anytime)</h3>
+                </div>
+                <div class="self-paced-grid">
+                    <div class="self-paced-card">
+                        <h4>Basic</h4>
+                        <div class="self-paced-price">$10 <small>/month</small></div>
+                        <ul class="self-paced-features">
+                            <li>50+ video lessons</li>
+                            <li>PDF textbooks (300+ pages)</li>
+                            <li>Fun learning games</li>
+                        </ul>
+                        <button onclick="openEnrollmentModal('Twi', 'Self-Paced Basic')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                    <div class="self-paced-card">
+                        <div class="popular-badge">⭐ MOST POPULAR</div>
+                        <h4>Standard</h4>
+                        <div class="self-paced-price">$20 <small>/month</small></div>
+                        <ul class="self-paced-features">
+                            <li>50+ video lessons</li>
+                            <li>PDF textbooks (300+ pages)</li>
+                            <li>Worksheets & practice materials</li>
+                            <li>Quizzes & assessments</li>
+                            <li>Fun learning games</li>
+                            <li>Certificates for each level</li>
+                        </ul>
+                        <button onclick="openEnrollmentModal('Twi', 'Self-Paced Standard')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                    <div class="self-paced-card">
+                        <h4>Premium</h4>
+                        <div class="self-paced-price">$30 <small>/month</small></div>
+                        <ul class="self-paced-features">
+                            <li>All Standard features</li>
+                            <li>Monthly live Q&A with teacher</li>
+                            <li>Priority support</li>
+                        </ul>
+                        <button onclick="openEnrollmentModal('Twi', 'Self-Paced Premium')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Private Classes -->
-            <h3>Private Classes</h3>
+            <h3>Private Classes (1-on-1)</h3>
             <div class="package-grid">
                 <div class="package-card">
                     <div class="package-header">
                         <h4>Private 60 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
+                        <div class="package-type">Weekly</div>
                     </div>
                     <div class="package-body">
                         <ul class="package-features">
-                            <li>One 60-minute 1-on-1 lesson weekly</li>
-                            <li>Choose your fixed day & time</li>
-                            <li>Structured grammar & conversation</li>
+                            <li>Direct access to your teacher</li>
+                            <li>Choose your day and time</li>
                             <li>PDF textbook included</li>
                             <li>Worksheets & practice materials</li>
                             <li>Quizzes to test progress</li>
                             <li>Certificate upon completion</li>
                         </ul>
                         <div class="package-price">$75 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Twi', 'Private 60min 1x/week')" class="btn btn-primary btn-small">Enroll Now</button>
-                    </div>
-                </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Private 90 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <ul class="package-features">
-                            <li>One 90-minute 1-on-1 lesson weekly</li>
-                            <li>Deep immersion sessions</li>
-                            <li>Grammar + vocabulary + culture</li>
-                            <li>PDF textbook included</li>
-                            <li>Worksheets & practice materials</li>
-                            <li>Quizzes to test progress</li>
-                            <li>Certificate upon completion</li>
-                        </ul>
-                        <div class="package-price">$110 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Twi', 'Private 90min 1x/week')" class="btn btn-primary btn-small">Enroll Now</button>
+                        <div class="discount-note">💰 Pay as low as $67.50/month with 3-month commit • $60/month with 6-month commit</div>
+                        <button onclick="openEnrollmentModal('Twi', 'Private 60min Weekly')" class="btn btn-primary">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -955,65 +1081,22 @@
                 <div class="package-card">
                     <div class="package-header">
                         <h4>Group 90 min</h4>
-                        <div class="package-type">1 Lesson/Week</div>
+                        <div class="package-type">Weekly</div>
                     </div>
                     <div class="package-body">
                         <ul class="package-features">
-                            <li>One 90-minute group class weekly</li>
-                            <li>Interactive conversation practice</li>
                             <li>Learn with peers</li>
+                            <li>Interactive conversation practice</li>
                             <li>PDF textbook included</li>
                             <li>Worksheets & practice materials</li>
                             <li>Quizzes to test progress</li>
                             <li>Certificate upon completion</li>
                         </ul>
                         <div class="package-price">$50 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Twi', 'Group 90min 1x/week')" class="btn btn-primary btn-small">Enroll Now</button>
+                        <div class="discount-note">💰 Pay as low as $45/month with 3-month commit • $40/month with 6-month commit</div>
+                        <button onclick="openEnrollmentModal('Twi', 'Group 90min Weekly')" class="btn btn-primary">Enroll Now</button>
                     </div>
                 </div>
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>Group 90 min</h4>
-                        <div class="package-type">2 Lessons/Week</div>
-                    </div>
-                    <div class="package-body">
-                        <span class="badge-popular">⭐ MOST POPULAR</span>
-                        <ul class="package-features">
-                            <li>Two 90-minute group classes weekly</li>
-                            <li>Faster progress with more practice</li>
-                            <li>Interactive conversation practice</li>
-                            <li>PDF textbook included</li>
-                            <li>Worksheets & practice materials</li>
-                            <li>Quizzes to test progress</li>
-                            <li>Certificate upon completion</li>
-                        </ul>
-                        <div class="package-price">$90 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Twi', 'Group 90min 2x/week')" class="btn btn-primary btn-small">Enroll Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Self-Paced Courses -->
-            <div class="self-paced-card">
-                <div class="self-paced-header">
-                    <h3 style="margin: 0;">📚 Self-Paced Courses</h3>
-                    <span class="self-paced-badge">Learn Anytime, Anywhere</span>
-                </div>
-                <p>Learn at your own rhythm. No fixed class times. Start immediately after enrollment.</p>
-                <div class="self-paced-features">
-                    <span class="feature-tag"><i class="fas fa-video"></i> 50+ Video Lessons</span>
-                    <span class="feature-tag"><i class="fas fa-file-pdf"></i> PDF Textbooks</span>
-                    <span class="feature-tag"><i class="fas fa-edit"></i> Worksheets</span>
-                    <span class="feature-tag"><i class="fas fa-gamepad"></i> Fun Games</span>
-                    <span class="feature-tag"><i class="fas fa-question-circle"></i> Quizzes</span>
-                    <span class="feature-tag"><i class="fas fa-certificate"></i> Certificates</span>
-                </div>
-                <div class="self-paced-plans">
-                    <div class="plan-tag">🎬 Basic: <span>$10</span>/month</div>
-                    <div class="plan-tag">⭐ Standard: <span>$20</span>/month</div>
-                    <div class="plan-tag">🎓 Premium: <span>$30</span>/month <small>(+ Live Q&A)</small></div>
-                </div>
-                <a href="https://www.speakghana.org/self-paced" class="btn btn-gold btn-small" style="margin-top: 1rem; display: inline-block;">Explore Self-Paced →</a>
             </div>
 
             <!-- Scholarship & Certificate -->
@@ -1032,7 +1115,7 @@
             </div>
         </section>
 
-        <!-- GA SECTION (Simplified - same structure) -->
+        <!-- GA SECTION -->
         <section id="ga" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🏙️</div>
@@ -1044,20 +1127,43 @@
                     </div>
                 </div>
             </div>
-            <div class="package-grid">
-                <div class="package-card">
-                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">1 Lesson/Week</div></div>
-                    <div class="package-body"><div class="package-price">$75 <small>/ month</small></div><button onclick="openEnrollmentModal('Ga', 'Private 60min')" class="btn btn-primary btn-small">Enroll Now</button></div>
+            <div class="self-paced-section">
+                <div class="self-paced-title">
+                    <h3>📚 Self-Paced Ga</h3>
                 </div>
-                <div class="package-card">
-                    <div class="package-header"><h4>Group 90 min</h4><div class="package-type">2 Lessons/Week</div></div>
-                    <div class="package-body"><div class="package-price">$90 <small>/ month</small></div><button onclick="openEnrollmentModal('Ga', 'Group 90min')" class="btn btn-primary btn-small">Enroll Now</button></div>
+                <div class="self-paced-grid">
+                    <div class="self-paced-card">
+                        <h4>Basic</h4>
+                        <div class="self-paced-price">$10 <small>/month</small></div>
+                        <button onclick="openEnrollmentModal('Ga', 'Self-Paced Basic')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                    <div class="self-paced-card">
+                        <h4>Standard</h4>
+                        <div class="self-paced-price">$20 <small>/month</small></div>
+                        <button onclick="openEnrollmentModal('Ga', 'Self-Paced Standard')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                    <div class="self-paced-card">
+                        <h4>Premium</h4>
+                        <div class="self-paced-price">$30 <small>/month</small></div>
+                        <button onclick="openEnrollmentModal('Ga', 'Self-Paced Premium')" class="btn btn-primary">Enroll Now</button>
+                    </div>
                 </div>
             </div>
-            <div class="self-paced-card">
-                <h3 style="margin: 0 0 0.5rem;">📚 Self-Paced Ga Course</h3>
-                <p>Coming soon. Join the waitlist to be notified.</p>
-                <a href="contact.html" class="btn btn-gold btn-small">Join Waitlist →</a>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-body">
+                        <div class="package-price">$75 <small>/ month</small></div>
+                        <button onclick="openEnrollmentModal('Ga', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-body">
+                        <div class="package-price">$50 <small>/ month</small></div>
+                        <button onclick="openEnrollmentModal('Ga', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1072,8 +1178,11 @@
             </div>
             <div class="package-grid">
                 <div class="package-card">
-                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">1 Lesson/Week</div></div>
-                    <div class="package-body"><div class="package-price">$75 <small>/ month</small></div><button onclick="openEnrollmentModal('Ewe', 'Private 60min')" class="btn btn-primary btn-small">Enroll Now</button></div>
+                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-body">
+                        <div class="package-price">$75 <small>/ month</small></div>
+                        <button onclick="openEnrollmentModal('Ewe', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1089,8 +1198,11 @@
             </div>
             <div class="package-grid">
                 <div class="package-card">
-                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">1 Lesson/Week</div></div>
-                    <div class="package-body"><div class="package-price">$75 <small>/ month</small></div><button onclick="openEnrollmentModal('Fante', 'Private 60min')" class="btn btn-primary btn-small">Enroll Now</button></div>
+                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-body">
+                        <div class="package-price">$75 <small>/ month</small></div>
+                        <button onclick="openEnrollmentModal('Fante', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1106,11 +1218,93 @@
             </div>
             <div class="package-grid">
                 <div class="package-card">
-                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">1 Lesson/Week</div></div>
-                    <div class="package-body"><div class="package-price">$75 <small>/ month</small></div><button onclick="openEnrollmentModal('Dagbani', 'Private 60min')" class="btn btn-primary btn-small">Enroll Now</button></div>
+                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-body">
+                        <div class="package-price">$75 <small>/ month</small></div>
+                        <button onclick="openEnrollmentModal('Dagbani', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                    </div>
                 </div>
             </div>
         </section>
+    </div>
+
+    <!-- Enrollment Modal -->
+    <div id="enrollmentModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>🇬🇭 Enroll in Classes</h3>
+                <button class="modal-close" id="closeModalBtn">✕</button>
+            </div>
+            <div class="modal-body">
+                <form class="enrollment-modal-form" action="https://formspree.io/f/mlgpodpb" method="POST">
+                    <input type="hidden" name="form_type" value="Enrollment">
+                    <input type="hidden" name="selected_language" id="modal-language" value="">
+                    <input type="hidden" name="selected_package" id="modal-package" value="">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <select name="phone_code" style="width: 30%; padding: 0.6rem; border: 2px solid #e2e8f0; border-radius: 12px;">
+                                    <option value="+233">🇬🇭 +233 (Ghana)</option>
+                                    <option value="+1">🇺🇸 +1 (USA/Canada)</option>
+                                    <option value="+44">🇬🇧 +44 (UK)</option>
+                                </select>
+                                <input type="tel" name="phone" placeholder="Phone number" style="width: 70%;">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Preferred Class Time</label>
+                        <input type="text" name="preferred_time" placeholder="e.g., Sundays 6pm GMT">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Timezone</label>
+                        <select name="timezone">
+                            <option value="GMT">GMT (London)</option>
+                            <option value="EST">EST (New York)</option>
+                            <option value="PST">PST (Los Angeles)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>How did you hear about us?</label>
+                        <input type="text" name="referral" placeholder="Instagram, friend, TikTok, etc.">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" name="scholarship" value="yes"> I qualify for the Speak One, Learn One Scholarship (25% off - Ghana Card holder)
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Questions or special requests?</label>
+                        <textarea name="notes" rows="2" placeholder="Tell us anything else"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit Enrollment</button>
+                    <p class="modal-note">We'll contact you within 24 hours</p>
+                </form>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -1203,7 +1397,6 @@
             });
         }
         
-        // Close dropdowns when clicking on a link
         document.querySelectorAll('.dropdown-submenu a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 968) {
@@ -1230,16 +1423,54 @@
             }
         });
         
-        // Enrollment Modal function (simplified - just redirect to WhatsApp)
-        function openEnrollmentModal(language, packageName) {
-            const message = `Hi Richard, I'm interested in ${language} - ${packageName}. Can you please provide more information?`;
-            const url = `https://wa.me/233552263323?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-            
+        // Modal functionality
+        const modal = document.getElementById('enrollmentModal');
+        const closeBtn = document.getElementById('closeModalBtn');
+        
+        window.openEnrollmentModal = function(language, packageName) {
+            document.getElementById('modal-language').value = language;
+            document.getElementById('modal-package').value = packageName;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
             if (typeof gtag === 'function') {
-                gtag('event', 'enrollment_click', { 'event_category': 'engagement', 'event_label': language + ' - ' + packageName });
+                gtag('event', 'enrollment_modal_open', { 'event_category': 'engagement', 'event_label': language + ' - ' + packageName });
             }
+        };
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
         }
+        
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Form tracking
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function() {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'generate_lead', { 'event_category': 'engagement', 'event_label': 'enrollment_form' });
+                }
+                if (modal) setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 500);
+            });
+        });
     </script>
 
     <!-- Tawk.to Live Chat -->
