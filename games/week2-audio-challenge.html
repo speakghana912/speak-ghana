@@ -27,6 +27,31 @@
             padding: 2rem;
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
         }
+        .access-denied {
+            background: white;
+            border-radius: 48px;
+            max-width: 500px;
+            width: 100%;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+        .access-denied h2 {
+            color: #E76F51;
+            margin-bottom: 1rem;
+        }
+        .access-denied p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        .access-denied .btn {
+            background: #2A9D8F;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+        }
         .game-header {
             text-align: center;
             margin-bottom: 1.5rem;
@@ -360,6 +385,7 @@
     </style>
 </head>
 <body>
+<div id="gameContent" style="display: none;">
 <div class="game-container">
     <div class="game-header">
         <h1>🎯 AUDIO CHALLENGE</h1>
@@ -430,408 +456,447 @@
         Speak Ghana Language School | Audio Challenge Mode
     </div>
 </div>
+</div>
+
+<div id="accessDenied" style="display: none;" class="access-denied">
+    <h2>🔒 Access Denied</h2>
+    <p>This game is only available for enrolled students.</p>
+    <p>Please log in to your portal to access this content.</p>
+    <a href="https://portal.speakghana.org" class="btn">Go to Portal →</a>
+</div>
 
 <script>
-    const AUDIO_BASE = 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/';
+    // Session protection - check if accessed from portal
+    function checkAccess() {
+        // Method 1: Check sessionStorage (set by portal after login)
+        if (sessionStorage.getItem('selfPacedAuthenticated') === 'true') {
+            return true;
+        }
+        
+        // Method 2: Check if page was opened from portal.speakghana.org
+        if (document.referrer && document.referrer.includes('portal.speakghana.org')) {
+            return true;
+        }
+        
+        // Method 3: Check URL parameter (for testing or special access)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('token') === 'speakghana2026') {
+            return true;
+        }
+        
+        return false;
+    }
     
-    const allQuestions = [
-        { audio: "morn.m4a", correct: "Good morning", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
-        { audio: "noon.m4a", correct: "Good afternoon", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
-        { audio: "eve.m4a", correct: "Good evening", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
-        { audio: "welc.m4a", correct: "Welcome", options: ["Welcome", "Thank you", "Goodbye", "Please"] },
-        { audio: "r-man.m4a", correct: "Response to elder man", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
-        { audio: "r-wom.m4a", correct: "Response to elder woman", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
-        { audio: "r-peer.m4a", correct: "Response to peer", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
-        { audio: "how-u.m4a", correct: "How are you? (formal)", options: ["How are you? (formal)", "How are you? (informal)", "What is your name?", "Where are you from?"] },
-        { audio: "how-inf.m4a", correct: "How are you? (informal)", options: ["How are you? (formal)", "How are you? (informal)", "What is your name?", "Where are you from?"] },
-        { audio: "i-fine.m4a", correct: "I am fine", options: ["I am fine", "I am tired", "I am happy", "I am sad"] },
-        { audio: "grace.m4a", correct: "By God's grace", options: ["By God's grace", "Thank you", "Welcome", "Good luck"] },
-        { audio: "grace-full.m4a", correct: "By God's grace, I am fine", options: ["By God's grace, I am fine", "By God's grace", "I am fine", "Thank you"] },
-        { audio: "cool.m4a", correct: "Cool / Calm", options: ["Cool / Calm", "Hot", "Cold", "Happy"] },
-        { audio: "and-u.m4a", correct: "And you?", options: ["And you?", "And me?", "And them?", "And us?"] },
-        { audio: "my-name.m4a", correct: "My name is", options: ["My name is", "What is your name?", "His name is", "Her name is"] },
-        { audio: "ur-name.m4a", correct: "What is your name?", options: ["My name is", "What is your name?", "His name is", "Her name is"] },
-        { audio: "they-call.m4a", correct: "What do they call you?", options: ["What do they call you?", "What is your name?", "How are you?", "Where are you from?"] },
-        { audio: "i-from.m4a", correct: "I am from", options: ["I am from", "You are from", "He is from", "She is from"] },
-        { audio: "u-from.m4a", correct: "Where are you from?", options: ["Where are you from?", "Where do you live?", "Where are you going?", "Where is he?"] },
-        { audio: "i-live.m4a", correct: "I live in", options: ["I live in", "You live in", "He lives in", "She lives in"] },
-        { audio: "u-live.m4a", correct: "Where do you live?", options: ["Where do you live?", "Where are you from?", "Where are you going?", "Where is he?"] },
-        { audio: "nice-meet.m4a", correct: "Nice to meet you", options: ["Nice to meet you", "Good to see you", "Welcome", "Thank you"] },
-        { audio: "thanks.m4a", correct: "Thank you", options: ["Thank you", "Please", "Welcome", "Sorry"] },
-        { audio: "please.m4a", correct: "Please / Excuse me", options: ["Please / Excuse me", "Thank you", "Welcome", "Sorry"] },
-        { audio: "g-night.m4a", correct: "Good night / Sleep well", options: ["Good night / Sleep well", "Good morning", "Good afternoon", "Good evening"] },
-        { audio: "bye.m4a", correct: "Goodbye / See you later", options: ["Goodbye / See you later", "Welcome", "Thank you", "Please"] },
-        { audio: "safe.m4a", correct: "Safe journey", options: ["Safe journey", "Good luck", "Welcome", "Thank you"] },
-        { audio: "well-done.m4a", correct: "Well done!", options: ["Well done!", "Good job", "Congratulations", "Thank you"] },
-        { audio: "i-und.m4a", correct: "I understand", options: ["I understand", "I don't understand", "I know", "I don't know"] },
-        { audio: "i-not.m4a", correct: "I don't understand", options: ["I understand", "I don't understand", "I know", "I don't know"] },
-        { audio: "repeat.m4a", correct: "Say it again", options: ["Say it again", "Slowly", "Louder", "Softer"] },
-        { audio: "slow.m4a", correct: "Slowly / Little by little", options: ["Slowly / Little by little", "Quickly", "Loudly", "Softly"] },
-        { audio: "yes.m4a", correct: "Yes", options: ["Yes", "No", "Maybe", "OK"] },
-        { audio: "no.m4a", correct: "No", options: ["Yes", "No", "Maybe", "OK"] },
-        { audio: "ok.m4a", correct: "OK / Alright", options: ["OK / Alright", "Yes", "No", "Maybe"] }
-    ];
-
-    let gameMode = 'standard';
-    let currentQuestions = [];
-    let currentIndex = 0;
-    let score = 0;
-    let streak = 0;
-    let lives = 3;
-    let level = 1;
-    let timeLeft = 10;
-    let timerInterval = null;
-    let answered = false;
-    let totalQuestions = 10;
-    let currentAudio = null;
-    let audioPlays = 0;
-    let powerUps = { repeat: 2, hint: 1 };
-
-    function shuffleArray(arr) {
-        for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-        return arr;
-    }
-
-    function selectRandomQuestions() {
-        const shuffled = shuffleArray([...allQuestions]);
-        return shuffled.slice(0, totalQuestions);
-    }
-
-    function updateLevel() {
-        if (score >= 25) level = 5;
-        else if (score >= 18) level = 4;
-        else if (score >= 12) level = 3;
-        else if (score >= 6) level = 2;
-        else level = 1;
+    if (!checkAccess()) {
+        document.getElementById('accessDenied').style.display = 'flex';
+        document.getElementById('accessDenied').style.alignItems = 'center';
+        document.getElementById('accessDenied').style.justifyContent = 'center';
+        document.getElementById('accessDenied').style.minHeight = '100vh';
+    } else {
+        document.getElementById('gameContent').style.display = 'block';
         
-        const badge = document.getElementById('difficultyBadge');
-        if (level === 1) badge.innerHTML = '<span class="difficulty easy">🎯 LEVEL 1 - EASY</span>';
-        else if (level === 2) badge.innerHTML = '<span class="difficulty medium">⚡ LEVEL 2 - MEDIUM</span>';
-        else if (level === 3) badge.innerHTML = '<span class="difficulty hard">🔥 LEVEL 3 - HARD</span>';
-        else if (level === 4) badge.innerHTML = '<span class="difficulty master">💀 LEVEL 4 - EXPERT</span>';
-        else badge.innerHTML = '<span class="difficulty master">🏆 LEVEL 5 - MASTER</span>';
+        // Game code continues here
+        const AUDIO_BASE = 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/';
         
-        if (gameMode === 'speed') {
-            if (level === 1) timeLeft = 8;
-            else if (level === 2) timeLeft = 6;
-            else if (level === 3) timeLeft = 5;
-            else if (level === 4) timeLeft = 4;
-            else timeLeft = 3;
-            document.getElementById('timerContainer').style.display = 'block';
-        }
-    }
+        const allQuestions = [
+            { audio: "morn.m4a", correct: "Good morning", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
+            { audio: "noon.m4a", correct: "Good afternoon", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
+            { audio: "eve.m4a", correct: "Good evening", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
+            { audio: "welc.m4a", correct: "Welcome", options: ["Welcome", "Thank you", "Goodbye", "Please"] },
+            { audio: "r-man.m4a", correct: "Response to elder man", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
+            { audio: "r-wom.m4a", correct: "Response to elder woman", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
+            { audio: "r-peer.m4a", correct: "Response to peer", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
+            { audio: "how-u.m4a", correct: "How are you? (formal)", options: ["How are you? (formal)", "How are you? (informal)", "What is your name?", "Where are you from?"] },
+            { audio: "how-inf.m4a", correct: "How are you? (informal)", options: ["How are you? (formal)", "How are you? (informal)", "What is your name?", "Where are you from?"] },
+            { audio: "i-fine.m4a", correct: "I am fine", options: ["I am fine", "I am tired", "I am happy", "I am sad"] },
+            { audio: "grace.m4a", correct: "By God's grace", options: ["By God's grace", "Thank you", "Welcome", "Good luck"] },
+            { audio: "grace-full.m4a", correct: "By God's grace, I am fine", options: ["By God's grace, I am fine", "By God's grace", "I am fine", "Thank you"] },
+            { audio: "cool.m4a", correct: "Cool / Calm", options: ["Cool / Calm", "Hot", "Cold", "Happy"] },
+            { audio: "and-u.m4a", correct: "And you?", options: ["And you?", "And me?", "And them?", "And us?"] },
+            { audio: "my-name.m4a", correct: "My name is", options: ["My name is", "What is your name?", "His name is", "Her name is"] },
+            { audio: "ur-name.m4a", correct: "What is your name?", options: ["My name is", "What is your name?", "His name is", "Her name is"] },
+            { audio: "they-call.m4a", correct: "What do they call you?", options: ["What do they call you?", "What is your name?", "How are you?", "Where are you from?"] },
+            { audio: "i-from.m4a", correct: "I am from", options: ["I am from", "You are from", "He is from", "She is from"] },
+            { audio: "u-from.m4a", correct: "Where are you from?", options: ["Where are you from?", "Where do you live?", "Where are you going?", "Where is he?"] },
+            { audio: "i-live.m4a", correct: "I live in", options: ["I live in", "You live in", "He lives in", "She lives in"] },
+            { audio: "u-live.m4a", correct: "Where do you live?", options: ["Where do you live?", "Where are you from?", "Where are you going?", "Where is he?"] },
+            { audio: "nice-meet.m4a", correct: "Nice to meet you", options: ["Nice to meet you", "Good to see you", "Welcome", "Thank you"] },
+            { audio: "thanks.m4a", correct: "Thank you", options: ["Thank you", "Please", "Welcome", "Sorry"] },
+            { audio: "please.m4a", correct: "Please / Excuse me", options: ["Please / Excuse me", "Thank you", "Welcome", "Sorry"] },
+            { audio: "g-night.m4a", correct: "Good night / Sleep well", options: ["Good night / Sleep well", "Good morning", "Good afternoon", "Good evening"] },
+            { audio: "bye.m4a", correct: "Goodbye / See you later", options: ["Goodbye / See you later", "Welcome", "Thank you", "Please"] },
+            { audio: "safe.m4a", correct: "Safe journey", options: ["Safe journey", "Good luck", "Welcome", "Thank you"] },
+            { audio: "well-done.m4a", correct: "Well done!", options: ["Well done!", "Good job", "Congratulations", "Thank you"] },
+            { audio: "i-und.m4a", correct: "I understand", options: ["I understand", "I don't understand", "I know", "I don't know"] },
+            { audio: "i-not.m4a", correct: "I don't understand", options: ["I understand", "I don't understand", "I know", "I don't know"] },
+            { audio: "repeat.m4a", correct: "Say it again", options: ["Say it again", "Slowly", "Louder", "Softer"] },
+            { audio: "slow.m4a", correct: "Slowly / Little by little", options: ["Slowly / Little by little", "Quickly", "Loudly", "Softly"] },
+            { audio: "yes.m4a", correct: "Yes", options: ["Yes", "No", "Maybe", "OK"] },
+            { audio: "no.m4a", correct: "No", options: ["Yes", "No", "Maybe", "OK"] },
+            { audio: "ok.m4a", correct: "OK / Alright", options: ["OK / Alright", "Yes", "No", "Maybe"] }
+        ];
 
-    function stopTimer() {
-        if (timerInterval) {
-            clearInterval(timerInterval);
-            timerInterval = null;
-        }
-    }
+        let gameMode = 'standard';
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let streak = 0;
+        let lives = 3;
+        let level = 1;
+        let timeLeft = 10;
+        let timerInterval = null;
+        let answered = false;
+        let totalQuestions = 10;
+        let currentAudio = null;
+        let audioPlays = 0;
+        let powerUps = { repeat: 2, hint: 1 };
 
-    function startTimer() {
-        if (gameMode !== 'speed') return;
-        stopTimer();
-        let remaining = timeLeft;
-        const fill = document.getElementById('timerFill');
-        
-        timerInterval = setInterval(() => {
-            if (!answered && remaining > 0) {
-                remaining--;
-                const percent = (remaining / timeLeft) * 100;
-                fill.style.width = percent + '%';
-                if (remaining === 0) {
-                    clearInterval(timerInterval);
-                    if (!answered) {
-                        timeOut();
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function selectRandomQuestions() {
+            const shuffled = shuffleArray([...allQuestions]);
+            return shuffled.slice(0, totalQuestions);
+        }
+
+        function updateLevel() {
+            if (score >= 25) level = 5;
+            else if (score >= 18) level = 4;
+            else if (score >= 12) level = 3;
+            else if (score >= 6) level = 2;
+            else level = 1;
+            
+            const badge = document.getElementById('difficultyBadge');
+            if (level === 1) badge.innerHTML = '<span class="difficulty easy">🎯 LEVEL 1 - EASY</span>';
+            else if (level === 2) badge.innerHTML = '<span class="difficulty medium">⚡ LEVEL 2 - MEDIUM</span>';
+            else if (level === 3) badge.innerHTML = '<span class="difficulty hard">🔥 LEVEL 3 - HARD</span>';
+            else if (level === 4) badge.innerHTML = '<span class="difficulty master">💀 LEVEL 4 - EXPERT</span>';
+            else badge.innerHTML = '<span class="difficulty master">🏆 LEVEL 5 - MASTER</span>';
+            
+            if (gameMode === 'speed') {
+                if (level === 1) timeLeft = 8;
+                else if (level === 2) timeLeft = 6;
+                else if (level === 3) timeLeft = 5;
+                else if (level === 4) timeLeft = 4;
+                else timeLeft = 3;
+                document.getElementById('timerContainer').style.display = 'block';
+            }
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function startTimer() {
+            if (gameMode !== 'speed') return;
+            stopTimer();
+            let remaining = timeLeft;
+            const fill = document.getElementById('timerFill');
+            
+            timerInterval = setInterval(() => {
+                if (!answered && remaining > 0) {
+                    remaining--;
+                    const percent = (remaining / timeLeft) * 100;
+                    fill.style.width = percent + '%';
+                    if (remaining === 0) {
+                        clearInterval(timerInterval);
+                        if (!answered) {
+                            timeOut();
+                        }
                     }
+                } else if (remaining <= 0) {
+                    stopTimer();
                 }
-            } else if (remaining <= 0) {
-                stopTimer();
-            }
-        }, 1000);
-    }
-
-    function timeOut() {
-        answered = true;
-        if (gameMode === 'survival') {
-            lives--;
-            document.getElementById('lives').innerText = lives;
-            showFeedback(false, '⏰ TIME\'S UP! You lost a life.');
-            if (lives <= 0) {
-                endGame();
-                return;
-            }
-        } else {
-            showFeedback(false, '⏰ TIME\'S UP! The correct answer is highlighted.');
+            }, 1000);
         }
-        
-        const q = currentQuestions[currentIndex];
-        document.querySelectorAll('.option-btn').forEach(btn => {
-            if (btn.innerText === q.correct) {
-                btn.classList.add('correct');
-            }
-            btn.classList.add('disabled');
-            btn.disabled = true;
-        });
-        
-        document.getElementById('nextBtn').classList.add('show');
-        stopTimer();
-    }
 
-    function playAudio(file) {
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-        }
-        const audioUrl = AUDIO_BASE + file;
-        currentAudio = new Audio(audioUrl);
-        currentAudio.play().catch(e => console.log('Audio error:', e));
-        
-        if (gameMode === 'speed') {
-            audioPlays++;
-            document.getElementById('audioAttempts').innerHTML = `🎧 Played ${audioPlays} time(s)`;
-        }
-    }
-
-    function loadQuestion() {
-        answered = false;
-        audioPlays = 0;
-        document.getElementById('audioAttempts').innerHTML = '';
-        const q = currentQuestions[currentIndex];
-        
-        document.getElementById('currentQ').innerText = currentIndex + 1;
-        document.getElementById('questionText').innerHTML = 'What does this phrase mean?';
-        document.getElementById('feedback').className = 'feedback';
-        document.getElementById('feedback').style.display = 'none';
-        document.getElementById('nextBtn').classList.remove('show');
-        
-        const options = [...q.options];
-        const shuffledOpts = shuffleArray([...options]);
-        
-        const optionsArea = document.getElementById('optionsArea');
-        optionsArea.innerHTML = '';
-        shuffledOpts.forEach(opt => {
-            const btn = document.createElement('button');
-            btn.className = 'option-btn';
-            btn.innerText = opt;
-            btn.onclick = () => checkAnswer(btn, opt);
-            optionsArea.appendChild(btn);
-        });
-        
-        document.querySelectorAll('.option-btn').forEach(btn => {
-            btn.classList.remove('disabled', 'correct', 'wrong');
-            btn.disabled = false;
-        });
-        
-        updateLevel();
-        updateProgress();
-        startTimer();
-    }
-
-    function checkAnswer(btn, selected) {
-        if (answered) return;
-        answered = true;
-        stopTimer();
-        
-        const q = currentQuestions[currentIndex];
-        const isCorrect = (selected === q.correct);
-        
-        if (isCorrect) {
-            let points = 10 * level;
-            if (gameMode === 'speed' && audioPlays === 1) points += 5;
-            if (streak > 0) points += Math.min(streak * 2, 20);
-            
-            score += points;
-            streak++;
-            btn.classList.add('correct');
-            document.getElementById('score').innerText = score;
-            document.getElementById('streak').innerText = streak;
-            showFeedback(true, `✅ CORRECT! +${points} points (Level ${level} bonus)`);
-        } else {
-            streak = 0;
-            document.getElementById('streak').innerText = streak;
-            btn.classList.add('wrong');
-            
+        function timeOut() {
+            answered = true;
             if (gameMode === 'survival') {
                 lives--;
                 document.getElementById('lives').innerText = lives;
-                showFeedback(false, `❌ WRONG! You lost a life. ${lives} lives remaining.`);
+                showFeedback(false, '⏰ TIME\'S UP! You lost a life.');
                 if (lives <= 0) {
                     endGame();
                     return;
                 }
             } else {
-                showFeedback(false, `❌ WRONG! The correct answer is: ${q.correct}`);
+                showFeedback(false, '⏰ TIME\'S UP! The correct answer is highlighted.');
             }
             
-            document.querySelectorAll('.option-btn').forEach(button => {
-                if (button.innerText === q.correct) {
-                    button.classList.add('correct');
+            const q = currentQuestions[currentIndex];
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                if (btn.innerText === q.correct) {
+                    btn.classList.add('correct');
+                }
+                btn.classList.add('disabled');
+                btn.disabled = true;
+            });
+            
+            document.getElementById('nextBtn').classList.add('show');
+            stopTimer();
+        }
+
+        function playAudio(file) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            const audioUrl = AUDIO_BASE + file;
+            currentAudio = new Audio(audioUrl);
+            currentAudio.play().catch(e => console.log('Audio error:', e));
+            
+            if (gameMode === 'speed') {
+                audioPlays++;
+                document.getElementById('audioAttempts').innerHTML = `🎧 Played ${audioPlays} time(s)`;
+            }
+        }
+
+        function loadQuestion() {
+            answered = false;
+            audioPlays = 0;
+            document.getElementById('audioAttempts').innerHTML = '';
+            const q = currentQuestions[currentIndex];
+            
+            document.getElementById('currentQ').innerText = currentIndex + 1;
+            document.getElementById('questionText').innerHTML = 'What does this phrase mean?';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('nextBtn').classList.remove('show');
+            
+            const options = [...q.options];
+            const shuffledOpts = shuffleArray([...options]);
+            
+            const optionsArea = document.getElementById('optionsArea');
+            optionsArea.innerHTML = '';
+            shuffledOpts.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(btn, opt);
+                optionsArea.appendChild(btn);
+            });
+            
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('disabled', 'correct', 'wrong');
+                btn.disabled = false;
+            });
+            
+            updateLevel();
+            updateProgress();
+            startTimer();
+        }
+
+        function checkAnswer(btn, selected) {
+            if (answered) return;
+            answered = true;
+            stopTimer();
+            
+            const q = currentQuestions[currentIndex];
+            const isCorrect = (selected === q.correct);
+            
+            if (isCorrect) {
+                let points = 10 * level;
+                if (gameMode === 'speed' && audioPlays === 1) points += 5;
+                if (streak > 0) points += Math.min(streak * 2, 20);
+                
+                score += points;
+                streak++;
+                btn.classList.add('correct');
+                document.getElementById('score').innerText = score;
+                document.getElementById('streak').innerText = streak;
+                showFeedback(true, `✅ CORRECT! +${points} points (Level ${level} bonus)`);
+            } else {
+                streak = 0;
+                document.getElementById('streak').innerText = streak;
+                btn.classList.add('wrong');
+                
+                if (gameMode === 'survival') {
+                    lives--;
+                    document.getElementById('lives').innerText = lives;
+                    showFeedback(false, `❌ WRONG! You lost a life. ${lives} lives remaining.`);
+                    if (lives <= 0) {
+                        endGame();
+                        return;
+                    }
+                } else {
+                    showFeedback(false, `❌ WRONG! The correct answer is: ${q.correct}`);
+                }
+                
+                document.querySelectorAll('.option-btn').forEach(button => {
+                    if (button.innerText === q.correct) {
+                        button.classList.add('correct');
+                    }
+                });
+            }
+            
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.add('disabled');
+                btn.disabled = true;
+            });
+            
+            document.getElementById('nextBtn').classList.add('show');
+        }
+
+        function showFeedback(isCorrect, message) {
+            const feedbackDiv = document.getElementById('feedback');
+            feedbackDiv.innerText = message;
+            feedbackDiv.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
+            feedbackDiv.style.display = 'block';
+        }
+
+        function updateProgress() {
+            const progress = ((currentIndex + 1) / currentQuestions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function repeatAudio() {
+            if (powerUps.repeat <= 0) {
+                alert('No repeats left!');
+                return;
+            }
+            if (answered) return;
+            if (currentQuestions[currentIndex]) {
+                powerUps.repeat--;
+                document.getElementById('repeatPowerup').innerText = `🔁 REPEAT (${powerUps.repeat} left)`;
+                if (powerUps.repeat === 0) document.getElementById('repeatPowerup').classList.add('disabled');
+                playAudio(currentQuestions[currentIndex].audio);
+            }
+        }
+
+        function useHint() {
+            if (powerUps.hint <= 0) {
+                alert('No hints left!');
+                return;
+            }
+            if (answered) return;
+            
+            powerUps.hint--;
+            document.getElementById('hintPowerup').innerText = `💡 HINT (${powerUps.hint} left)`;
+            if (powerUps.hint === 0) document.getElementById('hintPowerup').classList.add('disabled');
+            
+            const q = currentQuestions[currentIndex];
+            const firstLetter = q.correct.charAt(0).toUpperCase();
+            showFeedback(false, `💡 HINT: The correct answer starts with "${firstLetter}".`);
+            setTimeout(() => {
+                if (document.getElementById('feedback').innerText.includes('HINT')) {
+                    document.getElementById('feedback').style.display = 'none';
+                }
+            }, 2000);
+        }
+
+        function nextQuestion() {
+            currentIndex++;
+            if (currentIndex < currentQuestions.length) {
+                loadQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            const percentage = Math.round((score / (totalQuestions * 10)) * 100);
+            document.getElementById('finalScore').innerHTML = score + ' points (' + percentage + '%)';
+            
+            let message = '';
+            let unlockMsg = '';
+            if (percentage >= 80) {
+                message = '🏆 AUDIO MASTER! You have exceptional listening skills! 🏆';
+                unlockMsg = '🎉 UNLOCKED: Advanced Audio Challenge Mode!';
+            } else if (percentage >= 60) {
+                message = '🎉 GREAT JOB! You understand most of the phrases! 🎉';
+                unlockMsg = '🔓 Keep practicing to unlock Master Mode!';
+            } else if (percentage >= 40) {
+                message = '👍 GOOD EFFORT! Review the lesson and try again! 👍';
+            } else {
+                message = '📚 KEEP PRACTICING! Listen to the audio again and come back stronger! 📚';
+            }
+            document.getElementById('congratsMsg').innerHTML = message;
+            document.getElementById('unlockMsg').innerHTML = unlockMsg;
+            
+            document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
+            document.getElementById('gameEnd').classList.add('show');
+        }
+
+        function setMode(mode) {
+            gameMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-mode') === mode) btn.classList.add('active');
+            });
+            
+            if (mode === 'survival') {
+                lives = 3;
+                document.getElementById('lives').style.display = 'inline-block';
+                document.getElementById('timerContainer').style.display = 'none';
+            } else if (mode === 'speed') {
+                document.getElementById('lives').style.display = 'inline-block';
+                document.getElementById('timerContainer').style.display = 'block';
+            } else {
+                document.getElementById('lives').style.display = 'inline-block';
+                document.getElementById('timerContainer').style.display = 'none';
+            }
+            restartGame();
+        }
+
+        function restartGame() {
+            score = 0;
+            streak = 0;
+            lives = 3;
+            level = 1;
+            currentIndex = 0;
+            powerUps = { repeat: 2, hint: 1 };
+            document.getElementById('score').innerText = '0';
+            document.getElementById('streak').innerText = '0';
+            document.getElementById('lives').innerText = '3';
+            document.getElementById('repeatPowerup').innerText = '🔁 REPEAT (2 left)';
+            document.getElementById('hintPowerup').innerText = '💡 HINT (1 left)';
+            document.getElementById('repeatPowerup').classList.remove('disabled');
+            document.getElementById('hintPowerup').classList.remove('disabled');
+            
+            document.querySelector('.game-container > div:not(.game-end)').style.display = 'block';
+            document.getElementById('gameEnd').classList.remove('show');
+            
+            currentQuestions = selectRandomQuestions();
+            document.getElementById('totalQ').innerText = currentQuestions.length;
+            loadQuestion();
+        }
+
+        function setupAudioArea() {
+            const audioArea = document.getElementById('audioArea');
+            audioArea.addEventListener('click', () => {
+                if (currentQuestions[currentIndex]) {
+                    playAudio(currentQuestions[currentIndex].audio);
                 }
             });
         }
-        
-        document.querySelectorAll('.option-btn').forEach(btn => {
-            btn.classList.add('disabled');
-            btn.disabled = true;
-        });
-        
-        document.getElementById('nextBtn').classList.add('show');
-    }
 
-    function showFeedback(isCorrect, message) {
-        const feedbackDiv = document.getElementById('feedback');
-        feedbackDiv.innerText = message;
-        feedbackDiv.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
-        feedbackDiv.style.display = 'block';
-    }
-
-    function updateProgress() {
-        const progress = ((currentIndex + 1) / currentQuestions.length) * 100;
-        document.getElementById('progressFill').style.width = progress + '%';
-    }
-
-    function repeatAudio() {
-        if (powerUps.repeat <= 0) {
-            alert('No repeats left!');
-            return;
-        }
-        if (answered) return;
-        if (currentQuestions[currentIndex]) {
-            powerUps.repeat--;
-            document.getElementById('repeatPowerup').innerText = `🔁 REPEAT (${powerUps.repeat} left)`;
-            if (powerUps.repeat === 0) document.getElementById('repeatPowerup').classList.add('disabled');
-            playAudio(currentQuestions[currentIndex].audio);
-        }
-    }
-
-    function useHint() {
-        if (powerUps.hint <= 0) {
-            alert('No hints left!');
-            return;
-        }
-        if (answered) return;
-        
-        powerUps.hint--;
-        document.getElementById('hintPowerup').innerText = `💡 HINT (${powerUps.hint} left)`;
-        if (powerUps.hint === 0) document.getElementById('hintPowerup').classList.add('disabled');
-        
-        const q = currentQuestions[currentIndex];
-        const firstLetter = q.correct.charAt(0).toUpperCase();
-        showFeedback(false, `💡 HINT: The correct answer starts with "${firstLetter}".`);
-        setTimeout(() => {
-            if (document.getElementById('feedback').innerText.includes('HINT')) {
-                document.getElementById('feedback').style.display = 'none';
-            }
-        }, 2000);
-    }
-
-    function nextQuestion() {
-        currentIndex++;
-        if (currentIndex < currentQuestions.length) {
+        function initGame() {
+            currentQuestions = selectRandomQuestions();
+            document.getElementById('totalQ').innerText = currentQuestions.length;
             loadQuestion();
-        } else {
-            endGame();
+            setupAudioArea();
+            
+            document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+            document.getElementById('restartBtn').addEventListener('click', restartGame);
+            document.getElementById('repeatPowerup').addEventListener('click', repeatAudio);
+            document.getElementById('hintPowerup').addEventListener('click', useHint);
+            
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.addEventListener('click', () => setMode(btn.getAttribute('data-mode')));
+            });
         }
-    }
 
-    function endGame() {
-        const percentage = Math.round((score / (totalQuestions * 10)) * 100);
-        document.getElementById('finalScore').innerHTML = score + ' points (' + percentage + '%)';
-        
-        let message = '';
-        let unlockMsg = '';
-        if (percentage >= 80) {
-            message = '🏆 AUDIO MASTER! You have exceptional listening skills! 🏆';
-            unlockMsg = '🎉 UNLOCKED: Advanced Audio Challenge Mode!';
-        } else if (percentage >= 60) {
-            message = '🎉 GREAT JOB! You understand most of the phrases! 🎉';
-            unlockMsg = '🔓 Keep practicing to unlock Master Mode!';
-        } else if (percentage >= 40) {
-            message = '👍 GOOD EFFORT! Review the lesson and try again! 👍';
-        } else {
-            message = '📚 KEEP PRACTICING! Listen to the audio again and come back stronger! 📚';
-        }
-        document.getElementById('congratsMsg').innerHTML = message;
-        document.getElementById('unlockMsg').innerHTML = unlockMsg;
-        
-        document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
-        document.getElementById('gameEnd').classList.add('show');
+        initGame();
     }
-
-    function setMode(mode) {
-        gameMode = mode;
-        document.querySelectorAll('.mode-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.getAttribute('data-mode') === mode) btn.classList.add('active');
-        });
-        
-        if (mode === 'survival') {
-            lives = 3;
-            document.getElementById('lives').style.display = 'inline-block';
-            document.getElementById('timerContainer').style.display = 'none';
-        } else if (mode === 'speed') {
-            document.getElementById('lives').style.display = 'inline-block';
-            document.getElementById('timerContainer').style.display = 'block';
-        } else {
-            document.getElementById('lives').style.display = 'inline-block';
-            document.getElementById('timerContainer').style.display = 'none';
-        }
-        restartGame();
-    }
-
-    function restartGame() {
-        score = 0;
-        streak = 0;
-        lives = 3;
-        level = 1;
-        currentIndex = 0;
-        powerUps = { repeat: 2, hint: 1 };
-        document.getElementById('score').innerText = '0';
-        document.getElementById('streak').innerText = '0';
-        document.getElementById('lives').innerText = '3';
-        document.getElementById('repeatPowerup').innerText = '🔁 REPEAT (2 left)';
-        document.getElementById('hintPowerup').innerText = '💡 HINT (1 left)';
-        document.getElementById('repeatPowerup').classList.remove('disabled');
-        document.getElementById('hintPowerup').classList.remove('disabled');
-        
-        document.querySelector('.game-container > div:not(.game-end)').style.display = 'block';
-        document.getElementById('gameEnd').classList.remove('show');
-        
-        currentQuestions = selectRandomQuestions();
-        document.getElementById('totalQ').innerText = currentQuestions.length;
-        loadQuestion();
-    }
-
-    function setupAudioArea() {
-        const audioArea = document.getElementById('audioArea');
-        audioArea.addEventListener('click', () => {
-            if (currentQuestions[currentIndex]) {
-                playAudio(currentQuestions[currentIndex].audio);
-            }
-        });
-    }
-
-    function initGame() {
-        currentQuestions = selectRandomQuestions();
-        document.getElementById('totalQ').innerText = currentQuestions.length;
-        loadQuestion();
-        setupAudioArea();
-        
-        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
-        document.getElementById('restartBtn').addEventListener('click', restartGame);
-        document.getElementById('repeatPowerup').addEventListener('click', repeatAudio);
-        document.getElementById('hintPowerup').addEventListener('click', useHint);
-        
-        document.querySelectorAll('.mode-btn').forEach(btn => {
-            btn.addEventListener('click', () => setMode(btn.getAttribute('data-mode')));
-        });
-    }
-
-    initGame();
 </script>
 </body>
 </html>
