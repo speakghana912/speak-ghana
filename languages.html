@@ -388,6 +388,21 @@
             margin: 0 auto;
         }
 
+        /* Risk Reducer Banner */
+        .risk-reducer {
+            background: linear-gradient(135deg, var(--gold), #c49a6c);
+            border-radius: 60px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0 2rem;
+            text-align: center;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .risk-reducer i {
+            margin-right: 0.5rem;
+        }
+
         /* Language Navigator */
         .language-navigator {
             background: white;
@@ -566,7 +581,7 @@
         /* Package Grid */
         .package-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
             margin: 1.5rem 0;
         }
@@ -655,6 +670,18 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Money-Back Guarantee */
+        .money-back {
+            background: #e8f5e9;
+            border-radius: 16px;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--green);
+        }
+
         /* Perks Section */
         .perks-section {
             background: linear-gradient(135deg, #fff5e8, white);
@@ -668,6 +695,46 @@
         .perks-section p {
             font-size: 0.8rem;
             margin: 0.3rem 0;
+        }
+
+        /* Cultural Immersion Box */
+        .cultural-box {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 0.8rem;
+            margin-top: 0.8rem;
+            text-align: center;
+            font-size: 0.75rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        /* Testimonials Strip */
+        .testimonials-strip {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            color: white;
+        }
+
+        .testimonials-strip h4 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .testimonial-mini {
+            font-style: italic;
+            font-size: 0.85rem;
+            margin: 0.5rem 0;
+            padding-left: 1rem;
+            border-left: 2px solid var(--gold);
+        }
+
+        .testimonial-author-mini {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin-top: 0.2rem;
         }
 
         /* Custom Packages */
@@ -689,6 +756,31 @@
         .custom-packages p {
             font-size: 0.9rem;
             color: var(--gray);
+        }
+
+        /* Kids Section */
+        .kids-highlight {
+            background: linear-gradient(135deg, #e8f5e9, white);
+            border-radius: 16px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid var(--green);
+        }
+
+        .kids-highlight h5 {
+            color: var(--green);
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .kids-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            margin-right: 0.5rem;
         }
 
         /* Scholarship Section */
@@ -1032,6 +1124,13 @@
         </div>
     </div>
 
+    <!-- Risk Reducer Banner -->
+    <div class="container">
+        <div class="risk-reducer">
+            <i class="fas fa-shield-alt"></i> 7-Day Money-Back Guarantee • Free First Lesson • No Commitment Required
+        </div>
+    </div>
+
     <!-- Language Navigator -->
     <div class="container">
         <div class="language-navigator">
@@ -1057,6 +1156,19 @@
                 </div>
             </div>
 
+            <!-- Testimonials Strip -->
+            <div class="testimonials-strip">
+                <h4>What Our Students Say</h4>
+                <div class="testimonial-mini">
+                    "After just one month, I can already form real Twi sentences. The teachers are amazing!"
+                    <div class="testimonial-author-mini">— Adelaide Daniels, UK</div>
+                </div>
+                <div class="testimonial-mini">
+                    "My kids actually look forward to their Twi lessons. The cultural immersion makes all the difference."
+                    <div class="testimonial-author-mini">— Sarah, USA</div>
+                </div>
+            </div>
+
             <!-- Self-Paced Courses -->
             <div class="self-paced-section">
                 <div class="self-paced-title">
@@ -1071,7 +1183,8 @@
                             <li>PDF textbooks for each topic</li>
                             <li>Fun learning games</li>
                         </ul>
-                        <button onclick="openEnrollmentModal('Twi', 'Self-Paced Basic')" class="btn btn-primary">Enroll Now</button>
+                        <div class="money-back">7-day money-back guarantee</div>
+                        <button onclick="openEnrollmentModal('Twi', 'Self-Paced Basic')" class="btn btn-primary" style="margin-top: 0.5rem;">Enroll Now</button>
                     </div>
                     <div class="self-paced-card">
                         <div class="popular-badge">MOST POPULAR</div>
@@ -1084,8 +1197,10 @@
                             <li>Quizzes & assessments</li>
                             <li>Fun learning games</li>
                             <li>Certificates for each level</li>
+                            <li>Progress tracking dashboard</li>
                         </ul>
-                        <button onclick="openEnrollmentModal('Twi', 'Self-Paced Standard')" class="btn btn-primary">Enroll Now</button>
+                        <div class="money-back">7-day money-back guarantee</div>
+                        <button onclick="openEnrollmentModal('Twi', 'Self-Paced Standard')" class="btn btn-primary" style="margin-top: 0.5rem;">Enroll Now</button>
                     </div>
                     <div class="self-paced-card">
                         <h4>Premium</h4>
@@ -1093,9 +1208,11 @@
                         <ul class="self-paced-features">
                             <li>All Standard features</li>
                             <li>Monthly live Q&A with teacher</li>
-                            <li>Priority support</li>
+                            <li>Priority support (response within 12 hours)</li>
+                            <li>Personalized feedback on assignments</li>
                         </ul>
-                        <button onclick="openEnrollmentModal('Twi', 'Self-Paced Premium')" class="btn btn-primary">Enroll Now</button>
+                        <div class="money-back">7-day money-back guarantee</div>
+                        <button onclick="openEnrollmentModal('Twi', 'Self-Paced Premium')" class="btn btn-primary" style="margin-top: 0.5rem;">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1115,11 +1232,14 @@
                             <li>Interactive conversation practice</li>
                             <li>Cultural immersion lessons</li>
                             <li>Audio & video resources (songs, lyrics, movie clips)</li>
-                            <li>PDF textbook included</li>
+                            <li>PDF textbook (300+ pages) included</li>
                             <li>Worksheets & practice materials</li>
                             <li>Quizzes to test progress</li>
                             <li>Certificate upon completion</li>
                         </ul>
+                        <div class="cultural-box">
+                            <i class="fas fa-music"></i> Cultural Immersion: Proverbs, Adinkra symbols, festivals, traditional songs
+                        </div>
                         <div class="package-price">$50 <small>/ month</small></div>
                         <div class="discount-note">Pay as low as $45/month with 3-month commit • $40/month with 6-month commit</div>
                         <div class="perks-section">
@@ -1127,7 +1247,8 @@
                             <p>Referral Perk: Bring a friend → both get 15% off for 1 month</p>
                             <p>Perfect Attendance: Free bonus lesson every 4 weeks</p>
                         </div>
-                        <button onclick="openEnrollmentModal('Twi', 'Group 90min Weekly')" class="btn btn-primary">Enroll Now</button>
+                        <div class="money-back">7-day money-back guarantee</div>
+                        <button onclick="openEnrollmentModal('Twi', 'Group 90min Weekly')" class="btn btn-primary" style="margin-top: 0.5rem;">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1144,16 +1265,19 @@
                         <div class="guarantee-badge">Speak confidently or your money back</div>
                         <ul class="package-features">
                             <li>Direct 1-on-1 access to your teacher</li>
-                            <li>Choose your day and time</li>
-                            <li>Personalized learning path</li>
+                            <li>Choose your day and time (flexible scheduling)</li>
+                            <li>Personalized learning path tailored to your goals</li>
                             <li>Cultural immersion lessons</li>
                             <li>Audio & video resources (songs, lyrics, movie clips)</li>
                             <li>Real-time pronunciation correction</li>
-                            <li>PDF textbook included</li>
+                            <li>PDF textbook (300+ pages) included</li>
                             <li>Worksheets & practice materials</li>
                             <li>Quizzes to test progress</li>
                             <li>Certificate upon completion</li>
                         </ul>
+                        <div class="cultural-box">
+                            <i class="fas fa-drumstick-bite"></i> Bonus: Family conversation prompts • Traditional recipes • Cultural etiquette guides
+                        </div>
                         <div class="package-price">$75 <small>/ month</small></div>
                         <div class="discount-note">Pay as low as $67.50/month with 3-month commit • $60/month with 6-month commit</div>
                         <div class="perks-section">
@@ -1162,9 +1286,18 @@
                             <p>Perfect Attendance: Free bonus lesson every 4 weeks</p>
                             <p>Lesson Recordings: Review anytime</p>
                         </div>
-                        <button onclick="openEnrollmentModal('Twi', 'Private 60min Weekly')" class="btn btn-primary">Enroll Now</button>
+                        <div class="money-back">7-day money-back guarantee</div>
+                        <button onclick="openEnrollmentModal('Twi', 'Private 60min Weekly')" class="btn btn-primary" style="margin-top: 0.5rem;">Enroll Now</button>
                     </div>
                 </div>
+            </div>
+
+            <!-- Kids & Teens Highlight -->
+            <div class="kids-highlight">
+                <h5><i class="fas fa-child"></i> Programs for Kids & Teens</h5>
+                <p><span class="kids-badge">Ages 5-8</span> Twi Tots • <span class="kids-badge">Ages 9-12</span> Twi Explorers • <span class="kids-badge">Ages 13-17</span> Teen Talk</p>
+                <p>Play-based learning, songs, stories, and cultural activities designed for young learners.</p>
+                <a href="kids-teens.html" class="btn btn-outline btn-small" style="margin-top: 0.5rem;">View Kids Programs →</a>
             </div>
 
             <!-- Custom Packages -->
@@ -1190,7 +1323,7 @@
             </div>
         </section>
 
-        <!-- GA SECTION -->
+        <!-- GA SECTION (Enhanced with testimonials and better inclusions) -->
         <section id="ga" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🏙️</div>
@@ -1202,6 +1335,9 @@
                     </div>
                 </div>
             </div>
+            <div class="testimonials-strip" style="margin-bottom: 1rem;">
+                <div class="testimonial-mini">"Learning Ga helped me connect with my Accra roots. The cultural lessons are incredible!"<div class="testimonial-author-mini">— Naa Ayele, USA</div></div>
+            </div>
             <div class="self-paced-section">
                 <div class="self-paced-title">
                     <h3>Self-Paced Ga</h3>
@@ -1210,16 +1346,19 @@
                     <div class="self-paced-card">
                         <h4>Basic</h4>
                         <div class="self-paced-price">$10 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>Video lessons</li><li>PDF textbooks</li><li>Learning games</li></ul>
                         <button onclick="openEnrollmentModal('Ga', 'Self-Paced Basic')" class="btn btn-primary">Enroll Now</button>
                     </div>
                     <div class="self-paced-card">
                         <h4>Standard</h4>
                         <div class="self-paced-price">$20 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>Video lessons</li><li>PDF textbooks</li><li>Worksheets & quizzes</li><li>Games & certificates</li></ul>
                         <button onclick="openEnrollmentModal('Ga', 'Self-Paced Standard')" class="btn btn-primary">Enroll Now</button>
                     </div>
                     <div class="self-paced-card">
                         <h4>Premium</h4>
                         <div class="self-paced-price">$30 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>All Standard features</li><li>Monthly live Q&A</li><li>Priority support</li></ul>
                         <button onclick="openEnrollmentModal('Ga', 'Self-Paced Premium')" class="btn btn-primary">Enroll Now</button>
                     </div>
                 </div>
@@ -1228,6 +1367,7 @@
                 <div class="package-card">
                     <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly Zoom Lessons</div></div>
                     <div class="package-body">
+                        <ul class="package-features"><li>Cultural immersion</li><li>PDF textbook included</li><li>Worksheets & quizzes</li><li>Certificate upon completion</li></ul>
                         <div class="package-price">$50 <small>/ month</small></div>
                         <button onclick="openEnrollmentModal('Ga', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
                     </div>
@@ -1235,10 +1375,15 @@
                 <div class="package-card">
                     <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
                     <div class="package-body">
+                        <ul class="package-features"><li>1-on-1 with teacher</li><li>Flexible scheduling</li><li>Cultural immersion</li><li>Certificate upon completion</li></ul>
                         <div class="package-price">$75 <small>/ month</small></div>
                         <button onclick="openEnrollmentModal('Ga', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
                     </div>
                 </div>
+            </div>
+            <div class="kids-highlight">
+                <h5><i class="fas fa-child"></i> Ga for Kids & Teens</h5>
+                <p>Special programs for young learners aged 5-17. Fun, engaging, and culturally rich.</p>
             </div>
             <div class="custom-packages">
                 <h4>Family & Siblings Packages Available</h4>
@@ -1259,6 +1404,7 @@
                 <div class="package-card">
                     <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly Zoom Lessons</div></div>
                     <div class="package-body">
+                        <ul class="package-features"><li>Cultural immersion (drumming, festivals)</li><li>PDF textbook included</li><li>Certificate upon completion</li></ul>
                         <div class="package-price">$50 <small>/ month</small></div>
                         <button onclick="openEnrollmentModal('Ewe', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
                     </div>
@@ -1266,6 +1412,7 @@
                 <div class="package-card">
                     <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
                     <div class="package-body">
+                        <ul class="package-features"><li>1-on-1 with native speaker</li><li>Flexible scheduling</li><li>Certificate upon completion</li></ul>
                         <div class="package-price">$75 <small>/ month</small></div>
                         <button onclick="openEnrollmentModal('Ewe', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
                     </div>
