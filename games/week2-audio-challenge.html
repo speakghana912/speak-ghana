@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Audio Challenge | Twi Listening Master | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .game-container {
+            background: white;
+            border-radius: 48px;
+            max-width: 850px;
+            width: 100%;
+            padding: 2rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+        .game-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .game-header h1 {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+        }
+        .game-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Mode Selector */
+        .mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .mode-btn {
+            background: #FDF8F2;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .mode-btn.active {
+            background: #2A9D8F;
+            color: white;
+            border-color: #2A9D8F;
+        }
+        .mode-btn:hover {
+            background: #D4A373;
+            color: black;
+        }
+        
+        /* Difficulty Badge */
+        .difficulty-badge {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .difficulty {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .difficulty.easy { background: #2A9D8F; color: white; }
+        .difficulty.medium { background: #D4A373; color: black; }
+        .difficulty.hard { background: #E76F51; color: white; }
+        .difficulty.master { background: #1E1E1E; color: white; }
+        
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            background: #FDF8F2;
+            padding: 1rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .stat-card {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .stat-card span {
+            color: #2A9D8F;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+        
+        /* Timer Bar */
+        .timer-container {
+            margin-bottom: 1rem;
+        }
+        .timer-bar {
+            background: #e0e0e0;
+            border-radius: 30px;
+            height: 8px;
+            overflow: hidden;
+        }
+        .timer-fill {
+            background: linear-gradient(90deg, #E76F51, #D4A373);
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.1s linear;
+        }
+        .timer-text {
+            font-size: 0.7rem;
+            color: #666;
+            margin-top: 0.2rem;
+            text-align: right;
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 30px;
+            height: 6px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.3s;
+        }
+        
+        /* Audio Area */
+        .audio-area {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            border-radius: 40px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .audio-area:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .play-icon {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        .play-text {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+        .audio-attempts {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 0.5rem;
+        }
+        
+        /* Question Area */
+        .question-area {
+            background: #FDF8F2;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .question-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1E1E1E;
+        }
+        
+        /* Options Area */
+        .options-area {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .option-btn {
+            background: #FDF8F2;
+            border: 2px solid #e2e8f0;
+            border-radius: 60px;
+            padding: 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .option-btn:hover {
+            background: #2A9D8F;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .option-btn.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .option-btn.correct {
+            background: #2A9D8F;
+            color: white;
+            animation: pulse 0.5s ease;
+        }
+        .option-btn.wrong {
+            background: #E76F51;
+            color: white;
+            animation: shake 0.3s ease;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        /* Feedback */
+        .feedback {
+            padding: 0.8rem;
+            border-radius: 60px;
+            margin-bottom: 1rem;
+            display: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .feedback.correct {
+            display: block;
+            background: #d4f5ef;
+            color: #1f7a6e;
+        }
+        .feedback.incorrect {
+            display: block;
+            background: #fde5dd;
+            color: #E76F51;
+        }
+        
+        /* Next Button */
+        .next-btn {
+            background: #D4A373;
+            color: #1E1E1E;
+            border: none;
+            padding: 1rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            display: none;
+            transition: all 0.3s;
+        }
+        .next-btn.show {
+            display: block;
+        }
+        .next-btn:hover {
+            background: #2A9D8F;
+            color: white;
+        }
+        
+        /* Power-ups */
+        .powerups {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .powerup {
+            background: #FDF8F2;
+            border: 1px solid #e2e8f0;
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .powerup:hover {
+            background: #D4A373;
+            color: black;
+        }
+        .powerup.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        /* Game End */
+        .game-end {
+            display: none;
+            text-align: center;
+        }
+        .game-end.show {
+            display: block;
+        }
+        .final-score {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2A9D8F;
+            margin: 1rem 0;
+        }
+        .restart-btn {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        
+        .watermark {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            color: #ccc;
+        }
+        
+        @media (max-width: 600px) {
+            .options-area {
+                grid-template-columns: 1fr;
+            }
+            .mode-selector {
+                gap: 0.5rem;
+            }
+            .mode-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-header">
+        <h1>🎯 AUDIO CHALLENGE</h1>
+        <p>Listen • Think • React • Master Twi Greetings</p>
+    </div>
+
+    <!-- Mode Selector -->
+    <div class="mode-selector">
+        <button class="mode-btn active" data-mode="standard">📖 Standard</button>
+        <button class="mode-btn" data-mode="speed">⚡ Speed Mode</button>
+        <button class="mode-btn" data-mode="survival">💀 Survival Mode</button>
+    </div>
+
+    <div class="difficulty-badge" id="difficultyBadge">
+        <span class="difficulty easy">🎯 LEVEL 1 - EASY</span>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">🏆 SCORE: <span id="score">0</span></div>
+        <div class="stat-card">⚡ STREAK: <span id="streak">0</span></div>
+        <div class="stat-card">📋 <span id="currentQ">1</span>/<span id="totalQ">10</span></div>
+        <div class="stat-card">💪 LIVES: <span id="lives">3</span></div>
+    </div>
+
+    <div class="timer-container" id="timerContainer" style="display: none;">
+        <div class="timer-bar">
+            <div class="timer-fill" id="timerFill" style="width: 100%;"></div>
+        </div>
+        <div class="timer-text">⏱️ Time left to answer</div>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="audio-area" id="audioArea">
+        <div class="play-icon">🔊</div>
+        <div class="play-text">Click to play the sound</div>
+        <div class="audio-attempts" id="audioAttempts"></div>
+    </div>
+
+    <div class="question-area">
+        <div class="question-text" id="questionText">What does this phrase mean?</div>
+    </div>
+
+    <div class="options-area" id="optionsArea"></div>
+
+    <div class="powerups" id="powerups">
+        <div class="powerup" id="repeatPowerup">🔁 REPEAT (2 left)</div>
+        <div class="powerup" id="hintPowerup">💡 HINT (1 left)</div>
+    </div>
+
+    <div class="feedback" id="feedback"></div>
+
+    <button class="next-btn" id="nextBtn">Next Question →</button>
+
+    <div class="game-end" id="gameEnd">
+        <div style="font-size: 4rem;">🏆</div>
+        <h2>Challenge Complete!</h2>
+        <p>Your final score:</p>
+        <div class="final-score" id="finalScore">0/10</div>
+        <p id="congratsMsg"></p>
+        <p id="unlockMsg"></p>
+        <button class="restart-btn" id="restartBtn">Play Again ↻</button>
+    </div>
+
+    <div class="watermark">
+        Speak Ghana Language School | Audio Challenge Mode
+    </div>
+</div>
+
+<script>
+    const AUDIO_BASE = 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/';
+    
+    const allQuestions = [
+        { audio: "morn.m4a", correct: "Good morning", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
+        { audio: "noon.m4a", correct: "Good afternoon", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
+        { audio: "eve.m4a", correct: "Good evening", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
+        { audio: "welc.m4a", correct: "Welcome", options: ["Welcome", "Thank you", "Goodbye", "Please"] },
+        { audio: "r-man.m4a", correct: "Response to elder man", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
+        { audio: "r-wom.m4a", correct: "Response to elder woman", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
+        { audio: "r-peer.m4a", correct: "Response to peer", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
+        { audio: "how-u.m4a", correct: "How are you? (formal)", options: ["How are you? (formal)", "How are you? (informal)", "What is your name?", "Where are you from?"] },
+        { audio: "how-inf.m4a", correct: "How are you? (informal)", options: ["How are you? (formal)", "How are you? (informal)", "What is your name?", "Where are you from?"] },
+        { audio: "i-fine.m4a", correct: "I am fine", options: ["I am fine", "I am tired", "I am happy", "I am sad"] },
+        { audio: "grace.m4a", correct: "By God's grace", options: ["By God's grace", "Thank you", "Welcome", "Good luck"] },
+        { audio: "grace-full.m4a", correct: "By God's grace, I am fine", options: ["By God's grace, I am fine", "By God's grace", "I am fine", "Thank you"] },
+        { audio: "cool.m4a", correct: "Cool / Calm", options: ["Cool / Calm", "Hot", "Cold", "Happy"] },
+        { audio: "and-u.m4a", correct: "And you?", options: ["And you?", "And me?", "And them?", "And us?"] },
+        { audio: "my-name.m4a", correct: "My name is", options: ["My name is", "What is your name?", "His name is", "Her name is"] },
+        { audio: "ur-name.m4a", correct: "What is your name?", options: ["My name is", "What is your name?", "His name is", "Her name is"] },
+        { audio: "they-call.m4a", correct: "What do they call you?", options: ["What do they call you?", "What is your name?", "How are you?", "Where are you from?"] },
+        { audio: "i-from.m4a", correct: "I am from", options: ["I am from", "You are from", "He is from", "She is from"] },
+        { audio: "u-from.m4a", correct: "Where are you from?", options: ["Where are you from?", "Where do you live?", "Where are you going?", "Where is he?"] },
+        { audio: "i-live.m4a", correct: "I live in", options: ["I live in", "You live in", "He lives in", "She lives in"] },
+        { audio: "u-live.m4a", correct: "Where do you live?", options: ["Where do you live?", "Where are you from?", "Where are you going?", "Where is he?"] },
+        { audio: "nice-meet.m4a", correct: "Nice to meet you", options: ["Nice to meet you", "Good to see you", "Welcome", "Thank you"] },
+        { audio: "thanks.m4a", correct: "Thank you", options: ["Thank you", "Please", "Welcome", "Sorry"] },
+        { audio: "please.m4a", correct: "Please / Excuse me", options: ["Please / Excuse me", "Thank you", "Welcome", "Sorry"] },
+        { audio: "g-night.m4a", correct: "Good night / Sleep well", options: ["Good night / Sleep well", "Good morning", "Good afternoon", "Good evening"] },
+        { audio: "bye.m4a", correct: "Goodbye / See you later", options: ["Goodbye / See you later", "Welcome", "Thank you", "Please"] },
+        { audio: "safe.m4a", correct: "Safe journey", options: ["Safe journey", "Good luck", "Welcome", "Thank you"] },
+        { audio: "well-done.m4a", correct: "Well done!", options: ["Well done!", "Good job", "Congratulations", "Thank you"] },
+        { audio: "i-und.m4a", correct: "I understand", options: ["I understand", "I don't understand", "I know", "I don't know"] },
+        { audio: "i-not.m4a", correct: "I don't understand", options: ["I understand", "I don't understand", "I know", "I don't know"] },
+        { audio: "repeat.m4a", correct: "Say it again", options: ["Say it again", "Slowly", "Louder", "Softer"] },
+        { audio: "slow.m4a", correct: "Slowly / Little by little", options: ["Slowly / Little by little", "Quickly", "Loudly", "Softly"] },
+        { audio: "yes.m4a", correct: "Yes", options: ["Yes", "No", "Maybe", "OK"] },
+        { audio: "no.m4a", correct: "No", options: ["Yes", "No", "Maybe", "OK"] },
+        { audio: "ok.m4a", correct: "OK / Alright", options: ["OK / Alright", "Yes", "No", "Maybe"] }
+    ];
+
+    let gameMode = 'standard';
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let score = 0;
+    let streak = 0;
+    let lives = 3;
+    let level = 1;
+    let timeLeft = 10;
+    let timerInterval = null;
+    let answered = false;
+    let totalQuestions = 10;
+    let currentAudio = null;
+    let audioPlays = 0;
+    let powerUps = { repeat: 2, hint: 1 };
+
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    function selectRandomQuestions() {
+        const shuffled = shuffleArray([...allQuestions]);
+        return shuffled.slice(0, totalQuestions);
+    }
+
+    function updateLevel() {
+        if (score >= 25) level = 5;
+        else if (score >= 18) level = 4;
+        else if (score >= 12) level = 3;
+        else if (score >= 6) level = 2;
+        else level = 1;
+        
+        const badge = document.getElementById('difficultyBadge');
+        if (level === 1) badge.innerHTML = '<span class="difficulty easy">🎯 LEVEL 1 - EASY</span>';
+        else if (level === 2) badge.innerHTML = '<span class="difficulty medium">⚡ LEVEL 2 - MEDIUM</span>';
+        else if (level === 3) badge.innerHTML = '<span class="difficulty hard">🔥 LEVEL 3 - HARD</span>';
+        else if (level === 4) badge.innerHTML = '<span class="difficulty master">💀 LEVEL 4 - EXPERT</span>';
+        else badge.innerHTML = '<span class="difficulty master">🏆 LEVEL 5 - MASTER</span>';
+        
+        if (gameMode === 'speed') {
+            if (level === 1) timeLeft = 8;
+            else if (level === 2) timeLeft = 6;
+            else if (level === 3) timeLeft = 5;
+            else if (level === 4) timeLeft = 4;
+            else timeLeft = 3;
+            document.getElementById('timerContainer').style.display = 'block';
+        }
+    }
+
+    function stopTimer() {
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+    }
+
+    function startTimer() {
+        if (gameMode !== 'speed') return;
+        stopTimer();
+        let remaining = timeLeft;
+        const fill = document.getElementById('timerFill');
+        
+        timerInterval = setInterval(() => {
+            if (!answered && remaining > 0) {
+                remaining--;
+                const percent = (remaining / timeLeft) * 100;
+                fill.style.width = percent + '%';
+                if (remaining === 0) {
+                    clearInterval(timerInterval);
+                    if (!answered) {
+                        timeOut();
+                    }
+                }
+            } else if (remaining <= 0) {
+                stopTimer();
+            }
+        }, 1000);
+    }
+
+    function timeOut() {
+        answered = true;
+        if (gameMode === 'survival') {
+            lives--;
+            document.getElementById('lives').innerText = lives;
+            showFeedback(false, '⏰ TIME\'S UP! You lost a life.');
+            if (lives <= 0) {
+                endGame();
+                return;
+            }
+        } else {
+            showFeedback(false, '⏰ TIME\'S UP! The correct answer is highlighted.');
+        }
+        
+        const q = currentQuestions[currentIndex];
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            if (btn.innerText === q.correct) {
+                btn.classList.add('correct');
+            }
+            btn.classList.add('disabled');
+            btn.disabled = true;
+        });
+        
+        document.getElementById('nextBtn').classList.add('show');
+        stopTimer();
+    }
+
+    function playAudio(file) {
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
+        const audioUrl = AUDIO_BASE + file;
+        currentAudio = new Audio(audioUrl);
+        currentAudio.play().catch(e => console.log('Audio error:', e));
+        
+        if (gameMode === 'speed') {
+            audioPlays++;
+            document.getElementById('audioAttempts').innerHTML = `🎧 Played ${audioPlays} time(s)`;
+        }
+    }
+
+    function loadQuestion() {
+        answered = false;
+        audioPlays = 0;
+        document.getElementById('audioAttempts').innerHTML = '';
+        const q = currentQuestions[currentIndex];
+        
+        document.getElementById('currentQ').innerText = currentIndex + 1;
+        document.getElementById('questionText').innerHTML = 'What does this phrase mean?';
+        document.getElementById('feedback').className = 'feedback';
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('nextBtn').classList.remove('show');
+        
+        const options = [...q.options];
+        const shuffledOpts = shuffleArray([...options]);
+        
+        const optionsArea = document.getElementById('optionsArea');
+        optionsArea.innerHTML = '';
+        shuffledOpts.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => checkAnswer(btn, opt);
+            optionsArea.appendChild(btn);
+        });
+        
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.classList.remove('disabled', 'correct', 'wrong');
+            btn.disabled = false;
+        });
+        
+        updateLevel();
+        updateProgress();
+        startTimer();
+    }
+
+    function checkAnswer(btn, selected) {
+        if (answered) return;
+        answered = true;
+        stopTimer();
+        
+        const q = currentQuestions[currentIndex];
+        const isCorrect = (selected === q.correct);
+        
+        if (isCorrect) {
+            let points = 10 * level;
+            if (gameMode === 'speed' && audioPlays === 1) points += 5;
+            if (streak > 0) points += Math.min(streak * 2, 20);
+            
+            score += points;
+            streak++;
+            btn.classList.add('correct');
+            document.getElementById('score').innerText = score;
+            document.getElementById('streak').innerText = streak;
+            showFeedback(true, `✅ CORRECT! +${points} points (Level ${level} bonus)`);
+        } else {
+            streak = 0;
+            document.getElementById('streak').innerText = streak;
+            btn.classList.add('wrong');
+            
+            if (gameMode === 'survival') {
+                lives--;
+                document.getElementById('lives').innerText = lives;
+                showFeedback(false, `❌ WRONG! You lost a life. ${lives} lives remaining.`);
+                if (lives <= 0) {
+                    endGame();
+                    return;
+                }
+            } else {
+                showFeedback(false, `❌ WRONG! The correct answer is: ${q.correct}`);
+            }
+            
+            document.querySelectorAll('.option-btn').forEach(button => {
+                if (button.innerText === q.correct) {
+                    button.classList.add('correct');
+                }
+            });
+        }
+        
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.classList.add('disabled');
+            btn.disabled = true;
+        });
+        
+        document.getElementById('nextBtn').classList.add('show');
+    }
+
+    function showFeedback(isCorrect, message) {
+        const feedbackDiv = document.getElementById('feedback');
+        feedbackDiv.innerText = message;
+        feedbackDiv.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
+        feedbackDiv.style.display = 'block';
+    }
+
+    function updateProgress() {
+        const progress = ((currentIndex + 1) / currentQuestions.length) * 100;
+        document.getElementById('progressFill').style.width = progress + '%';
+    }
+
+    function repeatAudio() {
+        if (powerUps.repeat <= 0) {
+            alert('No repeats left!');
+            return;
+        }
+        if (answered) return;
+        if (currentQuestions[currentIndex]) {
+            powerUps.repeat--;
+            document.getElementById('repeatPowerup').innerText = `🔁 REPEAT (${powerUps.repeat} left)`;
+            if (powerUps.repeat === 0) document.getElementById('repeatPowerup').classList.add('disabled');
+            playAudio(currentQuestions[currentIndex].audio);
+        }
+    }
+
+    function useHint() {
+        if (powerUps.hint <= 0) {
+            alert('No hints left!');
+            return;
+        }
+        if (answered) return;
+        
+        powerUps.hint--;
+        document.getElementById('hintPowerup').innerText = `💡 HINT (${powerUps.hint} left)`;
+        if (powerUps.hint === 0) document.getElementById('hintPowerup').classList.add('disabled');
+        
+        const q = currentQuestions[currentIndex];
+        const firstLetter = q.correct.charAt(0).toUpperCase();
+        showFeedback(false, `💡 HINT: The correct answer starts with "${firstLetter}".`);
+        setTimeout(() => {
+            if (document.getElementById('feedback').innerText.includes('HINT')) {
+                document.getElementById('feedback').style.display = 'none';
+            }
+        }, 2000);
+    }
+
+    function nextQuestion() {
+        currentIndex++;
+        if (currentIndex < currentQuestions.length) {
+            loadQuestion();
+        } else {
+            endGame();
+        }
+    }
+
+    function endGame() {
+        const percentage = Math.round((score / (totalQuestions * 10)) * 100);
+        document.getElementById('finalScore').innerHTML = score + ' points (' + percentage + '%)';
+        
+        let message = '';
+        let unlockMsg = '';
+        if (percentage >= 80) {
+            message = '🏆 AUDIO MASTER! You have exceptional listening skills! 🏆';
+            unlockMsg = '🎉 UNLOCKED: Advanced Audio Challenge Mode!';
+        } else if (percentage >= 60) {
+            message = '🎉 GREAT JOB! You understand most of the phrases! 🎉';
+            unlockMsg = '🔓 Keep practicing to unlock Master Mode!';
+        } else if (percentage >= 40) {
+            message = '👍 GOOD EFFORT! Review the lesson and try again! 👍';
+        } else {
+            message = '📚 KEEP PRACTICING! Listen to the audio again and come back stronger! 📚';
+        }
+        document.getElementById('congratsMsg').innerHTML = message;
+        document.getElementById('unlockMsg').innerHTML = unlockMsg;
+        
+        document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
+        document.getElementById('gameEnd').classList.add('show');
+    }
+
+    function setMode(mode) {
+        gameMode = mode;
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-mode') === mode) btn.classList.add('active');
+        });
+        
+        if (mode === 'survival') {
+            lives = 3;
+            document.getElementById('lives').style.display = 'inline-block';
+            document.getElementById('timerContainer').style.display = 'none';
+        } else if (mode === 'speed') {
+            document.getElementById('lives').style.display = 'inline-block';
+            document.getElementById('timerContainer').style.display = 'block';
+        } else {
+            document.getElementById('lives').style.display = 'inline-block';
+            document.getElementById('timerContainer').style.display = 'none';
+        }
+        restartGame();
+    }
+
+    function restartGame() {
+        score = 0;
+        streak = 0;
+        lives = 3;
+        level = 1;
+        currentIndex = 0;
+        powerUps = { repeat: 2, hint: 1 };
+        document.getElementById('score').innerText = '0';
+        document.getElementById('streak').innerText = '0';
+        document.getElementById('lives').innerText = '3';
+        document.getElementById('repeatPowerup').innerText = '🔁 REPEAT (2 left)';
+        document.getElementById('hintPowerup').innerText = '💡 HINT (1 left)';
+        document.getElementById('repeatPowerup').classList.remove('disabled');
+        document.getElementById('hintPowerup').classList.remove('disabled');
+        
+        document.querySelector('.game-container > div:not(.game-end)').style.display = 'block';
+        document.getElementById('gameEnd').classList.remove('show');
+        
+        currentQuestions = selectRandomQuestions();
+        document.getElementById('totalQ').innerText = currentQuestions.length;
+        loadQuestion();
+    }
+
+    function setupAudioArea() {
+        const audioArea = document.getElementById('audioArea');
+        audioArea.addEventListener('click', () => {
+            if (currentQuestions[currentIndex]) {
+                playAudio(currentQuestions[currentIndex].audio);
+            }
+        });
+    }
+
+    function initGame() {
+        currentQuestions = selectRandomQuestions();
+        document.getElementById('totalQ').innerText = currentQuestions.length;
+        loadQuestion();
+        setupAudioArea();
+        
+        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+        document.getElementById('restartBtn').addEventListener('click', restartGame);
+        document.getElementById('repeatPowerup').addEventListener('click', repeatAudio);
+        document.getElementById('hintPowerup').addEventListener('click', useHint);
+        
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', () => setMode(btn.getAttribute('data-mode')));
+        });
+    }
+
+    initGame();
+</script>
+</body>
+</html>
