@@ -28,6 +28,31 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
             text-align: center;
         }
+        .access-denied {
+            background: white;
+            border-radius: 48px;
+            max-width: 500px;
+            width: 100%;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+        .access-denied h2 {
+            color: #E76F51;
+            margin-bottom: 1rem;
+        }
+        .access-denied p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        .access-denied .btn {
+            background: #2A9D8F;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+        }
         .game-header h1 {
             background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
             -webkit-background-clip: text;
@@ -218,6 +243,7 @@
     </style>
 </head>
 <body>
+<div id="gameContent" style="display: none;">
 <div class="game-container">
     <div class="game-header">
         <h1>🎧 Listen & Learn</h1>
@@ -260,226 +286,261 @@
         Speak Ghana Language School | Listen & Learn Game
     </div>
 </div>
+</div>
+
+<div id="accessDenied" style="display: none;" class="access-denied">
+    <h2>🔒 Access Denied</h2>
+    <p>This game is only available for enrolled students.</p>
+    <p>Please log in to your portal to access this content.</p>
+    <a href="https://portal.speakghana.org" class="btn">Go to Portal →</a>
+</div>
 
 <script>
-    // Audio base URL
-    const AUDIO_BASE = 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/';
+    // Check if accessed from portal (sessionStorage or referrer check)
+    function checkAccess() {
+        // Method 1: Check sessionStorage (set by portal)
+        if (sessionStorage.getItem('selfPacedAuthenticated') === 'true') {
+            return true;
+        }
+        
+        // Method 2: Check if page was opened from portal.speakghana.org
+        if (document.referrer && document.referrer.includes('portal.speakghana.org')) {
+            return true;
+        }
+        
+        // Method 3: Check URL parameter (optional - for testing)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('token') === 'speakghana2026') {
+            return true;
+        }
+        
+        return false;
+    }
     
-    // Question Bank - All 37 audio files from Week 2
-    const allQuestions = [
-        { audio: "morn.m4a", correct: "Good morning", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
-        { audio: "noon.m4a", correct: "Good afternoon", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
-        { audio: "eve.m4a", correct: "Good evening", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
-        { audio: "welc.m4a", correct: "Welcome", options: ["Welcome", "Thank you", "Goodbye", "Please"] },
-        { audio: "r-man.m4a", correct: "Response to elder man", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
-        { audio: "r-wom.m4a", correct: "Response to elder woman", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
-        { audio: "r-peer.m4a", correct: "Response to peer", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
-        { audio: "how-u.m4a", correct: "How are you? (formal)", options: ["How are you? (formal)", "How are you? (informal)", "What is your name?", "Where are you from?"] },
-        { audio: "how-inf.m4a", correct: "How are you? (informal)", options: ["How are you? (formal)", "How are you? (informal)", "What is your name?", "Where are you from?"] },
-        { audio: "i-fine.m4a", correct: "I am fine", options: ["I am fine", "I am tired", "I am happy", "I am sad"] },
-        { audio: "grace.m4a", correct: "By God's grace", options: ["By God's grace", "Thank you", "Welcome", "Good luck"] },
-        { audio: "grace-full.m4a", correct: "By God's grace, I am fine", options: ["By God's grace, I am fine", "By God's grace", "I am fine", "Thank you"] },
-        { audio: "cool.m4a", correct: "Cool / Calm", options: ["Cool / Calm", "Hot", "Cold", "Happy"] },
-        { audio: "and-u.m4a", correct: "And you?", options: ["And you?", "And me?", "And them?", "And us?"] },
-        { audio: "my-name.m4a", correct: "My name is", options: ["My name is", "What is your name?", "His name is", "Her name is"] },
-        { audio: "ur-name.m4a", correct: "What is your name?", options: ["My name is", "What is your name?", "His name is", "Her name is"] },
-        { audio: "they-call.m4a", correct: "What do they call you?", options: ["What do they call you?", "What is your name?", "How are you?", "Where are you from?"] },
-        { audio: "i-from.m4a", correct: "I am from", options: ["I am from", "You are from", "He is from", "She is from"] },
-        { audio: "u-from.m4a", correct: "Where are you from?", options: ["Where are you from?", "Where do you live?", "Where are you going?", "Where is he?"] },
-        { audio: "i-live.m4a", correct: "I live in", options: ["I live in", "You live in", "He lives in", "She lives in"] },
-        { audio: "u-live.m4a", correct: "Where do you live?", options: ["Where do you live?", "Where are you from?", "Where are you going?", "Where is he?"] },
-        { audio: "nice-meet.m4a", correct: "Nice to meet you", options: ["Nice to meet you", "Good to see you", "Welcome", "Thank you"] },
-        { audio: "thanks.m4a", correct: "Thank you", options: ["Thank you", "Please", "Welcome", "Sorry"] },
-        { audio: "please.m4a", correct: "Please / Excuse me", options: ["Please / Excuse me", "Thank you", "Welcome", "Sorry"] },
-        { audio: "g-night.m4a", correct: "Good night / Sleep well", options: ["Good night / Sleep well", "Good morning", "Good afternoon", "Good evening"] },
-        { audio: "bye.m4a", correct: "Goodbye / See you later", options: ["Goodbye / See you later", "Welcome", "Thank you", "Please"] },
-        { audio: "safe.m4a", correct: "Safe journey", options: ["Safe journey", "Good luck", "Welcome", "Thank you"] },
-        { audio: "well-done.m4a", correct: "Well done!", options: ["Well done!", "Good job", "Congratulations", "Thank you"] },
-        { audio: "i-und.m4a", correct: "I understand", options: ["I understand", "I don't understand", "I know", "I don't know"] },
-        { audio: "i-not.m4a", correct: "I don't understand", options: ["I understand", "I don't understand", "I know", "I don't know"] },
-        { audio: "repeat.m4a", correct: "Say it again", options: ["Say it again", "Slowly", "Louder", "Softer"] },
-        { audio: "slow.m4a", correct: "Slowly / Little by little", options: ["Slowly / Little by little", "Quickly", "Loudly", "Softly"] },
-        { audio: "yes.m4a", correct: "Yes", options: ["Yes", "No", "Maybe", "OK"] },
-        { audio: "no.m4a", correct: "No", options: ["Yes", "No", "Maybe", "OK"] },
-        { audio: "ok.m4a", correct: "OK / Alright", options: ["OK / Alright", "Yes", "No", "Maybe"] }
-    ];
+    if (!checkAccess()) {
+        document.getElementById('accessDenied').style.display = 'flex';
+        document.getElementById('accessDenied').style.alignItems = 'center';
+        document.getElementById('accessDenied').style.justifyContent = 'center';
+        document.getElementById('accessDenied').style.minHeight = '100vh';
+    } else {
+        document.getElementById('gameContent').style.display = 'block';
+        
+        // Game code continues here...
+        const AUDIO_BASE = 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/';
+        
+        const allQuestions = [
+            { audio: "morn.m4a", correct: "Good morning", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
+            { audio: "noon.m4a", correct: "Good afternoon", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
+            { audio: "eve.m4a", correct: "Good evening", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
+            { audio: "welc.m4a", correct: "Welcome", options: ["Welcome", "Thank you", "Goodbye", "Please"] },
+            { audio: "r-man.m4a", correct: "Response to elder man", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
+            { audio: "r-wom.m4a", correct: "Response to elder woman", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
+            { audio: "r-peer.m4a", correct: "Response to peer", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
+            { audio: "how-u.m4a", correct: "How are you? (formal)", options: ["How are you? (formal)", "How are you? (informal)", "What is your name?", "Where are you from?"] },
+            { audio: "how-inf.m4a", correct: "How are you? (informal)", options: ["How are you? (formal)", "How are you? (informal)", "What is your name?", "Where are you from?"] },
+            { audio: "i-fine.m4a", correct: "I am fine", options: ["I am fine", "I am tired", "I am happy", "I am sad"] },
+            { audio: "grace.m4a", correct: "By God's grace", options: ["By God's grace", "Thank you", "Welcome", "Good luck"] },
+            { audio: "grace-full.m4a", correct: "By God's grace, I am fine", options: ["By God's grace, I am fine", "By God's grace", "I am fine", "Thank you"] },
+            { audio: "cool.m4a", correct: "Cool / Calm", options: ["Cool / Calm", "Hot", "Cold", "Happy"] },
+            { audio: "and-u.m4a", correct: "And you?", options: ["And you?", "And me?", "And them?", "And us?"] },
+            { audio: "my-name.m4a", correct: "My name is", options: ["My name is", "What is your name?", "His name is", "Her name is"] },
+            { audio: "ur-name.m4a", correct: "What is your name?", options: ["My name is", "What is your name?", "His name is", "Her name is"] },
+            { audio: "they-call.m4a", correct: "What do they call you?", options: ["What do they call you?", "What is your name?", "How are you?", "Where are you from?"] },
+            { audio: "i-from.m4a", correct: "I am from", options: ["I am from", "You are from", "He is from", "She is from"] },
+            { audio: "u-from.m4a", correct: "Where are you from?", options: ["Where are you from?", "Where do you live?", "Where are you going?", "Where is he?"] },
+            { audio: "i-live.m4a", correct: "I live in", options: ["I live in", "You live in", "He lives in", "She lives in"] },
+            { audio: "u-live.m4a", correct: "Where do you live?", options: ["Where do you live?", "Where are you from?", "Where are you going?", "Where is he?"] },
+            { audio: "nice-meet.m4a", correct: "Nice to meet you", options: ["Nice to meet you", "Good to see you", "Welcome", "Thank you"] },
+            { audio: "thanks.m4a", correct: "Thank you", options: ["Thank you", "Please", "Welcome", "Sorry"] },
+            { audio: "please.m4a", correct: "Please / Excuse me", options: ["Please / Excuse me", "Thank you", "Welcome", "Sorry"] },
+            { audio: "g-night.m4a", correct: "Good night / Sleep well", options: ["Good night / Sleep well", "Good morning", "Good afternoon", "Good evening"] },
+            { audio: "bye.m4a", correct: "Goodbye / See you later", options: ["Goodbye / See you later", "Welcome", "Thank you", "Please"] },
+            { audio: "safe.m4a", correct: "Safe journey", options: ["Safe journey", "Good luck", "Welcome", "Thank you"] },
+            { audio: "well-done.m4a", correct: "Well done!", options: ["Well done!", "Good job", "Congratulations", "Thank you"] },
+            { audio: "i-und.m4a", correct: "I understand", options: ["I understand", "I don't understand", "I know", "I don't know"] },
+            { audio: "i-not.m4a", correct: "I don't understand", options: ["I understand", "I don't understand", "I know", "I don't know"] },
+            { audio: "repeat.m4a", correct: "Say it again", options: ["Say it again", "Slowly", "Louder", "Softer"] },
+            { audio: "slow.m4a", correct: "Slowly / Little by little", options: ["Slowly / Little by little", "Quickly", "Loudly", "Softly"] },
+            { audio: "yes.m4a", correct: "Yes", options: ["Yes", "No", "Maybe", "OK"] },
+            { audio: "no.m4a", correct: "No", options: ["Yes", "No", "Maybe", "OK"] },
+            { audio: "ok.m4a", correct: "OK / Alright", options: ["OK / Alright", "Yes", "No", "Maybe"] }
+        ];
 
-    let currentQuestions = [];
-    let currentIndex = 0;
-    let score = 0;
-    let streak = 0;
-    let answered = false;
-    let totalQuestions = 15;
-    let currentAudio = null;
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let streak = 0;
+        let answered = false;
+        let totalQuestions = 15;
+        let currentAudio = null;
 
-    function shuffleArray(arr) {
-        for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
         }
-        return arr;
-    }
 
-    function selectRandomQuestions() {
-        const shuffled = shuffleArray([...allQuestions]);
-        return shuffled.slice(0, totalQuestions);
-    }
-
-    function playAudio(audioFile) {
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
+        function selectRandomQuestions() {
+            const shuffled = shuffleArray([...allQuestions]);
+            return shuffled.slice(0, totalQuestions);
         }
-        const audioUrl = AUDIO_BASE + audioFile;
-        currentAudio = new Audio(audioUrl);
-        currentAudio.play().catch(e => console.log('Audio play failed:', e));
-    }
 
-    function updateProgress() {
-        const progress = ((currentIndex + 1) / currentQuestions.length) * 100;
-        document.getElementById('progressFill').style.width = progress + '%';
-    }
+        function playAudio(audioFile) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            const audioUrl = AUDIO_BASE + audioFile;
+            currentAudio = new Audio(audioUrl);
+            currentAudio.play().catch(e => console.log('Audio play failed:', e));
+        }
 
-    function loadQuestion() {
-        answered = false;
-        const q = currentQuestions[currentIndex];
-        
-        document.getElementById('currentQ').innerText = currentIndex + 1;
-        document.getElementById('questionText').innerHTML = 'What does this phrase mean?';
-        document.getElementById('feedback').className = 'feedback';
-        document.getElementById('feedback').style.display = 'none';
-        document.getElementById('nextBtn').classList.remove('show');
-        updateProgress();
-        
-        const options = [...q.options];
-        const shuffledOpts = shuffleArray([...options]);
-        
-        const optionsArea = document.getElementById('optionsArea');
-        optionsArea.innerHTML = '';
-        shuffledOpts.forEach(opt => {
-            const btn = document.createElement('button');
-            btn.className = 'option-btn';
-            btn.innerText = opt;
-            btn.onclick = () => checkAnswer(btn, opt);
-            optionsArea.appendChild(btn);
-        });
-        
-        document.querySelectorAll('.option-btn').forEach(btn => {
-            btn.classList.remove('disabled', 'correct', 'wrong');
-            btn.disabled = false;
-        });
-    }
+        function updateProgress() {
+            const progress = ((currentIndex + 1) / currentQuestions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
 
-    function checkAnswer(btn, selected) {
-        if (answered) return;
-        answered = true;
-        
-        const q = currentQuestions[currentIndex];
-        const isCorrect = (selected === q.correct);
-        
-        if (isCorrect) {
-            score++;
-            streak++;
-            document.getElementById('score').innerText = score;
-            document.getElementById('streak').innerText = streak;
-            btn.classList.add('correct');
-            showFeedback(true, '✅ Correct! Well done.');
-        } else {
-            streak = 0;
-            document.getElementById('streak').innerText = streak;
-            btn.classList.add('wrong');
-            showFeedback(false, '❌ Incorrect! The correct answer is: ' + q.correct);
+        function loadQuestion() {
+            answered = false;
+            const q = currentQuestions[currentIndex];
             
-            // Highlight the correct answer
-            document.querySelectorAll('.option-btn').forEach(button => {
-                if (button.innerText === q.correct) {
-                    button.classList.add('correct');
+            document.getElementById('currentQ').innerText = currentIndex + 1;
+            document.getElementById('questionText').innerHTML = 'What does this phrase mean?';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('nextBtn').classList.remove('show');
+            updateProgress();
+            
+            const options = [...q.options];
+            const shuffledOpts = shuffleArray([...options]);
+            
+            const optionsArea = document.getElementById('optionsArea');
+            optionsArea.innerHTML = '';
+            shuffledOpts.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(btn, opt);
+                optionsArea.appendChild(btn);
+            });
+            
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('disabled', 'correct', 'wrong');
+                btn.disabled = false;
+            });
+        }
+
+        function checkAnswer(btn, selected) {
+            if (answered) return;
+            answered = true;
+            
+            const q = currentQuestions[currentIndex];
+            const isCorrect = (selected === q.correct);
+            
+            if (isCorrect) {
+                score++;
+                streak++;
+                document.getElementById('score').innerText = score;
+                document.getElementById('streak').innerText = streak;
+                btn.classList.add('correct');
+                showFeedback(true, '✅ Correct! Well done.');
+            } else {
+                streak = 0;
+                document.getElementById('streak').innerText = streak;
+                btn.classList.add('wrong');
+                showFeedback(false, '❌ Incorrect! The correct answer is: ' + q.correct);
+                
+                document.querySelectorAll('.option-btn').forEach(button => {
+                    if (button.innerText === q.correct) {
+                        button.classList.add('correct');
+                    }
+                });
+            }
+            
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.add('disabled');
+                btn.disabled = true;
+            });
+            
+            document.getElementById('nextBtn').classList.add('show');
+        }
+
+        function showFeedback(isCorrect, message) {
+            const feedbackDiv = document.getElementById('feedback');
+            feedbackDiv.innerText = message;
+            feedbackDiv.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
+            feedbackDiv.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentIndex++;
+            if (currentIndex < currentQuestions.length) {
+                loadQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            const total = currentQuestions.length;
+            const percentage = Math.round((score / total) * 100);
+            
+            document.getElementById('finalScore').innerHTML = score + '/' + total + ' (' + percentage + '%)';
+            
+            let message = '';
+            if (percentage >= 90) {
+                message = '🏆 EXCELLENT! You are a Twi listening master! 🏆';
+            } else if (percentage >= 70) {
+                message = '🎉 GREAT JOB! You understand most of the phrases! 🎉';
+            } else if (percentage >= 50) {
+                message = '👍 GOOD EFFORT! Review the lesson and try again! 👍';
+            } else {
+                message = '📚 KEEP PRACTICING! Listen to the audio again and come back stronger! 📚';
+            }
+            document.getElementById('congratsMsg').innerHTML = message;
+            
+            document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
+            document.getElementById('gameEnd').classList.add('show');
+        }
+
+        function restartGame() {
+            score = 0;
+            streak = 0;
+            currentIndex = 0;
+            document.getElementById('score').innerText = '0';
+            document.getElementById('streak').innerText = '0';
+            
+            document.querySelector('.game-container > div:not(.game-end)').style.display = 'block';
+            document.getElementById('gameEnd').classList.remove('show');
+            
+            currentQuestions = selectRandomQuestions();
+            document.getElementById('totalQ').innerText = currentQuestions.length;
+            loadQuestion();
+        }
+
+        function setupAudioArea() {
+            const audioArea = document.getElementById('audioArea');
+            audioArea.addEventListener('click', () => {
+                if (currentQuestions[currentIndex]) {
+                    playAudio(currentQuestions[currentIndex].audio);
                 }
             });
         }
-        
-        document.querySelectorAll('.option-btn').forEach(btn => {
-            btn.classList.add('disabled');
-            btn.disabled = true;
-        });
-        
-        document.getElementById('nextBtn').classList.add('show');
-    }
 
-    function showFeedback(isCorrect, message) {
-        const feedbackDiv = document.getElementById('feedback');
-        feedbackDiv.innerText = message;
-        feedbackDiv.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
-        feedbackDiv.style.display = 'block';
-    }
-
-    function nextQuestion() {
-        currentIndex++;
-        if (currentIndex < currentQuestions.length) {
+        function initGame() {
+            currentQuestions = selectRandomQuestions();
+            document.getElementById('totalQ').innerText = currentQuestions.length;
             loadQuestion();
-        } else {
-            endGame();
+            setupAudioArea();
+            
+            document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+            document.getElementById('restartBtn').addEventListener('click', restartGame);
         }
-    }
 
-    function endGame() {
-        const total = currentQuestions.length;
-        const percentage = Math.round((score / total) * 100);
-        
-        document.getElementById('finalScore').innerHTML = score + '/' + total + ' (' + percentage + '%)';
-        
-        let message = '';
-        if (percentage >= 90) {
-            message = '🏆 EXCELLENT! You are a Twi listening master! 🏆';
-        } else if (percentage >= 70) {
-            message = '🎉 GREAT JOB! You understand most of the phrases! 🎉';
-        } else if (percentage >= 50) {
-            message = '👍 GOOD EFFORT! Review the lesson and try again! 👍';
-        } else {
-            message = '📚 KEEP PRACTICING! Listen to the audio again and come back stronger! 📚';
-        }
-        document.getElementById('congratsMsg').innerHTML = message;
-        
-        document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
-        document.getElementById('gameEnd').classList.add('show');
+        initGame();
     }
-
-    function restartGame() {
-        score = 0;
-        streak = 0;
-        currentIndex = 0;
-        document.getElementById('score').innerText = '0';
-        document.getElementById('streak').innerText = '0';
-        
-        document.querySelector('.game-container > div:not(.game-end)').style.display = 'block';
-        document.getElementById('gameEnd').classList.remove('show');
-        
-        currentQuestions = selectRandomQuestions();
-        document.getElementById('totalQ').innerText = currentQuestions.length;
-        loadQuestion();
-    }
-
-    // Set up audio area click
-    function setupAudioArea() {
-        const audioArea = document.getElementById('audioArea');
-        audioArea.addEventListener('click', () => {
-            if (currentQuestions[currentIndex]) {
-                playAudio(currentQuestions[currentIndex].audio);
-            }
-        });
-    }
-
-    function initGame() {
-        currentQuestions = selectRandomQuestions();
-        document.getElementById('totalQ').innerText = currentQuestions.length;
-        loadQuestion();
-        setupAudioArea();
-        
-        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
-        document.getElementById('restartBtn').addEventListener('click', restartGame);
-    }
-
-    initGame();
 </script>
 </body>
 </html>
