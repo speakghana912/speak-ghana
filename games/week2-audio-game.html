@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Listen & Learn | Twi Greetings Audio Game | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .game-container {
+            background: white;
+            border-radius: 48px;
+            max-width: 750px;
+            width: 100%;
+            padding: 2rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .game-header h1 {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+        }
+        .game-header p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            background: #FDF8F2;
+            padding: 1rem;
+            border-radius: 60px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .stat-card {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .stat-card span {
+            color: #2A9D8F;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+        .audio-area {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            border-radius: 40px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .audio-area:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .play-icon {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        .play-text {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+        .question-text {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1E1E1E;
+        }
+        .options-area {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .option-btn {
+            background: #FDF8F2;
+            border: 2px solid #e2e8f0;
+            border-radius: 60px;
+            padding: 1rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .option-btn:hover {
+            background: #2A9D8F;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .option-btn.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .option-btn.correct {
+            background: #2A9D8F;
+            color: white;
+        }
+        .option-btn.wrong {
+            background: #E76F51;
+            color: white;
+        }
+        .feedback {
+            padding: 0.8rem;
+            border-radius: 60px;
+            margin-bottom: 1rem;
+            display: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .feedback.correct {
+            display: block;
+            background: #d4f5ef;
+            color: #1f7a6e;
+        }
+        .feedback.incorrect {
+            display: block;
+            background: #fde5dd;
+            color: #E76F51;
+        }
+        .next-btn {
+            background: #D4A373;
+            color: #1E1E1E;
+            border: none;
+            padding: 1rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            display: none;
+            transition: all 0.3s;
+        }
+        .next-btn.show {
+            display: block;
+        }
+        .next-btn:hover {
+            background: #2A9D8F;
+            color: white;
+        }
+        .game-end {
+            display: none;
+            text-align: center;
+        }
+        .game-end.show {
+            display: block;
+        }
+        .final-score {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2A9D8F;
+            margin: 1rem 0;
+        }
+        .restart-btn {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 30px;
+            height: 6px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.3s;
+        }
+        .watermark {
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            color: #ccc;
+        }
+        @media (max-width: 600px) {
+            .options-area {
+                grid-template-columns: 1fr;
+            }
+            .audio-area {
+                padding: 1.5rem;
+            }
+            .play-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-header">
+        <h1>🎧 Listen & Learn</h1>
+        <p>Listen to the Twi phrase and choose the correct English meaning</p>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">🏆 SCORE: <span id="score">0</span></div>
+        <div class="stat-card">📋 <span id="currentQ">1</span>/<span id="totalQ">15</span></div>
+        <div class="stat-card">🔥 STREAK: <span id="streak">0</span></div>
+    </div>
+
+    <div class="audio-area" id="audioArea">
+        <div class="play-icon">🔊</div>
+        <div class="play-text">Click to play the sound</div>
+    </div>
+
+    <div class="question-text" id="questionText">What does this phrase mean?</div>
+
+    <div class="options-area" id="optionsArea"></div>
+
+    <div class="feedback" id="feedback"></div>
+
+    <button class="next-btn" id="nextBtn">Next Question →</button>
+
+    <div class="game-end" id="gameEnd">
+        <div style="font-size: 4rem;">🏆</div>
+        <h2>Game Complete!</h2>
+        <p>Your final score:</p>
+        <div class="final-score" id="finalScore">0/15</div>
+        <p id="congratsMsg"></p>
+        <button class="restart-btn" id="restartBtn">Play Again ↻</button>
+    </div>
+
+    <div class="watermark">
+        Speak Ghana Language School | Listen & Learn Game
+    </div>
+</div>
+
+<script>
+    // Audio base URL
+    const AUDIO_BASE = 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/';
+    
+    // Question Bank - All 37 audio files from Week 2
+    const allQuestions = [
+        { audio: "morn.m4a", correct: "Good morning", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
+        { audio: "noon.m4a", correct: "Good afternoon", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
+        { audio: "eve.m4a", correct: "Good evening", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"] },
+        { audio: "welc.m4a", correct: "Welcome", options: ["Welcome", "Thank you", "Goodbye", "Please"] },
+        { audio: "r-man.m4a", correct: "Response to elder man", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
+        { audio: "r-wom.m4a", correct: "Response to elder woman", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
+        { audio: "r-peer.m4a", correct: "Response to peer", options: ["Response to elder man", "Response to elder woman", "Response to peer", "Response to group"] },
+        { audio: "how-u.m4a", correct: "How are you? (formal)", options: ["How are you? (formal)", "How are you? (informal)", "What is your name?", "Where are you from?"] },
+        { audio: "how-inf.m4a", correct: "How are you? (informal)", options: ["How are you? (formal)", "How are you? (informal)", "What is your name?", "Where are you from?"] },
+        { audio: "i-fine.m4a", correct: "I am fine", options: ["I am fine", "I am tired", "I am happy", "I am sad"] },
+        { audio: "grace.m4a", correct: "By God's grace", options: ["By God's grace", "Thank you", "Welcome", "Good luck"] },
+        { audio: "grace-full.m4a", correct: "By God's grace, I am fine", options: ["By God's grace, I am fine", "By God's grace", "I am fine", "Thank you"] },
+        { audio: "cool.m4a", correct: "Cool / Calm", options: ["Cool / Calm", "Hot", "Cold", "Happy"] },
+        { audio: "and-u.m4a", correct: "And you?", options: ["And you?", "And me?", "And them?", "And us?"] },
+        { audio: "my-name.m4a", correct: "My name is", options: ["My name is", "What is your name?", "His name is", "Her name is"] },
+        { audio: "ur-name.m4a", correct: "What is your name?", options: ["My name is", "What is your name?", "His name is", "Her name is"] },
+        { audio: "they-call.m4a", correct: "What do they call you?", options: ["What do they call you?", "What is your name?", "How are you?", "Where are you from?"] },
+        { audio: "i-from.m4a", correct: "I am from", options: ["I am from", "You are from", "He is from", "She is from"] },
+        { audio: "u-from.m4a", correct: "Where are you from?", options: ["Where are you from?", "Where do you live?", "Where are you going?", "Where is he?"] },
+        { audio: "i-live.m4a", correct: "I live in", options: ["I live in", "You live in", "He lives in", "She lives in"] },
+        { audio: "u-live.m4a", correct: "Where do you live?", options: ["Where do you live?", "Where are you from?", "Where are you going?", "Where is he?"] },
+        { audio: "nice-meet.m4a", correct: "Nice to meet you", options: ["Nice to meet you", "Good to see you", "Welcome", "Thank you"] },
+        { audio: "thanks.m4a", correct: "Thank you", options: ["Thank you", "Please", "Welcome", "Sorry"] },
+        { audio: "please.m4a", correct: "Please / Excuse me", options: ["Please / Excuse me", "Thank you", "Welcome", "Sorry"] },
+        { audio: "g-night.m4a", correct: "Good night / Sleep well", options: ["Good night / Sleep well", "Good morning", "Good afternoon", "Good evening"] },
+        { audio: "bye.m4a", correct: "Goodbye / See you later", options: ["Goodbye / See you later", "Welcome", "Thank you", "Please"] },
+        { audio: "safe.m4a", correct: "Safe journey", options: ["Safe journey", "Good luck", "Welcome", "Thank you"] },
+        { audio: "well-done.m4a", correct: "Well done!", options: ["Well done!", "Good job", "Congratulations", "Thank you"] },
+        { audio: "i-und.m4a", correct: "I understand", options: ["I understand", "I don't understand", "I know", "I don't know"] },
+        { audio: "i-not.m4a", correct: "I don't understand", options: ["I understand", "I don't understand", "I know", "I don't know"] },
+        { audio: "repeat.m4a", correct: "Say it again", options: ["Say it again", "Slowly", "Louder", "Softer"] },
+        { audio: "slow.m4a", correct: "Slowly / Little by little", options: ["Slowly / Little by little", "Quickly", "Loudly", "Softly"] },
+        { audio: "yes.m4a", correct: "Yes", options: ["Yes", "No", "Maybe", "OK"] },
+        { audio: "no.m4a", correct: "No", options: ["Yes", "No", "Maybe", "OK"] },
+        { audio: "ok.m4a", correct: "OK / Alright", options: ["OK / Alright", "Yes", "No", "Maybe"] }
+    ];
+
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let score = 0;
+    let streak = 0;
+    let answered = false;
+    let totalQuestions = 15;
+    let currentAudio = null;
+
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    function selectRandomQuestions() {
+        const shuffled = shuffleArray([...allQuestions]);
+        return shuffled.slice(0, totalQuestions);
+    }
+
+    function playAudio(audioFile) {
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
+        const audioUrl = AUDIO_BASE + audioFile;
+        currentAudio = new Audio(audioUrl);
+        currentAudio.play().catch(e => console.log('Audio play failed:', e));
+    }
+
+    function updateProgress() {
+        const progress = ((currentIndex + 1) / currentQuestions.length) * 100;
+        document.getElementById('progressFill').style.width = progress + '%';
+    }
+
+    function loadQuestion() {
+        answered = false;
+        const q = currentQuestions[currentIndex];
+        
+        document.getElementById('currentQ').innerText = currentIndex + 1;
+        document.getElementById('questionText').innerHTML = 'What does this phrase mean?';
+        document.getElementById('feedback').className = 'feedback';
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('nextBtn').classList.remove('show');
+        updateProgress();
+        
+        const options = [...q.options];
+        const shuffledOpts = shuffleArray([...options]);
+        
+        const optionsArea = document.getElementById('optionsArea');
+        optionsArea.innerHTML = '';
+        shuffledOpts.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => checkAnswer(btn, opt);
+            optionsArea.appendChild(btn);
+        });
+        
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.classList.remove('disabled', 'correct', 'wrong');
+            btn.disabled = false;
+        });
+    }
+
+    function checkAnswer(btn, selected) {
+        if (answered) return;
+        answered = true;
+        
+        const q = currentQuestions[currentIndex];
+        const isCorrect = (selected === q.correct);
+        
+        if (isCorrect) {
+            score++;
+            streak++;
+            document.getElementById('score').innerText = score;
+            document.getElementById('streak').innerText = streak;
+            btn.classList.add('correct');
+            showFeedback(true, '✅ Correct! Well done.');
+        } else {
+            streak = 0;
+            document.getElementById('streak').innerText = streak;
+            btn.classList.add('wrong');
+            showFeedback(false, '❌ Incorrect! The correct answer is: ' + q.correct);
+            
+            // Highlight the correct answer
+            document.querySelectorAll('.option-btn').forEach(button => {
+                if (button.innerText === q.correct) {
+                    button.classList.add('correct');
+                }
+            });
+        }
+        
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.classList.add('disabled');
+            btn.disabled = true;
+        });
+        
+        document.getElementById('nextBtn').classList.add('show');
+    }
+
+    function showFeedback(isCorrect, message) {
+        const feedbackDiv = document.getElementById('feedback');
+        feedbackDiv.innerText = message;
+        feedbackDiv.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
+        feedbackDiv.style.display = 'block';
+    }
+
+    function nextQuestion() {
+        currentIndex++;
+        if (currentIndex < currentQuestions.length) {
+            loadQuestion();
+        } else {
+            endGame();
+        }
+    }
+
+    function endGame() {
+        const total = currentQuestions.length;
+        const percentage = Math.round((score / total) * 100);
+        
+        document.getElementById('finalScore').innerHTML = score + '/' + total + ' (' + percentage + '%)';
+        
+        let message = '';
+        if (percentage >= 90) {
+            message = '🏆 EXCELLENT! You are a Twi listening master! 🏆';
+        } else if (percentage >= 70) {
+            message = '🎉 GREAT JOB! You understand most of the phrases! 🎉';
+        } else if (percentage >= 50) {
+            message = '👍 GOOD EFFORT! Review the lesson and try again! 👍';
+        } else {
+            message = '📚 KEEP PRACTICING! Listen to the audio again and come back stronger! 📚';
+        }
+        document.getElementById('congratsMsg').innerHTML = message;
+        
+        document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
+        document.getElementById('gameEnd').classList.add('show');
+    }
+
+    function restartGame() {
+        score = 0;
+        streak = 0;
+        currentIndex = 0;
+        document.getElementById('score').innerText = '0';
+        document.getElementById('streak').innerText = '0';
+        
+        document.querySelector('.game-container > div:not(.game-end)').style.display = 'block';
+        document.getElementById('gameEnd').classList.remove('show');
+        
+        currentQuestions = selectRandomQuestions();
+        document.getElementById('totalQ').innerText = currentQuestions.length;
+        loadQuestion();
+    }
+
+    // Set up audio area click
+    function setupAudioArea() {
+        const audioArea = document.getElementById('audioArea');
+        audioArea.addEventListener('click', () => {
+            if (currentQuestions[currentIndex]) {
+                playAudio(currentQuestions[currentIndex].audio);
+            }
+        });
+    }
+
+    function initGame() {
+        currentQuestions = selectRandomQuestions();
+        document.getElementById('totalQ').innerText = currentQuestions.length;
+        loadQuestion();
+        setupAudioArea();
+        
+        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+        document.getElementById('restartBtn').addEventListener('click', restartGame);
+    }
+
+    initGame();
+</script>
+</body>
+</html>
