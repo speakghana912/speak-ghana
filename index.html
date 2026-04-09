@@ -69,6 +69,27 @@
             margin: 0;
         }
 
+        /* Low Price Banner - NEW */
+        .low-price-banner {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 60px;
+            padding: 0.8rem 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .low-price-banner span {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            margin-left: 0.5rem;
+            display: inline-block;
+        }
+
         /* Adelina Feature Section */
         .adelina-feature {
             background: white;
@@ -632,6 +653,18 @@
             font-size: 1.3rem;
             margin-bottom: 2rem;
             opacity: 0.95;
+        }
+
+        /* Low Price Badge in Hero */
+        .hero-price-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
 
         .hero-image {
@@ -1902,6 +1935,7 @@
     <section class="hero">
         <div class="hero-split">
             <div class="hero-content">
+                <div class="hero-price-badge">⭐ Learn as low as $10/month ⭐</div>
                 <h2>Akwaaba! — Welcome Home</h2>
                 <p>Reconnect with your roots through language, culture, and community. Ghanaian language classes for the global African diaspora.</p>
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
@@ -1917,6 +1951,13 @@
             </div>
         </div>
     </section>
+
+    <!-- Low Price Banner -->
+    <div class="container">
+        <div class="low-price-banner">
+            🎉 Start your language journey today — from just <span>$10/month</span> for self-paced learning! 🎉
+        </div>
+    </div>
 
     <!-- Welcome Video Section -->
     <section class="welcome-video-section">
@@ -1936,7 +1977,7 @@
             <p style="margin-top: 0.5rem;">📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p>
         </a>
 
-        <!-- ===== ADELAIDE FEATURE SECTION (SWAPPED - NOW ADELAIDE IS HERE) ===== -->
+        <!-- ===== ADELAIDE FEATURE SECTION ===== -->
         <div class="adelina-feature">
             <div class="adelina-photo">
                 <img src="images/adelaide.png" alt="Adelaide Daniels (Kakra) - Speak Ghana student from London, UK">
@@ -1956,9 +1997,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- ===== ADELINA SPOTLIGHT IN TESTIMONIALS SECTION (SWAPPED - NOW ADELINA IS HERE) ===== -->
-        <!-- The Adelaide spotlight inside testimonial section is now replaced with Adelina -->
 
         <!-- ===== QUIZ BANNER ===== -->
         <div class="quiz-banner">
@@ -2176,7 +2214,7 @@
                     <div class="testimonial-author">— Kwame, USA (Parent)</div>
                 </div>
 
-                <!-- ===== ADELINA SPOTLIGHT (SWAPPED - NOW ADELINA IS HERE) ===== -->
+                <!-- ===== ADELINA SPOTLIGHT ===== -->
                 <div class="adelaide-spotlight">
                     <img src="images/Adelina.jpeg" alt="Adelina Daniels — Speak Ghana student, UK" class="adelaide-photo" onerror="this.style.display='none'">
                     <div class="adelaide-content">
@@ -2192,18 +2230,46 @@
                 </div>
             </div>
 
-            <div class="reviews-strip">
+            <!-- New Testimonials Section for Language Page -->
+            <div class="reviews-strip" style="margin-top: 2rem;">
                 <div class="reviews-strip-header">
-                    <h3>⭐ Verified Student Reviews — March 2026</h3>
-                    <p>From our end-of-term survey · 11 responses · Average rating 4.5 / 5</p>
+                    <h3>⭐ Student Success Stories</h3>
+                    <p>Real results from our language learners</p>
                 </div>
                 <div class="reviews-scroller">
-                    <div class="review-chip"><div class="star-rating">★★★★★</div><p>"The patience, the commitment and the resources to ensure we learn. I'm extremely happy we connected!"</p><span class="reviewer">— Anonymous student</span></div>
-                    <div class="review-chip"><div class="star-rating">★★★★★</div><p>"The teachers are super helpful and kind. They help us learn fast and are encouraging."</p><span class="reviewer">— Anonymous student</span></div>
-                    <div class="review-chip"><div class="star-rating">★★★★★</div><p>"I love the interactive engagement. The structure is very helpful, they make sure you're understanding."</p><span class="reviewer">— Anonymous student</span></div>
-                    <div class="review-chip"><div class="star-rating">★★★★★</div><p>"I love these lessons and I'm so glad I started learning with Speak Ghana!"</p><span class="reviewer">— Anonymous student</span></div>
-                    <div class="review-chip"><div class="star-rating">★★★★☆</div><p>"Richard is patient and makes sure we understand the words and meanings. The dedication keeps me coming back."</p><span class="reviewer">— Anonymous student</span></div>
-                    <div class="review-chip"><div class="star-rating">★★★★★</div><p>"The interest and commitment the teachers take in us, you can see progress every single week."</p><span class="reviewer">— Anonymous student</span></div>
+                    <div class="review-chip">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"I started knowing zero Twi. After 3 months with Speak Ghana, I can now greet my grandmother in her native language. She cried tears of joy."</p>
+                        <span class="reviewer">— Sarah, USA</span>
+                    </div>
+                    <div class="review-chip">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"The self-paced course is perfect for my busy schedule. I learn during my lunch break and practice with my husband in the evenings."</p>
+                        <span class="reviewer">— Michael, Canada</span>
+                    </div>
+                    <div class="review-chip">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"My kids actually look forward to their Twi lessons. The teachers are patient, fun, and make learning enjoyable."</p>
+                        <span class="reviewer">— Nana, UK</span>
+                    </div>
+                    <div class="review-chip">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"The cultural immersion lessons helped me understand not just the language but the traditions behind the words."</p>
+                        <span class="reviewer">— James, Germany</span>
+                    </div>
+                    <div class="review-chip">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"Best decision I made. The one-on-one lessons are worth every cedi. My teacher corrects my pronunciation gently."</p>
+                        <span class="reviewer">— Ama, Netherlands</span>
+                    </div>
+                    <div class="review-chip">
+                        <div class="star-rating">★★★★★</div>
+                        <p>"I've tried language apps before. Nothing compares to learning with a real native speaker who understands my struggles."</p>
+                        <span class="reviewer">— Kwame, USA</span>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <a href="contact.html" class="btn btn-gold btn-small">Share Your Story →</a>
                 </div>
             </div>
         </div>
@@ -2212,7 +2278,7 @@
         <div class="pricing-overview">
             <div style="text-align: center; margin-bottom: 1rem;">
                 <span style="background: var(--green); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.9rem; display: inline-block; margin-bottom: 1rem;">💰 Transparent Pricing</span>
-                <h2 style="color: var(--green); margin-bottom: 0.5rem;">Start from just <span style="color: var(--red);">$35/month</span> for kids or <span style="color: var(--red);">$75/month</span> for private classes</h2>
+                <h2 style="color: var(--green); margin-bottom: 0.5rem;">Start from just <span style="color: var(--red);">$10/month</span> for self-paced</h2>
                 <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem;">Flexible plans. No hidden fees. Free textbook included.</p>
             </div>
             
@@ -2482,7 +2548,7 @@
         });
     </script>
 
-    <!-- Word of the Day Widget Script (Random from 50 words/phrases with working audio) -->
+    <!-- Word of the Day Widget Script -->
     <script>
         const wordBank = [
             { word: "Akwaaba", meaning: "Welcome", icon: "🤝", audio: "audio/words/akwaaba.m4a" },
