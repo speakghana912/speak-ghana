@@ -1,0 +1,1600 @@
+// Cloudflare Worker for Speak Ghana Self-Paced Portal
+export default {
+    async fetch(request, env) {
+        const url = new URL(request.url);
+        
+        // ============================================
+        // ADMIN ENDPOINTS - View Student Records
+        // ============================================
+        
+        // ADMIN: View all students (JSON)
+        if (url.pathname === '/admin/students' && request.method === 'GET') {
+            const adminKey = url.searchParams.get('key');
+            if (adminKey !== 'SpeakGhanaAdmin2026') {
+                return new Response(JSON.stringify({ error: 'Unauthorized. Invalid admin key.' }), {
+                    status: 401,
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            }
+            
+            try {
+                const { results } = await env.DB.prepare(
+                    `SELECT id, name, email, unique_password, plan, course_level, status, created_at, expires_at 
+                     FROM students 
+                     ORDER BY created_at DESC`
+                ).all();
+                
+                return new Response(JSON.stringify({
+                    total: results.length,
+                    students: results
+                }, null, 2), {
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            } catch (error) {
+                return new Response(JSON.stringify({ error: error.message }), {
+                    status: 500,
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            }
+        }
+        
+        // ADMIN: Search for a specific student
+        if (url.pathname === '/admin/student' && request.method === 'GET') {
+            const adminKey = url.searchParams.get('key');
+            if (adminKey !== 'SpeakGhanaAdmin2026') {
+                return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+                    status: 401,
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            }
+            
+            const search = url.searchParams.get('search');
+            if (!search) {
+                return new Response(JSON.stringify({ error: 'Missing search parameter' }), { status: 400 });
+            }
+            
+            try {
+                const { results } = await env.DB.prepare(
+                    `SELECT id, name, email, unique_password, plan, course_level, status, created_at, expires_at 
+                     FROM students 
+                     WHERE name LIKE ? OR email LIKE ? OR unique_password LIKE ?
+                     ORDER BY created_at DESC`
+                ).bind(`%${search}%`, `%${search}%`, `%${search}%`).all();
+                
+                return new Response(JSON.stringify({
+                    count: results.length,
+                    students: results
+                }, null, 2), {
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            } catch (error) {
+                return new Response(JSON.stringify({ error: error.message }), {
+                    status: 500,
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            }
+        }
+        
+        // ADMIN: View login logs
+        if (url.pathname === '/admin/logs' && request.method === 'GET') {
+            const adminKey = url.searchParams.get('key');
+            if (adminKey !== 'SpeakGhanaAdmin2026') {
+                return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+                    status: 401,
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            }
+            
+            try {
+                const { results } = await env.DB.prepare(
+                    `SELECT ll.*, s.name, s.email 
+                     FROM login_logs ll
+                     LEFT JOIN students s ON ll.student_id = s.id
+                     ORDER BY ll.logged_in_at DESC
+                     LIMIT 50`
+                ).all();
+                
+                return new Response(JSON.stringify({
+                    total: results.length,
+                    logs: results
+                }, null, 2), {
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            } catch (error) {
+                return new Response(JSON.stringify({ error: error.message }), {
+                    status: 500,
+                    headers: { 'Content-Type': 'application/json' }
+                });
+            }
+        }
+        
+        // ADMIN: HTML Admin Panel (Nice UI)
+        if (url.pathname === '/admin' && request.method === 'GET') {
+            const adminKey = url.searchParams.get('key');
+            if (adminKey !== 'SpeakGhanaAdmin2026') {
+                return new Response('Unauthorized', { status: 401 });
+            }
+            
+            return new Response(`<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: #1a1a1a; color: #fff; padding: 2rem; }
+        h1 { color: #2A9D8F; margin-bottom: 1rem; }
+        .search-box { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        input, button { padding: 0.75rem 1rem; border-radius: 8px; border: none; font-size: 1rem; }
+        input { flex: 1; min-width: 250px; background: #2a2a2a; color: #fff; }
+        button { background: #2A9D8F; color: white; cursor: pointer; }
+        button:hover { background: #1f7a6e; }
+        table { border-collapse: collapse; width: 100%; background: #2a2a2a; border-radius: 12px; overflow: hidden; }
+        th, td { border: 1px solid #444; padding: 0.75rem; text-align: left; }
+        th { background: #2A9D8F; color: white; }
+        td { color: #ddd; }
+        code { background: #1a1a1a; padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.85rem; }
+        .stats { background: #2A9D8F; padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem; display: inline-block; }
+        .refresh-btn { background: #D4A373; margin-left: 1rem; }
+    </style>
+</head>
+<body>
+    <h1>📊 Speak Ghana Admin Panel</h1>
+    <div class="stats" id="stats">Loading...</div>
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Search by name, email, or password...">
+        <button onclick="searchStudent()">🔍 Search</button>
+        <button onclick="loadAllStudents()" class="refresh-btn">📋 Show All Students</button>
+        <button onclick="loadLogs()">📜 View Login Logs</button>
+    </div>
+    <div id="results"></div>
+    <script>
+        const ADMIN_KEY = 'SpeakGhanaAdmin2026';
+        
+        async function loadAllStudents() {
+            const res = await fetch('/admin/students?key=' + ADMIN_KEY);
+            const data = await res.json();
+            const students = data.students || [];
+            document.getElementById('stats').innerHTML = '📚 Total Students: ' + students.length;
+            displayTable(students);
+        }
+        
+        async function searchStudent() {
+            const search = document.getElementById('search').value;
+            if (!search) return loadAllStudents();
+            const res = await fetch('/admin/student?key=' + ADMIN_KEY + '&search=' + encodeURIComponent(search));
+            const data = await res.json();
+            const students = data.students || [];
+            document.getElementById('stats').innerHTML = '🔍 Found: ' + students.length + ' student(s)';
+            displayTable(students);
+        }
+        
+        async function loadLogs() {
+            const res = await fetch('/admin/logs?key=' + ADMIN_KEY);
+            const data = await res.json();
+            const logs = data.logs || [];
+            let html = '<h3>📋 Recent Login Activity</h3><tr><tr><th>Time</th><th>Student Name</th><th>Email</th><th>IP Address</th><th>User Agent</th></tr>';
+            logs.forEach(log => {
+                html += \`<tr>
+                    <td>\${log.logged_in_at || 'N/A'}</td>
+                    <td>\${log.name || 'Unknown'}</td>
+                    <td>\${log.email || 'Unknown'}</td>
+                    <td><code>\${log.ip || 'N/A'}</code></td>
+                    <td style="font-size:0.75rem;">\${(log.user_agent || 'N/A').substring(0, 50)}...</td>
+                </tr>\`;
+            });
+            html += '</table>';
+            document.getElementById('results').innerHTML = html;
+            document.getElementById('stats').innerHTML = '📜 Login Logs: ' + logs.length + ' records';
+        }
+        
+        function displayTable(students) {
+            if (!students || students.length === 0) {
+                document.getElementById('results').innerHTML = '<p>❌ No students found.</p>';
+                return;
+            }
+            let html = '<table><tr><th>ID</th><th>Name</th><th>Email</th><th>Password</th><th>Plan</th><th>Level</th><th>Status</th><th>Expires</th><th>Created</th></tr>';
+            students.forEach(s => {
+                html += \`<tr>
+                    <td>\${s.id}</td>
+                    <td><strong>\${s.name || 'N/A'}</strong></td>
+                    <td>\${s.email || 'N/A'}</td>
+                    <td><code>\${s.unique_password || 'N/A'}</code></td>
+                    <td>\${s.plan || 'N/A'}</td>
+                    <td>\${s.course_level || 'N/A'}</td>
+                    <td style="color: \${s.status === 'active' ? '#2A9D8F' : '#E76F51'}">\${s.status || 'N/A'}</td>
+                    <td>\${s.expires_at || 'Never'}</td>
+                    <td style="font-size:0.75rem;">\${s.created_at || 'N/A'}</td>
+                </tr>\`;
+            });
+            html += '</table>';
+            document.getElementById('results').innerHTML = html;
+        }
+        
+        loadAllStudents();
+    </script>
+</body>
+</html>`, {
+                headers: { 'Content-Type': 'text/html' }
+            });
+        }
+        
+        // ============================================
+        // ORIGINAL WORKER CODE (Games, Login, Portal)
+        // ============================================
+        
+        // Serve game files through the worker with session protection
+        if (url.pathname.startsWith('/games/')) {
+            // Check if user has valid session cookie
+            const sessionCookie = request.headers.get('Cookie')?.includes('session');
+            
+            if (!sessionCookie) {
+                return new Response(`<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Denied | Speak Ghana</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0f2b2a, #1f7a6e); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 2rem; margin: 0; }
+        .denied-box { background: white; border-radius: 48px; max-width: 500px; width: 100%; padding: 3rem; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        h2 { color: #E76F51; margin-bottom: 1rem; }
+        p { color: #666; margin-bottom: 1.5rem; }
+        .btn { background: #2A9D8F; color: white; padding: 0.8rem 1.5rem; border-radius: 50px; text-decoration: none; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="denied-box">
+        <h2>🔒 Access Denied</h2>
+        <p>This game is only available for enrolled students.</p>
+        <p>Please log in to your portal to access this content.</p>
+        <a href="https://portal.speakghana.org" class="btn">Go to Portal →</a>
+    </div>
+</body>
+</html>`, {
+                    status: 403,
+                    headers: { 'Content-Type': 'text/html' }
+                });
+            }
+            
+            // Get the game file name from the path
+            const gameFile = url.pathname.replace('/games/', '');
+            
+const gameUrls = {
+    'match_sound.html': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/master/games/match_sound.html',
+    'digraph_challenge.html': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/master/games/digraph_challenge.html',
+    'brain_challenge.html': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/master/games/brain_challenge.html',
+    'memory_match.html': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/master/games/memory_match.html',
+    'number_pop.html': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/master/games/number_pop.html',
+    'millionaire_quiz.html': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/master/games/millionaire_quiz.html',
+    'week2-audio-game.html': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/master/games/week2-audio-game.html',
+    'week2-audio-challenge.html': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/master/games/week2-audio-challenge.html',
+    'time-challenge.html': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/master/games/time-challenge.html',
+    'number-math.html': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/master/games/number-math.html'
+};
+            
+            const gameUrl = gameUrls[gameFile];
+            if (gameUrl) {
+                const response = await fetch(gameUrl);
+                let html = await response.text();
+                
+                // Inject session check into the game HTML
+                html = html.replace('</body>', `
+                    <script>
+                        // Verify session is still active
+                        fetch('https://portal.speakghana.org/check-session', {
+                            credentials: 'include'
+                        }).then(res => {
+                            if (!res.ok) {
+                                window.location.href = 'https://portal.speakghana.org/logout';
+                            }
+                        }).catch(() => {
+                            window.location.href = 'https://portal.speakghana.org/logout';
+                        });
+                    </script>
+                </body>`);
+                
+                return new Response(html, {
+                    headers: { 'Content-Type': 'text/html' }
+                });
+            }
+            
+            return new Response('Game not found', { status: 404 });
+        }
+        
+        // Check session endpoint for games
+        if (url.pathname === '/check-session') {
+            const sessionCookie = request.headers.get('Cookie')?.includes('session');
+            if (sessionCookie) {
+                return new Response('OK', { status: 200 });
+            } else {
+                return new Response('Unauthorized', { status: 401 });
+            }
+        }
+        
+        // Handle login page
+        if (url.pathname === '/' || url.pathname === '/login') {
+            return new Response(getLoginPage(), {
+                headers: { 'Content-Type': 'text/html' }
+            });
+        }
+        
+        // Handle login form submission
+        if (url.pathname === '/auth' && request.method === 'POST') {
+            const formData = await request.formData();
+            const password = formData.get('password');
+            
+            // Check password in database - also get course_level
+            const { results } = await env.DB.prepare(
+                `SELECT id, name, plan, status, expires_at, course_level 
+                 FROM students 
+                 WHERE unique_password = ? AND status = 'active' 
+                 AND (expires_at IS NULL OR expires_at > datetime('now'))`
+            ).bind(password).all();
+            
+            if (results.length > 0) {
+                const student = results[0];
+                
+                // Set default course_level if not set
+                if (!student.course_level) {
+                    student.course_level = 'beginner1';
+                }
+                
+                // Log the login
+                await env.DB.prepare(
+                    `INSERT INTO login_logs (student_id, ip, user_agent) 
+                     VALUES (?, ?, ?)`
+                ).bind(
+                    student.id,
+                    request.headers.get('CF-Connecting-IP') || 'unknown',
+                    request.headers.get('User-Agent') || 'unknown'
+                ).run();
+                
+                // Create session cookie
+                const sessionToken = btoa(`${student.id}:${Date.now()}`);
+                
+                return new Response(getPortalPage(student), {
+                    headers: {
+                        'Content-Type': 'text/html',
+                        'Set-Cookie': `session=${sessionToken}; HttpOnly; Path=/; Max-Age=86400; Secure`
+                    }
+                });
+            } else {
+                return new Response(getLoginPage('Invalid password. Please try again.'), {
+                    headers: { 'Content-Type': 'text/html' }
+                });
+            }
+        }
+        
+        // Handle logout
+        if (url.pathname === '/logout') {
+            return new Response(getLoginPage('You have been logged out.'), {
+                headers: {
+                    'Content-Type': 'text/html',
+                    'Set-Cookie': 'session=; Path=/; Max-Age=0'
+                }
+            });
+        }
+        
+        // Default: serve login page
+        return new Response(getLoginPage(), {
+            headers: { 'Content-Type': 'text/html' }
+        });
+    }
+};
+
+function getLoginPage(error = '') {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-box {
+            background: white;
+            border-radius: 32px;
+            padding: 2.5rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.2);
+        }
+        .login-box h1 {
+            color: #2A9D8F;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+        .login-box p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        button {
+            width: 100%;
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42,157,143,0.3);
+        }
+        .error {
+            color: #E76F51;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .logo {
+            margin-bottom: 1.5rem;
+        }
+        .logo h2 {
+            color: #2A9D8F;
+            font-size: 1.5rem;
+        }
+        .footer {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        .footer a {
+            color: #2A9D8F;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="logo">
+            <h2>Speak Ghana</h2>
+            <p>Self-Paced Learning</p>
+        </div>
+        <h1>🔐 Student Portal</h1>
+        <p>Enter your unique password to access your courses.</p>
+        ${error ? `<div class="error">❌ ${error}</div>` : ''}
+        <form method="POST" action="/auth">
+            <input type="password" name="password" placeholder="Your unique password" autofocus>
+            <button type="submit">Access Portal →</button>
+        </form>
+        <div class="footer">
+            Don't have a password? <a href="https://speakghana.org/contact.html">Contact us</a>
+        </div>
+    </div>
+</body>
+</html>`;
+}
+
+function getPortalPage(student) {
+    // Get the student's course level
+    const level = student.course_level || 'beginner1';
+    
+    // Determine which sections to show
+    let beginner1Section = '';
+    let beginner2Section = '';
+    let intermediateSection = '';
+    let businessSection = '';
+    let culturalSection = '';
+    
+    // Helper function to check if level should be shown or locked
+    const isLevelUnlocked = (requiredLevel) => {
+        const levelOrder = ['beginner1', 'beginner2', 'intermediate', 'business', 'cultural', 'premium'];
+        const studentIndex = levelOrder.indexOf(level);
+        const requiredIndex = levelOrder.indexOf(requiredLevel);
+        return studentIndex >= requiredIndex || level === 'premium';
+    };
+    
+    const isLevelCompleted = (requiredLevel) => {
+        const levelOrder = ['beginner1', 'beginner2', 'intermediate', 'business', 'cultural', 'premium'];
+        const studentIndex = levelOrder.indexOf(level);
+        const requiredIndex = levelOrder.indexOf(requiredLevel);
+        return studentIndex > requiredIndex || level === 'premium';
+    };
+    
+    // ============================================
+    // LIBRARY SECTION - Inline Audio Players (No Download)
+    // ============================================
+    const librarySection = `
+    <div class="course-section" style="background: linear-gradient(135deg, #2A9D8F08, #D4A37308);">
+        <h2>📚 Resource Library <span style="font-size: 0.8rem; background: #2A9D8F; color: white; padding: 0.2rem 0.8rem; border-radius: 50px;">🎧 PLAY DIRECTLY</span></h2>
+        <p style="margin-bottom: 1rem; color: #666;">Click the play button next to any letter to hear pronunciation. No download needed.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem;">
+            
+            <!-- LETTERS CARD -->
+            <div class="library-card" style="background: #FDF8F2; border-radius: 20px; padding: 1.2rem; border: 1px solid #eee;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔊</div>
+                <h3 style="color: #2A9D8F; margin-bottom: 0.5rem;">Twi Alphabet Audio</h3>
+                <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Click play to hear each letter pronounced correctly.</p>
+                
+                <details open style="margin-bottom: 1rem;">
+                    <summary style="cursor: pointer; color: #2A9D8F; font-weight: 600; padding: 0.5rem 0; font-size: 1rem;">📖 Single Letters (A-Z, Ɛ, Ɔ, etc.)</summary>
+                    <div style="margin-top: 0.8rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.5rem;" id="lettersContainer"></div>
+                </details>
+                
+                <details style="margin-bottom: 1rem;">
+                    <summary style="cursor: pointer; color: #2A9D8F; font-weight: 600; padding: 0.5rem 0; font-size: 1rem;">🔤 Digraphs (Two letters = one sound)</summary>
+                    <div style="margin-top: 0.8rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 0.5rem;" id="digraphsContainer"></div>
+                </details>
+                
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 0.8rem;">🎵 Complete audio files:</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <span style="font-size: 0.8rem; font-weight: 600;">Complete Alphabet:</span>
+                            <audio controls preload="none" style="width: 100%; margin-top: 0.3rem;" controlslist="nodownload" oncontextmenu="return false;">
+                                <source src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/twi-alphabet-complete.m4a" type="audio/mp4">
+                            </audio>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <span style="font-size: 0.8rem; font-weight: 600;">All Digraphs:</span>
+                            <audio controls preload="none" style="width: 100%; margin-top: 0.3rem;" controlslist="nodownload" oncontextmenu="return false;">
+                                <source src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/twi-digraphs.m4a" type="audio/mp4">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NUMBERS CARD -->
+            <div class="library-card" style="background: #FDF8F2; border-radius: 20px; padding: 1.2rem; border: 1px solid #eee;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔢</div>
+                <h3 style="color: #2A9D8F; margin-bottom: 0.5rem;">Numbers 1-20</h3>
+                <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Listen to all numbers 1-20 in Twi.</p>
+                
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; text-align: center;">
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">1</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">2</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">3</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">4</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">5</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">6</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">7</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">8</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">9</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">10</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">11</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">12</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">13</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">14</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">15</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">16</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">17</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">18</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">19</div>
+                        <div style="padding: 0.3rem; background: #f5f5f5; border-radius: 8px; font-weight: 600; color: #2A9D8F;">20</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1rem;">
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 0.5rem;">🎵 Listen to all numbers 1-20:</p>
+                    <audio controls preload="none" style="width: 100%;" controlslist="nodownload" oncontextmenu="return false;">
+                        <source src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/numbers.m4a" type="audio/mp4">
+                    </audio>
+                </div>
+            </div>
+            
+            <!-- FLASHCARDS CARD -->
+            <div class="library-card" style="background: #FDF8F2; border-radius: 20px; padding: 1.2rem; border: 1px solid #eee;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🃏</div>
+                <h3 style="color: #2A9D8F; margin-bottom: 0.5rem;">Study Flashcards</h3>
+                <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">Printable flashcards for vocabulary review. Download and print at home.</p>
+                <a href="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/self-paced/flashcards.pdf?raw=true" download target="_blank" class="resource-link" style="display: inline-block; background: #2A9D8F; color: white;">📥 Download Flashcards (PDF)</a>
+            </div>
+        </div>
+        
+        <!-- COMING SOON BANNER -->
+        <div style="margin-top: 1.5rem; background: linear-gradient(135deg, #f0f0f0, #e8e8e8); border-radius: 20px; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; opacity: 0.8;">
+            <span style="font-size: 1.8rem;">📖</span>
+            <div style="flex: 1;">
+                <strong style="color: #2A9D8F; display: block; font-size: 0.9rem;">More resources coming soon!</strong>
+                <p style="color: #666; font-size: 0.8rem; margin: 0;">Vocabulary lists, phrasebooks, and interactive practice exercises</p>
+            </div>
+            <span style="background: #D4A373; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; font-weight: 600;">🚧 In production</span>
+        </div>
+    </div>
+    
+    <style>
+        .audio-player-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f5f5f5;
+            padding: 0.3rem 0.6rem;
+            border-radius: 40px;
+            transition: all 0.2s;
+        }
+        .audio-player-row:hover {
+            background: #e8e8e8;
+        }
+        .audio-player-row .letter {
+            font-weight: 700;
+            font-size: 1rem;
+            min-width: 55px;
+            text-align: center;
+            color: #2A9D8F;
+        }
+        .audio-player-row .letter small {
+            font-size: 0.7rem;
+            font-weight: normal;
+            color: #D4A373;
+            margin-left: 0.2rem;
+        }
+        .audio-player-row audio {
+            flex: 1;
+            height: 32px;
+        }
+        /* Hide download button and three-dot menu */
+        audio::-webkit-media-controls-enclosure {
+            overflow: hidden;
+        }
+        audio::-internal-media-controls-download-button {
+            display: none;
+        }
+        audio::-webkit-media-controls-download-button {
+            display: none;
+        }
+        audio::-webkit-media-controls-overflow-button {
+            display: none;
+        }
+        details summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details summary::before {
+            content: "▶ ";
+            font-size: 0.8rem;
+            color: #2A9D8F;
+        }
+        details[open] summary::before {
+            content: "▼ ";
+        }
+        .library-card {
+            transition: transform 0.3s;
+        }
+        .library-card:hover {
+            transform: translateY(-5px);
+        }
+        @media (max-width: 768px) {
+            .audio-player-row {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0.5rem;
+            }
+            .audio-player-row .letter {
+                text-align: left;
+                margin-bottom: 0.3rem;
+            }
+        }
+    </style>
+    
+    <script>
+        (function() {
+            // ========== LETTERS ==========
+            var letters = [
+                { capital: 'A', small: 'a' },
+                { capital: 'B', small: 'b' },
+                { capital: 'D', small: 'd' },
+                { capital: 'E', small: 'e' },
+                { capital: 'F', small: 'f' },
+                { capital: 'G', small: 'g' },
+                { capital: 'H', small: 'h' },
+                { capital: 'I', small: 'i' },
+                { capital: 'K', small: 'k' },
+                { capital: 'L', small: 'l' },
+                { capital: 'M', small: 'm' },
+                { capital: 'N', small: 'n' },
+                { capital: 'O', small: 'o' },
+                { capital: 'P', small: 'p' },
+                { capital: 'R', small: 'r' },
+                { capital: 'S', small: 's' },
+                { capital: 'T', small: 't' },
+                { capital: 'U', small: 'u' },
+                { capital: 'W', small: 'w' },
+                { capital: 'Y', small: 'y' },
+                { capital: 'Ɛ', small: 'ɛ' },
+                { capital: 'Ɔ', small: 'ɔ' },
+                { capital: 'Ɩ', small: 'ɩ' },
+                { capital: 'Ʊ', small: 'ʊ' },
+                { capital: 'Æ', small: 'æ' }
+            ];
+            
+            var letterUrls = {
+                'A': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-a.m4a',
+                'B': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-b.m4a',
+                'D': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-d.m4a',
+                'E': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-e.m4a',
+                'F': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-f.m4a',
+                'G': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-g.m4a',
+                'H': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-h.m4a',
+                'I': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-i.m4a',
+                'K': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-k.m4a',
+                'L': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-l.m4a',
+                'M': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-m.m4a',
+                'N': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-n.m4a',
+                'O': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-o.m4a',
+                'P': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-p.m4a',
+                'R': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-r.m4a',
+                'S': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-s.m4a',
+                'T': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-t.m4a',
+                'U': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-u.m4a',
+                'W': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-w.m4a',
+                'Y': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-y.m4a',
+                'Ɛ': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ɛ.m4a',
+                'Ɔ': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ɔ.m4a',
+                'Ɩ': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ɪ.m4a',
+                'Ʊ': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ʊ.m4a',
+                'Æ': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-æ.m4a'
+            };
+            
+            // ========== DIGRAPHS ==========
+            var digraphs = [
+                { name: 'DW', small: 'dw' },
+                { name: 'GY', small: 'gy' },
+                { name: 'HW', small: 'hw' },
+                { name: 'HY', small: 'hy' },
+                { name: 'KW', small: 'kw' },
+                { name: 'KY', small: 'ky' },
+                { name: 'NW', small: 'nw' },
+                { name: 'NY', small: 'ny' },
+                { name: 'TW', small: 'tw' }
+            ];
+            
+            var digraphUrls = {
+                'DW': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-dw.m4a',
+                'GY': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-gy.m4a',
+                'HW': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-hw.m4a',
+                'HY': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-hy.m4a',
+                'KW': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-kw.m4a',
+                'KY': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-ky.m4a',
+                'NW': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-nw.m4a',
+                'NY': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-ny.m4a',
+                'TW': 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-tw.m4a'
+            };
+            
+            function createAudioRow(url, displayText, smallText, container) {
+                var div = document.createElement('div');
+                div.className = 'audio-player-row';
+                div.innerHTML = '<span class="letter">' + displayText + ' <small>' + smallText + '</small></span><audio controls preload="none" controlslist="nodownload" oncontextmenu="return false;"><source src="' + url + '" type="audio/mp4"></audio>';
+                
+                var audio = div.querySelector('audio');
+                if (audio) {
+                    audio.setAttribute('controlslist', 'nodownload');
+                    audio.addEventListener('contextmenu', function(e) {
+                        e.preventDefault();
+                        return false;
+                    });
+                }
+                
+                container.appendChild(div);
+            }
+            
+            // Populate Letters
+            var lettersContainer = document.getElementById('lettersContainer');
+            if (lettersContainer) {
+                for (var i = 0; i < letters.length; i++) {
+                    var item = letters[i];
+                    if (letterUrls[item.capital]) {
+                        createAudioRow(letterUrls[item.capital], item.capital, item.small, lettersContainer);
+                    }
+                }
+            }
+            
+            // Populate Digraphs
+            var digraphsContainer = document.getElementById('digraphsContainer');
+            if (digraphsContainer) {
+                for (var i = 0; i < digraphs.length; i++) {
+                    var item = digraphs[i];
+                    if (digraphUrls[item.name]) {
+                        createAudioRow(digraphUrls[item.name], item.name, item.small, digraphsContainer);
+                    }
+                }
+            }
+        })();
+    </script>
+    `;
+    
+    // Beginner 1 Section with Games Spread Across Weeks
+    if (isLevelUnlocked('beginner1')) {
+        const completed = isLevelCompleted('beginner1');
+        beginner1Section = `
+        <div class="course-section">
+            <h2>📘 Beginner 1: Twi Alphabet & Sounds ${completed ? '<span style="font-size: 0.8rem; background: #2A9D8F; color: white; padding: 0.2rem 0.8rem; border-radius: 50px;">✅ COMPLETED</span>' : ''}</h2>
+            <div class="week-grid">
+                <!-- Week 1: Alphabet & Sounds -->
+                <div class="week-card" data-lesson="b1w1">
+                    <div class="week-number">Week 1</div>
+                    <div class="week-title">🔤 Twi Alphabet & Sounds (Ɛ, Ɔ, Consonants, Digraphs)</div>
+                    <div class="video-thumbnail" onclick="playVideo('https://zoom.us/clips/embed/w31TElAyTPGO6sqpjnSAgA', 'Week 1: Twi Alphabet & Sounds')">
+                        <div class="placeholder">
+                            <i>📹</i>
+                            <p>Click to watch lesson</p>
+                        </div>
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/self-paced/week1.pdf?raw=true" download target="_blank">📄 PDF</a>
+                        <a href="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/self-paced/week1-worksheet.pdf?raw=true" download target="_blank">📝 Worksheet</a>
+                        <a href="https://speak-ghana.speakghana912.workers.dev/quizzes/week1-quiz.html" class="quiz-btn" target="_blank">📋 Take Quiz</a>
+                        <a href="/games/match_sound.html" class="resource-link" target="_blank" style="background:#E76F51;color:white;">🎮 Match Sound</a>
+                        <a href="/games/digraph_challenge.html" class="resource-link" target="_blank" style="background:#E76F51;color:white;">🔊 Digraph Challenge</a>
+                        <a href="/games/brain_challenge.html" class="resource-link" target="_blank" style="background:#E76F51;color:white;">🧠 BRAIN CHALLENGE</a>
+                    </div>
+                </div>
+                
+                <!-- Week 2: Greetings & Introductions -->
+                <div class="week-card" data-lesson="b1w2">
+                    <div class="week-number">Week 2</div>
+                    <div class="week-title">👋 Greetings & Introductions</div>
+                    <div class="video-thumbnail" onclick="playVideo('https://zoom.us/clips/embed/MqPMtPZORyeMNVeNX_K5IQ', 'Week 2: Greetings & Introductions')">
+                        <div class="placeholder">
+                            <i>📹</i>
+                            <p>Click to watch lesson</p>
+                        </div>
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/self-paced/week2.pdf?raw=true" download target="_blank">📄 PDF</a>
+                        <a href="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/self-paced/week2-worksheet.pdf?raw=true" download target="_blank">📝 Worksheet</a>
+                        <a href="https://speak-ghana.speakghana912.workers.dev/quizzes/week2-quiz.html" class="quiz-btn" target="_blank">📋 Take Quiz</a>
+                        <a href="/games/memory_match.html" class="resource-link" target="_blank" style="background:#E76F51;color:white;">🧠 Memory Match</a>
+                        <a href="/games/week2-audio-game.html" class="resource-link" target="_blank" style="background:#E76F51;color:white;">🎧 Listen & Learn Game</a>
+                        <a href="/games/week2-audio-challenge.html" class="resource-link" target="_blank" style="background:#E76F51;color:white;">🎯 Audio Challenge (Hard)</a>
+                    </div>
+                </div>
+                
+                <!-- Week 3: Numbers -->
+                <div class="week-card" data-lesson="b1w3">
+                    <div class="week-number">Week 3</div>
+                    <div class="week-title">🔢 Numbers 1-20 & Counting</div>
+                    <div class="video-thumbnail" onclick="playVideo('https://zoom.us/clips/embed/81wHe-IMR_GRSGfy6ZCCag', 'Week 3: Numbers 1-20 & Counting')">
+                        <div class="placeholder">
+                            <i>📹</i>
+                            <p>Click to watch lesson</p>
+                        </div>
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/self-paced/week3.pdf?raw=true" download target="_blank">📄 PDF</a>
+                        <a href="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/self-paced/week3-worksheet.pdf?raw=true" download target="_blank">📝 Worksheet</a>
+                        <a href="https://speak-ghana.speakghana912.workers.dev/quizzes/week3-quiz.html" class="quiz-btn" target="_blank">📋 Take Quiz</a>
+                        <a href="/games/number_pop.html" class="resource-link" target="_blank" style="background:#E76F51;color:white;">🎈 Number Pop</a>
+                        <a href="/games/number-math.html" class="resource-link" target="_blank" style="background:#E76F51;color:white;">🧮 Number Math Challenge</a>
+                        <a href="/games/time-challenge.html" class="resource-link" target="_blank" style="background:#E76F51;color:white;">⏰ Twi Time Challenge</a>
+                    </div>
+                </div>
+                
+                <!-- Week 4: Live Q&A / Review Session -->
+                <div class="week-card" data-lesson="b1w4">
+                    <div class="week-number">Week 4</div>
+                    <div class="week-title">🎤 Live Q&A / Review Session</div>
+                    <div class="video-thumbnail" onclick="alert('📅 This is a LIVE session with your teacher!\\n\\nCheck the WhatsApp group for the Zoom link and schedule.')" style="cursor: pointer;">
+                        <div class="placeholder">
+                            <i>🎤</i>
+                            <p>Click for live session info</p>
+                        </div>
+                        <div class="play-overlay">🎙️</div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('📅 Live Q&A schedule is shared in the WhatsApp group.')">📅 Schedule</a>
+                        <a href="#" class="resource-link quiz-btn" onclick="alert('📝 Come prepared with your questions from Weeks 1-3!')">❓ Bring Questions</a>
+                        <a href="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/self-paced/flashcards.pdf?raw=true" download target="_blank" style="background:#2A9D8F;color:white;">🃏 Flashcards</a>
+                        <a href="/games/millionaire_quiz.html" class="resource-link" target="_blank" style="background:#E76F51;color:white;">💰 Millionaire Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    } else {
+        // Locked Beginner 1
+        beginner1Section = `
+        <div class="course-section" style="opacity: 0.6;">
+            <h2>🔒 Beginner 1: Twi Alphabet & Sounds <span style="font-size: 0.8rem; background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px;">UPGRADE TO UNLOCK</span></h2>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title">🔒 This level is not included in your current plan</div>
+                    <div class="video-thumbnail" style="cursor: default;">
+                        <div class="placeholder"><i>🔒</i><p>Upgrade to access Beginner 1</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('Please contact us to upgrade your plan!')">📞 Contact Us to Upgrade</a>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    }
+    
+    // Beginner 2 Section
+    if (isLevelUnlocked('beginner2')) {
+        const completed = isLevelCompleted('beginner2');
+        beginner2Section = `
+        <div class="course-section">
+            <h2>🏠 Beginner 2: Family & Home ${completed ? '<span style="font-size: 0.8rem; background: #2A9D8F; color: white; padding: 0.2rem 0.8rem; border-radius: 50px;">✅ COMPLETED</span>' : ''}</h2>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title">Week 1: Family Terms (Mother, Father, Siblings)</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Family Terms')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="resource-link" onclick="alert('Worksheet coming soon!')">📝 Worksheet</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Week 2: Home & Household Items</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Home & Household')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="resource-link" onclick="alert('Worksheet coming soon!')">📝 Worksheet</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Week 3: Possessives & Descriptions</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Possessives')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="resource-link" onclick="alert('Worksheet coming soon!')">📝 Worksheet</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Week 4: Review & Conversation Practice</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Review')" style="cursor: default;">
+                        <div class="placeholder"><i>🎤</i><p>Live Q&A Session</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('Live Q&A schedule coming soon!')">📅 Schedule</a>
+                        <a href="#" class="resource-link quiz-btn" onclick="alert('Bring your questions!')">❓ Bring Questions</a>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    } else if (isLevelUnlocked('beginner1') && !isLevelUnlocked('beginner2')) {
+        beginner2Section = `
+        <div class="course-section" style="opacity: 0.6;">
+            <h2>🔒 Beginner 2: Family & Home <span style="font-size: 0.8rem; background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px;">UPGRADE TO UNLOCK</span></h2>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title">🔒 This level is not included in your current plan</div>
+                    <div class="video-thumbnail" style="cursor: default;">
+                        <div class="placeholder"><i>🔒</i><p>Upgrade to continue your journey</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('Please contact us to upgrade your plan!')">📞 Contact Us to Upgrade</a>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    }
+    
+    // Intermediate Section
+    if (isLevelUnlocked('intermediate')) {
+        intermediateSection = `
+        <div class="course-section">
+            <h2>💬 Intermediate: Conversational Twi</h2>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title">Week 1-2: Market Bargaining & Shopping</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Market Bargaining')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Week 3-4: Directions & Transportation</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Directions')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Week 5-6: Everyday Conversations</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Conversations')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    } else if (isLevelUnlocked('beginner2') && !isLevelUnlocked('intermediate')) {
+        intermediateSection = `
+        <div class="course-section" style="opacity: 0.6;">
+            <h2>🔒 Intermediate: Conversational Twi <span style="font-size: 0.8rem; background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px;">UPGRADE TO UNLOCK</span></h2>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title">🔒 This level is not included in your current plan</div>
+                    <div class="video-thumbnail" style="cursor: default;">
+                        <div class="placeholder"><i>🔒</i><p>Upgrade to access Intermediate</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('Please contact us to upgrade your plan!')">📞 Contact Us to Upgrade</a>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    }
+    
+    // Business Section
+    if (isLevelUnlocked('business')) {
+        businessSection = `
+        <div class="course-section">
+            <h2>💼 Business Twi</h2>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title">Week 1-2: Professional Greetings & Protocol</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Business Greetings')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Week 3-4: Negotiation & Meetings</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Negotiation')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Week 5-6: Workplace Communication</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Workplace')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    }
+    
+    // Cultural Section
+    if (isLevelUnlocked('cultural')) {
+        culturalSection = `
+        <div class="course-section">
+            <h2>🥁 Cultural Fluency: Proverbs & Traditions</h2>
+            <div class="week-grid">
+                <div class="week-card">
+                    <div class="week-title">Week 1-2: Essential Twi Proverbs</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Proverbs')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Week 3-4: Adinkra Symbols & Meanings</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Adinkra')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Week 5-6: Festivals & Celebrations</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Festivals')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+                <div class="week-card">
+                    <div class="week-title">Week 7-8: Etiquette & Cultural Protocol</div>
+                    <div class="video-thumbnail" onclick="playVideo('', 'Etiquette')" style="cursor: default;">
+                        <div class="placeholder"><i>⏰</i><p>Recording coming soon</p></div>
+                    </div>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link" onclick="alert('PDF coming soon!')">📄 PDF</a>
+                        <a href="#" class="quiz-btn" onclick="alert('Quiz coming soon!')">📋 Take Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    }
+    
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Your Courses | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FDF8F2;
+            color: #1E1E1E;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            color: white;
+            padding: 1rem 0;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .hero {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            padding: 2rem 0;
+            text-align: center;
+            color: white;
+        }
+        .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .welcome-badge {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            margin-top: 0.5rem;
+        }
+        
+        /* WARNING BOX STYLES */
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+        }
+        .warning-box strong {
+            color: #856404;
+            font-size: 1rem;
+        }
+        .warning-box p {
+            color: #856404;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .warning-box ul {
+            margin-top: 0.5rem;
+            margin-left: 1.5rem;
+            color: #856404;
+            font-size: 0.85rem;
+        }
+        
+        /* WATERMARK STYLES */
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 10px;
+            color: rgba(0,0,0,0.15);
+            background: transparent;
+            pointer-events: none;
+            z-index: 999;
+            font-family: monospace;
+        }
+        
+        .progress-section {
+            background: linear-gradient(135deg, #fff5e8, white);
+            border-radius: 28px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 2px solid #D4A373;
+        }
+        .progress-bar {
+            background: #F0F0F0;
+            border-radius: 30px;
+            height: 20px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.5s;
+        }
+        .course-section {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .course-section h2 {
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+        }
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .week-card {
+            background: #FDF8F2;
+            border-radius: 20px;
+            padding: 1.2rem;
+            transition: transform 0.3s;
+            position: relative;
+            border: 1px solid #eee;
+        }
+        .week-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .week-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        
+        /* Protected Video Thumbnail - NO URL VISIBLE */
+        .video-thumbnail {
+            position: relative;
+            cursor: pointer;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        .video-thumbnail:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .video-thumbnail .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        .video-thumbnail .placeholder i {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #D4A373;
+        }
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: rgba(255,255,255,0.9);
+            transition: all 0.3s;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            pointer-events: none;
+        }
+        .video-thumbnail:hover .play-overlay {
+            transform: translate(-50%, -50%) scale(1.1);
+            color: #D4A373;
+        }
+        
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.96);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1100px;
+        }
+        .video-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .video-modal-close:hover { color: #D4A373; }
+        .video-modal iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 16px;
+            border: none;
+        }
+        .video-modal-note {
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.7rem;
+            margin-top: 0.8rem;
+        }
+        
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+        .resource-links a {
+            background: white;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #2A9D8F;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .resource-links a:hover {
+            background: #2A9D8F;
+            color: white;
+        }
+        .quiz-btn {
+            background: #D4A373 !important;
+            color: #1E1E1E !important;
+        }
+        .quiz-btn:hover {
+            background: #2A9D8F !important;
+            color: white !important;
+        }
+        .logout {
+            display: inline-block;
+            background: #E76F51;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 1rem 0 2rem;
+        }
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #999;
+            font-size: 0.8rem;
+        }
+        .checkmark {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            .hero h1 { font-size: 1.5rem; }
+            .play-overlay { font-size: 3rem; }
+            .watermark { font-size: 8px; bottom: 5px; right: 5px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h2>Speak Ghana</h2>
+        </div>
+    </div>
+    
+    <!-- WATERMARK: Student Name (appears on every page and screenshots) -->
+    <div class="watermark">
+        Licensed to: ${student.name} (${student.email}) | Do not share
+    </div>
+    
+    <div class="hero">
+        <div class="container">
+            <h1>📚 Your Self-Paced Courses</h1>
+            <p>Welcome back, ${student.name}!</p>
+            <div class="welcome-badge">
+                🎓 Plan: ${student.plan} | Level: ${student.course_level || 'Beginner 1'}
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- WARNING BOX - Academic Integrity Policy -->
+        <div class="warning-box">
+            <strong>⚠️ IMPORTANT: Academic Integrity Policy</strong>
+            <p>Your Zoom links and passcodes are for <strong>YOUR USE ONLY</strong>. Do NOT share them with anyone.</p>
+            <ul>
+                <li>📌 If we detect that your link has been shared → <strong>IMMEDIATE ACCOUNT SUSPENSION</strong></li>
+                <li>❌ You will lose access to all course materials</li>
+                <li>🚫 You will NOT receive your certificate of completion</li>
+                <li>💬 You will be removed from the WhatsApp support group</li>
+                <li>💰 No refund will be issued</li>
+            </ul>
+            <p><strong>✅ Respect your investment. Keep your learning private.</strong></p>
+        </div>
+        
+        <div class="progress-section">
+            <h3>📊 Your Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p id="progressText" style="margin-top: 0.5rem;">Loading your progress...</p>
+        </div>
+        
+        ${librarySection}
+        
+        ${beginner1Section}
+        ${beginner2Section}
+        ${intermediateSection}
+        ${businessSection}
+        ${culturalSection}
+        
+        <div style="text-align: center;">
+            <a href="/logout" class="logout">🚪 Logout</a>
+        </div>
+        
+        <div class="footer">
+            <p>More lessons and quizzes added weekly!</p>
+            <p style="margin-top: 0.5rem;">📧 Questions? Email <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
+        </div>
+    </div>
+    
+    <!-- Video Modal (Hidden until thumbnail clicked) -->
+    <div id="videoModal" class="video-modal" onclick="closeVideoModalOnBackground(event)">
+        <div class="video-modal-content">
+            <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
+            <iframe id="modalIframe" allowfullscreen></iframe>
+            <div class="video-modal-note">
+                🔒 This video is for enrolled students only. Do not share.
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Protected video playback - requires active session
+        function playVideo(videoUrl, videoTitle) {
+            // Verify session is active
+            if (!sessionStorage.getItem('selfPacedAuthenticated')) {
+                alert('⚠️ Session expired. Please refresh the page and log in again.');
+                window.location.href = '/logout';
+                return;
+            }
+            
+            if (!videoUrl || videoUrl === '') {
+                alert('📹 This video recording is coming soon. Please check back later!');
+                return;
+            }
+            
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('modalIframe');
+            
+            iframe.src = videoUrl;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('modalIframe');
+            iframe.src = '';
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function closeVideoModalOnBackground(event) {
+            if (event.target === document.getElementById('videoModal')) {
+                closeVideoModal();
+            }
+        }
+        
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('videoModal');
+                if (modal.style.display === 'flex') {
+                    closeVideoModal();
+                }
+            }
+        });
+        
+        // Progress tracking
+        function loadProgress() {
+            let completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            let total = document.querySelectorAll('.week-card').length;
+            let percent = (completed.length / total) * 100;
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('progressText').innerHTML = '📊 ' + completed.length + ' of ' + total + ' lessons completed (' + Math.round(percent) + '%)';
+            
+            completed.forEach(lessonId => {
+                let card = document.querySelector('[data-lesson="' + lessonId + '"]');
+                if(card && !card.querySelector('.checkmark')) {
+                    card.style.border = '2px solid #2A9D8F';
+                    let check = document.createElement('div');
+                    check.className = 'checkmark';
+                    check.innerHTML = '✅';
+                    check.style.position = 'absolute';
+                    check.style.top = '8px';
+                    check.style.right = '8px';
+                    check.style.fontSize = '1.2rem';
+                    card.appendChild(check);
+                }
+            });
+        }
+        
+        // Mark lesson complete when video is watched
+        document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+            const originalOnclick = thumbnail.onclick;
+            thumbnail.onclick = function(e) {
+                e.stopPropagation();
+                if (originalOnclick) originalOnclick.call(thumbnail, e);
+                
+                const card = thumbnail.closest('.week-card');
+                if (card) {
+                    const lessonId = card.dataset.lesson;
+                    if (lessonId) {
+                        let completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+                        if (!completed.includes(lessonId)) {
+                            completed.push(lessonId);
+                            localStorage.setItem('completedLessons', JSON.stringify(completed));
+                            loadProgress();
+                        }
+                    }
+                }
+            };
+        });
+        
+        // Mark session as authenticated
+        sessionStorage.setItem('selfPacedAuthenticated', 'true');
+        
+        // Disable right-click on video thumbnails to prevent inspection
+        document.querySelectorAll('.video-thumbnail').forEach(el => {
+            el.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+        });
+        
+        // Initialize progress
+        loadProgress();
+    </script>
+</body>
+</html>`;
+}
