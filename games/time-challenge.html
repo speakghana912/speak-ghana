@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Twi Time Challenge | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .game-container {
+            max-width: 750px;
+            width: 100%;
+            background: white;
+            border-radius: 48px;
+            padding: 2rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .game-header h1 {
+            color: #2A9D8F;
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .game-header p {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            background: #FDF8F2;
+            padding: 1rem;
+            border-radius: 60px;
+            margin: 1.5rem 0;
+        }
+
+        .score-box, .streak-box {
+            background: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+
+        .streak-box span {
+            color: #D4A373;
+        }
+
+        /* CLOCK STYLES - FIXED ALIGNMENT */
+        .clock-container {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .clock {
+            width: 250px;
+            height: 250px;
+            background: white;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .clock-face {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 50%;
+            background: #fef9f0;
+        }
+
+        /* Clock numbers - perfectly centered */
+        .clock-number {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2A9D8F;
+        }
+
+        .clock-number span {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .num-1 span { top: 15px; left: 62%; transform: translateX(-50%); }
+        .num-2 span { top: 45px; left: 78%; transform: translateX(-50%); }
+        .num-3 span { top: 50%; right: 15px; transform: translateY(-50%); left: auto; }
+        .num-4 span { bottom: 45px; left: 78%; transform: translateX(-50%); top: auto; }
+        .num-5 span { bottom: 15px; left: 62%; transform: translateX(-50%); top: auto; }
+        .num-6 span { bottom: 5px; left: 50%; transform: translateX(-50%); top: auto; }
+        .num-7 span { bottom: 15px; left: 38%; transform: translateX(-50%); top: auto; }
+        .num-8 span { bottom: 45px; left: 22%; transform: translateX(-50%); top: auto; }
+        .num-9 span { top: 50%; left: 15px; transform: translateY(-50%); }
+        .num-10 span { top: 45px; left: 22%; transform: translateX(-50%); }
+        .num-11 span { top: 15px; left: 38%; transform: translateX(-50%); }
+        .num-12 span { top: 5px; left: 50%; transform: translateX(-50%); }
+
+        /* Clock hands */
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: 50% 100%;
+            border-radius: 4px;
+            transform: translateX(-50%) rotate(0deg);
+        }
+
+        .hour-hand {
+            width: 6px;
+            height: 60px;
+            background: #1E1E1E;
+            border-radius: 6px;
+        }
+
+        .minute-hand {
+            width: 4px;
+            height: 85px;
+            background: #2A9D8F;
+            border-radius: 4px;
+        }
+
+        .center-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #D4A373;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        /* Tick marks */
+        .clock-tick {
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background: #ccc;
+            left: 50%;
+            transform-origin: 50% 100%;
+        }
+
+        .digital-time {
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+        }
+
+        .question-area {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .question-text {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .options-area {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .option-btn {
+            background: #FDF8F2;
+            border: 2px solid #e2e8f0;
+            border-radius: 60px;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1E1E1E;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .option-btn:hover {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .option-btn.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            animation: pulse 0.5s;
+        }
+
+        .option-btn.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+            animation: shake 0.3s;
+        }
+
+        .option-btn.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .feedback {
+            margin: 1rem 0;
+            padding: 0.8rem;
+            border-radius: 20px;
+            display: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .feedback.correct {
+            display: block;
+            background: #d4f5ef;
+            color: #1f7a6e;
+        }
+
+        .feedback.incorrect {
+            display: block;
+            background: #fde5dd;
+            color: #E76F51;
+        }
+
+        .next-btn {
+            background: #D4A373;
+            color: #1E1E1E;
+            border: none;
+            padding: 1rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            display: none;
+            transition: all 0.3s;
+        }
+
+        .next-btn.show {
+            display: block;
+        }
+
+        .next-btn:hover {
+            background: #2A9D8F;
+            color: white;
+        }
+
+        .game-end {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .game-end.show {
+            display: block;
+        }
+
+        .restart-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .restart-btn:hover {
+            background: #1f7a6e;
+            transform: translateY(-2px);
+        }
+
+        .progress-text {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 550px) {
+            .game-container {
+                padding: 1.5rem;
+            }
+            .options-area {
+                grid-template-columns: 1fr;
+            }
+            .clock {
+                width: 200px;
+                height: 200px;
+            }
+            .hour-hand {
+                height: 48px;
+            }
+            .minute-hand {
+                height: 68px;
+            }
+            .num-1 span { top: 10px; left: 60%; }
+            .num-2 span { top: 35px; left: 78%; }
+            .num-4 span { bottom: 35px; left: 78%; }
+            .num-5 span { bottom: 10px; left: 60%; }
+            .num-7 span { bottom: 10px; left: 40%; }
+            .num-8 span { bottom: 35px; left: 22%; }
+            .num-10 span { top: 35px; left: 22%; }
+            .num-11 span { top: 10px; left: 40%; }
+        }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-header">
+        <h1>⏰ Twi Time Challenge</h1>
+        <p>Look at the clock — what time is it in Twi?</p>
+    </div>
+
+    <div class="stats">
+        <div class="score-box">🏆 Score: <span id="score">0</span></div>
+        <div class="streak-box">🔥 Streak: <span id="streak">0</span></div>
+    </div>
+
+    <div class="clock-container">
+        <div class="clock">
+            <div class="clock-face">
+                <div class="clock-number num-1"><span>1</span></div>
+                <div class="clock-number num-2"><span>2</span></div>
+                <div class="clock-number num-3"><span>3</span></div>
+                <div class="clock-number num-4"><span>4</span></div>
+                <div class="clock-number num-5"><span>5</span></div>
+                <div class="clock-number num-6"><span>6</span></div>
+                <div class="clock-number num-7"><span>7</span></div>
+                <div class="clock-number num-8"><span>8</span></div>
+                <div class="clock-number num-9"><span>9</span></div>
+                <div class="clock-number num-10"><span>10</span></div>
+                <div class="clock-number num-11"><span>11</span></div>
+                <div class="clock-number num-12"><span>12</span></div>
+                <div class="hand hour-hand" id="hourHand"></div>
+                <div class="hand minute-hand" id="minuteHand"></div>
+                <div class="center-dot"></div>
+            </div>
+        </div>
+    </div>
+    <div class="digital-time" id="digitalTime">12:00</div>
+
+    <div class="question-area">
+        <div class="question-text">📖 Dɔn ahe? (What time is it?)</div>
+    </div>
+
+    <div class="options-area" id="optionsArea"></div>
+
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="nextBtn">Next Question →</button>
+
+    <div class="game-end" id="gameEnd">
+        <h2>🎉 Challenge Complete! 🎉</h2>
+        <p>You've learned to tell time in Twi!</p>
+        <div class="final-score" style="font-size: 2rem; font-weight: 800; color: #2A9D8F; margin: 1rem 0;" id="finalScore">0</div>
+        <button class="restart-btn" id="restartBtn">Play Again ↻</button>
+    </div>
+    
+    <div class="progress-text" id="progressText">Question 1 of 12</div>
+</div>
+
+<script>
+// Time data for 12 hours
+const times = [
+    { hour: 1, minute: 0, display: "1:00", twi: "Dɔnko", meaning: "Hour one" },
+    { hour: 2, minute: 0, display: "2:00", twi: "Nnɔmienu", meaning: "Hour two" },
+    { hour: 3, minute: 0, display: "3:00", twi: "Nnɔmiɛnsa", meaning: "Hour three" },
+    { hour: 4, minute: 0, display: "4:00", twi: "Nnɔnnan", meaning: "Hour four" },
+    { hour: 5, minute: 0, display: "5:00", twi: "Nnɔnum", meaning: "Hour five" },
+    { hour: 6, minute: 0, display: "6:00", twi: "Nnɔnsia", meaning: "Hour six" },
+    { hour: 7, minute: 0, display: "7:00", twi: "Nnɔnson", meaning: "Hour seven" },
+    { hour: 8, minute: 0, display: "8:00", twi: "Nnɔnwɔtwe", meaning: "Hour eight" },
+    { hour: 9, minute: 0, display: "9:00", twi: "Nnɔnkron", meaning: "Hour nine" },
+    { hour: 10, minute: 0, display: "10:00", twi: "Nnɔndu", meaning: "Hour ten" },
+    { hour: 11, minute: 0, display: "11:00", twi: "Nnɔndu baako", meaning: "Hour eleven" },
+    { hour: 12, minute: 0, display: "12:00", twi: "Nnɔndu mmienu", meaning: "Hour twelve" }
+];
+
+let currentQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let streak = 0;
+let answered = false;
+let totalQuestions = 12;
+
+// DOM elements
+const hourHand = document.getElementById('hourHand');
+const minuteHand = document.getElementById('minuteHand');
+const digitalTimeSpan = document.getElementById('digitalTime');
+const optionsArea = document.getElementById('optionsArea');
+const feedbackDiv = document.getElementById('feedback');
+const nextBtn = document.getElementById('nextBtn');
+const scoreSpan = document.getElementById('score');
+const streakSpan = document.getElementById('streak');
+const gameEndDiv = document.getElementById('gameEnd');
+const finalScoreSpan = document.getElementById('finalScore');
+const progressTextSpan = document.getElementById('progressText');
+
+// Set clock hands
+function setClockTime(hour, minute) {
+    const hourAngle = (hour % 12) * 30 + minute * 0.5;
+    const minuteAngle = minute * 6;
+    
+    hourHand.style.transform = `translateX(-50%) rotate(${hourAngle}deg)`;
+    minuteHand.style.transform = `translateX(-50%) rotate(${minuteAngle}deg)`;
+    
+    const formattedHour = hour <= 12 ? hour : hour - 12;
+    digitalTimeSpan.textContent = `${formattedHour}:${minute.toString().padStart(2, '0')}`;
+}
+
+// Shuffle array
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+// Initialize questions
+function initQuestions() {
+    currentQuestions = shuffleArray([...times]);
+    currentIndex = 0;
+    score = 0;
+    streak = 0;
+    answered = false;
+    scoreSpan.textContent = score;
+    streakSpan.textContent = streak;
+}
+
+// Generate options
+function generateOptions(correctTwi) {
+    let options = [correctTwi];
+    const otherTimes = times.filter(t => t.twi !== correctTwi);
+    const shuffledOthers = shuffleArray([...otherTimes]);
+    
+    while (options.length < 4 && shuffledOthers.length > 0) {
+        const nextOption = shuffledOthers.shift().twi;
+        if (!options.includes(nextOption)) {
+            options.push(nextOption);
+        }
+    }
+    
+    return shuffleArray(options);
+}
+
+// Load question
+function loadQuestion() {
+    if (currentIndex >= totalQuestions) {
+        endGame();
+        return;
+    }
+    
+    const q = currentQuestions[currentIndex];
+    setClockTime(q.hour, q.minute);
+    
+    const options = generateOptions(q.twi);
+    
+    optionsArea.innerHTML = '';
+    options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt;
+        btn.onclick = () => checkAnswer(opt);
+        optionsArea.appendChild(btn);
+    });
+    
+    answered = false;
+    nextBtn.classList.remove('show');
+    feedbackDiv.className = 'feedback';
+    feedbackDiv.style.display = 'none';
+    
+    progressTextSpan.textContent = `Question ${currentIndex + 1} of ${totalQuestions}`;
+}
+
+// Check answer
+function checkAnswer(selected) {
+    if (answered) return;
+    
+    const currentQ = currentQuestions[currentIndex];
+    const isCorrect = (selected === currentQ.twi);
+    
+    answered = true;
+    const buttons = document.querySelectorAll('.option-btn');
+    
+    if (isCorrect) {
+        score++;
+        streak++;
+        scoreSpan.textContent = score;
+        streakSpan.textContent = streak;
+        
+        feedbackDiv.className = 'feedback correct';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = `✅ Correct! ${currentQ.display} = ${currentQ.twi} +${streak} streak!`;
+        
+        buttons.forEach(btn => {
+            if (btn.textContent === currentQ.twi) {
+                btn.classList.add('correct');
+            }
+            btn.classList.add('disabled');
+        });
+    } else {
+        streak = 0;
+        streakSpan.textContent = streak;
+        
+        feedbackDiv.className = 'feedback incorrect';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = `❌ Oops! ${currentQ.display} = ${currentQ.twi}`;
+        
+        buttons.forEach(btn => {
+            if (btn.textContent === selected) {
+                btn.classList.add('wrong');
+            }
+            if (btn.textContent === currentQ.twi) {
+                btn.classList.add('correct');
+            }
+            btn.classList.add('disabled');
+        });
+    }
+    
+    nextBtn.classList.add('show');
+}
+
+// Next question
+function nextQuestion() {
+    if (!answered) return;
+    currentIndex++;
+    loadQuestion();
+}
+
+// End game
+function endGame() {
+    const percentage = Math.round((score / totalQuestions) * 100);
+    let message = '';
+    
+    if (percentage === 100) {
+        message = '🏆 Perfect! You are a Twi time master!';
+    } else if (percentage >= 80) {
+        message = '🌟 Great job! You really know your Twi time!';
+    } else if (percentage >= 60) {
+        message = '👍 Good effort! Try again to master all times!';
+    } else {
+        message = '📚 Keep practicing! You will get better each time!';
+    }
+    
+    finalScoreSpan.innerHTML = `${score}/${totalQuestions}<br><span style="font-size: 0.9rem; color: #666;">${percentage}%</span><br><span style="font-size: 0.8rem; color: #D4A373; margin-top: 0.5rem; display: block;">${message}</span>`;
+    
+    document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
+    gameEndDiv.classList.add('show');
+}
+
+// Restart game
+function restartGame() {
+    document.querySelector('.game-container > div:not(.game-end)').style.display = 'block';
+    gameEndDiv.classList.remove('show');
+    initQuestions();
+    loadQuestion();
+}
+
+// Event listeners
+nextBtn.addEventListener('click', nextQuestion);
+restartBtn.addEventListener('click', restartGame);
+
+// Initialize game
+initQuestions();
+loadQuestion();
+
+// Disable right-click protection
+document.querySelector('.game-container').addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    return false;
+});
+</script>
+</body>
+</html>
