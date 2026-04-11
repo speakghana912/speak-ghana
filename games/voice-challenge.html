@@ -116,7 +116,22 @@
             gap: 0.5rem;
         }
 
-        .listen-btn:hover, .speak-btn:hover {
+        .skip-btn {
+            background: #E76F51;
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .listen-btn:hover, .speak-btn:hover, .skip-btn:hover {
             transform: scale(1.02);
         }
 
@@ -244,6 +259,9 @@
         <button class="speak-btn" id="speakBtn">
             🎤 Speak the Word
         </button>
+        <button class="skip-btn" id="skipBtn">
+            ⏭️ Skip Word
+        </button>
     </div>
 
     <div class="feedback" id="feedback"></div>
@@ -322,6 +340,7 @@ const finalScoreSpan = document.getElementById('finalScore');
 const progressTextSpan = document.getElementById('progressText');
 const listenBtn = document.getElementById('listenBtn');
 const speakBtn = document.getElementById('speakBtn');
+const skipBtn = document.getElementById('skipBtn');
 const restartBtn = document.getElementById('restartBtn');
 
 // Shuffle array
@@ -389,6 +408,65 @@ function listenToWord() {
     }
 }
 
+// Skip current word (no penalty)
+function skipWord() {
+    if (answered) {
+        feedbackDiv.className = 'feedback incorrect';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = '⚠️ You already answered this word! Click Next.';
+        return;
+    }
+    
+    answered = true;
+    nextBtn.disabled = false;
+    feedbackDiv.className = 'feedback incorrect';
+    feedbackDiv.style.display = 'block';
+    feedbackDiv.innerHTML = '⏭️ Word skipped. Listen carefully and try the next one!';
+}
+
+// Check if pronunciation is close enough (more forgiving)
+function isCloseMatch(said, expected) {
+    if (!said) return false;
+    said = said.toLowerCase().trim();
+    expected = expected.toLowerCase().trim();
+    
+    // Direct match
+    if (said === expected) return true;
+    
+    // Contains the expected sound
+    if (said.includes(expected)) return true;
+    
+    // Expected contains what they said (for short sounds like 'a', 'e')
+    if (expected.includes(said) && said.length >= 1) return true;
+    
+    // Common pronunciation variations for Twi letters
+    const variations = {
+        'a': ['ah', 'aa', 'aah'],
+        'e': ['eh', 'ay', 'ae'],
+        'i': ['ee', 'ih'],
+        'o': ['oh', 'ow'],
+        'u': ['oo', 'uh'],
+        'ɛ': ['eh', 'ae', 'e'],
+        'ɔ': ['aw', 'oh', 'o'],
+        'dw': ['dj', 'j'],
+        'gy': ['jee', 'g', 'j'],
+        'hw': ['wh', 'h'],
+        'kw': ['k', 'ku'],
+        'ky': ['ch', 'chee', 'k'],
+        'ny': ['nee', 'ni', 'n'],
+        'tw': ['t', 'tu']
+    };
+    
+    // Check variations
+    if (variations[expected]) {
+        for (let var of variations[expected]) {
+            if (said.includes(var) || var.includes(said)) return true;
+        }
+    }
+    
+    return false;
+}
+
 // Speak word and check
 function speakWord() {
     if (answered) {
@@ -401,7 +479,7 @@ function speakWord() {
     if (!window.webkitSpeechRecognition && !window.SpeechRecognition) {
         feedbackDiv.className = 'feedback incorrect';
         feedbackDiv.style.display = 'block';
-        feedbackDiv.innerHTML = '❌ Speech recognition not supported in your browser. Try Chrome or Edge.';
+        feedbackDiv.innerHTML = '❌ Speech recognition not supported. Click "Listen" then "Skip" to continue.';
         return;
     }
     
@@ -410,6 +488,7 @@ function speakWord() {
     recognition.lang = 'en-US';
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
+    recognition.timeout = 5000;
     
     feedbackDiv.className = 'feedback listening';
     feedbackDiv.style.display = 'block';
@@ -420,8 +499,8 @@ function speakWord() {
         const currentQ = currentQuestions[currentIndex];
         const expected = currentQ.twi.toLowerCase();
         
-        // Check if what they said matches or contains the Twi sound
-        const isCorrect = said === expected || said.includes(expected) || expected.includes(said);
+        // Use forgiving match function
+        const isCorrect = isCloseMatch(said, expected);
         
         if (isCorrect) {
             score += 10;
@@ -430,13 +509,13 @@ function speakWord() {
             streakSpan.textContent = streak;
             
             feedbackDiv.className = 'feedback correct';
-            feedbackDiv.innerHTML = `✅ Correct! You said "${said}". Great pronunciation! +10 points!`;
+            feedbackDiv.innerHTML = `✅ Great! You said "${said}". That's close enough! +10 points!`;
         } else {
             streak = 0;
             streakSpan.textContent = streak;
             
             feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = `❌ Try again! You said "${said}". The correct pronunciation is "${expected}". Listen to the audio and try again.`;
+            feedbackDiv.innerHTML = `📚 The correct pronunciation is "${expected}". Keep practicing! Use the "Listen" button to hear it again.`;
         }
         
         answered = true;
@@ -444,19 +523,34 @@ function speakWord() {
     };
     
     recognition.onerror = function(event) {
-        feedbackDiv.className = 'feedback incorrect';
-        feedbackDiv.innerHTML = `❌ Could not hear you. Make sure your microphone is working and click "Speak" again.`;
         console.error('Speech recognition error:', event.error);
-    };
-    
-    recognition.onend = function() {
-        if (!answered) {
+        
+        if (event.error === 'not-allowed') {
             feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = '❌ No speech detected. Click the microphone button and speak clearly.';
+            feedbackDiv.innerHTML = '❌ Microphone access denied. Please allow microphone access and try again.';
+        } else if (event.error === 'network') {
+            feedbackDiv.className = 'feedback incorrect';
+            feedbackDiv.innerHTML = '❌ Network error. Please check your connection and try again.';
+        } else {
+            // Instead of failing completely, allow skip
+            feedbackDiv.className = 'feedback incorrect';
+            feedbackDiv.innerHTML = '🎤 Could not recognize. Click "Skip" to move to the next word.';
+            // Don't mark as answered - let them skip
         }
     };
     
     recognition.start();
+    
+    // Auto-stop after 8 seconds if no speech detected
+    setTimeout(() => {
+        if (recognition && !answered) {
+            try {
+                recognition.abort();
+                feedbackDiv.className = 'feedback incorrect';
+                feedbackDiv.innerHTML = '⏰ No speech detected. Click "Skip" to continue.';
+            } catch(e) {}
+        }
+    }, 8000);
 }
 
 // Next question
@@ -501,13 +595,14 @@ async function checkMicrophone() {
         await navigator.mediaDevices.getUserMedia({ audio: true });
         document.getElementById('micPermissionMsg').style.display = 'none';
     } catch (err) {
-        document.getElementById('micPermissionMsg').innerHTML = '🎤 Microphone access denied. Please allow microphone access in your browser settings to play this game.';
+        document.getElementById('micPermissionMsg').innerHTML = '🎤 Microphone access denied. You can still use "Listen" and "Skip" buttons to practice.';
     }
 }
 
 // Event listeners
 listenBtn.addEventListener('click', listenToWord);
 speakBtn.addEventListener('click', speakWord);
+skipBtn.addEventListener('click', skipWord);
 nextBtn.addEventListener('click', nextQuestion);
 restartBtn.addEventListener('click', restartGame);
 
