@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Voice Challenge | Speak Twi with Your Voice | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .game-container {
+            max-width: 650px;
+            width: 100%;
+            background: white;
+            border-radius: 48px;
+            padding: 2rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .game-header h1 {
+            color: #2A9D8F;
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .game-header p {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            background: #FDF8F2;
+            padding: 1rem;
+            border-radius: 60px;
+            margin: 1.5rem 0;
+        }
+
+        .score-box, .streak-box {
+            background: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+
+        .word-area {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .current-word {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .word-meaning {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .listen-btn {
+            background: #D4A373;
+            color: #1E1E1E;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .speak-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .listen-btn:hover, .speak-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .feedback {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 20px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .feedback.correct {
+            display: block;
+            background: #d4f5ef;
+            color: #1f7a6e;
+        }
+
+        .feedback.incorrect {
+            display: block;
+            background: #fde5dd;
+            color: #E76F51;
+        }
+
+        .feedback.listening {
+            display: block;
+            background: #e8e8e8;
+            color: #2A9D8F;
+        }
+
+        .next-btn {
+            background: #D4A373;
+            color: #1E1E1E;
+            border: none;
+            padding: 1rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .next-btn:hover {
+            background: #2A9D8F;
+            color: white;
+        }
+
+        .game-end {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .game-end.show {
+            display: block;
+        }
+
+        .restart-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .progress-text {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 1rem;
+        }
+
+        .microphone-permission {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 0.8rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: #856404;
+        }
+
+        @media (max-width: 550px) {
+            .game-container {
+                padding: 1.5rem;
+            }
+            .current-word {
+                font-size: 2.5rem;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-header">
+        <h1>🎙️ Voice Challenge</h1>
+        <p>Listen, then speak the Twi letter or digraph!</p>
+    </div>
+
+    <div class="stats">
+        <div class="score-box">🏆 Score: <span id="score">0</span></div>
+        <div class="streak-box">🔥 Streak: <span id="streak">0</span></div>
+    </div>
+
+    <div class="microphone-permission" id="micPermissionMsg">
+        🎤 This game needs microphone access. Click "Allow" when prompted.
+    </div>
+
+    <div class="word-area">
+        <div class="current-word" id="currentWord">A</div>
+        <div class="word-meaning" id="wordMeaning">(letter A)</div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="listen-btn" id="listenBtn">
+            🔊 Listen to Pronunciation
+        </button>
+        <button class="speak-btn" id="speakBtn">
+            🎤 Speak the Word
+        </button>
+    </div>
+
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="nextBtn" disabled>Next Word →</button>
+
+    <div class="game-end" id="gameEnd">
+        <h2>🎉 Challenge Complete! 🎉</h2>
+        <p>Great job practicing your pronunciation!</p>
+        <div class="final-score" style="font-size: 2rem; font-weight: 800; color: #2A9D8F; margin: 1rem 0;" id="finalScore">0</div>
+        <button class="restart-btn" id="restartBtn">Play Again ↻</button>
+    </div>
+    
+    <div class="progress-text" id="progressText">Question 1 of 10</div>
+</div>
+
+<script>
+// ===== ALL TWI LETTERS AND DIGRAPHS WITH AUDIO =====
+const allWords = [
+    // Single Letters
+    { display: "A", twi: "a", meaning: "letter A", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-a.m4a" },
+    { display: "B", twi: "b", meaning: "letter B", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-b.m4a" },
+    { display: "D", twi: "d", meaning: "letter D", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-d.m4a" },
+    { display: "E", twi: "e", meaning: "letter E", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-e.m4a" },
+    { display: "F", twi: "f", meaning: "letter F", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-f.m4a" },
+    { display: "G", twi: "g", meaning: "letter G", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-g.m4a" },
+    { display: "H", twi: "h", meaning: "letter H", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-h.m4a" },
+    { display: "I", twi: "i", meaning: "letter I", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-i.m4a" },
+    { display: "K", twi: "k", meaning: "letter K", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-k.m4a" },
+    { display: "L", twi: "l", meaning: "letter L", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-l.m4a" },
+    { display: "M", twi: "m", meaning: "letter M", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-m.m4a" },
+    { display: "N", twi: "n", meaning: "letter N", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-n.m4a" },
+    { display: "O", twi: "o", meaning: "letter O", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-o.m4a" },
+    { display: "P", twi: "p", meaning: "letter P", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-p.m4a" },
+    { display: "R", twi: "r", meaning: "letter R", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-r.m4a" },
+    { display: "S", twi: "s", meaning: "letter S", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-s.m4a" },
+    { display: "T", twi: "t", meaning: "letter T", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-t.m4a" },
+    { display: "U", twi: "u", meaning: "letter U", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-u.m4a" },
+    { display: "W", twi: "w", meaning: "letter W", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-w.m4a" },
+    { display: "Y", twi: "y", meaning: "letter Y", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-y.m4a" },
+    { display: "Ɛ", twi: "ɛ", meaning: "letter Ɛ", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ɛ.m4a" },
+    { display: "Ɔ", twi: "ɔ", meaning: "letter Ɔ", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ɔ.m4a" },
+    { display: "Ɩ", twi: "ɪ", meaning: "letter Ɩ", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ɪ.m4a" },
+    { display: "Ʊ", twi: "ʊ", meaning: "letter Ʊ", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ʊ.m4a" },
+    { display: "Æ", twi: "æ", meaning: "letter Æ", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-æ.m4a" },
+    
+    // Digraphs
+    { display: "DW", twi: "dw", meaning: "digraph DW", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-dw.m4a" },
+    { display: "GY", twi: "gy", meaning: "digraph GY", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-gy.m4a" },
+    { display: "HW", twi: "hw", meaning: "digraph HW", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-hw.m4a" },
+    { display: "HY", twi: "hy", meaning: "digraph HY", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-hy.m4a" },
+    { display: "KW", twi: "kw", meaning: "digraph KW", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-kw.m4a" },
+    { display: "KY", twi: "ky", meaning: "digraph KY", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-ky.m4a" },
+    { display: "NW", twi: "nw", meaning: "digraph NW", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-nw.m4a" },
+    { display: "NY", twi: "ny", meaning: "digraph NY", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-ny.m4a" },
+    { display: "TW", twi: "tw", meaning: "digraph TW", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-tw.m4a" }
+];
+
+let currentQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let streak = 0;
+let answered = false;
+let totalQuestions = 10;
+let currentAudio = null;
+let recognition = null;
+
+// DOM elements
+const currentWordSpan = document.getElementById('currentWord');
+const wordMeaningSpan = document.getElementById('wordMeaning');
+const feedbackDiv = document.getElementById('feedback');
+const nextBtn = document.getElementById('nextBtn');
+const scoreSpan = document.getElementById('score');
+const streakSpan = document.getElementById('streak');
+const gameEndDiv = document.getElementById('gameEnd');
+const finalScoreSpan = document.getElementById('finalScore');
+const progressTextSpan = document.getElementById('progressText');
+const listenBtn = document.getElementById('listenBtn');
+const speakBtn = document.getElementById('speakBtn');
+const restartBtn = document.getElementById('restartBtn');
+
+// Shuffle array
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+// Initialize questions
+function initQuestions() {
+    currentQuestions = shuffleArray([...allWords]);
+    currentIndex = 0;
+    score = 0;
+    streak = 0;
+    answered = false;
+    scoreSpan.textContent = score;
+    streakSpan.textContent = streak;
+}
+
+// Play audio
+function playAudio(url) {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+    }
+    currentAudio = new Audio(url);
+    currentAudio.play().catch(e => console.log('Audio play error:', e));
+}
+
+// Load current question
+function loadQuestion() {
+    if (currentIndex >= totalQuestions) {
+        endGame();
+        return;
+    }
+    
+    const q = currentQuestions[currentIndex];
+    currentWordSpan.textContent = q.display;
+    wordMeaningSpan.textContent = `(${q.meaning})`;
+    
+    answered = false;
+    nextBtn.disabled = true;
+    feedbackDiv.className = 'feedback';
+    feedbackDiv.style.display = 'none';
+    
+    progressTextSpan.textContent = `Question ${currentIndex + 1} of ${totalQuestions}`;
+}
+
+// Listen to pronunciation
+function listenToWord() {
+    const q = currentQuestions[currentIndex];
+    if (q && q.audio) {
+        playAudio(q.audio);
+        feedbackDiv.className = 'feedback listening';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = '🔊 Playing pronunciation... Listen carefully!';
+        setTimeout(() => {
+            if (feedbackDiv.innerHTML === '🔊 Playing pronunciation... Listen carefully!') {
+                feedbackDiv.style.display = 'none';
+            }
+        }, 2000);
+    }
+}
+
+// Speak word and check
+function speakWord() {
+    if (answered) {
+        feedbackDiv.className = 'feedback incorrect';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = '⚠️ You already answered this word! Click Next.';
+        return;
+    }
+    
+    if (!window.webkitSpeechRecognition && !window.SpeechRecognition) {
+        feedbackDiv.className = 'feedback incorrect';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = '❌ Speech recognition not supported in your browser. Try Chrome or Edge.';
+        return;
+    }
+    
+    const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    
+    feedbackDiv.className = 'feedback listening';
+    feedbackDiv.style.display = 'block';
+    feedbackDiv.innerHTML = '🎤 Listening... Say the letter or digraph now!';
+    
+    recognition.onresult = function(event) {
+        const said = event.results[0][0].transcript.toLowerCase().trim();
+        const currentQ = currentQuestions[currentIndex];
+        const expected = currentQ.twi.toLowerCase();
+        
+        // Check if what they said matches or contains the Twi sound
+        const isCorrect = said === expected || said.includes(expected) || expected.includes(said);
+        
+        if (isCorrect) {
+            score += 10;
+            streak++;
+            scoreSpan.textContent = score;
+            streakSpan.textContent = streak;
+            
+            feedbackDiv.className = 'feedback correct';
+            feedbackDiv.innerHTML = `✅ Correct! You said "${said}". Great pronunciation! +10 points!`;
+        } else {
+            streak = 0;
+            streakSpan.textContent = streak;
+            
+            feedbackDiv.className = 'feedback incorrect';
+            feedbackDiv.innerHTML = `❌ Try again! You said "${said}". The correct pronunciation is "${expected}". Listen to the audio and try again.`;
+        }
+        
+        answered = true;
+        nextBtn.disabled = false;
+    };
+    
+    recognition.onerror = function(event) {
+        feedbackDiv.className = 'feedback incorrect';
+        feedbackDiv.innerHTML = `❌ Could not hear you. Make sure your microphone is working and click "Speak" again.`;
+        console.error('Speech recognition error:', event.error);
+    };
+    
+    recognition.onend = function() {
+        if (!answered) {
+            feedbackDiv.className = 'feedback incorrect';
+            feedbackDiv.innerHTML = '❌ No speech detected. Click the microphone button and speak clearly.';
+        }
+    };
+    
+    recognition.start();
+}
+
+// Next question
+function nextQuestion() {
+    if (!answered) return;
+    currentIndex++;
+    loadQuestion();
+}
+
+// End game
+function endGame() {
+    const percentage = Math.round((score / totalQuestions) * 10);
+    let message = '';
+    
+    if (score === 100) {
+        message = '🏆 PERFECT! You are a Twi pronunciation master! 🏆';
+    } else if (score >= 80) {
+        message = '🌟 Excellent! Your pronunciation is very good! 🌟';
+    } else if (score >= 60) {
+        message = '👍 Good effort! Practice a bit more and you\'ll get it! 👍';
+    } else {
+        message = '📚 Keep practicing! Use the "Listen" button and try again! 📚';
+    }
+    
+    finalScoreSpan.innerHTML = `${score}/100<br><span style="font-size: 0.9rem; color: #666;">${percentage}%</span><br><span style="font-size: 0.8rem; color: #D4A373; margin-top: 0.5rem; display: block;">${message}</span>`;
+    
+    document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
+    gameEndDiv.classList.add('show');
+}
+
+// Restart game
+function restartGame() {
+    document.querySelector('.game-container > div:not(.game-end)').style.display = 'block';
+    gameEndDiv.classList.remove('show');
+    initQuestions();
+    loadQuestion();
+}
+
+// Check microphone permission
+async function checkMicrophone() {
+    try {
+        await navigator.mediaDevices.getUserMedia({ audio: true });
+        document.getElementById('micPermissionMsg').style.display = 'none';
+    } catch (err) {
+        document.getElementById('micPermissionMsg').innerHTML = '🎤 Microphone access denied. Please allow microphone access in your browser settings to play this game.';
+    }
+}
+
+// Event listeners
+listenBtn.addEventListener('click', listenToWord);
+speakBtn.addEventListener('click', speakWord);
+nextBtn.addEventListener('click', nextQuestion);
+restartBtn.addEventListener('click', restartGame);
+
+// Initialize game
+initQuestions();
+loadQuestion();
+checkMicrophone();
+
+// Clean up audio on page unload
+window.addEventListener('beforeunload', function() {
+    if (currentAudio) {
+        currentAudio.pause();
+    }
+    if (recognition) {
+        recognition.abort();
+    }
+});
+</script>
+</body>
+</html>
