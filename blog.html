@@ -1119,6 +1119,7 @@
                     <h3>Categories</h3>
                     <ul class="category-list">
                         <li><a href="#" data-category="all" class="category-filter active">All Posts <span class="category-count" id="all-count">0</span></a></li>
+                        <li><a href="#" data-category="Speaking Engagement" class="category-filter">Speaking Engagement <span class="category-count" id="speaking-count">0</span></a></li>
                         <li><a href="#" data-category="Student Stories" class="category-filter">Student Stories <span class="category-count" id="student-stories-count">0</span></a></li>
                         <li><a href="#" data-category="Language Journey" class="category-filter">Language Journey <span class="category-count" id="language-journey-count">0</span></a></li>
                         <li><a href="#" data-category="Teaching Stories" class="category-filter">Teaching Stories <span class="category-count" id="teaching-stories-count">0</span></a></li>
@@ -1172,6 +1173,7 @@
                 </div>
                 <div class="footer-section">
                     <h4>Blog Categories</h4>
+                    <a href="#" data-category="Speaking Engagement">Speaking Engagement</a>
                     <a href="#" data-category="Student Stories">Student Stories</a>
                     <a href="#" data-category="Language Journey">Language Journey</a>
                     <a href="#" data-category="Teaching Stories">Teaching Stories</a>
@@ -1206,8 +1208,20 @@
     </footer>
 
     <script>
-        // Blog posts data — newest first (Adelina's story added as newest with correct .jpeg extension)
+        // Blog posts data — newest first (Expat Summit added as newest)
         const blogPosts = [
+            {
+                id: 11,
+                title: "Sharing the Stage with Ayo Jones at the Expat Life Summit Ghana",
+                excerpt: "Richard Asiamah shares the stage with Ayo Jones, teaching diasporans essential Twi phrases for relocation and cultural integration.",
+                date: "April 11, 2026",
+                author: "Richard Asiamah",
+                category: "Speaking Engagement",
+                image: "🎤",
+                photo: "images/expat.jpg",
+                url: "blog-post-expat-summit.html",
+                tags: ["expat", "relocation", "ayojones", "diaspora", "summit", "speaking"]
+            },
             {
                 id: 10,
                 title: "From London to Ghana: Adelina's Twi Journey (Panyin)",
@@ -1457,6 +1471,7 @@
         function updateCounts() {
             const counts = {
                 all: blogPosts.length,
+                "Speaking Engagement": blogPosts.filter(p => p.category === "Speaking Engagement").length,
                 "Student Stories": blogPosts.filter(p => p.category === "Student Stories").length,
                 "Language Journey": blogPosts.filter(p => p.category === "Language Journey").length,
                 "Teaching Stories": blogPosts.filter(p => p.category === "Teaching Stories").length,
@@ -1468,6 +1483,7 @@
             };
             
             document.getElementById('all-count').textContent = counts.all;
+            document.getElementById('speaking-count').textContent = counts["Speaking Engagement"];
             document.getElementById('student-stories-count').textContent = counts["Student Stories"];
             document.getElementById('language-journey-count').textContent = counts["Language Journey"];
             document.getElementById('teaching-stories-count').textContent = counts["Teaching Stories"];
