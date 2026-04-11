@@ -508,6 +508,68 @@
             margin-top: 1rem;
         }
 
+        /* Payment Section Styles */
+        .payment-section {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid var(--gold);
+        }
+        .plan-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+        .plan-card.selected {
+            border-color: var(--green);
+            background: white;
+        }
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--green);
+        }
+        .payment-form {
+            display: none;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 20px;
+        }
+        .payment-form input, .payment-form select {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 1rem;
+        }
+        .pay-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+        .pay-btn:hover {
+            background: #20ba5a;
+            transform: translateY(-2px);
+        }
+
         /* Support Section */
         .support-section {
             background: var(--cream);
@@ -579,6 +641,9 @@
             .level-header {
                 flex-direction: column;
                 text-align: center;
+            }
+            .plan-card {
+                margin-bottom: 1rem;
             }
         }
     </style>
@@ -689,6 +754,75 @@
                     <a href="#" class="certificate-btn" id="downloadCertificateBtn">
                         <i class="fas fa-download"></i> Download Your Certificate →
                     </a>
+                </div>
+            </div>
+
+            <!-- ========== MOBILE MONEY PAYMENT SECTION ========== -->
+            <div class="payment-section">
+                <h2 style="color: var(--green); margin-bottom: 0.5rem;"><i class="fas fa-mobile-alt"></i> Enroll Now</h2>
+                <p style="color: var(--gray); margin-bottom: 1.5rem;">Choose your plan and pay with Mobile Money</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <!-- Standard Plan -->
+                    <div class="plan-card" id="planStandard" onclick="selectPlan('standard', 580)">
+                        <h3>Standard Plan</h3>
+                        <div class="plan-price">GHS 580</div>
+                        <p style="color: var(--gray); font-size: 0.8rem;">≈ $20 USD</p>
+                        <hr style="margin: 1rem 0;">
+                        <ul style="text-align: left; list-style: none;">
+                            <li>✅ Group Live Classes (4 sessions)</li>
+                            <li>✅ Self-Paced Portal Access</li>
+                            <li>✅ Audio Library</li>
+                            <li>✅ Worksheets & PDFs</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Premium Plan -->
+                    <div class="plan-card" id="planPremium" onclick="selectPlan('premium', 870)">
+                        <div style="position: relative;">
+                            <div style="position: absolute; top: -10px; right: -10px; background: var(--red); color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem;">🔥 BEST VALUE</div>
+                        </div>
+                        <h3>Premium Plan</h3>
+                        <div class="plan-price">GHS 870</div>
+                        <p style="color: var(--gray); font-size: 0.8rem;">≈ $30 USD</p>
+                        <hr style="margin: 1rem 0;">
+                        <ul style="text-align: left; list-style: none;">
+                            <li>✅ Private Live Classes (4 sessions)</li>
+                            <li>✅ Group Live Classes (4 sessions)</li>
+                            <li>✅ Self-Paced Portal Access</li>
+                            <li>✅ Audio Library</li>
+                            <li>✅ Worksheets & PDFs</li>
+                            <li>✅ Certificate of Completion</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Payment Form -->
+                <div id="paymentForm" class="payment-form">
+                    <h3 style="color: var(--green); margin-bottom: 1rem;">Complete Your Enrollment</h3>
+                    <input type="text" id="fullName" placeholder="Full Name" required>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <select id="network">
+                        <option value="">Select Mobile Money Network</option>
+                        <option value="mtn">MTN Mobile Money</option>
+                        <option value="vodafone">Vodafone Cash</option>
+                        <option value="airteltigo">AirtelTigo Money</option>
+                    </select>
+                    <input type="tel" id="phoneNumber" placeholder="Mobile Money Number (e.g., 0244xxxxxx)" required>
+                    <div style="background: #fff3cd; padding: 1rem; border-radius: 12px; margin: 1rem 0;">
+                        <p style="font-size: 0.85rem; color: #856404;">
+                            <i class="fas fa-info-circle"></i> After clicking "Pay Now", you'll receive a payment request on your phone. 
+                            Enter your PIN to complete payment. Your portal password will be sent via email immediately after successful payment.
+                        </p>
+                    </div>
+                    <button class="pay-btn" onclick="processPayment()">
+                        <i class="fas fa-mobile-alt"></i> Pay Now
+                    </button>
+                    <p id="paymentStatus" style="margin-top: 1rem; text-align: center; font-size: 0.85rem;"></p>
+                </div>
+                
+                <div id="selectedPlanDisplay" style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--gray);">
+                    <i class="fas fa-info-circle"></i> Click on a plan above to select it
                 </div>
             </div>
 
@@ -1054,7 +1188,91 @@
             }
         });
 
-        // Progress tracking (simple localStorage)
+        // ========== PAYMENT INTEGRATION ==========
+        let selectedPlan = '';
+        let selectedAmount = 0;
+
+        function selectPlan(plan, amount) {
+            selectedPlan = plan;
+            selectedAmount = amount;
+            
+            // Update UI
+            document.getElementById('planStandard').classList.remove('selected');
+            document.getElementById('planPremium').classList.remove('selected');
+            document.getElementById(`plan${plan.charAt(0).toUpperCase() + plan.slice(1)}`).classList.add('selected');
+            
+            // Show payment form
+            document.getElementById('paymentForm').style.display = 'block';
+            document.getElementById('selectedPlanDisplay').innerHTML = `<i class="fas fa-check-circle" style="color: var(--green);"></i> You selected: <strong>${plan.toUpperCase()} Plan</strong> - GHS ${amount}`;
+            
+            // Scroll to payment form
+            document.getElementById('paymentForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function processPayment() {
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const network = document.getElementById('network').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const statusDiv = document.getElementById('paymentStatus');
+            
+            if (!fullName || !email || !network || !phoneNumber) {
+                statusDiv.innerHTML = '<span style="color: var(--red);">❌ Please fill in all fields</span>';
+                return;
+            }
+            
+            if (!selectedPlan) {
+                statusDiv.innerHTML = '<span style="color: var(--red);">❌ Please select a plan first</span>';
+                return;
+            }
+            
+            statusDiv.innerHTML = '<span style="color: var(--green);"><i class="fas fa-spinner fa-spin"></i> Processing payment request...</span>';
+            
+            // Here you would integrate with a payment gateway like Hubtel
+            // For now, this shows payment instructions
+            statusDiv.innerHTML = `
+                <div style="background: #d4f5ef; padding: 1rem; border-radius: 12px; margin-top: 1rem;">
+                    <strong>📱 Payment Instructions:</strong><br><br>
+                    1. Open your ${network === 'mtn' ? 'MTN MoMo' : network === 'vodafone' ? 'Vodafone Cash' : 'AirtelTigo Money'}<br>
+                    2. Send GHS ${selectedAmount} to <strong>055 226 3323</strong> (Richard Asiamah)<br>
+                    3. Use Reference: <strong>${selectedPlan.toUpperCase()}-${fullName.substring(0, 5)}</strong><br><br>
+                    After payment, WhatsApp your transaction ID to <strong>055 226 3323</strong><br>
+                    You will receive your portal password within 5 minutes!
+                </div>
+            `;
+            
+            // Track payment initiation in Google Analytics
+            if (typeof gtag === 'function') {
+                gtag('event', 'initiate_payment', {
+                    'event_category': 'conversion',
+                    'event_label': selectedPlan,
+                    'value': selectedAmount
+                });
+            }
+            
+            // Here you would typically make an API call to your payment provider
+            // Example for Hubtel integration (uncomment when ready):
+            /*
+            const response = await fetch('/api/initiate-payment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: fullName,
+                    email: email,
+                    phone: phoneNumber,
+                    amount: selectedAmount,
+                    plan: selectedPlan,
+                    network: network
+                })
+            });
+            const result = await response.json();
+            if (result.success) {
+                window.location.href = result.paymentUrl;
+            }
+            */
+        }
+
+        // Progress tracking
         function updateProgress() {
             let completed = localStorage.getItem('completedLessons') ? JSON.parse(localStorage.getItem('completedLessons')) : [];
             let totalLessons = document.querySelectorAll('.week-card').length;
@@ -1067,12 +1285,10 @@
             }
         }
 
-        // Mark lesson complete when video is watched (simplified - can be expanded)
+        // Mark lesson complete when video is watched
         document.querySelectorAll('.week-card').forEach((card, index) => {
             card.addEventListener('click', function(e) {
-                // Don't mark when clicking on download links
                 if (e.target.tagName === 'A') return;
-                
                 let completed = localStorage.getItem('completedLessons') ? JSON.parse(localStorage.getItem('completedLessons')) : [];
                 if (!completed.includes(index)) {
                     completed.push(index);
