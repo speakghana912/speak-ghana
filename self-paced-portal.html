@@ -1,135 +1,1382 @@
-<!-- Add this right after the Progress Tracker section or before the Beginner 1 section -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Self-Paced Portal | Speak Ghana - Course Access</title>
+    <meta name="description" content="Access your self-paced Twi courses. Videos, PDFs, worksheets, and quizzes for enrolled students.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZXFR0LFLH6');
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- ENROLLMENT SECTION - For new students -->
-<div class="payment-section" style="background: linear-gradient(135deg, #2A9D8F10, #D4A37310); border-radius: 28px; padding: 2rem; margin: 2rem 0; border: 2px solid var(--gold);">
-    <h2 style="color: var(--green); text-align: center;"><i class="fas fa-graduation-cap"></i> Enroll in Self-Paced Course</h2>
-    <p style="text-align: center; color: var(--gray); margin-bottom: 1.5rem;">Get instant access to all Twi learning materials</p>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-        <!-- Standard Plan -->
-        <div style="background: white; border-radius: 20px; padding: 1.5rem; text-align: center; border: 2px solid var(--gold);">
-            <h3>📘 Standard</h3>
-            <div style="font-size: 2rem; font-weight: 800; color: var(--green);">GHS 580</div>
-            <p style="font-size: 0.8rem; color: var(--gray);">≈ $20 USD</p>
-            <hr style="margin: 1rem 0;">
-            <ul style="text-align: left; list-style: none;">
-                <li>✅ Group Live Classes (4 sessions)</li>
-                <li>✅ Self-Paced Portal Access</li>
-                <li>✅ Audio Pronunciation Library</li>
-                <li>✅ Worksheets & PDFs</li>
-                <li>✅ WhatsApp Community</li>
-            </ul>
-            <button onclick="showPaymentInstructions('standard', 580)" style="background: var(--green); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 50px; margin-top: 1rem; cursor: pointer; width: 100%; font-weight: 600;">Enroll Now →</button>
-        </div>
-        
-        <!-- Premium Plan -->
-        <div style="background: white; border-radius: 20px; padding: 1.5rem; text-align: center; border: 2px solid var(--gold); position: relative;">
-            <div style="position: absolute; top: -12px; right: 20px; background: var(--red); color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem;">🔥 BEST VALUE</div>
-            <h3>🎯 Premium</h3>
-            <div style="font-size: 2rem; font-weight: 800; color: var(--green);">GHS 870</div>
-            <p style="font-size: 0.8rem; color: var(--gray);">≈ $30 USD</p>
-            <hr style="margin: 1rem 0;">
-            <ul style="text-align: left; list-style: none;">
-                <li>✅ Private Live Classes (4 sessions)</li>
-                <li>✅ Group Live Classes (4 sessions)</li>
-                <li>✅ Self-Paced Portal Access</li>
-                <li>✅ Audio Pronunciation Library</li>
-                <li>✅ Worksheets & PDFs</li>
-                <li>✅ WhatsApp Community</li>
-                <li>✅ Certificate of Completion</li>
-            </ul>
-            <button onclick="showPaymentInstructions('premium', 870)" style="background: var(--green); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 50px; margin-top: 1rem; cursor: pointer; width: 100%; font-weight: 600;">Enroll Now →</button>
-        </div>
-    </div>
-    
-    <!-- Payment Modal (hidden by default) -->
-    <div id="paymentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
-        <div style="background: white; border-radius: 28px; padding: 2rem; max-width: 500px; width: 90%; position: relative;">
-            <button onclick="closePaymentModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
-            <h3 style="color: var(--green);" id="modalPlanTitle">Complete Your Enrollment</h3>
-            <p id="modalPlanPrice" style="color: var(--gray);"></p>
-            
-            <div style="margin: 1.5rem 0;">
-                <label style="font-weight: 600;">Full Name</label>
-                <input type="text" id="studentName" style="width: 100%; padding: 0.8rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 12px;">
-                
-                <label style="font-weight: 600;">Email Address</label>
-                <input type="email" id="studentEmail" style="width: 100%; padding: 0.8rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 12px;">
-                
-                <label style="font-weight: 600;">Mobile Money Network</label>
-                <select id="mobileNetwork" style="width: 100%; padding: 0.8rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 12px;">
-                    <option value="">Select Network</option>
-                    <option value="mtn">MTN Mobile Money</option>
-                    <option value="vodafone">Vodafone Cash</option>
-                    <option value="airteltigo">AirtelTigo Money</option>
-                </select>
-                
-                <label style="font-weight: 600;">Mobile Money Number</label>
-                <input type="tel" id="studentPhone" placeholder="0244xxxxxx" style="width: 100%; padding: 0.8rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 12px;">
-            </div>
-            
-            <div id="paymentInstructions" style="background: #FDF8F2; padding: 1rem; border-radius: 16px; margin: 1rem 0; display: none;">
-                <p><strong>📱 Payment Instructions:</strong></p>
-                <p>1. Send GHS <span id="instructionAmount"></span> to <strong>055 226 3323</strong> (Richard Asiamah)</p>
-                <p>2. Use Reference: <span id="instructionRef"></span></p>
-                <p>3. After payment, WhatsApp your transaction ID to <strong>055 226 3323</strong></p>
-                <p>4. You'll receive your portal password within 5 minutes!</p>
-            </div>
-            
-            <button onclick="processEnrollment()" style="background: #25D366; color: white; border: none; padding: 1rem; border-radius: 60px; font-weight: 600; cursor: pointer; width: 100%;">
-                <i class="fab fa-whatsapp"></i> Complete Enrollment →
-            </button>
-        </div>
-    </div>
-</div>
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray-light: #F5F5F5;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
 
-<script>
-    let currentPlan = '';
-    let currentAmount = 0;
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: var(--black);
+            background-color: var(--cream);
+        }
 
-    function showPaymentInstructions(plan, amount) {
-        currentPlan = plan;
-        currentAmount = amount;
-        
-        document.getElementById('modalPlanTitle').innerHTML = `Enroll in ${plan.toUpperCase()} Plan`;
-        document.getElementById('modalPlanPrice').innerHTML = `Amount: GHS ${amount}`;
-        document.getElementById('paymentModal').style.display = 'flex';
-    }
-    
-    function closePaymentModal() {
-        document.getElementById('paymentModal').style.display = 'none';
-        document.getElementById('paymentInstructions').style.display = 'none';
-    }
-    
-    function processEnrollment() {
-        const name = document.getElementById('studentName').value;
-        const email = document.getElementById('studentEmail').value;
-        const network = document.getElementById('mobileNetwork').value;
-        const phone = document.getElementById('studentPhone').value;
-        
-        if (!name || !email || !network || !phone) {
-            alert('Please fill in all fields');
-            return;
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.7rem 0;
+            font-size: 0.85rem;
+            border-bottom: 3px solid var(--gold);
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .contact-info a:hover { color: var(--gold); }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.2rem 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        .logo img {
+            height: 65px;
+            width: auto;
+            border-radius: 10px;
+        }
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: white;
+        }
+        .logo-text h1 span { color: var(--gold); }
+        .logo-text p { font-size: 0.8rem; opacity: 0.9; }
+
+        nav {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            border-bottom: 1px solid #eee;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0.8rem 0;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.3rem 0;
+            transition: color 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--green);
+            border-bottom-color: var(--green);
+        }
+
+        /* Dropdown styles for mobile */
+        .dropdown-item {
+            display: contents;
         }
         
-        // Show payment instructions
-        document.getElementById('instructionAmount').innerText = currentAmount;
-        document.getElementById('instructionRef').innerText = `${currentPlan.toUpperCase()}-${name.substring(0, 5)}`;
-        document.getElementById('paymentInstructions').style.display = 'block';
+        .dropdown-toggle {
+            display: none;
+        }
         
-        // Scroll to instructions
-        document.getElementById('paymentInstructions').scrollIntoView({ behavior: 'smooth' });
+        .dropdown-submenu {
+            display: contents;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--gold);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--black);
+            padding: 0.5rem 1rem;
+            z-index: 101;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle:hover {
+            background: var(--green);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 0.5rem;
+            }
+            
+            nav {
+                position: relative;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            
+            .nav-links.show {
+                display: flex;
+            }
+            
+            .nav-links > a,
+            .nav-links > .dropdown-item {
+                padding: 1rem 1.5rem;
+                width: 100%;
+                text-align: left;
+                border-bottom: 1px solid var(--cream);
+                font-weight: 600;
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+                color: var(--black);
+                text-decoration: none;
+                background: white;
+            }
+            
+            .nav-links > a {
+                border-bottom: 1px solid var(--cream);
+            }
+            
+            .dropdown-toggle {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                background: white;
+                border: none;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--black);
+                cursor: pointer;
+                padding: 0;
+                font-family: inherit;
+            }
+            
+            .dropdown-toggle i {
+                transition: transform 0.3s;
+                font-size: 0.9rem;
+                color: var(--gray);
+            }
+            
+            .dropdown-toggle.open i {
+                transform: rotate(180deg);
+            }
+            
+            .dropdown-submenu {
+                display: none;
+                flex-direction: column;
+                background: var(--cream);
+                margin-top: 0.5rem;
+                border-radius: 12px;
+                overflow: hidden;
+                width: 100%;
+            }
+            
+            .dropdown-submenu.show {
+                display: flex;
+            }
+            
+            .dropdown-submenu a {
+                padding: 0.8rem 1.5rem 0.8rem 2.5rem;
+                text-decoration: none;
+                color: var(--gray);
+                font-weight: 500;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                font-size: 0.95rem;
+                display: block;
+            }
+            
+            .dropdown-submenu a:last-child {
+                border-bottom: none;
+            }
+            
+            .dropdown-submenu a:hover {
+                color: var(--green);
+                background: rgba(42,157,143,0.1);
+            }
+            
+            .dropdown-submenu a.active {
+                color: var(--green);
+                font-weight: 600;
+            }
+            
+            .dropdown-item {
+                display: block;
+                padding: 0 !important;
+                flex-direction: column;
+                align-items: stretch !important;
+            }
+        }
+
+        /* Password Protection */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .password-box {
+            background: white;
+            border-radius: 32px;
+            padding: 2.5rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .password-box h2 {
+            color: var(--green);
+            margin-bottom: 0.5rem;
+        }
+        .password-box input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--cream);
+            border-radius: 50px;
+            margin: 1.5rem 0;
+            font-size: 1rem;
+        }
+        .password-box button {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+        .error-msg {
+            color: var(--red);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Portal Content */
+        .portal-content {
+            display: none;
+        }
+        .page-hero {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            padding: 3rem 0;
+            text-align: center;
+            color: white;
+        }
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .welcome-badge {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Course Sections */
+        .course-level-section {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--cream);
+        }
+        .level-title {
+            font-size: 1.5rem;
+            color: var(--green);
+        }
+        .level-badge {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .week-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+        }
+        .week-card:hover {
+            transform: translateY(-5px);
+        }
+        .week-number {
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        .week-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+        }
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .resource-link {
+            background: white;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            color: var(--green);
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .resource-link:hover {
+            background: var(--green);
+            color: white;
+        }
+        .quiz-link {
+            background: var(--gold);
+            color: var(--black);
+        }
+        .quiz-link:hover {
+            background: var(--green);
+            color: white;
+        }
+
+        /* Progress Tracker */
+        .progress-section {
+            background: linear-gradient(135deg, #fff5e8, white);
+            border-radius: 28px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid var(--gold);
+        }
+        .progress-bar-container {
+            background: var(--cream);
+            border-radius: 30px;
+            height: 20px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, var(--green), var(--gold));
+            width: 0%;
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.5s;
+        }
+        .certificate-btn {
+            background: var(--green);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* Payment Section Styles */
+        .payment-section {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid var(--gold);
+        }
+        .plan-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+        .plan-card.selected {
+            border-color: var(--green);
+            background: white;
+        }
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--green);
+        }
+        .payment-form {
+            display: none;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 20px;
+        }
+        .payment-form input, .payment-form select {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 1rem;
+        }
+        .pay-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+        .pay-btn:hover {
+            background: #20ba5a;
+            transform: translateY(-2px);
+        }
+
+        /* Support Section */
+        .support-section {
+            background: var(--cream);
+            border-radius: 28px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .whatsapp-support {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #25D366;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .whatsapp-support:hover {
+            transform: translateY(-3px);
+            background: #20ba5a;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .week-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 1.5rem;
+            }
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+            .level-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .plan-card {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="mailto:info@speakghana.org"><i class="fas fa-envelope"></i> info@speakghana.org</a>
+                <a href="tel:+233552263323"><i class="fas fa-phone-alt"></i> +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323"><i class="fab fa-whatsapp"></i> WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge" style="background: rgba(255,255,255,0.12); padding: 0.5rem 1.2rem; border-radius: 40px;">
+                <i class="fas fa-user-graduate"></i> Self-Paced Portal
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container" style="position: relative;">
+            <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownLearnBtn">
+                        <span>📚 Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownLearnMenu">
+                        <a href="languages.html">Languages</a>
+                        <a href="self-paced.html">Self-Paced</a>
+                        <a href="kids-teens.html">Kids & Teens</a>
+                        <a href="concierge.html">Concierge</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownResourcesBtn">
+                        <span>📖 Resources</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownResourcesMenu">
+                        <a href="resources.html">Free Resources</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="student-portal.html">Student Portal</a>
+                    </div>
+                </div>
+                
+                <a href="for-organizations.html">🏢 For Organizations</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Password Protection Overlay -->
+    <div id="passwordOverlay" class="password-overlay">
+        <div class="password-box">
+            <h2>🔐 Self-Paced Portal</h2>
+            <p>Enter the password to access your courses.</p>
+            <input type="password" id="passwordInput" placeholder="Enter password">
+            <button onclick="checkPassword()">Access Courses →</button>
+            <div id="errorMsg" class="error-msg"></div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--gray);">Password was sent to your email after enrollment.</p>
+        </div>
+    </div>
+
+    <!-- Portal Content (Hidden until password entered) -->
+    <div id="portalContent" class="portal-content">
+        <div class="page-hero">
+            <div class="container">
+                <h1>📚 Your Self-Paced Courses</h1>
+                <p>Access all videos, PDFs, worksheets, and quizzes — anytime, anywhere.</p>
+                <div class="welcome-badge">
+                    <i class="fas fa-user-check"></i> Welcome, Student!
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Progress Tracker -->
+            <div class="progress-section">
+                <h3><i class="fas fa-chart-line"></i> Your Progress</h3>
+                <div class="progress-bar-container">
+                    <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                </div>
+                <p id="progressText">Complete lessons to track your progress</p>
+                <div id="certificateArea" style="display: none;">
+                    <a href="#" class="certificate-btn" id="downloadCertificateBtn">
+                        <i class="fas fa-download"></i> Download Your Certificate →
+                    </a>
+                </div>
+            </div>
+
+            <!-- ========== MOBILE MONEY PAYMENT SECTION ========== -->
+            <div class="payment-section">
+                <h2 style="color: var(--green); margin-bottom: 0.5rem;"><i class="fas fa-mobile-alt"></i> Enroll Now</h2>
+                <p style="color: var(--gray); margin-bottom: 1.5rem;">Choose your plan and pay with Mobile Money</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                    <!-- Standard Plan -->
+                    <div class="plan-card" id="planStandard" onclick="selectPlan('standard', 580)">
+                        <h3>Standard Plan</h3>
+                        <div class="plan-price">GHS 580</div>
+                        <p style="color: var(--gray); font-size: 0.8rem;">≈ $20 USD</p>
+                        <hr style="margin: 1rem 0;">
+                        <ul style="text-align: left; list-style: none;">
+                            <li>✅ Group Live Classes (4 sessions)</li>
+                            <li>✅ Self-Paced Portal Access</li>
+                            <li>✅ Audio Library</li>
+                            <li>✅ Worksheets & PDFs</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Premium Plan -->
+                    <div class="plan-card" id="planPremium" onclick="selectPlan('premium', 870)">
+                        <div style="position: relative;">
+                            <div style="position: absolute; top: -10px; right: -10px; background: var(--red); color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem;">🔥 BEST VALUE</div>
+                        </div>
+                        <h3>Premium Plan</h3>
+                        <div class="plan-price">GHS 870</div>
+                        <p style="color: var(--gray); font-size: 0.8rem;">≈ $30 USD</p>
+                        <hr style="margin: 1rem 0;">
+                        <ul style="text-align: left; list-style: none;">
+                            <li>✅ Private Live Classes (4 sessions)</li>
+                            <li>✅ Group Live Classes (4 sessions)</li>
+                            <li>✅ Self-Paced Portal Access</li>
+                            <li>✅ Audio Library</li>
+                            <li>✅ Worksheets & PDFs</li>
+                            <li>✅ Certificate of Completion</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Payment Form -->
+                <div id="paymentForm" class="payment-form">
+                    <h3 style="color: var(--green); margin-bottom: 1rem;">Complete Your Enrollment</h3>
+                    <input type="text" id="fullName" placeholder="Full Name" required>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <select id="network">
+                        <option value="">Select Mobile Money Network</option>
+                        <option value="mtn">MTN Mobile Money</option>
+                        <option value="vodafone">Vodafone Cash</option>
+                        <option value="airteltigo">AirtelTigo Money</option>
+                    </select>
+                    <input type="tel" id="phoneNumber" placeholder="Mobile Money Number (e.g., 0244xxxxxx)" required>
+                    <div style="background: #fff3cd; padding: 1rem; border-radius: 12px; margin: 1rem 0;">
+                        <p style="font-size: 0.85rem; color: #856404;">
+                            <i class="fas fa-info-circle"></i> After clicking "Pay Now", you'll receive a payment request on your phone. 
+                            Enter your PIN to complete payment. Your portal password will be sent via email immediately after successful payment.
+                        </p>
+                    </div>
+                    <button class="pay-btn" onclick="processPayment()">
+                        <i class="fas fa-mobile-alt"></i> Pay Now
+                    </button>
+                    <p id="paymentStatus" style="margin-top: 1rem; text-align: center; font-size: 0.85rem;"></p>
+                </div>
+                
+                <div id="selectedPlanDisplay" style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--gray);">
+                    <i class="fas fa-info-circle"></i> Click on a plan above to select it
+                </div>
+            </div>
+
+            <!-- BEGINNER 1: Greetings & Basics -->
+            <div class="course-level-section" data-level="beginner1">
+                <div class="level-header">
+                    <h2 class="level-title"><i class="fas fa-star"></i> Beginner 1: Greetings & Basics</h2>
+                    <span class="level-badge">🎓 Certificate included</span>
+                </div>
+                <div class="week-grid">
+                    <!-- Week 1 -->
+                    <div class="week-card">
+                        <div class="week-number">Week 1</div>
+                        <div class="week-title">Greetings & Introductions</div>
+                        <div class="video-wrapper">
+                            <iframe src="https://zoom.us/clips/embed/95lyyM9MSgSenyYQIGX8nA" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/beginner1/week1.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                            <a href="/self-paced/beginner1/week1-worksheet.pdf" class="resource-link" download><i class="fas fa-file-alt"></i> Worksheet</a>
+                            <a href="#" class="resource-link quiz-link"><i class="fas fa-question-circle"></i> Quiz</a>
+                        </div>
+                    </div>
+                    <!-- Week 2 -->
+                    <div class="week-card">
+                        <div class="week-number">Week 2</div>
+                        <div class="week-title">The Twi Alphabet (Ɛ, Ɔ, etc.)</div>
+                        <div class="video-wrapper">
+                            <iframe src="https://zoom.us/clips/embed/daVBRMzoQPCQoWCxKtciiw" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/beginner1/week2.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                            <a href="/self-paced/beginner1/week2-worksheet.pdf" class="resource-link" download><i class="fas fa-file-alt"></i> Worksheet</a>
+                            <a href="#" class="resource-link quiz-link"><i class="fas fa-question-circle"></i> Quiz</a>
+                        </div>
+                    </div>
+                    <!-- Week 3 -->
+                    <div class="week-card">
+                        <div class="week-number">Week 3</div>
+                        <div class="week-title">Numbers 1-20 & Counting</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/beginner1/week3.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                            <a href="/self-paced/beginner1/week3-worksheet.pdf" class="resource-link" download><i class="fas fa-file-alt"></i> Worksheet</a>
+                        </div>
+                    </div>
+                    <!-- Week 4 -->
+                    <div class="week-card">
+                        <div class="week-number">Week 4</div>
+                        <div class="week-title">Simple Sentences</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/beginner1/week4.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                            <a href="/self-paced/beginner1/week4-worksheet.pdf" class="resource-link" download><i class="fas fa-file-alt"></i> Worksheet</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BEGINNER 2: Family & Home -->
+            <div class="course-level-section" data-level="beginner2">
+                <div class="level-header">
+                    <h2 class="level-title"><i class="fas fa-home"></i> Beginner 2: Family & Home</h2>
+                    <span class="level-badge">🎓 Certificate included</span>
+                </div>
+                <div class="week-grid">
+                    <div class="week-card">
+                        <div class="week-number">Week 1</div>
+                        <div class="week-title">Family Terms (Mother, Father, Siblings)</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/beginner2/week1.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                            <a href="/self-paced/beginner2/week1-worksheet.pdf" class="resource-link" download><i class="fas fa-file-alt"></i> Worksheet</a>
+                        </div>
+                    </div>
+                    <div class="week-card">
+                        <div class="week-number">Week 2</div>
+                        <div class="week-title">Home & Household Items</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/beginner2/week2.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                            <a href="/self-paced/beginner2/week2-worksheet.pdf" class="resource-link" download><i class="fas fa-file-alt"></i> Worksheet</a>
+                        </div>
+                    </div>
+                    <div class="week-card">
+                        <div class="week-number">Week 3</div>
+                        <div class="week-title">Possessives & Descriptions</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/beginner2/week3.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                            <a href="/self-paced/beginner2/week3-worksheet.pdf" class="resource-link" download><i class="fas fa-file-alt"></i> Worksheet</a>
+                        </div>
+                    </div>
+                    <div class="week-card">
+                        <div class="week-number">Week 4</div>
+                        <div class="week-title">Review & Conversation Practice</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/beginner2/week4.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                            <a href="/self-paced/beginner2/week4-worksheet.pdf" class="resource-link" download><i class="fas fa-file-alt"></i> Worksheet</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTERMEDIATE: Conversations -->
+            <div class="course-level-section" data-level="intermediate">
+                <div class="level-header">
+                    <h2 class="level-title"><i class="fas fa-comments"></i> Intermediate: Conversational Twi</h2>
+                    <span class="level-badge">🎓 Certificate included</span>
+                </div>
+                <div class="week-grid">
+                    <div class="week-card">
+                        <div class="week-number">Week 1-2</div>
+                        <div class="week-title">Market Bargaining & Shopping</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/intermediate/week1-2.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                        </div>
+                    </div>
+                    <div class="week-card">
+                        <div class="week-number">Week 3-4</div>
+                        <div class="week-title">Directions & Transportation</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/intermediate/week3-4.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                        </div>
+                    </div>
+                    <div class="week-card">
+                        <div class="week-number">Week 5-6</div>
+                        <div class="week-title">Everyday Conversations</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/intermediate/week5-6.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUSINESS TWI -->
+            <div class="course-level-section" data-level="business">
+                <div class="level-header">
+                    <h2 class="level-title"><i class="fas fa-briefcase"></i> Business Twi</h2>
+                    <span class="level-badge">🎓 Certificate included</span>
+                </div>
+                <div class="week-grid">
+                    <div class="week-card">
+                        <div class="week-number">Week 1-2</div>
+                        <div class="week-title">Professional Greetings & Protocol</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/business/week1-2.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                        </div>
+                    </div>
+                    <div class="week-card">
+                        <div class="week-number">Week 3-4</div>
+                        <div class="week-title">Negotiation & Meetings</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/business/week3-4.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                        </div>
+                    </div>
+                    <div class="week-card">
+                        <div class="week-number">Week 5-6</div>
+                        <div class="week-title">Workplace Communication</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/business/week5-6.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CULTURAL FLUENCY -->
+            <div class="course-level-section" data-level="cultural">
+                <div class="level-header">
+                    <h2 class="level-title"><i class="fas fa-drumstick-bite"></i> Cultural Fluency: Proverbs & Traditions</h2>
+                    <span class="level-badge">🎓 Certificate included</span>
+                </div>
+                <div class="week-grid">
+                    <div class="week-card">
+                        <div class="week-number">Week 1-2</div>
+                        <div class="week-title">Essential Twi Proverbs</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/cultural/week1-2.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                        </div>
+                    </div>
+                    <div class="week-card">
+                        <div class="week-number">Week 3-4</div>
+                        <div class="week-title">Adinkra Symbols & Meanings</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/cultural/week3-4.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                        </div>
+                    </div>
+                    <div class="week-card">
+                        <div class="week-number">Week 5-6</div>
+                        <div class="week-title">Festivals & Celebrations</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/cultural/week5-6.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                        </div>
+                    </div>
+                    <div class="week-card">
+                        <div class="week-number">Week 7-8</div>
+                        <div class="week-title">Etiquette & Cultural Protocol</div>
+                        <div class="video-wrapper">
+                            <div style="background: var(--cream); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray); border-radius: 16px;">
+                                <p>📹 Recording coming soon</p>
+                            </div>
+                        </div>
+                        <div class="resource-links">
+                            <a href="/self-paced/cultural/week7-8.pdf" class="resource-link" download><i class="fas fa-download"></i> PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Section -->
+            <div class="support-section">
+                <h3><i class="fas fa-question-circle"></i> Need Help?</h3>
+                <p>Have questions about a lesson? Need extra practice? Reach out to your teacher directly.</p>
+                <a href="https://wa.me/233552263323?text=Hi%20Richard,%20I%20have%20a%20question%20about%20my%20self-paced%20course" class="whatsapp-support" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Message Your Teacher →
+                </a>
+                <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--gray);">
+                    <i class="fas fa-envelope"></i> Or email: info@speakghana.org
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 info@speakghana.org</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Programs</h4>
+                    <a href="languages.html">Live Classes</a>
+                    <a href="self-paced.html">Self-Paced Courses</a>
+                    <a href="for-organizations.html">For Organizations</a>
+                    <a href="kids-teens.html">Kids & Teens</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="resources.html">Free Resources</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="student-portal.html">Student Portal</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                    <a href="https://wa.me/233552263323" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School — Self-Paced Learning Portal</p>
+                <div style="margin-top: 0.5rem; font-size: 0.85rem;">Reconnect. Speak. Thrive.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Password for the portal - CHANGE THIS
+        const PORTAL_PASSWORD = "speakghana2026";
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const errorDiv = document.getElementById('errorMsg');
+            
+            if (input === PORTAL_PASSWORD) {
+                document.getElementById('passwordOverlay').style.display = 'none';
+                document.getElementById('portalContent').style.display = 'block';
+                document.body.style.overflow = 'auto';
+                sessionStorage.setItem('selfPacedAuthenticated', 'true');
+                if (typeof gtag === 'function') {
+                    gtag('event', 'self_paced_portal_login', { 'event_category': 'engagement', 'event_label': 'portal_access' });
+                }
+            } else {
+                errorDiv.textContent = '❌ Incorrect password. Please try again.';
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        // Check if already authenticated
+        if (sessionStorage.getItem('selfPacedAuthenticated') === 'true') {
+            document.getElementById('passwordOverlay').style.display = 'none';
+            document.getElementById('portalContent').style.display = 'block';
+        }
+
+        // Enter key support
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // ========== PAYMENT INTEGRATION ==========
+        let selectedPlan = '';
+        let selectedAmount = 0;
+
+        function selectPlan(plan, amount) {
+            selectedPlan = plan;
+            selectedAmount = amount;
+            
+            // Update UI
+            document.getElementById('planStandard').classList.remove('selected');
+            document.getElementById('planPremium').classList.remove('selected');
+            document.getElementById(`plan${plan.charAt(0).toUpperCase() + plan.slice(1)}`).classList.add('selected');
+            
+            // Show payment form
+            document.getElementById('paymentForm').style.display = 'block';
+            document.getElementById('selectedPlanDisplay').innerHTML = `<i class="fas fa-check-circle" style="color: var(--green);"></i> You selected: <strong>${plan.toUpperCase()} Plan</strong> - GHS ${amount}`;
+            
+            // Scroll to payment form
+            document.getElementById('paymentForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function processPayment() {
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const network = document.getElementById('network').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const statusDiv = document.getElementById('paymentStatus');
+            
+            if (!fullName || !email || !network || !phoneNumber) {
+                statusDiv.innerHTML = '<span style="color: var(--red);">❌ Please fill in all fields</span>';
+                return;
+            }
+            
+            if (!selectedPlan) {
+                statusDiv.innerHTML = '<span style="color: var(--red);">❌ Please select a plan first</span>';
+                return;
+            }
+            
+            statusDiv.innerHTML = '<span style="color: var(--green);"><i class="fas fa-spinner fa-spin"></i> Processing payment request...</span>';
+            
+            // Here you would integrate with a payment gateway like Hubtel
+            // For now, this shows payment instructions
+            statusDiv.innerHTML = `
+                <div style="background: #d4f5ef; padding: 1rem; border-radius: 12px; margin-top: 1rem;">
+                    <strong>📱 Payment Instructions:</strong><br><br>
+                    1. Open your ${network === 'mtn' ? 'MTN MoMo' : network === 'vodafone' ? 'Vodafone Cash' : 'AirtelTigo Money'}<br>
+                    2. Send GHS ${selectedAmount} to <strong>055 226 3323</strong> (Richard Asiamah)<br>
+                    3. Use Reference: <strong>${selectedPlan.toUpperCase()}-${fullName.substring(0, 5)}</strong><br><br>
+                    After payment, WhatsApp your transaction ID to <strong>055 226 3323</strong><br>
+                    You will receive your portal password within 5 minutes!
+                </div>
+            `;
+            
+            // Track payment initiation in Google Analytics
+            if (typeof gtag === 'function') {
+                gtag('event', 'initiate_payment', {
+                    'event_category': 'conversion',
+                    'event_label': selectedPlan,
+                    'value': selectedAmount
+                });
+            }
+            
+            // Here you would typically make an API call to your payment provider
+            // Example for Hubtel integration (uncomment when ready):
+            /*
+            const response = await fetch('/api/initiate-payment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: fullName,
+                    email: email,
+                    phone: phoneNumber,
+                    amount: selectedAmount,
+                    plan: selectedPlan,
+                    network: network
+                })
+            });
+            const result = await response.json();
+            if (result.success) {
+                window.location.href = result.paymentUrl;
+            }
+            */
+        }
+
+        // Progress tracking
+        function updateProgress() {
+            let completed = localStorage.getItem('completedLessons') ? JSON.parse(localStorage.getItem('completedLessons')) : [];
+            let totalLessons = document.querySelectorAll('.week-card').length;
+            let progress = (completed.length / totalLessons) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').innerHTML = `📊 ${completed.length} of ${totalLessons} lessons completed (${Math.round(progress)}%)`;
+            
+            if (progress >= 100) {
+                document.getElementById('certificateArea').style.display = 'block';
+            }
+        }
+
+        // Mark lesson complete when video is watched
+        document.querySelectorAll('.week-card').forEach((card, index) => {
+            card.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') return;
+                let completed = localStorage.getItem('completedLessons') ? JSON.parse(localStorage.getItem('completedLessons')) : [];
+                if (!completed.includes(index)) {
+                    completed.push(index);
+                    localStorage.setItem('completedLessons', JSON.stringify(completed));
+                    updateProgress();
+                }
+            });
+        });
+
+        // Initialize progress on load
+        updateProgress();
+
+        // Certificate download
+        document.getElementById('downloadCertificateBtn')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Your certificate is being generated. You will receive it via email within 24 hours.');
+            if (typeof gtag === 'function') {
+                gtag('event', 'certificate_request', { 'event_category': 'engagement', 'event_label': 'self_paced_completion' });
+            }
+        });
+
+        // Hamburger Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
         
-        // Track enrollment attempt in Google Analytics
-        if (typeof gtag === 'function') {
-            gtag('event', 'begin_checkout', {
-                'event_category': 'enrollment',
-                'event_label': currentPlan,
-                'value': currentAmount
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
             });
         }
         
-        // Here you would typically send this data to your backend
-        console.log('Enrollment:', { name, email, network, phone, plan: currentPlan, amount: currentAmount });
-    }
-</script>
+        // Dropdown functionality
+        const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
+        const dropdownLearnMenu = document.getElementById('dropdownLearnMenu');
+        const dropdownResourcesBtn = document.getElementById('dropdownResourcesBtn');
+        const dropdownResourcesMenu = document.getElementById('dropdownResourcesMenu');
+        
+        if (dropdownLearnBtn && dropdownLearnMenu) {
+            dropdownLearnBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownLearnMenu.classList.toggle('show');
+                dropdownLearnBtn.classList.toggle('open');
+                if (dropdownResourcesMenu && dropdownResourcesMenu.classList.contains('show')) {
+                    dropdownResourcesMenu.classList.remove('show');
+                    dropdownResourcesBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        if (dropdownResourcesBtn && dropdownResourcesMenu) {
+            dropdownResourcesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownResourcesMenu.classList.toggle('show');
+                dropdownResourcesBtn.classList.toggle('open');
+                if (dropdownLearnMenu && dropdownLearnMenu.classList.contains('show')) {
+                    dropdownLearnMenu.classList.remove('show');
+                    dropdownLearnBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        document.querySelectorAll('.dropdown-submenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.nav-links > a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 968) {
+                if (navLinks) navLinks.classList.remove('show');
+                if (dropdownLearnMenu) dropdownLearnMenu.classList.remove('show');
+                if (dropdownResourcesMenu) dropdownResourcesMenu.classList.remove('show');
+                if (dropdownLearnBtn) dropdownLearnBtn.classList.remove('open');
+                if (dropdownResourcesBtn) dropdownResourcesBtn.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
