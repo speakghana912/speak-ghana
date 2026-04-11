@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Vocabulary Challenge | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .game-container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            border-radius: 48px;
+            padding: 2rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .game-header h1 {
+            color: #2A9D8F;
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .game-header p {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            background: #FDF8F2;
+            padding: 1rem;
+            border-radius: 60px;
+            margin: 1.5rem 0;
+        }
+
+        .score-box, .streak-box {
+            background: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+
+        .question-area {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .picture-display {
+            font-size: 5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .listen-hint {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .audio-btn {
+            background: #D4A373;
+            color: #1E1E1E;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .audio-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .options-area {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .option-btn {
+            background: #FDF8F2;
+            border: 2px solid #e2e8f0;
+            border-radius: 60px;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1E1E1E;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .option-btn:hover {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .option-btn.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+        }
+
+        .option-btn.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+        }
+
+        .option-btn.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .feedback {
+            margin: 1rem 0;
+            padding: 0.8rem;
+            border-radius: 20px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .feedback.correct {
+            display: block;
+            background: #d4f5ef;
+            color: #1f7a6e;
+        }
+
+        .feedback.incorrect {
+            display: block;
+            background: #fde5dd;
+            color: #E76F51;
+        }
+
+        .next-btn {
+            background: #D4A373;
+            color: #1E1E1E;
+            border: none;
+            padding: 1rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            display: none;
+            transition: all 0.3s;
+        }
+
+        .next-btn.show {
+            display: block;
+        }
+
+        .game-end {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .game-end.show {
+            display: block;
+        }
+
+        .restart-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .progress-text {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 550px) {
+            .game-container {
+                padding: 1.5rem;
+            }
+            .options-area {
+                grid-template-columns: 1fr;
+            }
+            .picture-display {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-header">
+        <h1>🎯 Vocabulary Challenge</h1>
+        <p>Look at the picture, listen, then choose the correct Twi word!</p>
+    </div>
+
+    <div class="stats">
+        <div class="score-box">🏆 Score: <span id="score">0</span></div>
+        <div class="streak-box">🔥 Streak: <span id="streak">0</span></div>
+    </div>
+
+    <div class="question-area">
+        <div class="picture-display" id="pictureDisplay">🐕</div>
+        <div class="listen-hint">🔊 Click the button to hear the Twi word</div>
+        <button class="audio-btn" id="audioBtn">
+            🔊 Listen to the Word
+        </button>
+    </div>
+
+    <div class="options-area" id="optionsArea"></div>
+
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="nextBtn">Next Question →</button>
+
+    <div class="game-end" id="gameEnd">
+        <h2>🎉 Challenge Complete! 🎉</h2>
+        <p>Great job learning Twi vocabulary!</p>
+        <div class="final-score" style="font-size: 2rem; font-weight: 800; color: #2A9D8F; margin: 1rem 0;" id="finalScore">0</div>
+        <button class="restart-btn" id="restartBtn">Play Again ↻</button>
+    </div>
+    
+    <div class="progress-text" id="progressText">Question 1 of 10</div>
+</div>
+
+<script>
+// ===== VOCABULARY WORDS WITH PICTURES/EMOJIS AND AUDIO =====
+const vocabulary = [
+    // ANIMALS
+    { picture: "🐕", twi: "kraman", english: "dog", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/kraman.m4a" },
+    { picture: "🐘", twi: "osono", english: "elephant", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/osono.m4a" },
+    { picture: "🐔", twi: "akoko", english: "chicken", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/akoko.m4a" },
+    { picture: "🐑", twi: "odwan", english: "sheep", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/odwan.m4a" },
+    { picture: "🐊", twi: "denkyem", english: "crocodile", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/denkyem.m4a" },
+    { picture: "🐄", twi: "nantwie", english: "cow", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/nantwie.m4a" },
+    
+    // COLORS
+    { picture: "⬛", twi: "tuntum", english: "black", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/tuntum.m4a" },
+    { picture: "⬜", twi: "fitaa", english: "white", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/fitaa.m4a" },
+    { picture: "🔴", twi: "kɔkɔɔ", english: "red", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/kɔkɔɔ.m4a" },
+    { picture: "🔵", twi: "bibire", english: "blue/dark", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/bibire.m4a" },
+    
+    // FOOD
+    { picture: "🍚", twi: "emo", english: "rice", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/emo.m4a" },
+    { picture: "🥜", twi: "nkate", english: "peanut", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/nkate.m4a" },
+    { picture: "🐌", twi: "mpataa", english: "snail", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/mpataa.m4a" },
+    { picture: "🐟", twi: "nkyenam", english: "fish", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/nkyenam.m4a" },
+    { picture: "🍲", twi: "banku", english: "banku", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/banku.m4a" },
+    
+    // FAMILY
+    { picture: "👨", twi: "agya", english: "father", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/agya.m4a" },
+    { picture: "👩", twi: "maame", english: "mother", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/maame.m4a" },
+    { picture: "👵", twi: "nana", english: "grandparent", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/nana.m4a" },
+    { picture: "👶", twi: "oba", english: "child", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/oba.m4a" },
+    { picture: "👫", twi: "onua", english: "sibling", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/onua.m4a" },
+    
+    // OBJECTS
+    { picture: "💧", twi: "nsuo", english: "water", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/nsuo.m4a" },
+    { picture: "📚", twi: "okyerɛkyerɛni", english: "teacher", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/okyerɛkyerɛni.m4a" }
+];
+
+let currentQuestions = [];
+let currentIndex = 0;
+let currentQuestion = null;
+let score = 0;
+let streak = 0;
+let answered = false;
+let totalQuestions = 10;
+let currentAudio = null;
+
+// DOM elements
+const pictureDisplay = document.getElementById('pictureDisplay');
+const audioBtn = document.getElementById('audioBtn');
+const optionsArea = document.getElementById('optionsArea');
+const feedbackDiv = document.getElementById('feedback');
+const nextBtn = document.getElementById('nextBtn');
+const scoreSpan = document.getElementById('score');
+const streakSpan = document.getElementById('streak');
+const gameEndDiv = document.getElementById('gameEnd');
+const finalScoreSpan = document.getElementById('finalScore');
+const progressTextSpan = document.getElementById('progressText');
+
+// Shuffle array
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+// Initialize questions
+function initQuestions() {
+    currentQuestions = shuffleArray([...vocabulary]);
+    currentIndex = 0;
+    score = 0;
+    streak = 0;
+    answered = false;
+    scoreSpan.textContent = score;
+    streakSpan.textContent = streak;
+}
+
+// Play audio
+function playAudio(url) {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+    }
+    currentAudio = new Audio(url);
+    currentAudio.play().catch(e => console.log('Audio play error:', e));
+}
+
+// Generate random options (3 wrong + 1 correct)
+function generateOptions(correct) {
+    let options = [correct];
+    let available = vocabulary.filter(v => v.twi !== correct.twi);
+    let shuffledAvailable = shuffleArray([...available]);
+    
+    for (let i = 0; i < 3 && options.length < 4; i++) {
+        if (shuffledAvailable[i] && !options.includes(shuffledAvailable[i])) {
+            options.push(shuffledAvailable[i]);
+        }
+    }
+    
+    return shuffleArray(options);
+}
+
+// Load question
+function loadQuestion() {
+    if (currentIndex >= totalQuestions) {
+        endGame();
+        return;
+    }
+    
+    currentQuestion = currentQuestions[currentIndex];
+    pictureDisplay.textContent = currentQuestion.picture;
+    
+    const options = generateOptions(currentQuestion);
+    
+    // Render options
+    optionsArea.innerHTML = '';
+    options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt.twi;
+        btn.dataset.twi = opt.twi;
+        btn.onclick = () => checkAnswer(opt);
+        optionsArea.appendChild(btn);
+    });
+    
+    answered = false;
+    nextBtn.classList.remove('show');
+    feedbackDiv.className = 'feedback';
+    feedbackDiv.style.display = 'none';
+    
+    progressTextSpan.textContent = `Question ${currentIndex + 1} of ${totalQuestions}`;
+}
+
+// Check answer
+function checkAnswer(selected) {
+    if (answered) return;
+    
+    const isCorrect = (selected.twi === currentQuestion.twi);
+    
+    answered = true;
+    const buttons = document.querySelectorAll('.option-btn');
+    
+    if (isCorrect) {
+        score += 10;
+        streak++;
+        scoreSpan.textContent = score;
+        streakSpan.textContent = streak;
+        
+        feedbackDiv.className = 'feedback correct';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = `✅ Correct! ${currentQuestion.picture} = ${currentQuestion.twi} (${currentQuestion.english}) +${streak} streak!`;
+        
+        buttons.forEach(btn => {
+            if (btn.dataset.twi === currentQuestion.twi) {
+                btn.classList.add('correct');
+            }
+            btn.classList.add('disabled');
+        });
+    } else {
+        streak = 0;
+        streakSpan.textContent = streak;
+        
+        feedbackDiv.className = 'feedback incorrect';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = `❌ Oops! ${currentQuestion.picture} = ${currentQuestion.twi} (${currentQuestion.english})`;
+        
+        buttons.forEach(btn => {
+            if (btn.dataset.twi === selected.twi) {
+                btn.classList.add('wrong');
+            }
+            if (btn.dataset.twi === currentQuestion.twi) {
+                btn.classList.add('correct');
+            }
+            btn.classList.add('disabled');
+        });
+    }
+    
+    nextBtn.classList.add('show');
+}
+
+// Play current word audio
+function playCurrentAudio() {
+    if (currentQuestion && currentQuestion.audio) {
+        playAudio(currentQuestion.audio);
+    }
+}
+
+// Next question
+function nextQuestion() {
+    if (!answered) return;
+    currentIndex++;
+    loadQuestion();
+}
+
+// End game
+function endGame() {
+    const percentage = Math.round((score / totalQuestions) * 10);
+    let message = '';
+    
+    if (score === 100) {
+        message = '🏆 PERFECT! You are a Twi vocabulary master! 🏆';
+    } else if (score >= 80) {
+        message = '🌟 Excellent! Great job learning these words! 🌟';
+    } else if (score >= 60) {
+        message = '👍 Good effort! Review and try again! 👍';
+    } else {
+        message = '📚 Keep practicing! Listen to the audio and try again! 📚';
+    }
+    
+    finalScoreSpan.innerHTML = `${score}/100<br><span style="font-size: 0.9rem; color: #666;">${percentage}%</span><br><span style="font-size: 0.8rem; color: #D4A373; margin-top: 0.5rem; display: block;">${message}</span>`;
+    
+    document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
+    gameEndDiv.classList.add('show');
+}
+
+// Restart game
+function restartGame() {
+    document.querySelector('.game-container > div:not(.game-end)').style.display = 'block';
+    gameEndDiv.classList.remove('show');
+    initQuestions();
+    loadQuestion();
+}
+
+// Event listeners
+audioBtn.addEventListener('click', playCurrentAudio);
+nextBtn.addEventListener('click', nextQuestion);
+restartBtn.addEventListener('click', restartGame);
+
+// Initialize game
+initQuestions();
+loadQuestion();
+
+// Clean up audio on page unload
+window.addEventListener('beforeunload', function() {
+    if (currentAudio) {
+        currentAudio.pause();
+    }
+});
+</script>
+</body>
+</html>
