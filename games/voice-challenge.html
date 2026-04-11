@@ -86,10 +86,7 @@
             flex-wrap: wrap;
         }
 
-        .listen-btn {
-            background: #D4A373;
-            color: #1E1E1E;
-            border: none;
+        .listen-btn, .speak-btn, .skip-btn {
             padding: 1rem 1.5rem;
             border-radius: 60px;
             font-size: 1rem;
@@ -99,36 +96,22 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            border: none;
+        }
+
+        .listen-btn {
+            background: #D4A373;
+            color: #1E1E1E;
         }
 
         .speak-btn {
             background: #2A9D8F;
             color: white;
-            border: none;
-            padding: 1rem 1.5rem;
-            border-radius: 60px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .skip-btn {
             background: #E76F51;
             color: white;
-            border: none;
-            padding: 1rem 1.5rem;
-            border-radius: 60px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .listen-btn:hover, .speak-btn:hover, .skip-btn:hover {
@@ -280,7 +263,6 @@
 <script>
 // ===== ALL TWI LETTERS AND DIGRAPHS WITH AUDIO =====
 const allWords = [
-    // Single Letters
     { display: "A", twi: "a", meaning: "letter A", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-a.m4a" },
     { display: "B", twi: "b", meaning: "letter B", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-b.m4a" },
     { display: "D", twi: "d", meaning: "letter D", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-d.m4a" },
@@ -306,8 +288,6 @@ const allWords = [
     { display: "Ɩ", twi: "ɪ", meaning: "letter Ɩ", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ɪ.m4a" },
     { display: "Ʊ", twi: "ʊ", meaning: "letter Ʊ", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ʊ.m4a" },
     { display: "Æ", twi: "æ", meaning: "letter Æ", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-æ.m4a" },
-    
-    // Digraphs
     { display: "DW", twi: "dw", meaning: "digraph DW", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-dw.m4a" },
     { display: "GY", twi: "gy", meaning: "digraph GY", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-gy.m4a" },
     { display: "HW", twi: "hw", meaning: "digraph HW", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-hw.m4a" },
@@ -326,7 +306,8 @@ let streak = 0;
 let answered = false;
 let totalQuestions = 10;
 let currentAudio = null;
-let recognition = null;
+let currentRecognition = null;
+let listeningTimeout = null;
 
 // DOM elements
 const currentWordSpan = document.getElementById('currentWord');
@@ -342,6 +323,20 @@ const listenBtn = document.getElementById('listenBtn');
 const speakBtn = document.getElementById('speakBtn');
 const skipBtn = document.getElementById('skipBtn');
 const restartBtn = document.getElementById('restartBtn');
+
+// Stop any ongoing recognition
+function stopRecognition() {
+    if (currentRecognition) {
+        try {
+            currentRecognition.abort();
+        } catch(e) {}
+        currentRecognition = null;
+    }
+    if (listeningTimeout) {
+        clearTimeout(listeningTimeout);
+        listeningTimeout = null;
+    }
+}
 
 // Shuffle array
 function shuffleArray(arr) {
@@ -361,6 +356,7 @@ function initQuestions() {
     answered = false;
     scoreSpan.textContent = score;
     streakSpan.textContent = streak;
+    stopRecognition();
 }
 
 // Play audio
@@ -390,6 +386,9 @@ function loadQuestion() {
     feedbackDiv.style.display = 'none';
     
     progressTextSpan.textContent = `Question ${currentIndex + 1} of ${totalQuestions}`;
+    
+    // Stop any ongoing recognition when loading new question
+    stopRecognition();
 }
 
 // Listen to pronunciation
@@ -417,29 +416,24 @@ function skipWord() {
         return;
     }
     
+    stopRecognition();
     answered = true;
     nextBtn.disabled = false;
     feedbackDiv.className = 'feedback incorrect';
     feedbackDiv.style.display = 'block';
-    feedbackDiv.innerHTML = '⏭️ Word skipped. Listen carefully and try the next one!';
+    feedbackDiv.innerHTML = '⏭️ Word skipped. Click Next to continue!';
 }
 
-// Check if pronunciation is close enough (more forgiving)
+// Check if pronunciation is close enough
 function isCloseMatch(said, expected) {
     if (!said) return false;
     said = said.toLowerCase().trim();
     expected = expected.toLowerCase().trim();
     
-    // Direct match
     if (said === expected) return true;
-    
-    // Contains the expected sound
     if (said.includes(expected)) return true;
-    
-    // Expected contains what they said (for short sounds like 'a', 'e')
     if (expected.includes(said) && said.length >= 1) return true;
     
-    // Common pronunciation variations for Twi letters
     const variations = {
         'a': ['ah', 'aa', 'aah'],
         'e': ['eh', 'ay', 'ae'],
@@ -457,10 +451,9 @@ function isCloseMatch(said, expected) {
         'tw': ['t', 'tu']
     };
     
-    // Check variations
     if (variations[expected]) {
-        for (let var of variations[expected]) {
-            if (said.includes(var) || var.includes(said)) return true;
+        for (let v of variations[expected]) {
+            if (said.includes(v) || v.includes(said)) return true;
         }
     }
     
@@ -469,6 +462,9 @@ function isCloseMatch(said, expected) {
 
 // Speak word and check
 function speakWord() {
+    // Stop any existing recognition first
+    stopRecognition();
+    
     if (answered) {
         feedbackDiv.className = 'feedback incorrect';
         feedbackDiv.style.display = 'block';
@@ -479,27 +475,25 @@ function speakWord() {
     if (!window.webkitSpeechRecognition && !window.SpeechRecognition) {
         feedbackDiv.className = 'feedback incorrect';
         feedbackDiv.style.display = 'block';
-        feedbackDiv.innerHTML = '❌ Speech recognition not supported. Click "Listen" then "Skip" to continue.';
+        feedbackDiv.innerHTML = '❌ Speech recognition not supported. Click "Skip" to continue.';
         return;
     }
     
     const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-    recognition = new SpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-    recognition.timeout = 5000;
+    currentRecognition = new SpeechRecognition();
+    currentRecognition.lang = 'en-US';
+    currentRecognition.interimResults = false;
+    currentRecognition.maxAlternatives = 1;
     
     feedbackDiv.className = 'feedback listening';
     feedbackDiv.style.display = 'block';
     feedbackDiv.innerHTML = '🎤 Listening... Say the letter or digraph now!';
     
-    recognition.onresult = function(event) {
+    currentRecognition.onresult = function(event) {
         const said = event.results[0][0].transcript.toLowerCase().trim();
         const currentQ = currentQuestions[currentIndex];
         const expected = currentQ.twi.toLowerCase();
         
-        // Use forgiving match function
         const isCorrect = isCloseMatch(said, expected);
         
         if (isCorrect) {
@@ -509,46 +503,47 @@ function speakWord() {
             streakSpan.textContent = streak;
             
             feedbackDiv.className = 'feedback correct';
-            feedbackDiv.innerHTML = `✅ Great! You said "${said}". That's close enough! +10 points!`;
+            feedbackDiv.innerHTML = `✅ Great! You said "${said}". +10 points!`;
         } else {
             streak = 0;
             streakSpan.textContent = streak;
             
             feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = `📚 The correct pronunciation is "${expected}". Keep practicing! Use the "Listen" button to hear it again.`;
+            feedbackDiv.innerHTML = `📚 The correct pronunciation is "${expected}". Use "Listen" to hear it again.`;
         }
         
         answered = true;
         nextBtn.disabled = false;
+        stopRecognition();
     };
     
-    recognition.onerror = function(event) {
+    currentRecognition.onerror = function(event) {
         console.error('Speech recognition error:', event.error);
         
         if (event.error === 'not-allowed') {
             feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = '❌ Microphone access denied. Please allow microphone access and try again.';
+            feedbackDiv.innerHTML = '❌ Microphone access denied. Please allow microphone access.';
         } else if (event.error === 'network') {
             feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = '❌ Network error. Please check your connection and try again.';
+            feedbackDiv.innerHTML = '❌ Network error. Please check your connection.';
         } else {
-            // Instead of failing completely, allow skip
             feedbackDiv.className = 'feedback incorrect';
             feedbackDiv.innerHTML = '🎤 Could not recognize. Click "Skip" to move to the next word.';
-            // Don't mark as answered - let them skip
         }
+        stopRecognition();
     };
     
-    recognition.start();
+    currentRecognition.start();
     
-    // Auto-stop after 8 seconds if no speech detected
-    setTimeout(() => {
-        if (recognition && !answered) {
+    // Auto-stop after 8 seconds
+    listeningTimeout = setTimeout(() => {
+        if (currentRecognition && !answered) {
             try {
-                recognition.abort();
+                currentRecognition.abort();
                 feedbackDiv.className = 'feedback incorrect';
                 feedbackDiv.innerHTML = '⏰ No speech detected. Click "Skip" to continue.';
             } catch(e) {}
+            stopRecognition();
         }
     }, 8000);
 }
@@ -556,6 +551,7 @@ function speakWord() {
 // Next question
 function nextQuestion() {
     if (!answered) return;
+    stopRecognition();
     currentIndex++;
     loadQuestion();
 }
@@ -570,7 +566,7 @@ function endGame() {
     } else if (score >= 80) {
         message = '🌟 Excellent! Your pronunciation is very good! 🌟';
     } else if (score >= 60) {
-        message = '👍 Good effort! Practice a bit more and you\'ll get it! 👍';
+        message = '👍 Good effort! Practice a bit more! 👍';
     } else {
         message = '📚 Keep practicing! Use the "Listen" button and try again! 📚';
     }
@@ -579,6 +575,7 @@ function endGame() {
     
     document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
     gameEndDiv.classList.add('show');
+    stopRecognition();
 }
 
 // Restart game
@@ -595,7 +592,7 @@ async function checkMicrophone() {
         await navigator.mediaDevices.getUserMedia({ audio: true });
         document.getElementById('micPermissionMsg').style.display = 'none';
     } catch (err) {
-        document.getElementById('micPermissionMsg').innerHTML = '🎤 Microphone access denied. You can still use "Listen" and "Skip" buttons to practice.';
+        document.getElementById('micPermissionMsg').innerHTML = '🎤 Microphone access denied. You can still use "Listen" and "Skip" buttons.';
     }
 }
 
@@ -611,14 +608,12 @@ initQuestions();
 loadQuestion();
 checkMicrophone();
 
-// Clean up audio on page unload
+// Clean up on page unload
 window.addEventListener('beforeunload', function() {
     if (currentAudio) {
         currentAudio.pause();
     }
-    if (recognition) {
-        recognition.abort();
-    }
+    stopRecognition();
 });
 </script>
 </body>
