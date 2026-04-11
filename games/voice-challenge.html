@@ -118,6 +118,17 @@
             transform: scale(1.02);
         }
 
+        .speak-btn.recording {
+            background: #E76F51;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.02); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
         .feedback {
             margin: 1rem 0;
             padding: 1rem;
@@ -306,8 +317,7 @@ let streak = 0;
 let answered = false;
 let totalQuestions = 10;
 let currentAudio = null;
-let currentRecognition = null;
-let listeningTimeout = null;
+let mediaStream = null;
 
 // DOM elements
 const currentWordSpan = document.getElementById('currentWord');
@@ -323,20 +333,6 @@ const listenBtn = document.getElementById('listenBtn');
 const speakBtn = document.getElementById('speakBtn');
 const skipBtn = document.getElementById('skipBtn');
 const restartBtn = document.getElementById('restartBtn');
-
-// Stop any ongoing recognition
-function stopRecognition() {
-    if (currentRecognition) {
-        try {
-            currentRecognition.abort();
-        } catch(e) {}
-        currentRecognition = null;
-    }
-    if (listeningTimeout) {
-        clearTimeout(listeningTimeout);
-        listeningTimeout = null;
-    }
-}
 
 // Shuffle array
 function shuffleArray(arr) {
@@ -356,7 +352,6 @@ function initQuestions() {
     answered = false;
     scoreSpan.textContent = score;
     streakSpan.textContent = streak;
-    stopRecognition();
 }
 
 // Play audio
@@ -386,9 +381,6 @@ function loadQuestion() {
     feedbackDiv.style.display = 'none';
     
     progressTextSpan.textContent = `Question ${currentIndex + 1} of ${totalQuestions}`;
-    
-    // Stop any ongoing recognition when loading new question
-    stopRecognition();
 }
 
 // Listen to pronunciation
@@ -407,7 +399,7 @@ function listenToWord() {
     }
 }
 
-// Skip current word (no penalty)
+// Skip current word
 function skipWord() {
     if (answered) {
         feedbackDiv.className = 'feedback incorrect';
@@ -416,7 +408,6 @@ function skipWord() {
         return;
     }
     
-    stopRecognition();
     answered = true;
     nextBtn.disabled = false;
     feedbackDiv.className = 'feedback incorrect';
@@ -460,11 +451,8 @@ function isCloseMatch(said, expected) {
     return false;
 }
 
-// Speak word and check
+// Speak word and check - MANUAL START
 function speakWord() {
-    // Stop any existing recognition first
-    stopRecognition();
-    
     if (answered) {
         feedbackDiv.className = 'feedback incorrect';
         feedbackDiv.style.display = 'block';
@@ -480,19 +468,31 @@ function speakWord() {
     }
     
     const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-    currentRecognition = new SpeechRecognition();
-    currentRecognition.lang = 'en-US';
-    currentRecognition.interimResults = false;
-    currentRecognition.maxAlternatives = 1;
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 1;
+    recognition.continuous = false;
+    
+    // Visual feedback that recording started
+    speakBtn.classList.add('recording');
+    speakBtn.innerHTML = '🎤 Listening... Speak Now!';
     
     feedbackDiv.className = 'feedback listening';
     feedbackDiv.style.display = 'block';
-    feedbackDiv.innerHTML = '🎤 Listening... Say the letter or digraph now!';
+    feedbackDiv.innerHTML = '🎤 Recording... Speak the letter or digraph clearly!';
     
-    currentRecognition.onresult = function(event) {
+    recognition.onstart = function() {
+        console.log('Recognition started');
+        feedbackDiv.innerHTML = '🎤 Recording... Speak now!';
+    };
+    
+    recognition.onresult = function(event) {
         const said = event.results[0][0].transcript.toLowerCase().trim();
         const currentQ = currentQuestions[currentIndex];
         const expected = currentQ.twi.toLowerCase();
+        
+        console.log('Said:', said, 'Expected:', expected);
         
         const isCorrect = isCloseMatch(said, expected);
         
@@ -509,16 +509,20 @@ function speakWord() {
             streakSpan.textContent = streak;
             
             feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = `📚 The correct pronunciation is "${expected}". Use "Listen" to hear it again.`;
+            feedbackDiv.innerHTML = `📚 You said "${said}". Correct pronunciation is "${expected}". Use "Listen" to hear it again.`;
         }
         
         answered = true;
         nextBtn.disabled = false;
-        stopRecognition();
+        recognition.stop();
+        speakBtn.classList.remove('recording');
+        speakBtn.innerHTML = '🎤 Speak the Word';
     };
     
-    currentRecognition.onerror = function(event) {
+    recognition.onerror = function(event) {
         console.error('Speech recognition error:', event.error);
+        speakBtn.classList.remove('recording');
+        speakBtn.innerHTML = '🎤 Speak the Word';
         
         if (event.error === 'not-allowed') {
             feedbackDiv.className = 'feedback incorrect';
@@ -526,32 +530,39 @@ function speakWord() {
         } else if (event.error === 'network') {
             feedbackDiv.className = 'feedback incorrect';
             feedbackDiv.innerHTML = '❌ Network error. Please check your connection.';
+        } else if (event.error === 'no-speech') {
+            feedbackDiv.className = 'feedback incorrect';
+            feedbackDiv.innerHTML = '🎤 No speech detected. Click the button again and speak clearly.';
         } else {
             feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = '🎤 Could not recognize. Click "Skip" to move to the next word.';
+            feedbackDiv.innerHTML = '🎤 Could not recognize. Click "Speak" again and say the word clearly.';
         }
-        stopRecognition();
     };
     
-    currentRecognition.start();
-    
-    // Auto-stop after 8 seconds
-    listeningTimeout = setTimeout(() => {
-        if (currentRecognition && !answered) {
-            try {
-                currentRecognition.abort();
-                feedbackDiv.className = 'feedback incorrect';
-                feedbackDiv.innerHTML = '⏰ No speech detected. Click "Skip" to continue.';
-            } catch(e) {}
-            stopRecognition();
+    recognition.onend = function() {
+        console.log('Recognition ended');
+        speakBtn.classList.remove('recording');
+        if (!answered) {
+            speakBtn.innerHTML = '🎤 Speak the Word';
+            feedbackDiv.innerHTML = '🎤 Click "Speak" and say the word. Make sure your microphone is working.';
         }
-    }, 8000);
+    };
+    
+    // Start recognition
+    try {
+        recognition.start();
+    } catch(e) {
+        console.error('Failed to start recognition:', e);
+        feedbackDiv.className = 'feedback incorrect';
+        feedbackDiv.innerHTML = '❌ Could not start microphone. Click "Allow" when prompted and try again.';
+        speakBtn.classList.remove('recording');
+        speakBtn.innerHTML = '🎤 Speak the Word';
+    }
 }
 
 // Next question
 function nextQuestion() {
     if (!answered) return;
-    stopRecognition();
     currentIndex++;
     loadQuestion();
 }
@@ -575,7 +586,6 @@ function endGame() {
     
     document.querySelector('.game-container > div:not(.game-end)').style.display = 'none';
     gameEndDiv.classList.add('show');
-    stopRecognition();
 }
 
 // Restart game
@@ -586,13 +596,16 @@ function restartGame() {
     loadQuestion();
 }
 
-// Check microphone permission
+// Check microphone permission and get stream
 async function checkMicrophone() {
     try {
-        await navigator.mediaDevices.getUserMedia({ audio: true });
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaStream = stream;
         document.getElementById('micPermissionMsg').style.display = 'none';
+        console.log('Microphone access granted');
     } catch (err) {
-        document.getElementById('micPermissionMsg').innerHTML = '🎤 Microphone access denied. You can still use "Listen" and "Skip" buttons.';
+        console.error('Microphone error:', err);
+        document.getElementById('micPermissionMsg').innerHTML = '🎤 Microphone access denied. You can still use "Listen" and "Skip" buttons to practice.';
     }
 }
 
@@ -613,7 +626,9 @@ window.addEventListener('beforeunload', function() {
     if (currentAudio) {
         currentAudio.pause();
     }
-    stopRecognition();
+    if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
+    }
 });
 </script>
 </body>
