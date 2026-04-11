@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charlotte Tetebea Asiamah - Akan Language Teacher & Researcher | Speak Ghana</title>
+    <meta name="description" content="Meet Charlotte Tetebea Asiamah, Co-founder and Head of Instruction at Speak Ghana. BA in Akan (KNUST), Diploma in Education, International Fellow, and Senior Teacher at KNUST Basic School.">
+    
+    <!-- ABSOLUTE URL FAVICON -->
+    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZXFR0LFLH6');
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Navigation */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid var(--gold);
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .contact-info a:hover {
+            color: var(--gold);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.5rem 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+        }
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+        .logo-text h1 span {
+            color: var(--gold);
+        }
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+        }
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: var(--gold);
+            font-weight: 500;
+            text-align: right;
+        }
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            border-bottom: 1px solid #eee;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0.8rem 0;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.3rem 0;
+            transition: color 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--green);
+            border-bottom-color: var(--green);
+        }
+        .dropdown-item { display: contents; }
+        .dropdown-toggle { display: none; }
+        .dropdown-submenu { display: contents; }
+        .menu-toggle {
+            display: none;
+            background: var(--gold);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 0.5rem;
+            }
+            nav { position: relative; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+                width: 100%;
+                background: white;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            .nav-links.show { display: flex; }
+            .nav-links > a, .nav-links > .dropdown-item {
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid var(--cream);
+            }
+            .dropdown-toggle {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                background: white;
+                border: none;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+            }
+            .dropdown-submenu {
+                display: none;
+                flex-direction: column;
+                background: var(--cream);
+                margin-top: 0.5rem;
+                border-radius: 12px;
+            }
+            .dropdown-submenu.show { display: flex; }
+            .dropdown-submenu a {
+                padding: 0.8rem 1.5rem 0.8rem 2.5rem;
+                text-decoration: none;
+                color: var(--gray);
+                font-size: 0.95rem;
+            }
+            .dropdown-item { display: block; padding: 0 !important; }
+        }
+
+        /* Teacher Profile Styles */
+        .teacher-header {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .teacher-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .teacher-header .language-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.3rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        .teacher-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+        .teacher-sidebar {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--shadow);
+            text-align: center;
+        }
+        .teacher-photo {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--gold), var(--green));
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            overflow: hidden;
+        }
+        .teacher-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+        .teacher-info {
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+        .teacher-info p {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .teacher-info i {
+            width: 25px;
+            color: var(--green);
+        }
+        .teacher-main {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        .teacher-main h2 {
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .teacher-main h2::after {
+            display: none;
+        }
+        .teacher-main h3 {
+            color: var(--gold);
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.2rem;
+        }
+        .teacher-main p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        .research-item {
+            background: var(--cream);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--green);
+        }
+        .research-item strong {
+            color: var(--green);
+        }
+        .cert-badge {
+            display: inline-block;
+            background: var(--cream);
+            color: var(--green);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin: 0.3rem 0.3rem 0 0;
+        }
+        .btn-back {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+        .btn-back:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        @media (max-width: 768px) {
+            .teacher-content {
+                grid-template-columns: 1fr;
+            }
+            .teacher-header h1 {
+                font-size: 1.8rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="mailto:info@speakghana.org">📧 info@speakghana.org</a>
+                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container" style="position: relative;">
+            <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownLearnBtn">
+                        <span>📚 Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownLearnMenu">
+                        <a href="languages.html">Languages</a>
+                        <a href="kids-teens.html">Kids & Teens</a>
+                        <a href="concierge.html">Concierge</a>
+                    </div>
+                </div>
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownResourcesBtn">
+                        <span>📖 Resources</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownResourcesMenu">
+                        <a href="resources.html">Free Resources</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="student-portal.html">Student Portal</a>
+                    </div>
+                </div>
+                <a href="students.html">👥 Students</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Teacher Profile -->
+    <div class="teacher-header">
+        <div class="container">
+            <h1>Charlotte Tetebea Asiamah</h1>
+            <p>Co-founder & Head of Instruction | Akan Language Specialist</p>
+            <div class="language-badge">🇬🇭 Akan (Twi) Language Teacher & Researcher</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="teacher-content">
+            <div class="teacher-sidebar">
+                <div class="teacher-photo">
+                    <img src="images/charlotte.jpg" alt="Charlotte Tetebea Asiamah">
+                </div>
+                <h3 style="color: var(--green);">Charlotte Tetebea Asiamah</h3>
+                <p style="color: var(--gray);">BA in Akan | Diploma in Education</p>
+                
+                <div class="teacher-info">
+                    <p><i class="fas fa-graduation-cap"></i> BA in Akan (KNUST)</p>
+                    <p><i class="fas fa-certificate"></i> Diploma in Education (UEW)</p>
+                    <p><i class="fas fa-globe"></i> AFRIAK Fellow (CODESRIA)</p>
+                    <p><i class="fas fa-chalkboard-user"></i> Senior Teacher, KNUST Basic School</p>
+                    <p><i class="fas fa-language"></i> Specializes in Akan (Twi)</p>
+                    <p><i class="fas fa-book"></i> Children's Literature Researcher</p>
+                </div>
+            </div>
+
+            <div class="teacher-main">
+                <h2>About Charlotte</h2>
+                <p>Charlotte Tetebea Asiamah is the Co-founder and Head of Instruction at Speak Ghana. She is a trained teacher with a Bachelor of Arts in Akan from Kwame Nkrumah University of Science and Technology (KNUST) and a Diploma in Education from the University of Education, Winneba. Currently, she serves as a <strong>Senior Teacher at KNUST Basic School</strong>, where she teaches Akan language, literacy, and cultural studies to primary school pupils.</p>
+                
+                <p>Charlotte is also an <strong>AFRIAK Fellow</strong> (African Fellowship for Research into Indigenous and Alternative Knowledge), awarded by CODESRIA and the MasterCard Foundation. Her research focuses on folk media, Akan children's literature, language acquisition, psycholinguistics, and cultural studies.</p>
+
+                <h3>🎓 Education</h3>
+                <p><strong>Diploma in Education</strong> — University of Education, Winneba (2021)<br>Dissertation: "The Role of the Ghanaian Parent in a Primary School Child's Second Language Acquisition: A Case Study of Two Selected Schools in the Oforikrom Municipality, Kumasi, Ghana"</p>
+                <p><strong>Bachelor of Arts in Akan</strong> — Kwame Nkrumah University of Science and Technology, Kumasi (2020)<br>Dissertation: "Akan Adesua wɔ Suapɔn mu: Nsunsuanso a ɛgya adesuafo no wɔ wɔn adwumahwehwɛ ne ne yɛ mu"</p>
+
+                <h3>🌍 International Fellowship</h3>
+                <div class="research-item">
+                    <strong>AFRIAK Fellow (African Fellowship for Research into Indigenous and Alternative Knowledge)</strong><br>
+                    CODESRIA / MasterCard Foundation — August 2025 – June 2026
+                </div>
+
+                <h3>🔬 Research Interests</h3>
+                <div>
+                    <span class="cert-badge">🎭 Folk Media</span>
+                    <span class="cert-badge">📚 Akan Children's Literature</span>
+                    <span class="cert-badge">🧠 Language Acquisition</span>
+                    <span class="cert-badge">🗣️ Psycholinguistics</span>
+                    <span class="cert-badge">🌍 Cultural Studies</span>
+                    <span class="cert-badge">📖 Ethnography</span>
+                </div>
+
+                <h3>💼 Professional Experience</h3>
+                <p><strong>Senior Teacher</strong> — KNUST Basic School, Kumasi (Present)<br>Teach Akan language, literacy and cultural studies. Design age-appropriate lesson plans. Supervise co-curricular activities. Assess academic performance and implement targeted interventions.</p>
+                
+                <p><strong>Teaching and Research Assistant</strong> — Department of Language and Communication Studies, KNUST (2020-2021)<br>Managed the Akan Library collection. Provided academic advising and research supervision. Conducted tutorial sessions for second-year students. Mentored junior students in research project development.</p>
+                
+                <p><strong>Production Assistant</strong> — TV3 Television Station & Onua FM Radio Station, Media General, Accra (2019)<br>Supported news production, scripting and field reporting. Conducted vox pop interviews. Assisted in general news assignments and live reporting.</p>
+
+                <h3>📋 Selected Research Assistant Positions</h3>
+                <div class="research-item">
+                    <strong>International Development Research Centre (IDRC), Canada</strong> (2025-Present)<br>
+                    Project: "The Impact of Culturally Responsive Pedagogies and Social and Emotional Development in Diverse Early Childhood Classrooms in Ghana"
+                </div>
+                <div class="research-item">
+                    <strong>Ghana Tertiary Education Commission (GTEC) & British Council</strong> (2024-2025)<br>
+                    Project: "The Implications of Transnational Education (TNE) on the Quality Assurance of Tertiary Education in Ghana"
+                </div>
+                <div class="research-item">
+                    <strong>Partnership for Innovative Research in Africa (PIRA), Michigan State University, USA</strong> (2022-2023)<br>
+                    Project: "Evaluation of Inclusive Education Programs for Transition-Age Students with Intellectual and Developmental Disabilities in Botswana and Ghana"
+                </div>
+
+                <h3>🏆 Leadership & Community Service</h3>
+                <p><strong>Secretary</strong> — College of Humanities and Social Sciences Students Association (CoHSS), KNUST</p>
+                <p><strong>Student Member of Parliament</strong> — Student Representative Council Parliament, KNUST</p>
+                <p><strong>Local Organizing Committee Member</strong> — The Guadete Institute (TGI), NGO</p>
+
+                <h3>📚 Conferences & Seminars</h3>
+                <p>• KNUST Campus Inspiring Ladies Colloquium (2022) — Theme: "Encouraging the 21st Century Young Woman"</p>
+                <p>• KNUST Campus TEK Leaders Summit (2019) — Theme: "Awakening Nationalism in the Youth"</p>
+                <p>• 10th Summer School, KNUST (2023) — Theme: "Academia-Industry Partnership: Innovative Pedagogies"</p>
+
+                <h3>💬 Why Learn Akan with Charlotte?</h3>
+                <p>"Language is not just about words — it's about identity, culture, and belonging. As a researcher and teacher, I bring both academic rigor and practical classroom experience to every lesson. My goal is to help you speak Akan confidently and connect with the rich traditions of the Akan people. Whether you're a diaspora learner reconnecting with your roots or a professional seeking to communicate effectively, I'm here to guide you every step of the way." — Charlotte Tetebea Asiamah</p>
+
+                <a href="languages.html" class="btn-primary">📖 Enroll in Akan Classes →</a>
+                <a href="about.html" class="btn-back" style="margin-left: 1rem;">← Back to About Page</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 info@speakghana.org</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="languages.html">Languages</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">Instagram</a>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">YouTube</a>
+                    <a href="https://wa.me/233552263323" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School — Reconnect. Speak. Thrive.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        }
+        
+        const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
+        const dropdownLearnMenu = document.getElementById('dropdownLearnMenu');
+        const dropdownResourcesBtn = document.getElementById('dropdownResourcesBtn');
+        const dropdownResourcesMenu = document.getElementById('dropdownResourcesMenu');
+        
+        if (dropdownLearnBtn && dropdownLearnMenu) {
+            dropdownLearnBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownLearnMenu.classList.toggle('show');
+                dropdownLearnBtn.classList.toggle('open');
+                if (dropdownResourcesMenu && dropdownResourcesMenu.classList.contains('show')) {
+                    dropdownResourcesMenu.classList.remove('show');
+                    dropdownResourcesBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        if (dropdownResourcesBtn && dropdownResourcesMenu) {
+            dropdownResourcesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownResourcesMenu.classList.toggle('show');
+                dropdownResourcesBtn.classList.toggle('open');
+                if (dropdownLearnMenu && dropdownLearnMenu.classList.contains('show')) {
+                    dropdownLearnMenu.classList.remove('show');
+                    dropdownLearnBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        document.querySelectorAll('.dropdown-submenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.nav-links > a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 968) {
+                if (navLinks) navLinks.classList.remove('show');
+                if (dropdownLearnMenu) dropdownLearnMenu.classList.remove('show');
+                if (dropdownResourcesMenu) dropdownResourcesMenu.classList.remove('show');
+                if (dropdownLearnBtn) dropdownLearnBtn.classList.remove('open');
+                if (dropdownResourcesBtn) dropdownResourcesBtn.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
