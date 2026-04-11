@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Speak & Practice | Twi Greetings | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .game-container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            border-radius: 48px;
+            padding: 2rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .game-header h1 {
+            color: #2A9D8F;
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .game-header p {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            background: #FDF8F2;
+            padding: 1rem;
+            border-radius: 60px;
+            margin: 1.5rem 0;
+        }
+
+        .score-box, .streak-box {
+            background: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+
+        .phrase-area {
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .twi-phrase {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+            word-break: break-word;
+        }
+
+        .english-meaning {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .listen-btn, .record-btn, .playback-btn, .next-phrase-btn {
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+        }
+
+        .listen-btn {
+            background: #D4A373;
+            color: #1E1E1E;
+        }
+
+        .record-btn {
+            background: #E76F51;
+            color: white;
+        }
+
+        .record-btn.recording {
+            background: #c0392b;
+            animation: pulse 1s infinite;
+        }
+
+        .playback-btn {
+            background: #2A9D8F;
+            color: white;
+        }
+
+        .playback-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .next-phrase-btn {
+            background: #2A9D8F;
+            color: white;
+        }
+
+        .next-phrase-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.02); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .feedback {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 20px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .feedback.success {
+            display: block;
+            background: #d4f5ef;
+            color: #1f7a6e;
+        }
+
+        .feedback.info {
+            display: block;
+            background: #e8e8e8;
+            color: #2A9D8F;
+        }
+
+        .progress-text {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 1rem;
+        }
+
+        .microphone-permission {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 0.8rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: #856404;
+        }
+
+        @media (max-width: 550px) {
+            .game-container {
+                padding: 1.5rem;
+            }
+            .twi-phrase {
+                font-size: 1.5rem;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-header">
+        <h1>🗣️ Speak & Practice</h1>
+        <p>Week 2: Greetings & Introductions</p>
+    </div>
+
+    <div class="stats">
+        <div class="score-box">🏆 Practiced: <span id="score">0</span></div>
+        <div class="streak-box">🔥 Streak: <span id="streak">0</span></div>
+    </div>
+
+    <div class="microphone-permission" id="micPermissionMsg">
+        🎤 This game needs microphone access. Click "Allow" when prompted.
+    </div>
+
+    <div class="phrase-area">
+        <div class="twi-phrase" id="twiPhrase">Mema wo akye</div>
+        <div class="english-meaning" id="englishMeaning">Good morning</div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="listen-btn" id="listenBtn">
+            🔊 Listen
+        </button>
+        <button class="record-btn" id="recordBtn">
+            🎙️ Record
+        </button>
+        <button class="playback-btn" id="playbackBtn" disabled>
+            ▶️ Playback
+        </button>
+        <button class="next-phrase-btn" id="nextBtn" disabled>
+            ✅ Practice Complete → Next
+        </button>
+    </div>
+
+    <div class="feedback" id="feedback"></div>
+    
+    <div class="progress-text" id="progressText">Phrase 1 of 12</div>
+</div>
+
+<script>
+// ===== WEEK 2 PHRASES WITH AUDIO =====
+const phrases = [
+    { twi: "Mema wo akye", english: "Good morning", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/morn.m4a" },
+    { twi: "Maaha", english: "Good afternoon", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/noon.m4a" },
+    { twi: "Mema wo adwo", english: "Good evening", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/eve.m4a" },
+    { twi: "Da yie", english: "Good night", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/g-night.m4a" },
+    { twi: "Wo din de sɛn?", english: "What is your name?", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/ur-name.m4a" },
+    { twi: "Me din de...", english: "My name is...", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/my-name.m4a" },
+    { twi: "Wofiri he?", english: "Where are you from?", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/u-from.m4a" },
+    { twi: "Mefiri...", english: "I am from...", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/i-from.m4a" },
+    { twi: "Wo ho te sɛn?", english: "How are you?", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/how-u.m4a" },
+    { twi: "Medaase", english: "Thank you", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/thanks.m4a" },
+    { twi: "Mepa wo kyɛw", english: "Please", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/please.m4a" },
+    { twi: "Yɛbɛhyia bio", english: "Goodbye", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/bye.m4a" }
+];
+
+let currentIndex = 0;
+let practicedCount = 0;
+let streak = 0;
+let currentPracticed = false;
+let totalPhrases = phrases.length;
+let currentAudio = null;
+let mediaRecorder = null;
+let audioChunks = [];
+let recordedBlob = null;
+let mediaStream = null;
+let isRecording = false;
+
+// DOM elements
+const twiPhraseSpan = document.getElementById('twiPhrase');
+const englishMeaningSpan = document.getElementById('englishMeaning');
+const feedbackDiv = document.getElementById('feedback');
+const nextBtn = document.getElementById('nextBtn');
+const scoreSpan = document.getElementById('score');
+const streakSpan = document.getElementById('streak');
+const progressTextSpan = document.getElementById('progressText');
+const listenBtn = document.getElementById('listenBtn');
+const recordBtn = document.getElementById('recordBtn');
+const playbackBtn = document.getElementById('playbackBtn');
+
+// Load current phrase
+function loadPhrase() {
+    if (currentIndex >= totalPhrases) {
+        endGame();
+        return;
+    }
+    
+    const p = phrases[currentIndex];
+    twiPhraseSpan.textContent = p.twi;
+    englishMeaningSpan.textContent = p.english;
+    
+    currentPracticed = false;
+    nextBtn.disabled = true;
+    playbackBtn.disabled = true;
+    feedbackDiv.className = 'feedback';
+    feedbackDiv.style.display = 'none';
+    recordBtn.innerHTML = '🎙️ Record';
+    recordBtn.classList.remove('recording');
+    
+    progressTextSpan.textContent = `Phrase ${currentIndex + 1} of ${totalPhrases}`;
+}
+
+// Play audio
+function playAudio(url) {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+    }
+    currentAudio = new Audio(url);
+    currentAudio.play().catch(e => console.log('Audio play error:', e));
+    feedbackDiv.className = 'feedback info';
+    feedbackDiv.style.display = 'block';
+    feedbackDiv.innerHTML = '🔊 Playing pronunciation... Listen carefully!';
+    setTimeout(() => {
+        if (feedbackDiv.innerHTML === '🔊 Playing pronunciation... Listen carefully!') {
+            feedbackDiv.style.display = 'none';
+        }
+    }, 2500);
+}
+
+// Listen to current phrase
+function listenToPhrase() {
+    const p = phrases[currentIndex];
+    if (p && p.audio) {
+        playAudio(p.audio);
+    }
+}
+
+// Start recording
+async function startRecording() {
+    if (!mediaStream) {
+        try {
+            mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            document.getElementById('micPermissionMsg').style.display = 'none';
+        } catch (err) {
+            feedbackDiv.className = 'feedback info';
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.innerHTML = '❌ Microphone access denied. Please allow microphone access.';
+            return;
+        }
+    }
+    
+    audioChunks = [];
+    mediaRecorder = new MediaRecorder(mediaStream);
+    
+    mediaRecorder.ondataavailable = function(event) {
+        audioChunks.push(event.data);
+    };
+    
+    mediaRecorder.onstop = function() {
+        recordedBlob = new Blob(audioChunks, { type: 'audio/wav' });
+        playbackBtn.disabled = false;
+        feedbackDiv.className = 'feedback info';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = '✅ Recording saved! Click "Playback" to hear yourself. Then click "Practice Complete" when ready.';
+    };
+    
+    mediaRecorder.start();
+    isRecording = true;
+    recordBtn.innerHTML = '⏹️ Stop';
+    recordBtn.classList.add('recording');
+    playbackBtn.disabled = true;
+    
+    feedbackDiv.className = 'feedback info';
+    feedbackDiv.style.display = 'block';
+    feedbackDiv.innerHTML = '🔴 Recording... Speak the phrase clearly. Click "Stop" when done.';
+}
+
+// Stop recording
+function stopRecording() {
+    if (mediaRecorder && isRecording) {
+        mediaRecorder.stop();
+        isRecording = false;
+        recordBtn.innerHTML = '🎙️ Record Again';
+        recordBtn.classList.remove('recording');
+    }
+}
+
+// Toggle recording
+function toggleRecording() {
+    if (isRecording) {
+        stopRecording();
+    } else {
+        startRecording();
+    }
+}
+
+// Playback recorded audio
+function playRecording() {
+    if (recordedBlob) {
+        const audioUrl = URL.createObjectURL(recordedBlob);
+        const audio = new Audio(audioUrl);
+        audio.play();
+        feedbackDiv.className = 'feedback info';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = '▶️ Playing your recording. Compare it with the "Listen" button!';
+        setTimeout(() => {
+            URL.revokeObjectURL(audioUrl);
+        }, 5000);
+    }
+}
+
+// Mark as practiced
+function markPracticed() {
+    if (currentPracticed) {
+        feedbackDiv.className = 'feedback info';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = '✅ You already practiced this phrase! Click Next.';
+        return;
+    }
+    
+    currentPracticed = true;
+    practicedCount++;
+    streak++;
+    scoreSpan.textContent = practicedCount;
+    streakSpan.textContent = streak;
+    nextBtn.disabled = false;
+    
+    feedbackDiv.className = 'feedback success';
+    feedbackDiv.style.display = 'block';
+    feedbackDiv.innerHTML = '✅ Great job practicing! +1 phrase mastered! Click Next to continue.';
+}
+
+// Next phrase
+function nextPhrase() {
+    if (!currentPracticed) {
+        feedbackDiv.className = 'feedback info';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = '⚠️ Please practice this phrase first (Record and Playback), then click "Practice Complete".';
+        return;
+    }
+    currentIndex++;
+    loadPhrase();
+}
+
+// End game
+function endGame() {
+    const percentage = Math.round((practicedCount / totalPhrases) * 100);
+    let message = '';
+    
+    if (percentage === 100) {
+        message = '🎉🏆 PERFECT! You mastered all 12 phrases! 🏆🎉';
+    } else if (percentage >= 80) {
+        message = '🌟 Excellent! Great job practicing your greetings! 🌟';
+    } else if (percentage >= 60) {
+        message = '👍 Good effort! Review the phrases and practice again! 👍';
+    } else {
+        message = '📚 Keep practicing! Use the "Listen" button and try again! 📚';
+    }
+    
+    feedbackDiv.className = 'feedback success';
+    feedbackDiv.style.display = 'block';
+    feedbackDiv.innerHTML = `${message}<br><br>🎓 You practiced ${practicedCount} out of ${totalPhrases} phrases!`;
+    
+    nextBtn.disabled = true;
+    listenBtn.disabled = true;
+    recordBtn.disabled = true;
+    playbackBtn.disabled = true;
+    
+    // Show restart button
+    const restartBtn = document.createElement('button');
+    restartBtn.textContent = '🔄 Practice Again';
+    restartBtn.className = 'next-phrase-btn';
+    restartBtn.style.marginTop = '1rem';
+    restartBtn.onclick = () => location.reload();
+    document.querySelector('.action-buttons').after(restartBtn);
+}
+
+// Check microphone permission
+async function checkMicrophone() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaStream = stream;
+        document.getElementById('micPermissionMsg').style.display = 'none';
+    } catch (err) {
+        document.getElementById('micPermissionMsg').innerHTML = '🎤 Microphone access denied. You can still use "Listen" button to practice.';
+    }
+}
+
+// Event listeners
+listenBtn.addEventListener('click', listenToPhrase);
+recordBtn.addEventListener('click', toggleRecording);
+playbackBtn.addEventListener('click', playRecording);
+nextBtn.addEventListener('click', nextPhrase);
+
+// Initialize
+loadPhrase();
+checkMicrophone();
+
+// Clean up
+window.addEventListener('beforeunload', function() {
+    if (currentAudio) {
+        currentAudio.pause();
+    }
+    if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
+    }
+});
+</script>
+</body>
+</html>
