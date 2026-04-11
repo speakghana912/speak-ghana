@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Voice Challenge | Speak Twi with Your Voice | Speak Ghana</title>
+    <title>Voice Practice | Speak Twi with Your Voice | Speak Ghana</title>
     <style>
         * {
             margin: 0;
@@ -86,10 +86,10 @@
             flex-wrap: wrap;
         }
 
-        .listen-btn, .speak-btn, .skip-btn {
-            padding: 1rem 1.5rem;
+        .listen-btn, .record-btn, .playback-btn, .skip-btn {
+            padding: 0.8rem 1.2rem;
             border-radius: 60px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -104,23 +104,29 @@
             color: #1E1E1E;
         }
 
-        .speak-btn {
+        .record-btn {
+            background: #E76F51;
+            color: white;
+        }
+
+        .record-btn.recording {
+            background: #c0392b;
+            animation: pulse 1s infinite;
+        }
+
+        .playback-btn {
             background: #2A9D8F;
             color: white;
         }
 
+        .playback-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
         .skip-btn {
-            background: #E76F51;
+            background: #666;
             color: white;
-        }
-
-        .listen-btn:hover, .speak-btn:hover, .skip-btn:hover {
-            transform: scale(1.02);
-        }
-
-        .speak-btn.recording {
-            background: #E76F51;
-            animation: pulse 1s infinite;
         }
 
         @keyframes pulse {
@@ -143,13 +149,7 @@
             color: #1f7a6e;
         }
 
-        .feedback.incorrect {
-            display: block;
-            background: #fde5dd;
-            color: #E76F51;
-        }
-
-        .feedback.listening {
+        .feedback.info {
             display: block;
             background: #e8e8e8;
             color: #2A9D8F;
@@ -228,8 +228,8 @@
 <body>
 <div class="game-container">
     <div class="game-header">
-        <h1>🎙️ Voice Challenge</h1>
-        <p>Listen, then speak the Twi letter or digraph!</p>
+        <h1>🎙️ Voice Practice</h1>
+        <p>Listen, record yourself, then compare!</p>
     </div>
 
     <div class="stats">
@@ -248,27 +248,30 @@
 
     <div class="action-buttons">
         <button class="listen-btn" id="listenBtn">
-            🔊 Listen to Pronunciation
+            🔊 Listen
         </button>
-        <button class="speak-btn" id="speakBtn">
-            🎤 Speak the Word
+        <button class="record-btn" id="recordBtn">
+            🎙️ Record Yourself
+        </button>
+        <button class="playback-btn" id="playbackBtn" disabled>
+            ▶️ Play My Recording
         </button>
         <button class="skip-btn" id="skipBtn">
-            ⏭️ Skip Word
+            ⏭️ Skip
         </button>
     </div>
 
     <div class="feedback" id="feedback"></div>
-    <button class="next-btn" id="nextBtn" disabled>Next Word →</button>
+    <button class="next-btn" id="nextBtn" disabled>Mark as Practiced →</button>
 
     <div class="game-end" id="gameEnd">
-        <h2>🎉 Challenge Complete! 🎉</h2>
+        <h2>🎉 Practice Complete! 🎉</h2>
         <p>Great job practicing your pronunciation!</p>
         <div class="final-score" style="font-size: 2rem; font-weight: 800; color: #2A9D8F; margin: 1rem 0;" id="finalScore">0</div>
-        <button class="restart-btn" id="restartBtn">Play Again ↻</button>
+        <button class="restart-btn" id="restartBtn">Practice Again ↻</button>
     </div>
     
-    <div class="progress-text" id="progressText">Question 1 of 10</div>
+    <div class="progress-text" id="progressText">Word 1 of 10</div>
 </div>
 
 <script>
@@ -314,10 +317,14 @@ let currentQuestions = [];
 let currentIndex = 0;
 let score = 0;
 let streak = 0;
-let answered = false;
+let practiced = false;
 let totalQuestions = 10;
 let currentAudio = null;
+let mediaRecorder = null;
+let audioChunks = [];
+let recordedBlob = null;
 let mediaStream = null;
+let isRecording = false;
 
 // DOM elements
 const currentWordSpan = document.getElementById('currentWord');
@@ -330,7 +337,8 @@ const gameEndDiv = document.getElementById('gameEnd');
 const finalScoreSpan = document.getElementById('finalScore');
 const progressTextSpan = document.getElementById('progressText');
 const listenBtn = document.getElementById('listenBtn');
-const speakBtn = document.getElementById('speakBtn');
+const recordBtn = document.getElementById('recordBtn');
+const playbackBtn = document.getElementById('playbackBtn');
 const skipBtn = document.getElementById('skipBtn');
 const restartBtn = document.getElementById('restartBtn');
 
@@ -349,7 +357,7 @@ function initQuestions() {
     currentIndex = 0;
     score = 0;
     streak = 0;
-    answered = false;
+    practiced = false;
     scoreSpan.textContent = score;
     streakSpan.textContent = streak;
 }
@@ -375,12 +383,15 @@ function loadQuestion() {
     currentWordSpan.textContent = q.display;
     wordMeaningSpan.textContent = `(${q.meaning})`;
     
-    answered = false;
+    practiced = false;
     nextBtn.disabled = true;
+    playbackBtn.disabled = true;
     feedbackDiv.className = 'feedback';
     feedbackDiv.style.display = 'none';
+    recordBtn.innerHTML = '🎙️ Record Yourself';
+    recordBtn.classList.remove('recording');
     
-    progressTextSpan.textContent = `Question ${currentIndex + 1} of ${totalQuestions}`;
+    progressTextSpan.textContent = `Word ${currentIndex + 1} of ${totalQuestions}`;
 }
 
 // Listen to pronunciation
@@ -388,7 +399,7 @@ function listenToWord() {
     const q = currentQuestions[currentIndex];
     if (q && q.audio) {
         playAudio(q.audio);
-        feedbackDiv.className = 'feedback listening';
+        feedbackDiv.className = 'feedback info';
         feedbackDiv.style.display = 'block';
         feedbackDiv.innerHTML = '🔊 Playing pronunciation... Listen carefully!';
         setTimeout(() => {
@@ -399,170 +410,120 @@ function listenToWord() {
     }
 }
 
-// Skip current word
-function skipWord() {
-    if (answered) {
-        feedbackDiv.className = 'feedback incorrect';
+// Start recording
+async function startRecording() {
+    if (!mediaStream) {
+        try {
+            mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            document.getElementById('micPermissionMsg').style.display = 'none';
+        } catch (err) {
+            feedbackDiv.className = 'feedback info';
+            feedbackDiv.style.display = 'block';
+            feedbackDiv.innerHTML = '❌ Microphone access denied. Please allow microphone access.';
+            return;
+        }
+    }
+    
+    audioChunks = [];
+    mediaRecorder = new MediaRecorder(mediaStream);
+    
+    mediaRecorder.ondataavailable = function(event) {
+        audioChunks.push(event.data);
+    };
+    
+    mediaRecorder.onstop = function() {
+        recordedBlob = new Blob(audioChunks, { type: 'audio/wav' });
+        playbackBtn.disabled = false;
+        feedbackDiv.className = 'feedback info';
         feedbackDiv.style.display = 'block';
-        feedbackDiv.innerHTML = '⚠️ You already answered this word! Click Next.';
+        feedbackDiv.innerHTML = '✅ Recording saved! Click "Play My Recording" to hear yourself.';
+    };
+    
+    mediaRecorder.start();
+    isRecording = true;
+    recordBtn.innerHTML = '⏹️ Stop Recording';
+    recordBtn.classList.add('recording');
+    playbackBtn.disabled = true;
+    
+    feedbackDiv.className = 'feedback info';
+    feedbackDiv.style.display = 'block';
+    feedbackDiv.innerHTML = '🔴 Recording... Speak clearly and click "Stop Recording" when done.';
+}
+
+// Stop recording
+function stopRecording() {
+    if (mediaRecorder && isRecording) {
+        mediaRecorder.stop();
+        isRecording = false;
+        recordBtn.innerHTML = '🎙️ Record Again';
+        recordBtn.classList.remove('recording');
+    }
+}
+
+// Toggle recording
+function toggleRecording() {
+    if (isRecording) {
+        stopRecording();
+    } else {
+        startRecording();
+    }
+}
+
+// Playback recorded audio
+function playRecording() {
+    if (recordedBlob) {
+        const audioUrl = URL.createObjectURL(recordedBlob);
+        const audio = new Audio(audioUrl);
+        audio.play();
+        feedbackDiv.className = 'feedback info';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = '▶️ Playing your recording. Compare it with the "Listen" button!';
+        setTimeout(() => {
+            URL.revokeObjectURL(audioUrl);
+        }, 5000);
+    }
+}
+
+// Mark as practiced and get points
+function markPracticed() {
+    if (practiced) {
+        feedbackDiv.className = 'feedback info';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = '✅ You already practiced this word! Click Next.';
         return;
     }
     
-    answered = true;
+    practiced = true;
+    score += 10;
+    streak++;
+    scoreSpan.textContent = score;
+    streakSpan.textContent = streak;
     nextBtn.disabled = false;
-    feedbackDiv.className = 'feedback incorrect';
+    
+    feedbackDiv.className = 'feedback correct';
+    feedbackDiv.style.display = 'block';
+    feedbackDiv.innerHTML = '✅ Great job practicing! +10 points! Click Next to continue.';
+}
+
+// Skip current word (no penalty)
+function skipWord() {
+    if (practiced) {
+        feedbackDiv.className = 'feedback info';
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.innerHTML = '⚠️ You already practiced this word! Click Next.';
+        return;
+    }
+    
+    practiced = true;
+    nextBtn.disabled = false;
+    feedbackDiv.className = 'feedback info';
     feedbackDiv.style.display = 'block';
     feedbackDiv.innerHTML = '⏭️ Word skipped. Click Next to continue!';
 }
 
-// Check if pronunciation is close enough
-function isCloseMatch(said, expected) {
-    if (!said) return false;
-    said = said.toLowerCase().trim();
-    expected = expected.toLowerCase().trim();
-    
-    if (said === expected) return true;
-    if (said.includes(expected)) return true;
-    if (expected.includes(said) && said.length >= 1) return true;
-    
-    const variations = {
-        'a': ['ah', 'aa', 'aah'],
-        'e': ['eh', 'ay', 'ae'],
-        'i': ['ee', 'ih'],
-        'o': ['oh', 'ow'],
-        'u': ['oo', 'uh'],
-        'ɛ': ['eh', 'ae', 'e'],
-        'ɔ': ['aw', 'oh', 'o'],
-        'dw': ['dj', 'j'],
-        'gy': ['jee', 'g', 'j'],
-        'hw': ['wh', 'h'],
-        'kw': ['k', 'ku'],
-        'ky': ['ch', 'chee', 'k'],
-        'ny': ['nee', 'ni', 'n'],
-        'tw': ['t', 'tu']
-    };
-    
-    if (variations[expected]) {
-        for (let v of variations[expected]) {
-            if (said.includes(v) || v.includes(said)) return true;
-        }
-    }
-    
-    return false;
-}
-
-// Speak word and check - MANUAL START
-function speakWord() {
-    if (answered) {
-        feedbackDiv.className = 'feedback incorrect';
-        feedbackDiv.style.display = 'block';
-        feedbackDiv.innerHTML = '⚠️ You already answered this word! Click Next.';
-        return;
-    }
-    
-    if (!window.webkitSpeechRecognition && !window.SpeechRecognition) {
-        feedbackDiv.className = 'feedback incorrect';
-        feedbackDiv.style.display = 'block';
-        feedbackDiv.innerHTML = '❌ Speech recognition not supported. Click "Skip" to continue.';
-        return;
-    }
-    
-    const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.interimResults = true;
-    recognition.maxAlternatives = 1;
-    recognition.continuous = false;
-    
-    // Visual feedback that recording started
-    speakBtn.classList.add('recording');
-    speakBtn.innerHTML = '🎤 Listening... Speak Now!';
-    
-    feedbackDiv.className = 'feedback listening';
-    feedbackDiv.style.display = 'block';
-    feedbackDiv.innerHTML = '🎤 Recording... Speak the letter or digraph clearly!';
-    
-    recognition.onstart = function() {
-        console.log('Recognition started');
-        feedbackDiv.innerHTML = '🎤 Recording... Speak now!';
-    };
-    
-    recognition.onresult = function(event) {
-        const said = event.results[0][0].transcript.toLowerCase().trim();
-        const currentQ = currentQuestions[currentIndex];
-        const expected = currentQ.twi.toLowerCase();
-        
-        console.log('Said:', said, 'Expected:', expected);
-        
-        const isCorrect = isCloseMatch(said, expected);
-        
-        if (isCorrect) {
-            score += 10;
-            streak++;
-            scoreSpan.textContent = score;
-            streakSpan.textContent = streak;
-            
-            feedbackDiv.className = 'feedback correct';
-            feedbackDiv.innerHTML = `✅ Great! You said "${said}". +10 points!`;
-        } else {
-            streak = 0;
-            streakSpan.textContent = streak;
-            
-            feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = `📚 You said "${said}". Correct pronunciation is "${expected}". Use "Listen" to hear it again.`;
-        }
-        
-        answered = true;
-        nextBtn.disabled = false;
-        recognition.stop();
-        speakBtn.classList.remove('recording');
-        speakBtn.innerHTML = '🎤 Speak the Word';
-    };
-    
-    recognition.onerror = function(event) {
-        console.error('Speech recognition error:', event.error);
-        speakBtn.classList.remove('recording');
-        speakBtn.innerHTML = '🎤 Speak the Word';
-        
-        if (event.error === 'not-allowed') {
-            feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = '❌ Microphone access denied. Please allow microphone access.';
-        } else if (event.error === 'network') {
-            feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = '❌ Network error. Please check your connection.';
-        } else if (event.error === 'no-speech') {
-            feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = '🎤 No speech detected. Click the button again and speak clearly.';
-        } else {
-            feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = '🎤 Could not recognize. Click "Speak" again and say the word clearly.';
-        }
-    };
-    
-    recognition.onend = function() {
-        console.log('Recognition ended');
-        speakBtn.classList.remove('recording');
-        if (!answered) {
-            speakBtn.innerHTML = '🎤 Speak the Word';
-            feedbackDiv.innerHTML = '🎤 Click "Speak" and say the word. Make sure your microphone is working.';
-        }
-    };
-    
-    // Start recognition
-    try {
-        recognition.start();
-    } catch(e) {
-        console.error('Failed to start recognition:', e);
-        feedbackDiv.className = 'feedback incorrect';
-        feedbackDiv.innerHTML = '❌ Could not start microphone. Click "Allow" when prompted and try again.';
-        speakBtn.classList.remove('recording');
-        speakBtn.innerHTML = '🎤 Speak the Word';
-    }
-}
-
 // Next question
 function nextQuestion() {
-    if (!answered) return;
+    if (!practiced) return;
     currentIndex++;
     loadQuestion();
 }
@@ -573,11 +534,11 @@ function endGame() {
     let message = '';
     
     if (score === 100) {
-        message = '🏆 PERFECT! You are a Twi pronunciation master! 🏆';
+        message = '🏆 PERFECT! You practiced every word! 🏆';
     } else if (score >= 80) {
-        message = '🌟 Excellent! Your pronunciation is very good! 🌟';
+        message = '🌟 Excellent! Great practice session! 🌟';
     } else if (score >= 60) {
-        message = '👍 Good effort! Practice a bit more! 👍';
+        message = '👍 Good effort! Keep practicing! 👍';
     } else {
         message = '📚 Keep practicing! Use the "Listen" button and try again! 📚';
     }
@@ -596,25 +557,27 @@ function restartGame() {
     loadQuestion();
 }
 
-// Check microphone permission and get stream
+// Check microphone permission
 async function checkMicrophone() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         mediaStream = stream;
         document.getElementById('micPermissionMsg').style.display = 'none';
-        console.log('Microphone access granted');
     } catch (err) {
-        console.error('Microphone error:', err);
-        document.getElementById('micPermissionMsg').innerHTML = '🎤 Microphone access denied. You can still use "Listen" and "Skip" buttons to practice.';
+        document.getElementById('micPermissionMsg').innerHTML = '🎤 Microphone access denied. You can still use "Listen" and "Skip" buttons.';
     }
 }
 
 // Event listeners
 listenBtn.addEventListener('click', listenToWord);
-speakBtn.addEventListener('click', speakWord);
+recordBtn.addEventListener('click', toggleRecording);
+playbackBtn.addEventListener('click', playRecording);
 skipBtn.addEventListener('click', skipWord);
 nextBtn.addEventListener('click', nextQuestion);
 restartBtn.addEventListener('click', restartGame);
+
+// Add mark practiced button functionality
+nextBtn.textContent = '✅ Mark as Practiced →';
 
 // Initialize game
 initQuestions();
