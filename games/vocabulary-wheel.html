@@ -68,7 +68,6 @@
             gap: 2rem;
         }
 
-        /* WHEEL SECTION */
         .wheel-section {
             display: flex;
             flex-direction: column;
@@ -129,7 +128,6 @@
             margin-top: 1rem;
         }
 
-        /* RESULT SECTION */
         .result-section {
             background: linear-gradient(135deg, #FDF8F2, #fff5e8);
             border-radius: 32px;
@@ -193,7 +191,6 @@
             border: 1px solid #ddd;
         }
 
-        /* Teacher Controls */
         .teacher-controls {
             margin-top: 2rem;
             padding-top: 1rem;
@@ -259,21 +256,8 @@
             border-color: #2A9D8F;
         }
 
-        /* Music toggle button */
         .music-toggle {
             background: #2A9D8F;
-            color: white;
-            border: none;
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 0.75rem;
-            margin-left: 1rem;
-            transition: all 0.3s;
-        }
-
-        .music-toggle:hover {
-            background: #1f7a6e;
         }
 
         @media (max-width: 768px) {
@@ -310,7 +294,6 @@
         </div>
 
         <div class="game-layout">
-            <!-- Left: Wheel -->
             <div class="wheel-section">
                 <div class="wheel-wrapper">
                     <canvas id="wheelCanvas" width="500" height="500"></canvas>
@@ -319,7 +302,6 @@
                 <div class="counter" id="spinCounter">Spins this session: 0</div>
             </div>
 
-            <!-- Right: Result Display -->
             <div class="result-section">
                 <div id="resultArea">
                     <div style="font-size: 0.9rem; color: #999;">🎯 Your Word</div>
@@ -336,13 +318,11 @@
             </div>
         </div>
 
-        <!-- Teacher Controls -->
         <div class="teacher-controls">
             <button class="teacher-btn" id="resetHistoryBtn">🔄 Reset History</button>
-            <button class="teacher-btn" id="musicToggleBtn">🎵 Music On/Off</button>
+            <button class="teacher-btn music-toggle" id="musicToggleBtn">🎵 Music On</button>
         </div>
 
-        <!-- Vocabulary List -->
         <div class="vocab-list">
             <h4><span>📚</span> Today's Vocabulary (12 words)</h4>
             <div class="vocab-items" id="vocabListDisplay"></div>
@@ -351,21 +331,21 @@
 
     <script>
         // ============================================
-        // VOCABULARY FROM TODAY'S LESSON
+        // CORRECT VOCABULARY WITH PROPER EXAMPLES
         // ============================================
         const vocabulary = [
-            { word: "ɛpo", meaning: "sea", example: "Mekɔ ɛpo no ano" },
-            { word: "ɛtwo", meaning: "hernia", example: "Ɛtwo no ya yɛ" },
+            { word: "ɛpo", meaning: "sea", example: "Mekɔ ɛpo so" },
+            { word: "ɛtwo", meaning: "hernia", example: "Ɛtwo yɛ no ya" },
             { word: "ɛta", meaning: "wooden mortar", example: "Ɛta no yɛ duru" },
-            { word: "ɛdam", meaning: "madness", example: "Ɛdam nyɛ adepa" },
+            { word: "ɛdam", meaning: "madness", example: "Ɛdam no abɔ" },
             { word: "efie", meaning: "house / home", example: "Mekɔ efie" },
-            { word: "esum", meaning: "darkness", example: "Esum aba" },
+            { word: "esum", meaning: "darkness", example: "Esum no so" },
             { word: "edwam", meaning: "market", example: "Mekɔ edwam" },
-            { word: "efin", meaning: "dirt / filth", example: "Me mpɛ efin" },
+            { word: "efin", meaning: "dirt / filth", example: "Efin no gu hɔ" },
             { word: "ankaa", meaning: "orange", example: "Mepɛ ankaa" },
-            { word: "abaayewa", meaning: "girl", example: "Abaayewa no ho yɛ fɛ" },
+            { word: "abaayewa", meaning: "girl", example: "Abaayewa no yɛ fɛ" },
             { word: "aseda", meaning: "thanks given", example: "Meda wo ase" },
-            { word: "aboa", meaning: "animal", example: "Aboa no so" }
+            { word: "aboa", meaning: "animal", example: "Aboa no retu" }
         ];
 
         const colors = [
@@ -379,31 +359,21 @@
         let spinCount = 0;
         let spinHistory = [];
 
-        // Music variables
         let spinMusic = null;
         let musicEnabled = true;
 
-        // Create audio context and oscillator for soft music
         function initSpinMusic() {
             if (spinMusic !== null) return;
-            
             try {
-                // Use Web Audio API for synthesized soft music
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
                 spinMusic = new AudioContext();
-                
-                // Create a gain node for volume control
                 const masterGain = spinMusic.createGain();
                 masterGain.gain.value = 0.3;
                 masterGain.connect(spinMusic.destination);
-                
-                // Store for use during spin
                 spinMusic.masterGain = masterGain;
                 spinMusic.isPlaying = false;
                 spinMusic.oscillators = [];
-                
             } catch (e) {
-                console.log("Web Audio API not supported");
                 spinMusic = null;
             }
         }
@@ -413,48 +383,37 @@
             if (!spinMusic) initSpinMusic();
             if (!spinMusic) return;
             
-            // Resume audio context if suspended
             if (spinMusic.state === 'suspended') {
                 spinMusic.resume();
             }
-            
             if (spinMusic.isPlaying) return;
             
             try {
                 spinMusic.isPlaying = true;
                 spinMusic.oscillators = [];
                 
-                // Create a pleasant spinning sound - ascending arpeggio
-                const notes = [523.25, 587.33, 659.25, 783.99]; // C5, D5, E5, G5
-                const durations = [0.15, 0.15, 0.15, 0.2];
-                
+                const notes = [523.25, 587.33, 659.25, 783.99];
                 let time = spinMusic.currentTime;
                 
                 for (let i = 0; i < 20; i++) {
                     const osc = spinMusic.createOscillator();
                     const gain = spinMusic.createGain();
-                    
                     const noteIndex = i % notes.length;
-                    osc.frequency.value = notes[noteIndex] + (i * 2); // Slight pitch rise
+                    osc.frequency.value = notes[noteIndex] + (i * 2);
                     osc.type = 'sine';
-                    
                     gain.gain.value = 0.15;
                     gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.1);
-                    
                     osc.connect(gain);
                     gain.connect(spinMusic.masterGain);
-                    
                     osc.start(time);
                     osc.stop(time + 0.12);
-                    
                     spinMusic.oscillators.push(osc);
                     time += 0.08;
                 }
                 
-                // Add a soft background pad
                 const padOsc = spinMusic.createOscillator();
                 const padGain = spinMusic.createGain();
-                padOsc.frequency.value = 261.63; // C4
+                padOsc.frequency.value = 261.63;
                 padOsc.type = 'sine';
                 padGain.gain.value = 0.08;
                 padOsc.connect(padGain);
@@ -464,7 +423,6 @@
                 spinMusic.oscillators.push(padOsc);
                 
             } catch (e) {
-                console.log("Music error:", e);
                 spinMusic.isPlaying = false;
             }
         }
@@ -472,13 +430,10 @@
         function stopSpinMusic() {
             if (!spinMusic) return;
             if (!spinMusic.isPlaying) return;
-            
             try {
-                // Fade out and stop all oscillators
                 if (spinMusic.masterGain) {
                     spinMusic.masterGain.gain.linearRampToValueAtTime(0, spinMusic.currentTime + 0.3);
                 }
-                
                 setTimeout(() => {
                     if (spinMusic.oscillators) {
                         spinMusic.oscillators.forEach(osc => {
@@ -492,7 +447,6 @@
                     spinMusic.isPlaying = false;
                 }, 300);
             } catch (e) {
-                console.log("Stop music error:", e);
                 spinMusic.isPlaying = false;
             }
         }
@@ -579,7 +533,6 @@
             const spinBtn = document.getElementById('spinBtn');
             spinBtn.disabled = true;
             
-            // Start soft music
             startSpinMusic();
             
             const spins = Math.floor(Math.random() * 10) + 8;
@@ -602,8 +555,6 @@
                 } else {
                     currentRotation = targetRotation % (Math.PI * 2);
                     drawWheel();
-                    
-                    // Stop music
                     stopSpinMusic();
                     
                     const index = getSelectedIndex();
@@ -643,14 +594,12 @@
             } else {
                 btn.innerHTML = '🔇 Music Off';
                 btn.style.background = '#666';
-                // Stop any playing music
                 stopSpinMusic();
             }
         }
 
         function jumpToWord(index) {
             if (spinning) return;
-            
             const segmentAngle = (Math.PI * 2) / vocabulary.length;
             const targetSegmentCenter = (index * segmentAngle) + (segmentAngle / 2);
             currentRotation = (-Math.PI / 2) - targetSegmentCenter;
@@ -682,7 +631,6 @@
             document.getElementById('resetHistoryBtn').addEventListener('click', resetHistory);
             document.getElementById('musicToggleBtn').addEventListener('click', toggleMusic);
             
-            // User interaction needed to enable audio on some browsers
             document.body.addEventListener('click', function enableAudio() {
                 if (spinMusic && spinMusic.state === 'suspended') {
                     spinMusic.resume();
