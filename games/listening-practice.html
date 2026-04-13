@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Listening Game | Speak Ghana</title>
+    <title>Listening Practice | Speak Ghana</title>
     <style>
         * {
             margin: 0;
@@ -190,7 +190,7 @@
 <body>
     <div class="game-container">
         <div class="game-header">
-            <h1>🎧 Listening Game: Meet Kofi</h1>
+            <h1>🎧 Listening Practice: Meet Kofi</h1>
             <p>Listen to the conversation and answer the questions</p>
         </div>
         
@@ -199,6 +199,7 @@
             <p>Click play and listen carefully</p>
             <audio id="mainAudio" controls preload="auto" controlslist="nodownload">
                 <source src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/kofi-intro.m4a" type="audio/mp4">
+                Your browser does not support the audio element.
             </audio>
             <p style="font-size: 0.7rem; opacity: 0.8;">You can listen as many times as you need</p>
         </div>
@@ -361,7 +362,6 @@
                 const correctAnswer = correctAnswers[i];
                 const feedbackDiv = document.getElementById(`q${i}-feedback`);
                 
-                // Get all option buttons for this question
                 const options = document.querySelectorAll(`.option-btn[data-q="${i}"]`);
                 
                 if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
@@ -369,7 +369,6 @@
                     feedbackDiv.innerHTML = '✅ Correct!';
                     feedbackDiv.className = 'feedback correct';
                     
-                    // Mark correct option
                     options.forEach(btn => {
                         if (btn.dataset.val.toLowerCase() === correctAnswer.toLowerCase()) {
                             btn.classList.add('correct');
@@ -379,7 +378,6 @@
                     feedbackDiv.innerHTML = `❌ Correct answer: ${correctAnswer}`;
                     feedbackDiv.className = 'feedback wrong';
                     
-                    // Show correct answer
                     options.forEach(btn => {
                         if (btn.dataset.val.toLowerCase() === correctAnswer.toLowerCase()) {
                             btn.classList.add('correct');
@@ -428,7 +426,7 @@
                 resultMessage.innerHTML = '<p>Listen to the audio again and try the quiz one more time!</p>';
             }
             
-            // Track in localStorage for parent portal
+            // Try to notify parent portal
             if (window.parent !== window) {
                 try {
                     window.parent.postMessage({ type: 'gameComplete', score: score, total: 8 }, '*');
@@ -437,14 +435,13 @@
         });
         
         function addXPAndNotify(amount) {
-            // Try to notify parent portal
             if (window.parent !== window) {
                 try {
-                    window.parent.postMessage({ type: 'addXP', amount: amount, source: 'Listening Game' }, '*');
+                    window.parent.postMessage({ type: 'addXP', amount: amount, source: 'Listening Practice' }, '*');
                 } catch(e) {}
             }
             
-            // Show notification in game
+            // Show notification
             const notification = document.createElement('div');
             notification.style.position = 'fixed';
             notification.style.bottom = '20px';
@@ -491,7 +488,6 @@
             // Reset audio
             const audio = document.getElementById('mainAudio');
             audio.currentTime = 0;
-            audio.play();
         }
     </script>
 </body>
