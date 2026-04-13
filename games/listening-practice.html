@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Listening Game | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2A9D8F);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .game-container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 48px;
+            padding: 2rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+        .game-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .game-header h1 {
+            color: #2A9D8F;
+            font-size: 1.8rem;
+        }
+        .game-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .audio-player {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 60px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: white;
+        }
+        .audio-player audio {
+            width: 100%;
+            max-width: 400px;
+            margin: 1rem 0;
+        }
+        .questions-area {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+        }
+        .question-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #eee;
+        }
+        .question-text {
+            font-weight: 600;
+            color: #1E1E1E;
+            margin-bottom: 0.8rem;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .option-btn {
+            background: #f5f5f5;
+            border: 2px solid #e0e0e0;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        .option-btn:hover {
+            background: #2A9D8F;
+            color: white;
+            border-color: #2A9D8F;
+        }
+        .option-btn.selected {
+            background: #2A9D8F;
+            color: white;
+            border-color: #2A9D8F;
+        }
+        .option-btn.correct {
+            background: #2A9D8F;
+            color: white;
+            border-color: #2A9D8F;
+        }
+        .option-btn.wrong {
+            background: #E76F51;
+            color: white;
+            border-color: #E76F51;
+        }
+        .feedback {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .feedback.correct {
+            background: #d4f5ef;
+            color: #2A9D8F;
+        }
+        .feedback.wrong {
+            background: #ffe0d4;
+            color: #E76F51;
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, #E76F51, #c95a3e);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231,111,81,0.3);
+        }
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .result-area {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 20px;
+            display: none;
+        }
+        .result-area.show {
+            display: block;
+        }
+        .result-perfect {
+            background: #d4f5ef;
+            color: #2A9D8F;
+        }
+        .result-good {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .result-bad {
+            background: #ffe0d4;
+            color: #E76F51;
+        }
+        .play-again {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        .score-display {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 1rem;
+            }
+            .option-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>🎧 Listening Game: Meet Kofi</h1>
+            <p>Listen to the conversation and answer the questions</p>
+        </div>
+        
+        <div class="audio-player">
+            <div style="font-size: 2rem;">🎙️</div>
+            <p>Click play and listen carefully</p>
+            <audio id="mainAudio" controls preload="auto" controlslist="nodownload">
+                <source src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/week2/kofi-intro.m4a" type="audio/mp4">
+            </audio>
+            <p style="font-size: 0.7rem; opacity: 0.8;">You can listen as many times as you need</p>
+        </div>
+        
+        <div class="questions-area">
+            <div class="question-card">
+                <div class="question-text">1. What is the first thing Kofi says?</div>
+                <div class="options" id="q1-options">
+                    <button class="option-btn" data-q="1" data-val="akwaaba">Akwaaba</button>
+                    <button class="option-btn" data-q="1" data-val="mema mo akwaaba">Mema mo akwaaba</button>
+                    <button class="option-btn" data-q="1" data-val="me ho yɛ">Me ho yɛ</button>
+                    <button class="option-btn" data-q="1" data-val="medaase">Medaase</button>
+                </div>
+                <div id="q1-feedback" class="feedback"></div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-text">2. What question does Kofi ask?</div>
+                <div class="options" id="q2-options">
+                    <button class="option-btn" data-q="2" data-val="wo din de sɛn">Wo din de sɛn?</button>
+                    <button class="option-btn" data-q="2" data-val="firi he">Firi he?</button>
+                    <button class="option-btn" data-q="2" data-val="sɛ mo ho yɛ">Sɛ mo ho yɛ?</button>
+                    <button class="option-btn" data-q="2" data-val="me ho yɛ">Me ho yɛ</button>
+                </div>
+                <div id="q2-feedback" class="feedback"></div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-text">3. What is Kofi's name?</div>
+                <div class="options" id="q3-options">
+                    <button class="option-btn" data-q="3" data-val="Kwame">Kwame</button>
+                    <button class="option-btn" data-q="3" data-val="Kofi">Kofi</button>
+                    <button class="option-btn" data-q="3" data-val="Yaw">Yaw</button>
+                    <button class="option-btn" data-q="3" data-val="Richard">Richard</button>
+                </div>
+                <div id="q3-feedback" class="feedback"></div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-text">4. Where is Kofi from?</div>
+                <div class="options" id="q4-options">
+                    <button class="option-btn" data-q="4" data-val="USA">USA</button>
+                    <button class="option-btn" data-q="4" data-val="Nigeria">Nigeria</button>
+                    <button class="option-btn" data-q="4" data-val="Ghana">Ghana</button>
+                    <button class="option-btn" data-q="4" data-val="UK">UK</button>
+                </div>
+                <div id="q4-feedback" class="feedback"></div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-text">5. Where does Kofi live?</div>
+                <div class="options" id="q5-options">
+                    <button class="option-btn" data-q="5" data-val="Accra">Accra</button>
+                    <button class="option-btn" data-q="5" data-val="Kumasi">Kumasi</button>
+                    <button class="option-btn" data-q="5" data-val="Takoradi">Takoradi</button>
+                    <button class="option-btn" data-q="5" data-val="Cape Coast">Cape Coast</button>
+                </div>
+                <div id="q5-feedback" class="feedback"></div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-text">6. What food does Kofi like?</div>
+                <div class="options" id="q6-options">
+                    <button class="option-btn" data-q="6" data-val="fufu">Fufu</button>
+                    <button class="option-btn" data-q="6" data-val="jollof">Jollof</button>
+                    <button class="option-btn" data-q="6" data-val="banku">Banku</button>
+                    <button class="option-btn" data-q="6" data-val="kenkey">Kenkey</button>
+                </div>
+                <div id="q6-feedback" class="feedback"></div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-text">7. What does "me wɔ sika" mean?</div>
+                <div class="options" id="q7-options">
+                    <button class="option-btn" data-q="7" data-val="I am happy">I am happy</button>
+                    <button class="option-btn" data-q="7" data-val="I have money">I have money</button>
+                    <button class="option-btn" data-q="7" data-val="I am hungry">I am hungry</button>
+                    <button class="option-btn" data-q="7" data-val="I am tired">I am tired</button>
+                </div>
+                <div id="q7-feedback" class="feedback"></div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-text">8. What is the last thing Kofi says?</div>
+                <div class="options" id="q8-options">
+                    <button class="option-btn" data-q="8" data-val="Me dɔ wo">Me dɔ wo</button>
+                    <button class="option-btn" data-q="8" data-val="Da yie">Da yie</button>
+                    <button class="option-btn" data-q="8" data-val="Yɛbɛhyia bio">Yɛbɛhyia bio</button>
+                    <button class="option-btn" data-q="8" data-val="Akwaaba">Akwaaba</button>
+                </div>
+                <div id="q8-feedback" class="feedback"></div>
+            </div>
+            
+            <button class="submit-btn" id="submitBtn">✅ Submit Answers</button>
+            
+            <div id="resultArea" class="result-area">
+                <div class="score-display" id="scoreDisplay"></div>
+                <div id="resultMessage"></div>
+                <button class="play-again" onclick="resetGame()">🔄 Play Again</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Correct answers
+        const correctAnswers = {
+            1: "mema mo akwaaba",
+            2: "sɛ mo ho yɛ",
+            3: "Kofi",
+            4: "Ghana",
+            5: "Kumasi",
+            6: "banku",
+            7: "I have money",
+            8: "Yɛbɛhyia bio"
+        };
+        
+        let selectedAnswers = {
+            1: null,
+            2: null,
+            3: null,
+            4: null,
+            5: null,
+            6: null,
+            7: null,
+            8: null
+        };
+        
+        let submitted = false;
+        
+        // Handle option selection
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (submitted) return;
+                
+                const qNum = this.dataset.q;
+                const value = this.dataset.val;
+                
+                // Remove selected class from all options in this question
+                document.querySelectorAll(`.option-btn[data-q="${qNum}"]`).forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked button
+                this.classList.add('selected');
+                
+                // Store answer
+                selectedAnswers[qNum] = value;
+            });
+        });
+        
+        // Submit answers
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            if (submitted) return;
+            
+            let score = 0;
+            
+            // Check each question
+            for (let i = 1; i <= 8; i++) {
+                const userAnswer = selectedAnswers[i];
+                const correctAnswer = correctAnswers[i];
+                const feedbackDiv = document.getElementById(`q${i}-feedback`);
+                
+                // Get all option buttons for this question
+                const options = document.querySelectorAll(`.option-btn[data-q="${i}"]`);
+                
+                if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                    score++;
+                    feedbackDiv.innerHTML = '✅ Correct!';
+                    feedbackDiv.className = 'feedback correct';
+                    
+                    // Mark correct option
+                    options.forEach(btn => {
+                        if (btn.dataset.val.toLowerCase() === correctAnswer.toLowerCase()) {
+                            btn.classList.add('correct');
+                        }
+                    });
+                } else {
+                    feedbackDiv.innerHTML = `❌ Correct answer: ${correctAnswer}`;
+                    feedbackDiv.className = 'feedback wrong';
+                    
+                    // Show correct answer
+                    options.forEach(btn => {
+                        if (btn.dataset.val.toLowerCase() === correctAnswer.toLowerCase()) {
+                            btn.classList.add('correct');
+                        }
+                        if (userAnswer && btn.dataset.val === userAnswer) {
+                            btn.classList.add('wrong');
+                        }
+                    });
+                }
+            }
+            
+            // Disable all option buttons
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.style.pointerEvents = 'none';
+            });
+            
+            submitted = true;
+            document.getElementById('submitBtn').disabled = true;
+            
+            // Show result
+            const percent = (score / 8) * 100;
+            const resultArea = document.getElementById('resultArea');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const resultMessage = document.getElementById('resultMessage');
+            
+            resultArea.classList.add('show');
+            
+            if (percent === 100) {
+                resultArea.classList.add('result-perfect');
+                scoreDisplay.innerHTML = `🎉 PERFECT SCORE! ${score}/8 🎉`;
+                resultMessage.innerHTML = '<p>Excellent! You understood everything! +50 XP</p>';
+                addXPAndNotify(50);
+            } else if (percent >= 75) {
+                resultArea.classList.add('result-good');
+                scoreDisplay.innerHTML = `👍 GOOD JOB! ${score}/8 👍`;
+                resultMessage.innerHTML = '<p>Great work! You understood most of it! +30 XP</p>';
+                addXPAndNotify(30);
+            } else if (percent >= 50) {
+                resultArea.classList.add('result-good');
+                scoreDisplay.innerHTML = `📚 NOT BAD! ${score}/8 📚`;
+                resultMessage.innerHTML = '<p>Listen again and try to improve! +10 XP</p>';
+                addXPAndNotify(10);
+            } else {
+                resultArea.classList.add('result-bad');
+                scoreDisplay.innerHTML = `🎧 KEEP PRACTICING! ${score}/8 🎧`;
+                resultMessage.innerHTML = '<p>Listen to the audio again and try the quiz one more time!</p>';
+            }
+            
+            // Track in localStorage for parent portal
+            if (window.parent !== window) {
+                try {
+                    window.parent.postMessage({ type: 'gameComplete', score: score, total: 8 }, '*');
+                } catch(e) {}
+            }
+        });
+        
+        function addXPAndNotify(amount) {
+            // Try to notify parent portal
+            if (window.parent !== window) {
+                try {
+                    window.parent.postMessage({ type: 'addXP', amount: amount, source: 'Listening Game' }, '*');
+                } catch(e) {}
+            }
+            
+            // Show notification in game
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.left = '50%';
+            notification.style.transform = 'translateX(-50%)';
+            notification.style.background = '#2A9D8F';
+            notification.style.color = 'white';
+            notification.style.padding = '0.5rem 1rem';
+            notification.style.borderRadius = '50px';
+            notification.style.fontSize = '0.8rem';
+            notification.style.zIndex = '1000';
+            notification.innerHTML = `+${amount} XP earned! 🎉`;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+        
+        function resetGame() {
+            // Reset selections
+            selectedAnswers = {
+                1: null, 2: null, 3: null, 4: null, 5: null, 6: null, 7: null, 8: null
+            };
+            submitted = false;
+            
+            // Clear all selections and classes
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected', 'correct', 'wrong');
+                btn.style.pointerEvents = 'auto';
+            });
+            
+            // Clear feedback
+            for (let i = 1; i <= 8; i++) {
+                const feedbackDiv = document.getElementById(`q${i}-feedback`);
+                feedbackDiv.innerHTML = '';
+                feedbackDiv.className = 'feedback';
+            }
+            
+            // Reset submit button
+            document.getElementById('submitBtn').disabled = false;
+            
+            // Hide result area
+            const resultArea = document.getElementById('resultArea');
+            resultArea.classList.remove('show', 'result-perfect', 'result-good', 'result-bad');
+            
+            // Reset audio
+            const audio = document.getElementById('mainAudio');
+            audio.currentTime = 0;
+            audio.play();
+        }
+    </script>
+</body>
+</html>
