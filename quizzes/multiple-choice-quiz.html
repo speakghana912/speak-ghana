@@ -124,7 +124,7 @@
             <div class="question-text" id="questionText">Loading...</div>
             <div class="options" id="optionsContainer"></div>
             <div class="feedback hidden" id="feedback"></div>
-            <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next Question →</button>
+            <button class="next-btn" id="nextBtn">Next Question →</button>
             <div class="score-display" id="scoreDisplay">Score: 0 / 0</div>
         </div>
         
@@ -133,13 +133,20 @@
                 <div class="result-emoji" id="resultEmoji">🏆</div>
                 <div class="result-score" id="resultScore">0 / 0</div>
                 <p id="resultMessage" style="color: #666; margin: 1rem 0;"></p>
-                <button class="restart-btn" onclick="restartQuiz()">🔄 Try Again</button>
+                <button class="restart-btn" id="restartBtn">🔄 Try Again</button>
                 <button class="restart-btn" onclick="window.close()" style="background: #D4A373; margin-left: 1rem;">❌ Close</button>
             </div>
         </div>
     </div>
 
     <script>
+        // Make all functions globally accessible
+        window.currentQuestions = [];
+        window.currentIndex = 0;
+        window.currentScore = 0;
+        window.selectedAnswer = null;
+        window.quizActive = true;
+
         const vocabulary = [
             { word: "efie", meaning: "house" }, { word: "ɛpono", meaning: "table" }, { word: "mpoma", meaning: "window" },
             { word: "agua", meaning: "chair" }, { word: "mpa", meaning: "bed" }, { word: "nsuo", meaning: "water" },
@@ -159,12 +166,6 @@
             { word: "kraman", meaning: "dog" }, { word: "ɛsono", meaning: "elephant" }, { word: "gyata", meaning: "lion" },
             { word: "awia", meaning: "sun" }, { word: "ɔsram", meaning: "moon" }, { word: "dua", meaning: "tree" }
         ];
-
-        let questions = [];
-        let currentIndex = 0;
-        let score = 0;
-        let selectedAnswer = null;
-        let quizActive = true;
 
         function shuffleArray(arr) {
             for (let i = arr.length - 1; i > 0; i--) {
@@ -208,12 +209,12 @@
         }
 
         function displayQuestion() {
-            if (!quizActive) return;
-            const q = questions[currentIndex];
+            if (!window.quizActive) return;
+            const q = window.currentQuestions[window.currentIndex];
             document.getElementById('questionText').innerHTML = `"${q.word}"`;
-            document.getElementById('scoreDisplay').innerHTML = `Score: ${score} / ${questions.length}`;
+            document.getElementById('scoreDisplay').innerHTML = `Score: ${window.currentScore} / ${window.currentQuestions.length}`;
             
-            const progressPercent = ((currentIndex) / questions.length) * 100;
+            const progressPercent = (window.currentIndex / window.currentQuestions.length) * 100;
             document.getElementById('progressFill').style.width = `${progressPercent}%`;
             
             const optionsContainer = document.getElementById('optionsContainer');
@@ -229,19 +230,19 @@
             
             document.getElementById('feedback').classList.add('hidden');
             document.getElementById('nextBtn').disabled = false;
-            selectedAnswer = null;
+            window.selectedAnswer = null;
         }
 
         function selectAnswer(answer, btnElement) {
-            if (selectedAnswer !== null) return;
-            selectedAnswer = answer;
+            if (window.selectedAnswer !== null) return;
+            window.selectedAnswer = answer;
             
-            const q = questions[currentIndex];
+            const q = window.currentQuestions[window.currentIndex];
             const isCorrect = (answer === q.correct);
             
             const feedbackDiv = document.getElementById('feedback');
             if (isCorrect) {
-                score++;
+                window.currentScore++;
                 feedbackDiv.className = 'feedback correct';
                 feedbackDiv.innerHTML = '✅ Correct! Well done!';
                 feedbackDiv.classList.remove('hidden');
@@ -257,35 +258,35 @@
             if (isCorrect) btnElement.style.background = '#2A9D8F';
             else btnElement.style.background = '#E76F51';
             
-            document.getElementById('scoreDisplay').innerHTML = `Score: ${score} / ${questions.length}`;
+            document.getElementById('scoreDisplay').innerHTML = `Score: ${window.currentScore} / ${window.currentQuestions.length}`;
         }
 
-        function nextQuestion() {
-            if (selectedAnswer === null && currentIndex < questions.length - 1) {
+        window.nextQuestion = function() {
+            if (window.selectedAnswer === null && window.currentIndex < window.currentQuestions.length - 1) {
                 alert('Please select an answer before continuing!');
                 return;
             }
             
-            if (selectedAnswer === null && currentIndex === questions.length - 1) {
+            if (window.selectedAnswer === null && window.currentIndex === window.currentQuestions.length - 1) {
                 finishQuiz();
                 return;
             }
             
-            currentIndex++;
+            window.currentIndex++;
             
-            if (currentIndex < questions.length) {
+            if (window.currentIndex < window.currentQuestions.length) {
                 displayQuestion();
             } else {
                 finishQuiz();
             }
-        }
+        };
 
         function finishQuiz() {
-            quizActive = false;
+            window.quizActive = false;
             document.getElementById('quizContent').classList.add('hidden');
             document.getElementById('resultContent').classList.remove('hidden');
             
-            const percentage = (score / questions.length) * 100;
+            const percentage = (window.currentScore / window.currentQuestions.length) * 100;
             let emoji = '', message = '';
             
             if (percentage >= 90) { emoji = '🏆'; message = 'Excellent! You\'re a Twi master!'; }
@@ -294,27 +295,31 @@
             else { emoji = '📚'; message = 'Keep studying and try again!'; }
             
             document.getElementById('resultEmoji').innerHTML = emoji;
-            document.getElementById('resultScore').innerHTML = `${score} / ${questions.length}`;
+            document.getElementById('resultScore').innerHTML = `${window.currentScore} / ${window.currentQuestions.length}`;
             document.getElementById('resultMessage').innerHTML = message;
-            
-            if (window.parent && window.parent !== window) {
-                try { window.parent.postMessage({ type: 'quizComplete', score: score, total: questions.length }, '*'); } catch(e) {}
-            }
         }
 
-        function restartQuiz() {
-            questions = generateQuestions();
-            currentIndex = 0;
-            score = 0;
-            selectedAnswer = null;
-            quizActive = true;
+        window.restartQuiz = function() {
+            window.currentQuestions = generateQuestions();
+            window.currentIndex = 0;
+            window.currentScore = 0;
+            window.selectedAnswer = null;
+            window.quizActive = true;
             document.getElementById('quizContent').classList.remove('hidden');
             document.getElementById('resultContent').classList.add('hidden');
             displayQuestion();
-        }
+        };
 
-        questions = generateQuestions();
+        // Initialize quiz
+        window.currentQuestions = generateQuestions();
+        window.currentIndex = 0;
+        window.currentScore = 0;
+        window.quizActive = true;
         displayQuestion();
+        
+        // Attach event listeners
+        document.getElementById('nextBtn').onclick = () => window.nextQuestion();
+        document.getElementById('restartBtn').onclick = () => window.restartQuiz();
     </script>
 </body>
 </html>
