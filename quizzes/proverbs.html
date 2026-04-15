@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akan Proverbs Library | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .intro {
+            background: linear-gradient(135deg, #e8f4f1, #fdf8f2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #D4A373;
+        }
+        .stats {
+            background: #2A9D8F20;
+            border-radius: 16px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .stats span { font-weight: bold; color: #2A9D8F; }
+        .search-box {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .search-box:focus { outline: none; border-color: #2A9D8F; }
+        .random-btn {
+            background: #E76F51;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        .random-btn:hover { background: #c95a3e; transform: translateY(-2px); }
+        .proverb-card {
+            background: #fdf8f2;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            border: 1px solid #eee;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .proverb-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: #D4A373;
+        }
+        .proverb-twi {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.5rem;
+            font-family: monospace;
+        }
+        .proverb-literal {
+            font-size: 0.85rem;
+            color: #E76F51;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+        .proverb-meaning {
+            font-size: 0.95rem;
+            color: #1E1E1E;
+            line-height: 1.5;
+        }
+        .proverb-number {
+            display: inline-block;
+            background: #D4A373;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            margin-bottom: 0.5rem;
+        }
+        .audio-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: #2A9D8F20;
+            padding: 0.2rem 0.5rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            color: #2A9D8F;
+            margin-left: 0.5rem;
+        }
+        .filter-btns {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .filter-btn {
+            background: #E76F51;
+            color: white;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+        .filter-btn.active { background: #2A9D8F; }
+        .filter-btn.all { background: #2A9D8F; }
+        .close-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        .close-btn:hover { background: #c49a6c; }
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .proverb-twi { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📜 Akan Proverbs Library</h1>
+        <p style="color: #666; margin-bottom: 1rem;">Wisdom of the ancestors - Essential Twi proverbs with meanings</p>
+
+        <div class="intro">
+            <p><strong>Why are Akan proverbs important?</strong></p>
+            <p style="margin-top: 0.5rem;">Akan proverbs are more than wise sayings. They show, principally, that the user is wise and properly educated in the customs of the Akan people. The ability to use language enriched with proverbs is considered sage and is the hallmark of great public speaking.</p>
+            <p style="margin-top: 0.8rem; font-size: 0.85rem; color: #2A9D8F;">💡 <strong>Note:</strong> Click any proverb to hear pronunciation (audio coming soon)</p>
+        </div>
+
+        <div class="stats">
+            <div>📜 <span id="proverbCount">0</span> proverbs in library</div>
+            <div>🏆 "The wise is spoken to in proverbs"</div>
+        </div>
+
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Search proverbs (English or Twi)...">
+
+        <button class="random-btn" onclick="showRandomProverb()">🎲 Show Me a Random Proverb</button>
+
+        <div class="filter-btns">
+            <button class="filter-btn all active" data-filter="all">📚 All Proverbs</button>
+            <button class="filter-btn" data-filter="wisdom">💡 Wisdom & Advice</button>
+            <button class="filter-btn" data-filter="community">🤝 Community & Unity</button>
+            <button class="filter-btn" data-filter="character">⭐ Character & Conduct</button>
+            <button class="filter-btn" data-filter="proverbs">🦁 Animal Proverbs</button>
+            <button class="filter-btn" data-filter="life">🌿 Life & Death</button>
+        </div>
+
+        <div id="proverbsList"></div>
+
+        <div style="text-align: center; margin-top: 1rem;">
+            <button class="close-btn" onclick="window.close()">❌ Close</button>
+        </div>
+        <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 1rem;">💡 Proverbs are an essential part of Akan culture and communication</p>
+    </div>
+
+    <script>
+        // Complete Akan Proverbs Database
+        const proverbs = [
+            { number: 1, twi: "Ɔkɔtɔ nwo anomaa", literal: "A crab does not give birth to a bird", meaning: "A child resembles their parent in character or physical features. Like father, like son.", category: "proverbs" },
+            { number: 2, twi: "Woforo dua pa a na yɛpia wo", literal: "It is when you climb a good tree that we push you", meaning: "We support good causes, not bad ones. Do good things to receive community support.", category: "wisdom" },
+            { number: 3, twi: "Ti korɔ nkɔ agyina", literal: "One head does not hold council", meaning: "Two heads are better than one. We need group input for good decisions.", category: "community" },
+            { number: 4, twi: "Abɔfra bɔ nwa na ɔmmɔ akyekyedeɛ", literal: "A child breaks a snail, not a tortoise", meaning: "Children should do age-appropriate things, not challenge adults.", category: "wisdom" },
+            { number: 5, twi: "Ɔbanyansafoɔ yɛbu no bɛ, yɛnka no asɛm", literal: "The wise is spoken to in proverbs, not plain language", meaning: "A word to the wise is enough. Wise people understand indirect communication.", category: "wisdom" },
+            { number: 6, twi: "Hu m'ani so ma me nti na atwe mmienu nam", literal: "Because of 'blow the dust off my eyes' that two antelopes walk together", meaning: "Collaboration is better than isolation. Having a partner helps you succeed.", category: "community" },
+            { number: 7, twi: "Aboa bi beka wo a, ofiri wo ntoma mu", literal: "If an animal will bite you, it is from your cloth", meaning: "Those closest to you can hurt you the most. Be careful with close associates.", category: "wisdom" },
+            { number: 8, twi: "Anomaa antu a, ɔbua da", literal: "If a bird does not fly, it goes to bed hungry", meaning: "Nothing ventured, nothing gained. You must take action to succeed.", category: "wisdom" },
+            { number: 9, twi: "Obi nnim ɔberempɔn ahyɛaseɛ", literal: "Nobody knows the beginning of a great man", meaning: "Don't despise small beginnings. Greatness often starts humbly.", category: "life" },
+            { number: 10, twi: "Agya bi wu a, agya bi te ase", literal: "When one father dies, another father lives", meaning: "Community raises children. When one elder passes, others step in.", category: "community" },
+            { number: 11, twi: "Animguase mfata Okanni ba", literal: "Disgrace does not befit the child of an Akan", meaning: "Honor is very important. Avoid shame and disgrace at all costs.", category: "character" },
+            { number: 12, twi: "Obi nkyerɛ akwadaa Nyame", literal: "Nobody teaches a child God", meaning: "God's existence is obvious through creation, even to children.", category: "wisdom" },
+            { number: 13, twi: "Agorɔ bɛsɔ a, efiri anɔpa", literal: "If the festival will be entertaining, it starts from the morning", meaning: "You can tell success from the beginning. Start well.", category: "wisdom" },
+            { number: 14, twi: "Kwaterekwa se ɔbɛma wo ntoma a, tie ne din", literal: "If a naked man promises you a cloth, listen to his name", meaning: "A man cannot give what he does not have.", category: "wisdom" },
+            { number: 15, twi: "Obi akɔnnɔdeɛ ne odompo nsono", literal: "Someone's delicacy is the intestines of an odompo", meaning: "One man's meat is another man's poison. Don't judge others' preferences.", category: "wisdom" },
+            { number: 16, twi: "Wamma wo yonko anntwa anko a, wonntwa nnuru", literal: "If you don't let your friend cross, you won't cross either", meaning: "Help others achieve their goals so you can achieve yours.", category: "community" },
+            { number: 17, twi: "Yɛsoma onyansafoɔ, ɛnyɛ anamɔntenten", literal: "We send a wise person, not one with long legs", meaning: "Wisdom is more valuable than speed. Send the right person.", category: "wisdom" },
+            { number: 18, twi: "Aboa a onni dua no, Nyame na opra ne ho", literal: "For the animal without a tail, God sweeps its body", meaning: "God helps the vulnerable. The helpless have divine care.", category: "life" },
+            { number: 19, twi: "Biribi ankɔka papa a, anka papa annye kyerɛdɛ", literal: "If something hadn't touched the dry frond, it wouldn't have made sound", meaning: "There is a cause for every effect. No smoke without fire.", category: "wisdom" },
+            { number: 20, twi: "Borɔferɛ a ɛyɛ dɛ na abaa da aseɛ", literal: "It is the sweet pawpaw that has a stick under it", meaning: "Good things attract attention and use. Quality is recognized.", category: "wisdom" },
+            { number: 21, twi: "Prayɛ, sɛ woyi baako a na ebu; wokabomu a emmu", literal: "One broomstick breaks; together they don't", meaning: "Unity is strength. There is power in togetherness.", category: "community" },
+            { number: 22, twi: "Nsateaa nyinaa nnyɛ pɛ", literal: "All fingers are not the same", meaning: "People are different but each has unique capabilities. Appreciate diversity.", category: "community" },
+            { number: 23, twi: "Obi nnim a, obi kyerɛ", literal: "If someone does not know, someone teaches", meaning: "No shame in not knowing. Share knowledge to improve society.", category: "wisdom" },
+            { number: 24, twi: "Abɔfra hunu ne nsa hohoro a ɔne mpanyinfoɔ didi", literal: "When a child learns to wash hands, he eats with adults", meaning: "Learn proper behavior to be accepted among elders.", category: "character" },
+            { number: 25, twi: "Yɛwo wo to esie so a, wonkyɛ tenten yɛ", literal: "If born on a mound, you grow tall quickly", meaning: "Early advantages persist. Born into privilege helps.", category: "life" },
+            { number: 26, twi: "Ayonko dodoo nti na okoto annya tiri", literal: "Because of too many friends, the crab has no head", meaning: "Too many friends can distract you from worthy pursuits.", category: "community" },
+            { number: 27, twi: "Wo nsa akyi beye wo de a ente se wo nsa yam", literal: "Back of hand sweet is not like palm of hand", meaning: "Home is best. There's no place like home.", category: "life" },
+            { number: 28, twi: "Etua wo yonko ho a etua dua mu", literal: "If in neighbor's body, it's in a tree", meaning: "You only truly understand when it happens to you.", category: "wisdom" },
+            { number: 29, twi: "Obi fom kum a, yenfom nnwa", literal: "If someone kills by mistake, we don't dissect by mistake", meaning: "Two wrongs don't make a right. Don't compound errors.", category: "character" },
+            { number: 30, twi: "Wohu se wo yonko abodwese rehye a na wasa nsuo asi wo dee ho", literal: "If neighbor's beard burns, fetch water for yours", meaning: "Learn from others' mistakes and experiences.", category: "wisdom" },
+            { number: 31, twi: "Tenten retɔ, tiatia retɔ; yɛrenom nsa na yɛrefa adwen", literal: "Tall buys, short buys; we drink palm wine and deliberate", meaning: "We can make progress on important issues while relaxing together.", category: "community" },
+            { number: 32, twi: "Dua a enya wo a ebewo w'ani no, yetu asee; yensensene ano", literal: "Don't sharpen the stick that would pierce your eye. Uproot it.", meaning: "Remove potential dangers early before they grow.", category: "wisdom" },
+            { number: 33, twi: "Ɔbaa tɔ tuo a ɛtwere barima dan mu", literal: "When a woman buys a gun, it lies in a man's room", meaning: "Women should do what pertains to women, men what pertains to men.", category: "character" },
+            { number: 34, twi: "Baanu so a emmia", literal: "When two carry, it does not hurt", meaning: "Shared burden is lighter. Two are better than one.", category: "community" },
+            { number: 35, twi: "Nyansapo wosane no badwemma", literal: "Wise knots are loosened by wise men", meaning: "Delicate matters require wise people to resolve.", category: "wisdom" },
+            { number: 36, twi: "Ahunu-bi-pen nti na aserewa regyegye ne ba agoro a na wayi n'ani ato nkyen", literal: "Because of 'I've seen before' the bird looks away", meaning: "Learn from past bad experiences. Once bitten, twice shy.", category: "wisdom" },
+            { number: 37, twi: "Abaa a yede bo Takyi no yede bebo Baa", literal: "The stick that hits Takyi also hits Baa", meaning: "Same standards apply to everyone. Justice is impartial.", category: "character" },
+            { number: 38, twi: "Yetu wo fo na wanntie a, woko Anteade", literal: "If you don't heed advice, you go to Anteade", meaning: "Ignoring advice leads to trouble. Listen to counsel.", category: "wisdom" },
+            { number: 39, twi: "Abɛ bi rebewu a na ɛsɔ", literal: "When some palm trees are about to die, they give best wine", meaning: "Sometimes the best comes at the end. Final efforts can be great.", category: "life" },
+            { number: 40, twi: "Hwimhwim adee ko srosro", literal: "What comes easily goes easily", meaning: "Easy come, easy go. Value what you work for.", category: "wisdom" },
+            { number: 41, twi: "Abofra a omma ne maame nna no, bentoa mpa ne to da", literal: "The child who doesn't let mother sleep, enema never leaves", meaning: "Disobedient children face consequences. Actions have results.", category: "character" },
+            { number: 42, twi: "Nwansena nni hwee koraa oposa ne nsam", literal: "Even if housefly has nothing, it rubs its hands", meaning: "Always appear busy and productive, even when you have nothing.", category: "character" },
+            { number: 43, twi: "Nea owo aka no pen no suro sonsono", literal: "One bitten by snake fears a worm", meaning: "Once bitten, twice shy. Trauma creates caution.", category: "wisdom" },
+            { number: 44, twi: "Funtumfunafu ne dɛnkyɛmfunafu, wɔn afuru bo mu nanso woredidi a na wɔreko", literal: "Conjoined crocodiles have joined stomachs but fight over food", meaning: "Even close relatives can conflict over resources.", category: "proverbs" },
+            { number: 45, twi: "Owuo atwedeɛ, baakfoɔ mforo", literal: "Death's ladder: not climbed by one person", meaning: "Death comes to everyone. Be humble and live well.", category: "life" },
+            { number: 46, twi: "Efie biara mmaninsɛm wɔ mu", literal: "In every house, there are troublemakers", meaning: "Every family has its problems and difficult people.", category: "community" },
+            { number: 47, twi: "Obi abawuo tuatua obi aso", literal: "Someone's child's death annoys another", meaning: "He who feels it knows it. Others may not understand your pain.", category: "life" },
+            { number: 48, twi: "Nsuo a edo wo na eko w'ahina mu", literal: "The water that loves you enters your pot", meaning: "Those who care about you will come to you and be involved.", category: "community" },
+            { number: 49, twi: "Wotena dufɔkyeɛ so di borɔfrɛ a, wo to fɔ, w'ano fɔ", literal: "Sit on rotten wood to eat pawpaw, bottom wet, mouth wet", meaning: "Everything has a cost. Too much comfort has downsides.", category: "wisdom" },
+            { number: 50, twi: "Dua kontonkyitonkyi na ema yɛhunu ɔdwomfoɔ", literal: "Crooked wood reveals the true sculptor", meaning: "Difficult circumstances reveal true skill and character.", category: "character" },
+            { number: 51, twi: "Ahwene pa nkasa", literal: "Quality beads don't rattle", meaning: "Empty barrels make the most noise. Quality speaks for itself.", category: "character" },
+            { number: 52, twi: "Kwan tia yɛ musuo", literal: "Shortcuts are evil", meaning: "Avoid unscrupulous shortcuts to success. Take the right path.", category: "character" },
+            { number: 53, twi: "Obi nnom aduro mma yarefoɔ", literal: "Nobody takes medicine for a sick person", meaning: "You must take action for your own problems. Others can't do it for you.", category: "wisdom" },
+            { number: 54, twi: "Woto adubɔne a, ebi ka w'ano", literal: "When you poison others, some touches your mouth", meaning: "Evil schemes can backfire and hurt you. Be careful.", category: "character" },
+            { number: 55, twi: "Deɛ ɔretwa sa no nnim sɛ n'akyi akyea", literal: "The one paving a path doesn't know it's crooked behind", meaning: "We don't always see our own flaws. Others see what we miss.", category: "wisdom" }
+        ];
+
+        let currentFilter = "all";
+        let currentSearch = "";
+
+        function renderProverbs() {
+            let filtered = [...proverbs];
+            
+            if (currentFilter !== "all") {
+                filtered = filtered.filter(p => p.category === currentFilter);
+            }
+            
+            if (currentSearch) {
+                const searchLower = currentSearch.toLowerCase();
+                filtered = filtered.filter(p => 
+                    p.twi.toLowerCase().includes(searchLower) || 
+                    p.meaning.toLowerCase().includes(searchLower) ||
+                    p.literal.toLowerCase().includes(searchLower)
+                );
+            }
+            
+            const container = document.getElementById('proverbsList');
+            container.innerHTML = '';
+            
+            filtered.forEach(proverb => {
+                const card = document.createElement('div');
+                card.className = 'proverb-card';
+                card.onclick = () => playProverbAudio(proverb.twi);
+                
+                card.innerHTML = `
+                    <div class="proverb-number">Proverb ${proverb.number}</div>
+                    <div class="proverb-twi">${proverb.twi}</div>
+                    <div class="proverb-literal">📖 ${proverb.literal}</div>
+                    <div class="proverb-meaning">💡 ${proverb.meaning}</div>
+                `;
+                container.appendChild(card);
+            });
+            
+            document.getElementById('proverbCount').innerHTML = filtered.length;
+        }
+
+        function playProverbAudio(twiText) {
+            const notification = document.createElement('div');
+            notification.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#2A9D8F;color:white;padding:8px 16px;border-radius:50px;z-index:10000;font-size:14px;';
+            notification.innerHTML = `🔊 Pronunciation coming soon: ${twiText}`;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 2000);
+        }
+
+        function showRandomProverb() {
+            const randomIndex = Math.floor(Math.random() * proverbs.length);
+            const proverb = proverbs[randomIndex];
+            
+            const container = document.getElementById('proverbsList');
+            container.innerHTML = '';
+            
+            const card = document.createElement('div');
+            card.className = 'proverb-card';
+            card.style.border = '2px solid #D4A373';
+            card.style.backgroundColor = '#fff5e8';
+            card.onclick = () => playProverbAudio(proverb.twi);
+            
+            card.innerHTML = `
+                <div class="proverb-number">🎲 Random Proverb #${proverb.number}</div>
+                <div class="proverb-twi">${proverb.twi}</div>
+                <div class="proverb-literal">📖 ${proverb.literal}</div>
+                <div class="proverb-meaning">💡 ${proverb.meaning}</div>
+            `;
+            container.appendChild(card);
+            
+            // Scroll to the random proverb
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Search input
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            renderProverbs();
+        });
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.getAttribute('data-filter');
+                renderProverbs();
+            });
+        });
+
+        // Initialize
+        renderProverbs();
+    </script>
+</body>
+</html>
