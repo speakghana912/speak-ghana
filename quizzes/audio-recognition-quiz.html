@@ -43,6 +43,7 @@
             transition: all 0.3s;
         }
         .audio-btn:hover { transform: scale(1.05); background: #1f7a6e; }
+        .audio-btn:active { transform: scale(0.95); }
         .options {
             display: flex;
             flex-direction: column;
@@ -57,8 +58,28 @@
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s;
+            text-align: left;
+            padding-left: 1.5rem;
         }
-        .option-btn:hover { background: #E76F51; color: white; }
+        .option-btn:hover:not(:disabled) {
+            background: #E76F51;
+            color: white;
+            transform: scale(1.02);
+        }
+        .option-btn.correct-answer {
+            background: #2A9D8F;
+            color: white;
+            border-color: #2A9D8F;
+        }
+        .option-btn.wrong-answer {
+            background: #E76F51;
+            color: white;
+            border-color: #E76F51;
+        }
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
         .next-btn {
             background: #2A9D8F;
             color: white;
@@ -70,6 +91,15 @@
             cursor: pointer;
             width: 100%;
             margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .next-btn:hover:not(:disabled) {
+            background: #1f7a6e;
+            transform: translateY(-2px);
+        }
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
         .score-display { text-align: center; margin-top: 1rem; font-size: 1.2rem; color: #E76F51; font-weight: bold; }
         .feedback { text-align: center; margin: 1rem 0; padding: 1rem; border-radius: 16px; font-weight: bold; }
@@ -79,21 +109,56 @@
         .result-box { text-align: center; padding: 2rem; }
         .result-emoji { font-size: 4rem; margin-bottom: 1rem; }
         .result-score { font-size: 2rem; font-weight: bold; color: #E76F51; margin: 1rem 0; }
-        .restart-btn { background: #E76F51; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 50px; cursor: pointer; font-size: 1rem; margin-top: 1rem; }
+        .result-message { color: #666; margin: 1rem 0; font-size: 1.1rem; }
+        .restart-btn, .review-btn {
+            background: #E76F51;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+            margin-right: 0.5rem;
+            transition: all 0.3s;
+        }
+        .restart-btn:hover, .review-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231,111,81,0.3);
+        }
+        .question-counter {
+            text-align: center;
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        .play-hint {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .quiz-container { padding: 1rem; }
+            .audio-btn { width: 80px; height: 80px; font-size: 2rem; }
+            .option-btn { padding: 0.8rem; font-size: 0.9rem; }
+        }
     </style>
 </head>
 <body>
     <div class="quiz-container">
         <h1>🎧 Audio Recognition Quiz</h1>
-        <p style="color: #666; margin-bottom: 1rem;">Listen to the word and select the correct meaning</p>
+        <p style="color: #666; margin-bottom: 1rem;">Listen to the Twi word and select the correct meaning</p>
         
         <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
         
         <div id="quizContent">
-            <button class="audio-btn" id="audioBtn" onclick="playCurrentAudio()">🔊</button>
+            <div class="question-counter" id="questionCounter">Question 1 of 10</div>
+            <button class="audio-btn" id="audioBtn">🔊</button>
+            <div class="play-hint">🔊 Click the speaker to hear the word</div>
             <div class="options" id="optionsContainer"></div>
             <div class="feedback hidden" id="feedback"></div>
-            <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next Question →</button>
+            <button class="next-btn" id="nextBtn">Next Question →</button>
             <div class="score-display" id="scoreDisplay">Score: 0 / 0</div>
         </div>
         
@@ -101,33 +166,79 @@
             <div class="result-box">
                 <div class="result-emoji" id="resultEmoji">🏆</div>
                 <div class="result-score" id="resultScore">0 / 0</div>
-                <p id="resultMessage" style="color: #666; margin: 1rem 0;"></p>
-                <button class="restart-btn" onclick="restartQuiz()">🔄 Try Again</button>
-                <button class="restart-btn" onclick="window.close()" style="background: #D4A373; margin-left: 1rem;">❌ Close</button>
+                <div class="result-message" id="resultMessage"></div>
+                <div id="detailedResults" style="margin: 1rem 0; text-align: left; max-height: 300px; overflow-y: auto; border-top: 1px solid #eee; padding-top: 1rem;"></div>
+                <button class="restart-btn" id="restartBtn">🔄 Try Again</button>
+                <button class="review-btn" id="reviewBtn">📋 Review Wrong Answers</button>
+                <button class="restart-btn" onclick="window.close()" style="background: #D4A373;">❌ Close</button>
             </div>
         </div>
     </div>
 
     <script>
+        // ============ EXPANDED VOCABULARY WITH AUDIO (40+ WORDS) ============
         const vocabulary = [
+            // Home
             { word: "efie", meaning: "house", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/efie.m4a" },
+            { word: "ɛpono", meaning: "table", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/table.m4a" },
+            { word: "mpoma", meaning: "window", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/window.m4a" },
+            { word: "agua", meaning: "chair", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/chair.m4a" },
+            { word: "mpa", meaning: "bed", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/mpa.m4a" },
+            { word: "nsuo", meaning: "water", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/water.m4a" },
+            { word: "ogya", meaning: "fire", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/fire.m4a" },
+            { word: "kanea", meaning: "light", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/light.m4a" },
+            { word: "pono", meaning: "door", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/door.m4a" },
+            // Family
             { word: "agya", meaning: "father", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/father.m4a" },
             { word: "ɛna", meaning: "mother", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/mother.m4a" },
-            { word: "nsuo", meaning: "water", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/water.m4a" },
-            { word: "kwadu", meaning: "banana", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/kwadu.m4a" },
+            { word: "abaayewa", meaning: "girl", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/girl.m4a" },
+            { word: "baamua", meaning: "boy", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/boy.m4a" },
             { word: "akwadaa", meaning: "child", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/akwadaa.m4a" },
+            { word: "nana", meaning: "grandfather", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/nana.m4a" },
+            { word: "nanabaa", meaning: "grandmother", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/nanab.m4a" },
+            { word: "nua", meaning: "sibling", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/nua.m4a" },
+            // Food
+            { word: "aduane", meaning: "food", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/food.m4a" },
+            { word: "kwadu", meaning: "banana", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/kwadu.m4a" },
+            { word: "ankaa", meaning: "orange", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/ankaa.m4a" },
+            { word: "mango", meaning: "mango", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/mango.m4a" },
+            { word: "aborɔbɛ", meaning: "pineapple", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/pineapple.m4a" },
+            { word: "paya", meaning: "avocado", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/paya.m4a" },
+            { word: "bayere", meaning: "yam", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/yam.m4a" },
+            { word: "ɛmo", meaning: "rice", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/rice.m4a" },
+            { word: "nsumunam", meaning: "fish", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/fish.m4a" },
+            { word: "akokɔnam", meaning: "chicken", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/chicken.m4a" },
+            // Colors
+            { word: "tuntum", meaning: "black", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/black.m4a" },
+            { word: "bibire", meaning: "blue", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/blue.m4a" },
+            { word: "ahabanmono", meaning: "green", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/green.m4a" },
+            { word: "fitaa", meaning: "white", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/white.m4a" },
+            { word: "akokɔsradeɛ", meaning: "yellow", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/yellow.m4a" },
+            // Body Parts
+            { word: "ani", meaning: "eye", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/eye.m4a" },
+            { word: "nsa", meaning: "hand", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/hand.m4a" },
+            { word: "ti", meaning: "head", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/head.m4a" },
+            { word: "akoma", meaning: "heart", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/heart.m4a" },
+            { word: "nan", meaning: "leg", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/leg.m4a" },
+            { word: "ano", meaning: "mouth", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/mouth.m4a" },
+            // Animals
             { word: "kraman", meaning: "dog", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/dog.m4a" },
+            { word: "ɛsono", meaning: "elephant", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/elephant.m4a" },
+            { word: "gyata", meaning: "lion", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/lion.m4a" },
+            // Nature
             { word: "awia", meaning: "sun", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/sun.m4a" },
             { word: "ɔsram", meaning: "moon", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/moon.m4a" },
-            { word: "ani", meaning: "eye", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/eye.m4a" }
+            { word: "dua", meaning: "tree", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/vocabs/tree.m4a" }
         ];
 
-        let questions = [];
+        // Quiz variables
+        let currentQuestions = [];
         let currentIndex = 0;
-        let score = 0;
+        let currentScore = 0;
         let selectedAnswer = null;
         let quizActive = true;
         let currentAudio = null;
+        let wrongAnswers = [];
 
         function shuffleArray(arr) {
             for (let i = arr.length - 1; i > 0; i--) {
@@ -137,25 +248,36 @@
             return arr;
         }
 
-        function generateQuestions() {
+        function generateQuestions(questionCount = 10) {
             const shuffled = shuffleArray([...vocabulary]);
-            const selected = shuffled.slice(0, 5);
+            const selected = shuffled.slice(0, Math.min(questionCount, vocabulary.length));
             const newQuestions = [];
             
             for (let item of selected) {
                 const otherMeanings = vocabulary.filter(v => v.word !== item.word).map(v => v.meaning);
-                const wrongOptions = [];
-                const used = [item.meaning];
+                const uniqueWrong = [];
+                const used = new Set([item.meaning]);
                 
-                while (wrongOptions.length < 3 && otherMeanings.length) {
+                while (uniqueWrong.length < 3 && otherMeanings.length) {
                     const random = otherMeanings[Math.floor(Math.random() * otherMeanings.length)];
-                    if (!used.includes(random)) {
-                        wrongOptions.push(random);
-                        used.push(random);
+                    if (!used.has(random)) {
+                        uniqueWrong.push(random);
+                        used.add(random);
                     }
                 }
                 
-                const options = [item.meaning, ...wrongOptions];
+                // Fill with defaults if needed
+                const defaults = ["house", "food", "water", "father", "mother", "child", "hand", "eye", "tree", "sun"];
+                while (uniqueWrong.length < 3) {
+                    for (let d of defaults) {
+                        if (!used.has(d) && uniqueWrong.length < 3) {
+                            uniqueWrong.push(d);
+                            used.add(d);
+                        }
+                    }
+                }
+                
+                const options = [item.meaning, ...uniqueWrong];
                 for (let i = options.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     [options[i], options[j]] = [options[j], options[i]];
@@ -164,28 +286,37 @@
                 newQuestions.push({
                     correct: item.meaning,
                     options: options,
-                    audio: item.audio
+                    audio: item.audio,
+                    word: item.word
                 });
             }
             return newQuestions;
         }
 
         function playCurrentAudio() {
-            if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
-            const q = questions[currentIndex];
+            if (currentAudio) { 
+                currentAudio.pause(); 
+                currentAudio.currentTime = 0; 
+            }
+            const q = currentQuestions[currentIndex];
             if (q && q.audio) {
                 currentAudio = new Audio(q.audio);
-                currentAudio.play().catch(e => console.log('Error:', e));
+                currentAudio.play().catch(e => console.log('Audio error:', e));
             }
         }
 
         function displayQuestion() {
-            if (!quizActive) return;
-            document.getElementById('scoreDisplay').innerHTML = `Score: ${score} / ${questions.length}`;
-            const progressPercent = (currentIndex / questions.length) * 100;
+            if (!quizActive || currentIndex >= currentQuestions.length) {
+                finishQuiz();
+                return;
+            }
+            
+            document.getElementById('scoreDisplay').innerHTML = `Score: ${currentScore} / ${currentQuestions.length}`;
+            document.getElementById('questionCounter').innerHTML = `Question ${currentIndex + 1} of ${currentQuestions.length}`;
+            const progressPercent = (currentIndex / currentQuestions.length) * 100;
             document.getElementById('progressFill').style.width = `${progressPercent}%`;
             
-            const q = questions[currentIndex];
+            const q = currentQuestions[currentIndex];
             const optionsContainer = document.getElementById('optionsContainer');
             optionsContainer.innerHTML = '';
             
@@ -206,43 +337,52 @@
             if (selectedAnswer !== null) return;
             selectedAnswer = answer;
             
-            const q = questions[currentIndex];
+            const q = currentQuestions[currentIndex];
             const isCorrect = (answer === q.correct);
             
             const feedbackDiv = document.getElementById('feedback');
+            const allOptions = document.querySelectorAll('.option-btn');
+            
             if (isCorrect) {
-                score++;
+                currentScore++;
                 feedbackDiv.className = 'feedback correct';
                 feedbackDiv.innerHTML = '✅ Correct! Well done!';
                 feedbackDiv.classList.remove('hidden');
+                btnElement.classList.add('correct-answer');
             } else {
                 feedbackDiv.className = 'feedback incorrect';
                 feedbackDiv.innerHTML = `❌ Incorrect! The correct answer is "${q.correct}"`;
                 feedbackDiv.classList.remove('hidden');
+                btnElement.classList.add('wrong-answer');
+                
+                // Highlight correct answer
+                allOptions.forEach(btn => {
+                    if (btn.innerHTML === q.correct) {
+                        btn.classList.add('correct-answer');
+                    }
+                });
+                
+                // Store wrong answer for review
+                wrongAnswers.push({
+                    word: q.word,
+                    yourAnswer: answer,
+                    correctAnswer: q.correct
+                });
             }
             
-            const allOptions = document.querySelectorAll('.option-btn');
-            allOptions.forEach(btn => { btn.style.pointerEvents = 'none'; });
-            
-            if (isCorrect) btnElement.style.background = '#2A9D8F';
-            else btnElement.style.background = '#E76F51';
-            
-            document.getElementById('scoreDisplay').innerHTML = `Score: ${score} / ${questions.length}`;
+            allOptions.forEach(btn => { btn.disabled = true; });
+            document.getElementById('scoreDisplay').innerHTML = `Score: ${currentScore} / ${currentQuestions.length}`;
         }
 
         function nextQuestion() {
-            if (selectedAnswer === null && currentIndex < questions.length - 1) {
+            if (selectedAnswer === null) {
                 alert('Please select an answer before continuing!');
                 return;
             }
             
-            if (selectedAnswer === null && currentIndex === questions.length - 1) {
-                finishQuiz();
-                return;
-            }
-            
             currentIndex++;
-            if (currentIndex < questions.length) {
+            
+            if (currentIndex < currentQuestions.length) {
                 displayQuestion();
                 playCurrentAudio();
             } else {
@@ -255,32 +395,119 @@
             document.getElementById('quizContent').classList.add('hidden');
             document.getElementById('resultContent').classList.remove('hidden');
             
-            const percentage = (score / questions.length) * 100;
+            const percentage = (currentScore / currentQuestions.length) * 100;
             let emoji = '', message = '';
             
             if (percentage >= 90) { emoji = '🏆'; message = 'Excellent! Great listening skills!'; }
             else if (percentage >= 70) { emoji = '🎉'; message = 'Great job! Keep practicing!'; }
-            else if (percentage >= 50) { emoji = '👍'; message = 'Good effort! Review and try again.'; }
-            else { emoji = '📚'; message = 'Keep studying and try again!'; }
+            else if (percentage >= 50) { emoji = '👍'; message = 'Good effort! Review the words you missed.'; }
+            else { emoji = '📚'; message = 'Keep studying the audio gallery and try again!'; }
             
             document.getElementById('resultEmoji').innerHTML = emoji;
-            document.getElementById('resultScore').innerHTML = `${score} / ${questions.length}`;
+            document.getElementById('resultScore').innerHTML = `${currentScore} / ${currentQuestions.length}`;
             document.getElementById('resultMessage').innerHTML = message;
+            
+            // Show detailed results
+            const detailedDiv = document.getElementById('detailedResults');
+            if (wrongAnswers.length > 0) {
+                let wrongHtml = '<strong>📝 Words to Review:</strong><br><br>';
+                wrongAnswers.forEach((item, idx) => {
+                    wrongHtml += `<div style="background: #fef5f2; padding: 0.8rem; margin-bottom: 0.5rem; border-radius: 12px;">
+                        <strong>${idx + 1}. Word you heard:</strong> "${item.word}"<br>
+                        Your answer: ${item.yourAnswer}<br>
+                        <span style="color: #2A9D8F;">Correct: ${item.correctAnswer}</span>
+                    </div>`;
+                });
+                detailedDiv.innerHTML = wrongHtml;
+            } else {
+                detailedDiv.innerHTML = '<div style="text-align: center; color: #2A9D8F;">🎉 Perfect! No words to review!</div>';
+            }
+            
+            // Add XP if parent window has addXP function
+            try {
+                if (window.opener && window.opener.addXP) {
+                    const xpEarned = currentScore * 10;
+                    window.opener.addXP(xpEarned, 'Audio Quiz completed!');
+                }
+            } catch(e) { console.log('XP not added'); }
         }
 
         function restartQuiz() {
-            questions = generateQuestions();
+            currentQuestions = generateQuestions(10);
             currentIndex = 0;
-            score = 0;
+            currentScore = 0;
             selectedAnswer = null;
             quizActive = true;
+            wrongAnswers = [];
             document.getElementById('quizContent').classList.remove('hidden');
             document.getElementById('resultContent').classList.add('hidden');
             displayQuestion();
             playCurrentAudio();
         }
 
-        questions = generateQuestions();
+        function reviewWrongAnswers() {
+            if (wrongAnswers.length === 0) return;
+            
+            // Create a review quiz with only wrong answers
+            const reviewQuestions = wrongAnswers.map(item => {
+                const originalItem = vocabulary.find(v => v.word === item.word);
+                const otherMeanings = vocabulary.filter(v => v.word !== item.word).map(v => v.meaning);
+                const uniqueWrong = [];
+                const used = new Set([item.correctAnswer]);
+                
+                while (uniqueWrong.length < 3 && otherMeanings.length) {
+                    const random = otherMeanings[Math.floor(Math.random() * otherMeanings.length)];
+                    if (!used.has(random) && random !== item.correctAnswer) {
+                        uniqueWrong.push(random);
+                        used.add(random);
+                    }
+                }
+                
+                const defaults = ["house", "food", "water", "father", "mother", "child"];
+                while (uniqueWrong.length < 3) {
+                    for (let d of defaults) {
+                        if (!used.has(d) && uniqueWrong.length < 3) {
+                            uniqueWrong.push(d);
+                            used.add(d);
+                        }
+                    }
+                }
+                
+                const options = [item.correctAnswer, ...uniqueWrong];
+                for (let i = options.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                
+                return {
+                    correct: item.correctAnswer,
+                    options: options,
+                    audio: originalItem ? originalItem.audio : null,
+                    word: item.word
+                };
+            });
+            
+            currentQuestions = reviewQuestions;
+            currentIndex = 0;
+            currentScore = 0;
+            selectedAnswer = null;
+            quizActive = true;
+            wrongAnswers = [];
+            document.getElementById('quizContent').classList.remove('hidden');
+            document.getElementById('resultContent').classList.add('hidden');
+            displayQuestion();
+            if (currentQuestions.length > 0) playCurrentAudio();
+        }
+
+        // Initialize quiz
+        currentQuestions = generateQuestions(10);
+        
+        // Attach event listeners
+        document.getElementById('audioBtn').onclick = () => playCurrentAudio();
+        document.getElementById('nextBtn').onclick = () => nextQuestion();
+        document.getElementById('restartBtn').onclick = () => restartQuiz();
+        document.getElementById('reviewBtn').onclick = () => reviewWrongAnswers();
+        
         displayQuestion();
         playCurrentAudio();
     </script>
