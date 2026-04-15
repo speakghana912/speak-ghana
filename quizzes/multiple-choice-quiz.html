@@ -35,11 +35,12 @@
             transition: width 0.3s;
         }
         .question-text {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
             color: #2A9D8F;
             text-align: center;
             margin: 1.5rem 0;
+            word-break: break-word;
         }
         .options {
             display: flex;
@@ -58,10 +59,24 @@
             text-align: left;
             padding-left: 1.5rem;
         }
-        .option-btn:hover {
+        .option-btn:hover:not(:disabled) {
             background: #2A9D8F;
             color: white;
             transform: scale(1.02);
+        }
+        .option-btn.correct-answer {
+            background: #2A9D8F;
+            color: white;
+            border-color: #2A9D8F;
+        }
+        .option-btn.wrong-answer {
+            background: #E76F51;
+            color: white;
+            border-color: #E76F51;
+        }
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
         }
         .next-btn {
             background: #E76F51;
@@ -74,8 +89,16 @@
             cursor: pointer;
             width: 100%;
             margin-top: 1rem;
+            transition: all 0.3s;
         }
-        .next-btn:hover { background: #c95a3e; }
+        .next-btn:hover:not(:disabled) {
+            background: #c95a3e;
+            transform: translateY(-2px);
+        }
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
         .score-display {
             text-align: center;
             margin-top: 1rem;
@@ -99,7 +122,8 @@
         }
         .result-emoji { font-size: 4rem; margin-bottom: 1rem; }
         .result-score { font-size: 2rem; font-weight: bold; color: #2A9D8F; margin: 1rem 0; }
-        .restart-btn {
+        .result-message { color: #666; margin: 1rem 0; font-size: 1.1rem; }
+        .restart-btn, .review-btn {
             background: #2A9D8F;
             color: white;
             border: none;
@@ -108,12 +132,29 @@
             cursor: pointer;
             font-size: 1rem;
             margin-top: 1rem;
+            margin-right: 0.5rem;
+            transition: all 0.3s;
+        }
+        .restart-btn:hover, .review-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42,157,143,0.3);
+        }
+        .question-counter {
+            text-align: center;
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .quiz-container { padding: 1rem; }
+            .question-text { font-size: 1.5rem; }
+            .option-btn { padding: 0.8rem; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
     <div class="quiz-container">
-        <h1>📖 Multiple Choice Quiz</h1>
+        <h1>📖 Twi Vocabulary Quiz</h1>
         <p style="color: #666; margin-bottom: 1rem;">Select the correct meaning of each Twi word</p>
         
         <div class="progress-bar">
@@ -121,6 +162,7 @@
         </div>
         
         <div id="quizContent">
+            <div class="question-counter" id="questionCounter">Question 1 of 15</div>
             <div class="question-text" id="questionText">Loading...</div>
             <div class="options" id="optionsContainer"></div>
             <div class="feedback hidden" id="feedback"></div>
@@ -132,40 +174,59 @@
             <div class="result-box">
                 <div class="result-emoji" id="resultEmoji">🏆</div>
                 <div class="result-score" id="resultScore">0 / 0</div>
-                <p id="resultMessage" style="color: #666; margin: 1rem 0;"></p>
+                <div class="result-message" id="resultMessage"></div>
+                <div id="detailedResults" style="margin: 1rem 0; text-align: left; max-height: 300px; overflow-y: auto; border-top: 1px solid #eee; padding-top: 1rem;"></div>
                 <button class="restart-btn" id="restartBtn">🔄 Try Again</button>
-                <button class="restart-btn" onclick="window.close()" style="background: #D4A373; margin-left: 1rem;">❌ Close</button>
+                <button class="review-btn" id="reviewBtn">📋 Review Wrong Answers</button>
+                <button class="restart-btn" onclick="window.close()" style="background: #D4A373;">❌ Close</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Make all functions globally accessible
-        window.currentQuestions = [];
-        window.currentIndex = 0;
-        window.currentScore = 0;
-        window.selectedAnswer = null;
-        window.quizActive = true;
-
+        // ============ EXPANDED VOCABULARY (50+ WORDS) ============
         const vocabulary = [
+            // Home (10)
             { word: "efie", meaning: "house" }, { word: "ɛpono", meaning: "table" }, { word: "mpoma", meaning: "window" },
             { word: "agua", meaning: "chair" }, { word: "mpa", meaning: "bed" }, { word: "nsuo", meaning: "water" },
             { word: "ogya", meaning: "fire" }, { word: "kanea", meaning: "light" }, { word: "pono", meaning: "door" },
+            { word: "dan", meaning: "room" },
+            // Family (12)
             { word: "agya", meaning: "father" }, { word: "ɛna", meaning: "mother" }, { word: "abaayewa", meaning: "girl" },
             { word: "baamua", meaning: "boy" }, { word: "akwadaa", meaning: "child" }, { word: "nana", meaning: "grandfather" },
             { word: "nanabaa", meaning: "grandmother" }, { word: "nua", meaning: "sibling" }, { word: "okunu", meaning: "husband" },
-            { word: "yere", meaning: "wife" }, { word: "aduane", meaning: "food" }, { word: "kwadu", meaning: "banana" },
-            { word: "ankaa", meaning: "orange" }, { word: "mango", meaning: "mango" }, { word: "aborɔbɛ", meaning: "pineapple" },
-            { word: "paya", meaning: "avocado" }, { word: "bayere", meaning: "yam" }, { word: "aburo", meaning: "corn" },
-            { word: "ɛmo", meaning: "rice" }, { word: "nsumunam", meaning: "fish" }, { word: "akokɔnam", meaning: "chicken" },
+            { word: "yere", meaning: "wife" }, { word: "ɔba", meaning: "baby" }, { word: "abusua", meaning: "family" },
+            // Food (12)
+            { word: "aduane", meaning: "food" }, { word: "kwadu", meaning: "banana" }, { word: "ankaa", meaning: "orange" },
+            { word: "mango", meaning: "mango" }, { word: "aborɔbɛ", meaning: "pineapple" }, { word: "paya", meaning: "avocado" },
+            { word: "bayere", meaning: "yam" }, { word: "aburo", meaning: "corn" }, { word: "ɛmo", meaning: "rice" },
+            { word: "nsumunam", meaning: "fish" }, { word: "akokɔnam", meaning: "chicken" }, { word: "nam", meaning: "meat" },
+            // Colors (9)
             { word: "tuntum", meaning: "black" }, { word: "bibire", meaning: "blue" }, { word: "dododeɛ", meaning: "brown" },
             { word: "ahabanmono", meaning: "green" }, { word: "memen", meaning: "pink" }, { word: "beredum", meaning: "purple" },
-            { word: "fitaa", meaning: "white" }, { word: "akokɔsradeɛ", meaning: "yellow" }, { word: "ani", meaning: "eye" },
-            { word: "nsa", meaning: "hand" }, { word: "ti", meaning: "head" }, { word: "akoma", meaning: "heart" },
-            { word: "nan", meaning: "leg" }, { word: "ano", meaning: "mouth" }, { word: "anomaa", meaning: "bird" },
-            { word: "kraman", meaning: "dog" }, { word: "ɛsono", meaning: "elephant" }, { word: "gyata", meaning: "lion" },
-            { word: "awia", meaning: "sun" }, { word: "ɔsram", meaning: "moon" }, { word: "dua", meaning: "tree" }
+            { word: "fitaa", meaning: "white" }, { word: "akokɔsradeɛ", meaning: "yellow" }, { word: "kɔkɔɔ", meaning: "red" },
+            // Body Parts (10)
+            { word: "ani", meaning: "eye" }, { word: "nsa", meaning: "hand" }, { word: "ti", meaning: "head" },
+            { word: "akoma", meaning: "heart" }, { word: "nan", meaning: "leg" }, { word: "ano", meaning: "mouth" },
+            { word: "aso", meaning: "ear" }, { word: "yafunu", meaning: "stomach" }, { word: "se", meaning: "tooth" },
+            { word: "tɛkrɛma", meaning: "tongue" },
+            // Animals (8)
+            { word: "anomaa", meaning: "bird" }, { word: "kraman", meaning: "dog" }, { word: "ɛsono", meaning: "elephant" },
+            { word: "gyata", meaning: "lion" }, { word: "ɔwɔ", meaning: "snake" }, { word: "apɔnkye", meaning: "goat" },
+            { word: "nantwie", meaning: "cow" }, { word: "ɔkraman", meaning: "leopard" },
+            // Nature (7)
+            { word: "awia", meaning: "sun" }, { word: "ɔsram", meaning: "moon" }, { word: "dua", meaning: "tree" },
+            { word: "nhwiren", meaning: "flower" }, { word: "bepɔ", meaning: "mountain" }, { word: "ɛpo", meaning: "sea" },
+            { word: "osu", meaning: "rain" }
         ];
+
+        // Quiz variables
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let currentScore = 0;
+        let selectedAnswer = null;
+        let quizActive = true;
+        let wrongAnswers = [];
 
         function shuffleArray(arr) {
             for (let i = arr.length - 1; i > 0; i--) {
@@ -175,25 +236,36 @@
             return arr;
         }
 
-        function generateQuestions() {
+        function generateQuestions(questionCount = 15) {
             const shuffled = shuffleArray([...vocabulary]);
-            const selected = shuffled.slice(0, 10);
+            const selected = shuffled.slice(0, Math.min(questionCount, vocabulary.length));
             const newQuestions = [];
             
             for (let item of selected) {
                 const otherMeanings = vocabulary.filter(v => v.word !== item.word).map(v => v.meaning);
-                const wrongOptions = [];
-                const used = [item.meaning];
+                const uniqueWrong = [];
+                const used = new Set([item.meaning]);
                 
-                while (wrongOptions.length < 3 && otherMeanings.length) {
+                while (uniqueWrong.length < 3 && otherMeanings.length) {
                     const random = otherMeanings[Math.floor(Math.random() * otherMeanings.length)];
-                    if (!used.includes(random)) {
-                        wrongOptions.push(random);
-                        used.push(random);
+                    if (!used.has(random)) {
+                        uniqueWrong.push(random);
+                        used.add(random);
                     }
                 }
                 
-                const options = [item.meaning, ...wrongOptions];
+                // Fill with defaults if needed
+                const defaults = ["house", "food", "water", "father", "mother", "child", "hand", "eye", "tree", "sun"];
+                while (uniqueWrong.length < 3) {
+                    for (let d of defaults) {
+                        if (!used.has(d) && uniqueWrong.length < 3) {
+                            uniqueWrong.push(d);
+                            used.add(d);
+                        }
+                    }
+                }
+                
+                const options = [item.meaning, ...uniqueWrong];
                 for (let i = options.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     [options[i], options[j]] = [options[j], options[i]];
@@ -209,12 +281,17 @@
         }
 
         function displayQuestion() {
-            if (!window.quizActive) return;
-            const q = window.currentQuestions[window.currentIndex];
-            document.getElementById('questionText').innerHTML = `"${q.word}"`;
-            document.getElementById('scoreDisplay').innerHTML = `Score: ${window.currentScore} / ${window.currentQuestions.length}`;
+            if (!quizActive || currentIndex >= currentQuestions.length) {
+                finishQuiz();
+                return;
+            }
             
-            const progressPercent = (window.currentIndex / window.currentQuestions.length) * 100;
+            const q = currentQuestions[currentIndex];
+            document.getElementById('questionText').innerHTML = `"${q.word}"`;
+            document.getElementById('scoreDisplay').innerHTML = `Score: ${currentScore} / ${currentQuestions.length}`;
+            document.getElementById('questionCounter').innerHTML = `Question ${currentIndex + 1} of ${currentQuestions.length}`;
+            
+            const progressPercent = (currentIndex / currentQuestions.length) * 100;
             document.getElementById('progressFill').style.width = `${progressPercent}%`;
             
             const optionsContainer = document.getElementById('optionsContainer');
@@ -230,96 +307,158 @@
             
             document.getElementById('feedback').classList.add('hidden');
             document.getElementById('nextBtn').disabled = false;
-            window.selectedAnswer = null;
+            selectedAnswer = null;
         }
 
         function selectAnswer(answer, btnElement) {
-            if (window.selectedAnswer !== null) return;
-            window.selectedAnswer = answer;
+            if (selectedAnswer !== null) return;
+            selectedAnswer = answer;
             
-            const q = window.currentQuestions[window.currentIndex];
+            const q = currentQuestions[currentIndex];
             const isCorrect = (answer === q.correct);
             
             const feedbackDiv = document.getElementById('feedback');
+            const allOptions = document.querySelectorAll('.option-btn');
+            
             if (isCorrect) {
-                window.currentScore++;
+                currentScore++;
                 feedbackDiv.className = 'feedback correct';
                 feedbackDiv.innerHTML = '✅ Correct! Well done!';
                 feedbackDiv.classList.remove('hidden');
+                btnElement.classList.add('correct-answer');
             } else {
                 feedbackDiv.className = 'feedback incorrect';
                 feedbackDiv.innerHTML = `❌ Incorrect! The correct answer is "${q.correct}"`;
                 feedbackDiv.classList.remove('hidden');
+                btnElement.classList.add('wrong-answer');
+                
+                // Highlight correct answer
+                allOptions.forEach(btn => {
+                    if (btn.innerHTML === q.correct) {
+                        btn.classList.add('correct-answer');
+                    }
+                });
+                
+                // Store wrong answer for review
+                wrongAnswers.push({
+                    word: q.word,
+                    yourAnswer: answer,
+                    correctAnswer: q.correct
+                });
             }
             
-            const allOptions = document.querySelectorAll('.option-btn');
-            allOptions.forEach(btn => { btn.style.pointerEvents = 'none'; });
-            
-            if (isCorrect) btnElement.style.background = '#2A9D8F';
-            else btnElement.style.background = '#E76F51';
-            
-            document.getElementById('scoreDisplay').innerHTML = `Score: ${window.currentScore} / ${window.currentQuestions.length}`;
+            allOptions.forEach(btn => { btn.disabled = true; });
+            document.getElementById('scoreDisplay').innerHTML = `Score: ${currentScore} / ${currentQuestions.length}`;
         }
 
-        window.nextQuestion = function() {
-            if (window.selectedAnswer === null && window.currentIndex < window.currentQuestions.length - 1) {
+        function nextQuestion() {
+            if (selectedAnswer === null) {
                 alert('Please select an answer before continuing!');
                 return;
             }
             
-            if (window.selectedAnswer === null && window.currentIndex === window.currentQuestions.length - 1) {
-                finishQuiz();
-                return;
-            }
+            currentIndex++;
             
-            window.currentIndex++;
-            
-            if (window.currentIndex < window.currentQuestions.length) {
+            if (currentIndex < currentQuestions.length) {
                 displayQuestion();
             } else {
                 finishQuiz();
             }
-        };
+        }
 
         function finishQuiz() {
-            window.quizActive = false;
+            quizActive = false;
             document.getElementById('quizContent').classList.add('hidden');
             document.getElementById('resultContent').classList.remove('hidden');
             
-            const percentage = (window.currentScore / window.currentQuestions.length) * 100;
+            const percentage = (currentScore / currentQuestions.length) * 100;
             let emoji = '', message = '';
             
             if (percentage >= 90) { emoji = '🏆'; message = 'Excellent! You\'re a Twi master!'; }
             else if (percentage >= 70) { emoji = '🎉'; message = 'Great job! Keep practicing!'; }
-            else if (percentage >= 50) { emoji = '👍'; message = 'Good effort! Review and try again.'; }
-            else { emoji = '📚'; message = 'Keep studying and try again!'; }
+            else if (percentage >= 50) { emoji = '👍'; message = 'Good effort! Review the words you missed.'; }
+            else { emoji = '📚'; message = 'Keep studying the vocabulary gallery and try again!'; }
             
             document.getElementById('resultEmoji').innerHTML = emoji;
-            document.getElementById('resultScore').innerHTML = `${window.currentScore} / ${window.currentQuestions.length}`;
+            document.getElementById('resultScore').innerHTML = `${currentScore} / ${currentQuestions.length}`;
             document.getElementById('resultMessage').innerHTML = message;
+            
+            // Show detailed results
+            const detailedDiv = document.getElementById('detailedResults');
+            if (wrongAnswers.length > 0) {
+                let wrongHtml = '<strong>📝 Words to Review:</strong><br><br>';
+                wrongAnswers.forEach((item, idx) => {
+                    wrongHtml += `<div style="background: #fef5f2; padding: 0.8rem; margin-bottom: 0.5rem; border-radius: 12px;">
+                        <strong>${idx + 1}. "${item.word}"</strong><br>
+                        Your answer: ${item.yourAnswer}<br>
+                        <span style="color: #2A9D8F;">Correct: ${item.correctAnswer}</span>
+                    </div>`;
+                });
+                detailedDiv.innerHTML = wrongHtml;
+            } else {
+                detailedDiv.innerHTML = '<div style="text-align: center; color: #2A9D8F;">🎉 Perfect! No words to review!</div>';
+            }
+            
+            // Add XP if parent window has addXP function
+            try {
+                if (window.opener && window.opener.addXP) {
+                    const xpEarned = currentScore * 10;
+                    window.opener.addXP(xpEarned, 'Quiz completed!');
+                }
+            } catch(e) { console.log('XP not added'); }
         }
 
-        window.restartQuiz = function() {
-            window.currentQuestions = generateQuestions();
-            window.currentIndex = 0;
-            window.currentScore = 0;
-            window.selectedAnswer = null;
-            window.quizActive = true;
+        function restartQuiz() {
+            currentQuestions = generateQuestions(15);
+            currentIndex = 0;
+            currentScore = 0;
+            selectedAnswer = null;
+            quizActive = true;
+            wrongAnswers = [];
             document.getElementById('quizContent').classList.remove('hidden');
             document.getElementById('resultContent').classList.add('hidden');
             displayQuestion();
-        };
+        }
+
+        function reviewWrongAnswers() {
+            if (wrongAnswers.length === 0) return;
+            
+            // Create a review quiz with only wrong answers
+            const reviewQuestions = wrongAnswers.map(item => ({
+                word: item.word,
+                correct: item.correctAnswer,
+                options: [item.correctAnswer, item.yourAnswer, 
+                    vocabulary.filter(v => v.word !== item.word && v.meaning !== item.correctAnswer).map(v => v.meaning)[0] || "house",
+                    vocabulary.filter(v => v.word !== item.word && v.meaning !== item.correctAnswer).map(v => v.meaning)[1] || "food"]
+            }));
+            
+            // Shuffle options for each question
+            reviewQuestions.forEach(q => {
+                for (let i = q.options.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [q.options[i], q.options[j]] = [q.options[j], q.options[i]];
+                }
+            });
+            
+            currentQuestions = reviewQuestions;
+            currentIndex = 0;
+            currentScore = 0;
+            selectedAnswer = null;
+            quizActive = true;
+            wrongAnswers = [];
+            document.getElementById('quizContent').classList.remove('hidden');
+            document.getElementById('resultContent').classList.add('hidden');
+            displayQuestion();
+        }
 
         // Initialize quiz
-        window.currentQuestions = generateQuestions();
-        window.currentIndex = 0;
-        window.currentScore = 0;
-        window.quizActive = true;
+        currentQuestions = generateQuestions(15);
         displayQuestion();
         
         // Attach event listeners
-        document.getElementById('nextBtn').onclick = () => window.nextQuestion();
-        document.getElementById('restartBtn').onclick = () => window.restartQuiz();
+        document.getElementById('nextBtn').onclick = () => nextQuestion();
+        document.getElementById('restartBtn').onclick = () => restartQuiz();
+        document.getElementById('reviewBtn').onclick = () => reviewWrongAnswers();
     </script>
 </body>
 </html>
