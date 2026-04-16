@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akan Calendar - Days & Months | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; }
+        
+        .finder-card {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .finder-card h3 { margin-bottom: 1rem; font-size: 1.3rem; }
+        .finder-input {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .finder-input input {
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            width: 200px;
+        }
+        .finder-input button {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .finder-input button:hover {
+            background: #c49a6c;
+            transform: translateY(-2px);
+        }
+        .result {
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: none;
+        }
+        .result.show { display: block; }
+        .result-name { font-size: 1.8rem; font-weight: bold; margin: 0.5rem 0; }
+        
+        .section {
+            background: #FDF8F2;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .section h3 {
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background: #2A9D8F;
+            color: white;
+            border-radius: 12px;
+        }
+        .day-name { font-weight: bold; color: #2A9D8F; }
+        .female-name { color: #E76F51; }
+        .male-name { color: #D4A373; }
+        .month-name { font-weight: bold; color: #2A9D8F; }
+        
+        .info-box {
+            background: #e8f4f1;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .close-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        .close-btn:hover { background: #c49a6c; }
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            th, td { padding: 0.4rem; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📅 Akan Calendar</h1>
+        <p class="subtitle">Discover your Akan "soul name" based on your birth day, and learn the months of the year in Twi</p>
+
+        <!-- Day Name Finder -->
+        <div class="finder-card">
+            <h3>🔍 Find Your Akan Day Name</h3>
+            <p>Enter your birth date to discover your "soul name" (kradin)</p>
+            <div class="finder-input">
+                <input type="date" id="birthDate">
+                <button onclick="findDayName()">Find My Day Name →</button>
+            </div>
+            <div id="result" class="result">
+                <p>You were born on a <strong id="dayOfWeek"></strong></p>
+                <div class="result-name">
+                    Your Akan name: <span id="akanName"></span>
+                </div>
+                <p id="nameMeaning" style="font-size: 0.9rem; opacity: 0.9;"></p>
+            </div>
+        </div>
+
+        <!-- Days of the Week Table -->
+        <div class="section">
+            <h3>📆 Days of the Week - Akan Day Names</h3>
+            <table>
+                <thead>
+                    <tr><th>English</th><th>Twi</th><th>Female Name</th><th>Male Name</th><th>Meaning</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Monday</td><td class="day-name">Edwoada / Dwoada</td><td class="female-name">Adwoa / Adjoa</td><td class="male-name">Kwadwo</td><td>Peace</td></tr>
+                    <tr><td>Tuesday</td><td class="day-name">Ebenada / Benada</td><td class="female-name">Abena</td><td class="male-name">Kwabena</td><td>Ocean</td></tr>
+                    <tr><td>Wednesday</td><td class="day-name">Wukuada</td><td class="female-name">Akua</td><td class="male-name">Kwaku</td><td>Spider</td></tr>
+                    <tr><td>Thursday</td><td class="day-name">Yawoada</td><td class="female-name">Yaa</td><td class="male-name">Yaw</td><td>Earth</td></tr>
+                    <tr><td>Friday</td><td class="day-name">Efiada / Fiada</td><td class="female-name">Afia</td><td class="male-name">Kofi</td><td>Birth</td></tr>
+                    <tr><td>Saturday</td><td class="day-name">Memeneda</td><td class="female-name">Ama</td><td class="male-name">Kwame</td><td>God</td></tr>
+                    <tr><td>Sunday</td><td class="day-name">Kwasiada</td><td class="female-name">Akosua</td><td class="male-name">Kwesi / Akwasi</td><td>Universe</td></tr>
+                </tbody>
+            </table>
+            <div class="info-box">
+                💡 <strong>Did you know?</strong> In Akan culture, the day you were born determines your "soul name" (kradin). These names are believed to influence your character and destiny.
+            </div>
+        </div>
+
+        <!-- Months of the Year Table -->
+        <div class="section">
+            <h3>🗓️ Months of the Year in Twi</h3>
+            <table>
+                <thead>
+                    <tr><th>English</th><th>Twi Name</th><th>Meaning / Season</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>January</td><td class="month-name">Ɔpɛpɔn</td><td>Dry season / Harmattan</td></tr>
+                    <tr><td>February</td><td class="month-name">Ɔgyefoɔ / Ɔgyefuo</td><td>Hunting season</td></tr>
+                    <tr><td>March</td><td class="month-name">Ɔbɛnem</td><td>Dry / Hot season</td></tr>
+                    <tr><td>April</td><td class="month-name">Oforisuo</td><td>When the river begins to rise</td></tr>
+                    <tr><td>May</td><td class="month-name">Kɔtonimma / Kotonimma</td><td>Beginning of rains</td></tr>
+                    <tr><td>June</td><td class="month-name">Ayɛwohomumɔ</td><td>Weeding season</td></tr>
+                    <tr><td>July</td><td class="month-name">Kutawonsa / Kitawonsa</td><td>Heavy rains</td></tr>
+                    <tr><td>August</td><td class="month-name">Ɔsannaa / Ɔsanaa</td><td>Harvest season begins</td></tr>
+                    <tr><td>September</td><td class="month-name">Ɛbɔ</td><td>Yam harvest</td></tr>
+                    <tr><td>October</td><td class="month-name">Ahinime</td><td>Festival season</td></tr>
+                    <tr><td>November</td><td class="month-name">Obubuo</td><td>Peak harvest</td></tr>
+                    <tr><td>December</td><td class="month-name">Ɔpɛnimma</td><td>Festive / Celebration period</td></tr>
+                </tbody>
+            </table>
+            <div class="info-box">
+                💡 <strong>Cultural note:</strong> The Akan months are tied to agricultural cycles and weather patterns, reflecting the traditional farming calendar of the Akan people.
+            </div>
+        </div>
+
+        <!-- Pronunciation Audio Section -->
+        <div class="section">
+            <h3>🔊 Listen to Pronunciations</h3>
+            <p style="margin-bottom: 1rem;">Click on any day or month name to hear its pronunciation (audio coming soon)</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <button class="audio-btn" onclick="playAudio('Edwoada')">📢 Edwoada (Monday)</button>
+                <button class="audio-btn" onclick="playAudio('Ebenada')">📢 Ebenada (Tuesday)</button>
+                <button class="audio-btn" onclick="playAudio('Wukuada')">📢 Wukuada (Wednesday)</button>
+                <button class="audio-btn" onclick="playAudio('Yawoada')">📢 Yawoada (Thursday)</button>
+                <button class="audio-btn" onclick="playAudio('Efiada')">📢 Efiada (Friday)</button>
+                <button class="audio-btn" onclick="playAudio('Memeneda')">📢 Memeneda (Saturday)</button>
+                <button class="audio-btn" onclick="playAudio('Kwasiada')">📢 Kwasiada (Sunday)</button>
+            </div>
+            <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <button class="audio-btn" onclick="playAudio('Ɔpɛpɔn')">📢 Ɔpɛpɔn (January)</button>
+                <button class="audio-btn" onclick="playAudio('Ɔbɛnem')">📢 Ɔbɛnem (March)</button>
+                <button class="audio-btn" onclick="playAudio('Ɛbɔ')">📢 Ɛbɔ (September)</button>
+                <button class="audio-btn" onclick="playAudio('Obubuo')">📢 Obubuo (November)</button>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 1rem;">
+            <button class="close-btn" onclick="window.close()">❌ Close</button>
+        </div>
+        <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 1rem;">💡 Your Akan day name is traditionally given at birth and is often used as a first name.</p>
+    </div>
+
+    <script>
+        const dayData = {
+            0: { name: "Sunday", twi: "Kwasiada", female: "Akosua", male: "Kwesi / Akwasi", meaning: "Universe" },
+            1: { name: "Monday", twi: "Edwoada", female: "Adwoa / Adjoa", male: "Kwadwo", meaning: "Peace" },
+            2: { name: "Tuesday", twi: "Ebenada", female: "Abena", male: "Kwabena", meaning: "Ocean" },
+            3: { name: "Wednesday", twi: "Wukuada", female: "Akua", male: "Kwaku", meaning: "Spider" },
+            4: { name: "Thursday", twi: "Yawoada", female: "Yaa", male: "Yaw", meaning: "Earth" },
+            5: { name: "Friday", twi: "Efiada", female: "Afia", male: "Kofi", meaning: "Birth" },
+            6: { name: "Saturday", twi: "Memeneda", female: "Ama", male: "Kwame", meaning: "God" }
+        };
+
+        function findDayName() {
+            const dateInput = document.getElementById('birthDate').value;
+            if (!dateInput) {
+                alert('Please select your birth date');
+                return;
+            }
+
+            const birthDate = new Date(dateInput);
+            const dayOfWeek = birthDate.getDay();
+            const dayInfo = dayData[dayOfWeek];
+            
+            // Ask for gender to give correct name
+            const gender = confirm('Are you male? Click OK for Male, Cancel for Female');
+            const isMale = gender;
+            
+            const akanName = isMale ? dayInfo.male : dayInfo.female;
+            const genderText = isMale ? 'male' : 'female';
+            
+            document.getElementById('dayOfWeek').innerHTML = dayInfo.name;
+            document.getElementById('akanName').innerHTML = akanName;
+            document.getElementById('nameMeaning').innerHTML = `✨ ${akanName} means "${dayInfo.meaning}" in Akan. It is a ${genderText} name given to those born on ${dayInfo.name}.`;
+            
+            document.getElementById('result').classList.add('show');
+        }
+
+        function playAudio(word) {
+            const notification = document.createElement('div');
+            notification.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#2A9D8F;color:white;padding:8px 16px;border-radius:50px;z-index:10000;font-size:14px;';
+            notification.innerHTML = `🔊 Pronunciation coming soon: ${word}`;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 2000);
+        }
+    </script>
+</body>
+</html>
