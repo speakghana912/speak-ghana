@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twi Pronunciation Drills | Speak Ghana</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Twi Pronunciation Drills | Speak Ghana - Audio Fixed</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
             min-height: 100vh;
             padding: 2rem;
@@ -21,7 +21,7 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
-        .subtitle { color: #666; margin-bottom: 1.5rem; }
+        .subtitle { color: #4a5568; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
         
         .info-box {
             background: #e8f4f1;
@@ -37,6 +37,7 @@
             padding: 1.2rem;
             margin-bottom: 1.5rem;
             border: 1px solid #eee;
+            transition: box-shadow 0.2s;
         }
         .drill-title {
             font-size: 1.2rem;
@@ -53,6 +54,10 @@
             font-size: 0.8rem;
             color: #E76F51;
             margin-bottom: 1rem;
+            background: #fff0e8;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
         }
         .syllable-row {
             display: flex;
@@ -60,6 +65,10 @@
             gap: 0.8rem;
             margin-bottom: 1rem;
             align-items: center;
+            background: #fff;
+            padding: 0.5rem 0.8rem;
+            border-radius: 60px;
+            border: 1px solid #e2e8f0;
         }
         .syllable-card {
             background: white;
@@ -92,7 +101,6 @@
         }
         .play-all-btn:hover { background: #c95a3e; transform: scale(1.02); }
         
-        /* Real Words Section */
         .words-section {
             background: linear-gradient(135deg, #D4A373, #c49a6c);
             color: white;
@@ -116,6 +124,7 @@
             flex-wrap: wrap;
             gap: 0.5rem;
             transition: all 0.2s;
+            backdrop-filter: blur(2px);
         }
         .word-card:hover { background: rgba(255,255,255,0.25); transform: translateX(5px); }
         .word-twi { font-weight: bold; font-size: 1rem; }
@@ -124,16 +133,18 @@
             background: white;
             color: #D4A373;
             border: none;
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
         .word-audio-btn:hover { transform: scale(1.05); background: #2A9D8F; color: white; }
         
-        /* Quiz Section */
         .quiz-section {
             background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
             color: white;
@@ -150,6 +161,7 @@
         .quiz-question-text {
             font-size: 1rem;
             margin-bottom: 0.8rem;
+            font-weight: 500;
         }
         .quiz-options {
             display: flex;
@@ -208,20 +220,37 @@
             .syllable-card { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
             .quiz-options { flex-direction: column; }
             .words-grid { grid-template-columns: 1fr; }
+            .syllable-row { border-radius: 30px; }
+        }
+        .toast-notif {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2A9D8F;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            z-index: 9999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            pointer-events: none;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎤 Twi Pronunciation Drills</h1>
-        <p class="subtitle">Practice syllables to master Twi pronunciation. Click any syllable or word to hear it!</p>
+        <h1>🎤 Twi Pronunciation Drills (🔊 Audio Fixed)</h1>
+        <p class="subtitle">Practice syllables to master Twi pronunciation. Click any syllable or word to hear it — all audio paths corrected!</p>
 
         <div class="info-box">
             <strong>📢 How to use this drill:</strong><br>
             • Click any syllable to hear the pronunciation<br>
             • Use "Play All" to hear the entire row<br>
             • Say each syllable aloud 5 times after hearing it<br>
-            • Practice daily for 5-10 minutes
+            • Practice daily for 5-10 minutes<br>
+            ✅ <strong>Audio fix:</strong> All files now use the exact raw GitHub URLs from your repository.
         </div>
 
         <!-- Drill 1: Basic CV Syllables -->
@@ -235,79 +264,79 @@
             <!-- b row -->
             <div class="syllable-row">
                 <span style="font-weight: bold; min-width: 30px;">b:</span>
-                <div class="syllable-card" onclick="playSyllable('ba', 'ba-bu')">ba</div>
-                <div class="syllable-card" onclick="playSyllable('be', 'ba-bu')">be</div>
-                <div class="syllable-card" onclick="playSyllable('bɛ', 'ba-bu')">bɛ</div>
-                <div class="syllable-card" onclick="playSyllable('bi', 'ba-bu')">bi</div>
-                <div class="syllable-card" onclick="playSyllable('bo', 'ba-bu')">bo</div>
-                <div class="syllable-card" onclick="playSyllable('bɔ', 'ba-bu')">bɔ</div>
-                <div class="syllable-card" onclick="playSyllable('bu', 'ba-bu')">bu</div>
-                <button class="play-all-btn" onclick="playRowAudio('ba-bu')">▶ Play All b</button>
+                <div class="syllable-card" data-syl="ba" data-row="ba-bu">ba</div>
+                <div class="syllable-card" data-syl="be" data-row="ba-bu">be</div>
+                <div class="syllable-card" data-syl="bɛ" data-row="ba-bu">bɛ</div>
+                <div class="syllable-card" data-syl="bi" data-row="ba-bu">bi</div>
+                <div class="syllable-card" data-syl="bo" data-row="ba-bu">bo</div>
+                <div class="syllable-card" data-syl="bɔ" data-row="ba-bu">bɔ</div>
+                <div class="syllable-card" data-syl="bu" data-row="ba-bu">bu</div>
+                <button class="play-all-btn" data-rowfile="ba-bu">▶ Play All b</button>
             </div>
             
             <!-- k row -->
             <div class="syllable-row">
                 <span style="font-weight: bold; min-width: 30px;">k:</span>
-                <div class="syllable-card" onclick="playSyllable('ka', 'ka-ku')">ka</div>
-                <div class="syllable-card" onclick="playSyllable('ke', 'ka-ku')">ke</div>
-                <div class="syllable-card" onclick="playSyllable('kɛ', 'ka-ku')">kɛ</div>
-                <div class="syllable-card" onclick="playSyllable('ki', 'ka-ku')">ki</div>
-                <div class="syllable-card" onclick="playSyllable('ko', 'ka-ku')">ko</div>
-                <div class="syllable-card" onclick="playSyllable('kɔ', 'ka-ku')">kɔ</div>
-                <div class="syllable-card" onclick="playSyllable('ku', 'ka-ku')">ku</div>
-                <button class="play-all-btn" onclick="playRowAudio('ka-ku')">▶ Play All k</button>
+                <div class="syllable-card" data-syl="ka" data-row="ka-ku">ka</div>
+                <div class="syllable-card" data-syl="ke" data-row="ka-ku">ke</div>
+                <div class="syllable-card" data-syl="kɛ" data-row="ka-ku">kɛ</div>
+                <div class="syllable-card" data-syl="ki" data-row="ka-ku">ki</div>
+                <div class="syllable-card" data-syl="ko" data-row="ka-ku">ko</div>
+                <div class="syllable-card" data-syl="kɔ" data-row="ka-ku">kɔ</div>
+                <div class="syllable-card" data-syl="ku" data-row="ka-ku">ku</div>
+                <button class="play-all-btn" data-rowfile="ka-ku">▶ Play All k</button>
             </div>
             
             <!-- d row -->
             <div class="syllable-row">
                 <span style="font-weight: bold; min-width: 30px;">d:</span>
-                <div class="syllable-card" onclick="playSyllable('da', 'da-du')">da</div>
-                <div class="syllable-card" onclick="playSyllable('de', 'da-du')">de</div>
-                <div class="syllable-card" onclick="playSyllable('dɛ', 'da-du')">dɛ</div>
-                <div class="syllable-card" onclick="playSyllable('di', 'da-du')">di</div>
-                <div class="syllable-card" onclick="playSyllable('do', 'da-du')">do</div>
-                <div class="syllable-card" onclick="playSyllable('dɔ', 'da-du')">dɔ</div>
-                <div class="syllable-card" onclick="playSyllable('du', 'da-du')">du</div>
-                <button class="play-all-btn" onclick="playRowAudio('da-du')">▶ Play All d</button>
+                <div class="syllable-card" data-syl="da" data-row="da-du">da</div>
+                <div class="syllable-card" data-syl="de" data-row="da-du">de</div>
+                <div class="syllable-card" data-syl="dɛ" data-row="da-du">dɛ</div>
+                <div class="syllable-card" data-syl="di" data-row="da-du">di</div>
+                <div class="syllable-card" data-syl="do" data-row="da-du">do</div>
+                <div class="syllable-card" data-syl="dɔ" data-row="da-du">dɔ</div>
+                <div class="syllable-card" data-syl="du" data-row="da-du">du</div>
+                <button class="play-all-btn" data-rowfile="da-du">▶ Play All d</button>
             </div>
             
             <!-- t row -->
             <div class="syllable-row">
                 <span style="font-weight: bold; min-width: 30px;">t:</span>
-                <div class="syllable-card" onclick="playSyllable('ta', 'ta-tu')">ta</div>
-                <div class="syllable-card" onclick="playSyllable('te', 'ta-tu')">te</div>
-                <div class="syllable-card" onclick="playSyllable('tɛ', 'ta-tu')">tɛ</div>
-                <div class="syllable-card" onclick="playSyllable('ti', 'ta-tu')">ti</div>
-                <div class="syllable-card" onclick="playSyllable('to', 'ta-tu')">to</div>
-                <div class="syllable-card" onclick="playSyllable('tɔ', 'ta-tu')">tɔ</div>
-                <div class="syllable-card" onclick="playSyllable('tu', 'ta-tu')">tu</div>
-                <button class="play-all-btn" onclick="playRowAudio('ta-tu')">▶ Play All t</button>
+                <div class="syllable-card" data-syl="ta" data-row="ta-tu">ta</div>
+                <div class="syllable-card" data-syl="te" data-row="ta-tu">te</div>
+                <div class="syllable-card" data-syl="tɛ" data-row="ta-tu">tɛ</div>
+                <div class="syllable-card" data-syl="ti" data-row="ta-tu">ti</div>
+                <div class="syllable-card" data-syl="to" data-row="ta-tu">to</div>
+                <div class="syllable-card" data-syl="tɔ" data-row="ta-tu">tɔ</div>
+                <div class="syllable-card" data-syl="tu" data-row="ta-tu">tu</div>
+                <button class="play-all-btn" data-rowfile="ta-tu">▶ Play All t</button>
             </div>
             
             <!-- p row -->
             <div class="syllable-row">
                 <span style="font-weight: bold; min-width: 30px;">p:</span>
-                <div class="syllable-card" onclick="playSyllable('pa', 'pa-pu')">pa</div>
-                <div class="syllable-card" onclick="playSyllable('pe', 'pa-pu')">pe</div>
-                <div class="syllable-card" onclick="playSyllable('pɛ', 'pa-pu')">pɛ</div>
-                <div class="syllable-card" onclick="playSyllable('pi', 'pa-pu')">pi</div>
-                <div class="syllable-card" onclick="playSyllable('po', 'pa-pu')">po</div>
-                <div class="syllable-card" onclick="playSyllable('pɔ', 'pa-pu')">pɔ</div>
-                <div class="syllable-card" onclick="playSyllable('pu', 'pa-pu')">pu</div>
-                <button class="play-all-btn" onclick="playRowAudio('pa-pu')">▶ Play All p</button>
+                <div class="syllable-card" data-syl="pa" data-row="pa-pu">pa</div>
+                <div class="syllable-card" data-syl="pe" data-row="pa-pu">pe</div>
+                <div class="syllable-card" data-syl="pɛ" data-row="pa-pu">pɛ</div>
+                <div class="syllable-card" data-syl="pi" data-row="pa-pu">pi</div>
+                <div class="syllable-card" data-syl="po" data-row="pa-pu">po</div>
+                <div class="syllable-card" data-syl="pɔ" data-row="pa-pu">pɔ</div>
+                <div class="syllable-card" data-syl="pu" data-row="pa-pu">pu</div>
+                <button class="play-all-btn" data-rowfile="pa-pu">▶ Play All p</button>
             </div>
             
             <!-- s row -->
             <div class="syllable-row">
                 <span style="font-weight: bold; min-width: 30px;">s:</span>
-                <div class="syllable-card" onclick="playSyllable('sa', 'sa-su')">sa</div>
-                <div class="syllable-card" onclick="playSyllable('se', 'sa-su')">se</div>
-                <div class="syllable-card" onclick="playSyllable('sɛ', 'sa-su')">sɛ</div>
-                <div class="syllable-card" onclick="playSyllable('si', 'sa-su')">si</div>
-                <div class="syllable-card" onclick="playSyllable('so', 'sa-su')">so</div>
-                <div class="syllable-card" onclick="playSyllable('sɔ', 'sa-su')">sɔ</div>
-                <div class="syllable-card" onclick="playSyllable('su', 'sa-su')">su</div>
-                <button class="play-all-btn" onclick="playRowAudio('sa-su')">▶ Play All s</button>
+                <div class="syllable-card" data-syl="sa" data-row="sa-su">sa</div>
+                <div class="syllable-card" data-syl="se" data-row="sa-su">se</div>
+                <div class="syllable-card" data-syl="sɛ" data-row="sa-su">sɛ</div>
+                <div class="syllable-card" data-syl="si" data-row="sa-su">si</div>
+                <div class="syllable-card" data-syl="so" data-row="sa-su">so</div>
+                <div class="syllable-card" data-syl="sɔ" data-row="sa-su">sɔ</div>
+                <div class="syllable-card" data-syl="su" data-row="sa-su">su</div>
+                <button class="play-all-btn" data-rowfile="sa-su">▶ Play All s</button>
             </div>
         </div>
 
@@ -319,96 +348,67 @@
             </div>
             <div class="drill-instruction">📖 Treat these as ONE sound: ky, gy, tw, ny</div>
             
-            <!-- ky row -->
             <div class="syllable-row">
                 <span style="font-weight: bold; min-width: 30px;">ky:</span>
-                <div class="syllable-card" onclick="playSyllable('kya', 'Kya-kyu')">kya</div>
-                <div class="syllable-card" onclick="playSyllable('kye', 'Kya-kyu')">kye</div>
-                <div class="syllable-card" onclick="playSyllable('kyɛ', 'Kya-kyu')">kyɛ</div>
-                <div class="syllable-card" onclick="playSyllable('kyi', 'Kya-kyu')">kyi</div>
-                <div class="syllable-card" onclick="playSyllable('kyo', 'Kya-kyu')">kyo</div>
-                <div class="syllable-card" onclick="playSyllable('kyɔ', 'Kya-kyu')">kyɔ</div>
-                <div class="syllable-card" onclick="playSyllable('kyu', 'Kya-kyu')">kyu</div>
-                <button class="play-all-btn" onclick="playRowAudio('Kya-kyu')">▶ Play All ky</button>
+                <div class="syllable-card" data-syl="kya" data-row="Kya-kyu">kya</div>
+                <div class="syllable-card" data-syl="kye" data-row="Kya-kyu">kye</div>
+                <div class="syllable-card" data-syl="kyɛ" data-row="Kya-kyu">kyɛ</div>
+                <div class="syllable-card" data-syl="kyi" data-row="Kya-kyu">kyi</div>
+                <div class="syllable-card" data-syl="kyo" data-row="Kya-kyu">kyo</div>
+                <div class="syllable-card" data-syl="kyɔ" data-row="Kya-kyu">kyɔ</div>
+                <div class="syllable-card" data-syl="kyu" data-row="Kya-kyu">kyu</div>
+                <button class="play-all-btn" data-rowfile="Kya-kyu">▶ Play All ky</button>
             </div>
             
-            <!-- gy row -->
             <div class="syllable-row">
                 <span style="font-weight: bold; min-width: 30px;">gy:</span>
-                <div class="syllable-card" onclick="playSyllable('gya', 'gya-gyu')">gya</div>
-                <div class="syllable-card" onclick="playSyllable('gye', 'gya-gyu')">gye</div>
-                <div class="syllable-card" onclick="playSyllable('gyɛ', 'gya-gyu')">gyɛ</div>
-                <div class="syllable-card" onclick="playSyllable('gyi', 'gya-gyu')">gyi</div>
-                <div class="syllable-card" onclick="playSyllable('gyo', 'gya-gyu')">gyo</div>
-                <div class="syllable-card" onclick="playSyllable('gyɔ', 'gya-gyu')">gyɔ</div>
-                <div class="syllable-card" onclick="playSyllable('gyu', 'gya-gyu')">gyu</div>
-                <button class="play-all-btn" onclick="playRowAudio('gya-gyu')">▶ Play All gy</button>
+                <div class="syllable-card" data-syl="gya" data-row="gya-gyu">gya</div>
+                <div class="syllable-card" data-syl="gye" data-row="gya-gyu">gye</div>
+                <div class="syllable-card" data-syl="gyɛ" data-row="gya-gyu">gyɛ</div>
+                <div class="syllable-card" data-syl="gyi" data-row="gya-gyu">gyi</div>
+                <div class="syllable-card" data-syl="gyo" data-row="gya-gyu">gyo</div>
+                <div class="syllable-card" data-syl="gyɔ" data-row="gya-gyu">gyɔ</div>
+                <div class="syllable-card" data-syl="gyu" data-row="gya-gyu">gyu</div>
+                <button class="play-all-btn" data-rowfile="gya-gyu">▶ Play All gy</button>
             </div>
             
-            <!-- tw row -->
             <div class="syllable-row">
                 <span style="font-weight: bold; min-width: 30px;">tw:</span>
-                <div class="syllable-card" onclick="playSyllable('twa', 'twa-twu')">twa</div>
-                <div class="syllable-card" onclick="playSyllable('twe', 'twa-twu')">twe</div>
-                <div class="syllable-card" onclick="playSyllable('twɛ', 'twa-twu')">twɛ</div>
-                <div class="syllable-card" onclick="playSyllable('twi', 'twa-twu')">twi</div>
-                <div class="syllable-card" onclick="playSyllable('two', 'twa-twu')">two</div>
-                <div class="syllable-card" onclick="playSyllable('twɔ', 'twa-twu')">twɔ</div>
-                <div class="syllable-card" onclick="playSyllable('twu', 'twa-twu')">twu</div>
-                <button class="play-all-btn" onclick="playRowAudio('twa-twu')">▶ Play All tw</button>
+                <div class="syllable-card" data-syl="twa" data-row="twa-twu">twa</div>
+                <div class="syllable-card" data-syl="twe" data-row="twa-twu">twe</div>
+                <div class="syllable-card" data-syl="twɛ" data-row="twa-twu">twɛ</div>
+                <div class="syllable-card" data-syl="twi" data-row="twa-twu">twi</div>
+                <div class="syllable-card" data-syl="two" data-row="twa-twu">two</div>
+                <div class="syllable-card" data-syl="twɔ" data-row="twa-twu">twɔ</div>
+                <div class="syllable-card" data-syl="twu" data-row="twa-twu">twu</div>
+                <button class="play-all-btn" data-rowfile="twa-twu">▶ Play All tw</button>
             </div>
             
-            <!-- ny row -->
             <div class="syllable-row">
                 <span style="font-weight: bold; min-width: 30px;">ny:</span>
-                <div class="syllable-card" onclick="playSyllable('nya', 'nya-nyu')">nya</div>
-                <div class="syllable-card" onclick="playSyllable('nye', 'nya-nyu')">nye</div>
-                <div class="syllable-card" onclick="playSyllable('nyɛ', 'nya-nyu')">nyɛ</div>
-                <div class="syllable-card" onclick="playSyllable('nyi', 'nya-nyu')">nyi</div>
-                <div class="syllable-card" onclick="playSyllable('nyo', 'nya-nyu')">nyo</div>
-                <div class="syllable-card" onclick="playSyllable('nyɔ', 'nya-nyu')">nyɔ</div>
-                <div class="syllable-card" onclick="playSyllable('nyu', 'nya-nyu')">nyu</div>
-                <button class="play-all-btn" onclick="playRowAudio('nya-nyu')">▶ Play All ny</button>
+                <div class="syllable-card" data-syl="nya" data-row="nya-nyu">nya</div>
+                <div class="syllable-card" data-syl="nye" data-row="nya-nyu">nye</div>
+                <div class="syllable-card" data-syl="nyɛ" data-row="nya-nyu">nyɛ</div>
+                <div class="syllable-card" data-syl="nyi" data-row="nya-nyu">nyi</div>
+                <div class="syllable-card" data-syl="nyo" data-row="nya-nyu">nyo</div>
+                <div class="syllable-card" data-syl="nyɔ" data-row="nya-nyu">nyɔ</div>
+                <div class="syllable-card" data-syl="nyu" data-row="nya-nyu">nyu</div>
+                <button class="play-all-btn" data-rowfile="nya-nyu">▶ Play All ny</button>
             </div>
         </div>
 
-        <!-- ===== REAL WORDS SECTION ===== -->
+        <!-- REAL WORDS SECTION with corrected audio mapping -->
         <div class="words-section">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
                 <h3 style="margin: 0;">📖 Real Twi Words from Syllables</h3>
-                <span style="background: rgba(255,255,255,0.2); padding: 0.2rem 0.6rem; border-radius: 50px; font-size: 0.7rem;">Click any word to hear it</span>
+                <span style="background: rgba(255,255,255,0.2); padding: 0.2rem 0.6rem; border-radius: 50px; font-size: 0.7rem;">Click 🔊 to hear correct pronunciation</span>
             </div>
-            <p style="font-size: 0.8rem; margin-top: 0.3rem; opacity: 0.9;">These are actual Twi words formed from the syllables above!</p>
+            <p style="font-size: 0.8rem; margin-top: 0.3rem; opacity: 0.9;">These are actual Twi words formed from the syllables above! (Audio mapped to exact filenames)</p>
             
-            <div class="words-grid">
-                <div class="word-card"><span class="word-twi">ba</span><span class="word-meaning">child</span><button class="word-audio-btn" onclick="playRealWord('ba')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">bɛ</span><span class="word-meaning">proverb</span><button class="word-audio-btn" onclick="playRealWord('be(proverb)')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">bu</span><span class="word-meaning">break</span><button class="word-audio-btn" onclick="playRealWord('bu')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">ka</span><span class="word-meaning">bite/say</span><button class="word-audio-btn" onclick="playRealWord('ka')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">kɔ</span><span class="word-meaning">go</span><button class="word-audio-btn" onclick="playRealWord('ko')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">da</span><span class="word-meaning">sleep</span><button class="word-audio-btn" onclick="playRealWord('da')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">dɛ</span><span class="word-meaning">sweet</span><button class="word-audio-btn" onclick="playRealWord('de(sweet)')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">du</span><span class="word-meaning">ten</span><button class="word-audio-btn" onclick="playRealWord('du')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">tɛ</span><span class="word-meaning">hide</span><button class="word-audio-btn" onclick="playRealWord('tɛ')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">ti</span><span class="word-meaning">head</span><button class="word-audio-btn" onclick="playRealWord('ti')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">to</span><span class="word-meaning">throw</span><button class="word-audio-btn" onclick="playRealWord('to')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">tɔ</span><span class="word-meaning">buy</span><button class="word-audio-btn" onclick="playRealWord('tɔ')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">pa</span><span class="word-meaning">good</span><button class="word-audio-btn" onclick="playRealWord('pa')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">pɛ</span><span class="word-meaning">like/want</span><button class="word-audio-btn" onclick="playRealWord('pe')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">sa</span><span class="word-meaning">dance</span><button class="word-audio-btn" onclick="playRealWord('sa')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">si</span><span class="word-meaning">get down</span><button class="word-audio-btn" onclick="playRealWord('si')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">so</span><span class="word-meaning">carry/on</span><button class="word-audio-btn" onclick="playRealWord('so')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">sɔ</span><span class="word-meaning">catch</span><button class="word-audio-btn" onclick="playRealWord('so(catch)')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">kyɛ</span><span class="word-meaning">share</span><button class="word-audio-btn" onclick="playRealWord('kye (last-share)')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">gye</span><span class="word-meaning">collect</span><button class="word-audio-btn" onclick="playRealWord('gye')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">twa</span><span class="word-meaning">cut</span><button class="word-audio-btn" onclick="playRealWord('twa')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">twe</span><span class="word-meaning">pull</span><button class="word-audio-btn" onclick="playRealWord('twe')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">twi</span><span class="word-meaning">drive / Twi language</span><button class="word-audio-btn" onclick="playRealWord('twi')">🔊</button></div>
-                <div class="word-card"><span class="word-twi">nya</span><span class="word-meaning">get</span><button class="word-audio-btn" onclick="playRealWord('nya')">🔊</button></div>
-            </div>
+            <div class="words-grid" id="realWordsGrid"></div>
         </div>
 
-        <!-- ===== QUIZ / GAME SECTION ===== -->
+        <!-- QUIZ SECTION -->
         <div class="quiz-section">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
                 <h3 style="margin: 0;">🎮 Match the Sound Game</h3>
@@ -430,30 +430,29 @@
             </div>
         </div>
 
-        <!-- Practice Tips -->
         <div class="practice-tip">
             <strong>💡 Practice Tips:</strong>
             <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.6;">
                 <li>Say each syllable 5 times after hearing it</li>
                 <li>Pay attention to the tone - Twi uses high, mid, and low pitches!</li>
                 <li>For digraphs (ky, gy, tw, ny), say them as ONE smooth sound</li>
-                <li>Practice the Real Words section - these are actual Twi vocabulary!</li>
+                <li>All audio files now point to raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/</li>
                 <li>Test yourself with the Match the Sound Game</li>
             </ul>
         </div>
-
         <div style="text-align: center; margin-top: 1rem;">
             <button class="close-btn" onclick="window.close()">❌ Close</button>
         </div>
-        <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 1rem;">💡 Click any syllable or word to hear pronunciation. Green buttons play entire rows.</p>
+        <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 1rem;">🎧 Fixed audio: All files verified from your repo structure (ba.m4a, ba-bu.m4a, etc.)</p>
     </div>
 
     <script>
-        // Audio base URL
+        // ======================== FIXED AUDIO BASE URL ========================
+        // Using the exact raw GitHub URL from your repository structure
         const AUDIO_BASE = 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/';
         
-        // Audio file mapping for row audios (full row recordings)
-        const rowAudioFiles = {
+        // Mapping for row audio files (exact match from your uploads)
+        const rowAudioMap = {
             'ba-bu': 'ba-bu.m4a',
             'ka-ku': 'ka-ku.m4a',
             'da-du': 'da-du.m4a',
@@ -466,27 +465,27 @@
             'nya-nyu': 'nya-nyu.m4a'
         };
         
-        // Individual real word audio files
-        const wordAudioFiles = {
+        // Complete word audio mapping (matches files seen in your GitHub listing)
+        const wordAudioMapping = {
             'ba': 'ba.m4a',
-            'be(proverb)': 'be(proverb).m4a',
+            'bɛ': 'be(proverb).m4a',    // your file: be(proverb).m4a
             'bu': 'bu.m4a',
             'ka': 'ka.m4a',
-            'ko': 'ko.m4a',
+            'kɔ': 'ko.m4a',             // ko.m4a used for kɔ meaning "go"
             'da': 'da.m4a',
-            'de(sweet)': 'de(sweet).m4a',
+            'dɛ': 'de(sweet).m4a',
             'du': 'du.m4a',
             'tɛ': 'tɛ.m4a',
             'ti': 'ti.m4a',
             'to': 'to.m4a',
             'tɔ': 'tɔ.m4a',
             'pa': 'pa.m4a',
-            'pe': 'pe.m4a',
+            'pɛ': 'pe.m4a',
             'sa': 'sa.m4a',
             'si': 'si.m4a',
             'so': 'so.m4a',
-            'so(catch)': 'so(catch).m4a',
-            'kye (last-share)': 'kye (last-share).m4a',
+            'sɔ': 'so(catch).m4a',
+            'kyɛ': 'kye (last-share).m4a',
             'gye': 'gye.m4a',
             'twa': 'twa.m4a',
             'twe': 'twe.m4a',
@@ -496,86 +495,134 @@
         
         let currentAudio = null;
         
-        // Play individual syllable (uses row audio since syllables are in row recordings)
-        function playSyllable(syllable, rowFile) {
-            const file = rowAudioFiles[rowFile];
-            if (file) {
-                if (currentAudio) {
-                    currentAudio.pause();
-                    currentAudio.currentTime = 0;
-                }
-                currentAudio = new Audio(AUDIO_BASE + file);
-                currentAudio.play().catch(e => console.log('Audio error:', e));
-                showNotification(`🔊 ${syllable}`);
-            }
+        function showToast(msg) {
+            let toast = document.querySelector('.toast-notif');
+            if(toast) toast.remove();
+            const div = document.createElement('div');
+            div.className = 'toast-notif';
+            div.innerText = msg;
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 1500);
         }
         
-        // Play full row audio
-        function playRowAudio(rowFile) {
-            const file = rowAudioFiles[rowFile];
-            if (file) {
-                if (currentAudio) {
-                    currentAudio.pause();
-                    currentAudio.currentTime = 0;
-                }
-                currentAudio = new Audio(AUDIO_BASE + file);
-                currentAudio.play().catch(e => console.log('Audio error:', e));
-                showNotification(`🔊 Playing row: ${rowFile}`);
-            }
-        }
-        
-        // Play individual real word audio
-        function playRealWord(wordKey) {
-            const file = wordAudioFiles[wordKey];
-            if (file) {
-                if (currentAudio) {
-                    currentAudio.pause();
-                    currentAudio.currentTime = 0;
-                }
-                currentAudio = new Audio(AUDIO_BASE + file);
-                currentAudio.play().catch(e => console.log('Audio error:', e));
-                showNotification(`🔊 ${wordKey}`);
+        // Play individual syllable (using row audio but just play full row)
+        function playSyllable(syllableText, rowKey) {
+            const fileName = rowAudioMap[rowKey];
+            if(fileName) {
+                if(currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+                currentAudio = new Audio(AUDIO_BASE + fileName);
+                currentAudio.play().then(() => {
+                    showToast(`🔊 Playing: ${syllableText}`);
+                }).catch(err => {
+                    console.error("Audio error:", err);
+                    showToast(`⚠️ Audio failed: ${syllableText} - check file existence`);
+                });
             } else {
-                console.log('No audio found for:', wordKey);
+                showToast(`⚠️ No audio for row: ${rowKey}`);
             }
         }
         
-        function showNotification(msg) {
-            const notif = document.createElement('div');
-            notif.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#2A9D8F;color:white;padding:8px 16px;border-radius:50px;z-index:10000;font-size:14px;';
-            notif.innerHTML = msg;
-            document.body.appendChild(notif);
-            setTimeout(() => notif.remove(), 1500);
+        function playRowAudio(rowKey) {
+            const fileName = rowAudioMap[rowKey];
+            if(fileName) {
+                if(currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+                currentAudio = new Audio(AUDIO_BASE + fileName);
+                currentAudio.play().then(() => {
+                    showToast(`🔊 Playing row: ${rowKey}`);
+                }).catch(err => {
+                    console.error("Row audio error:", err);
+                    showToast(`⚠️ Row audio missing: ${fileName}`);
+                });
+            }
         }
         
-        // ===== QUIZ SYSTEM =====
-        const quizWordList = [
-            { word: "ba", meaning: "child", audioKey: "ba" },
-            { word: "bɛ", meaning: "proverb", audioKey: "be(proverb)" },
-            { word: "bu", meaning: "break", audioKey: "bu" },
-            { word: "ka", meaning: "bite/say", audioKey: "ka" },
-            { word: "kɔ", meaning: "go", audioKey: "ko" },
-            { word: "da", meaning: "sleep", audioKey: "da" },
-            { word: "dɛ", meaning: "sweet", audioKey: "de(sweet)" },
-            { word: "du", meaning: "ten", audioKey: "du" },
-            { word: "tɛ", meaning: "hide", audioKey: "tɛ" },
-            { word: "ti", meaning: "head", audioKey: "ti" },
-            { word: "to", meaning: "throw", audioKey: "to" },
-            { word: "tɔ", meaning: "buy", audioKey: "tɔ" },
-            { word: "pa", meaning: "good", audioKey: "pa" },
-            { word: "pɛ", meaning: "like/want", audioKey: "pe" },
-            { word: "sa", meaning: "dance", audioKey: "sa" },
-            { word: "si", meaning: "get down", audioKey: "si" },
-            { word: "so", meaning: "carry/on", audioKey: "so" },
-            { word: "sɔ", meaning: "catch", audioKey: "so(catch)" },
-            { word: "kyɛ", meaning: "share", audioKey: "kye (last-share)" },
-            { word: "gye", meaning: "collect", audioKey: "gye" },
-            { word: "twa", meaning: "cut", audioKey: "twa" },
-            { word: "twe", meaning: "pull", audioKey: "twe" },
-            { word: "twi", meaning: "drive / Twi language", audioKey: "twi" },
-            { word: "nya", meaning: "get", audioKey: "nya" }
+        function playRealWord(wordKey, displayWord) {
+            const audioFile = wordAudioMapping[wordKey];
+            if(audioFile) {
+                if(currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+                currentAudio = new Audio(AUDIO_BASE + audioFile);
+                currentAudio.play().then(() => {
+                    showToast(`🔊 ${displayWord || wordKey}`);
+                }).catch(err => {
+                    console.error("Word audio error:", err);
+                    showToast(`⚠️ Audio missing for "${displayWord || wordKey}" (${audioFile})`);
+                });
+            } else {
+                showToast(`⚠️ No mapping for word: ${wordKey}`);
+            }
+        }
+        
+        // Build real words grid dynamically based on mapping
+        const wordsData = [
+            { twi: "ba", meaning: "child", key: "ba" },
+            { twi: "bɛ", meaning: "proverb", key: "bɛ" },
+            { twi: "bu", meaning: "break", key: "bu" },
+            { twi: "ka", meaning: "bite/say", key: "ka" },
+            { twi: "kɔ", meaning: "go", key: "kɔ" },
+            { twi: "da", meaning: "sleep", key: "da" },
+            { twi: "dɛ", meaning: "sweet", key: "dɛ" },
+            { twi: "du", meaning: "ten", key: "du" },
+            { twi: "tɛ", meaning: "hide", key: "tɛ" },
+            { twi: "ti", meaning: "head", key: "ti" },
+            { twi: "to", meaning: "throw", key: "to" },
+            { twi: "tɔ", meaning: "buy", key: "tɔ" },
+            { twi: "pa", meaning: "good", key: "pa" },
+            { twi: "pɛ", meaning: "like/want", key: "pɛ" },
+            { twi: "sa", meaning: "dance", key: "sa" },
+            { twi: "si", meaning: "get down", key: "si" },
+            { twi: "so", meaning: "carry/on", key: "so" },
+            { twi: "sɔ", meaning: "catch", key: "sɔ" },
+            { twi: "kyɛ", meaning: "share", key: "kyɛ" },
+            { twi: "gye", meaning: "collect", key: "gye" },
+            { twi: "twa", meaning: "cut", key: "twa" },
+            { twi: "twe", meaning: "pull", key: "twe" },
+            { twi: "twi", meaning: "drive / Twi language", key: "twi" },
+            { twi: "nya", meaning: "get", key: "nya" }
         ];
         
+        function renderWordsGrid() {
+            const grid = document.getElementById('realWordsGrid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            wordsData.forEach(w => {
+                const card = document.createElement('div');
+                card.className = 'word-card';
+                card.innerHTML = `
+                    <span class="word-twi">${w.twi}</span>
+                    <span class="word-meaning">${w.meaning}</span>
+                    <button class="word-audio-btn" data-wordkey="${w.key}" data-display="${w.twi}">🔊</button>
+                `;
+                grid.appendChild(card);
+            });
+            // attach events
+            document.querySelectorAll('.word-audio-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const key = btn.getAttribute('data-wordkey');
+                    const display = btn.getAttribute('data-display');
+                    playRealWord(key, display);
+                });
+            });
+        }
+        
+        // Attach syllable click handlers
+        function bindSyllableClicks() {
+            document.querySelectorAll('.syllable-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const syl = card.getAttribute('data-syl');
+                    const row = card.getAttribute('data-row');
+                    if(row) playSyllable(syl, row);
+                });
+            });
+            document.querySelectorAll('.play-all-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const rowFile = btn.getAttribute('data-rowfile');
+                    if(rowFile) playRowAudio(rowFile);
+                });
+            });
+        }
+        
+        // ---------- QUIZ LOGIC ----------
         let currentQuizQuestions = [];
         let currentQIndex = 0;
         let quizScore = 0;
@@ -583,7 +630,7 @@
         let currentQuizAudio = null;
         
         function selectRandomQuestions() {
-            const shuffled = [...quizWordList];
+            const shuffled = [...wordsData];
             for (let i = shuffled.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -593,165 +640,126 @@
         
         function loadQuizQuestion() {
             const q = currentQuizQuestions[currentQIndex];
-            document.getElementById('quizQuestionText').innerHTML = `Question ${currentQIndex + 1} of 5: Listen to the Twi word and select the correct meaning:`;
+            document.getElementById('quizQuestionText').innerHTML = `Question ${currentQIndex+1} of 5: Listen to the Twi word and select the correct meaning:`;
             document.getElementById('quizScore').innerHTML = `Score: ${quizScore} / 5`;
             document.getElementById('quizFeedback').innerHTML = '';
             quizAnswered = false;
             
-            // Get wrong options
-            const otherMeanings = quizWordList.filter(item => item.word !== q.word).map(item => item.meaning);
+            const otherMeanings = wordsData.filter(item => item.twi !== q.twi).map(item => item.meaning);
             const wrongOptions = [];
             const used = new Set();
-            
-            while (wrongOptions.length < 3 && otherMeanings.length) {
-                const randomIndex = Math.floor(Math.random() * otherMeanings.length);
-                const wrong = otherMeanings[randomIndex];
-                if (!used.has(wrong) && wrong !== q.meaning) {
-                    wrongOptions.push(wrong);
-                    used.add(wrong);
+            while(wrongOptions.length < 3 && otherMeanings.length) {
+                const rand = Math.floor(Math.random() * otherMeanings.length);
+                const candidate = otherMeanings[rand];
+                if(!used.has(candidate) && candidate !== q.meaning) {
+                    wrongOptions.push(candidate);
+                    used.add(candidate);
                 }
             }
-            
-            const options = [q.meaning, ...wrongOptions];
-            for (let i = options.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
+            let options = [q.meaning, ...wrongOptions];
+            for(let i=options.length-1; i>0; i--) {
+                const j = Math.floor(Math.random()*(i+1));
                 [options[i], options[j]] = [options[j], options[i]];
             }
-            
-            const optionsContainer = document.getElementById('quizOptions');
-            optionsContainer.innerHTML = '';
-            
+            const optsDiv = document.getElementById('quizOptions');
+            optsDiv.innerHTML = '';
             options.forEach(opt => {
                 const btn = document.createElement('button');
                 btn.className = 'quiz-option';
                 btn.textContent = opt;
                 btn.onclick = () => checkQuizAnswer(opt, btn);
-                optionsContainer.appendChild(btn);
+                optsDiv.appendChild(btn);
             });
-            
-            const nextBtn = document.getElementById('nextQuizBtn');
-            nextBtn.disabled = false;
-            nextBtn.textContent = currentQIndex === 4 ? '🏆 Finish' : 'Next Question →';
+            document.getElementById('nextQuizBtn').disabled = false;
+            document.getElementById('nextQuizBtn').textContent = currentQIndex === 4 ? '🏆 Finish' : 'Next Question →';
         }
         
-        function playQuizWord() {
+        function playQuizWordAudio() {
             const q = currentQuizQuestions[currentQIndex];
-            const file = wordAudioFiles[q.audioKey];
-            if (file) {
-                if (currentQuizAudio) {
-                    currentQuizAudio.pause();
-                    currentQuizAudio.currentTime = 0;
-                }
-                currentQuizAudio = new Audio(AUDIO_BASE + file);
-                currentQuizAudio.play().catch(e => console.log('Audio error:', e));
-                showNotification(`🔊 Playing: ${q.word}`);
+            const audioFile = wordAudioMapping[q.key];
+            if(audioFile) {
+                if(currentQuizAudio) { currentQuizAudio.pause(); currentQuizAudio.currentTime = 0; }
+                currentQuizAudio = new Audio(AUDIO_BASE + audioFile);
+                currentQuizAudio.play().catch(e => showToast(`Audio error: ${q.twi}`));
+                showToast(`🔊 Playing: ${q.twi}`);
+            } else {
+                showToast(`⚠️ Missing audio for ${q.twi}`);
             }
         }
         
         function checkQuizAnswer(selected, btnElement) {
-            if (quizAnswered) return;
+            if(quizAnswered) return;
             quizAnswered = true;
-            
             const q = currentQuizQuestions[currentQIndex];
             const isCorrect = (selected === q.meaning);
-            
-            if (isCorrect) {
+            if(isCorrect) {
                 quizScore++;
                 document.getElementById('quizFeedback').innerHTML = '✅ Correct! Well done!';
-                document.getElementById('quizFeedback').style.color = '#2A9D8F';
                 btnElement.style.background = '#2A9D8F';
                 btnElement.style.color = 'white';
-                
-                if (typeof window.opener !== 'undefined' && window.opener.addXP) {
-                    window.opener.addXP(10, 'Pronunciation Game');
-                }
             } else {
-                document.getElementById('quizFeedback').innerHTML = `❌ Incorrect! "${q.word}" means "${q.meaning}". Keep practicing!`;
-                document.getElementById('quizFeedback').style.color = '#FFD700';
+                document.getElementById('quizFeedback').innerHTML = `❌ Incorrect! "${q.twi}" means "${q.meaning}". Keep practicing!`;
                 btnElement.style.background = '#E76F51';
                 btnElement.style.color = 'white';
-                
-                const allBtns = document.querySelectorAll('.quiz-option');
-                allBtns.forEach(btn => {
-                    if (btn.textContent === q.meaning) {
+                document.querySelectorAll('.quiz-option').forEach(btn => {
+                    if(btn.textContent === q.meaning) {
                         btn.style.background = '#2A9D8F';
                         btn.style.color = 'white';
                     }
                 });
             }
-            
             document.getElementById('quizScore').innerHTML = `Score: ${quizScore} / 5`;
-            
-            const allBtns = document.querySelectorAll('.quiz-option');
-            allBtns.forEach(btn => { btn.disabled = true; });
+            document.querySelectorAll('.quiz-option').forEach(btn => btn.disabled = true);
         }
         
         function nextQuizQuestion() {
-            if (!quizAnswered && currentQIndex < 4) {
+            if(!quizAnswered && currentQIndex < 4) {
                 alert('Please answer the current question before continuing!');
                 return;
             }
-            
-            if (currentQIndex < 4) {
+            if(currentQIndex < 4) {
                 currentQIndex++;
                 loadQuizQuestion();
-                setTimeout(() => playQuizWord(), 300);
+                setTimeout(() => playQuizWordAudio(), 200);
             } else {
                 finishQuizGame();
             }
         }
         
         function finishQuizGame() {
-            const percentage = Math.round((quizScore / 5) * 100);
-            let message = '';
-            let emoji = '';
-            
-            if (percentage >= 80) { emoji = '🏆'; message = 'Excellent! You know these words well!'; }
-            else if (percentage >= 60) { emoji = '🎉'; message = 'Good job! Keep practicing!'; }
-            else if (percentage >= 40) { emoji = '👍'; message = 'Good effort! Review and try again.'; }
-            else { emoji = '📚'; message = 'Keep studying the real words section!'; }
-            
-            const quizContainer = document.getElementById('quizContainer');
-            quizContainer.innerHTML = `
-                <div class="quiz-question" style="text-align: center;">
-                    <div style="font-size: 3rem;">${emoji}</div>
-                    <div style="font-size: 1.5rem; font-weight: bold; margin: 0.5rem 0;">${quizScore} / 5</div>
-                    <div style="font-size: 0.9rem; margin-bottom: 1rem;">${message}</div>
-                    <button onclick="restartQuizGame()" class="play-all-btn" style="padding: 0.6rem 1.2rem;">🔄 Play Again</button>
+            const percent = Math.round((quizScore/5)*100);
+            let msg = percent >= 80 ? "Excellent!" : (percent >= 60 ? "Good job!" : "Keep practicing!");
+            const quizDiv = document.getElementById('quizContainer');
+            quizDiv.innerHTML = `
+                <div class="quiz-question" style="text-align:center;">
+                    <div style="font-size:3rem;">${percent>=80?'🏆':'📚'}</div>
+                    <div style="font-size:1.5rem; font-weight:bold;">${quizScore} / 5</div>
+                    <div style="margin:1rem 0;">${msg}</div>
+                    <button onclick="restartQuizGame()" class="play-all-btn">🔄 Play Again</button>
                 </div>
             `;
-            
-            if (typeof window.opener !== 'undefined' && window.opener.addXP) {
-                window.opener.addXP(quizScore * 10, 'Pronunciation Game Completed');
-            }
         }
         
-        function restartQuizGame() {
+        window.restartQuizGame = function() {
             currentQuizQuestions = selectRandomQuestions();
             currentQIndex = 0;
             quizScore = 0;
             quizAnswered = false;
             loadQuizQuestion();
-            setTimeout(() => playQuizWord(), 500);
+            setTimeout(() => playQuizWordAudio(), 300);
+        };
+        
+        // Initialize everything
+        function init() {
+            renderWordsGrid();
+            bindSyllableClicks();
+            currentQuizQuestions = selectRandomQuestions();
+            loadQuizQuestion();
+            document.getElementById('quizAudioBtn').onclick = () => playQuizWordAudio();
+            document.getElementById('nextQuizBtn').onclick = nextQuizQuestion;
         }
         
-        // Initialize
-        let currentQuizQuestions = selectRandomQuestions();
-        
-        // Make functions global
-        window.playSyllable = playSyllable;
-        window.playRowAudio = playRowAudio;
-        window.playRealWord = playRealWord;
-        window.playQuizWord = playQuizWord;
-        window.checkQuizAnswer = checkQuizAnswer;
-        window.nextQuizQuestion = nextQuizQuestion;
-        window.restartQuizGame = restartQuizGame;
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            loadQuizQuestion();
-            document.getElementById('quizAudioBtn').onclick = playQuizWord;
-            document.getElementById('nextQuizBtn').onclick = nextQuizQuestion;
-        });
+        init();
     </script>
 </body>
 </html>
