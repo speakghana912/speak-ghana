@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Tone & Pronunciation Guide | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; }
+        
+        .info-box {
+            background: #e8f4f1;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #2A9D8F;
+        }
+        .warning-box {
+            background: #fef5e8;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #E76F51;
+        }
+        
+        .section-title {
+            background: #2A9D8F;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1rem;
+        }
+        
+        .pairs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .pair-card {
+            background: #FDF8F2;
+            border-radius: 16px;
+            padding: 1rem;
+            border: 1px solid #eee;
+            transition: all 0.2s;
+        }
+        .pair-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .pair-word {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.3rem;
+        }
+        .pair-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid #eee;
+        }
+        .pair-meaning { color: #666; font-size: 0.85rem; }
+        .audio-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+        .audio-btn:hover { background: #1f7a6e; transform: scale(1.05); }
+        
+        .pronoun-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .pronoun-card {
+            background: #e8f4f1;
+            border-radius: 12px;
+            padding: 0.8rem;
+            text-align: center;
+        }
+        .pronoun-twi { font-size: 1.2rem; font-weight: bold; color: #2A9D8F; }
+        .pronoun-english { font-size: 0.8rem; color: #666; }
+        
+        .practice-section {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .practice-question {
+            background: rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .practice-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 0.8rem;
+        }
+        .practice-btn {
+            background: white;
+            color: #2A9D8F;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .practice-btn:hover { background: #D4A373; color: white; transform: scale(1.02); }
+        .feedback { margin-top: 0.8rem; font-size: 0.85rem; }
+        
+        .close-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        .close-btn:hover { background: #c49a6c; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .pairs-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Twi Tone & Pronunciation Guide</h1>
+        <p class="subtitle">Master the tones, vowel lengths, and consonant contrasts for correct Twi pronunciation</p>
+
+        <div class="info-box">
+            <h3 style="color: #2A9D8F; margin-bottom: 0.5rem;">🔊 Why this guide matters</h3>
+            <p>Twi is a <strong>tonal language</strong> - the same spelling can have different meanings depending on the <strong>pitch (tone)</strong> you use. Vowel length and consonant contrasts also change meaning. Click any 🔊 button to hear the correct pronunciation!</p>
+        </div>
+
+        <!-- ===== PRONOUNS SECTION ===== -->
+        <div class="section-title">🔤 Twi Pronouns</div>
+        <div class="pronoun-grid">
+            <div class="pronoun-card"><div class="pronoun-twi">me</div><div class="pronoun-english">I / me / my</div><button class="audio-btn" onclick="playAudio('me')">🔊</button></div>
+            <div class="pronoun-card"><div class="pronoun-twi">wo</div><div class="pronoun-english">you / your (singular)</div><button class="audio-btn" onclick="playAudio('wo')">🔊</button></div>
+            <div class="pronoun-card"><div class="pronoun-twi">ɔno</div><div class="pronoun-english">he / she</div><button class="audio-btn" onclick="playAudio('ono')">🔊</button></div>
+            <div class="pronoun-card"><div class="pronoun-twi">yɛn</div><div class="pronoun-english">we / us / our</div><button class="audio-btn" onclick="playAudio('yen')">🔊</button></div>
+            <div class="pronoun-card"><div class="pronoun-twi">ɛno</div><div class="pronoun-english">it</div><button class="audio-btn" onclick="playAudio('eno')">🔊</button></div>
+            <div class="pronoun-card"><div class="pronoun-twi">mo</div><div class="pronoun-english">you all / your (plural)</div><button class="audio-btn" onclick="playAudio('Mo')">🔊</button></div>
+            <div class="pronoun-card"><div class="pronoun-twi">wɔn</div><div class="pronoun-english">they / them / their</div><button class="audio-btn" onclick="playAudio('won')">🔊</button></div>
+        </div>
+
+        <!-- ===== VOWEL LENGTH (Short vs. Long) ===== -->
+        <div class="section-title">🔤 Vowel Length (Short vs. Long)</div>
+        <div class="pairs-grid" id="vowelLengthPairs"></div>
+
+        <!-- ===== CONSONANT CONTRAST ===== -->
+        <div class="section-title">🔤 Consonant Contrast</div>
+        <div class="pairs-grid" id="consonantPairs"></div>
+
+        <!-- ===== TONAL MINIMAL PAIRS ===== -->
+        <div class="section-title">🎵 Tonal Minimal Pairs</div>
+        <div class="pairs-grid" id="tonalPairs"></div>
+
+        <!-- ===== DIPHTHONGS ===== -->
+        <div class="section-title">🔤 Diphthongs</div>
+        <div class="pairs-grid" id="diphthongPairs"></div>
+
+        <!-- ===== COMMON TWI SOUNDS IN CONTRAST ===== -->
+        <div class="section-title">🔤 Common Twi Sounds in Contrast</div>
+        <div class="pairs-grid" id="soundContrastPairs"></div>
+
+        <!-- ===== ADDITIONAL COMMON PAIRS ===== -->
+        <div class="section-title">📖 Additional Common Pairs</div>
+        <div class="pairs-grid" id="additionalPairs"></div>
+
+        <!-- ===== EXTRA PAIRS ===== -->
+        <div class="section-title">📖 More Common Pairs</div>
+        <div class="pairs-grid" id="extraPairs"></div>
+
+        <!-- Listening Practice -->
+        <div class="practice-section">
+            <h3 style="margin-bottom: 0.5rem;">🎧 Listening Practice</h3>
+            <p style="font-size: 0.85rem; opacity: 0.9;">Listen to the word and choose the correct meaning:</p>
+            <div class="practice-question">
+                <button id="practiceAudioBtn" class="audio-btn" style="width: 60px; height: 60px; font-size: 2rem; margin: 0.5rem auto; display: block;">🔊</button>
+                <div id="practiceOptions" class="practice-options"></div>
+                <div id="practiceFeedback" class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- Common Mistakes -->
+        <div class="warning-box">
+            <h3 style="color: #E76F51; margin-bottom: 0.5rem;">🚫 Common Mistakes to Avoid</h3>
+            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                <li>❌ Speaking with flat English-like tones (no pitch change)</li>
+                <li>❌ Ignoring vowel length - "pa" (good) vs "paa" (very much)</li>
+                <li>❌ Confusing "ko" (fight) with "kɔ" (go)</li>
+                <li>❌ Mixing up "gy", "dw", and "tw" sounds</li>
+                <li>❌ Using the same tone for all syllables in a word</li>
+                <li>❌ Confusing "bu" (break) with "bɔ" (hit/create)</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 1rem;">
+            <button class="close-btn" onclick="window.close()">❌ Close</button>
+        </div>
+        <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 1rem;">💡 Practice these minimal pairs daily. Listen carefully to the tone differences!</p>
+    </div>
+
+    <script>
+        // Base URL for audio files
+        const AUDIO_BASE = 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/';
+
+        // Audio file mapping (matches your uploaded files)
+        const audioMap = {
+            // Pronouns
+            'me': 'me.m4a',
+            'wo': 'wo.m4a',
+            'ono': 'ono.m4a',
+            'yen': 'yen.m4a',
+            'eno': 'eno.m4a',
+            'Mo': 'Mo.m4a',
+            'won': 'won.m4a',
+            // Vowel Length
+            'pi': 'pi.m4a',
+            'pii': 'pii.m4a',
+            'pɛ': 'pe.m4a',
+            'pɛɛ': 'pee.m4a',
+            'pa': 'pa.m4a',
+            'paa': 'paa.m4a',
+            'pu': 'pu.m4a',
+            'puu': 'puu.m4a',
+            // Consonant
+            'pra': 'pra.m4a',
+            'dua': 'dua.m4a',
+            'ka': 'ka.m4a',
+            'kɔ': 'ko.m4a',
+            // Tonal
+            'papa-good': 'papa(good).m4a',
+            'papa-father': 'papa(father).m4a',
+            'kɔkɔɔ-red': 'kokoo(red).m4a',
+            'kɔkɔɔ-cocoa': 'cocoa.m4a',
+            // Diphthongs
+            'tie': 'tie.m4a',
+            'twere': 'twere.m4a',
+            'tia': 'tia.m4a',
+            'tea': 'tea.m4a',
+            // Sound Contrasts
+            'gyae': 'gyae.m4a',
+            'dwa': 'dwa.m4a',
+            'twa': 'twa.m4a',
+            'hyɛ': 'hye(wear).m4a',
+            'kyɛ': 'kye (last-share).m4a',
+            'awu': 'awu.m4a',
+            'anu': 'anu.m4a',
+            // Additional
+            'ko': 'ko.m4a',
+            'so-carry': 'so.m4a',
+            'sɔ': 'so(catch).m4a',
+            'dɛ': 'de(sweet).m4a',
+            'di': 'di.m4a',
+            'ba': 'ba.m4a',
+            'baa': 'baa.m4a',
+            'bɛ': 'be(proverb).m4a',
+            'bu': 'bu.m4a',
+            'sa': 'sa.m4a',
+            'se': 'se.m4a',
+            'hu': 'hu.m4a',
+            'ehu': 'ehu.m4a',
+            'te-hear': 'te.m4a',
+            'te-live': 'te(live).m4a',
+            'so-on': 'so(on).m4a',
+            'so-big': 'so-big.m4a',
+            'bɔ': 'bo-hit.m4a'
+        };
+
+        function playAudio(wordKey) {
+            const filename = audioMap[wordKey];
+            if (filename) {
+                const audio = new Audio(AUDIO_BASE + filename);
+                audio.play().catch(e => console.log('Audio error:', e));
+            } else {
+                console.log('No audio found for:', wordKey);
+                // Fallback to speech synthesis
+                const synth = window.speechSynthesis;
+                const utterance = new SpeechSynthesisUtterance(wordKey);
+                utterance.rate = 0.7;
+                synth.speak(utterance);
+            }
+        }
+
+        // ===== DATA =====
+        const vowelLengthPairs = [
+            { word1: "pi", meaning1: "to thicken", word2: "pii", meaning2: "many", audio1: "pi", audio2: "pii" },
+            { word1: "pɛ", meaning1: "to like/desire", word2: "pɛɛ", meaning2: "liked/desired", audio1: "pɛ", audio2: "pɛɛ" },
+            { word1: "pa", meaning1: "good", word2: "paa", meaning2: "very much", audio1: "pa", audio2: "paa" },
+            { word1: "pu", meaning1: "to vomit", word2: "puu", meaning2: "vomited", audio1: "pu", audio2: "puu" }
+        ];
+
+        const consonantPairs = [
+            { word1: "pa", meaning1: "good/fade", word2: "pra", meaning2: "to sweep", audio1: "pa", audio2: "pra" },
+            { word1: "dua", meaning1: "tree/plant", word2: "dua", meaning2: "tail", audio1: "dua", audio2: "dua" },
+            { word1: "ka", meaning1: "to say/touch", word2: "kɔ", meaning2: "to go", audio1: "ka", audio2: "kɔ" }
+        ];
+
+        const tonalPairs = [
+            { word1: "papa", tone1: "h-h", meaning1: "fan/good", word2: "papa", tone2: "l-l", meaning2: "goodness/father", audio1: "papa-good", audio2: "papa-father" },
+            { word1: "kɔkɔɔ", tone1: "h-h-h", meaning1: "red", word2: "kɔkɔɔ", tone2: "l-h-h", meaning2: "cocoa", audio1: "kɔkɔɔ-red", audio2: "kɔkɔɔ-cocoa" }
+        ];
+
+        const diphthongPairs = [
+            { word1: "tie", meaning1: "to listen", word2: "twere", meaning2: "to write", audio1: "tie", audio2: "twere" },
+            { word1: "tia", meaning1: "to step on", word2: "tea", meaning2: "bitter", audio1: "tia", audio2: "tea" }
+        ];
+
+        const soundContrastPairs = [
+            { word1: "gyae", meaning1: "to stop", word2: "dwa", meaning2: "to cut", word3: "twa", meaning3: "to cut/cross", audio1: "gyae", audio2: "dwa", audio3: "twa", note: "gyae / dwa / twa" },
+            { word1: "hyɛ", meaning1: "to wear/order", word2: "kyɛ", meaning2: "to share/last long", audio1: "hyɛ", audio2: "kyɛ" },
+            { word1: "awu", meaning1: "died", word2: "anu", meaning2: "blamed", audio1: "awu", audio2: "anu" }
+        ];
+
+        const additionalPairs = [
+            { word1: "ko", meaning1: "to fight", word2: "kɔ", meaning2: "to go", audio1: "ko", audio2: "kɔ" },
+            { word1: "pa", meaning1: "good", word2: "pra", meaning2: "to sweep", audio1: "pa", audio2: "pra" },
+            { word1: "so", meaning1: "to carry", word2: "sɔ", meaning2: "to catch", audio1: "so-carry", audio2: "sɔ" },
+            { word1: "dɛ", meaning1: "sweet", word2: "di", meaning2: "to eat", audio1: "dɛ", audio2: "di" },
+            { word1: "ba", meaning1: "child", word2: "baa", meaning2: "came", audio1: "ba", audio2: "baa" },
+            { word1: "bɛ", meaning1: "proverb", word2: "bu", meaning2: "to break", audio1: "bɛ", audio2: "bu" },
+            { word1: "ka", meaning1: "to bite", word2: "ka", meaning2: "to drive", audio1: "ka", audio2: "ka" },
+            { word1: "sa", meaning1: "to dance", word2: "se", meaning2: "teeth", audio1: "sa", audio2: "se" },
+            { word1: "hu", meaning1: "to see", word2: "ehu", meaning2: "fear", audio1: "hu", audio2: "ehu" },
+            { word1: "te", meaning1: "to hear", word2: "te", meaning2: "to live", audio1: "te-hear", audio2: "te-live" },
+            { word1: "so", meaning1: "on", word2: "so", meaning2: "big", audio1: "so-on", audio2: "so-big" }
+        ];
+
+        const extraPairs = [
+            { word1: "bu", meaning1: "to break", word2: "bɔ", meaning2: "to hit/create", audio1: "bu", audio2: "bɔ" }
+        ];
+
+        function buildPairs(containerId, pairs, type) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = '';
+            
+            pairs.forEach(pair => {
+                const card = document.createElement('div');
+                card.className = 'pair-card';
+                
+                if (type === 'vowel') {
+                    card.innerHTML = `
+                        <div class="pair-word">📏 ${pair.word1} vs ${pair.word2}</div>
+                        <div class="pair-details">
+                            <span class="pair-meaning">"${pair.word1}" = ${pair.meaning1}</span>
+                            <button class="audio-btn" onclick="playAudio('${pair.audio1}')">🔊</button>
+                        </div>
+                        <div class="pair-details">
+                            <span class="pair-meaning">"${pair.word2}" = ${pair.meaning2}</span>
+                            <button class="audio-btn" onclick="playAudio('${pair.audio2}')">🔊</button>
+                        </div>
+                        <div class="pair-details" style="border-top: none; padding-top: 0;">
+                            <span style="font-size: 0.7rem; color: #999;">💡 Short vs Long vowel</span>
+                        </div>
+                    `;
+                } 
+                else if (type === 'tonal') {
+                    card.innerHTML = `
+                        <div class="pair-word">🎵 ${pair.word1} (${pair.tone1}) vs ${pair.word2} (${pair.tone2})</div>
+                        <div class="pair-details">
+                            <span class="pair-meaning">"${pair.word1}" = ${pair.meaning1}</span>
+                            <button class="audio-btn" onclick="playAudio('${pair.audio1}')">🔊</button>
+                        </div>
+                        <div class="pair-details">
+                            <span class="pair-meaning">"${pair.word2}" = ${pair.meaning2}</span>
+                            <button class="audio-btn" onclick="playAudio('${pair.audio2}')">🔊</button>
+                        </div>
+                        <div class="pair-details" style="border-top: none; padding-top: 0;">
+                            <span style="font-size: 0.7rem; color: #999;">💡 Different tones = different meaning</span>
+                        </div>
+                    `;
+                }
+                else if (type === 'sound') {
+                    card.innerHTML = `
+                        <div class="pair-word">🔊 ${pair.word1} / ${pair.word2} ${pair.word3 ? '/ ' + pair.word3 : ''}</div>
+                        <div class="pair-details">
+                            <span class="pair-meaning">"${pair.word1}" = ${pair.meaning1}</span>
+                            <button class="audio-btn" onclick="playAudio('${pair.audio1}')">🔊</button>
+                        </div>
+                        <div class="pair-details">
+                            <span class="pair-meaning">"${pair.word2}" = ${pair.meaning2}</span>
+                            <button class="audio-btn" onclick="playAudio('${pair.audio2}')">🔊</button>
+                        </div>
+                        ${pair.word3 ? `<div class="pair-details"><span class="pair-meaning">"${pair.word3}" = ${pair.meaning3}</span><button class="audio-btn" onclick="playAudio('${pair.audio3}')">🔊</button></div>` : ''}
+                        <div class="pair-details" style="border-top: none; padding-top: 0;">
+                            <span style="font-size: 0.7rem; color: #999;">💡 ${pair.note || 'Different consonant sounds'}</span>
+                        </div>
+                    `;
+                }
+                else {
+                    card.innerHTML = `
+                        <div class="pair-word">📖 ${pair.word1} vs ${pair.word2}</div>
+                        <div class="pair-details">
+                            <span class="pair-meaning">"${pair.word1}" = ${pair.meaning1}</span>
+                            <button class="audio-btn" onclick="playAudio('${pair.audio1}')">🔊</button>
+                        </div>
+                        <div class="pair-details">
+                            <span class="pair-meaning">"${pair.word2}" = ${pair.meaning2}</span>
+                            <button class="audio-btn" onclick="playAudio('${pair.audio2}')">🔊</button>
+                        </div>
+                    `;
+                }
+                container.appendChild(card);
+            });
+        }
+
+        // Quiz variables
+        let allQuizWords = [];
+        let currentQuizWord = null;
+        let currentCorrect = null;
+        let currentOptions = [];
+
+        function buildQuizWordList() {
+            const words = [];
+            vowelLengthPairs.forEach(p => {
+                words.push({ wordKey: p.audio1, meaning: p.meaning1 });
+                words.push({ wordKey: p.audio2, meaning: p.meaning2 });
+            });
+            consonantPairs.forEach(p => {
+                words.push({ wordKey: p.audio1, meaning: p.meaning1 });
+                words.push({ wordKey: p.audio2, meaning: p.meaning2 });
+            });
+            additionalPairs.forEach(p => {
+                words.push({ wordKey: p.audio1, meaning: p.meaning1 });
+                words.push({ wordKey: p.audio2, meaning: p.meaning2 });
+            });
+            extraPairs.forEach(p => {
+                words.push({ wordKey: p.audio1, meaning: p.meaning1 });
+                words.push({ wordKey: p.audio2, meaning: p.meaning2 });
+            });
+            return words;
+        }
+
+        function startQuiz() {
+            allQuizWords = buildQuizWordList();
+            nextQuizQuestion();
+        }
+
+        function nextQuizQuestion() {
+            const randomIndex = Math.floor(Math.random() * allQuizWords.length);
+            currentQuizWord = allQuizWords[randomIndex];
+            currentCorrect = currentQuizWord.meaning;
+            
+            const wrongAnswers = [];
+            const availableWords = allQuizWords.filter(w => w.meaning !== currentCorrect);
+            for (let i = 0; i < 3 && i < availableWords.length; i++) {
+                const randomWrong = availableWords[Math.floor(Math.random() * availableWords.length)];
+                if (!wrongAnswers.includes(randomWrong.meaning)) {
+                    wrongAnswers.push(randomWrong.meaning);
+                }
+            }
+            
+            currentOptions = [currentCorrect, ...wrongAnswers];
+            for (let i = currentOptions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentOptions[i], currentOptions[j]] = [currentOptions[j], currentOptions[i]];
+            }
+            
+            const optionsContainer = document.getElementById('practiceOptions');
+            optionsContainer.innerHTML = currentOptions.map(opt => 
+                `<button class="practice-btn" onclick="checkQuizAnswer('${opt.replace(/'/g, "\\'")}')">${opt}</button>`
+            ).join('');
+            document.getElementById('practiceFeedback').innerHTML = '';
+            
+            playAudio(currentQuizWord.wordKey);
+        }
+
+        function checkQuizAnswer(selected) {
+            const isCorrect = (selected === currentCorrect);
+            const feedback = document.getElementById('practiceFeedback');
+            
+            if (isCorrect) {
+                feedback.innerHTML = '✅ Correct! Well done!';
+                feedback.style.color = '#2A9D8F';
+                if (typeof window.opener !== 'undefined' && window.opener.addXP) {
+                    window.opener.addXP(10, 'Tone practice');
+                }
+            } else {
+                feedback.innerHTML = `❌ Incorrect! The correct answer is "${currentCorrect}". Keep practicing!`;
+                feedback.style.color = '#E76F51';
+            }
+            
+            setTimeout(() => {
+                nextQuizQuestion();
+            }, 2000);
+        }
+
+        // Build all sections
+        buildPairs('vowelLengthPairs', vowelLengthPairs, 'vowel');
+        buildPairs('consonantPairs', consonantPairs, 'regular');
+        buildPairs('tonalPairs', tonalPairs, 'tonal');
+        buildPairs('diphthongPairs', diphthongPairs, 'regular');
+        buildPairs('soundContrastPairs', soundContrastPairs, 'sound');
+        buildPairs('additionalPairs', additionalPairs, 'regular');
+        buildPairs('extraPairs', extraPairs, 'regular');
+
+        // Initialize quiz
+        startQuiz();
+
+        // Make functions global
+        window.playAudio = playAudio;
+        window.checkQuizAnswer = checkQuizAnswer;
+    </script>
+</body>
+</html>
