@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghanaian Festivals Calendar | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; }
+        
+        .stats {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .stats span { font-weight: bold; font-size: 1.5rem; }
+        
+        .month-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .month-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+        .month-btn:hover { background: #2A9D8F; color: white; transform: translateY(-2px); }
+        .month-btn.active { background: #2A9D8F; color: white; }
+        
+        .region-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .region-btn {
+            background: #E76F51;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: all 0.2s;
+        }
+        .region-btn:hover { background: #c95a3e; }
+        .region-btn.active { background: #D4A373; }
+        
+        .festivals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        .festival-card {
+            background: #FDF8F2;
+            border-radius: 20px;
+            padding: 1.2rem;
+            border: 1px solid #eee;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .festival-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: #2A9D8F;
+        }
+        .festival-month {
+            display: inline-block;
+            background: #2A9D8F;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            margin-bottom: 0.5rem;
+        }
+        .festival-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #E76F51;
+            margin-bottom: 0.3rem;
+        }
+        .festival-region {
+            font-size: 0.75rem;
+            color: #2A9D8F;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+        .festival-description {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+        .festival-highlight {
+            background: #fff5e8;
+            padding: 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: #D4A373;
+        }
+        .festival-people {
+            font-size: 0.7rem;
+            color: #999;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #999;
+        }
+        .featured-section {
+            background: #e8f4f1;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .featured-title {
+            font-size: 1rem;
+            color: #2A9D8F;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .featured-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .featured-item {
+            background: white;
+            border-radius: 16px;
+            padding: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .featured-icon { font-size: 2rem; }
+        .featured-text h4 { color: #E76F51; font-size: 0.9rem; }
+        .featured-text p { font-size: 0.7rem; color: #666; }
+        .close-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        .close-btn:hover { background: #c49a6c; }
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .festivals-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Ghanaian Festivals Calendar</h1>
+        <p class="subtitle">Discover the rich cultural celebrations across Ghana's 16 regions throughout the year</p>
+
+        <div class="stats">
+            <div>📅 <span id="festivalCount">0</span> Major Festivals</div>
+            <div>🌍 16 Regions | 🎭 30+ Celebrations</div>
+            <div>👥 Diverse Ethnic Groups</div>
+        </div>
+
+        <!-- Featured Festivals -->
+        <div class="featured-section">
+            <div class="featured-title">🌟 PROMINENT FESTIVALS OF GHANA</div>
+            <div class="featured-cards">
+                <div class="featured-item"><div class="featured-icon">🏆</div><div class="featured-text"><h4>Homowo</h4><p>Ga people • Accra • August</p></div></div>
+                <div class="featured-item"><div class="featured-icon">🏆</div><div class="featured-text"><h4>Odwira</h4><p>Akuapem • Eastern • Sept/Oct</p></div></div>
+                <div class="featured-item"><div class="featured-icon">🏆</div><div class="featured-text"><h4>Aboakyir</h4><p>Effutu • Winneba • May</p></div></div>
+                <div class="featured-item"><div class="featured-icon">🏆</div><div class="featured-text"><h4>Damba</h4><p>Dagomba • Northern • Aug/Sept</p></div></div>
+                <div class="featured-item"><div class="featured-icon">🏆</div><div class="featured-text"><h4>Hogbetsotso</h4><p>Anlo-Ewe • Volta • November</p></div></div>
+                <div class="featured-item"><div class="featured-icon">🏆</div><div class="featured-text"><h4>Akwasidae</h4><p>Ashanti • Kumasi • Every 6 weeks</p></div></div>
+            </div>
+        </div>
+
+        <!-- Month Navigation -->
+        <div class="month-nav" id="monthNav"></div>
+        
+        <!-- Region Filter -->
+        <div class="region-filter" id="regionFilter"></div>
+
+        <div id="festivalsContainer" class="festivals-grid"></div>
+
+        <div style="text-align: center; margin-top: 1rem;">
+            <button class="close-btn" onclick="window.close()">❌ Close</button>
+        </div>
+        <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 1rem;">💡 Festival dates vary each year. Check local sources for exact dates.</p>
+    </div>
+
+    <script>
+        const festivals = [
+            // JANUARY
+            { name: "Aboakyer Festival", month: "January", region: "Central", people: "Effutu", description: "A deer-hunting festival where two Asafo groups compete to capture a live bushbuck, presented as a sacrifice to the gods.", highlight: "🦌 Live deer hunt | Durbar of chiefs", monthSort: 1 },
+            { name: "Akwambo Festival", month: "January", region: "Central", people: "Agona", description: "Path-clearing festival that prepares the community for the coming year, marking the beginning of the harvest season.", highlight: "🚶 Path clearing ceremony | Harvest celebration", monthSort: 1 },
+            { name: "Papa Festival", month: "January", region: "Western", people: "Nzema", description: "A harvest festival thanking the gods for a bountiful harvest with traditional dances and drumming.", highlight: "🌾 Harvest thanksgiving | Traditional dances", monthSort: 1 },
+            { name: "FAO Festival", month: "January", region: "Upper East", people: "Kassena-Nankana", description: "Thanksgiving to the gods for a good harvest and protection of the community.", highlight: "🙏 Thanksgiving ceremony | Sacrifices to gods", monthSort: 1 },
+            
+            // FEBRUARY
+            { name: "Dipo Puberty Rites", month: "February", region: "Eastern", people: "Krobo", description: "Puberty rites performed on adolescent girls to initiate them into womanhood. A significant coming-of-age ceremony.", highlight: "👧 Puberty initiation | Coming-of-age ceremony", monthSort: 2 },
+            { name: "Kundum Festival", month: "February", region: "Western", people: "Ahanta & Nzema", description: "A harvest festival celebrating bumper food yields with characteristic drumming and dancing.", highlight: "🥁 Drumming and dancing | Harvest celebration", monthSort: 2 },
+            
+            // MARCH
+            { name: "Gologo Festival", month: "March", region: "Upper East", people: "Kassena-Nankana", description: "A pre-harvest festival with sacrifices offered to ensure plentiful rain and a good harvest.", highlight: "🌧️ Rain prayers | Pre-harvest sacrifices", monthSort: 3 },
+            { name: "Apoo Festival", month: "March", region: "Bono East", people: "Bono", description: "A purification festival where people freely express grievances and seek reconciliation.", highlight: "🗣️ Reconciliation ceremony | Purification rites", monthSort: 3 },
+            
+            // APRIL
+            { name: "Odunkwaa Festival", month: "April", region: "Central", people: "Fante", description: "A week-long celebration starting on Easter Monday, climaxing with a grand durbar of chiefs.", highlight: "👑 Grand durbar | Easter Monday start", monthSort: 4 },
+            { name: "Kwahu Easter Festival", month: "April", region: "Eastern", people: "Kwahu", description: "Celebrated during Easter with paragliding, hiking, and cultural performances.", highlight: "🪂 Paragliding | Easter celebration", monthSort: 4 },
+            
+            // MAY
+            { name: "Aboakyir Festival", month: "May", region: "Central", people: "Effutu", description: "The famous deer-hunting festival celebrated on the 1st Saturday of May.", highlight: "🦌 Live deer capture | 1st Saturday in May", monthSort: 5 },
+            { name: "Asafotufiam Festival", month: "May", region: "Greater Accra", people: "Ada", description: "Military reenactment celebrating the Ada people's bravery and achievements of ancestors in war.", highlight: "⚔️ Mock battles | Military reenactment", monthSort: 5 },
+            
+            // JUNE
+            { name: "Ohum Festival", month: "June", region: "Eastern", people: "Akuapem", description: "A two-day festival marking the first yam harvest and asking for God's blessings.", highlight: "🍠 First yam harvest | Blessings ceremony", monthSort: 6 },
+            { name: "Sasabobɔ Festival", month: "June", region: "Central", people: "Effutu", description: "A hunting festival celebrating the catching of a mythical 'Sasabɔ' animal.", highlight: "🏹 Mythical hunt | Traditional hunting", monthSort: 6 },
+            
+            // JULY
+            { name: "Bakatue Festival", month: "July", region: "Central", people: "Elmina", description: "First Tuesday in July. Marks the beginning of the fishing season and honors the lagoon deity.", highlight: "🎣 Fishing season opening | Canoe regatta", monthSort: 7 },
+            { name: "Asafotufiam Festival", month: "July", region: "Greater Accra", people: "Ada", description: "Celebrates the achievements of ancestors who fought in wars for the settlement of the Ada people.", highlight: "⚔️ War reenactment | Ancestral honor", monthSort: 7 },
+            { name: "Aboaboa Festival", month: "July", region: "Upper West", people: "Dagaaba", description: "A hunting festival marking the end of the farming season.", highlight: "🏹 End of farming season | Hunting celebration", monthSort: 7 },
+            { name: "Adae Kese Festival", month: "July", region: "Ashanti", people: "Asante", description: "The grand Adae festival celebrated by the Asantehene at Manhyia Palace.", highlight: "👑 Grand durbar | Manhyia Palace", monthSort: 7 },
+            
+            // AUGUST
+            { name: "Homowo Festival", month: "August", region: "Greater Accra", people: "Ga", description: "Means 'hooting at hunger'. Commemorates the end of a devastating famine. Features kpokpoi food festival.", highlight: "🍲 Kpokpoi | Hooting at hunger", monthSort: 8 },
+            { name: "Damba Festival", month: "August", region: "Northern", people: "Dagomba", description: "Celebrates the birth and naming of Prophet Muhammad. Features horse riding, drumming, and grand durbar.", highlight: "🐎 Horse riding | Grand durbar", monthSort: 8 },
+            { name: "Kente Festival", month: "August", region: "Volta", people: "Agotime", description: "Celebrates the rich heritage of Kente weaving with exhibitions and cultural displays.", highlight: "🎨 Kente weaving exhibition | Textile celebration", monthSort: 8 },
+            { name: "Awukudae Festival", month: "August", region: "Ashanti", people: "Asante", description: "One of the Adae festivals celebrated every six weeks by the Asante people.", highlight: "👑 Adae ceremony | Ancestral honoring", monthSort: 8 },
+            
+            // SEPTEMBER
+            { name: "Homowo Festival", month: "September", region: "Greater Accra", people: "Ga", description: "Continuation of the Ga harvest festival celebrations.", highlight: "🍲 Harvest celebration | Traditional music", monthSort: 9 },
+            { name: "Fetu Afahye Festival", month: "September", region: "Central", people: "Oguaa", description: "Celebrated in remembrance of a historic disease outbreak. Features a boat regatta and durbar.", highlight: "🚤 Boat regatta | Disease remembrance", monthSort: 9 },
+            { name: "Odwira Festival", month: "September", region: "Eastern", people: "Akuapem", description: "Celebrated in remembrance of a historic disease outbreak. Purifies the state and honors ancestors.", highlight: "🧹 Purification rites | Ancestral honor", monthSort: 9 },
+            { name: "Kobine Festival", month: "September", region: "Upper West", people: "Dagaaba", description: "A traditional dance and festival unique to the Lawra area of northwestern Ghana.", highlight: "💃 Traditional dance | Lawra area", monthSort: 9 },
+            { name: "Ngmayem Festival", month: "September", region: "Eastern", people: "Krobo", description: "A harvest festival thanking the gods for a bountiful yam harvest.", highlight: "🍠 Yam harvest thanksgiving | Krobo celebration", monthSort: 9 },
+            
+            // OCTOBER
+            { name: "Adae Kese Festival", month: "October", region: "Ashanti", people: "Asante", description: "The grand Adae festival held at Manhyia Palace in Kumasi.", highlight: "👑 Grand durbar | Manhyia Palace", monthSort: 10 },
+            { name: "Okyir Festival", month: "October", region: "Central", people: "Fante", description: "An annual harvest festival celebrated by the Fante people.", highlight: "🌾 Harvest festival | Fante celebration", monthSort: 10 },
+            { name: "Apoo Festival", month: "October", region: "Bono East", people: "Bono", description: "A festival of purification to rid the people of social evil.", highlight: "🧹 Purification | Social cleansing", monthSort: 10 },
+            
+            // NOVEMBER
+            { name: "Hogbetsotso Festival", month: "November", region: "Volta", people: "Anlo-Ewe", description: "First Saturday in November. Commemorates the exodus of the Ewe people from Notsie in Togo.", highlight: "🚶 Exodus commemoration | 1st Saturday in Nov", monthSort: 11 },
+            { name: "Yam Festival", month: "November", region: "Volta", people: "Asogli", description: "A harvest festival thanking the gods for a bountiful yam harvest.", highlight: "🍠 Yam harvest | Asogli celebration", monthSort: 11 },
+            { name: "Akwantukese Festival", month: "November", region: "Eastern", people: "Akyem", description: "Celebrates the journey of the Akyem people to their present land.", highlight: "🚶 Migration celebration | Akyem history", monthSort: 11 },
+            { name: "Kloyo Sikplemi Festival", month: "November", region: "Eastern", people: "Krobo", description: "Commemorates the eviction of the Krobos from the Krobo mountains in 1892.", highlight: "🏔️ Historical eviction | Krobo remembrance", monthSort: 11 },
+            
+            // DECEMBER
+            { name: "Adekyem Festival", month: "December", region: "Ahafo", people: "Akan", description: "Bechem festival where items or gifts are distributed. Literally means 'place where items are distributed'.", highlight: "🎁 Gift distribution | Bechem celebration", monthSort: 12 },
+            { name: "Christmas in Ghana", month: "December", region: "Nationwide", people: "All Ghanaians", description: "Nationwide celebrations with church services, parties, and family gatherings.", highlight: "🎄 Nationwide celebrations | Family gatherings", monthSort: 12 },
+            { name: "Edina Bronya Festival", month: "December", region: "Central", people: "Elmina", description: "A Christmas-like festival marking the end of the fishing season.", highlight: "🎄 Christmas celebration | End of fishing season", monthSort: 12 }
+        ];
+
+        const regions = ["all", "Greater Accra", "Central", "Western", "Eastern", "Ashanti", "Northern", "Volta", "Upper East", "Upper West", "Bono East", "Ahafo"];
+
+        let currentMonth = "all";
+        let currentRegion = "all";
+
+        function buildMonthNav() {
+            const months = ["all", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const nav = document.getElementById('monthNav');
+            nav.innerHTML = '';
+            
+            months.forEach(month => {
+                const btn = document.createElement('button');
+                btn.className = 'month-btn';
+                if (month === currentMonth) btn.classList.add('active');
+                btn.textContent = month === 'all' ? '📅 All Months' : month;
+                btn.onclick = () => { currentMonth = month; updateFilters(); };
+                nav.appendChild(btn);
+            });
+        }
+
+        function buildRegionFilter() {
+            const filterDiv = document.getElementById('regionFilter');
+            filterDiv.innerHTML = '';
+            
+            regions.forEach(region => {
+                const btn = document.createElement('button');
+                btn.className = 'region-btn';
+                if (region === currentRegion) btn.classList.add('active');
+                btn.textContent = region === 'all' ? '🌍 All Regions' : region;
+                btn.onclick = () => { currentRegion = region; updateFilters(); };
+                filterDiv.appendChild(btn);
+            });
+        }
+
+        function updateFilters() {
+            document.querySelectorAll('.month-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if ((currentMonth === 'all' && btn.textContent === '📅 All Months') || btn.textContent === currentMonth) {
+                    btn.classList.add('active');
+                }
+            });
+            document.querySelectorAll('.region-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if ((currentRegion === 'all' && btn.textContent === '🌍 All Regions') || btn.textContent === currentRegion) {
+                    btn.classList.add('active');
+                }
+            });
+            renderFestivals();
+        }
+
+        function renderFestivals() {
+            let filtered = [...festivals];
+            
+            if (currentMonth !== 'all') {
+                filtered = filtered.filter(f => f.month === currentMonth);
+            }
+            
+            if (currentRegion !== 'all') {
+                filtered = filtered.filter(f => f.region === currentRegion);
+            }
+            
+            const container = document.getElementById('festivalsContainer');
+            document.getElementById('festivalCount').innerHTML = filtered.length;
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="no-results">🎭 No festivals found for this selection. Try a different month or region!</div>';
+                return;
+            }
+            
+            filtered.sort((a, b) => a.monthSort - b.monthSort);
+            
+            container.innerHTML = '';
+            
+            filtered.forEach(festival => {
+                const card = document.createElement('div');
+                card.className = 'festival-card';
+                card.innerHTML = `
+                    <div class="festival-month">📅 ${festival.month}</div>
+                    <div class="festival-name">${festival.name}</div>
+                    <div class="festival-region">📍 ${festival.region} Region | 👥 ${festival.people}</div>
+                    <div class="festival-description">${festival.description}</div>
+                    <div class="festival-highlight">✨ ${festival.highlight}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        buildMonthNav();
+        buildRegionFilter();
+        renderFestivals();
+    </script>
+</body>
+</html>
