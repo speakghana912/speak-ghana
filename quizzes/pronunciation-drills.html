@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Pronunciation Drills | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; }
+        
+        .info-box {
+            background: #e8f4f1;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #2A9D8F;
+        }
+        
+        .drill-section {
+            background: #FDF8F2;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .drill-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .drill-instruction {
+            font-size: 0.8rem;
+            color: #E76F51;
+            margin-bottom: 1rem;
+        }
+        .syllable-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+        .syllable-card {
+            background: white;
+            border: 2px solid #2A9D8F;
+            border-radius: 60px;
+            padding: 0.6rem 1.2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .syllable-card:hover {
+            background: #2A9D8F;
+            color: white;
+            transform: scale(1.05);
+        }
+        .play-icon {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        .play-all-btn {
+            background: #E76F51;
+            color: white;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+        .play-all-btn:hover { background: #c95a3e; transform: scale(1.02); }
+        
+        .practice-tip {
+            background: #fff5e8;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-left: 4px solid #D4A373;
+        }
+        
+        .close-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        .close-btn:hover { background: #c49a6c; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .syllable-card { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 Twi Pronunciation Drills</h1>
+        <p class="subtitle">Practice syllables to master Twi pronunciation. Click any syllable to hear it!</p>
+
+        <div class="info-box">
+            <strong>📢 How to use this drill:</strong><br>
+            • Click any syllable to hear the pronunciation<br>
+            • Use "Play All" to hear the entire row<br>
+            • Say each syllable aloud 5 times after hearing it<br>
+            • Practice daily for 5-10 minutes
+        </div>
+
+        <!-- Drill 1: Basic CV Syllables -->
+        <div class="drill-section">
+            <div class="drill-title">
+                <span>🔤 Drill 1: Basic CV Syllables</span>
+                <span style="font-size: 0.7rem; background: #2A9D8F; color: white; padding: 0.2rem 0.6rem; border-radius: 50px;">Practice each row 5x</span>
+            </div>
+            <div class="drill-instruction">📖 Consonant + Vowel (ba, be, bɛ, bi, bo, bɔ, bu)</div>
+            
+            <!-- b row -->
+            <div class="syllable-row">
+                <span style="font-weight: bold; min-width: 30px;">b:</span>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
+                    ba <span class="play-icon">🔊</span>
+                </div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
+                    be <span class="play-icon">🔊</span>
+                </div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
+                    bɛ <span class="play-icon">🔊</span>
+                </div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
+                    bi <span class="play-icon">🔊</span>
+                </div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
+                    bo <span class="play-icon">🔊</span>
+                </div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
+                    bɔ <span class="play-icon">🔊</span>
+                </div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
+                    bu <span class="play-icon">🔊</span>
+                </div>
+                <button class="play-all-btn" onclick="playRow('b', 'ba-bu')">▶ Play All b</button>
+            </div>
+            
+            <!-- k row -->
+            <div class="syllable-row">
+                <span style="font-weight: bold; min-width: 30px;">k:</span>
+                <div class="syllable-card" onclick="playRow('k', 'ka-ku')">ka</div>
+                <div class="syllable-card" onclick="playRow('k', 'ka-ku')">ke</div>
+                <div class="syllable-card" onclick="playRow('k', 'ka-ku')">kɛ</div>
+                <div class="syllable-card" onclick="playRow('k', 'ka-ku')">ki</div>
+                <div class="syllable-card" onclick="playRow('k', 'ka-ku')">ko</div>
+                <div class="syllable-card" onclick="playRow('k', 'ka-ku')">kɔ</div>
+                <div class="syllable-card" onclick="playRow('k', 'ka-ku')">ku</div>
+                <button class="play-all-btn" onclick="playRow('k', 'ka-ku')">▶ Play All k</button>
+            </div>
+            
+            <!-- d row -->
+            <div class="syllable-row">
+                <span style="font-weight: bold; min-width: 30px;">d:</span>
+                <div class="syllable-card" onclick="playRow('d', 'da-du')">da</div>
+                <div class="syllable-card" onclick="playRow('d', 'da-du')">de</div>
+                <div class="syllable-card" onclick="playRow('d', 'da-du')">dɛ</div>
+                <div class="syllable-card" onclick="playRow('d', 'da-du')">di</div>
+                <div class="syllable-card" onclick="playRow('d', 'da-du')">do</div>
+                <div class="syllable-card" onclick="playRow('d', 'da-du')">dɔ</div>
+                <div class="syllable-card" onclick="playRow('d', 'da-du')">du</div>
+                <button class="play-all-btn" onclick="playRow('d', 'da-du')">▶ Play All d</button>
+            </div>
+            
+            <!-- t row -->
+            <div class="syllable-row">
+                <span style="font-weight: bold; min-width: 30px;">t:</span>
+                <div class="syllable-card" onclick="playRow('t', 'ta-tu')">ta</div>
+                <div class="syllable-card" onclick="playRow('t', 'ta-tu')">te</div>
+                <div class="syllable-card" onclick="playRow('t', 'ta-tu')">tɛ</div>
+                <div class="syllable-card" onclick="playRow('t', 'ta-tu')">ti</div>
+                <div class="syllable-card" onclick="playRow('t', 'ta-tu')">to</div>
+                <div class="syllable-card" onclick="playRow('t', 'ta-tu')">tɔ</div>
+                <div class="syllable-card" onclick="playRow('t', 'ta-tu')">tu</div>
+                <button class="play-all-btn" onclick="playRow('t', 'ta-tu')">▶ Play All t</button>
+            </div>
+            
+            <!-- p row -->
+            <div class="syllable-row">
+                <span style="font-weight: bold; min-width: 30px;">p:</span>
+                <div class="syllable-card" onclick="playRow('p', 'pa-pu')">pa</div>
+                <div class="syllable-card" onclick="playRow('p', 'pa-pu')">pe</div>
+                <div class="syllable-card" onclick="playRow('p', 'pa-pu')">pɛ</div>
+                <div class="syllable-card" onclick="playRow('p', 'pa-pu')">pi</div>
+                <div class="syllable-card" onclick="playRow('p', 'pa-pu')">po</div>
+                <div class="syllable-card" onclick="playRow('p', 'pa-pu')">pɔ</div>
+                <div class="syllable-card" onclick="playRow('p', 'pa-pu')">pu</div>
+                <button class="play-all-btn" onclick="playRow('p', 'pa-pu')">▶ Play All p</button>
+            </div>
+            
+            <!-- s row -->
+            <div class="syllable-row">
+                <span style="font-weight: bold; min-width: 30px;">s:</span>
+                <div class="syllable-card" onclick="playRow('s', 'sa-su')">sa</div>
+                <div class="syllable-card" onclick="playRow('s', 'sa-su')">se</div>
+                <div class="syllable-card" onclick="playRow('s', 'sa-su')">sɛ</div>
+                <div class="syllable-card" onclick="playRow('s', 'sa-su')">si</div>
+                <div class="syllable-card" onclick="playRow('s', 'sa-su')">so</div>
+                <div class="syllable-card" onclick="playRow('s', 'sa-su')">sɔ</div>
+                <div class="syllable-card" onclick="playRow('s', 'sa-su')">su</div>
+                <button class="play-all-btn" onclick="playRow('s', 'sa-su')">▶ Play All s</button>
+            </div>
+        </div>
+
+        <!-- Drill 2: Digraph CV Syllables -->
+        <div class="drill-section">
+            <div class="drill-title">
+                <span>🔤 Drill 2: Digraph CV Syllables</span>
+                <span style="font-size: 0.7rem; background: #E76F51; color: white; padding: 0.2rem 0.6rem; border-radius: 50px;">Two letters = ONE sound</span>
+            </div>
+            <div class="drill-instruction">📖 Treat these as ONE sound: ky, gy, tw, ny</div>
+            
+            <!-- ky row -->
+            <div class="syllable-row">
+                <span style="font-weight: bold; min-width: 30px;">ky:</span>
+                <div class="syllable-card" onclick="playRow('ky', 'Kya-kyu')">kya</div>
+                <div class="syllable-card" onclick="playRow('ky', 'Kya-kyu')">kye</div>
+                <div class="syllable-card" onclick="playRow('ky', 'Kya-kyu')">kyɛ</div>
+                <div class="syllable-card" onclick="playRow('ky', 'Kya-kyu')">kyi</div>
+                <div class="syllable-card" onclick="playRow('ky', 'Kya-kyu')">kyo</div>
+                <div class="syllable-card" onclick="playRow('ky', 'Kya-kyu')">kyɔ</div>
+                <div class="syllable-card" onclick="playRow('ky', 'Kya-kyu')">kyu</div>
+                <button class="play-all-btn" onclick="playRow('ky', 'Kya-kyu')">▶ Play All ky</button>
+            </div>
+            
+            <!-- gy row -->
+            <div class="syllable-row">
+                <span style="font-weight: bold; min-width: 30px;">gy:</span>
+                <div class="syllable-card" onclick="playRow('gy', 'gya-gyu')">gya</div>
+                <div class="syllable-card" onclick="playRow('gy', 'gya-gyu')">gye</div>
+                <div class="syllable-card" onclick="playRow('gy', 'gya-gyu')">gyɛ</div>
+                <div class="syllable-card" onclick="playRow('gy', 'gya-gyu')">gyi</div>
+                <div class="syllable-card" onclick="playRow('gy', 'gya-gyu')">gyo</div>
+                <div class="syllable-card" onclick="playRow('gy', 'gya-gyu')">gyɔ</div>
+                <div class="syllable-card" onclick="playRow('gy', 'gya-gyu')">gyu</div>
+                <button class="play-all-btn" onclick="playRow('gy', 'gya-gyu')">▶ Play All gy</button>
+            </div>
+            
+            <!-- tw row -->
+            <div class="syllable-row">
+                <span style="font-weight: bold; min-width: 30px;">tw:</span>
+                <div class="syllable-card" onclick="playRow('tw', 'twa-twu')">twa</div>
+                <div class="syllable-card" onclick="playRow('tw', 'twa-twu')">twe</div>
+                <div class="syllable-card" onclick="playRow('tw', 'twa-twu')">twɛ</div>
+                <div class="syllable-card" onclick="playRow('tw', 'twa-twu')">twi</div>
+                <div class="syllable-card" onclick="playRow('tw', 'twa-twu')">two</div>
+                <div class="syllable-card" onclick="playRow('tw', 'twa-twu')">twɔ</div>
+                <div class="syllable-card" onclick="playRow('tw', 'twa-twu')">twu</div>
+                <button class="play-all-btn" onclick="playRow('tw', 'twa-twu')">▶ Play All tw</button>
+            </div>
+            
+            <!-- ny row -->
+            <div class="syllable-row">
+                <span style="font-weight: bold; min-width: 30px;">ny:</span>
+                <div class="syllable-card" onclick="playRow('ny', 'nya-nyu')">nya</div>
+                <div class="syllable-card" onclick="playRow('ny', 'nya-nyu')">nye</div>
+                <div class="syllable-card" onclick="playRow('ny', 'nya-nyu')">nyɛ</div>
+                <div class="syllable-card" onclick="playRow('ny', 'nya-nyu')">nyi</div>
+                <div class="syllable-card" onclick="playRow('ny', 'nya-nyu')">nyo</div>
+                <div class="syllable-card" onclick="playRow('ny', 'nya-nyu')">nyɔ</div>
+                <div class="syllable-card" onclick="playRow('ny', 'nya-nyu')">nyu</div>
+                <button class="play-all-btn" onclick="playRow('ny', 'nya-nyu')">▶ Play All ny</button>
+            </div>
+        </div>
+
+        <!-- Practice Tips -->
+        <div class="practice-tip">
+            <strong>💡 Practice Tips:</strong>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.6;">
+                <li>Say each syllable 5 times after hearing it</li>
+                <li>Pay attention to the tone - Twi uses high, mid, and low pitches!</li>
+                <li>For digraphs (ky, gy, tw, ny), say them as ONE smooth sound</li>
+                <li>Practice for 5-10 minutes daily for best results</li>
+                <li>Record yourself and compare with the audio</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 1rem;">
+            <button class="close-btn" onclick="window.close()">❌ Close</button>
+        </div>
+        <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 1rem;">💡 Click any syllable to hear pronunciation. Green buttons play the entire row.</p>
+    </div>
+
+    <script>
+        // Audio base URL
+        const AUDIO_BASE = 'https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/';
+        
+        // Audio file mapping for each row
+        const audioFiles = {
+            'ba-bu': 'ba-bu.m4a',
+            'ka-ku': 'ka-ku.m4a',
+            'da-du': 'da-du.m4a',
+            'ta-tu': 'ta-tu.m4a',
+            'pa-pu': 'pa-pu.m4a',
+            'sa-su': 'sa-su.m4a',
+            'Kya-kyu': 'Kya-kyu.m4a',
+            'gya-gyu': 'gya-gyu.m4a',
+            'twa-twu': 'twa-twu.m4a',
+            'nya-nyu': 'nya-nyu.m4a'
+        };
+        
+        let currentAudio = null;
+        
+        function playRow(rowName, fileName) {
+            const file = audioFiles[fileName];
+            if (file) {
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                }
+                currentAudio = new Audio(AUDIO_BASE + file);
+                currentAudio.play().catch(e => console.log('Audio error:', e));
+                
+                // Visual feedback
+                showPlayingNotification(rowName);
+            } else {
+                console.log('No audio found for:', fileName);
+            }
+        }
+        
+        function showPlayingNotification(rowName) {
+            const notif = document.createElement('div');
+            notif.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#2A9D8F;color:white;padding:8px 16px;border-radius:50px;z-index:10000;font-size:14px;';
+            notif.innerHTML = `🔊 Playing: ${rowName} row`;
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 1500);
+        }
+        
+        // Make function global for onclick
+        window.playRow = playRow;
+    </script>
+</body>
+</html>
