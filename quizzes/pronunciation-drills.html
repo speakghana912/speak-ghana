@@ -80,10 +80,6 @@
             color: white;
             transform: scale(1.05);
         }
-        .play-icon {
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
         .play-all-btn {
             background: #E76F51;
             color: white;
@@ -95,6 +91,97 @@
             transition: all 0.2s;
         }
         .play-all-btn:hover { background: #c95a3e; transform: scale(1.02); }
+        
+        /* Real Words Section */
+        .words-section {
+            background: linear-gradient(135deg, #D4A373, #c49a6c);
+            color: white;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .words-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .word-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+        .word-card:hover { background: rgba(255,255,255,0.25); transform: translateX(5px); }
+        .word-twi { font-weight: bold; font-size: 1rem; }
+        .word-meaning { font-size: 0.75rem; opacity: 0.9; }
+        .word-audio-btn {
+            background: white;
+            color: #D4A373;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: all 0.2s;
+        }
+        .word-audio-btn:hover { transform: scale(1.05); background: #2A9D8F; color: white; }
+        
+        /* Quiz Section */
+        .quiz-section {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-question {
+            background: rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .quiz-question-text {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+        .quiz-options {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .quiz-option {
+            background: white;
+            color: #2A9D8F;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover { background: #D4A373; color: white; transform: scale(1.02); }
+        .quiz-feedback { margin-top: 0.8rem; font-size: 0.85rem; text-align: center; }
+        .quiz-score { text-align: center; margin-top: 1rem; padding: 0.5rem; background: rgba(255,255,255,0.2); border-radius: 50px; font-size: 0.9rem; }
+        .next-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            width: 100%;
+        }
+        .next-btn:hover { background: #c49a6c; }
         
         .practice-tip {
             background: #fff5e8;
@@ -119,6 +206,8 @@
         @media (max-width: 768px) {
             .container { padding: 1rem; }
             .syllable-card { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
+            .quiz-options { flex-direction: column; }
+            .words-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -146,27 +235,13 @@
             <!-- b row -->
             <div class="syllable-row">
                 <span style="font-weight: bold; min-width: 30px;">b:</span>
-                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
-                    ba <span class="play-icon">🔊</span>
-                </div>
-                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
-                    be <span class="play-icon">🔊</span>
-                </div>
-                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
-                    bɛ <span class="play-icon">🔊</span>
-                </div>
-                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
-                    bi <span class="play-icon">🔊</span>
-                </div>
-                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
-                    bo <span class="play-icon">🔊</span>
-                </div>
-                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
-                    bɔ <span class="play-icon">🔊</span>
-                </div>
-                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">
-                    bu <span class="play-icon">🔊</span>
-                </div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">ba</div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">be</div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">bɛ</div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">bi</div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">bo</div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">bɔ</div>
+                <div class="syllable-card" onclick="playRow('b', 'ba-bu')">bu</div>
                 <button class="play-all-btn" onclick="playRow('b', 'ba-bu')">▶ Play All b</button>
             </div>
             
@@ -297,6 +372,64 @@
             </div>
         </div>
 
+        <!-- ===== REAL WORDS SECTION ===== -->
+        <div class="words-section">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                <h3 style="margin: 0;">📖 Real Twi Words from Syllables</h3>
+                <span style="background: rgba(255,255,255,0.2); padding: 0.2rem 0.6rem; border-radius: 50px; font-size: 0.7rem;">Click any word to hear it</span>
+            </div>
+            <p style="font-size: 0.8rem; margin-top: 0.3rem; opacity: 0.9;">These are actual Twi words formed from the syllables above!</p>
+            
+            <div class="words-grid">
+                <div class="word-card"><span class="word-twi">ba</span><span class="word-meaning">child</span><button class="word-audio-btn" onclick="playWordSound('ba', 'ba-bu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">bɛ</span><span class="word-meaning">proverb</span><button class="word-audio-btn" onclick="playWordSound('bɛ', 'ba-bu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">bu</span><span class="word-meaning">break</span><button class="word-audio-btn" onclick="playWordSound('bu', 'ba-bu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">ka</span><span class="word-meaning">bite/say</span><button class="word-audio-btn" onclick="playWordSound('ka', 'ka-ku')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">kɔ</span><span class="word-meaning">go</span><button class="word-audio-btn" onclick="playWordSound('kɔ', 'ka-ku')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">da</span><span class="word-meaning">sleep</span><button class="word-audio-btn" onclick="playWordSound('da', 'da-du')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">dɛ</span><span class="word-meaning">sweet</span><button class="word-audio-btn" onclick="playWordSound('dɛ', 'da-du')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">du</span><span class="word-meaning">ten</span><button class="word-audio-btn" onclick="playWordSound('du', 'da-du')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">tɛ</span><span class="word-meaning">hide</span><button class="word-audio-btn" onclick="playWordSound('tɛ', 'ta-tu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">ti</span><span class="word-meaning">head</span><button class="word-audio-btn" onclick="playWordSound('ti', 'ta-tu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">to</span><span class="word-meaning">throw</span><button class="word-audio-btn" onclick="playWordSound('to', 'ta-tu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">tɔ</span><span class="word-meaning">buy</span><button class="word-audio-btn" onclick="playWordSound('tɔ', 'ta-tu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">pa</span><span class="word-meaning">good</span><button class="word-audio-btn" onclick="playWordSound('pa', 'pa-pu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">pɛ</span><span class="word-meaning">like/want</span><button class="word-audio-btn" onclick="playWordSound('pɛ', 'pa-pu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">sa</span><span class="word-meaning">dance</span><button class="word-audio-btn" onclick="playWordSound('sa', 'sa-su')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">si</span><span class="word-meaning">get down</span><button class="word-audio-btn" onclick="playWordSound('si', 'sa-su')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">so</span><span class="word-meaning">carry/on</span><button class="word-audio-btn" onclick="playWordSound('so', 'sa-su')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">sɔ</span><span class="word-meaning">catch</span><button class="word-audio-btn" onclick="playWordSound('sɔ', 'sa-su')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">kyɛ</span><span class="word-meaning">share</span><button class="word-audio-btn" onclick="playWordSound('kyɛ', 'Kya-kyu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">gye</span><span class="word-meaning">collect</span><button class="word-audio-btn" onclick="playWordSound('gye', 'gya-gyu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">twa</span><span class="word-meaning">cut</span><button class="word-audio-btn" onclick="playWordSound('twa', 'twa-twu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">twe</span><span class="word-meaning">pull</span><button class="word-audio-btn" onclick="playWordSound('twe', 'twa-twu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">twi</span><span class="word-meaning">drive / Twi language</span><button class="word-audio-btn" onclick="playWordSound('twi', 'twa-twu')">🔊</button></div>
+                <div class="word-card"><span class="word-twi">nya</span><span class="word-meaning">get</span><button class="word-audio-btn" onclick="playWordSound('nya', 'nya-nyu')">🔊</button></div>
+            </div>
+        </div>
+
+        <!-- ===== QUIZ / GAME SECTION ===== -->
+        <div class="quiz-section">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                <h3 style="margin: 0;">🎮 Match the Sound Game</h3>
+                <span style="background: rgba(255,255,255,0.2); padding: 0.2rem 0.6rem; border-radius: 50px; font-size: 0.7rem;">5 Questions</span>
+            </div>
+            <p style="font-size: 0.8rem; margin-top: 0.3rem; opacity: 0.9;">Listen to the Twi word and select the correct meaning!</p>
+            
+            <div id="quizContainer">
+                <div class="quiz-question">
+                    <div class="quiz-question-text" id="quizQuestionText">Click the speaker to hear the word:</div>
+                    <div style="text-align: center;">
+                        <button id="quizAudioBtn" class="play-all-btn" style="font-size: 1.2rem; padding: 0.6rem 1.2rem; margin-bottom: 0.8rem;">🔊 Play Word</button>
+                    </div>
+                    <div id="quizOptions" class="quiz-options"></div>
+                    <div id="quizFeedback" class="quiz-feedback"></div>
+                </div>
+                <div class="quiz-score" id="quizScore">Score: 0 / 5</div>
+                <button id="nextQuizBtn" class="next-btn">Next Question →</button>
+            </div>
+        </div>
+
         <!-- Practice Tips -->
         <div class="practice-tip">
             <strong>💡 Practice Tips:</strong>
@@ -304,15 +437,15 @@
                 <li>Say each syllable 5 times after hearing it</li>
                 <li>Pay attention to the tone - Twi uses high, mid, and low pitches!</li>
                 <li>For digraphs (ky, gy, tw, ny), say them as ONE smooth sound</li>
-                <li>Practice for 5-10 minutes daily for best results</li>
-                <li>Record yourself and compare with the audio</li>
+                <li>Practice the Real Words section - these are actual Twi vocabulary!</li>
+                <li>Test yourself with the Match the Sound Game</li>
             </ul>
         </div>
 
         <div style="text-align: center; margin-top: 1rem;">
             <button class="close-btn" onclick="window.close()">❌ Close</button>
         </div>
-        <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 1rem;">💡 Click any syllable to hear pronunciation. Green buttons play the entire row.</p>
+        <p style="font-size: 0.7rem; color: #999; text-align: center; margin-top: 1rem;">💡 Click any syllable or word to hear pronunciation. Green buttons play entire rows.</p>
     </div>
 
     <script>
@@ -344,24 +477,239 @@
                 }
                 currentAudio = new Audio(AUDIO_BASE + file);
                 currentAudio.play().catch(e => console.log('Audio error:', e));
-                
-                // Visual feedback
                 showPlayingNotification(rowName);
-            } else {
-                console.log('No audio found for:', fileName);
             }
         }
         
-        function showPlayingNotification(rowName) {
+        function playWordSound(word, rowFile) {
+            // For individual words, we use the row audio since the word is in that row
+            const file = audioFiles[rowFile];
+            if (file) {
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                }
+                currentAudio = new Audio(AUDIO_BASE + file);
+                currentAudio.play().catch(e => console.log('Audio error:', e));
+                showPlayingNotification(word);
+            }
+        }
+        
+        function showPlayingNotification(msg) {
             const notif = document.createElement('div');
             notif.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#2A9D8F;color:white;padding:8px 16px;border-radius:50px;z-index:10000;font-size:14px;';
-            notif.innerHTML = `🔊 Playing: ${rowName} row`;
+            notif.innerHTML = `🔊 Playing: ${msg}`;
             document.body.appendChild(notif);
             setTimeout(() => notif.remove(), 1500);
         }
         
-        // Make function global for onclick
+        // ===== ENHANCED QUIZ SYSTEM =====
+        const quizQuestions = [
+            { word: "ba", meaning: "child", rowFile: "ba-bu" },
+            { word: "kɔ", meaning: "to go", rowFile: "ka-ku" },
+            { word: "da", meaning: "to sleep", rowFile: "da-du" },
+            { word: "di", meaning: "to eat", rowFile: "da-du" },
+            { word: "tɔ", meaning: "to buy", rowFile: "ta-tu" },
+            { word: "pa", meaning: "good", rowFile: "pa-pu" },
+            { word: "pɛ", meaning: "to like/want", rowFile: "pa-pu" },
+            { word: "sa", meaning: "to dance", rowFile: "sa-su" },
+            { word: "so", meaning: "to carry / on", rowFile: "sa-su" },
+            { word: "sɔ", meaning: "to catch", rowFile: "sa-su" },
+            { word: "twa", meaning: "to cut", rowFile: "twa-twu" },
+            { word: "twe", meaning: "to pull", rowFile: "twa-twu" },
+            { word: "nya", meaning: "to get", rowFile: "nya-nyu" },
+            { word: "kyɛ", meaning: "to share", rowFile: "Kya-kyu" },
+            { word: "gye", meaning: "to collect", rowFile: "gya-gyu" }
+        ];
+        
+        let currentQuestionIndex = 0;
+        let quizScore = 0;
+        let quizAnswered = false;
+        let currentQuizAudio = null;
+        let currentQuestions = [];
+        
+        function selectRandomQuestions() {
+            // Shuffle and pick 5 random questions
+            const shuffled = [...quizQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled.slice(0, 5);
+        }
+        
+        function loadQuestion() {
+            const q = currentQuestions[currentQuestionIndex];
+            document.getElementById('quizQuestionText').innerHTML = `Question ${currentQuestionIndex + 1} of 5: Listen to the Twi word and select the correct meaning:`;
+            document.getElementById('quizScore').innerHTML = `Score: ${quizScore} / 5`;
+            document.getElementById('quizFeedback').innerHTML = '';
+            quizAnswered = false;
+            
+            // Create options (1 correct + 3 random wrong)
+            const otherMeanings = quizQuestions.filter(item => item.word !== q.word).map(item => item.meaning);
+            const wrongOptions = [];
+            const used = new Set();
+            
+            while (wrongOptions.length < 3 && otherMeanings.length) {
+                const randomIndex = Math.floor(Math.random() * otherMeanings.length);
+                const wrong = otherMeanings[randomIndex];
+                if (!used.has(wrong) && wrong !== q.meaning) {
+                    wrongOptions.push(wrong);
+                    used.add(wrong);
+                }
+            }
+            
+            const options = [q.meaning, ...wrongOptions];
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+            
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+            
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.textContent = opt;
+                btn.onclick = () => checkQuizAnswer(opt, btn);
+                optionsContainer.appendChild(btn);
+            });
+            
+            // Enable next button
+            const nextBtn = document.getElementById('nextQuizBtn');
+            nextBtn.disabled = false;
+            nextBtn.textContent = currentQuestionIndex === 4 ? '🏆 Finish' : 'Next Question →';
+        }
+        
+        function playQuizSound() {
+            const q = currentQuestions[currentQuestionIndex];
+            if (q.rowFile && audioFiles[q.rowFile]) {
+                if (currentQuizAudio) {
+                    currentQuizAudio.pause();
+                    currentQuizAudio.currentTime = 0;
+                }
+                currentQuizAudio = new Audio(AUDIO_BASE + audioFiles[q.rowFile]);
+                currentQuizAudio.play().catch(e => console.log('Audio error:', e));
+                
+                showPlayingNotification(`${q.word} (${q.meaning})`);
+            }
+        }
+        
+        function checkQuizAnswer(selected, btnElement) {
+            if (quizAnswered) return;
+            quizAnswered = true;
+            
+            const q = currentQuestions[currentQuestionIndex];
+            const isCorrect = (selected === q.meaning);
+            
+            if (isCorrect) {
+                quizScore++;
+                document.getElementById('quizFeedback').innerHTML = '✅ Correct! Well done!';
+                document.getElementById('quizFeedback').style.color = '#2A9D8F';
+                btnElement.style.background = '#2A9D8F';
+                btnElement.style.color = 'white';
+                
+                if (typeof window.opener !== 'undefined' && window.opener.addXP) {
+                    window.opener.addXP(10, 'Pronunciation Game');
+                }
+            } else {
+                document.getElementById('quizFeedback').innerHTML = `❌ Incorrect! "${q.word}" means "${q.meaning}". Keep practicing!`;
+                document.getElementById('quizFeedback').style.color = '#FFD700';
+                btnElement.style.background = '#E76F51';
+                btnElement.style.color = 'white';
+                
+                // Highlight correct answer
+                const allBtns = document.querySelectorAll('.quiz-option');
+                allBtns.forEach(btn => {
+                    if (btn.textContent === q.meaning) {
+                        btn.style.background = '#2A9D8F';
+                        btn.style.color = 'white';
+                    }
+                });
+            }
+            
+            document.getElementById('quizScore').innerHTML = `Score: ${quizScore} / 5`;
+            
+            const allBtns = document.querySelectorAll('.quiz-option');
+            allBtns.forEach(btn => { btn.disabled = true; });
+        }
+        
+        function nextQuizQuestion() {
+            if (!quizAnswered && currentQuestionIndex < 4) {
+                alert('Please answer the current question before continuing!');
+                return;
+            }
+            
+            if (currentQuestionIndex < 4) {
+                currentQuestionIndex++;
+                loadQuestion();
+                setTimeout(() => playQuizSound(), 300);
+            } else {
+                finishQuizGame();
+            }
+        }
+        
+        function finishQuizGame() {
+            const percentage = Math.round((quizScore / 5) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage >= 80) {
+                emoji = '🏆';
+                message = 'Excellent! You know these words well!';
+            } else if (percentage >= 60) {
+                emoji = '🎉';
+                message = 'Good job! Keep practicing the real words section!';
+            } else if (percentage >= 40) {
+                emoji = '👍';
+                message = 'Good effort! Review the real words and try again.';
+            } else {
+                emoji = '📚';
+                message = 'Keep studying the real words section and try again!';
+            }
+            
+            const quizContainer = document.getElementById('quizContainer');
+            quizContainer.innerHTML = `
+                <div class="quiz-question" style="text-align: center;">
+                    <div style="font-size: 3rem;">${emoji}</div>
+                    <div style="font-size: 1.5rem; font-weight: bold; margin: 0.5rem 0;">${quizScore} / 5</div>
+                    <div style="font-size: 0.9rem; margin-bottom: 1rem;">${message}</div>
+                    <button onclick="restartQuizGame()" class="play-all-btn" style="padding: 0.6rem 1.2rem;">🔄 Play Again</button>
+                </div>
+            `;
+            
+            if (typeof window.opener !== 'undefined' && window.opener.addXP) {
+                window.opener.addXP(quizScore * 10, 'Pronunciation Game Completed');
+            }
+        }
+        
+        function restartQuizGame() {
+            currentQuestions = selectRandomQuestions();
+            currentQuestionIndex = 0;
+            quizScore = 0;
+            quizAnswered = false;
+            loadQuestion();
+            setTimeout(() => playQuizSound(), 500);
+        }
+        
+        // Initialize quiz with random questions
+        let currentQuestions = selectRandomQuestions();
+        
+        // Make functions global
         window.playRow = playRow;
+        window.playWordSound = playWordSound;
+        window.playQuizSound = playQuizSound;
+        window.checkQuizAnswer = checkQuizAnswer;
+        window.nextQuizQuestion = nextQuizQuestion;
+        window.restartQuizGame = restartQuizGame;
+        
+        // Initialize quiz when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadQuestion();
+            document.getElementById('quizAudioBtn').onclick = playQuizSound;
+            document.getElementById('nextQuizBtn').onclick = nextQuizQuestion;
+        });
     </script>
 </body>
 </html>
