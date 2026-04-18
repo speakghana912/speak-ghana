@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Self-Paced Twi Courses | Speak Ghana - Learn at Your Own Pace</title>
-    <meta name="description" content="Learn Twi online at your own pace. Self-paced video courses, downloadable PDFs, worksheets, quizzes, and fun games. Start for just $10/month.">
+    <title>Self Paced Twi Courses | Speak Ghana</title>
+    <meta name="description" content="Learn Twi at your own pace. Self paced video courses, downloadable PDFs, worksheets, quizzes, and fun games. Start for just $10 per month.">
     
     <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
     <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
@@ -35,7 +35,6 @@
             --black: #1E1E1E;
             --cream: #FDF8F2;
             --white: #FFFFFF;
-            --gray-light: #F5F5F5;
             --gray: #666666;
             --shadow: rgba(0, 0, 0, 0.08);
         }
@@ -163,26 +162,6 @@
         .menu-toggle:hover {
             background: var(--green);
             color: white;
-            transform: scale(1.05);
-        }
-
-        .dropdown-submenu a {
-            text-decoration: none !important;
-            border-bottom: none !important;
-            display: block;
-            padding: 0.8rem 1.5rem 0.8rem 2.5rem;
-            color: var(--gray);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-        }
-
-        .dropdown-submenu a:hover {
-            text-decoration: none !important;
-            border-bottom: none !important;
-            color: var(--green);
-            background: rgba(42,157,143,0.1);
-            padding-left: 2.8rem;
         }
 
         @media (max-width: 968px) {
@@ -272,6 +251,12 @@
             
             .dropdown-submenu a {
                 padding: 0.8rem 1.5rem 0.8rem 2.5rem;
+                text-decoration: none;
+                color: var(--gray);
+                font-weight: 500;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                font-size: 0.95rem;
+                display: block;
             }
             
             .dropdown-item {
@@ -296,12 +281,8 @@
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto;
-            opacity: 0.95;
         }
 
-        .course-catalog {
-            padding: 4rem 0;
-        }
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -314,6 +295,7 @@
         .section-header p {
             color: var(--gray);
         }
+
         .levels-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -327,6 +309,10 @@
             text-align: center;
             box-shadow: 0 5px 15px var(--shadow);
             border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .level-card:hover {
+            transform: translateY(-5px);
         }
         .level-icon {
             font-size: 2rem;
@@ -339,6 +325,106 @@
         .level-card p {
             font-size: 0.85rem;
             color: var(--gray);
+        }
+
+        /* Resource Library Preview Styles */
+        .resource-preview {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+        .resource-preview h2 {
+            color: var(--green);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .resource-category {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .resource-category h3 {
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .resource-list {
+            list-style: none;
+        }
+        .resource-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .resource-list li i {
+            color: var(--gold);
+            width: 20px;
+        }
+        .audio-preview {
+            background: linear-gradient(135deg, #2A9D8F10, #D4A37310);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .audio-preview audio {
+            width: 100%;
+            height: 32px;
+        }
+
+        .sample-lesson {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+        .sample-content {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        .sample-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .sample-feature {
+            background: var(--green);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .offer-badge {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         .games-section {
@@ -390,50 +476,11 @@
             color: var(--gray);
         }
 
-        .sample-lesson {
-            background: white;
-            border-radius: 30px;
-            padding: 3rem;
-            margin: 2rem 0;
-            text-align: center;
-            box-shadow: 0 20px 40px var(--shadow);
-        }
-        .sample-content {
-            background: var(--cream);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 1.5rem 0;
-            text-align: left;
-        }
-        .sample-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin: 1rem 0;
-        }
-        .sample-feature {
-            background: var(--green);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .pricing-section {
-            background: linear-gradient(135deg, #fff5e8, white);
-            border-radius: 30px;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 2rem;
+            margin: 2rem 0;
         }
         .pricing-card {
             background: white;
@@ -512,32 +559,24 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(42,157,143,0.3);
         }
-        .offer-badge {
-            display: inline-block;
-            background: var(--red);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-        }
 
-        .portal-access-note {
-            background: linear-gradient(135deg, #e8f5e9, white);
-            border-radius: 20px;
-            padding: 1.5rem;
+        .portal-access-card {
+            background: linear-gradient(135deg, #2A9D8F10, #D4A37310);
+            border-radius: 28px;
+            padding: 2rem;
             margin: 2rem 0;
             text-align: center;
-            border: 1px solid var(--gold);
+            border: 2px solid var(--gold);
         }
         .btn-primary {
             background: var(--green);
             color: white;
-            padding: 0.7rem 1.5rem;
+            padding: 0.8rem 2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             display: inline-block;
+            margin-top: 1rem;
             transition: all 0.3s;
         }
         .btn-primary:hover {
@@ -545,14 +584,11 @@
             transform: translateY(-2px);
         }
 
-        .testimonials {
-            padding: 3rem 0;
-        }
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
-            margin-top: 2rem;
+            margin: 2rem 0;
         }
         .testimonial-card {
             background: white;
@@ -571,17 +607,11 @@
             color: var(--green);
         }
 
-        .faq-section {
-            background: white;
-            border-radius: 30px;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
         .faq-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
-            margin-top: 2rem;
+            margin: 2rem 0;
         }
         .faq-item h4 {
             color: var(--green);
@@ -599,10 +629,6 @@
             text-align: center;
             color: white;
             margin: 3rem 0;
-        }
-        .cta-section h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
         }
         .btn-cta {
             background: var(--gold);
@@ -652,7 +678,7 @@
         }
 
         @media (max-width: 768px) {
-            .pricing-grid, .testimonial-grid, .faq-grid {
+            .pricing-grid, .testimonial-grid, .faq-grid, .resource-grid {
                 grid-template-columns: 1fr;
             }
             .levels-grid {
@@ -694,7 +720,7 @@
                 </a>
             </div>
             <div class="motto-badge" style="background: rgba(255,255,255,0.12); padding: 0.5rem 1.2rem; border-radius: 40px;">
-                <i class="fas fa-video"></i> Self-Paced Learning
+                <i class="fas fa-video"></i> Self Paced Learning
             </div>
         </div>
     </header>
@@ -707,31 +733,31 @@
                 
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownLearnBtn">
-                        <span>📚 Learn</span>
+                        <span>Learn</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownLearnMenu">
                         <a href="languages.html">Languages</a>
-                        <a href="self-paced.html" class="active">Self-Paced</a>
-                        <a href="kids-teens.html">Kids & Teens</a>
+                        <a href="self-paced.html" class="active">Self Paced</a>
+                        <a href="kids-teens.html">Kids and Teens</a>
                         <a href="concierge.html">Concierge</a>
                     </div>
                 </div>
                 
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownResourcesBtn">
-                        <span>📖 Resources</span>
+                        <span>Resources</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownResourcesMenu">
                         <a href="resources.html">Free Resources</a>
                         <a href="blog.html">Blog</a>
                         <a href="student-portal.html">Live Class Portal</a>
-                        <a href="https://portal.speakghana.org" target="_blank">📚 Self-Paced Portal</a>
+                        <a href="https://portal.speakghana.org" target="_blank">Self Paced Portal</a>
                     </div>
                 </div>
                 
-                <a href="for-organizations.html">🏢 For Organizations</a>
+                <a href="for-organizations.html">For Organizations</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
@@ -740,65 +766,127 @@
 
     <div class="page-hero">
         <div class="container">
-            <h1>🎓 Self-Paced Twi Courses</h1>
+            <h1>Self Paced Twi Courses</h1>
             <p>Learn Twi at your own pace. Start anytime, anywhere. Get certified at every level.</p>
         </div>
     </div>
 
     <div class="container">
-        <!-- Course Levels -->
-        <div class="course-catalog">
-            <div class="section-header">
-                <h2>What You'll Learn</h2>
-                <p>5 certificate levels, from complete beginner to cultural fluency</p>
-            </div>
-            <div class="levels-grid">
-                <div class="level-card"><div class="level-icon">👋</div><h3>Beginner 1</h3><p>Greetings, introductions, alphabet, numbers 1-100</p></div>
-                <div class="level-card"><div class="level-icon">🏠</div><h3>Beginner 2</h3><p>Family terms, home vocabulary, basic sentences</p></div>
-                <div class="level-card"><div class="level-icon">💬</div><h3>Intermediate</h3><p>Full conversations, market bargaining, everyday Twi</p></div>
-                <div class="level-card"><div class="level-icon">💼</div><h3>Business Twi</h3><p>Negotiation, meetings, professional protocol</p></div>
-                <div class="level-card"><div class="level-icon">🕊️</div><h3>Cultural Fluency</h3><p>Proverbs, Adinkra symbols, festivals, etiquette</p></div>
-            </div>
+        
+        <div class="section-header">
+            <h2>What You Will Learn</h2>
+            <p>5 certificate levels, from complete beginner to cultural fluency</p>
+        </div>
+        
+        <div class="levels-grid">
+            <div class="level-card"><div class="level-icon">👋</div><h3>Beginner 1</h3><p>Greetings, introductions, alphabet, numbers 1 to 20</p></div>
+            <div class="level-card"><div class="level-icon">🏠</div><h3>Beginner 2</h3><p>Family terms, home vocabulary, basic sentences</p></div>
+            <div class="level-card"><div class="level-icon">💬</div><h3>Intermediate</h3><p>Full conversations, market bargaining, everyday Twi</p></div>
+            <div class="level-card"><div class="level-icon">💼</div><h3>Business Twi</h3><p>Negotiation, meetings, professional protocol</p></div>
+            <div class="level-card"><div class="level-icon">🕊️</div><h3>Cultural Fluency</h3><p>Proverbs, Adinkra symbols, festivals, etiquette</p></div>
         </div>
 
-        <!-- Audio Library Feature -->
-        <div class="sample-lesson">
-            <span class="offer-badge" style="background: var(--green);">🎧 AUDIO LIBRARY</span>
-            <h3 style="margin-top: 1rem;">Complete Twi Pronunciation Guide</h3>
-            <p>Listen to correct pronunciation anytime, no downloads needed</p>
-            <div class="sample-content">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                    <div><strong>🔤 Alphabet (A-Y, Ɛ, Ɔ)</strong><br>All 22 letters including special vowels</div>
-                    <div><strong>🔊 Digraphs (DW, GY, HW, HY, KW, KY, NW, NY, TW)</strong><br>Two letters = one sound</div>
-                    <div><strong>🔢 Numbers 1-20</strong><br>Full audio for counting</div>
-                    <div><strong>👋 Greetings & Introductions</strong><br>Complete phrase library</div>
+        <!-- RESOURCE LIBRARY PREVIEW - WHAT'S INSIDE THE PORTAL -->
+        <div class="resource-preview">
+            <h2>What's Inside Your Portal</h2>
+            <div class="resource-grid">
+                <!-- Essential Tools -->
+                <div class="resource-category">
+                    <h3><i class="fas fa-tools"></i> Essential Tools</h3>
+                    <ul class="resource-list">
+                        <li><i class="fas fa-book"></i> Twi-English Dictionary</li>
+                        <li><i class="fas fa-book-open"></i> Twi Reader</li>
+                        <li><i class="fas fa-language"></i> Verb Conjugation Guide</li>
+                    </ul>
+                </div>
+                
+                <!-- Audio Learning -->
+                <div class="resource-category">
+                    <h3><i class="fas fa-headphones"></i> Audio Learning</h3>
+                    <ul class="resource-list">
+                        <li><i class="fas fa-font"></i> Full Alphabet (A-Z, Ɛ, Ɔ)</li>
+                        <li><i class="fas fa-link"></i> Digraphs (DW, GY, KY, NY, TW, etc.)</li>
+                        <li><i class="fas fa-hashtag"></i> Numbers 1-20 with audio</li>
+                        <li><i class="fas fa-hand-peace"></i> Greetings & Introductions</li>
+                    </ul>
+                    <div class="audio-preview">
+                        <small>Sample: Alphabet pronunciation</small>
+                        <audio controls preload="none" style="width: 100%; height: 32px;">
+                            <source src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-a.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                </div>
+                
+                <!-- Printable Resources -->
+                <div class="resource-category">
+                    <h3><i class="fas fa-download"></i> Printable Resources</h3>
+                    <ul class="resource-list">
+                        <li><i class="fas fa-file-pdf"></i> 100 Common Words PDF</li>
+                        <li><i class="fas fa-file-pdf"></i> Alphabet Pronunciation PDF</li>
+                        <li><i class="fas fa-file-pdf"></i> Common Phrases PDF</li>
+                        <li><i class="fas fa-file-pdf"></i> Days & Months PDF</li>
+                        <li><i class="fas fa-file-pdf"></i> Essential Twi Phrases Ebook</li>
+                        <li><i class="fas fa-file-pdf"></i> Family Terms PDF</li>
+                        <li><i class="fas fa-file-pdf"></i> Greetings Cheatsheet</li>
+                    </ul>
                 </div>
             </div>
-            <p style="color: var(--gray);">🎙️ Sample audio: "Wo ho te sɛn?" (How are you?) — "Me ho yɛ. Medaase." (I am fine. Thank you.)</p>
         </div>
 
-        <!-- Games Section -->
+        <!-- VOCABULARY GALLERY PREVIEW -->
+        <div class="sample-lesson">
+            <span class="offer-badge" style="background: var(--green);">60+ Words with Images</span>
+            <h3 style="margin-top: 1rem;">Vocabulary Picture Gallery</h3>
+            <p>Learn words with real images and audio pronunciation</p>
+            <div class="sample-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; text-align: center;">
+                    <div><strong>🏠 efie</strong><br>house</div>
+                    <div><strong>🍎 aduane</strong><br>food</div>
+                    <div><strong>🐘 ɛsono</strong><br>elephant</div>
+                    <div><strong>🎨 tuntum</strong><br>black</div>
+                    <div><strong>👨 agya</strong><br>father</div>
+                    <div><strong>💧 nsuo</strong><br>water</div>
+                </div>
+            </div>
+            <p style="color: var(--gray);">Categories: Home, Family, Food, Colors, Body Parts, Animals, Nature</p>
+        </div>
+
+        <!-- CULTURE SECTION PREVIEW -->
+        <div class="sample-lesson">
+            <span class="offer-badge" style="background: var(--gold); color: var(--black);">Cultural Fluency</span>
+            <h3 style="margin-top: 1rem;">Proverbs, Calendar & Traditions</h3>
+            <p>Connect with Ghanaian culture through language</p>
+            <div class="sample-features">
+                <span class="sample-feature" style="background: var(--gold); color: var(--black);">55 Akan Proverbs</span>
+                <span class="sample-feature" style="background: var(--gold); color: var(--black);">Akan Calendar</span>
+                <span class="sample-feature" style="background: var(--gold); color: var(--black);">Festival Calendar</span>
+                <span class="sample-feature" style="background: var(--gold); color: var(--black);">Cultural Corner</span>
+            </div>
+            <p style="margin-top: 1rem; color: var(--gray);">"Proverbs are the palm oil with which words are eaten" — Akan proverb</p>
+        </div>
+
+        <!-- GAMES SECTION -->
         <div class="games-section">
-            <span class="offer-badge" style="background: var(--gold); color: var(--black);">🎮 LEARN THROUGH PLAY</span>
+            <span class="offer-badge" style="background: var(--gold); color: var(--black);">Learn Through Play</span>
             <h3 style="margin-top: 1rem;">12+ Interactive Games to Reinforce Your Learning</h3>
-            <p style="color: var(--gray);">Practice what you've learned with these fun games, available inside the portal!</p>
+            <p style="color: var(--gray);">Practice what you've learned with these fun games, available inside the portal</p>
             <div class="games-grid">
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🎮</div><h4>Match the Sound</h4><p>Listen and click the correct Twi letter</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🎈</div><h4>Number Pop</h4><p>Pop balloons with the correct Twi numbers</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🧠</div><h4>Memory Match</h4><p>Match Twi words with English meanings</p></div>
-                <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🔊</div><h4>Digraph Challenge</h4><p>Master Twi special sounds (dw, gy, ky, etc.)</p></div>
+                <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🔊</div><h4>Digraph Challenge</h4><p>Master Twi special sounds</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">💰</div><h4>Millionaire Quiz</h4><p>Test your Twi knowledge</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🎯</div><h4>Vocabulary Challenge</h4><p>Build your word power</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">⏰</div><h4>Twi Time Challenge</h4><p>Learn to tell time in Twi</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🧮</div><h4>Number Math</h4><p>Practice numbers with math puzzles</p></div>
-                <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🗣️</div><h4>Voice Challenge</h4><p>Practice speaking with pronunciation feedback</p></div>
+                <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🗣️</div><h4>Voice Challenge</h4><p>Practice speaking with feedback</p></div>
             </div>
             <div class="games-note"><i class="fas fa-lock"></i> All games are available inside the Self-Paced Portal after enrollment</div>
         </div>
 
         <!-- What's Included -->
         <div class="sample-lesson">
-            <span class="offer-badge" style="background: var(--green);">📘 EVERY COURSE LEVEL INCLUDES</span>
+            <span class="offer-badge" style="background: var(--green);">Every Course Level Includes</span>
             <div class="sample-features">
                 <span class="sample-feature"><i class="fas fa-video"></i> Video Lessons</span>
                 <span class="sample-feature"><i class="fas fa-file-pdf"></i> PDF Textbooks</span>
@@ -809,139 +897,200 @@
                 <span class="sample-feature"><i class="fas fa-headphones"></i> Audio Library</span>
                 <span class="sample-feature"><i class="fab fa-whatsapp"></i> WhatsApp Support</span>
             </div>
-            <p style="margin-top: 1rem; color: var(--gray);">🎓 Full course includes 50+ videos, 300+ page textbook, worksheets, quizzes, interactive games, and complete audio library for every level.</p>
+            <p style="margin-top: 1rem; color: var(--gray);">Full course includes 50+ videos, 300+ page textbook, worksheets, quizzes, interactive games, and complete audio library for every level.</p>
         </div>
 
-        <!-- Portal Access -->
-        <div class="portal-access-note">
+        <div class="section-header">
+            <h2>Choose Your Plan</h2>
+            <p>Monthly subscription, access all 5 levels. Cancel anytime.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Basic Plan -->
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <div class="price">$10<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> All 5 levels (50+ videos)</li>
+                    <li><i class="fas fa-check"></i> PDF downloads</li>
+                    <li><i class="fas fa-check"></i> Complete textbook (300+ pages)</li>
+                    <li><i class="fas fa-check"></i> Audio pronunciation library</li>
+                    <li><i class="fas fa-times"></i> Worksheets</li>
+                    <li><i class="fas fa-times"></i> Quizzes and assessments</li>
+                    <li><i class="fas fa-times"></i> Certificates</li>
+                    <li><i class="fas fa-times"></i> Games (12+ interactive games)</li>
+                    <li><i class="fas fa-times"></i> XP and Badges system</li>
+                    <li><i class="fas fa-times"></i> Live Q and A with teacher</li>
+                </ul>
+                <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Basic%20Self%20Paced%20($10/month)" class="btn-pricing">Enroll Now →</a>
+            </div>
+            
+            <!-- Standard Plan (Most Popular) -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">⭐ MOST POPULAR</div>
+                <h3>Standard</h3>
+                <div class="price">$20<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> All 5 levels (50+ videos)</li>
+                    <li><i class="fas fa-check"></i> PDF downloads</li>
+                    <li><i class="fas fa-check"></i> Complete textbook (300+ pages)</li>
+                    <li><i class="fas fa-check"></i> Audio pronunciation library</li>
+                    <li><i class="fas fa-check"></i> Worksheets</li>
+                    <li><i class="fas fa-check"></i> Quizzes and assessments</li>
+                    <li><i class="fas fa-check"></i> Certificates for each level</li>
+                    <li><i class="fas fa-check"></i> Games (12+ interactive games)</li>
+                    <li><i class="fas fa-check"></i> XP and Badges system</li>
+                    <li><i class="fas fa-times"></i> Live Q and A with teacher</li>
+                </ul>
+                <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Standard%20Self%20Paced%20($20/month)" class="btn-pricing">Enroll Now →</a>
+            </div>
+            
+            <!-- Premium Plan -->
+            <div class="pricing-card">
+                <h3>Premium</h3>
+                <div class="price">$30<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> All 5 levels (50+ videos)</li>
+                    <li><i class="fas fa-check"></i> PDF downloads</li>
+                    <li><i class="fas fa-check"></i> Complete textbook (300+ pages)</li>
+                    <li><i class="fas fa-check"></i> Audio pronunciation library</li>
+                    <li><i class="fas fa-check"></i> Worksheets</li>
+                    <li><i class="fas fa-check"></i> Quizzes and assessments</li>
+                    <li><i class="fas fa-check"></i> Certificates for each level</li>
+                    <li><i class="fas fa-check"></i> Games (12+ interactive games)</li>
+                    <li><i class="fas fa-check"></i> XP and Badges system</li>
+                    <li><i class="fas fa-check"></i> Monthly live Q and A with teacher</li>
+                </ul>
+                <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Premium%20Self%20Paced%20($30/month)" class="btn-pricing">Enroll Now →</a>
+            </div>
+        </div>
+
+        <div class="portal-access-card">
             <i class="fas fa-key" style="font-size: 2rem; color: var(--green);"></i>
             <h3 style="margin: 0.5rem 0;">Already Enrolled?</h3>
             <p>Access your courses, audio library, and games here:</p>
-            <a href="https://portal.speakghana.org" class="btn-primary">🎓 Go to Self-Paced Portal →</a>
+            <a href="https://portal.speakghana.org" class="btn-primary">Go to Self Paced Portal →</a>
             <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--gray);">Use the unique password sent to your email after enrollment.</p>
         </div>
 
-        <!-- Pricing -->
-        <div id="pricing" class="pricing-section">
-            <div class="section-header">
-                <h2>Choose Your Plan</h2>
-                <p>Monthly subscription, access ALL 5 levels. Cancel anytime.</p>
-            </div>
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="offer-badge">🚀 LAUNCH OFFER</span>
-                <p style="margin-top: 0.5rem; font-size: 1rem;"><strong>First 10 students get 20% off first 3 months.</strong> Use code: <strong>SELFPACED20</strong></p>
-            </div>
-            <div class="pricing-grid">
-                <!-- Basic Plan - Games NOT included -->
-                <div class="pricing-card">
-                    <h3>Basic</h3>
-                    <div class="price">$10<span>/month</span></div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> All 5 levels (50+ videos)</li>
-                        <li><i class="fas fa-check"></i> PDF downloads</li>
-                        <li><i class="fas fa-check"></i> Complete textbook (300+ pages)</li>
-                        <li><i class="fas fa-times"></i> 12+ learning games</li>
-                        <li><i class="fas fa-check"></i> Audio pronunciation library</li>
-                        <li><i class="fas fa-times"></i> Worksheets</li>
-                        <li><i class="fas fa-times"></i> Quizzes & assessments</li>
-                        <li><i class="fas fa-times"></i> Certificates</li>
-                        <li><i class="fas fa-times"></i> Live Q&A with teacher</li>
-                    </ul>
-                    <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Basic%20Self-Paced%20($10/month)" class="btn-pricing">Enroll →</a>
-                </div>
-                
-                <!-- Standard Plan - Games INCLUDED -->
-                <div class="pricing-card popular">
-                    <div class="popular-badge">⭐ MOST POPULAR</div>
-                    <h3>Standard</h3>
-                    <div class="price">$20<span>/month</span></div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> All 5 levels (50+ videos)</li>
-                        <li><i class="fas fa-check"></i> PDF downloads</li>
-                        <li><i class="fas fa-check"></i> Complete textbook (300+ pages)</li>
-                        <li><i class="fas fa-check"></i> 12+ learning games</li>
-                        <li><i class="fas fa-check"></i> Audio pronunciation library</li>
-                        <li><i class="fas fa-check"></i> Worksheets</li>
-                        <li><i class="fas fa-check"></i> Quizzes & assessments</li>
-                        <li><i class="fas fa-check"></i> Certificates for each level</li>
-                        <li><i class="fas fa-times"></i> Live Q&A with teacher</li>
-                    </ul>
-                    <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Standard%20Self-Paced%20($20/month)" class="btn-pricing">Enroll →</a>
-                </div>
-                
-                <!-- Premium Plan - Games INCLUDED + Live Q&A -->
-                <div class="pricing-card">
-                    <h3>Premium</h3>
-                    <div class="price">$30<span>/month</span></div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> All 5 levels (50+ videos)</li>
-                        <li><i class="fas fa-check"></i> PDF downloads</li>
-                        <li><i class="fas fa-check"></i> Complete textbook (300+ pages)</li>
-                        <li><i class="fas fa-check"></i> 12+ learning games</li>
-                        <li><i class="fas fa-check"></i> Audio pronunciation library</li>
-                        <li><i class="fas fa-check"></i> Worksheets</li>
-                        <li><i class="fas fa-check"></i> Quizzes & assessments</li>
-                        <li><i class="fas fa-check"></i> Certificates for each level</li>
-                        <li><i class="fas fa-check"></i> Monthly live Q&A with teacher</li>
-                    </ul>
-                    <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Premium%20Self-Paced%20($30/month)" class="btn-pricing">Enroll →</a>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--gray);">🔐 After payment, you'll receive a password to access all course materials, audio library, and games.</p>
-            <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--gray);"><i class="fas fa-graduation-cap"></i> Complete all 5 levels and earn the "Speak Ghana Certified" credential.</p>
-        </div>
-
-        <!-- Testimonials -->
         <div class="testimonials">
-            <div class="section-header"><h2>What Our Students Say</h2><p>Real results from real learners</p></div>
+            <div class="section-header">
+                <h2>What Our Students Say</h2>
+                <p>Real results from real learners</p>
+            </div>
             <div class="testimonial-grid">
-                <div class="testimonial-card"><p class="testimonial-text">"After just one month, I can already form real Twi sentences and understand so much more of what my family says."</p><p class="testimonial-author">— Adelina Daniels, UK</p></div>
-                <div class="testimonial-card"><p class="testimonial-text">"The teachers are super helpful and kind. They help us learn fast and are encouraging. I love these lessons!"</p><p class="testimonial-author">— Anonymous Student</p></div>
-                <div class="testimonial-card"><p class="testimonial-text">"I love the interactive engagement. The structure is very helpful, they make sure you're understanding."</p><p class="testimonial-author">— Anonymous Student</p></div>
-                <div class="testimonial-card"><p class="testimonial-text">"The patience, the commitment and the resources to ensure we learn. I'm extremely happy we connected!"</p><p class="testimonial-author">— Anonymous Student</p></div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"After just one month of lessons, I can already form real Twi sentences and understand so much more of what my family says."</p>
+                    <p class="testimonial-author">— Adelina Daniels, UK</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The teachers are super helpful and kind. They help us learn fast and are encouraging. I love these lessons!"</p>
+                    <p class="testimonial-author">— Student</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I love the interactive engagement. The structure is very helpful, they make sure you are understanding."</p>
+                    <p class="testimonial-author">— Student</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The patience, the commitment and the resources to ensure we learn. I am extremely happy we connected!"</p>
+                    <p class="testimonial-author">— Student</p>
+                </div>
             </div>
         </div>
 
-        <!-- FAQ -->
         <div class="faq-section">
-            <div class="section-header"><h2>Frequently Asked Questions</h2><p>Everything you need to know</p></div>
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know</p>
+            </div>
             <div class="faq-grid">
-                <div class="faq-item"><h4>How does it work?</h4><p>Choose your plan, make payment, and we'll email you the password to access all course materials, audio library, and games. You can start immediately.</p></div>
-                <div class="faq-item"><h4>Are the games included?</h4><p>Games are included in Standard and Premium plans. Basic plan includes videos, PDFs, and audio library only.</p></div>
-                <div class="faq-item"><h4>What is the audio library?</h4><p>The audio library has pronunciation for all Twi letters, digraphs, numbers 1-20, greetings, and introductions. Play directly in your browser — no downloads needed.</p></div>
-                <div class="faq-item"><h4>Do I get a certificate?</h4><p>Yes. Standard and Premium plans include certificates for each level. Complete all 5 levels for the "Speak Ghana Certified" credential.</p></div>
-                <div class="faq-item"><h4>What's the difference between Basic, Standard, and Premium?</h4><p>Basic: Videos + PDFs + audio library. Standard: + worksheets + quizzes + certificates + games. Premium: + monthly live Q&A with teacher.</p></div>
-                <div class="faq-item"><h4>How do I pay?</h4><p>Mobile Money (MTN, Vodafone, AirtelTigo) to 0552263323 (Richard Asiamah), or PayPal/Wise for international payments.</p></div>
-                <div class="faq-item"><h4>Can I upgrade later?</h4><p>Yes. You can upgrade from Basic to Standard or Premium at any time. Just message us.</p></div>
-                <div class="faq-item"><h4>Where do I access my courses after enrollment?</h4><p>Go to <a href="https://portal.speakghana.org" style="color: var(--green);">portal.speakghana.org</a> and enter your unique password.</p></div>
+                <div class="faq-item">
+                    <h4>How does it work?</h4>
+                    <p>Choose your plan, make payment via WhatsApp, and we will email you the password to access all course materials and games. You can start immediately.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Are the games included?</h4>
+                    <p>Yes! Standard and Premium plans include access to 12+ fun interactive games to help reinforce your learning.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What is the audio library?</h4>
+                    <p>The audio library has pronunciation for all Twi letters, digraphs, numbers 1 to 20, greetings, and introductions. Play directly in your browser, no downloads needed.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do I get a certificate?</h4>
+                    <p>Yes. Standard and Premium plans include certificates for each level. Complete all 5 levels for the "Speak Ghana Certified" credential.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What is the difference between Basic, Standard, and Premium?</h4>
+                    <p>Basic: Videos + PDFs + audio library. Standard: + worksheets + quizzes + certificates + games + XP system. Premium: + monthly live Q and A with teacher.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How do I pay?</h4>
+                    <p>Mobile Money (MTN, Vodafone, AirtelTigo) to 0552263323 (Richard Asiamah), or PayPal and Wise for international payments.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I upgrade later?</h4>
+                    <p>Yes. You can upgrade from Basic to Standard or Premium at any time. Just message us on WhatsApp.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Where do I access my courses after enrollment?</h4>
+                    <p>Go to <a href="https://portal.speakghana.org" style="color: var(--green);">portal.speakghana.org</a> and enter your unique password.</p>
+                </div>
             </div>
         </div>
 
-        <!-- CTA -->
         <div class="cta-section">
             <h3>Ready to Start Your Twi Journey?</h3>
-            <p>Join hundreds of students reconnecting with their roots through language.</p>
-            <a href="#pricing" class="btn-cta">Choose Your Plan →</a>
+            <p>Join students reconnecting with their roots through language.</p>
+            <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Self%20Paced%20Twi%20courses" class="btn-cta">Enroll Now →</a>
         </div>
     </div>
 
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-section"><h4>Speak Ghana</h4><p>📍 KNUST Campus, Kumasi</p><p>📞 +233 55 226 3323</p><p>📧 info@speakghana.org</p></div>
-                <div class="footer-section"><h4>Programs</h4><a href="languages.html">Live Classes</a><a href="self-paced.html">Self-Paced Courses</a><a href="for-organizations.html">For Organizations</a><a href="kids-teens.html">Kids & Teens</a><a href="student-portal.html">🎓 Live Class Portal</a><a href="https://portal.speakghana.org">📚 Self-Paced Portal</a></div>
-                <div class="footer-section"><h4>Resources</h4><a href="resources.html">Free Resources</a><a href="blog.html">Blog</a></div>
-                <div class="footer-section"><h4>Connect</h4><a href="https://www.instagram.com/speak_ghana" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.youtube.com/@SpeakGhana" target="_blank"><i class="fab fa-youtube"></i> YouTube</a><a href="https://wa.me/233552263323" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>📍 KNUST Campus, Kumasi</p>
+                    <p>📞 +233 55 226 3323</p>
+                    <p>📧 info@speakghana.org</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Programs</h4>
+                    <a href="languages.html">Live Classes</a>
+                    <a href="self-paced.html">Self Paced Courses</a>
+                    <a href="for-organizations.html">For Organizations</a>
+                    <a href="kids-teens.html">Kids and Teens</a>
+                    <a href="student-portal.html">Live Class Portal</a>
+                    <a href="https://portal.speakghana.org">Self Paced Portal</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="resources.html">Free Resources</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                    <a href="https://wa.me/233552263323" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
             </div>
-            <div class="copyright"><p>© 2026 Speak Ghana Language School — Founded by Richard Asiamah</p><div style="margin-top: 0.5rem; font-size: 0.85rem;">Reconnect. Speak. Thrive.</div></div>
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School — Self Paced Learning</p>
+                <div style="margin-top: 0.5rem; font-size: 0.85rem;">Reconnect. Speak. Thrive.</div>
+            </div>
         </div>
     </footer>
 
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
+        
         if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', function() { navLinks.classList.toggle('show'); });
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
         }
         
         const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
@@ -951,7 +1100,8 @@
         
         if (dropdownLearnBtn && dropdownLearnMenu) {
             dropdownLearnBtn.addEventListener('click', function(e) {
-                e.preventDefault(); e.stopPropagation();
+                e.preventDefault();
+                e.stopPropagation();
                 dropdownLearnMenu.classList.toggle('show');
                 dropdownLearnBtn.classList.toggle('open');
                 if (dropdownResourcesMenu && dropdownResourcesMenu.classList.contains('show')) {
@@ -963,7 +1113,8 @@
         
         if (dropdownResourcesBtn && dropdownResourcesMenu) {
             dropdownResourcesBtn.addEventListener('click', function(e) {
-                e.preventDefault(); e.stopPropagation();
+                e.preventDefault();
+                e.stopPropagation();
                 dropdownResourcesMenu.classList.toggle('show');
                 dropdownResourcesBtn.classList.toggle('open');
                 if (dropdownLearnMenu && dropdownLearnMenu.classList.contains('show')) {
@@ -973,11 +1124,29 @@
             });
         }
         
+        document.querySelectorAll('.dropdown-submenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.nav-links > a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
         window.addEventListener('resize', function() {
             if (window.innerWidth > 968) {
                 if (navLinks) navLinks.classList.remove('show');
                 if (dropdownLearnMenu) dropdownLearnMenu.classList.remove('show');
                 if (dropdownResourcesMenu) dropdownResourcesMenu.classList.remove('show');
+                if (dropdownLearnBtn) dropdownLearnBtn.classList.remove('open');
+                if (dropdownResourcesBtn) dropdownResourcesBtn.classList.remove('open');
             }
         });
     </script>
