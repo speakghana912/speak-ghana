@@ -345,6 +345,64 @@
             color: var(--gray);
         }
 
+        /* Resource Library Preview Section */
+        .resource-preview {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+        .resource-preview h2 {
+            color: var(--green);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .resource-category {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .resource-category h3 {
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .resource-list {
+            list-style: none;
+        }
+        .resource-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .resource-list li i {
+            color: var(--gold);
+            width: 20px;
+        }
+        .audio-preview {
+            background: linear-gradient(135deg, #2A9D8F10, #D4A37310);
+            border-radius: 16px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .audio-preview audio {
+            width: 100%;
+            height: 32px;
+        }
+
         .games-section {
             background: linear-gradient(135deg, #fff5e8, white);
             border-radius: 30px;
@@ -656,7 +714,7 @@
         }
 
         @media (max-width: 768px) {
-            .pricing-grid, .testimonial-grid, .faq-grid {
+            .pricing-grid, .testimonial-grid, .faq-grid, .resource-grid {
                 grid-template-columns: 1fr;
             }
             .levels-grid {
@@ -765,20 +823,83 @@
             </div>
         </div>
 
-        <!-- Audio Library Feature -->
-        <div class="sample-lesson">
-            <span class="offer-badge" style="background: var(--green);">Audio Library</span>
-            <h3 style="margin-top: 1rem;">Complete Twi Pronunciation Guide</h3>
-            <p>Listen to correct pronunciation anytime, no downloads needed</p>
-            <div class="sample-content">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                    <div><strong>Alphabet (A-Y, Ɛ, Ɔ)</strong><br>All 22 letters including special vowels</div>
-                    <div><strong>Digraphs (DW, GY, HW, HY, KW, KY, NW, NY, TW)</strong><br>Two letters = one sound</div>
-                    <div><strong>Numbers 1-20</strong><br>Full audio for counting</div>
-                    <div><strong>Greetings & Introductions</strong><br>Complete phrase library</div>
+        <!-- RESOURCE LIBRARY PREVIEW - NEW SECTION -->
+        <div class="resource-preview">
+            <h2>What's Inside Your Portal</h2>
+            <div class="resource-grid">
+                <!-- Essential Tools -->
+                <div class="resource-category">
+                    <h3><i class="fas fa-tools"></i> Essential Tools</h3>
+                    <ul class="resource-list">
+                        <li><i class="fas fa-book"></i> Twi-English Dictionary</li>
+                        <li><i class="fas fa-book-open"></i> Twi Reader</li>
+                        <li><i class="fas fa-language"></i> Verb Conjugation Guide</li>
+                    </ul>
+                </div>
+                
+                <!-- Audio Learning -->
+                <div class="resource-category">
+                    <h3><i class="fas fa-headphones"></i> Audio Learning</h3>
+                    <ul class="resource-list">
+                        <li><i class="fas fa-font"></i> Full Alphabet (A-Z, Ɛ, Ɔ)</li>
+                        <li><i class="fas fa-link"></i> Digraphs (DW, GY, KY, NY, TW, etc.)</li>
+                        <li><i class="fas fa-hashtag"></i> Numbers 1-20 with audio</li>
+                        <li><i class="fas fa-hand-peace"></i> Greetings & Introductions</li>
+                    </ul>
+                    <div class="audio-preview">
+                        <small>Sample: Alphabet pronunciation</small>
+                        <audio controls preload="none" style="width: 100%; height: 32px;">
+                            <source src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-a.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                </div>
+                
+                <!-- Printable Resources -->
+                <div class="resource-category">
+                    <h3><i class="fas fa-download"></i> Printable Resources</h3>
+                    <ul class="resource-list">
+                        <li><i class="fas fa-file-pdf"></i> 100 Common Words PDF</li>
+                        <li><i class="fas fa-file-pdf"></i> Alphabet Pronunciation PDF</li>
+                        <li><i class="fas fa-file-pdf"></i> Common Phrases PDF</li>
+                        <li><i class="fas fa-file-pdf"></i> Days & Months PDF</li>
+                        <li><i class="fas fa-file-pdf"></i> Essential Twi Phrases Ebook</li>
+                        <li><i class="fas fa-file-pdf"></i> Family Terms PDF</li>
+                        <li><i class="fas fa-file-pdf"></i> Greetings Cheatsheet</li>
+                    </ul>
                 </div>
             </div>
-            <p style="color: var(--gray);">Sample audio: "Wo ho te sɛn?" (How are you?) — "Me ho yɛ. Medaase." (I am fine. Thank you.)</p>
+        </div>
+
+        <!-- Vocabulary Gallery Preview -->
+        <div class="sample-lesson">
+            <span class="offer-badge" style="background: var(--green);">60+ Words with Images</span>
+            <h3 style="margin-top: 1rem;">Vocabulary Picture Gallery</h3>
+            <p>Learn words with real images and audio pronunciation</p>
+            <div class="sample-content">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; text-align: center;">
+                    <div><strong>🏠 efie</strong><br>house</div>
+                    <div><strong>🍎 aduane</strong><br>food</div>
+                    <div><strong>🐘 ɛsono</strong><br>elephant</div>
+                    <div><strong>🎨 tuntum</strong><br>black</div>
+                    <div><strong>👨 agya</strong><br>father</div>
+                    <div><strong>💧 nsuo</strong><br>water</div>
+                </div>
+            </div>
+            <p style="color: var(--gray);">Categories: Home, Family, Food, Colors, Body Parts, Animals, Nature</p>
+        </div>
+
+        <!-- Culture Section Preview -->
+        <div class="sample-lesson">
+            <span class="offer-badge" style="background: var(--gold); color: var(--black);">Cultural Fluency</span>
+            <h3 style="margin-top: 1rem;">Proverbs, Calendar & Traditions</h3>
+            <p>Connect with Ghanaian culture through language</p>
+            <div class="sample-features">
+                <span class="sample-feature" style="background: var(--gold); color: var(--black);">55 Akan Proverbs</span>
+                <span class="sample-feature" style="background: var(--gold); color: var(--black);">Akan Calendar</span>
+                <span class="sample-feature" style="background: var(--gold); color: var(--black);">Festival Calendar</span>
+                <span class="sample-feature" style="background: var(--gold); color: var(--black);">Cultural Corner</span>
+            </div>
+            <p style="margin-top: 1rem; color: var(--gray);">"Proverbs are the palm oil with which words are eaten" — Akan proverb</p>
         </div>
 
         <!-- Games Section -->
@@ -790,12 +911,12 @@
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🎮</div><h4>Match the Sound</h4><p>Listen and click the correct Twi letter</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🎈</div><h4>Number Pop</h4><p>Pop balloons with the correct Twi numbers</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🧠</div><h4>Memory Match</h4><p>Match Twi words with English meanings</p></div>
-                <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🔊</div><h4>Digraph Challenge</h4><p>Master Twi special sounds (dw, gy, ky, etc.)</p></div>
+                <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🔊</div><h4>Digraph Challenge</h4><p>Master Twi special sounds</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">💰</div><h4>Millionaire Quiz</h4><p>Test your Twi knowledge</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🎯</div><h4>Vocabulary Challenge</h4><p>Build your word power</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">⏰</div><h4>Twi Time Challenge</h4><p>Learn to tell time in Twi</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🧮</div><h4>Number Math</h4><p>Practice numbers with math puzzles</p></div>
-                <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🗣️</div><h4>Voice Challenge</h4><p>Practice speaking with pronunciation feedback</p></div>
+                <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🗣️</div><h4>Voice Challenge</h4><p>Practice speaking with feedback</p></div>
             </div>
             <div class="games-note"><i class="fas fa-lock"></i> All games are available inside the Self-Paced Portal after enrollment</div>
         </div>
@@ -836,7 +957,6 @@
                 <p style="margin-top: 0.5rem; font-size: 1rem;"><strong>First 10 students get 20% off first 3 months.</strong> Use code: <strong>SELFPACED20</strong></p>
             </div>
             <div class="pricing-grid">
-                <!-- Basic Plan -->
                 <div class="pricing-card">
                     <h3>Basic</h3>
                     <div class="price">$10<span>/month</span></div>
@@ -854,7 +974,6 @@
                     <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Basic%20Self-Paced%20($10/month)" class="btn-pricing">Enroll →</a>
                 </div>
                 
-                <!-- Standard Plan -->
                 <div class="pricing-card popular">
                     <div class="popular-badge">Most Popular</div>
                     <h3>Standard</h3>
@@ -873,7 +992,6 @@
                     <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Standard%20Self-Paced%20($20/month)" class="btn-pricing">Enroll →</a>
                 </div>
                 
-                <!-- Premium Plan -->
                 <div class="pricing-card">
                     <h3>Premium</h3>
                     <div class="price">$30<span>/month</span></div>
@@ -900,7 +1018,7 @@
             <div class="section-header"><h2>What Our Students Say</h2><p>Real results from real learners</p></div>
             <div class="testimonial-grid">
                 <div class="testimonial-card"><p class="testimonial-text">"After just one month, I can already form real Twi sentences and understand so much more of what my family says."</p><p class="testimonial-author">— Adelina Daniels, UK</p></div>
-                <div class="testimonial-card"><p class="testimonial-text">"The teachers are super helpful and kind. They help us learn fast and are encouraging. I love these lessons!"</p><p class="testimonial-author">— Student</p></div>
+                <div class="testimonial-card"><p class="testimonial-text">"The teachers are super helpful and kind. They help us learn fast and are encouraging."</p><p class="testimonial-author">— Student</p></div>
                 <div class="testimonial-card"><p class="testimonial-text">"I love the interactive engagement. The structure is very helpful, they make sure you're understanding."</p><p class="testimonial-author">— Student</p></div>
                 <div class="testimonial-card"><p class="testimonial-text">"The patience, the commitment and the resources to ensure we learn. I'm extremely happy we connected!"</p><p class="testimonial-author">— Student</p></div>
             </div>
