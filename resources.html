@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Twi Resources | Alphabet Quiz & PDF Downloads</title>
-    <meta name="description" content="Free Twi alphabet quiz, PDF cheat sheets, and learning materials. Test your knowledge from our classes with interactive exercises and download free guides.">
-    <!-- ABSOLUTE URL FAVICON -->
+    <title>Free Twi Resources | Alphabet Quiz & PDF Downloads | Speak Ghana</title>
+    <meta name="description" content="Free Twi alphabet quiz, PDF cheat sheets, and learning materials. Test your knowledge with interactive exercises and download free guides.">
+    
     <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
     <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
     <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
 
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -21,7 +20,6 @@
       gtag('config', 'G-ZXFR0LFLH6');
     </script>
 
-    <!-- Font Awesome for dropdown chevron -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
@@ -68,20 +66,10 @@
         .nav-links a { color: var(--black); text-decoration: none; font-weight: 500; position: relative; }
         .nav-links a.active { color: var(--green); font-weight: 600; }
         
-        /* Dropdown styles for mobile */
-        .dropdown-item {
-            display: contents;
-        }
+        .dropdown-item { display: contents; }
+        .dropdown-toggle { display: none; }
+        .dropdown-submenu { display: contents; }
         
-        .dropdown-toggle {
-            display: none;
-        }
-        
-        .dropdown-submenu {
-            display: contents;
-        }
-        
-        /* ===== HAMBURGER MENU STYLES WITH DROPDOWN ===== */
         .menu-toggle {
             display: none;
             background: var(--gold);
@@ -109,11 +97,7 @@
                 right: 1rem;
                 top: 0.5rem;
             }
-            
-            nav {
-                position: relative;
-            }
-            
+            nav { position: relative; }
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -126,20 +110,13 @@
                 max-height: 80vh;
                 overflow-y: auto;
             }
-            
-            .nav-links.show {
-                display: flex;
-            }
-            
-            /* Main nav items */
-            .nav-links > a,
-            .nav-links > .dropdown-item {
+            .nav-links.show { display: flex; }
+            .nav-links > a, .nav-links > .dropdown-item {
                 padding: 1rem 1.5rem;
                 width: 100%;
                 text-align: left;
                 border-bottom: 1px solid var(--cream);
                 font-weight: 600;
-                position: relative;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -148,12 +125,6 @@
                 text-decoration: none;
                 background: white;
             }
-            
-            .nav-links > a {
-                border-bottom: 1px solid var(--cream);
-            }
-            
-            /* Dropdown toggle button style */
             .dropdown-toggle {
                 display: flex;
                 justify-content: space-between;
@@ -166,20 +137,9 @@
                 color: var(--black);
                 cursor: pointer;
                 padding: 0;
-                font-family: inherit;
             }
-            
-            .dropdown-toggle i {
-                transition: transform 0.3s;
-                font-size: 0.9rem;
-                color: var(--gray);
-            }
-            
-            .dropdown-toggle.open i {
-                transform: rotate(180deg);
-            }
-            
-            /* Submenu styles */
+            .dropdown-toggle i { transition: transform 0.3s; }
+            .dropdown-toggle.open i { transform: rotate(180deg); }
             .dropdown-submenu {
                 display: none;
                 flex-direction: column;
@@ -189,11 +149,7 @@
                 overflow: hidden;
                 width: 100%;
             }
-            
-            .dropdown-submenu.show {
-                display: flex;
-            }
-            
+            .dropdown-submenu.show { display: flex; }
             .dropdown-submenu a {
                 padding: 0.8rem 1.5rem 0.8rem 2.5rem;
                 text-decoration: none;
@@ -203,31 +159,64 @@
                 font-size: 0.95rem;
                 display: block;
             }
-            
-            .dropdown-submenu a:last-child {
-                border-bottom: none;
-            }
-            
-            .dropdown-submenu a:hover {
-                color: var(--green);
-                background: rgba(42,157,143,0.1);
-            }
-            
-            .dropdown-submenu a.active {
-                color: var(--green);
-                font-weight: 600;
-            }
-            
-            .dropdown-item {
-                display: block;
-                padding: 0 !important;
-                flex-direction: column;
-                align-items: stretch !important;
-            }
+            .dropdown-item { display: block; padding: 0 !important; flex-direction: column; align-items: stretch !important; }
         }
         
         .page-hero { background: linear-gradient(135deg, #2A9D8F20, #D4A37320); padding: 4rem 0; text-align: center; }
         .page-hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        
+        /* 3-Month Program Banner */
+        .program-banner {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .deadline-badge {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #E76F51;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            animation: pulse-red 1.5s infinite;
+        }
+        @keyframes pulse-red {
+            0% { background: #E76F51; transform: scale(1); }
+            50% { background: #c95a3e; transform: scale(1.05); }
+            100% { background: #E76F51; transform: scale(1); }
+        }
+        .program-tag {
+            background: #D4A373;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--black);
+            font-weight: 600;
+        }
+        .price-box {
+            background: rgba(212, 163, 115, 0.2);
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem auto;
+            display: inline-block;
+        }
+        .price-highlight {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .price-highlight span { color: #D4A373; }
+        
         .scholarship-blink { animation: blink 1.5s ease-in-out infinite; border-radius: 30px; padding: 1.5rem; margin: 2rem 0; text-align: center; cursor: pointer; background: linear-gradient(135deg, var(--gold), var(--red)); text-decoration: none; display: block; }
         .blog-section, .vocab-week-section, .faq-section, .media-section { background: white; border-radius: 30px; padding: 3rem; margin: 3rem 0; box-shadow: 0 20px 40px var(--shadow); }
         .vocab-week-section { border: 2px solid var(--gold); }
@@ -250,30 +239,9 @@
         .vocab-list-small { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; justify-content: center; }
         .vocab-pill { background: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; }
         
-        /* ===== QUIZ POPUP STYLES ===== */
-        .quiz-launch {
-            text-align: center;
-            margin: 3rem 0;
-        }
-        .quiz-reminder-note {
-            background: var(--cream);
-            border-left: 6px solid var(--gold);
-            padding: 1.5rem;
-            border-radius: 20px;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-        .quiz-launch-btn {
-            font-size: 1.3rem;
-            padding: 1.2rem 3rem;
-            background: linear-gradient(135deg, var(--green), #1f7a6e);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            animation: pulse 2s infinite;
-        }
+        .quiz-launch { text-align: center; margin: 3rem 0; }
+        .quiz-reminder-note { background: var(--cream); border-left: 6px solid var(--gold); padding: 1.5rem; border-radius: 20px; max-width: 800px; margin: 0 auto 2rem; }
+        .quiz-launch-btn { font-size: 1.3rem; padding: 1.2rem 3rem; background: linear-gradient(135deg, var(--green), #1f7a6e); color: white; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         
         .quiz-popup {
@@ -315,35 +283,18 @@
             cursor: pointer;
             z-index: 1001;
         }
-        .quiz-nav-btn {
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s;
-        }
+        .quiz-nav-btn { padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; border: none; transition: all 0.3s; }
         
         .materials-section { background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 30px; padding: 4rem; color: white; margin: 4rem 0; }
         .materials-section h2 { color: white; }
-        .materials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 3rem 0; }
+        .materials-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin: 3rem 0; }
         .material-card { background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px; backdrop-filter: blur(10px); text-align: center; transition: transform 0.3s; }
         .material-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.2); }
         .material-icon { font-size: 3rem; margin-bottom: 1rem; }
         .material-card h3 { color: var(--gold); margin-bottom: 1rem; }
         .download-btn { background: var(--gold); color: var(--black); padding: 0.8rem 1.5rem; border-radius: 50px; text-decoration: none; display: inline-block; margin-top: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
         .download-btn:hover { background: white; transform: scale(1.05); }
-        .certificate-section { background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 20px; padding: 2rem; margin: 2rem 0; color: white; text-align: center; }
-        .blog-post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 2rem 0; }
-        .blog-post-card { background: white; border-radius: 15px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .blog-post-image { height: 180px; background: linear-gradient(135deg, var(--green), var(--gold)); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; }
-        .blog-post-content { padding: 1.5rem; }
-        .blog-post-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
-        .social-section { background: linear-gradient(135deg, var(--gold), #c49a6c); border-radius: 30px; padding: 3rem; margin: 4rem 0; text-align: center; }
-        .social-grid, .media-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        .social-card, .media-card, .faq-item { background: rgba(255,255,255,0.2); padding: 1.5rem; border-radius: 20px; text-decoration: none; color: inherit; }
         
-        /* Portal CTA Section */
         .portal-cta {
             background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
             border-radius: 30px;
@@ -355,93 +306,6 @@
         }
         .portal-cta h3 { color: var(--gold); margin-bottom: 0.5rem; }
         
-        /* ===== FOOTER STYLES ===== */
-        footer {
-            background: var(--black);
-            color: white;
-            padding: 4rem 0 2rem;
-            margin-top: 4rem;
-            position: relative;
-        }
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        .footer-section h4 {
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-        .footer-section a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.8rem;
-            transition: all 0.3s;
-        }
-        .footer-section a:hover {
-            color: var(--gold);
-            transform: translateX(5px);
-        }
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.6);
-        }
-        .motto-footer {
-            color: var(--gold);
-            font-size: 1.2rem;
-            margin-top: 1rem;
-        }
-        .newsletter {
-            background: rgba(255,255,255,0.05);
-            padding: 2rem;
-            border-radius: 15px;
-        }
-        .newsletter h4 {
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-        .newsletter-form {
-            display: flex;
-            gap: 0.5rem;
-        }
-        .newsletter-input {
-            flex: 1;
-            padding: 0.8rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 0.9rem;
-        }
-        .newsletter-btn {
-            background: var(--gold);
-            color: var(--black);
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-        .newsletter-btn:hover {
-            background: var(--red);
-            color: white;
-        }
-        
-        /* New sections styling */
         .free-trial-banner {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
             border-radius: 30px;
@@ -449,7 +313,6 @@
             margin: 2rem 0;
             text-align: center;
             color: white;
-            box-shadow: 0 20px 40px rgba(42,157,143,0.3);
         }
         .ebook-section {
             background: white;
@@ -473,30 +336,62 @@
             border-left: 4px solid var(--gold);
             transition: transform 0.3s;
         }
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-        }
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1rem;
-            color: var(--black);
-        }
-        .testimonial-author {
-            font-weight: 700;
-            color: var(--green);
-            margin-bottom: 0.2rem;
-        }
-        .testimonial-location {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-        .small-note {
-            font-size: 0.75rem;
-            color: var(--gray);
-            margin-top: 0.5rem;
-        }
+        .testimonial-card:hover { transform: translateY(-5px); }
+        .testimonial-text { font-style: italic; margin-bottom: 1rem; color: var(--black); }
+        .testimonial-author { font-weight: 700; color: var(--green); margin-bottom: 0.2rem; }
+        .testimonial-location { font-size: 0.8rem; color: var(--gray); }
+        
+        .blog-post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 2rem 0; }
+        .blog-post-card { background: white; border-radius: 15px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .blog-post-image { height: 180px; background: linear-gradient(135deg, var(--green), var(--gold)); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; }
+        .blog-post-content { padding: 1.5rem; }
+        .blog-post-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
+        
+        .social-section { background: linear-gradient(135deg, var(--gold), #c49a6c); border-radius: 30px; padding: 3rem; margin: 4rem 0; text-align: center; }
+        .social-grid, .media-grid, .faq-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .social-card, .media-card, .faq-item { background: rgba(255,255,255,0.2); padding: 1.5rem; border-radius: 20px; text-decoration: none; color: inherit; }
+        
+        .certificate-section { background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 20px; padding: 2rem; margin: 2rem 0; color: white; text-align: center; }
         
         audio { width: 100%; margin: 0.5rem 0; border-radius: 30px; }
+        
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--red), var(--green));
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-section h4 { color: var(--gold); margin-bottom: 1.5rem; font-size: 1.2rem; }
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
+        }
+        .footer-section a:hover { color: var(--gold); transform: translateX(5px); }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+        .motto-footer { color: var(--gold); font-size: 1.2rem; margin-top: 1rem; }
+        .newsletter { background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 15px; }
+        .newsletter-form { display: flex; gap: 0.5rem; }
+        .newsletter-input { flex: 1; padding: 0.8rem; border: none; border-radius: 50px; font-size: 0.9rem; }
+        .newsletter-btn { background: var(--gold); color: var(--black); border: none; padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer; }
         
         @media (max-width: 768px) { 
             .class-wheels-grid, .materials-grid, .blog-post-grid, .social-grid, .media-grid, .faq-grid, .footer-grid { grid-template-columns: 1fr; } 
@@ -504,26 +399,51 @@
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             .newsletter-form { flex-direction: column; }
             .newsletter-btn { width: 100%; }
-            .quiz-popup-content { padding: 1.5rem; margin: 1rem; }
-            .quiz-nav-btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
+            .deadline-badge { position: relative; top: auto; right: auto; display: inline-block; margin-bottom: 1rem; }
+            .materials-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .materials-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="top-bar"><div class="container"><div class="contact-info"><a href="mailto:info@speakghana.org">📧 info@speakghana.org</a><a href="tel:+233552263323">📞 +233 55 226 3323</a><a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a></div></div></div>
-    <header><div class="container header-content"><div class="logo"><a href="index.html"><div class="logo-text"><h1>Speak <span>Ghana</span></h1><p>Reconnect. Speak. Thrive.</p></div></a></div><div class="motto-badge">Reconnect. Speak. Thrive.<span>Your journey home begins here</span></div></div></header>
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="mailto:info@speakghana.org">info@speakghana.org</a>
+                <a href="tel:+233552263323">+233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
     
-    <!-- Navigation with Dropdown Menu -->
     <nav>
         <div class="container" style="position: relative;">
             <button class="menu-toggle" id="menuToggle">☰ Menu</button>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 
-                <!-- Learn Dropdown -->
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownLearnBtn">
-                        <span>📚 Learn</span>
+                        <span>Learn</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownLearnMenu">
@@ -533,10 +453,9 @@
                     </div>
                 </div>
                 
-                <!-- Resources Dropdown -->
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownResourcesBtn">
-                        <span>📖 Resources</span>
+                        <span>Resources</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownResourcesMenu">
@@ -546,26 +465,58 @@
                     </div>
                 </div>
                 
-                <a href="students.html">👥 Students</a>
+                <a href="students.html">Students</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
         </div>
     </nav>
     
-    <div class="page-hero"><div class="container"><h1>Learning Resources</h1><p>Free materials, blog posts, and media to support your Twi journey</p></div></div>
-    <div class="container">
-        <a href="contact.html" class="scholarship-blink"><h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3><p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p><p>📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p></a>
+    <div class="page-hero">
+        <div class="container">
+            <h1>Learning Resources</h1>
+            <p>Free materials, blog posts, and media to support your Twi journey</p>
+        </div>
+    </div>
 
-        <!-- FREE TRIAL CLASS BANNER -->
-        <div class="free-trial-banner">
-            <span style="font-size: 3rem;">🎁</span>
-            <h2 style="color: white; margin-bottom: 0.5rem;">Try Your First Twi Class FREE!</h2>
-            <p style="font-size: 1.2rem;">No credit card required. Meet a teacher. Experience our method.</p>
-            <a href="contact.html" class="btn btn-gold" style="margin-top: 1rem; display: inline-block; background: var(--gold); color: var(--black);">Claim Your Free Class →</a>
+    <div class="container">
+        <!-- 3-Month Program Banner -->
+        <div class="program-banner">
+            <div class="deadline-badge">Deadline: May 30th</div>
+            <div class="program-tag">SPEAK ONE, LEARN ONE SCHOLARSHIP</div>
+            <h2 style="color: white; margin-bottom: 0.5rem; font-size: 1.8rem;">Do You Have a Ghana Card?</h2>
+            <div class="price-box">
+                <p class="price-highlight">Learn Any Language for <span>GHS 500</span> (3 months)</p>
+                <p class="price-highlight" style="margin-top: 0.5rem;">Diaspora with Ghana Card? Same offer applies.</p>
+            </div>
+            <div class="price-box" style="background: rgba(231, 111, 81, 0.3);">
+                <p class="price-highlight">Without Ghana Card: <span>GHS 1,000</span> (3 months)</p>
+            </div>
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Weekend / Evening Classes • Live on Zoom</p>
+            <p style="margin-bottom: 1rem;">Twi • Ga • Ewe • Fante • Dagbani • Hausa</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://apply.speakghana.org" class="btn" style="background: #D4A373; color: #1E1E1E; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">Apply Now</a>
+                <a href="https://wa.me/233552263323?text=Hi%20Speak%20Ghana!%20I%20have%20a%20Ghana%20Card%20and%20want%20to%20learn%20a%20language%20for%20GHS%20500.%20Please%20send%20me%20more%20info." class="btn" style="background: rgba(255,255,255,0.2); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">WhatsApp Us</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.9;">Limited spots • First come, first served • Application closes May 30th</p>
         </div>
 
-        <!-- PORTAL CTA - Replace the old recordings section -->
+        <!-- Scholarship Blinking Section -->
+        <a href="contact.html" class="scholarship-blink">
+            <h3>SPEAK ONE, LEARN ONE SCHOLARSHIP</h3>
+            <p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
+            <p>Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p>
+        </a>
+
+        <!-- Free Trial Banner -->
+        <div class="free-trial-banner">
+            <span style="font-size: 3rem;">🎁</span>
+            <h2 style="color: white; margin-bottom: 0.5rem;">Try Your First Twi Class Free</h2>
+            <p style="font-size: 1.2rem;">No credit card required. Meet a teacher. Experience our method.</p>
+            <a href="contact.html" class="btn btn-gold" style="margin-top: 1rem; display: inline-block;">Claim Your Free Class →</a>
+        </div>
+
+        <!-- Portal CTA -->
         <div class="portal-cta">
             <span style="font-size: 3rem;">🔐</span>
             <h3>Full Class Recordings & Textbook</h3>
@@ -574,99 +525,78 @@
                 <a href="student-portal.html" class="btn btn-gold" style="background: var(--gold); color: var(--black);">Access Student Portal →</a>
                 <a href="languages.html" class="btn btn-outline" style="border-color: white; color: white;">Enroll to Get Access →</a>
             </div>
-            <p style="margin-top: 1rem; font-size: 0.9rem;">🔒 <strong>Current students:</strong> Password provided after enrollment.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Current students: Password provided after enrollment.</p>
         </div>
 
-        <div class="blog-section"><h2 class="center">📝 Latest Blog Posts</h2><div class="blog-post-grid">
-            <a href="blog-post-top-10-songs.html" class="blog-post-card"><div class="blog-post-image">🎵</div><div class="blog-post-content"><h3 class="blog-post-title">Top 10 Ghanaian Songs to Learn Twi</h3><p>Learn Twi through music with our curated list of top Ghanaian songs.</p><span>Read More →</span></div></a>
-            <a href="blog-post-family-terms.html" class="blog-post-card"><div class="blog-post-image">👪</div><div class="blog-post-content"><h3 class="blog-post-title">Complete Guide to Family Terms in Twi</h3><p>Master family vocabulary with our comprehensive guide.</p><span>Read More →</span></div></a>
-            <a href="blog-post-diaspora-story.html" class="blog-post-card"><div class="blog-post-image">🌍</div><div class="blog-post-content"><h3 class="blog-post-title">A Diaspora Story: Finding Home Through Language</h3><p>Reconnecting with Ghanaian roots through Twi.</p><span>Read More →</span></div></a>
-        </div><div class="all-posts-btn"><a href="blog.html" class="btn btn-outline">View All Posts →</a></div></div>
+        <!-- Blog Section -->
+        <div class="blog-section">
+            <h2 class="center">Latest Blog Posts</h2>
+            <div class="blog-post-grid">
+                <a href="blog-post-top-10-songs.html" class="blog-post-card">
+                    <div class="blog-post-image">🎵</div>
+                    <div class="blog-post-content">
+                        <h3 class="blog-post-title">Top 10 Ghanaian Songs to Learn Twi</h3>
+                        <p>Learn Twi through music with our curated list of top Ghanaian songs.</p>
+                        <span>Read More →</span>
+                    </div>
+                </a>
+                <a href="blog-post-family-terms.html" class="blog-post-card">
+                    <div class="blog-post-image">👪</div>
+                    <div class="blog-post-content">
+                        <h3 class="blog-post-title">Complete Guide to Family Terms in Twi</h3>
+                        <p>Master family vocabulary with our comprehensive guide.</p>
+                        <span>Read More →</span>
+                    </div>
+                </a>
+                <a href="blog-post-diaspora-story.html" class="blog-post-card">
+                    <div class="blog-post-image">🌍</div>
+                    <div class="blog-post-content">
+                        <h3 class="blog-post-title">A Diaspora Story: Finding Home Through Language</h3>
+                        <p>Reconnecting with Ghanaian roots through Twi.</p>
+                        <span>Read More →</span>
+                    </div>
+                </a>
+            </div>
+            <div class="all-posts-btn"><a href="blog.html" class="btn btn-outline">View All Posts →</a></div>
+        </div>
 
-        <!-- E-BOOK SECTION (Video removed, kept PDF) -->
+        <!-- E-book Section -->
         <div class="ebook-section">
-            <h2 class="center">📘 FREE E-book: Essential Twi Phrases for Diaspora</h2>
+            <h2 class="center">Free E-book: Essential Twi Phrases for Diaspora</h2>
             <p style="text-align: center; margin-bottom: 1rem;">50+ phrases • Greetings • Family terms • Numbers • Cultural tips</p>
             <div style="text-align: center; margin-top: 1.5rem;">
-                <a href="/pdfs/essential-twi-phrases-ebook.pdf" download class="btn btn-primary" style="background: var(--green); padding: 1rem 2.5rem; font-size: 1.2rem;">📥 Download Free E-book (PDF)</a>
+                <a href="/pdfs/essential-twi-phrases-ebook.pdf" download class="btn btn-primary" style="background: var(--green); padding: 1rem 2.5rem; font-size: 1.2rem;">Download Free E-book (PDF)</a>
                 <p style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">No sign-up required. Click and download instantly.</p>
             </div>
         </div>
 
-        <!-- CLASS RECORDINGS SECTION - REPLACED WITH PORTAL CTA -->
-        <!-- (Original recordings removed - moved to Student Portal) -->
+        <!-- Vocabulary Wheels -->
+        <div class="vocab-week-section">
+            <div class="vocab-week-title">
+                <h2>Weekly Vocabulary Review</h2>
+                <p>Spin the wheel and test yourself</p>
+            </div>
+            <div class="class-wheels-grid" id="vocabWheelsContainer"></div>
+        </div>
 
-        <div class="vocab-week-section"><div class="vocab-week-title"><h2>🎡 Weekly Vocabulary Review</h2><p>Spin the wheel and test yourself!</p></div><div class="class-wheels-grid" id="vocabWheelsContainer"></div></div>
-
-        <!-- QUIZ LAUNCH BUTTON -->
+        <!-- Quiz Launch Button -->
         <div class="quiz-launch">
             <div class="quiz-reminder-note">
-                <p>📘 <span style="font-weight: 700; color: var(--green);">Based on what we studied on Alphabets</span>, it is necessary to take this quiz to refresh our brain and keep us prepared for our next class.</p>
+                <p><span style="font-weight: 700; color: var(--green);">Based on what we studied on Alphabets</span>, it is necessary to take this quiz to refresh our brain and keep us prepared for our next class.</p>
                 <p style="font-size: 1rem; color: var(--gray); margin-top: 0.5rem;">3 sets • 30 questions covering everything we learned last weekend.</p>
             </div>
             <button onclick="openQuizPopup()" class="quiz-launch-btn">
-                📝 Take the Twi Alphabet Quiz →
+                Take the Twi Alphabet Quiz →
             </button>
-            <p style="margin-top: 1rem; color: var(--gray);">3 sets • 30 questions • Test your knowledge from our free classes!</p>
+            <p style="margin-top: 1rem; color: var(--gray);">3 sets • 30 questions • Test your knowledge from our free classes</p>
         </div>
 
-        <!-- QUIZ POPUP MODAL -->
-        <div id="quiz-popup" class="quiz-popup">
-            <div class="quiz-popup-content">
-                <button onclick="closeQuizPopup()" class="close-popup">×</button>
-                <h2 class="center" style="margin-top: 0;">📝 Interactive Twi Alphabet Quiz</h2>
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">Test your knowledge from our free classes! 🇬🇭</p>
-                
-                <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                    <button onclick="loadSet(1)" class="quiz-nav-btn" id="set1-btn" style="background: var(--green); color: white;">Set 1: Basics</button>
-                    <button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn">Set 2: Word Pairs</button>
-                    <button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn">Set 3: Applied</button>
-                </div>
-
-                <div style="text-align: center; margin-bottom: 1.5rem;">
-                    <h3 id="current-quiz-title" style="color: var(--green);">Set 1: Basics</h3>
-                </div>
-
-                <div id="quiz-container" style="background: var(--cream); border-radius: 20px; padding: 2rem; max-height: 500px; overflow-y: auto;"></div>
-
-                <div id="email-form-container" style="display: none; margin-top: 2rem;">
-                    <div style="background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 20px; padding: 2rem; text-align: center; color: white;">
-                        <h3 style="color: white; margin-bottom: 1rem;">📧 Get Your Results + Free Guides!</h3>
-                        <p style="margin-bottom: 2rem;">Enter your email to see your score and get 5 free Twi learning PDFs:</p>
-                        <form onsubmit="event.preventDefault(); submitEmail();" style="max-width: 500px; margin: 0 auto;">
-                            <input type="email" id="quiz-email" placeholder="Your email address" required style="width: 100%; padding: 1rem; border: none; border-radius: 50px; margin-bottom: 1rem; font-size: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
-                                <input type="checkbox" id="email-consent" checked style="width: 20px; height: 20px;">
-                                <label for="email-consent">Send me my results + free Twi guides</label>
-                            </div>
-                            <button type="submit" class="btn btn-gold" style="width: 100%; padding: 1rem; font-size: 1.1rem;">Show My Results →</button>
-                        </form>
-                        <p style="margin-top: 1rem; font-size: 0.9rem;">✓ Greetings Cheat Sheet • ✓ Alphabet Guide • ✓ 100 Words List</p>
-                    </div>
-                </div>
-
-                <div id="results-area" style="text-align: center; margin-top: 2rem; display: none;">
-                    <div style="background: var(--green); color: white; padding: 2rem; border-radius: 20px;">
-                        <h3 style="color: white; margin-bottom: 1rem;" id="results-title">Your Score</h3>
-                        <div style="font-size: 4rem; font-weight: 700;" id="score-display">0/10</div>
-                        <p id="score-message" style="margin-top: 1rem; font-size: 1.2rem;"></p>
-                        <button onclick="retakeQuiz()" class="btn btn-gold" style="margin-top: 1.5rem;">🔄 Retake This Set</button>
-                    </div>
-                </div>
-
-                <div style="margin-top: 2rem; background: var(--cream); border-radius: 50px; height: 10px; overflow: hidden;">
-                    <div id="progress-bar" style="width: 0%; height: 100%; background: var(--green); transition: width 0.3s;"></div>
-                </div>
-                <p style="text-align: center; margin-top: 0.5rem; color: var(--gray);" id="progress-text">0/10 answered</p>
-            </div>
-        </div>
-
-        <!-- FREE MATERIALS SECTION -->
+        <!-- Free Materials Section -->
         <div class="materials-section">
-            <h2 class="center">📚 Free Learning Materials</h2>
+            <h2 class="center">Free Learning Materials</h2>
             
             <div style="background: rgba(255,255,255,0.2); border-radius: 25px; padding: 2rem; margin-bottom: 2.5rem;">
-                <h3 style="color: var(--gold); text-align: center; margin: 0 0 1.5rem 0; font-size: 1.8rem;">🎮 Interactive Learning Games</h3>
+                <h3 style="color: var(--gold); text-align: center; margin: 0 0 1.5rem 0; font-size: 1.8rem;">Interactive Learning Games</h3>
                 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;">
                     <div class="material-card"><div class="material-icon">🎵</div><h3>Alphabet Sound Game</h3><a href="alphabet-sound-game.html" class="btn btn-gold">Play Game →</a></div>
                     <div class="material-card"><div class="material-icon">🔤</div><h3>Digraph Sound Game</h3><a href="digraph-sound-game.html" class="btn btn-gold">Play Game →</a></div>
@@ -676,6 +606,7 @@
                 </div>
             </div>
             
+            <h3 style="color: var(--gold); text-align: center; margin: 0 0 1.5rem 0; font-size: 1.8rem;">Twi Learning PDFs</h3>
             <div class="materials-grid">
                 <div class="material-card"><div class="material-icon">📄</div><h3>Greetings Cheat Sheet</h3><a href="/pdfs/greetings-cheatsheet.pdf" download class="download-btn">Download PDF</a></div>
                 <div class="material-card"><div class="material-icon">🔤</div><h3>Alphabet & Pronunciation</h3><a href="/pdfs/alphabet-pronunciation.pdf" download class="download-btn">Download PDF</a></div>
@@ -686,53 +617,138 @@
                 <div class="material-card"><div class="material-icon">🔊</div><h3>Complete Twi Alphabet (Audio)</h3><audio controls><source src="audio/twi-alphabet/twi-alphabet-complete.m4a"></audio><a href="audio/twi-alphabet/twi-alphabet-complete.m4a" download class="download-btn">Download Audio</a></div>
                 <div class="material-card"><div class="material-icon">🔤</div><h3>Twi Digraphs (Audio)</h3><audio controls><source src="audio/twi-alphabet/twi-digraphs.m4a"></audio><a href="audio/twi-alphabet/twi-digraphs.m4a" download class="download-btn">Download Audio</a></div>
             </div>
+            
+            <h3 style="color: var(--gold); text-align: center; margin: 2rem 0 1.5rem 0; font-size: 1.8rem;">Hausa Learning Resources</h3>
+            <div class="materials-grid">
+                <div class="material-card"><div class="material-icon">🔤</div><h3>Hausa Alphabet Guide</h3><a href="/pdfs/hausa-alphabet-guide.pdf" download class="download-btn">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">👋</div><h3>Hausa Greetings</h3><a href="/pdfs/hausa-greetings.pdf" download class="download-btn">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">🔢</div><h3>Hausa Numbers 1-20</h3><a href="/pdfs/hausa-numbers.pdf" download class="download-btn">Download PDF</a></div>
+                <div class="material-card"><div class="material-icon">💬</div><h3>Common Hausa Phrases</h3><a href="/pdfs/hausa-phrases.pdf" download class="download-btn">Download PDF</a></div>
+            </div>
         </div>
 
-        <!-- STUDENT SUCCESS STORIES -->
+        <!-- Student Success Stories -->
         <div class="success-stories">
-            <h2 class="center">Real Students, Real Results 🇬🇭</h2>
+            <h2 class="center">Real Students, Real Results</h2>
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
-                <div class="testimonial-card"><p class="testimonial-text">"I couldn't speak to my grandmother in Twi. After 3 months, we had our first full conversation!"</p><p class="testimonial-author">— Abena, London</p></div>
-                <div class="testimonial-card"><p class="testimonial-text">"My teenager actually looks forward to her Twi class every week. Game-changer!"</p><p class="testimonial-author">— Kwame, New York</p></div>
+                <div class="testimonial-card"><p class="testimonial-text">"I couldn't speak to my grandmother in Twi. After 3 months, we had our first full conversation."</p><p class="testimonial-author">— Abena, London</p></div>
+                <div class="testimonial-card"><p class="testimonial-text">"My teenager actually looks forward to her Twi class every week. Game-changer."</p><p class="testimonial-author">— Kwame, New York</p></div>
                 <div class="testimonial-card"><p class="testimonial-text">"I've tried language apps before, but nothing compares to live classes with native speakers."</p><p class="testimonial-author">— Sarah, Manchester</p></div>
                 <div class="testimonial-card"><p class="testimonial-text">"The kids program is amazing! My 8-year-old now greets me in Twi every morning."</p><p class="testimonial-author">— Nana, Toronto</p></div>
             </div>
             <div style="text-align: center; margin-top: 2rem;"><a href="languages.html" class="btn btn-primary">Join Our Success Stories →</a></div>
         </div>
 
-        <div class="certificate-section"><h3>📜 6-Month Certificate of Achievement</h3><p>Complete 6 months of continuous learning and receive an official certificate signed by our founders.</p><a href="languages.html" class="btn btn-gold">Explore Our Programs →</a></div>
+        <!-- Certificate Section -->
+        <div class="certificate-section">
+            <h3>6-Month Certificate of Achievement</h3>
+            <p>Complete 6 months of continuous learning and receive an official certificate signed by our founders.</p>
+            <a href="languages.html" class="btn btn-gold" style="margin-top: 1rem; display: inline-block;">Explore Our Programs →</a>
+        </div>
 
-        <div class="social-section"><h2>📱 Connect With Us</h2><div class="social-grid"><a href="https://www.youtube.com/@SpeakGhana" target="_blank" class="social-card">📺 YouTube<br>@SpeakGhana</a><a href="https://www.instagram.com/speak_ghana" target="_blank" class="social-card">📸 Instagram<br>@speak_ghana</a><a href="https://www.tiktok.com/@speakghana0" target="_blank" class="social-card">🎵 TikTok<br>@speakghana0</a></div></div>
+        <!-- Social Section -->
+        <div class="social-section">
+            <h2>Connect With Us</h2>
+            <div class="social-grid">
+                <a href="https://www.youtube.com/@SpeakGhana" target="_blank" class="social-card">YouTube<br>@SpeakGhana</a>
+                <a href="https://www.instagram.com/speak_ghana" target="_blank" class="social-card">Instagram<br>@speak_ghana</a>
+                <a href="https://www.tiktok.com/@speakghana0" target="_blank" class="social-card">TikTok<br>@speakghana0</a>
+            </div>
+        </div>
         
-        <div class="media-section"><h2 class="center">🎬 Recommended Ghanaian Media</h2><div class="media-grid"><div class="media-card"><h3>🎵 Songs</h3><ul><li>"Things Fall Apart" - Kofi Kinaata</li><li>"Jeje" - Kuami Eugene</li><li>"Angela" - Sarkodie</li></ul></div><div class="media-card"><h3>🎬 Movies</h3><ul><li>"Azali" (2018)</li><li>"The Burial of Kojo"</li><li>"Keteke" (2017)</li></ul></div><div class="media-card"><h3>🎤 Artists</h3><ul><li>Sarkodie</li><li>Stonebwoy</li><li>Shatta Wale</li></ul></div></div></div>
+        <!-- Media Section -->
+        <div class="media-section">
+            <h2 class="center">Recommended Ghanaian Media</h2>
+            <div class="media-grid">
+                <div class="media-card"><h3>Songs</h3><ul><li>"Things Fall Apart" - Kofi Kinaata</li><li>"Jeje" - Kuami Eugene</li><li>"Angela" - Sarkodie</li></ul></div>
+                <div class="media-card"><h3>Movies</h3><ul><li>"Azali" (2018)</li><li>"The Burial of Kojo"</li><li>"Keteke" (2017)</li></ul></div>
+                <div class="media-card"><h3>Artists</h3><ul><li>Sarkodie</li><li>Stonebwoy</li><li>Shatta Wale</li></ul></div>
+            </div>
+        </div>
 
-        <div class="faq-section"><h2 class="center">FAQ</h2><div class="faq-grid"><div class="faq-item"><h4>Speak One, Learn One Scholarship?</h4><p>Ghana Card holders get 25% off to learn another language.</p></div><div class="faq-item"><h4>Certificate of Achievement?</h4><p>Complete 6 months of learning for an official certificate.</p></div><div class="faq-item"><h4>Classes for kids?</h4><p>Yes! Specialized programs for ages 5-12 and teens.</p></div><div class="faq-item"><h4>Miss a class?</h4><p>Recordings available for group classes (in Student Portal).</p></div></div></div>
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="center">FAQ</h2>
+            <div class="faq-grid">
+                <div class="faq-item"><h4>Speak One, Learn One Scholarship?</h4><p>Ghana Card holders get 25% off to learn another language.</p></div>
+                <div class="faq-item"><h4>Certificate of Achievement?</h4><p>Complete 6 months of learning for an official certificate.</p></div>
+                <div class="faq-item"><h4>Classes for kids?</h4><p>Yes! Specialized programs for ages 5-12 and teens.</p></div>
+                <div class="faq-item"><h4>Miss a class?</h4><p>Recordings available for group classes (in Student Portal).</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Popup -->
+    <div id="quiz-popup" class="quiz-popup">
+        <div class="quiz-popup-content">
+            <button onclick="closeQuizPopup()" class="close-popup">×</button>
+            <h2 class="center" style="margin-top: 0;">Interactive Twi Alphabet Quiz</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">Test your knowledge from our free classes!</p>
+            
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <button onclick="loadSet(1)" class="quiz-nav-btn" id="set1-btn" style="background: var(--green); color: white;">Set 1: Basics</button>
+                <button onclick="loadSet(2)" class="quiz-nav-btn" id="set2-btn">Set 2: Word Pairs</button>
+                <button onclick="loadSet(3)" class="quiz-nav-btn" id="set3-btn">Set 3: Applied</button>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <h3 id="current-quiz-title" style="color: var(--green);">Set 1: Basics</h3>
+            </div>
+
+            <div id="quiz-container" style="background: var(--cream); border-radius: 20px; padding: 2rem; max-height: 500px; overflow-y: auto;"></div>
+
+            <div id="email-form-container" style="display: none; margin-top: 2rem;">
+                <div style="background: linear-gradient(135deg, var(--green), #1f7a6e); border-radius: 20px; padding: 2rem; text-align: center; color: white;">
+                    <h3 style="color: white; margin-bottom: 1rem;">Get Your Results + Free Guides</h3>
+                    <p style="margin-bottom: 2rem;">Enter your email to see your score and get 5 free Twi learning PDFs.</p>
+                    <form onsubmit="event.preventDefault(); submitEmail();" style="max-width: 500px; margin: 0 auto;">
+                        <input type="email" id="quiz-email" placeholder="Your email address" required style="width: 100%; padding: 1rem; border: none; border-radius: 50px; margin-bottom: 1rem; font-size: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
+                            <input type="checkbox" id="email-consent" checked style="width: 20px; height: 20px;">
+                            <label for="email-consent">Send me my results + free Twi guides</label>
+                        </div>
+                        <button type="submit" class="btn btn-gold" style="width: 100%; padding: 1rem; font-size: 1.1rem;">Show My Results →</button>
+                    </form>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">✓ Greetings Cheat Sheet • ✓ Alphabet Guide • ✓ 100 Words List</p>
+                </div>
+            </div>
+
+            <div id="results-area" style="text-align: center; margin-top: 2rem; display: none;">
+                <div style="background: var(--green); color: white; padding: 2rem; border-radius: 20px;">
+                    <h3 style="color: white; margin-bottom: 1rem;" id="results-title">Your Score</h3>
+                    <div style="font-size: 4rem; font-weight: 700;" id="score-display">0/10</div>
+                    <p id="score-message" style="margin-top: 1rem; font-size: 1.2rem;"></p>
+                    <button onclick="retakeQuiz()" class="btn btn-gold" style="margin-top: 1.5rem;">Retake This Set</button>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; background: var(--cream); border-radius: 50px; height: 10px; overflow: hidden;">
+                <div id="progress-bar" style="width: 0%; height: 100%; background: var(--green); transition: width 0.3s;"></div>
+            </div>
+            <p style="text-align: center; margin-top: 0.5rem; color: var(--gray);" id="progress-text">0/10 answered</p>
+        </div>
     </div>
 
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-section"><h4>Speak Ghana</h4><p>📍 KNUST Campus, Kumasi</p><p>📞 +233 55 226 3323</p><p>📧 info@speakghana.org</p></div>
-                <div class="footer-section"><h4>Programs</h4><a href="languages.html">Adult Classes</a><a href="kids-teens.html">Kids & Teens</a><a href="languages.html">Family Packages</a><a href="student-portal.html">🎓 Student Portal</a></div>
+                <div class="footer-section"><h4>Speak Ghana</h4><p>KNUST Campus, Kumasi</p><p>+233 55 226 3323</p><p>info@speakghana.org</p></div>
+                <div class="footer-section"><h4>Programs</h4><a href="languages.html">Adult Classes</a><a href="kids-teens.html">Kids & Teens</a><a href="languages.html">Family Packages</a><a href="student-portal.html">Student Portal</a></div>
                 <div class="footer-section"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a></div>
-                <div class="footer-section"><h4>Connect</h4><a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a><a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a><a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a><div class="newsletter"><h4>Newsletter</h4><form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank"><div class="newsletter-form"><input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required><button type="submit" class="newsletter-btn">Join</button></div></form></div></div>
+                <div class="footer-section"><h4>Connect</h4><a href="https://www.youtube.com/@SpeakGhana" target="_blank">YouTube</a><a href="https://www.instagram.com/speak_ghana" target="_blank">Instagram</a><a href="https://wa.me/233552263323" target="_blank">WhatsApp</a>
+                <div class="newsletter"><h4>Newsletter</h4><form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank"><div class="newsletter-form"><input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required><button type="submit" class="newsletter-btn">Join</button></div></form></div></div>
             </div>
             <div class="copyright"><p>© 2026 Speak Ghana Language School</p><div class="motto-footer">Reconnect. Speak. Thrive.</div></div>
         </div>
     </footer>
 
     <script>
-        // Hamburger Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
-        
         if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('show');
-            });
+            menuToggle.addEventListener('click', function() { navLinks.classList.toggle('show'); });
         }
         
-        // Dropdown functionality
         const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
         const dropdownLearnMenu = document.getElementById('dropdownLearnMenu');
         const dropdownResourcesBtn = document.getElementById('dropdownResourcesBtn');
@@ -740,8 +756,7 @@
         
         if (dropdownLearnBtn && dropdownLearnMenu) {
             dropdownLearnBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
+                e.preventDefault(); e.stopPropagation();
                 dropdownLearnMenu.classList.toggle('show');
                 dropdownLearnBtn.classList.toggle('open');
                 if (dropdownResourcesMenu && dropdownResourcesMenu.classList.contains('show')) {
@@ -753,8 +768,7 @@
         
         if (dropdownResourcesBtn && dropdownResourcesMenu) {
             dropdownResourcesBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
+                e.preventDefault(); e.stopPropagation();
                 dropdownResourcesMenu.classList.toggle('show');
                 dropdownResourcesBtn.classList.toggle('open');
                 if (dropdownLearnMenu && dropdownLearnMenu.classList.contains('show')) {
@@ -764,25 +778,14 @@
             });
         }
         
-        // Close dropdowns when clicking on a link
         document.querySelectorAll('.dropdown-submenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 968) {
-                    navLinks.classList.remove('show');
-                }
-            });
+            link.addEventListener('click', () => { if (window.innerWidth <= 968) navLinks.classList.remove('show'); });
         });
         
-        // Close menu when clicking a regular link
         document.querySelectorAll('.nav-links > a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 968) {
-                    navLinks.classList.remove('show');
-                }
-            });
+            link.addEventListener('click', () => { if (window.innerWidth <= 968) navLinks.classList.remove('show'); });
         });
         
-        // Handle window resize - reset menu if resizing to desktop
         window.addEventListener('resize', function() {
             if (window.innerWidth > 968) {
                 if (navLinks) navLinks.classList.remove('show');
@@ -793,11 +796,6 @@
             }
         });
         
-        window.openEnrollmentModal = function() {
-            window.location.href = 'contact.html';
-        };
-        
-        // Quiz Popup Functions
         function openQuizPopup() {
             document.getElementById('quiz-popup').style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -817,7 +815,6 @@
             if (e.key === 'Escape') closeQuizPopup();
         });
         
-        // Newsletter tracking
         document.getElementById('footer-newsletter-form')?.addEventListener('submit', function() {
             if (typeof gtag === 'function') gtag('event', 'newsletter_signup', { 'event_category': 'engagement', 'event_label': 'footer_newsletter' });
         });
@@ -837,12 +834,11 @@
         function nextWord(gId){ document.getElementById(`current-word-${gId}`).innerText='???'; document.getElementById(`question-${gId}`).innerText='Spin to get a word!'; document.getElementById(`feedback-${gId}`).innerHTML=''; document.getElementById(`next-btn-${gId}`).style.display='none'; document.getElementById(`answer-area-${gId}`).style.display='none'; }
         function resetWheel(gId){ wheelStates[gId].currentRotation=0; wheelStates[gId].score=0; drawWheel(gId,classVocab[gId].words); updateScore(gId); document.getElementById(`current-word-${gId}`).innerText='???'; document.getElementById(`answer-area-${gId}`).style.display='none'; document.getElementById(`next-btn-${gId}`).style.display='none'; document.getElementById(`feedback-${gId}`).innerHTML=''; }
         function updateScore(gId){ document.getElementById(`score-${gId}`).innerHTML=`Score: ${wheelStates[gId].score||0}`; }
-        function createAllWheels(){ let container=document.getElementById('vocabWheelsContainer'); if(!container) return; container.innerHTML=''; for(let [gId,gData] of Object.entries(classVocab)){ wheelStates[gId]={currentRotation:0,isSpinning:false,score:0,selectedWord:null}; let card=document.createElement('div'); card.className='wheel-card'; card.innerHTML=`<div class="wheel-header"><h3>${gData.name}</h3><span>${gData.time}</span></div><div class="wheel-container"><div class="pointer-small"></div><canvas id="canvas-${gId}" width="280" height="280" class="wheel-canvas"></canvas></div><div class="wheel-controls"><button class="wheel-btn wheel-btn-spin" onclick="spinWheel('${gId}')">🎡 Spin</button><button class="wheel-btn wheel-btn-reset" onclick="resetWheel('${gId}')">🔄 Reset</button></div><div id="word-box-${gId}" class="current-word-box"><div id="current-word-${gId}" class="current-word">???</div><div id="question-${gId}">Spin to get a word!</div></div><div id="answer-area-${gId}" style="display:none;"><div class="answer-area"><input id="answer-input-${gId}" class="answer-input-small" placeholder="English meaning..."><button class="answer-btn-small" onclick="checkAnswer('${gId}')">Check</button></div></div><div id="feedback-${gId}" class="feedback-small"></div><div style="display:flex; justify-content:space-between;"><span id="score-${gId}" class="score-small">Score: 0</span><button id="next-btn-${gId}" class="next-btn-small" onclick="nextWord('${gId}')" style="display:none;">Next Word</button></div><div class="vocab-list-small">${gData.words.map(w=>`<div class="vocab-pill">${w.twi} - ${w.english}</div>`).join('')}</div>`; container.appendChild(card); setTimeout(()=>drawWheel(gId,gData.words),50); } }
+        function createAllWheels(){ let container=document.getElementById('vocabWheelsContainer'); if(!container) return; container.innerHTML=''; for(let [gId,gData] of Object.entries(classVocab)){ wheelStates[gId]={currentRotation:0,isSpinning:false,score:0,selectedWord:null}; let card=document.createElement('div'); card.className='wheel-card'; card.innerHTML=`<div class="wheel-header"><h3>${gData.name}</h3><span>${gData.time}</span></div><div class="wheel-container"><div class="pointer-small"></div><canvas id="canvas-${gId}" width="280" height="280" class="wheel-canvas"></canvas></div><div class="wheel-controls"><button class="wheel-btn wheel-btn-spin" onclick="spinWheel('${gId}')">Spin</button><button class="wheel-btn wheel-btn-reset" onclick="resetWheel('${gId}')">Reset</button></div><div id="word-box-${gId}" class="current-word-box"><div id="current-word-${gId}" class="current-word">???</div><div id="question-${gId}">Spin to get a word!</div></div><div id="answer-area-${gId}" style="display:none;"><div class="answer-area"><input id="answer-input-${gId}" class="answer-input-small" placeholder="English meaning..."><button class="answer-btn-small" onclick="checkAnswer('${gId}')">Check</button></div></div><div id="feedback-${gId}" class="feedback-small"></div><div style="display:flex; justify-content:space-between;"><span id="score-${gId}" class="score-small">Score: 0</span><button id="next-btn-${gId}" class="next-btn-small" onclick="nextWord('${gId}')" style="display:none;">Next Word</button></div><div class="vocab-list-small">${gData.words.map(w=>`<div class="vocab-pill">${w.twi} - ${w.english}</div>`).join('')}</div>`; container.appendChild(card); setTimeout(()=>drawWheel(gId,gData.words),50); } }
         document.addEventListener('DOMContentLoaded',createAllWheels);
         window.spinWheel=spinWheel; window.checkAnswer=checkAnswer; window.nextWord=nextWord; window.resetWheel=resetWheel;
     </script>
 
-    <!-- YOUR QUIZ - alphabets-quiz.js -->
     <script src="alphabets-quiz.js"></script>
 </body>
 </html>
