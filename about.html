@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Speak Ghana | Our Story & Mission</title>
     <meta name="description" content="Learn about Speak Ghana's mission to reconnect the diaspora with their roots through Ghanaian languages. Meet our co-founders and native teachers.">
-    <!-- ABSOLUTE URL FAVICON -->
-<link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
-<link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
-<link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
-<link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
+    
+    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
 
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -21,11 +20,9 @@
       gtag('config', 'G-ZXFR0LFLH6');
     </script>
 
-    <!-- Font Awesome for dropdown chevron -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* ===== MODERN COLOR PALETTE ===== */
         :root {
             --gold: #D4A373;
             --green: #2A9D8F;
@@ -38,7 +35,6 @@
             --shadow: rgba(0, 0, 0, 0.08);
         }
 
-        /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -56,16 +52,6 @@
             max-width: 1300px;
             margin: 0 auto;
             padding: 0 2rem;
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        /* ===== TYPOGRAPHY ===== */
-        h1, h2, h3, h4 {
-            font-weight: 600;
-            line-height: 1.2;
         }
 
         h2 {
@@ -103,7 +89,6 @@
             color: var(--green);
         }
 
-        /* ===== BUTTONS ===== */
         .btn {
             display: inline-block;
             padding: 0.9rem 2.2rem;
@@ -114,7 +99,6 @@
             cursor: pointer;
             border: none;
             font-size: 1rem;
-            letter-spacing: 0.5px;
         }
 
         .btn-primary {
@@ -144,27 +128,60 @@
             font-size: 0.9rem;
         }
 
-        /* ===== SCHOLARSHIP SECTION ===== */
-        .scholarship-section {
-            background: linear-gradient(135deg, var(--gold), var(--red));
+        /* 3-Month Program Banner */
+        .program-banner {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
             border-radius: 30px;
-            padding: 2.5rem;
-            margin: 3rem 0;
+            padding: 2rem;
+            margin: 2rem 0;
             text-align: center;
-            box-shadow: 0 20px 40px var(--shadow);
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
-
-        .scholarship-section h3 {
+        .deadline-badge {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #E76F51;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            animation: pulse-red 1.5s infinite;
+        }
+        @keyframes pulse-red {
+            0% { background: #E76F51; transform: scale(1); }
+            50% { background: #c95a3e; transform: scale(1.05); }
+            100% { background: #E76F51; transform: scale(1); }
+        }
+        .program-tag {
+            background: #D4A373;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
             color: var(--black);
-            margin-top: 0;
+            font-weight: 600;
+        }
+        .price-box {
+            background: rgba(212, 163, 115, 0.2);
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem auto;
+            display: inline-block;
+        }
+        .price-highlight {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .price-highlight span {
+            color: #D4A373;
         }
 
-        .scholarship-section p {
-            color: var(--black);
-            font-size: 1.1rem;
-        }
-
-        /* ===== TOP BAR ===== */
         .top-bar {
             background: var(--black);
             color: white;
@@ -193,7 +210,6 @@
             color: var(--gold);
         }
 
-        /* ===== HEADER WITH CLICKABLE LOGO ===== */
         header {
             background: linear-gradient(135deg, #1a1a1a, var(--green));
             color: white;
@@ -259,7 +275,6 @@
             font-size: 0.9rem;
         }
 
-        /* ===== NAVIGATION ===== */
         nav {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
@@ -316,7 +331,6 @@
             background: var(--green);
         }
 
-        /* Dropdown styles for mobile */
         .dropdown-item {
             display: contents;
         }
@@ -329,7 +343,6 @@
             display: contents;
         }
 
-        /* ===== HAMBURGER MENU STYLES WITH DROPDOWN ===== */
         .menu-toggle {
             display: none;
             background: var(--gold);
@@ -379,7 +392,6 @@
                 display: flex;
             }
             
-            /* Main nav items */
             .nav-links > a,
             .nav-links > .dropdown-item {
                 padding: 1rem 1.5rem;
@@ -401,7 +413,6 @@
                 border-bottom: 1px solid var(--cream);
             }
             
-            /* Dropdown toggle button style */
             .dropdown-toggle {
                 display: flex;
                 justify-content: space-between;
@@ -427,7 +438,6 @@
                 transform: rotate(180deg);
             }
             
-            /* Submenu styles */
             .dropdown-submenu {
                 display: none;
                 flex-direction: column;
@@ -474,7 +484,6 @@
             }
         }
 
-        /* ===== PAGE HERO ===== */
         .page-hero {
             background: linear-gradient(135deg, #2A9D8F20, #D4A37320);
             padding: 4rem 0;
@@ -495,7 +504,6 @@
             margin: 0 auto;
         }
 
-        /* ===== OUR STORY SECTION ===== */
         .story-section {
             background: white;
             border-radius: 30px;
@@ -548,7 +556,6 @@
             font-size: 1rem;
         }
 
-        /* ===== MISSION & VISION ===== */
         .mission-vision {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
             border-radius: 30px;
@@ -581,7 +588,6 @@
             margin-top: 0;
         }
 
-        /* ===== CORE VALUES ===== */
         .values-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -620,7 +626,6 @@
             font-size: 0.9rem;
         }
 
-        /* ===== TEAM SECTION ===== */
         .team-section {
             margin: 4rem 0;
         }
@@ -716,7 +721,6 @@
             text-decoration: underline;
         }
 
-        /* ===== WHY CHOOSE US ===== */
         .why-choose {
             background: var(--cream);
             border-radius: 30px;
@@ -749,7 +753,6 @@
             margin-bottom: 1rem;
         }
 
-        /* ===== OFFICE LOCATIONS SECTION ===== */
         .locations-section {
             background: white;
             border-radius: 30px;
@@ -799,6 +802,17 @@
             color: var(--black);
         }
 
+        .accra-skyline {
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .accra-skyline img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
         .map-container {
             background: linear-gradient(135deg, var(--cream), #e0e0e0);
             height: 400px;
@@ -840,25 +854,6 @@
             transform: translateY(-3px);
         }
 
-        /* ===== ACCRA SKYLINE IMAGE STYLES ===== */
-        .accra-skyline {
-            text-align: center;
-            margin: 2rem 0 3rem 0;
-        }
-
-        .accra-skyline img {
-            max-width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px var(--shadow);
-        }
-
-        .accra-skyline p {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-
-        /* ===== FAQ SECTION ===== */
         .faq-section {
             background: white;
             border-radius: 30px;
@@ -897,7 +892,6 @@
             color: var(--gray);
         }
 
-        /* ===== FOOTER STYLES - MATCHING INDEX PAGE ===== */
         footer {
             background: var(--black);
             color: white;
@@ -952,10 +946,6 @@
             padding: 2rem;
             border-radius: 15px;
         }
-        .newsletter h4 {
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
         .newsletter-form {
             display: flex;
             gap: 0.5rem;
@@ -983,30 +973,28 @@
             color: white;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
-            .story-grid,
-            .mv-grid,
-            .locations-grid,
-            .faq-grid,
-            .founders-grid {
+            .story-grid, .mv-grid, .locations-grid, .faq-grid, .founders-grid {
                 grid-template-columns: 1fr;
             }
-            
             .values-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            
             .reasons-grid {
                 grid-template-columns: 1fr;
             }
-            
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-            
             .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            .deadline-badge {
+                position: relative;
+                top: auto;
+                right: auto;
+                display: inline-block;
+                margin-bottom: 1rem;
             }
         }
 
@@ -1014,37 +1002,26 @@
             .values-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
             .footer-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
             .header-content {
                 flex-direction: column;
                 text-align: center;
             }
-            
-            .nav-links {
-                gap: 1rem;
-            }
-            
             h2 {
                 font-size: 2rem;
             }
-            
             .page-hero h1 {
                 font-size: 2.5rem;
             }
-
             .team-photo {
                 height: 240px;
             }
-            
             .newsletter-form {
                 flex-direction: column;
             }
-            
             .newsletter-btn {
                 width: 100%;
             }
@@ -1052,18 +1029,16 @@
     </style>
 </head>
 <body>
-    <!-- Top Contact Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="contact-info">
-                <a href="mailto:info@speakghana.org">📧 info@speakghana.org</a>
-                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
-                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+                <a href="mailto:info@speakghana.org">info@speakghana.org</a>
+                <a href="tel:+233552263323">+233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">WhatsApp: +233 55 226 3323</a>
             </div>
         </div>
     </div>
 
-    <!-- Header -->
     <header>
         <div class="container header-content">
             <div class="logo">
@@ -1082,17 +1057,15 @@
         </div>
     </header>
 
-    <!-- Navigation with Dropdown Menu -->
     <nav>
         <div class="container" style="position: relative;">
             <button class="menu-toggle" id="menuToggle">☰ Menu</button>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 
-                <!-- Learn Dropdown -->
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownLearnBtn">
-                        <span>📚 Learn</span>
+                        <span>Learn</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownLearnMenu">
@@ -1102,10 +1075,9 @@
                     </div>
                 </div>
                 
-                <!-- Resources Dropdown -->
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownResourcesBtn">
-                        <span>📖 Resources</span>
+                        <span>Resources</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownResourcesMenu">
@@ -1115,14 +1087,36 @@
                     </div>
                 </div>
                 
-                <a href="students.html">👥 Students</a>
+                <a href="students.html">Students</a>
                 <a href="about.html" class="active">About</a>
                 <a href="contact.html">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Page Hero -->
+    <div class="container">
+        <!-- 3-Month Program Banner -->
+        <div class="program-banner">
+            <div class="deadline-badge">Deadline: May 30th</div>
+            <div class="program-tag">SPEAK ONE, LEARN ONE SCHOLARSHIP</div>
+            <h2 style="color: white; margin-bottom: 0.5rem; font-size: 1.8rem;">Do You Have a Ghana Card?</h2>
+            <div class="price-box">
+                <p class="price-highlight">Learn Any Language for <span>GHS 500</span> (3 months)</p>
+                <p class="price-highlight" style="margin-top: 0.5rem;">Diaspora with Ghana Card? Same offer applies.</p>
+            </div>
+            <div class="price-box" style="background: rgba(231, 111, 81, 0.3);">
+                <p class="price-highlight">Without Ghana Card: <span>GHS 1,000</span> (3 months)</p>
+            </div>
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Weekend / Evening Classes • Live on Zoom</p>
+            <p style="margin-bottom: 1rem;">Twi • Ga • Ewe • Fante • Dagbani • Hausa</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://apply.speakghana.org" class="btn" style="background: #D4A373; color: #1E1E1E; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">Apply Now</a>
+                <a href="https://wa.me/233552263323?text=Hi%20Speak%20Ghana!%20I%20have%20a%20Ghana%20Card%20and%20want%20to%20learn%20a%20language%20for%20GHS%20500.%20Please%20send%20me%20more%20info." class="btn" style="background: rgba(255,255,255,0.2); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">WhatsApp Us</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.9;">Limited spots • First come, first served • Application closes May 30th</p>
+        </div>
+    </div>
+
     <div class="page-hero">
         <div class="container">
             <h1>About Speak Ghana</h1>
@@ -1130,9 +1124,7 @@
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="container">
-        <!-- Our Story Section -->
         <div class="story-section">
             <h2>Our Story</h2>
             <div class="story-grid">
@@ -1140,7 +1132,7 @@
                     <div class="story-text">
                         <p>Speak Ghana was born from a simple observation: millions of people in the diaspora long to connect with their Ghanaian heritage, but don't know where to start. Language is the key that unlocks identity, culture, and belonging.</p>
                         <p>Founded by Richard Asiamah and Charlotte Tetebea Asiamah, our school began with one simple goal: to help diaspora learners speak Ghanaian languages confidently and reconnect with their roots. What started as a few private lessons has grown into a community of learners worldwide.</p>
-                        <p>Today, we offer structured courses in Twi, Ga, Ewe, Fante, and Dagbani. Our mission remains the same: one word at a time, we're bringing people home.</p>
+                        <p>Today, we offer structured courses in Twi, Ga, Ewe, Fante, Dagbani, and Hausa. Our mission remains the same: one word at a time, we're bringing people home.</p>
                     </div>
                     <div class="story-highlight">
                         "We believe that language is the key that unlocks identity, heritage, and belonging. Every word learned is a step closer to home."
@@ -1153,7 +1145,7 @@
                             <div class="stat-label">Students Taught</div>
                         </div>
                         <div>
-                            <div class="stat-number">5</div>
+                            <div class="stat-number">6</div>
                             <div class="stat-label">Languages</div>
                         </div>
                         <div>
@@ -1165,16 +1157,15 @@
             </div>
         </div>
 
-        <!-- Mission & Vision -->
         <div class="mission-vision">
             <h2>Our Mission & Vision</h2>
             <div class="mv-grid">
                 <div class="mv-box">
-                    <h3>🎯 Mission</h3>
+                    <h3>Mission</h3>
                     <p style="font-size: 1.2rem;">To reconnect the global African diaspora with their roots through language, culture, and community – one word at a time.</p>
                 </div>
                 <div class="mv-box">
-                    <h3>🌟 Vision</h3>
+                    <h3>Vision</h3>
                     <p style="font-size: 1.2rem;">To become Africa's leading online language school, offering every major African language to learners worldwide.</p>
                 </div>
             </div>
@@ -1189,45 +1180,22 @@
             </div>
         </div>
 
-        <!-- Scholarship Section -->
-        <div class="scholarship-section">
-            <h3>🎓 Speak One, Learn One Scholarship</h3>
+        <div class="scholarship-section" style="background: linear-gradient(135deg, var(--gold), var(--red)); border-radius: 30px; padding: 2.5rem; margin: 3rem 0; text-align: center;">
+            <h3 style="color: var(--black); margin-top: 0;">Speak One, Learn One Scholarship</h3>
             <p><strong>25% OFF for Ghana Card Holders</strong> — Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
-            <p style="margin-top: 1rem;"><strong>📜 Certificate of Achievement</strong> — Complete 6 months of continuous learning and receive an official certificate signed by our founders.</p>
+            <p style="margin-top: 1rem;"><strong>Certificate of Achievement</strong> — Complete 6 months of continuous learning and receive an official certificate signed by our founders.</p>
             <a href="contact.html" class="btn btn-primary" style="margin-top: 1rem;">Apply for Scholarship →</a>
         </div>
 
-        <!-- Core Values -->
         <h2 class="center">Our Core Values</h2>
         <div class="values-grid">
-            <div class="value-card">
-                <div class="value-symbol">🕊️</div>
-                <div class="value-name">Sankofa</div>
-                <div class="value-meaning">Look back to move forward</div>
-            </div>
-            <div class="value-card">
-                <div class="value-symbol">🤝</div>
-                <div class="value-name">Akwaaba</div>
-                <div class="value-meaning">Everyone is welcome</div>
-            </div>
-            <div class="value-card">
-                <div class="value-symbol">🌱</div>
-                <div class="value-name">Nkakrankakra</div>
-                <div class="value-meaning">Little by little</div>
-            </div>
-            <div class="value-card">
-                <div class="value-symbol">👪</div>
-                <div class="value-name">Abusua</div>
-                <div class="value-meaning">We are family</div>
-            </div>
-            <div class="value-card">
-                <div class="value-symbol">📈</div>
-                <div class="value-name">Nkɔsoɔ</div>
-                <div class="value-meaning">Progress</div>
-            </div>
+            <div class="value-card"><div class="value-symbol">🕊️</div><div class="value-name">Sankofa</div><div class="value-meaning">Look back to move forward</div></div>
+            <div class="value-card"><div class="value-symbol">🤝</div><div class="value-name">Akwaaba</div><div class="value-meaning">Everyone is welcome</div></div>
+            <div class="value-card"><div class="value-symbol">🌱</div><div class="value-name">Nkakrankakra</div><div class="value-meaning">Little by little</div></div>
+            <div class="value-card"><div class="value-symbol">👪</div><div class="value-name">Abusua</div><div class="value-meaning">We are family</div></div>
+            <div class="value-card"><div class="value-symbol">📈</div><div class="value-name">Nkɔsoɔ</div><div class="value-meaning">Progress</div></div>
         </div>
 
-        <!-- Our Team -->
         <div class="team-section">
             <h2 class="center">Meet Our Founders</h2>
             
@@ -1240,23 +1208,24 @@
                         <h3>Richard Asiamah</h3>
                         <div class="role">Co-founder & Language Learner</div>
                         <div class="bio">Richard moved to Russia without knowing a word of Russian. Two years later, he earned his Master's degree — in Russian. That experience taught him that language barriers can be broken. He founded Speak Ghana to help the diaspora reconnect with their roots the same way.</div>
-                        <a href="https://www.linkedin.com/in/richard-asiamah-856a9b135/" target="_blank" class="profile-link">🔗 LinkedIn Profile</a>
+                        <a href="https://www.linkedin.com/in/richard-asiamah-856a9b135/" target="_blank" class="profile-link">LinkedIn Profile</a>
                     </div>
                 </div>
 
-<div class="team-card">
-    <div class="team-photo">
-        <img src="images/charlotte.jpg" alt="Charlotte Tetebea Asiamah">
-    </div>
-    <div class="team-info">
-        <h3>Charlotte Tetebea Asiamah</h3>
-        <div class="role">Co-founder & Head of Instruction</div>
-        <div class="credentials">🎓 BA in Akan (KNUST) | 📜 Diploma in Education | 👩🏾‍🏫 Senior Teacher | 🌍 AFRIAK Fellow</div>
-        <div class="bio">Charlotte is a trained teacher, researcher, and AFRIAK Fellow. She brings academic rigor and classroom experience to Speak Ghana. As Head of Instruction, she designs our curriculum and ensures every student learns authentically.</div>
-        <a href="teacher-charlotte.html" class="profile-link">📖 View Full Profile →</a>
-        <a href="https://www.linkedin.com/in/charlotte-tetebea-asiamah-67a587185/" target="_blank" class="profile-link" style="margin-left: 1rem;">🔗 LinkedIn</a>
-    </div>
-</div>
+                <div class="team-card">
+                    <div class="team-photo">
+                        <img src="images/charlotte.jpg" alt="Charlotte Tetebea Asiamah">
+                    </div>
+                    <div class="team-info">
+                        <h3>Charlotte Tetebea Asiamah</h3>
+                        <div class="role">Co-founder & Head of Instruction</div>
+                        <div class="credentials">BA in Akan (KNUST) | Diploma in Education | Senior Teacher | AFRIAK Fellow</div>
+                        <div class="bio">Charlotte is a trained teacher, researcher, and AFRIAK Fellow. She brings academic rigor and classroom experience to Speak Ghana. As Head of Instruction, she designs our curriculum and ensures every student learns authentically.</div>
+                        <a href="teacher-charlotte.html" class="profile-link">View Full Profile →</a>
+                        <a href="https://www.linkedin.com/in/charlotte-tetebea-asiamah-67a587185/" target="_blank" class="profile-link" style="margin-left: 1rem;">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
 
             <h2 class="center">Our Instructors</h2>
             <div class="team-grid">
@@ -1268,7 +1237,7 @@
                         <h3>Michael Agyepong Nkansah</h3>
                         <div class="role">Twi & Fante Instructor</div>
                         <div class="bio">Pronunciation expert focused on building conversational confidence.</div>
-                        <a href="https://www.linkedin.com/in/mike-kan-88b19917/" target="_blank" class="profile-link">🔗 LinkedIn Profile</a>
+                        <a href="https://www.linkedin.com/in/mike-kan-88b19917/" target="_blank" class="profile-link">LinkedIn Profile</a>
                     </div>
                 </div>
 
@@ -1283,66 +1252,39 @@
                     </div>
                 </div>
 
-                <!-- Sarah Seyram Arhinful - Ewe Language Instructor -->
                 <div class="team-card">
                     <div class="team-photo">
                         <img src="images/sarah.jpg" alt="Sarah Seyram Arhinful">
                     </div>
                     <div class="team-info">
                         <h3>Sarah Seyram Arhinful</h3>
-                        <div class="role">🇬🇭 Ewe Language Instructor</div>
-                        <div class="credentials">🎓 BA in Ewe Education (GPA 4.0) | 📜 Erasmus+ Scholar | 👩🏾‍🏫 9+ Years Experience</div>
-                        <div class="bio">Dedicated educator with over 9 years of experience in the Ghanaian basic education system. Sarah is passionate about helping diaspora learners reconnect with their Ewe roots through language, proverbs, and cultural storytelling. Certified in cybersecurity and environmental advocacy.</div>
-                        <a href="teacher-sarah.html" class="profile-link">📖 View Full Profile →</a>
+                        <div class="role">Ewe Language Instructor</div>
+                        <div class="credentials">BA in Ewe Education (GPA 4.0) | Erasmus+ Scholar | 9+ Years Experience</div>
+                        <div class="bio">Dedicated educator with over 9 years of experience in the Ghanaian basic education system. Sarah is passionate about helping diaspora learners reconnect with their Ewe roots through language, proverbs, and cultural storytelling.</div>
+                        <a href="teacher-sarah.html" class="profile-link">View Full Profile →</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Why Choose Us -->
         <div class="why-choose">
             <h2 class="center">Why Choose Speak Ghana?</h2>
             <div class="reasons-grid">
-                <div class="reason-card">
-                    <div class="reason-icon">🗣️</div>
-                    <h4>80/20 Method</h4>
-                    <p>Students talk 80% of class time. You learn by speaking, not just listening.</p>
-                </div>
-                <div class="reason-card">
-                    <div class="reason-icon">👥</div>
-                    <h4>Native Teachers</h4>
-                    <p>All instructors are native Ghanaian speakers with years of teaching experience.</p>
-                </div>
-                <div class="reason-card">
-                    <div class="reason-icon">📚</div>
-                    <h4>Complete Textbook</h4>
-                    <p>300+ page textbook included FREE with every paid plan.</p>
-                </div>
-                <div class="reason-card">
-                    <div class="reason-icon">💬</div>
-                    <h4>WhatsApp Community</h4>
-                    <p>Practice with fellow learners between classes.</p>
-                </div>
-                <div class="reason-card">
-                    <div class="reason-icon">🎬</div>
-                    <h4>Cultural Immersion</h4>
-                    <p>Movies, music, and proverbs in every lesson.</p>
-                </div>
-                <div class="reason-card">
-                    <div class="reason-icon">🔄</div>
-                    <h4>Flexible Scheduling</h4>
-                    <p>Choose your own day and time that works for you.</p>
-                </div>
+                <div class="reason-card"><div class="reason-icon">🗣️</div><h4>80/20 Method</h4><p>Students talk 80% of class time. You learn by speaking, not just listening.</p></div>
+                <div class="reason-card"><div class="reason-icon">👥</div><h4>Native Teachers</h4><p>All instructors are native Ghanaian speakers with years of teaching experience.</p></div>
+                <div class="reason-card"><div class="reason-icon">📚</div><h4>Complete Textbook</h4><p>300+ page textbook included FREE with every paid plan.</p></div>
+                <div class="reason-card"><div class="reason-icon">💬</div><h4>WhatsApp Community</h4><p>Practice with fellow learners between classes.</p></div>
+                <div class="reason-card"><div class="reason-icon">🎬</div><h4>Cultural Immersion</h4><p>Movies, music, and proverbs in every lesson.</p></div>
+                <div class="reason-card"><div class="reason-icon">🔄</div><h4>Flexible Scheduling</h4><p>Choose your own day and time that works for you.</p></div>
             </div>
         </div>
 
-        <!-- OFFICE LOCATIONS SECTION -->
         <div class="locations-section">
             <h2 class="center">Our Locations</h2>
             
             <div class="locations-grid">
                 <div class="location-card">
-                    <span class="location-badge">📍 Main Office</span>
+                    <span class="location-badge">Main Office</span>
                     <h3>Kumasi Campus</h3>
                     <div class="location-address">
                         <strong>KNUST Campus</strong><br>
@@ -1353,7 +1295,7 @@
                 </div>
 
                 <div class="location-card">
-                    <span class="location-badge soon">🚧 Opening Soon</span>
+                    <span class="location-badge soon">Opening Soon</span>
                     <h3>Accra Office</h3>
                     <div class="location-address">
                         <strong>Coming Soon</strong><br>
@@ -1371,7 +1313,7 @@
 
             <div class="map-container">
                 <div class="map-overlay">
-                    <strong>📍 KNUST Campus, Kumasi</strong>
+                    <strong>KNUST Campus, Kumasi</strong>
                 </div>
                 <div style="text-align: center;">
                     <a href="https://maps.google.com/?q=KNUST+Kumasi+Ghana" target="_blank" class="map-link">Open in Google Maps →</a>
@@ -1380,129 +1322,58 @@
             </div>
         </div>
 
-        <!-- FAQ Section -->
         <div class="faq-section">
             <h2 class="center">Frequently Asked Questions</h2>
             
             <div class="faq-category">
                 <h3>General Questions</h3>
                 <div class="faq-grid">
-                    <div class="faq-item">
-                        <h4>Who are your classes for?</h4>
-                        <p>Anyone who wants to learn Ghanaian languages! We specialize in diaspora learners, but welcome everyone.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>What is the Speak One, Learn One Scholarship?</h4>
-                        <p>Ghana Card holders who already speak one Ghanaian language get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
-                    </div>
+                    <div class="faq-item"><h4>Who are your classes for?</h4><p>Anyone who wants to learn Ghanaian languages! We specialize in diaspora learners, but welcome everyone.</p></div>
+                    <div class="faq-item"><h4>What is the Speak One, Learn One Scholarship?</h4><p>Ghana Card holders who already speak one Ghanaian language get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p></div>
                 </div>
             </div>
 
             <div class="faq-category">
                 <h3>Payment & Pricing</h3>
                 <div class="faq-grid">
-                    <div class="faq-item">
-                        <h4>What payment methods do you accept?</h4>
-                        <p>PayPal, Wise, Mobile Money, and Bank Transfer.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Can I switch plans later?</h4>
-                        <p>Yes! Upgrade or downgrade anytime. Changes take effect next month.</p>
-                    </div>
+                    <div class="faq-item"><h4>What payment methods do you accept?</h4><p>PayPal, Wise, Mobile Money, and Bank Transfer.</p></div>
+                    <div class="faq-item"><h4>Can I switch plans later?</h4><p>Yes! Upgrade or downgrade anytime. Changes take effect next month.</p></div>
                 </div>
             </div>
 
             <div class="faq-category">
                 <h3>Classes & Scheduling</h3>
                 <div class="faq-grid">
-                    <div class="faq-item">
-                        <h4>What if I miss a class?</h4>
-                        <p>Recordings for group classes. Private lessons reschedule with 24h notice.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>How do group schedules work?</h4>
-                        <p>We find a time that works for the majority. You vote on the final schedule.</p>
-                    </div>
+                    <div class="faq-item"><h4>What if I miss a class?</h4><p>Recordings for group classes. Private lessons reschedule with 24h notice.</p></div>
+                    <div class="faq-item"><h4>How do group schedules work?</h4><p>We find a time that works for the majority. You vote on the final schedule.</p></div>
                 </div>
             </div>
 
             <div class="faq-category">
                 <h3>Teachers & Support</h3>
                 <div class="faq-grid">
-                    <div class="faq-item">
-                        <h4>What if I don't like my teacher?</h4>
-                        <p>Request a change - we'll find you a better match at no extra cost.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>What is the Certificate of Achievement?</h4>
-                        <p>Complete 6 months of continuous learning and receive an official certificate signed by our founders.</p>
-                    </div>
+                    <div class="faq-item"><h4>What if I don't like my teacher?</h4><p>Request a change - we'll find you a better match at no extra cost.</p></div>
+                    <div class="faq-item"><h4>What is the Certificate of Achievement?</h4><p>Complete 6 months of continuous learning and receive an official certificate signed by our founders.</p></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- UPDATED FOOTER - MATCHING INDEX PAGE -->
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Speak Ghana</h4>
-                    <p>📍 KNUST Campus, Kumasi</p>
-                    <p>🏗️ Accra Office (Opening Soon)</p>
-                    <p>📞 +233 55 226 3323</p>
-                    <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
-                    <p>💬 <a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Programs</h4>
-                    <a href="languages.html">Adult Classes</a>
-                    <a href="kids-teens.html">Kids (5-12)</a>
-                    <a href="kids-teens.html">Teens (13-17)</a>
-                    <a href="languages.html">Family Packages</a>
-                    <a href="concierge.html">Sankofa Concierge</a>
-                    <a href="contact.html">Scholarship Program</a>
-                    <a href="student-portal.html">🎓 Student Portal</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <a href="about.html">About Us</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="resources.html">Free Resources</a>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
-                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
-                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
-                    <a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a>
-                    <div class="newsletter">
-                        <h4>Newsletter</h4>
-                        <form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
-                            <div class="newsletter-form">
-                                <input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required>
-                                <button type="submit" class="newsletter-btn">Join</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <div class="footer-section"><h4>Speak Ghana</h4><p>KNUST Campus, Kumasi</p><p>Accra Office (Opening Soon)</p><p>+233 55 226 3323</p><p><a href="mailto:info@speakghana.org">info@speakghana.org</a></p><p><a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p></div>
+                <div class="footer-section"><h4>Programs</h4><a href="languages.html">Adult Classes</a><a href="kids-teens.html">Kids (5-12)</a><a href="kids-teens.html">Teens (13-17)</a><a href="languages.html">Family Packages</a><a href="concierge.html">Sankofa Concierge</a><a href="contact.html">Scholarship Program</a><a href="student-portal.html">Student Portal</a></div>
+                <div class="footer-section"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="blog.html">Blog</a><a href="resources.html">Free Resources</a></div>
+                <div class="footer-section"><h4>Connect</h4><a href="https://www.youtube.com/@SpeakGhana" target="_blank">YouTube</a><a href="https://www.instagram.com/speak_ghana" target="_blank">Instagram</a><a href="https://www.tiktok.com/@speakghana0" target="_blank">TikTok</a><a href="https://wa.me/233552263323" target="_blank">WhatsApp</a>
+                <div class="newsletter"><h4>Newsletter</h4><form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank"><div class="newsletter-form"><input type="email" name="fields[email]" placeholder="Email" class="newsletter-input" required><button type="submit" class="newsletter-btn">Join</button></div></form></div></div>
             </div>
-            
-            <div class="copyright">
-                <p>© 2026 Speak Ghana Language School. All rights reserved.</p>
-                <div class="motto-footer">Reconnect. Speak. Thrive.</div>
-            </div>
+            <div class="copyright"><p>© 2026 Speak Ghana Language School. All rights reserved.</p><div class="motto-footer">Reconnect. Speak. Thrive.</div></div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Hamburger Menu Toggle
             const menuToggle = document.getElementById('menuToggle');
             const navLinks = document.getElementById('navLinks');
             
@@ -1512,7 +1383,6 @@
                 });
             }
             
-            // Dropdown functionality
             const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
             const dropdownLearnMenu = document.getElementById('dropdownLearnMenu');
             const dropdownResourcesBtn = document.getElementById('dropdownResourcesBtn');
@@ -1544,7 +1414,6 @@
                 });
             }
             
-            // Close dropdowns when clicking on a link
             document.querySelectorAll('.dropdown-submenu a').forEach(link => {
                 link.addEventListener('click', () => {
                     if (window.innerWidth <= 968) {
@@ -1553,7 +1422,6 @@
                 });
             });
             
-            // Close menu when clicking a regular link
             document.querySelectorAll('.nav-links > a').forEach(link => {
                 link.addEventListener('click', () => {
                     if (window.innerWidth <= 968) {
@@ -1562,7 +1430,6 @@
                 });
             });
             
-            // Handle window resize - reset menu if resizing to desktop
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 968) {
                     if (navLinks) navLinks.classList.remove('show');
@@ -1573,26 +1440,6 @@
                 }
             });
             
-            // Track Form Submissions
-            const forms = document.querySelectorAll('form');
-            forms.forEach(form => {
-                form.addEventListener('submit', function() {
-                    let formName = 'unknown_form';
-                    if (this.id) formName = this.id;
-                    else if (this.name) formName = this.name;
-                    else if (this.classList.contains('enrollment-form')) formName = 'enrollment_form';
-                    else if (this.classList.contains('contact-form')) formName = 'contact_form';
-                    
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'form_submission', {
-                            'event_category': 'engagement',
-                            'event_label': formName
-                        });
-                    }
-                });
-            });
-            
-            // Track Newsletter Signup
             const newsletterForm = document.getElementById('footer-newsletter-form');
             if (newsletterForm) {
                 newsletterForm.addEventListener('submit', function() {
@@ -1604,82 +1451,9 @@
                     }
                 });
             }
-            
-            // Track PDF Downloads
-            const pdfLinks = document.querySelectorAll('a[href$=".pdf"], a[download]');
-            pdfLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    let pdfName = 'unknown_pdf';
-                    if (this.href) {
-                        const parts = this.href.split('/');
-                        pdfName = parts[parts.length - 1];
-                    }
-                    
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'pdf_download', {
-                            'event_category': 'resource',
-                            'event_label': pdfName
-                        });
-                    }
-                });
-            });
-            
-            // Track WhatsApp Clicks
-            const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
-            whatsappLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'whatsapp_click', {
-                            'event_category': 'contact',
-                            'event_label': 'whatsapp_button'
-                        });
-                    }
-                });
-            });
-            
-            // Track Phone Number Clicks
-            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-            phoneLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'phone_click', {
-                            'event_category': 'contact',
-                            'event_label': 'phone_number'
-                        });
-                    }
-                });
-            });
-            
-            // Track Email Clicks
-            const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
-            emailLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'email_click', {
-                            'event_category': 'contact',
-                            'event_label': 'email_link'
-                        });
-                    }
-                });
-            });
-            
-            // Track Navigation Clicks
-            const navLinkElements = document.querySelectorAll('.nav-links a, .btn');
-            navLinkElements.forEach(link => {
-                link.addEventListener('click', function() {
-                    const linkText = this.innerText.trim() || 'nav_link';
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'navigation_click', {
-                            'event_category': 'navigation',
-                            'event_label': linkText
-                        });
-                    }
-                });
-            });
         });
     </script>
 
-    <!-- ADD Tawk.to Script -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
@@ -1691,6 +1465,5 @@
     s0.parentNode.insertBefore(s1,s0);
     })();
     </script>
-    <!-- End Tawk.to Script -->
 </body>
 </html>
