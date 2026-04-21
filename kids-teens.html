@@ -75,23 +75,6 @@
             margin: 0;
         }
 
-        /* ===== PDF DOWNLOAD SECTION ===== */
-        .pdf-download-section {
-            background: var(--cream);
-            border-radius: 20px;
-            padding: 1.5rem;
-            text-align: center;
-            margin: 2rem 0;
-            border: 1px solid var(--gold);
-        }
-
-        .pdf-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
         /* ===== MODAL POPUP STYLES ===== */
         .modal-overlay {
             display: none;
@@ -1011,52 +994,6 @@
             left: 0;
         }
 
-        /* ===== PRICING TABLE ===== */
-        .pricing-table {
-            background: white;
-            border-radius: 30px;
-            padding: 4rem;
-            margin: 4rem 0;
-            box-shadow: 0 20px 40px var(--shadow);
-        }
-
-        .table-container {
-            overflow-x: auto;
-            margin: 3rem 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: var(--green);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--cream);
-            text-align: center;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover td {
-            background: var(--cream);
-        }
-
-        .package-name {
-            font-weight: 600;
-            color: var(--green);
-            text-align: left;
-        }
-
         /* ===== COMMITMENT SECTION ===== */
         .commitment-section {
             background: linear-gradient(135deg, var(--gold), var(--red));
@@ -1279,9 +1216,9 @@
     <div class="top-bar">
         <div class="container">
             <div class="contact-info">
-                <a href="mailto:info@speakghana.org">📧 info@speakghana.org</a>
-                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
-                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+                <a href="mailto:info@speakghana.org">info@speakghana.org</a>
+                <a href="tel:+233552263323">+233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">WhatsApp: +233 55 226 3323</a>
             </div>
         </div>
     </div>
@@ -1315,7 +1252,7 @@
                 <!-- Learn Dropdown -->
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownLearnBtn">
-                        <span>📚 Learn</span>
+                        <span>Learn</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownLearnMenu">
@@ -1328,7 +1265,7 @@
                 <!-- Resources Dropdown -->
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownResourcesBtn">
-                        <span>📖 Resources</span>
+                        <span>Resources</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownResourcesMenu">
@@ -1338,7 +1275,7 @@
                     </div>
                 </div>
                 
-                <a href="students.html">👥 Students</a>
+                <a href="students.html">Students</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
@@ -1355,9 +1292,9 @@
 
     <!-- Scholarship Blinking Section -->
     <a href="contact.html" class="scholarship-blink" style="text-decoration: none; display: block;">
-        <h3>🎓 SPEAK ONE, LEARN ONE SCHOLARSHIP 🎓</h3>
+        <h3>SPEAK ONE, LEARN ONE SCHOLARSHIP</h3>
         <p><strong>25% OFF for Ghana Card Holders!</strong> Speak one Ghanaian language? Get 25% off to learn another. Includes diaspora returnees with Ghana Cards.</p>
-        <p style="margin-top: 0.5rem;">📜 Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p>
+        <p style="margin-top: 0.5rem;">Plus: Earn a Certificate of Achievement after 6 months of continuous learning!</p>
     </a>
 
     <!-- Introduction Section -->
@@ -1395,7 +1332,6 @@
             <a href="#kids" class="age-nav-link active">Kids (5-12)</a>
             <a href="#teens" class="age-nav-link">Teens (13-17)</a>
             <a href="#family" class="age-nav-link">Family Bundles</a>
-            <a href="#pricing" class="age-nav-link">Pricing</a>
             <a href="#faq" class="age-nav-link">FAQ</a>
         </div>
 
@@ -1427,8 +1363,8 @@
                             <li>Simple songs and rhymes</li>
                         </ul>
                         <div class="package-price">
-                            $35 / GHS 490 <small>/month</small><br>
-                            <span class="scholarship">Scholarship: $26.25 / GHS 367.50</span>
+                            $35 <small>/month</small><br>
+                            <span class="scholarship">Scholarship: $26.25</span>
                         </div>
                         <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
                         <button onclick="openEnrollmentModal('Kids - Twi Tots (K1)', 'Ages 5-8')" class="btn btn-primary btn-small">Enroll Now</button>
@@ -1454,8 +1390,8 @@
                             <li>Ghanaian folktales (Ananse stories)</li>
                         </ul>
                         <div class="package-price">
-                            $45 / GHS 630 <small>/month</small><br>
-                            <span class="scholarship">Scholarship: $33.75 / GHS 472.50</span>
+                            $45 <small>/month</small><br>
+                            <span class="scholarship">Scholarship: $33.75</span>
                         </div>
                         <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
                         <button onclick="openEnrollmentModal('Kids - Twi Explorers (K2)', 'Ages 9-12')" class="btn btn-primary btn-small">Enroll Now</button>
@@ -1479,8 +1415,8 @@
                             <li>Learn together, practice together</li>
                         </ul>
                         <div class="package-price">
-                            $65 / GHS 910 <small>/family</small><br>
-                            <span class="scholarship">Scholarship: $48.75 / GHS 682.50</span>
+                            $65 <small>/family</small><br>
+                            <span class="scholarship">Scholarship: $48.75</span>
                         </div>
                         <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
                         <button onclick="openEnrollmentModal('Kids - Siblings Special (K3)', 'Family Program')" class="btn btn-primary btn-small">Enroll Now</button>
@@ -1508,10 +1444,10 @@
                             <li>Week 8: Celebration & Showcase</li>
                         </ul>
                         <div class="package-price">
-                            $180 / GHS 2,520 <small>full 8 weeks</small><br>
-                            <span class="scholarship">Scholarship: $135 / GHS 1,890</span>
+                            $180 <small>full 8 weeks</small><br>
+                            <span class="scholarship">Scholarship: $135</span>
                         </div>
-                        <p><small>Early Bird (by May 1): $160 / GHS 2,240</small></p>
+                        <p><small>Early Bird (by May 1): $160</small></p>
                         <button onclick="openEnrollmentModal('Kids - Summer Camp (K4)', 'Ages 6-12')" class="btn btn-primary btn-small">Register</button>
                     </div>
                 </div>
@@ -1558,8 +1494,8 @@
                             <li>Talking about school, hobbies, crushes</li>
                         </ul>
                         <div class="package-price">
-                            $55 / GHS 770 <small>/month</small><br>
-                            <span class="scholarship">Scholarship: $41.25 / GHS 577.50</span>
+                            $55 <small>/month</small><br>
+                            <span class="scholarship">Scholarship: $41.25</span>
                         </div>
                         <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
                         <button onclick="openEnrollmentModal('Teens - Teen Talk (T1)', 'Ages 13-17')" class="btn btn-primary btn-small">Enroll Now</button>
@@ -1575,7 +1511,7 @@
                         <div class="package-subheader">60 min • 2x/week</div>
                     </div>
                     <div class="package-body">
-                        <span class="popular-badge">⭐ MOST POPULAR</span>
+                        <span class="popular-badge">Most Popular</span>
                         <span class="age-tag">Ages 13-17</span>
                         <ul class="package-features">
                             <li><strong>Lesson A:</strong> Grammar, vocabulary, writing</li>
@@ -1586,8 +1522,8 @@
                             <li>Preparing for Ghana visit</li>
                         </ul>
                         <div class="package-price">
-                            $95 / GHS 1,330 <small>/month</small><br>
-                            <span class="scholarship">Scholarship: $71.25 / GHS 997.50</span>
+                            $95 <small>/month</small><br>
+                            <span class="scholarship">Scholarship: $71.25</span>
                         </div>
                         <div class="package-commitment">Save 10% (3 months) • Save 20% (6 months)</div>
                         <button onclick="openEnrollmentModal('Teens - Twi Fluency Fast (T2)', 'Ages 13-17')" class="btn btn-primary btn-small">Enroll Now</button>
@@ -1611,8 +1547,8 @@
                             <li>Flexible scheduling</li>
                         </ul>
                         <div class="package-price">
-                            $65 / GHS 910 <small>/month</small><br>
-                            <span class="scholarship">Scholarship: $48.75 / GHS 682.50</span>
+                            $65 <small>/month</small><br>
+                            <span class="scholarship">Scholarship: $48.75</span>
                         </div>
                         <button onclick="openEnrollmentModal('Teens - Private 45min (T3)', 'Ages 13-17')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
@@ -1631,8 +1567,8 @@
                             <li>Parent updates after each lesson</li>
                         </ul>
                         <div class="package-price">
-                            $85 / GHS 1,190 <small>/month</small><br>
-                            <span class="scholarship">Scholarship: $63.75 / GHS 892.50</span>
+                            $85 <small>/month</small><br>
+                            <span class="scholarship">Scholarship: $63.75</span>
                         </div>
                         <button onclick="openEnrollmentModal('Teens - Private 60min (T3)', 'Ages 13-17')" class="btn btn-primary btn-small">Enroll Now</button>
                     </div>
@@ -1657,18 +1593,12 @@
                             <li>Projects: Video intro, song translation, family interview</li>
                         </ul>
                         <div class="package-price">
-                            $360 / GHS 5,040 <small>full 6 weeks</small><br>
-                            <span class="scholarship">Scholarship: $270 / GHS 3,780</span>
+                            $360 <small>full 6 weeks</small><br>
+                            <span class="scholarship">Scholarship: $270</span>
                         </div>
-                        <p><small>Early Bird (by May 1): $320 / GHS 4,480</small></p>
+                        <p><small>Early Bird (by May 1): $320</small></p>
                         <button onclick="openEnrollmentModal('Teens - Summer Intensive (T4)', 'Ages 13-17')" class="btn btn-primary btn-small">Register</button>
                     </div>
-                </div>
-            </div>
-
-            <div class="pdf-download-section">
-                <div class="pdf-buttons">
-                    <a href="pdfs/pricing-kids-teens.pdf" class="btn btn-gold btn-small" target="_blank">📄 Download Kids & Teens Pricing (PDF)</a>
                 </div>
             </div>
         </section>
@@ -1680,10 +1610,10 @@
 
             <div class="family-grid">
                 <div class="family-card">
-                    <h3>👨‍👩‍👧‍👦 Family Pack (F1)</h3>
+                    <h3>Family Pack (F1)</h3>
                     <p>Parents + Kids (2 adults + up to 3 kids)</p>
-                    <div class="price">$120 / GHS 1,680 <small>/month</small></div>
-                    <p class="scholarship">Scholarship: $90 / GHS 1,260</p>
+                    <div class="price">$120 <small>/month</small></div>
+                    <p class="scholarship">Scholarship: $90</p>
                     <ul>
                         <li>4 live family lessons per month</li>
                         <li>Adult workbook + Kids workbooks</li>
@@ -1695,10 +1625,10 @@
                 </div>
 
                 <div class="family-card">
-                    <h3>📚 Heritage Homeschool (F2)</h3>
+                    <h3>Heritage Homeschool (F2)</h3>
                     <p>Curriculum License for Homeschooling Families</p>
-                    <div class="price">$180 / GHS 2,520 <small>/year</small></div>
-                    <p class="scholarship">Scholarship: $135 / GHS 1,890</p>
+                    <div class="price">$180 <small>/year</small></div>
+                    <p class="scholarship">Scholarship: $135</p>
                     <ul>
                         <li>Full Speak Ghana Kids Curriculum (levels 1-3)</li>
                         <li>Video lessons for each topic</li>
@@ -1709,51 +1639,6 @@
                     </ul>
                     <p><small>Add-on coaching: +$30/month</small></p>
                     <button onclick="openEnrollmentModal('Family - Heritage Homeschool (F2)', 'Homeschool Curriculum')" class="btn btn-gold btn-small" style="margin-top: 1rem;">Register</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- PRICING TABLE SECTION -->
-        <section id="pricing" class="pricing-table">
-            <h2 class="center">Pricing Summary – Kids & Teens</h2>
-            
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Package</th>
-                            <th>Age</th>
-                            <th>Frequency</th>
-                            <th>Class Size</th>
-                            <th>Price/Month</th>
-                            <th>Scholarship (25%)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="package-name">K1: Twi Tots</td><td>5-8</td><td>1x/30min</td><td>3-6</td><td>$35 / GHS 490</td><td>$26.25 / GHS 367.50</td></tr>
-                        <tr><td class="package-name">K2: Twi Explorers</td><td>9-12</td><td>1x/45min</td><td>4-8</td><td>$45 / GHS 630</td><td>$33.75 / GHS 472.50</td></tr>
-                        <tr><td class="package-name">K3: Siblings Special</td><td>5-12</td><td>1x/45min</td><td>Family</td><td>$65 / GHS 910</td><td>$48.75 / GHS 682.50</td></tr>
-                        <tr><td class="package-name">K4: Summer Camp</td><td>6-12</td><td>2x/45min</td><td>4-8</td><td>$180 (8 wks)</td><td>$135 (8 wks)</td></tr>
-                        <tr><td class="package-name">T1: Teen Talk</td><td>13-17</td><td>1x/60min</td><td>4-8</td><td>$55 / GHS 770</td><td>$41.25 / GHS 577.50</td></tr>
-                        <tr><td class="package-name">T2: Twi Fluency Fast</td><td>13-17</td><td>2x/60min</td><td>4-8</td><td>$95 / GHS 1,330</td><td>$71.25 / GHS 997.50</td></tr>
-                        <tr><td class="package-name">T3: Private (45min)</td><td>13-17</td><td>1x/week</td><td>1-on-1</td><td>$65 / GHS 910</td><td>$48.75 / GHS 682.50</td></tr>
-                        <tr><td class="package-name">T3: Private (60min)</td><td>13-17</td><td>1x/week</td><td>1-on-1</td><td>$85 / GHS 1,190</td><td>$63.75 / GHS 892.50</td></tr>
-                        <tr><td class="package-name">T4: Teen Summer</td><td>13-17</td><td>3x/90min</td><td>4-8</td><td>$360 (6 wks)</td><td>$270 (6 wks)</td></tr>
-                        <tr><td class="package-name">F1: Family Pack</td><td>All</td><td>1x/60min</td><td>Family</td><td>$120 / GHS 1,680</td><td>$90 / GHS 1,260</td></tr>
-                        <tr><td class="package-name">F2: Homeschool</td><td>K-12</td><td>Self-paced</td><td>Family</td><td>$180/year</td><td>$135/year</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div style="background: var(--cream); padding: 2rem; border-radius: 15px; margin-top: 2rem;">
-                <h4 style="color: var(--green);">🎁 Discounts & Promotions</h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                    <p><strong>Sibling Discount:</strong> 15% off second child</p>
-                    <p><strong>Refer a Friend:</strong> 1 month free for both</p>
-                    <p><strong>Birthday Month:</strong> 10% off</p>
-                    <p><strong>Military/Family:</strong> 10% off</p>
-                    <p><strong>3 months upfront:</strong> Save 10%</p>
-                    <p><strong>6 months upfront:</strong> Save 20%</p>
                 </div>
             </div>
         </section>
@@ -1806,7 +1691,7 @@
     <div id="enrollmentModal" class="modal-overlay">
         <div class="modal-container">
             <div class="modal-header">
-                <h3>👧🧒 Enroll Your Child in Classes</h3>
+                <h3>Enroll Your Child in Classes</h3>
                 <button class="modal-close" id="closeModalBtn">✕</button>
             </div>
             <div class="modal-body">
@@ -1831,11 +1716,11 @@
                             <label>Phone</label>
                             <div style="display: flex; gap: 0.5rem;">
                                 <select name="phone_code" style="width: 30%; padding: 0.7rem; border: 2px solid #e2e8f0; border-radius: 12px;">
-                                    <option value="+233">🇬🇭 +233 (Ghana)</option>
-                                    <option value="+1">🇺🇸 +1 (USA/Canada)</option>
-                                    <option value="+44">🇬🇧 +44 (UK)</option>
-                                    <option value="+49">🇩🇪 +49 (Germany)</option>
-                                    <option value="+33">🇫🇷 +33 (France)</option>
+                                    <option value="+233">+233 (Ghana)</option>
+                                    <option value="+1">+1 (USA/Canada)</option>
+                                    <option value="+44">+44 (UK)</option>
+                                    <option value="+49">+49 (Germany)</option>
+                                    <option value="+33">+33 (France)</option>
                                 </select>
                                 <input type="tel" name="phone" placeholder="Phone number" style="width: 70%;">
                             </div>
@@ -1897,11 +1782,11 @@
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>Speak Ghana</h4>
-                    <p>📍 KNUST Campus, Kumasi</p>
-                    <p>🏗️ Accra Office (Opening Soon)</p>
-                    <p>📞 <a href="tel:+233552263323">+233 55 226 3323</a></p>
-                    <p>📧 <a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
-                    <p>💬 <a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
+                    <p>KNUST Campus, Kumasi</p>
+                    <p>Accra Office (Opening Soon)</p>
+                    <p><a href="tel:+233552263323">+233 55 226 3323</a></p>
+                    <p><a href="mailto:info@speakghana.org">info@speakghana.org</a></p>
+                    <p><a href="https://wa.me/233552263323" target="_blank">WhatsApp: +233 55 226 3323</a></p>
                 </div>
                 
                 <div class="footer-section">
@@ -1909,8 +1794,7 @@
                     <a href="#kids">Kids (5-12)</a>
                     <a href="#teens">Teens (13-17)</a>
                     <a href="#family">Family Bundles</a>
-                    <a href="#pricing">Pricing</a>
-                    <a href="student-portal.html">🎓 Student Portal</a>
+                    <a href="student-portal.html">Student Portal</a>
                 </div>
                 
                 <div class="footer-section">
@@ -1924,10 +1808,10 @@
                 
                 <div class="footer-section">
                     <h4>Connect</h4>
-                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">📺 YouTube</a>
-                    <a href="https://www.instagram.com/speak_ghana" target="_blank">📸 Instagram</a>
-                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">🎵 TikTok</a>
-                    <a href="https://wa.me/233552263323" target="_blank">💬 WhatsApp</a>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">YouTube</a>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">Instagram</a>
+                    <a href="https://www.tiktok.com/@speakghana0" target="_blank">TikTok</a>
+                    <a href="https://wa.me/233552263323" target="_blank">WhatsApp</a>
                     <div class="newsletter">
                         <h4>Newsletter</h4>
                         <form id="footer-newsletter-form" action="https://assets.mailerlite.com/jsonp/2197674/forms/182140631178545029/subscribe" method="post" target="_blank">
@@ -2087,20 +1971,6 @@
                     }
                 });
             }
-            
-            // Track PDF Downloads
-            const pdfLinks = document.querySelectorAll('a[href$=".pdf"]');
-            pdfLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    let pdfName = this.href.split('/').pop();
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'pdf_download', {
-                            'event_category': 'resource',
-                            'event_label': pdfName
-                        });
-                    }
-                });
-            });
             
             // Track Scholarship Blink Click
             const scholarshipLink = document.querySelector('.scholarship-blink');
