@@ -109,6 +109,60 @@
             font-size: 1.1rem;
         }
 
+        /* 3-Month Program Banner */
+        .program-banner {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .deadline-badge {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #E76F51;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            animation: pulse-red 1.5s infinite;
+        }
+        @keyframes pulse-red {
+            0% { background: #E76F51; transform: scale(1); }
+            50% { background: #c95a3e; transform: scale(1.05); }
+            100% { background: #E76F51; transform: scale(1); }
+        }
+        .program-tag {
+            background: #D4A373;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--black);
+            font-weight: 600;
+        }
+        .price-box {
+            background: rgba(212, 163, 115, 0.2);
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem auto;
+            display: inline-block;
+        }
+        .price-highlight {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .price-highlight span {
+            color: #D4A373;
+        }
+
         /* Header & Nav */
         .top-bar {
             background: var(--black);
@@ -620,6 +674,7 @@
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
             .container { padding: 0 1.5rem; }
             .section-title { font-size: 2rem; }
+            .deadline-badge { position: relative; top: auto; right: auto; display: inline-block; margin-bottom: 1rem; }
         }
         @media (max-width: 550px) {
             .services-grid { grid-template-columns: 1fr; }
@@ -664,7 +719,7 @@
             <!-- Learn Dropdown -->
             <div class="dropdown-item">
                 <button class="dropdown-toggle" id="dropdownLearnBtn">
-                    <span>📚 Learn</span>
+                    <span>Learn</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="dropdown-submenu" id="dropdownLearnMenu">
@@ -677,7 +732,7 @@
             <!-- Resources Dropdown -->
             <div class="dropdown-item">
                 <button class="dropdown-toggle" id="dropdownResourcesBtn">
-                    <span>📖 Resources</span>
+                    <span>Resources</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="dropdown-submenu" id="dropdownResourcesMenu">
@@ -687,12 +742,35 @@
                 </div>
             </div>
             
-            <a href="students.html">👥 Students</a>
+            <a href="students.html">Students</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
         </div>
     </div>
 </nav>
+
+<!-- 3-Month Program Banner -->
+<div class="container">
+    <div class="program-banner">
+        <div class="deadline-badge">Deadline: May 30th</div>
+        <div class="program-tag">SPEAK ONE, LEARN ONE SCHOLARSHIP</div>
+        <h2 style="color: white; margin-bottom: 0.5rem; font-size: 1.8rem;">Do You Have a Ghana Card?</h2>
+        <div class="price-box">
+            <p class="price-highlight">Learn Any Language for <span>GHS 500</span> (3 months)</p>
+            <p class="price-highlight" style="margin-top: 0.5rem;">Diaspora with Ghana Card? Same offer applies.</p>
+        </div>
+        <div class="price-box" style="background: rgba(231, 111, 81, 0.3);">
+            <p class="price-highlight">Without Ghana Card: <span>GHS 1,000</span> (3 months)</p>
+        </div>
+        <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Weekend / Evening Classes • Live on Zoom</p>
+        <p style="margin-bottom: 1rem;">Twi • Ga • Ewe • Fante • Dagbani • Hausa</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://apply.speakghana.org" class="btn" style="background: #D4A373; color: #1E1E1E; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">Apply Now</a>
+            <a href="https://wa.me/233552263323?text=Hi%20Speak%20Ghana!%20I%20have%20a%20Ghana%20Card%20and%20want%20to%20learn%20a%20language%20for%20GHS%20500.%20Please%20send%20me%20more%20info." class="btn" style="background: rgba(255,255,255,0.2); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">WhatsApp Us</a>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.9;">Limited spots • First come, first served • Application closes May 30th</p>
+    </div>
+</div>
 
 <section class="hero-concierge">
     <div class="container">
@@ -708,7 +786,7 @@
             <div class="hero-stats">
                 <i class="fas fa-passport" style="font-size: 2.5rem; color: var(--gold);"></i>
                 <h3>Why diaspora choose us</h3>
-                <p><strong>✔️ Local expertise</strong><br>✔️ Trusted by 200+ returnees<br>✔️ Fast response & transparent pricing</p>
+                <p><strong>Local expertise</strong><br>Trusted by 200+ returnees<br>Fast response & transparent pricing</p>
                 <hr style="margin: 1rem 0; opacity: 0.3;">
                 <p><i class="fas fa-clock"></i> Pre-arrival & on-ground support</p>
             </div>
@@ -718,7 +796,7 @@
 
 <div class="container" id="services">
     <div class="section-padding">
-        <h2 class="section-title">What we offer <span style="color: var(--gold);">🇬🇭</span></h2>
+        <h2 class="section-title">What we offer</h2>
         <p class="section-sub">You focus on reconnecting. We'll handle the logistics, errands, and local details.</p>
         
         <div class="services-grid">
@@ -746,10 +824,10 @@
 
 <div class="container">
     <div class="pricing-grid">
-        <div class="price-card"><h3>✈️ Airport Meet & Greet</h3><div class="price">$60 <small>/ per arrival</small></div><p>Pickup, SIM card setup, transport to Accra/Kumasi (extra for distance)</p><button class="btn btn-primary open-modal" style="width:100%; margin-top:1rem;">Book</button></div>
-        <div class="price-card popular"><div class="popular-badge">Most requested</div><h3>🏠 Property Verification</h3><div class="price">$45 <small>/ per property</small></div><p>Video tour, neighbourhood check, price negotiation, landlord verification.</p><button class="btn btn-gold open-modal" style="width:100%;">Request</button></div>
-        <div class="price-card"><h3>🛍️ Errands / Shopping</h3><div class="price">$20 <small>/ per hour</small></div><p>Market price checks, purchase coordination, delivery assistance.</p><button class="btn btn-primary open-modal" style="width:100%;">Hire</button></div>
-        <div class="price-card"><h3>🤝 Full-Day Concierge</h3><div class="price">$120 <small>/ day</small></div><p>Multiple errands, guided visits, document runs, translation support.</p><button class="btn btn-primary open-modal" style="width:100%;">Inquire</button></div>
+        <div class="price-card"><h3>Airport Meet & Greet</h3><div class="price">$60 <small>/ per arrival</small></div><p>Pickup, SIM card setup, transport to Accra/Kumasi (extra for distance)</p><button class="btn btn-primary open-modal" style="width:100%; margin-top:1rem;">Book</button></div>
+        <div class="price-card popular"><div class="popular-badge">Most requested</div><h3>Property Verification</h3><div class="price">$45 <small>/ per property</small></div><p>Video tour, neighbourhood check, price negotiation, landlord verification.</p><button class="btn btn-gold open-modal" style="width:100%;">Request</button></div>
+        <div class="price-card"><h3>Errands / Shopping</h3><div class="price">$20 <small>/ per hour</small></div><p>Market price checks, purchase coordination, delivery assistance.</p><button class="btn btn-primary open-modal" style="width:100%;">Hire</button></div>
+        <div class="price-card"><h3>Full-Day Concierge</h3><div class="price">$120 <small>/ day</small></div><p>Multiple errands, guided visits, document runs, translation support.</p><button class="btn btn-primary open-modal" style="width:100%;">Inquire</button></div>
     </div>
     <p style="text-align:center; margin: 0.5rem 0 2rem;"><i class="fas fa-tag"></i> Bundle any 3 services and get 15% off • Monthly retainer available for businesses/relocators</p>
 </div>
@@ -759,7 +837,7 @@
         <h2><i class="fas fa-heart" style="color: var(--gold);"></i> Ready to arrive with confidence?</h2>
         <p style="font-size: 1.1rem;">Let us be your local partner. Whether you need a simple airport pickup or full relocation support, we're here to help.</p>
         <button class="btn btn-gold btn-large open-modal" style="margin-top: 1.2rem; background: var(--gold); color: var(--black);"><i class="fab fa-whatsapp"></i> Get a free consultation</button>
-        <p style="margin-top: 1rem;">📧 info@speakghana.org | 📞 +233 55 226 3323</p>
+        <p style="margin-top: 1rem;">info@speakghana.org | +233 55 226 3323</p>
     </div>
 </div>
 
@@ -767,8 +845,8 @@
 <footer>
     <div class="container">
         <div class="footer-grid">
-            <div class="footer-section"><h4>Speak Ghana</h4><p>📍 KNUST Campus, Kumasi</p><p>📞 +233 55 226 3323</p><p>📧 info@speakghana.org</p></div>
-            <div class="footer-section"><h4>Programs</h4><a href="languages.html">Language Classes</a><a href="kids-teens.html">Kids & Teens</a><a href="concierge.html">Sankofa Concierge</a><a href="student-portal.html">🎓 Student Portal</a></div>
+            <div class="footer-section"><h4>Speak Ghana</h4><p>KNUST Campus, Kumasi</p><p>+233 55 226 3323</p><p>info@speakghana.org</p></div>
+            <div class="footer-section"><h4>Programs</h4><a href="languages.html">Language Classes</a><a href="kids-teens.html">Kids & Teens</a><a href="concierge.html">Sankofa Concierge</a><a href="student-portal.html">Student Portal</a></div>
             <div class="footer-section"><h4>Resources</h4><a href="resources.html">Free Twi Resources</a><a href="#">Diaspora Guide</a><a href="blog.html">Blog</a></div>
             <div class="footer-section"><h4>Connect</h4><a href="https://www.instagram.com/speak_ghana" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://wa.me/233552263323" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
         </div>
