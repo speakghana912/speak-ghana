@@ -6,14 +6,12 @@
     <title>Sarah Seyram Arhinful - Ewe Language Teacher | Speak Ghana</title>
     <meta name="description" content="Meet Sarah Seyram Arhinful, Speak Ghana's dedicated Ewe language teacher with over 9 years of experience in the Ghanaian education system. BA in Ewe Education, Erasmus+ scholar.">
     
-    <!-- ABSOLUTE URL FAVICON -->
     <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
-    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
     <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
 
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -22,7 +20,6 @@
       gtag('config', 'G-ZXFR0LFLH6');
     </script>
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
 
@@ -57,7 +54,61 @@
             padding: 0 2rem;
         }
 
-        /* Header & Navigation (matching main site) */
+        /* 3-Month Program Banner */
+        .program-banner {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .deadline-badge {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #E76F51;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            animation: pulse-red 1.5s infinite;
+        }
+        @keyframes pulse-red {
+            0% { background: #E76F51; transform: scale(1); }
+            50% { background: #c95a3e; transform: scale(1.05); }
+            100% { background: #E76F51; transform: scale(1); }
+        }
+        .program-tag {
+            background: #D4A373;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--black);
+            font-weight: 600;
+        }
+        .price-box {
+            background: rgba(212, 163, 115, 0.2);
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem auto;
+            display: inline-block;
+        }
+        .price-highlight {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .price-highlight span {
+            color: #D4A373;
+        }
+
+        /* Header & Navigation */
         .top-bar {
             background: var(--black);
             color: white;
@@ -222,6 +273,13 @@
                 font-size: 0.95rem;
             }
             .dropdown-item { display: block; padding: 0 !important; }
+            .deadline-badge {
+                position: relative;
+                top: auto;
+                right: auto;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
         }
 
         /* Teacher Profile Styles */
@@ -401,18 +459,16 @@
     </style>
 </head>
 <body>
-    <!-- Top Contact Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="contact-info">
-                <a href="mailto:info@speakghana.org">📧 info@speakghana.org</a>
-                <a href="tel:+233552263323">📞 +233 55 226 3323</a>
-                <a href="https://wa.me/233552263323">💬 WhatsApp: +233 55 226 3323</a>
+                <a href="mailto:info@speakghana.org">info@speakghana.org</a>
+                <a href="tel:+233552263323">+233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">WhatsApp: +233 55 226 3323</a>
             </div>
         </div>
     </div>
 
-    <!-- Header -->
     <header>
         <div class="container header-content">
             <div class="logo">
@@ -431,7 +487,6 @@
         </div>
     </header>
 
-    <!-- Navigation -->
     <nav>
         <div class="container" style="position: relative;">
             <button class="menu-toggle" id="menuToggle">☰ Menu</button>
@@ -439,7 +494,7 @@
                 <a href="index.html">Home</a>
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownLearnBtn">
-                        <span>📚 Learn</span>
+                        <span>Learn</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownLearnMenu">
@@ -450,7 +505,7 @@
                 </div>
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownResourcesBtn">
-                        <span>📖 Resources</span>
+                        <span>Resources</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownResourcesMenu">
@@ -459,19 +514,40 @@
                         <a href="student-portal.html">Student Portal</a>
                     </div>
                 </div>
-                <a href="students.html">👥 Students</a>
+                <a href="students.html">Students</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Teacher Profile -->
+    <div class="container">
+        <div class="program-banner">
+            <div class="deadline-badge">Deadline: May 30th</div>
+            <div class="program-tag">SPEAK ONE, LEARN ONE SCHOLARSHIP</div>
+            <h2 style="color: white; margin-bottom: 0.5rem; font-size: 1.8rem;">Do You Have a Ghana Card?</h2>
+            <div class="price-box">
+                <p class="price-highlight">Learn Any Language for <span>GHS 500</span> (3 months)</p>
+                <p class="price-highlight" style="margin-top: 0.5rem;">Diaspora with Ghana Card? Same offer applies.</p>
+            </div>
+            <div class="price-box" style="background: rgba(231, 111, 81, 0.3);">
+                <p class="price-highlight">Without Ghana Card: <span>GHS 1,000</span> (3 months)</p>
+            </div>
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Weekend / Evening Classes • Live on Zoom</p>
+            <p style="margin-bottom: 1rem;">Twi • Ga • Ewe • Fante • Dagbani • Hausa</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://apply.speakghana.org" class="btn" style="background: #D4A373; color: #1E1E1E; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">Apply Now</a>
+                <a href="https://wa.me/233552263323?text=Hi%20Speak%20Ghana!%20I%20have%20a%20Ghana%20Card%20and%20want%20to%20learn%20a%20language%20for%20GHS%20500.%20Please%20send%20me%20more%20info." class="btn" style="background: rgba(255,255,255,0.2); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">WhatsApp Us</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.9;">Limited spots • First come, first served • Application closes May 30th</p>
+        </div>
+    </div>
+
     <div class="teacher-header">
         <div class="container">
             <h1>Sarah Seyram Arhinful</h1>
             <p>Dedicated Ewe Language Educator</p>
-            <div class="language-badge">🇬🇭 Ewe Language Teacher</div>
+            <div class="language-badge">Ewe Language Teacher</div>
         </div>
     </div>
 
@@ -500,51 +576,50 @@
                 
                 <p>Her students consistently praise her patience, deep knowledge of Ewe language and culture, and ability to make learning enjoyable and accessible for learners of all ages — especially diaspora learners reconnecting with their roots.</p>
 
-                <h3>🎓 Education</h3>
+                <h3>Education</h3>
                 <p><strong>University of Education, Winneba</strong> — BA in Ewe Education (GPA 4.0)</p>
                 <p><strong>Erasmus+ Scholarship</strong> — University College, Copenhagen (Creativity and Experimental Processes, Musical Expression in Teaching and Learning, English Language Teaching)</p>
                 <p><strong>St. Francis College of Education, Hohoe</strong> — Diploma in Basic Education</p>
                 <p><strong>OLA Girls Senior High School, Ho</strong></p>
 
-                <h3>📜 Certifications & Awards</h3>
+                <h3>Certifications & Awards</h3>
                 <div>
-                    <span class="cert-badge">🎓 Cybersecurity Certified</span>
-                    <span class="cert-badge">🌿 Environmental Advocacy</span>
-                    <span class="cert-badge">🌍 Erasmus+ Scholar</span>
-                    <span class="cert-badge">🔒 Data Protection Protocols</span>
-                    <span class="cert-badge">💻 Advanced ICT Integration</span>
+                    <span class="cert-badge">Cybersecurity Certified</span>
+                    <span class="cert-badge">Environmental Advocacy</span>
+                    <span class="cert-badge">Erasmus+ Scholar</span>
+                    <span class="cert-badge">Data Protection Protocols</span>
+                    <span class="cert-badge">Advanced ICT Integration</span>
                 </div>
 
-                <h3>💼 Teaching Experience</h3>
+                <h3>Teaching Experience</h3>
                 <p><strong>Teacher, Amusudai JHS</strong> (2022 - present)<br>Delivering high-quality instruction to Junior High School students, ensuring alignment with the curriculum. Facilitating classroom engagement through innovative teaching aids and ICT integration. Monitoring student progress and providing personalized mentorship to improve learning outcomes.</p>
                 
                 <p><strong>Teacher, United E.P. Primary School, Alavanyo</strong> (2017 - 2018)<br>Instructed elementary subjects to foundational level students, focusing on literacy and numeracy. Conducted regular assessments and parent-teacher consultations to track development.</p>
                 
                 <p><strong>Teacher, Fodome Kordzeto MA Basic</strong> (2017 - 2018)<br>Managed diverse classroom settings and developed comprehensive lesson plans for primary learners. Collaborated with school leadership to enhance student discipline and extracurricular participation.</p>
 
-                <h3>🏆 Leadership & Communication</h3>
+                <h3>Leadership & Communication</h3>
                 <p>Sarah currently serves as the <strong>Staff Secretary</strong> and <strong>PTA Secretary</strong> at her school. She delivered a presentation on <strong>"The Teacher's Wellbeing in the School's Setting"</strong> during a Professional Learning Community session held at Amusudai JHS. The presentation was highly interactive and achieved its objectives.</p>
                 
                 <p>During her university years, she held leadership positions including <strong>Assistant Course Rep for English Language</strong>, <strong>Vice President for Fountain Gate Campus Ministry</strong>, and <strong>Deputy Secretary for Chaplaincy</strong>.</p>
 
-                <h3>💬 Why Learn Ewe with Sarah?</h3>
+                <h3>Why Learn Ewe with Sarah?</h3>
                 <p>"Ewe is a beautiful language rich with proverbs, rhythm, and cultural depth. I don't just teach words — I teach the stories, the songs, and the traditions that make Ewe come alive. My goal is to help you speak with confidence and connect with Ewe-speaking communities across Ghana, Togo, and Benin. Every student who walks through my virtual door leaves with more than just vocabulary — they leave with a piece of home." — Sarah Seyram Arhinful</p>
 
-                <a href="languages.html" class="btn-primary">📖 Enroll in Ewe Classes →</a>
+                <a href="languages.html" class="btn-primary">Enroll in Ewe Classes →</a>
                 <a href="about.html" class="btn-back" style="margin-left: 1rem;">← Back to About Page</a>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>Speak Ghana</h4>
-                    <p>📍 KNUST Campus, Kumasi</p>
-                    <p>📞 +233 55 226 3323</p>
-                    <p>📧 info@speakghana.org</p>
+                    <p>KNUST Campus, Kumasi</p>
+                    <p>+233 55 226 3323</p>
+                    <p>info@speakghana.org</p>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
@@ -568,7 +643,6 @@
     </footer>
 
     <script>
-        // Hamburger Menu
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
         
