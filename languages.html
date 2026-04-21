@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Learn Twi, Ga, Ewe & More | Ghanaian Language Courses</title>
-    <meta name="description" content="Learn Twi, Ga, Ewe, Fante, and Dagbani with native speakers. Group and private classes for all levels. Join our global community of learners.">
+    <title>Learn Ghanaian Languages | Twi, Ga, Ewe, Fante, Dagbani, Hausa | Speak Ghana</title>
+    <meta name="description" content="Learn Twi, Ga, Ewe, Fante, Dagbani, and Hausa with native speakers. Group and private classes for all levels. Self-paced courses available. Join our global community.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
@@ -116,6 +116,17 @@
 
         .btn-gold:hover {
             transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--green);
+            color: var(--green);
+        }
+
+        .btn-outline:hover {
+            background: var(--green);
+            color: white;
         }
 
         /* Top Bar */
@@ -403,6 +414,66 @@
             margin-right: 0.5rem;
         }
 
+        /* Speak One Learn One Banner */
+        .scholarship-banner {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deadline-badge {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #E76F51;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            animation: pulse-red 1.5s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { background: #E76F51; transform: scale(1); }
+            50% { background: #c95a3e; transform: scale(1.05); }
+            100% { background: #E76F51; transform: scale(1); }
+        }
+
+        .scholarship-tag {
+            background: #D4A373;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .price-box {
+            background: rgba(212, 163, 115, 0.2);
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem auto;
+            display: inline-block;
+        }
+
+        .price-highlight {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .price-highlight span {
+            color: #D4A373;
+        }
+
         /* Language Navigator */
         .language-navigator {
             background: white;
@@ -457,7 +528,7 @@
         }
 
         .language-icon-large {
-            font-size: 2.5rem;
+            font-size: 2rem;
             background: var(--cream);
             width: 65px;
             height: 65px;
@@ -658,7 +729,6 @@
             margin: 0.5rem 0;
         }
 
-        /* Guarantee Badge */
         .guarantee-badge {
             background: linear-gradient(135deg, var(--gold), #c49a6c);
             border-radius: 50px;
@@ -670,7 +740,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Money-Back Guarantee */
         .money-back {
             background: #e8f5e9;
             border-radius: 16px;
@@ -682,7 +751,6 @@
             color: var(--green);
         }
 
-        /* Perks Section */
         .perks-section {
             background: linear-gradient(135deg, #fff5e8, white);
             border-radius: 16px;
@@ -697,7 +765,6 @@
             margin: 0.3rem 0;
         }
 
-        /* Cultural Immersion Box */
         .cultural-box {
             background: var(--cream);
             border-radius: 16px;
@@ -708,7 +775,6 @@
             border-left: 3px solid var(--gold);
         }
 
-        /* Testimonials Strip */
         .testimonials-strip {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
             border-radius: 20px;
@@ -737,7 +803,6 @@
             margin-top: 0.2rem;
         }
 
-        /* Custom Packages */
         .custom-packages {
             background: linear-gradient(135deg, #fff5e8, white);
             border: 2px solid var(--gold);
@@ -758,7 +823,6 @@
             color: var(--gray);
         }
 
-        /* Kids Section */
         .kids-highlight {
             background: linear-gradient(135deg, #e8f5e9, white);
             border-radius: 16px;
@@ -783,8 +847,7 @@
             margin-right: 0.5rem;
         }
 
-        /* Scholarship Section */
-        .scholarship-section {
+        .scholarship-footer {
             background: linear-gradient(135deg, var(--green), #1f7a6e);
             border-radius: 20px;
             padding: 1.5rem;
@@ -807,22 +870,6 @@
         }
 
         .scholarship-text p {
-            font-size: 0.85rem;
-        }
-
-        .certificate-text {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .certificate-text h3 {
-            color: var(--gold);
-            margin: 0 0 0.3rem;
-            font-size: 1.2rem;
-        }
-
-        .certificate-text p {
             font-size: 0.85rem;
         }
 
@@ -1045,6 +1092,13 @@
             .form-row {
                 grid-template-columns: 1fr;
             }
+            .deadline-badge {
+                position: relative;
+                top: auto;
+                right: auto;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
         }
     </style>
 </head>
@@ -1088,7 +1142,7 @@
                 
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownLearnBtn">
-                        <span>📚 Learn</span>
+                        <span>Learn</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownLearnMenu">
@@ -1100,7 +1154,7 @@
                 
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownResourcesBtn">
-                        <span>📖 Resources</span>
+                        <span>Resources</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownResourcesMenu">
@@ -1120,29 +1174,47 @@
     <div class="page-hero">
         <div class="container">
             <h1>Our Languages</h1>
-            <p>Choose from five Ghanaian languages. Self-paced or live with a teacher.</p>
+            <p>Choose from six Ghanaian languages. Self-paced or live with a teacher.</p>
         </div>
     </div>
 
-    <!-- Risk Reducer Banner -->
     <div class="container">
+        <!-- Risk Reducer Banner -->
         <div class="risk-reducer">
             <i class="fas fa-shield-alt"></i> 7-Day Money-Back Guarantee • Free First Lesson • No Commitment Required
         </div>
-    </div>
 
-    <!-- Language Navigator -->
-    <div class="container">
+        <!-- Speak One Learn One Scholarship Banner -->
+        <div class="scholarship-banner">
+            <div class="deadline-badge">Deadline: May 30th</div>
+            <div class="scholarship-tag">SPEAK ONE, LEARN ONE SCHOLARSHIP</div>
+            <h2 style="color: white; margin-bottom: 0.5rem; font-size: 1.8rem;">Do You Have a Ghana Card?</h2>
+            <div class="price-box">
+                <p class="price-highlight">Learn Any Language for <span>GHS 500</span> (3 months)</p>
+                <p class="price-highlight" style="margin-top: 0.5rem;">Diaspora with Ghana Card? Same offer applies.</p>
+            </div>
+            <div class="price-box" style="background: rgba(231, 111, 81, 0.3);">
+                <p class="price-highlight">Without Ghana Card: <span>GHS 1,000</span> (3 months)</p>
+            </div>
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Weekend / Evening Classes • Live on Zoom</p>
+            <p style="margin-bottom: 1rem;">Twi • Ga • Ewe • Fante • Dagbani • Hausa</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://apply.speakghana.org" class="btn" style="background: #D4A373; color: #1E1E1E; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">Apply Now</a>
+                <a href="https://wa.me/233552263323?text=Hi%20Speak%20Ghana!%20I%20have%20a%20Ghana%20Card%20and%20want%20to%20learn%20a%20language%20for%20GHS%20500.%20Please%20send%20me%20more%20info." class="btn" style="background: rgba(255,255,255,0.2); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">WhatsApp Us</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.9;">Limited spots • First come, first served • Application closes May 30th</p>
+        </div>
+
+        <!-- Language Navigator -->
         <div class="language-navigator">
             <a href="#twi" class="lang-nav-link active">Twi</a>
             <a href="#ga" class="lang-nav-link">Ga</a>
             <a href="#ewe" class="lang-nav-link">Ewe</a>
             <a href="#fante" class="lang-nav-link">Fante</a>
             <a href="#dagbani" class="lang-nav-link">Dagbani</a>
+            <a href="#hausa" class="lang-nav-link">Hausa</a>
         </div>
-    </div>
 
-    <div class="container">
         <!-- TWI SECTION -->
         <section id="twi" class="language-section">
             <div class="language-header">
@@ -1160,7 +1232,7 @@
             <div class="testimonials-strip">
                 <h4>What Our Students Say</h4>
                 <div class="testimonial-mini">
-                    "After just one month, I can already form real Twi sentences. The teachers are amazing!"
+                    "After just one month, I can already form real Twi sentences. The teachers are amazing."
                     <div class="testimonial-author-mini">— Adelaide Daniels, UK</div>
                 </div>
                 <div class="testimonial-mini">
@@ -1187,7 +1259,7 @@
                         <button onclick="openEnrollmentModal('Twi', 'Self-Paced Basic')" class="btn btn-primary" style="margin-top: 0.5rem;">Enroll Now</button>
                     </div>
                     <div class="self-paced-card">
-                        <div class="popular-badge">MOST POPULAR</div>
+                        <div class="popular-badge">Most Popular</div>
                         <h4>Standard</h4>
                         <div class="self-paced-price">$20 <small>/month</small></div>
                         <ul class="self-paced-features">
@@ -1231,7 +1303,7 @@
                             <li>Learn with peers in a supportive environment</li>
                             <li>Interactive conversation practice</li>
                             <li>Cultural immersion lessons</li>
-                            <li>Audio & video resources (songs, lyrics, movie clips)</li>
+                            <li>Audio & video resources</li>
                             <li>PDF textbook (300+ pages) included</li>
                             <li>Worksheets & practice materials</li>
                             <li>Quizzes to test progress</li>
@@ -1268,7 +1340,7 @@
                             <li>Choose your day and time (flexible scheduling)</li>
                             <li>Personalized learning path tailored to your goals</li>
                             <li>Cultural immersion lessons</li>
-                            <li>Audio & video resources (songs, lyrics, movie clips)</li>
+                            <li>Audio & video resources</li>
                             <li>Real-time pronunciation correction</li>
                             <li>PDF textbook (300+ pages) included</li>
                             <li>Worksheets & practice materials</li>
@@ -1297,7 +1369,7 @@
                 <h5><i class="fas fa-child"></i> Programs for Kids & Teens</h5>
                 <p><span class="kids-badge">Ages 5-8</span> Twi Tots • <span class="kids-badge">Ages 9-12</span> Twi Explorers • <span class="kids-badge">Ages 13-17</span> Teen Talk</p>
                 <p>Play-based learning, songs, stories, and cultural activities designed for young learners.</p>
-                <a href="kids-teens.html" class="btn btn-outline btn-small" style="margin-top: 0.5rem;">View Kids Programs →</a>
+                <a href="kids-teens.html" class="btn btn-outline" style="margin-top: 0.5rem;">View Kids Programs</a>
             </div>
 
             <!-- Custom Packages -->
@@ -1306,24 +1378,9 @@
                 <p>Family packages • Siblings packages • Corporate rates • Custom schedules</p>
                 <p style="margin-top: 0.5rem;">Contact us to design a package that fits your needs and budget.</p>
             </div>
-
-            <!-- Scholarship & Certificate -->
-            <div class="scholarship-section">
-                <div class="scholarship-flex">
-                    <div class="scholarship-text">
-                        <h3>Speak One, Learn One Scholarship</h3>
-                        <p>Ghana Card holders get 25% off to learn another language. Includes diaspora returnees.</p>
-                    </div>
-                    <a href="contact.html" class="btn btn-gold">Apply Now</a>
-                </div>
-                <div class="certificate-text">
-                    <h3>Certificate of Achievement</h3>
-                    <p>Complete 6 months of continuous learning and receive an official certificate.</p>
-                </div>
-            </div>
         </section>
 
-        <!-- GA SECTION (Enhanced with testimonials and better inclusions) -->
+        <!-- GA SECTION -->
         <section id="ga" class="language-section">
             <div class="language-header">
                 <div class="language-icon-large">🏙️</div>
@@ -1336,7 +1393,7 @@
                 </div>
             </div>
             <div class="testimonials-strip" style="margin-bottom: 1rem;">
-                <div class="testimonial-mini">"Learning Ga helped me connect with my Accra roots. The cultural lessons are incredible!"<div class="testimonial-author-mini">— Naa Ayele, USA</div></div>
+                <div class="testimonial-mini">"Learning Ga helped me connect with my Accra roots. The cultural lessons are incredible."<div class="testimonial-author-mini">— Naa Ayele, USA</div></div>
             </div>
             <div class="self-paced-section">
                 <div class="self-paced-title">
@@ -1400,6 +1457,31 @@
                     <div class="language-stats"><span class="stat"><strong>3M+</strong> speakers</span><span class="stat">Volta Region</span></div>
                 </div>
             </div>
+            <div class="self-paced-section">
+                <div class="self-paced-title">
+                    <h3>Self-Paced Ewe</h3>
+                </div>
+                <div class="self-paced-grid">
+                    <div class="self-paced-card">
+                        <h4>Basic</h4>
+                        <div class="self-paced-price">$10 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>Video lessons</li><li>PDF textbooks</li><li>Learning games</li></ul>
+                        <button onclick="openEnrollmentModal('Ewe', 'Self-Paced Basic')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                    <div class="self-paced-card">
+                        <h4>Standard</h4>
+                        <div class="self-paced-price">$20 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>Video lessons</li><li>PDF textbooks</li><li>Worksheets & quizzes</li><li>Games & certificates</li></ul>
+                        <button onclick="openEnrollmentModal('Ewe', 'Self-Paced Standard')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                    <div class="self-paced-card">
+                        <h4>Premium</h4>
+                        <div class="self-paced-price">$30 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>All Standard features</li><li>Monthly live Q&A</li><li>Priority support</li></ul>
+                        <button onclick="openEnrollmentModal('Ewe', 'Self-Paced Premium')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
             <div class="package-grid">
                 <div class="package-card">
                     <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly Zoom Lessons</div></div>
@@ -1429,6 +1511,31 @@
                     <div class="language-stats"><span class="stat"><strong>2M+</strong> speakers</span><span class="stat">Coastal Ghana</span></div>
                 </div>
             </div>
+            <div class="self-paced-section">
+                <div class="self-paced-title">
+                    <h3>Self-Paced Fante</h3>
+                </div>
+                <div class="self-paced-grid">
+                    <div class="self-paced-card">
+                        <h4>Basic</h4>
+                        <div class="self-paced-price">$10 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>Video lessons</li><li>PDF textbooks</li><li>Learning games</li></ul>
+                        <button onclick="openEnrollmentModal('Fante', 'Self-Paced Basic')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                    <div class="self-paced-card">
+                        <h4>Standard</h4>
+                        <div class="self-paced-price">$20 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>Video lessons</li><li>PDF textbooks</li><li>Worksheets & quizzes</li><li>Games & certificates</li></ul>
+                        <button onclick="openEnrollmentModal('Fante', 'Self-Paced Standard')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                    <div class="self-paced-card">
+                        <h4>Premium</h4>
+                        <div class="self-paced-price">$30 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>All Standard features</li><li>Monthly live Q&A</li><li>Priority support</li></ul>
+                        <button onclick="openEnrollmentModal('Fante', 'Self-Paced Premium')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
             <div class="package-grid">
                 <div class="package-card">
                     <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly Zoom Lessons</div></div>
@@ -1456,6 +1563,31 @@
                     <div class="language-stats"><span class="stat"><strong>1M+</strong> speakers</span><span class="stat">Northern Region</span></div>
                 </div>
             </div>
+            <div class="self-paced-section">
+                <div class="self-paced-title">
+                    <h3>Self-Paced Dagbani</h3>
+                </div>
+                <div class="self-paced-grid">
+                    <div class="self-paced-card">
+                        <h4>Basic</h4>
+                        <div class="self-paced-price">$10 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>Video lessons</li><li>PDF textbooks</li><li>Learning games</li></ul>
+                        <button onclick="openEnrollmentModal('Dagbani', 'Self-Paced Basic')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                    <div class="self-paced-card">
+                        <h4>Standard</h4>
+                        <div class="self-paced-price">$20 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>Video lessons</li><li>PDF textbooks</li><li>Worksheets & quizzes</li><li>Games & certificates</li></ul>
+                        <button onclick="openEnrollmentModal('Dagbani', 'Self-Paced Standard')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                    <div class="self-paced-card">
+                        <h4>Premium</h4>
+                        <div class="self-paced-price">$30 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>All Standard features</li><li>Monthly live Q&A</li><li>Priority support</li></ul>
+                        <button onclick="openEnrollmentModal('Dagbani', 'Self-Paced Premium')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
             <div class="package-grid">
                 <div class="package-card">
                     <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly Zoom Lessons</div></div>
@@ -1473,6 +1605,79 @@
                 </div>
             </div>
         </section>
+
+        <!-- HAUSA SECTION (NEW 6TH LANGUAGE) -->
+        <section id="hausa" class="language-section">
+            <div class="language-header">
+                <div class="language-icon-large">🏜️</div>
+                <div class="language-title">
+                    <h2>Hausa</h2>
+                    <div class="language-stats"><span class="stat"><strong>50M+</strong> speakers</span><span class="stat">West Africa (Zongo communities)</span></div>
+                </div>
+            </div>
+            <div class="self-paced-section">
+                <div class="self-paced-title">
+                    <h3>Self-Paced Hausa</h3>
+                </div>
+                <div class="self-paced-grid">
+                    <div class="self-paced-card">
+                        <h4>Basic</h4>
+                        <div class="self-paced-price">$10 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>Video lessons</li><li>PDF textbooks</li><li>Learning games</li></ul>
+                        <button onclick="openEnrollmentModal('Hausa', 'Self-Paced Basic')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                    <div class="self-paced-card">
+                        <h4>Standard</h4>
+                        <div class="self-paced-price">$20 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>Video lessons</li><li>PDF textbooks</li><li>Worksheets & quizzes</li><li>Games & certificates</li></ul>
+                        <button onclick="openEnrollmentModal('Hausa', 'Self-Paced Standard')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                    <div class="self-paced-card">
+                        <h4>Premium</h4>
+                        <div class="self-paced-price">$30 <small>/month</small></div>
+                        <ul class="self-paced-features"><li>All Standard features</li><li>Monthly live Q&A</li><li>Priority support</li></ul>
+                        <button onclick="openEnrollmentModal('Hausa', 'Self-Paced Premium')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly Zoom Lessons</div></div>
+                    <div class="package-body">
+                        <ul class="package-features"><li>Cultural immersion (Hausa traditions, music)</li><li>PDF textbook included</li><li>Worksheets & quizzes</li><li>Certificate upon completion</li></ul>
+                        <div class="package-price">$50 <small>/ month</small></div>
+                        <button onclick="openEnrollmentModal('Hausa', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+                <div class="package-card">
+                    <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
+                    <div class="package-body">
+                        <ul class="package-features"><li>1-on-1 with native speaker</li><li>Flexible scheduling</li><li>Personalized learning path</li><li>Certificate upon completion</li></ul>
+                        <div class="package-price">$75 <small>/ month</small></div>
+                        <button onclick="openEnrollmentModal('Hausa', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="kids-highlight">
+                <h5><i class="fas fa-child"></i> Hausa for Kids & Teens</h5>
+                <p>Special programs for young learners aged 5-17. Fun, engaging, and culturally rich.</p>
+            </div>
+        </section>
+
+        <!-- Scholarship Footer -->
+        <div class="scholarship-footer">
+            <div class="scholarship-flex">
+                <div class="scholarship-text">
+                    <h3>Speak One, Learn One Scholarship</h3>
+                    <p>Ghana Card holders get 25% off to learn another language. Includes diaspora returnees.</p>
+                </div>
+                <a href="contact.html" class="btn btn-gold">Apply Now</a>
+            </div>
+            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2);">
+                <h3 style="color: var(--gold); margin: 0 0 0.3rem; font-size: 1.2rem;">Certificate of Achievement</h3>
+                <p style="font-size: 0.85rem;">Complete 6 months of continuous learning and receive an official certificate.</p>
+            </div>
+        </div>
     </div>
 
     <!-- Enrollment Modal -->
@@ -1571,6 +1776,7 @@
                     <a href="#ewe">Ewe</a>
                     <a href="#fante">Fante</a>
                     <a href="#dagbani">Dagbani</a>
+                    <a href="#hausa">Hausa</a>
                 </div>
                 <div class="footer-section">
                     <h4>Programs</h4>
@@ -1668,6 +1874,57 @@
                 if (dropdownLearnBtn) dropdownLearnBtn.classList.remove('open');
                 if (dropdownResourcesBtn) dropdownResourcesBtn.classList.remove('open');
             }
+        });
+        
+        // Language Navigator - Smooth Scroll and Active State
+        const langLinks = document.querySelectorAll('.lang-nav-link');
+        
+        langLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const offset = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                langLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Update active link on scroll
+        window.addEventListener('scroll', function() {
+            const sections = ['twi', 'ga', 'ewe', 'fante', 'dagbani', 'hausa'];
+            let current = '';
+            
+            for (let i = 0; i < sections.length; i++) {
+                const section = document.getElementById(sections[i]);
+                if (section) {
+                    const sectionTop = section.offsetTop - 120;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                        current = sections[i];
+                        break;
+                    }
+                }
+            }
+            
+            langLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
         });
         
         // Modal functionality
