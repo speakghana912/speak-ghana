@@ -299,6 +299,60 @@
             opacity: 0.95;
         }
 
+        /* New 3-Month Program Banner */
+        .program-banner {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .deadline-badge {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #E76F51;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            animation: pulse-red 1.5s infinite;
+        }
+        @keyframes pulse-red {
+            0% { background: #E76F51; transform: scale(1); }
+            50% { background: #c95a3e; transform: scale(1.05); }
+            100% { background: #E76F51; transform: scale(1); }
+        }
+        .program-tag {
+            background: #D4A373;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--black);
+            font-weight: 600;
+        }
+        .price-box {
+            background: rgba(212, 163, 115, 0.2);
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem auto;
+            display: inline-block;
+        }
+        .price-highlight {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .price-highlight span {
+            color: #D4A373;
+        }
+
         .course-catalog {
             padding: 4rem 0;
         }
@@ -667,6 +721,13 @@
             .page-hero h1 {
                 font-size: 2rem;
             }
+            .deadline-badge {
+                position: relative;
+                top: auto;
+                right: auto;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
         }
     </style>
 </head>
@@ -707,7 +768,7 @@
                 
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownLearnBtn">
-                        <span>📚 Learn</span>
+                        <span>Learn</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownLearnMenu">
@@ -720,18 +781,18 @@
                 
                 <div class="dropdown-item">
                     <button class="dropdown-toggle" id="dropdownResourcesBtn">
-                        <span>📖 Resources</span>
+                        <span>Resources</span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="dropdown-submenu" id="dropdownResourcesMenu">
                         <a href="resources.html">Free Resources</a>
                         <a href="blog.html">Blog</a>
                         <a href="student-portal.html">Live Class Portal</a>
-                        <a href="https://portal.speakghana.org" target="_blank">📚 Self-Paced Portal</a>
+                        <a href="https://portal.speakghana.org" target="_blank">Self-Paced Portal</a>
                     </div>
                 </div>
                 
-                <a href="for-organizations.html">🏢 For Organizations</a>
+                <a href="for-organizations.html">For Organizations</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
@@ -740,12 +801,33 @@
 
     <div class="page-hero">
         <div class="container">
-            <h1>🎓 Self-Paced Twi Courses</h1>
+            <h1>Self-Paced Twi Courses</h1>
             <p>Learn Twi at your own pace. Start anytime, anywhere. Get certified at every level.</p>
         </div>
     </div>
 
     <div class="container">
+        <!-- New 3-Month Program Banner -->
+        <div class="program-banner">
+            <div class="deadline-badge">Deadline: May 30th</div>
+            <div class="program-tag">SPEAK ONE, LEARN ONE SCHOLARSHIP</div>
+            <h2 style="color: white; margin-bottom: 0.5rem; font-size: 1.8rem;">Do You Have a Ghana Card?</h2>
+            <div class="price-box">
+                <p class="price-highlight">Learn Any Language for <span>GHS 500</span> (3 months)</p>
+                <p class="price-highlight" style="margin-top: 0.5rem;">Diaspora with Ghana Card? Same offer applies.</p>
+            </div>
+            <div class="price-box" style="background: rgba(231, 111, 81, 0.3);">
+                <p class="price-highlight">Without Ghana Card: <span>GHS 1,000</span> (3 months)</p>
+            </div>
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Weekend / Evening Classes • Live on Zoom</p>
+            <p style="margin-bottom: 1rem;">Twi • Ga • Ewe • Fante • Dagbani • Hausa</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://apply.speakghana.org" class="btn" style="background: #D4A373; color: #1E1E1E; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">Apply Now</a>
+                <a href="https://wa.me/233552263323?text=Hi%20Speak%20Ghana!%20I%20have%20a%20Ghana%20Card%20and%20want%20to%20learn%20a%20language%20for%20GHS%20500.%20Please%20send%20me%20more%20info." class="btn" style="background: rgba(255,255,255,0.2); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">WhatsApp Us</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.9;">Limited spots • First come, first served • Application closes May 30th</p>
+        </div>
+
         <!-- Course Levels -->
         <div class="course-catalog">
             <div class="section-header">
@@ -763,30 +845,30 @@
 
         <!-- Audio Library Feature -->
         <div class="sample-lesson">
-            <span class="offer-badge" style="background: var(--green);">🎧 AUDIO LIBRARY</span>
+            <span class="offer-badge" style="background: var(--green);">Audio Library</span>
             <h3 style="margin-top: 1rem;">Complete Twi Pronunciation Guide</h3>
             <p>Listen to correct pronunciation anytime, no downloads needed</p>
             <div class="sample-content">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                    <div><strong>🔤 Alphabet (A-Y, Ɛ, Ɔ)</strong><br>All 22 letters including special vowels</div>
-                    <div><strong>🔊 Digraphs (DW, GY, HW, HY, KW, KY, NW, NY, TW)</strong><br>Two letters = one sound</div>
-                    <div><strong>🔢 Numbers 1-20</strong><br>Full audio for counting</div>
-                    <div><strong>👋 Greetings & Introductions</strong><br>Complete phrase library</div>
+                    <div><strong>Alphabet (A-Y, Ɛ, Ɔ)</strong><br>All 22 letters including special vowels</div>
+                    <div><strong>Digraphs (DW, GY, HW, HY, KW, KY, NW, NY, TW)</strong><br>Two letters = one sound</div>
+                    <div><strong>Numbers 1-20</strong><br>Full audio for counting</div>
+                    <div><strong>Greetings & Introductions</strong><br>Complete phrase library</div>
                 </div>
             </div>
-            <p style="color: var(--gray);">🎙️ Sample audio: "Wo ho te sɛn?" (How are you?) — "Me ho yɛ. Medaase." (I am fine. Thank you.)</p>
+            <p style="color: var(--gray);">Sample audio: "Wo ho te sɛn?" (How are you?) — "Me ho yɛ. Medaase." (I am fine. Thank you.)</p>
         </div>
 
         <!-- Games Section -->
         <div class="games-section">
-            <span class="offer-badge" style="background: var(--gold); color: var(--black);">🎮 LEARN THROUGH PLAY</span>
+            <span class="offer-badge" style="background: var(--gold); color: var(--black);">Learn Through Play</span>
             <h3 style="margin-top: 1rem;">12+ Interactive Games to Reinforce Your Learning</h3>
             <p style="color: var(--gray);">Practice what you've learned with these fun games, available inside the portal!</p>
             <div class="games-grid">
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🎮</div><h4>Match the Sound</h4><p>Listen and click the correct Twi letter</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🎈</div><h4>Number Pop</h4><p>Pop balloons with the correct Twi numbers</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🧠</div><h4>Memory Match</h4><p>Match Twi words with English meanings</p></div>
-                <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🔊</div><h4>Digraph Challenge</h4><p>Master Twi special sounds (dw, gy, ky, etc.)</p></div>
+                <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🔊</div><h4>Digraph Challenge</h4><p>Master Twi special sounds</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">💰</div><h4>Millionaire Quiz</h4><p>Test your Twi knowledge</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">🎯</div><h4>Vocabulary Challenge</h4><p>Build your word power</p></div>
                 <div class="game-card" onclick="window.open('https://portal.speakghana.org', '_blank')"><div class="game-icon">⏰</div><h4>Twi Time Challenge</h4><p>Learn to tell time in Twi</p></div>
@@ -798,7 +880,7 @@
 
         <!-- What's Included -->
         <div class="sample-lesson">
-            <span class="offer-badge" style="background: var(--green);">📘 EVERY COURSE LEVEL INCLUDES</span>
+            <span class="offer-badge" style="background: var(--green);">Every Course Level Includes</span>
             <div class="sample-features">
                 <span class="sample-feature"><i class="fas fa-video"></i> Video Lessons</span>
                 <span class="sample-feature"><i class="fas fa-file-pdf"></i> PDF Textbooks</span>
@@ -809,7 +891,7 @@
                 <span class="sample-feature"><i class="fas fa-headphones"></i> Audio Library</span>
                 <span class="sample-feature"><i class="fab fa-whatsapp"></i> WhatsApp Support</span>
             </div>
-            <p style="margin-top: 1rem; color: var(--gray);">🎓 Full course includes 50+ videos, 300+ page textbook, worksheets, quizzes, interactive games, and complete audio library for every level.</p>
+            <p style="margin-top: 1rem; color: var(--gray);">Full course includes 50+ videos, 300+ page textbook, worksheets, quizzes, interactive games, and complete audio library for every level.</p>
         </div>
 
         <!-- Portal Access -->
@@ -817,7 +899,7 @@
             <i class="fas fa-key" style="font-size: 2rem; color: var(--green);"></i>
             <h3 style="margin: 0.5rem 0;">Already Enrolled?</h3>
             <p>Access your courses, audio library, and games here:</p>
-            <a href="https://portal.speakghana.org" class="btn-primary">🎓 Go to Self-Paced Portal →</a>
+            <a href="https://portal.speakghana.org" class="btn-primary">Go to Self-Paced Portal →</a>
             <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--gray);">Use the unique password sent to your email after enrollment.</p>
         </div>
 
@@ -828,11 +910,11 @@
                 <p>Monthly subscription, access ALL 5 levels. Cancel anytime.</p>
             </div>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="offer-badge">🚀 LAUNCH OFFER</span>
+                <span class="offer-badge">Launch Offer</span>
                 <p style="margin-top: 0.5rem; font-size: 1rem;"><strong>First 10 students get 20% off first 3 months.</strong> Use code: <strong>SELFPACED20</strong></p>
             </div>
             <div class="pricing-grid">
-                <!-- Basic Plan - Games NOT included -->
+                <!-- Basic Plan -->
                 <div class="pricing-card">
                     <h3>Basic</h3>
                     <div class="price">$10<span>/month</span></div>
@@ -850,9 +932,9 @@
                     <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Basic%20Self-Paced%20($10/month)" class="btn-pricing">Enroll →</a>
                 </div>
                 
-                <!-- Standard Plan - Games INCLUDED -->
+                <!-- Standard Plan -->
                 <div class="pricing-card popular">
-                    <div class="popular-badge">⭐ MOST POPULAR</div>
+                    <div class="popular-badge">Most Popular</div>
                     <h3>Standard</h3>
                     <div class="price">$20<span>/month</span></div>
                     <ul class="pricing-features">
@@ -869,7 +951,7 @@
                     <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Standard%20Self-Paced%20($20/month)" class="btn-pricing">Enroll →</a>
                 </div>
                 
-                <!-- Premium Plan - Games INCLUDED + Live Q&A -->
+                <!-- Premium Plan -->
                 <div class="pricing-card">
                     <h3>Premium</h3>
                     <div class="price">$30<span>/month</span></div>
@@ -887,7 +969,7 @@
                     <a href="https://wa.me/233552263323?text=I%20want%20to%20enroll%20in%20Premium%20Self-Paced%20($30/month)" class="btn-pricing">Enroll →</a>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--gray);">🔐 After payment, you'll receive a password to access all course materials, audio library, and games.</p>
+            <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--gray);">After payment, you'll receive a password to access all course materials, audio library, and games.</p>
             <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--gray);"><i class="fas fa-graduation-cap"></i> Complete all 5 levels and earn the "Speak Ghana Certified" credential.</p>
         </div>
 
@@ -896,9 +978,9 @@
             <div class="section-header"><h2>What Our Students Say</h2><p>Real results from real learners</p></div>
             <div class="testimonial-grid">
                 <div class="testimonial-card"><p class="testimonial-text">"After just one month, I can already form real Twi sentences and understand so much more of what my family says."</p><p class="testimonial-author">— Adelina Daniels, UK</p></div>
-                <div class="testimonial-card"><p class="testimonial-text">"The teachers are super helpful and kind. They help us learn fast and are encouraging. I love these lessons!"</p><p class="testimonial-author">— Anonymous Student</p></div>
+                <div class="testimonial-card"><p class="testimonial-text">"The teachers are super helpful and kind. They help us learn fast and are encouraging. I love these lessons."</p><p class="testimonial-author">— Anonymous Student</p></div>
                 <div class="testimonial-card"><p class="testimonial-text">"I love the interactive engagement. The structure is very helpful, they make sure you're understanding."</p><p class="testimonial-author">— Anonymous Student</p></div>
-                <div class="testimonial-card"><p class="testimonial-text">"The patience, the commitment and the resources to ensure we learn. I'm extremely happy we connected!"</p><p class="testimonial-author">— Anonymous Student</p></div>
+                <div class="testimonial-card"><p class="testimonial-text">"The patience, the commitment and the resources to ensure we learn. I'm extremely happy we connected."</p><p class="testimonial-author">— Anonymous Student</p></div>
             </div>
         </div>
 
@@ -928,8 +1010,8 @@
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-section"><h4>Speak Ghana</h4><p>📍 KNUST Campus, Kumasi</p><p>📞 +233 55 226 3323</p><p>📧 info@speakghana.org</p></div>
-                <div class="footer-section"><h4>Programs</h4><a href="languages.html">Live Classes</a><a href="self-paced.html">Self-Paced Courses</a><a href="for-organizations.html">For Organizations</a><a href="kids-teens.html">Kids & Teens</a><a href="student-portal.html">🎓 Live Class Portal</a><a href="https://portal.speakghana.org">📚 Self-Paced Portal</a></div>
+                <div class="footer-section"><h4>Speak Ghana</h4><p>KNUST Campus, Kumasi</p><p>+233 55 226 3323</p><p>info@speakghana.org</p></div>
+                <div class="footer-section"><h4>Programs</h4><a href="languages.html">Live Classes</a><a href="self-paced.html">Self-Paced Courses</a><a href="for-organizations.html">For Organizations</a><a href="kids-teens.html">Kids & Teens</a><a href="student-portal.html">Live Class Portal</a><a href="https://portal.speakghana.org">Self-Paced Portal</a></div>
                 <div class="footer-section"><h4>Resources</h4><a href="resources.html">Free Resources</a><a href="blog.html">Blog</a></div>
                 <div class="footer-section"><h4>Connect</h4><a href="https://www.instagram.com/speak_ghana" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.youtube.com/@SpeakGhana" target="_blank"><i class="fab fa-youtube"></i> YouTube</a><a href="https://wa.me/233552263323" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
             </div>
