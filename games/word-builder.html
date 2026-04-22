@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Word Builder | Speak Ghana Vocabulary Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray: #666666;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--cream), #fff5e8);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .game-container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 48px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .game-header h1 {
+            color: var(--green);
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .game-header p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .word-display {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            border-radius: 32px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .word-icon {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .target-word {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.3rem;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 60px;
+            margin-top: 0.5rem;
+        }
+
+        .audio-btn {
+            background: var(--gold);
+            border: none;
+            color: var(--black);
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .audio-btn:hover {
+            transform: scale(1.05);
+            background: white;
+        }
+
+        .build-area {
+            background: var(--cream);
+            border-radius: 28px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .current-word {
+            background: white;
+            border-radius: 20px;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border: 2px dashed var(--gold);
+            min-height: 80px;
+        }
+
+        .current-letters {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.5rem;
+            color: var(--green);
+            word-break: break-all;
+        }
+
+        .letters-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .letter-tile {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--green);
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .letter-tile:hover {
+            transform: translateY(-3px);
+            background: var(--gold);
+            color: white;
+            border-color: var(--gold);
+        }
+
+        .letter-tile:active {
+            transform: scale(0.95);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: var(--green);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .action-btn.reset {
+            background: var(--red);
+        }
+
+        .action-btn.reset:hover {
+            background: #c95a3e;
+            color: white;
+        }
+
+        .feedback {
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 50px;
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+
+        .feedback.correct {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .feedback.incorrect {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .score-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--cream);
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .score {
+            background: var(--green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .progress {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .progress-bar-container {
+            background: var(--cream);
+            border-radius: 20px;
+            width: 120px;
+            height: 8px;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .progress-bar-fill {
+            width: 0%;
+            background: var(--green);
+            height: 100%;
+            border-radius: 20px;
+            transition: width 0.3s;
+        }
+
+        .next-btn {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .reset-all {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .reset-all-btn {
+            background: transparent;
+            border: 1px solid var(--gray);
+            color: var(--gray);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .reset-all-btn:hover {
+            background: var(--red);
+            border-color: var(--red);
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .game-container {
+                padding: 1.5rem;
+            }
+            .letter-tile {
+                width: 55px;
+                height: 55px;
+                font-size: 1.5rem;
+            }
+            .target-word {
+                font-size: 1.3rem;
+            }
+            .score-area {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>Word Builder</h1>
+            <p>Arrange the letters to build the correct Twi word</p>
+        </div>
+
+        <div id="gameArea">
+            <!-- Dynamic content will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Vocabulary list with word, meaning, icon, and audio file
+        const vocabularyData = [
+            { twi: "sika", meaning: "money", icon: "💰", letters: ["S","I","K","A"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/sika.m4a" },
+            { twi: "bisa", meaning: "ask", icon: "❓", letters: ["B","I","S","A"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/bisa.m4a" },
+            { twi: "didi", meaning: "eat", icon: "🍽️", letters: ["D","I","D","I"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/didi.m4a" },
+            { twi: "sekan", meaning: "knife", icon: "🔪", letters: ["S","E","K","A","N"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/sekan.m4a" },
+            { twi: "nante", meaning: "walk", icon: "🚶", letters: ["N","A","N","T","E"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/nante.m4a" },
+            { twi: "duku", meaning: "headwrap", icon: "🧕", letters: ["D","U","K","U"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/duku.m4a" },
+            { twi: "banku", meaning: "banku (food)", icon: "🍲", letters: ["B","A","N","K","U"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/banku.m4a" },
+            { twi: "ɛpo", meaning: "ocean", icon: "🌊", letters: ["Ɛ","P","O"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ɛpo.m4a" },
+            { twi: "nnwom", meaning: "songs", icon: "🎵", letters: ["N","N","W","O","M"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/nnwom.m4a" },
+            { twi: "efie", meaning: "house", icon: "🏠", letters: ["E","F","I","E"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/efie.m4a" },
+            { twi: "ewiase", meaning: "world", icon: "🌍", letters: ["E","W","I","A","S","E"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ewiase.m4a" },
+            { twi: "ɛdan", meaning: "building", icon: "🏢", letters: ["Ɛ","D","A","N"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ɛdan.m4a" },
+            { twi: "ɔbrɛ", meaning: "tiredness", icon: "😫", letters: ["Ɔ","B","R","Ɛ"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ɔbrɛ.m4a" },
+            { twi: "owuo", meaning: "death", icon: "💀", letters: ["O","W","U","O"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/owuo.m4a" },
+            { twi: "odwan", meaning: "sheep", icon: "🐑", letters: ["O","D","W","A","N"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/odwan.m4a" },
+            { twi: "ɔdɔ", meaning: "love", icon: "❤️", letters: ["Ɔ","D","Ɔ"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ɔdɔ.m4a" },
+            { twi: "ɔkyena", meaning: "tomorrow", icon: "📅", letters: ["Ɔ","K","Y","E","N","A"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ɔkyena.m4a" },
+            { twi: "ani", meaning: "eye", icon: "👁️", letters: ["A","N","I"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ani.m4a" },
+            { twi: "aburo", meaning: "corn", icon: "🌽", letters: ["A","B","U","R","O"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/aburo.m4a" },
+            { twi: "aboa", meaning: "animal", icon: "🐘", letters: ["A","B","O","A"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/aboa.m4a" },
+            { twi: "abaa", meaning: "stick", icon: "🪵", letters: ["A","B","A","A"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/abaa.m4a" },
+            { twi: "din", meaning: "name", icon: "🏷️", letters: ["D","I","N"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/din.m4a" },
+            { twi: "kanea", meaning: "lamp", icon: "💡", letters: ["K","A","N","E","A"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/kanea.m4a" },
+            { twi: "nana", meaning: "grandparent", icon: "👵", letters: ["N","A","N","A"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/nana.m4a" },
+            { twi: "praeɛ", meaning: "broom", icon: "🧹", letters: ["P","R","A","E","Ɛ"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/praeɛ.m4a" },
+            { twi: "rɔba", meaning: "rubber", icon: "🧽", letters: ["R","Ɔ","B","A"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/rɔba.m4a" },
+            { twi: "waduro", meaning: "mortar", icon: "🫕", letters: ["W","A","D","U","R","O"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/waduro.m4a" },
+            { twi: "yoma", meaning: "camel", icon: "🐫", letters: ["Y","O","M","A"], audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/yoma.m4a" }
+        ];
+
+        // Shuffle function (Fisher-Yates)
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Randomize the vocabulary order at game start
+        let vocabulary = [];
+        let currentIndex = 0;
+        let currentWord = null;
+        let currentLetters = [];
+        let builtLetters = [];
+        let score = 0;
+        let attempts = 0;
+
+        // Audio player
+        let currentAudio = null;
+
+        function playAudio(url) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            currentAudio = new Audio(url);
+            currentAudio.play().catch(e => console.log('Audio error:', e));
+        }
+
+        function shuffleLetters(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function loadWord() {
+            if (currentIndex >= vocabulary.length) {
+                // Game completed
+                showCompletionScreen();
+                return;
+            }
+            
+            currentWord = vocabulary[currentIndex];
+            // Shuffle the letters for the game
+            currentLetters = shuffleLetters([...currentWord.letters]);
+            builtLetters = [];
+            
+            renderGame();
+        }
+
+        function showCompletionScreen() {
+            const gameArea = document.getElementById('gameArea');
+            gameArea.innerHTML = `
+                <div class="score-area" style="justify-content: center;">
+                    <span class="score">⭐ Final Score: ${score} / ${vocabulary.length}</span>
+                </div>
+                <div class="word-display" style="background: linear-gradient(135deg, var(--gold), var(--red));">
+                    <div class="word-icon">🏆</div>
+                    <div class="target-word">Game Complete!</div>
+                    <p style="margin-top: 1rem;">You scored ${score} out of ${vocabulary.length} words correctly.</p>
+                </div>
+                <div class="reset-all">
+                    <button class="reset-all-btn" onclick="resetGame()">Play Again →</button>
+                </div>
+            `;
+        }
+
+        function renderGame() {
+            const gameArea = document.getElementById('gameArea');
+            
+            // Calculate progress
+            const progressPercent = ((currentIndex + 1) / vocabulary.length) * 100;
+            
+            gameArea.innerHTML = `
+                <div class="score-area">
+                    <span class="score">⭐ Score: ${score}</span>
+                    <span class="progress">Word ${currentIndex + 1} of ${vocabulary.length}</span>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: ${progressPercent}%;"></div>
+                    </div>
+                </div>
+
+                <div class="word-display">
+                    <div class="word-icon">${currentWord.icon}</div>
+                    <div class="target-word">? ? ?</div>
+                    <button class="audio-btn" onclick="playAudio('${currentWord.audio}')">
+                        🔊 Listen to Pronunciation
+                    </button>
+                </div>
+
+                <div class="build-area">
+                    <div class="current-word">
+                        <div class="current-letters">${builtLetters.length > 0 ? builtLetters.join(' ') : '___'}</div>
+                    </div>
+                    
+                    <div class="letters-grid" id="lettersGrid">
+                        ${currentLetters.map((letter, idx) => `
+                            <div class="letter-tile" data-letter="${letter}" data-index="${idx}">
+                                ${letter}
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="checkAnswer()">✅ Check Answer</button>
+                        <button class="action-btn reset" onclick="resetCurrent()">🔄 Reset Word</button>
+                    </div>
+                </div>
+
+                <div id="feedback" class="feedback"></div>
+                
+                <div class="reset-all">
+                    <button class="reset-all-btn" onclick="resetGame()">🔄 New Game (Random Order)</button>
+                </div>
+            `;
+            
+            // Attach click events to letter tiles
+            document.querySelectorAll('.letter-tile').forEach(tile => {
+                tile.addEventListener('click', () => {
+                    const letter = tile.getAttribute('data-letter');
+                    const index = parseInt(tile.getAttribute('data-index'));
+                    addLetter(letter, index);
+                });
+            });
+        }
+
+        function addLetter(letter, index) {
+            builtLetters.push(letter);
+            currentLetters.splice(index, 1);
+            renderGame();
+        }
+
+        function checkAnswer() {
+            const userWord = builtLetters.join('').toLowerCase();
+            const correctWord = currentWord.twi.toLowerCase();
+            
+            const feedbackDiv = document.getElementById('feedback');
+            
+            if (userWord === correctWord) {
+                score++;
+                feedbackDiv.innerHTML = '✅ Correct! Well done! +1 point';
+                feedbackDiv.className = 'feedback correct';
+                
+                setTimeout(() => {
+                    currentIndex++;
+                    loadWord();
+                }, 1500);
+            } else {
+                attempts++;
+                feedbackDiv.innerHTML = `❌ Incorrect. The correct word is "${currentWord.twi}" meaning "${currentWord.meaning}". Moving to next word...`;
+                feedbackDiv.className = 'feedback incorrect';
+                
+                setTimeout(() => {
+                    currentIndex++;
+                    loadWord();
+                }, 2000);
+            }
+        }
+
+        function resetCurrent() {
+            currentLetters = shuffleLetters([...currentWord.letters]);
+            builtLetters = [];
+            renderGame();
+            
+            const feedbackDiv = document.getElementById('feedback');
+            feedbackDiv.innerHTML = '🔄 Word reset. Try again!';
+            feedbackDiv.className = '';
+            setTimeout(() => {
+                feedbackDiv.innerHTML = '';
+            }, 1500);
+        }
+
+        function resetGame() {
+            // Randomize the vocabulary order
+            vocabulary = shuffleArray([...vocabularyData]);
+            currentIndex = 0;
+            score = 0;
+            attempts = 0;
+            loadWord();
+        }
+
+        // Initialize the game with randomized word order
+        vocabulary = shuffleArray([...vocabularyData]);
+        loadWord();
+    </script>
+</body>
+</html>
