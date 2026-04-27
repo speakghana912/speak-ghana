@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Vocabulary Practice | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .level-badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1rem; }
+        
+        /* Vocabulary Grid */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.8rem;
+            background: #FDF8F2;
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid #eee;
+        }
+        .vocab-card {
+            background: white;
+            border-radius: 12px;
+            padding: 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid #e2e8f0;
+        }
+        .vocab-card:hover {
+            border-color: #2A9D8F;
+            transform: scale(1.02);
+        }
+        .vocab-card.selected {
+            background: #2A9D8F;
+            color: white;
+            border-color: #2A9D8F;
+        }
+        .twi-word {
+            font-size: 1.3rem;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        .twi-meaning {
+            font-size: 0.7rem;
+            color: #666;
+        }
+        .vocab-card.selected .twi-meaning {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Passage Area */
+        .passage-area {
+            background: #1a1a2e;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            color: white;
+        }
+        .twi-passage {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+        }
+        .blank {
+            display: inline-block;
+            min-width: 100px;
+            background: #D4A373;
+            border-radius: 8px;
+            padding: 0.2rem 0.8rem;
+            margin: 0 0.2rem;
+            font-weight: bold;
+            color: #1E1E1E;
+            text-align: center;
+            cursor: pointer;
+        }
+        .blank.filled {
+            background: #2A9D8F;
+            color: white;
+        }
+        .blank.empty {
+            background: #E76F51;
+            color: white;
+        }
+        
+        /* Questions */
+        .question-item {
+            background: white;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #eee;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+        .option-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option-btn:hover:not(:disabled) { background: #2A9D8F; color: white; }
+        .option-btn.correct { background: #2A9D8F; color: white; }
+        .option-btn.wrong { background: #E76F51; color: white; }
+        .option-btn:disabled { cursor: not-allowed; opacity: 0.7; }
+        
+        /* Navigation */
+        .nav-buttons { display: flex; gap: 1rem; justify-content: center; margin: 1.5rem 0; flex-wrap: wrap; }
+        .nav-btn, .reset-btn { background: #2A9D8F; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        .reset-btn { background: #D4A373; }
+        .close-btn { background: #D4A373; color: white; border: none; padding: 0.5rem 1.5rem; border-radius: 50px; cursor: pointer; }
+        
+        .score-area { text-align: center; padding: 1rem; background: #2A9D8F10; border-radius: 20px; margin-top: 1rem; }
+        .progress-bar { background: #f0f0f0; border-radius: 20px; height: 8px; margin: 1rem 0; overflow: hidden; }
+        .progress-fill { background: linear-gradient(90deg, #2A9D8F, #D4A373); width: 0%; height: 100%; transition: width 0.3s; }
+        .passage-nav { display: flex; gap: 0.5rem; justify-content: center; margin: 1rem 0; flex-wrap: wrap; }
+        .passage-btn { background: #f0f0f0; border: none; padding: 0.5rem 1rem; border-radius: 50px; cursor: pointer; }
+        .passage-btn.active { background: #2A9D8F; color: white; }
+        
+        @media (max-width: 768px) { .container { padding: 1rem; } .twi-passage { font-size: 1rem; } .blank { min-width: 70px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>📚 Twi Vocabulary Practice <span class="level-badge">Based on Sounds You Learned</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 Click a word from the vocabulary list to fill in the blank. Then answer the questions.</p>
+
+        <div class="passage-nav" id="passageNav"></div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+        <div id="vocabGrid"></div>
+        <div id="passageArea"></div>
+        <div id="questionsArea"></div>
+        <div id="scoreArea"></div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="prevPassage()">◀ Previous</button>
+            <button class="reset-btn" onclick="resetCurrent()">🔄 Reset</button>
+            <button class="nav-btn" onclick="nextPassage()">Next ▶</button>
+        </div>
+        <div style="text-align: center;"><button class="close-btn" onclick="window.close()">❌ Close</button></div>
+    </div>
+
+    <script>
+        // ============ VOCABULARY DATABASE (From Your Sound Chart) ============
+        const vocabulary = [
+            { word: "me", meaning: "I / me", syllables: "CV", type: "pronoun" },
+            { word: "kɔ", meaning: "go", syllables: "CV", type: "verb" },
+            { word: "di", meaning: "eat", syllables: "CV", type: "verb" },
+            { word: "nsuo", meaning: "water", syllables: "C + CV", type: "noun" },
+            { word: "abaa", meaning: "cane / stick", syllables: "V + CV", type: "noun" },
+            { word: "akwaaba", meaning: "welcome", syllables: "V + CV + CV", type: "greeting" },
+            { word: "ɛyɛ", meaning: "it is", syllables: "CV", type: "verb" },
+            { word: "fa", meaning: "take", syllables: "CV", type: "verb" },
+            { word: "kasa", meaning: "speak / language", syllables: "CV + CV", type: "verb/noun" },
+            { word: "ɔdɔ", meaning: "love", syllables: "CV", type: "noun" },
+            { word: "papa", meaning: "father / good", syllables: "CV + CV", type: "noun/adj" },
+            { word: "sukuu", meaning: "school", syllables: "CV + CV", type: "noun" },
+            { word: "te", meaning: "hear / live / rent", syllables: "CV", type: "verb" },
+            { word: "wo", meaning: "you / your", syllables: "CV", type: "pronoun" },
+            { word: "yɛ", meaning: "do / make / be", syllables: "CV", type: "verb" },
+            { word: "sika", meaning: "money", syllables: "CV + CV", type: "noun" },
+            { word: "bisa", meaning: "ask", syllables: "CV + CV", type: "verb" },
+            { word: "didi", meaning: "eat (repeated)", syllables: "CV + CV", type: "verb" },
+            { word: "sekan", meaning: "knife", syllables: "CV + C", type: "noun" },
+            { word: "nante", meaning: "walk", syllables: "CV + CV", type: "verb" },
+            { word: "duku", meaning: "headwrap", syllables: "CV + CV", type: "noun" },
+            { word: "banku", meaning: "banku (food)", syllables: "CVC + CV", type: "noun" },
+            { word: "ɛpo", meaning: "ocean", syllables: "CV", type: "noun" },
+            { word: "nnwom", meaning: "songs", syllables: "CCVC", type: "noun" },
+            { word: "efie", meaning: "house / home", syllables: "V + CV", type: "noun" },
+            { word: "ewiase", meaning: "world", syllables: "V + CV + CV", type: "noun" },
+            { word: "ɛdan", meaning: "building", syllables: "CV + C", type: "noun" },
+            { word: "ɔbrɛ", meaning: "tiredness", syllables: "CV + CV", type: "noun" },
+            { word: "owuo", meaning: "death", syllables: "V + CV", type: "noun" },
+            { word: "odwan", meaning: "sheep", syllables: "V + CVC", type: "noun" },
+            { word: "ɔkyena", meaning: "tomorrow", syllables: "CV + CV + CV", type: "noun" },
+            { word: "ani", meaning: "eye", syllables: "V + CV", type: "noun" },
+            { word: "aburo", meaning: "corn", syllables: "V + CV + CV", type: "noun" },
+            { word: "aboa", meaning: "animal", syllables: "V + CV", type: "noun" },
+            { word: "bankye", meaning: "cassava", syllables: "CVC + CV", type: "noun" },
+            { word: "din", meaning: "name", syllables: "CVC", type: "noun" },
+            { word: "Ghana", meaning: "Ghana", syllables: "CV + CV", type: "proper" },
+            { word: "efie", meaning: "house", syllables: "VCV", type: "noun" },
+            { word: "kanea", meaning: "lamp", syllables: "CV + CV", type: "noun" },
+            { word: "amango", meaning: "mango", syllables: "V + CV + CV", type: "noun" },
+            { word: "nana", meaning: "grandparent", syllables: "CV + CV", type: "noun" },
+            { word: "atadeɛ", meaning: "dress", syllables: "V + CV + CV", type: "noun" }
+        ];
+
+        // ============ PASSAGES BUILT FROM VOCABULARY ============
+        const passages = [
+            {
+                id: 1,
+                title: "My Introduction",
+                level: "Beginner 1",
+                passage: "___ din de Kofi. ___ fri Ghana. ___ ho yɛ. ___ pɛ sɛ ___ sua Twi.",
+                blanks: ["Me", "Me", "Me", "Me", "me"],
+                vocabNeeded: ["me", "me", "me", "me", "me"],
+                questions: [
+                    { text: "What does 'me' mean?", options: ["You", "I/me", "They", "We"], correct: 1 },
+                    { text: "What country is Kofi from?", options: ["Togo", "Nigeria", "Ghana", "Ivory Coast"], correct: 2 },
+                    { text: "What does 'me ho yɛ' mean?", options: ["I am sick", "I am fine", "I am sad", "I am tired"], correct: 1 },
+                    { text: "What does Kofi want to learn?", options: ["English", "French", "Twi", "Spanish"], correct: 2 }
+                ]
+            },
+            {
+                id: 2,
+                title: "Daily Actions",
+                level: "Beginner 1",
+                passage: "Anɔpa, me ___ suro. Mekɔ ___ mu. Afei me ___ aduane. Na me ___ sukuu.",
+                blanks: ["sɔre", "guare", "di", "kɔ"],
+                vocabNeeded: ["sɔre", "guare", "di", "kɔ"],
+                questions: [
+                    { text: "What does 'sɔre' mean?", options: ["Sleep", "Get up", "Eat", "Go"], correct: 1 },
+                    { text: "What does 'di' mean?", options: ["Drink", "Eat", "Sleep", "Walk"], correct: 1 },
+                    { text: "What does 'kɔ' mean?", options: ["Come", "Go", "Stay", "Run"], correct: 1 },
+                    { text: "Where does he go?", options: ["Market", "Church", "School", "Home"], correct: 2 }
+                ]
+            },
+            {
+                id: 3,
+                title: "At School",
+                level: "Beginner 2",
+                passage: "Me ___ ne sukuu. Wɔ hɔ, me ___ Twi kasa. Me ___ m'adwuma. Me pɛ sɛ me ___ papa.",
+                blanks: ["kɔ", "sua", "yɛ", "yɛ"],
+                vocabNeeded: ["kɔ", "sua", "yɛ", "yɛ"],
+                questions: [
+                    { text: "What does 'sua' mean?", options: ["Teach", "Learn", "Play", "Sleep"], correct: 1 },
+                    { text: "What does 'yɛ' mean?", options: ["Do/make", "See", "Hear", "Walk"], correct: 0 },
+                    { text: "What language is he learning?", options: ["English", "French", "Twi", "Spanish"], correct: 2 },
+                    { text: "What does he want to do well?", options: ["His work", "His play", "His sleep", "His food"], correct: 0 }
+                ]
+            },
+            {
+                id: 4,
+                title: "Family Love",
+                level: "Beginner 2",
+                passage: "Me ___ agya ne ɛna. Me ___ wɔn. Wɔ ___ me papa. Me ___ wɔn.",
+                blanks: ["wɔ", "dɔ", "pɛ", "dɔ"],
+                vocabNeeded: ["wɔ", "dɔ", "pɛ", "dɔ"],
+                questions: [
+                    { text: "What does 'wɔ' mean?", options: ["Have", "See", "Go", "Come"], correct: 0 },
+                    { text: "What does 'dɔ' mean?", options: ["Hate", "Love", "Ignore", "Forget"], correct: 1 },
+                    { text: "What does 'papa' mean in this context?", options: ["Father/good", "Mother", "Child", "Friend"], correct: 0 },
+                    { text: "How does the speaker feel about his family?", options: ["Sad", "Angry", "Loving", "Tired"], correct: 2 }
+                ]
+            },
+            {
+                id: 5,
+                title: "Market Shopping",
+                level: "Beginner 2",
+                passage: "Me ne me maame ___ edwam. Yɛ ___ aburo ne bankye. Yɛ ___ sika. Me maame ___ banku.",
+                blanks: ["kɔɔ", "tɔɔ", "tuaa", "tɔɔ"],
+                vocabNeeded: ["kɔ", "tɔ", "tua", "tɔ"],
+                questions: [
+                    { text: "What does 'tɔ' mean?", options: ["Sell", "Buy", "Trade", "Give"], correct: 1 },
+                    { text: "What does 'sika' mean?", options: ["Food", "Money", "Water", "Bag"], correct: 1 },
+                    { text: "What food did they buy?", options: ["Rice", "Banku ingredients", "Bread", "Fruit"], correct: 1 },
+                    { text: "Where did they go?", options: ["School", "Church", "Market", "Hospital"], correct: 2 }
+                ]
+            }
+        ];
+
+        let currentIndex = 0;
+        let filledBlanks = [];
+        let questionAnswers = [];
+        let selectedVocab = null;
+
+        function initPassage() {
+            const p = passages[currentIndex];
+            filledBlanks = new Array(p.blanks.length).fill(null);
+            questionAnswers = new Array(p.questions.length).fill(null);
+            renderPassage();
+            updateProgress();
+        }
+
+        function renderPassage() {
+            const p = passages[currentIndex];
+            
+            // Render navigation buttons
+            let navHtml = '';
+            passages.forEach((pass, idx) => {
+                navHtml += `<button class="passage-btn ${idx === currentIndex ? 'active' : ''}" onclick="goToPassage(${idx})">${pass.title}</button>`;
+            });
+            document.getElementById('passageNav').innerHTML = navHtml;
+
+            // Render vocabulary grid (only show relevant words for this passage + common ones)
+            let vocabList = [...vocabulary];
+            renderVocabGrid(vocabList);
+
+            // Render passage with blanks
+            let words = p.passage.split('___');
+            let passageHtml = '<div class="passage-area"><div class="twi-passage">';
+            for (let i = 0; i < words.length; i++) {
+                passageHtml += words[i];
+                if (i < p.blanks.length) {
+                    const filledValue = filledBlanks[i];
+                    const displayValue = filledValue || '_____';
+                    passageHtml += `<span class="blank ${filledValue ? 'filled' : 'empty'}" data-blank="${i}" onclick="clearBlank(${i})">${displayValue}</span>`;
+                }
+            }
+            passageHtml += '</div></div>';
+            document.getElementById('passageArea').innerHTML = passageHtml;
+
+            // Render questions
+            renderQuestions();
+            renderScore();
+        }
+
+        function renderVocabGrid(vocabList) {
+            let gridHtml = '<div class="vocab-grid">';
+            vocabList.forEach((v, idx) => {
+                gridHtml += `
+                    <div class="vocab-card" data-word="${v.word}" data-meaning="${v.meaning}" onclick="selectVocab('${v.word}')">
+                        <div class="twi-word">${v.word}</div>
+                        <div class="twi-meaning">${v.meaning}</div>
+                    </div>
+                `;
+            });
+            gridHtml += '</div>';
+            document.getElementById('vocabGrid').innerHTML = gridHtml;
+        }
+
+        function selectVocab(word) {
+            selectedVocab = word;
+            // Highlight selected vocab
+            document.querySelectorAll('.vocab-card').forEach(card => {
+                card.classList.remove('selected');
+                if (card.dataset.word === word) card.classList.add('selected');
+            });
+            
+            // Find first empty blank and fill it
+            const emptyBlankIdx = filledBlanks.findIndex(b => b === null);
+            if (emptyBlankIdx !== -1) {
+                filledBlanks[emptyBlankIdx] = word;
+                renderPassage();
+                selectedVocab = null;
+                document.querySelectorAll('.vocab-card').forEach(card => card.classList.remove('selected'));
+            } else if (filledBlanks.every(b => b !== null)) {
+                alert('All blanks are filled! Click a blank to remove a word if you want to change it.');
+            }
+        }
+
+        function clearBlank(blankIdx) {
+            filledBlanks[blankIdx] = null;
+            renderPassage();
+        }
+
+        function renderQuestions() {
+            const p = passages[currentIndex];
+            let questionsHtml = '<div class="questions-area"><h3 style="color: #2A9D8F; margin-bottom: 1rem;">📝 Comprehension Questions</h3>';
+            
+            p.questions.forEach((q, idx) => {
+                const answered = questionAnswers[idx] !== null;
+                const selected = questionAnswers[idx];
+                const isCorrect = answered && selected === q.correct;
+                
+                questionsHtml += `<div class="question-item"><div class="question-text">${idx + 1}. ${q.text}</div><div class="options" id="options-${idx}">`;
+                
+                q.options.forEach((opt, optIdx) => {
+                    let additionalClass = '';
+                    if (answered && optIdx === q.correct) additionalClass = 'correct';
+                    if (answered && optIdx === selected && !isCorrect) additionalClass = 'wrong';
+                    
+                    questionsHtml += `<button class="option-btn ${additionalClass}" onclick="checkAnswer(${idx}, ${optIdx})" ${answered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + optIdx)}. ${opt}
+                    </button>`;
+                });
+                
+                questionsHtml += `</div><div id="feedback-${idx}" class="feedback"></div></div>`;
+            });
+            
+            questionsHtml += `</div>`;
+            document.getElementById('questionsArea').innerHTML = questionsHtml;
+        }
+
+        function checkAnswer(qIdx, selectedIdx) {
+            if (questionAnswers[qIdx] !== null) return;
+            
+            const p = passages[currentIndex];
+            const isCorrect = (selectedIdx === p.questions[qIdx].correct);
+            questionAnswers[qIdx] = selectedIdx;
+            
+            const optionsDiv = document.getElementById(`options-${qIdx}`);
+            const btns = optionsDiv.querySelectorAll('.option-btn');
+            
+            btns.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === p.questions[qIdx].correct) btn.classList.add('correct');
+                if (idx === selectedIdx && !isCorrect) btn.classList.add('wrong');
+            });
+            
+            const feedbackDiv = document.getElementById(`feedback-${qIdx}`);
+            feedbackDiv.classList.add('show');
+            if (isCorrect) {
+                feedbackDiv.classList.add('correct-feedback');
+                feedbackDiv.innerHTML = '✅ Correct! Well done.';
+            } else {
+                feedbackDiv.classList.add('wrong-feedback');
+                feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is ${String.fromCharCode(65 + p.questions[qIdx].correct)}: ${p.questions[qIdx].options[p.questions[qIdx].correct]}`;
+            }
+            
+            renderScore();
+        }
+
+        function renderScore() {
+            const p = passages[currentIndex];
+            const filledCount = filledBlanks.filter(b => b !== null).length;
+            const totalBlanks = p.blanks.length;
+            const blankScore = Math.round((filledCount / totalBlanks) * 50);
+            
+            const correctQuestions = questionAnswers.filter((a, idx) => a !== null && a === p.questions[idx].correct).length;
+            const questionScore = Math.round((correctQuestions / p.questions.length) * 50);
+            const totalScore = blankScore + questionScore;
+            
+            document.getElementById('scoreArea').innerHTML = `
+                <div class="score-area">
+                    <strong>📊 Your Score: ${totalScore}%</strong><br>
+                    <span style="font-size: 0.8rem;">🔤 Fill in blanks: ${filledCount}/${totalBlanks} | 📝 Questions: ${correctQuestions}/${p.questions.length}</span>
+                    ${filledCount === totalBlanks && correctQuestions === p.questions.length ? '<br>🎉 Perfect! You\'ve mastered this passage!' : ''}
+                </div>
+            `;
+        }
+
+        function updateProgress() {
+            const progressPercent = ((currentIndex + 1) / passages.length) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+        }
+
+        function goToPassage(idx) { currentIndex = idx; initPassage(); }
+        function nextPassage() { if (currentIndex < passages.length - 1) { currentIndex++; initPassage(); } else { alert('🎉 Congratulations! You have completed all passages!'); } }
+        function prevPassage() { if (currentIndex > 0) { currentIndex--; initPassage(); } }
+        function resetCurrent() { if (confirm('Reset this passage?')) initPassage(); }
+
+        initPassage();
+    </script>
+</body>
+</html>
