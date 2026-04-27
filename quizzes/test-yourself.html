@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Yourself | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #2A9D8F;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: #E76F51;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: normal;
+        }
+        .logo {
+            height: 50px;
+            border-radius: 12px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2A9D8F20;
+        }
+        
+        /* Stats Cards */
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #2A9D8F10, #D4A37310);
+            padding: 1.2rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .stat-box {
+            background: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 60px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .score-box {
+            background: #2A9D8F;
+            color: white;
+            box-shadow: 0 4px 12px rgba(42,157,143,0.3);
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 30px;
+            height: 12px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.4s ease;
+            border-radius: 30px;
+        }
+        
+        /* Question Card */
+        .question-card {
+            background: linear-gradient(135deg, #FDF8F2, #fff5e8);
+            border-radius: 32px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .question-emoji {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .question-text {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #2A9D8F;
+            font-family: monospace;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+        .question-prompt {
+            font-size: 1rem;
+            color: #888;
+            background: white;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+        }
+        
+        /* Options - BOLD AND CLEAR */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .option-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1.2rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .option-btn:hover:not(:disabled) {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: translateX(8px);
+            box-shadow: 0 5px 15px rgba(42,157,143,0.3);
+        }
+        .option-btn.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            box-shadow: 0 4px 12px rgba(42,157,143,0.4);
+        }
+        .option-btn.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+        }
+        .option-btn:disabled {
+            cursor: default;
+            opacity: 0.9;
+        }
+        
+        /* Feedback */
+        .feedback {
+            padding: 1rem;
+            border-radius: 60px;
+            margin: 1rem 0;
+            display: none;
+            font-weight: 500;
+            text-align: center;
+        }
+        .feedback.show {
+            display: block;
+            animation: bounce 0.4s ease;
+        }
+        @keyframes bounce {
+            0% { transform: scale(0.95); opacity: 0; }
+            80% { transform: scale(1.02); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .feedback.correct-feedback {
+            background: #2A9D8F;
+            color: white;
+        }
+        .feedback.wrong-feedback {
+            background: #E76F51;
+            color: white;
+        }
+        
+        /* Buttons */
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        .nav-btn, .reset-btn, .close-btn {
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 60px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .nav-btn {
+            background: #2A9D8F;
+            color: white;
+        }
+        .reset-btn {
+            background: #D4A373;
+            color: #1E1E1E;
+        }
+        .close-btn {
+            background: #D4A373;
+            color: #1E1E1E;
+        }
+        .nav-btn:hover, .reset-btn:hover, .close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+        }
+        
+        /* Result Area */
+        .result-area {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #2A9D8F10, #D4A37310);
+            border-radius: 32px;
+            margin-top: 1rem;
+        }
+        .result-score {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #2A9D8F;
+        }
+        .result-emoji {
+            font-size: 3rem;
+            margin: 1rem 0;
+        }
+        .missed-words {
+            margin-top: 1.5rem;
+            text-align: left;
+            background: white;
+            padding: 1rem;
+            border-radius: 20px;
+        }
+        .missed-word {
+            display: inline-block;
+            background: #E76F5120;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            margin: 0.3rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .missed-word strong {
+            color: #2A9D8F;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .question-text { font-size: 2.5rem; }
+            .options-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                📝 Test Yourself
+                <span class="badge">Class Words</span>
+            </h1>
+            <img class="logo" src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana">
+        </div>
+        <p class="subtitle">🎯 How well do you remember the words we learned in class?</p>
+
+        <div class="quiz-stats">
+            <div class="stat-box">📊 Question <span id="currentQ">1</span> / <span id="totalQ">0</span></div>
+            <div class="stat-box score-box">🏆 Score <span id="score">0</span></div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div id="quizContainer"></div>
+
+        <div class="nav-buttons">
+            <button class="reset-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            <button class="close-btn" onclick="window.close()">❌ Close</button>
+        </div>
+    </div>
+
+    <script>
+        // ============ EXACT WORDS FROM YOUR CHART ============
+        const vocabulary = [
+            { word: "ba", meaning: "come / child" },
+            { word: "be", meaning: "they / them" },
+            { word: "bɛ", meaning: "will (future tense marker)/proverb" },
+            { word: "bi", meaning: "some / certain" },
+            { word: "bo", meaning: "hit / beat / also price" },
+            { word: "bɔ", meaning: "create / mold / also hunt" },
+            { word: "bu", meaning: "bend / break / also judge" },
+            { word: "ka", meaning: "speak / tell / also bite" },
+            { word: "ke", meaning: "key (loan word)" },
+            { word: "kɛ", meaning: "big" },
+            { word: "ki", meaning: "key (loan word from English)" },
+            { word: "ko", meaning: "fight or one" },
+            { word: "kɔ", meaning: "go (variant of ko)" },
+            { word: "ku", meaning: "kill / also group, team" },
+            { word: "da", meaning: "lie down / sleep / also day" },
+            { word: "de", meaning: "take / use / with" },
+            { word: "dɛ", meaning: "sweet" },
+            { word: "di", meaning: "eat / also have (as in responsibility)" },
+            { word: "do", meaning: "love" },
+            { word: "dɔ", meaning: "love" },
+            { word: "du", meaning: "arrive / reach / ten" },
+            { word: "ta", meaning: "fluctuate (release gas)" },
+            { word: "te", meaning: "hear / understand / also cut" },
+            { word: "tɛ", meaning: "hide" },
+            { word: "ti", meaning: "head / also because of" },
+            { word: "to", meaning: "throw" },
+            { word: "tɔ", meaning: "buy" },
+            { word: "tu", meaning: "fly" },
+            { word: "pa", meaning: "good / nice / also wipe" },
+            { word: "pe", meaning: "want / like" },
+            { word: "pɛ", meaning: "want/like" },
+            { word: "pi", meaning: "slippery (pilipii)" },
+            { word: "po", meaning: "reject / also ocean/sea" },
+            { word: "pɔ", meaning: "blow (wind) / also carve" },
+            { word: "pu", meaning: "push / eject" },
+            { word: "sa", meaning: "dance / also change" },
+            { word: "se", meaning: "say / also like, as" },
+            { word: "sɛ", meaning: "so that / also burn/look like" },
+            { word: "si", meaning: "build / also put" },
+            { word: "so", meaning: "carry / also on top" },
+            { word: "sɔ", meaning: "catch" },
+            { word: "su", meaning: "cry" }
+        ];
+
+        let quizQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        function generateQuiz() {
+            const shuffled = [...vocabulary];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            quizQuestions = shuffled.slice(0, 20);
+            currentIndex = 0;
+            score = 0;
+            userAnswers = new Array(quizQuestions.length).fill(null);
+            
+            document.getElementById('totalQ').innerText = quizQuestions.length;
+            updateStats();
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            if (currentIndex >= quizQuestions.length) {
+                showResults();
+                return;
+            }
+            
+            const q = quizQuestions[currentIndex];
+            const hasAnswered = userAnswers[currentIndex] !== null;
+            
+            const otherMeanings = vocabulary.filter(v => v.word !== q.word).map(v => v.meaning);
+            const wrongOptions = [];
+            while (wrongOptions.length < 3 && otherMeanings.length > 0) {
+                const random = otherMeanings[Math.floor(Math.random() * otherMeanings.length)];
+                if (!wrongOptions.includes(random) && random !== q.meaning) {
+                    wrongOptions.push(random);
+                }
+            }
+            
+            const options = [q.meaning, ...wrongOptions];
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+            
+            let html = `
+                <div class="question-card">
+                    <div class="question-emoji">🔊</div>
+                    <div class="question-text">${q.word}</div>
+                    <div class="question-prompt">What does this word mean?</div>
+                    <div class="options-grid" id="optionsGrid">
+            `;
+            
+            options.forEach((opt, idx) => {
+                let disabled = hasAnswered ? 'disabled' : '';
+                let additionalClass = '';
+                if (hasAnswered && opt === q.meaning) additionalClass = 'correct';
+                if (hasAnswered && userAnswers[currentIndex] === idx && opt !== q.meaning) additionalClass = 'wrong';
+                
+                html += `
+                    <button class="option-btn ${additionalClass}" onclick="checkAnswer(${idx}, '${opt.replace(/'/g, "\\'")}')" ${disabled}>
+                        <span style="font-weight:700; margin-right:0.8rem;">${String.fromCharCode(65 + idx)}.</span> ${opt}
+                    </button>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div id="feedback" class="feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('feedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = userAnswers[currentIndex] === q.meaning;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct-feedback');
+                    feedbackDiv.innerHTML = `✅ Yes! "${q.word}" means "${q.meaning}". Great job! 🎉`;
+                } else {
+                    feedbackDiv.classList.add('wrong-feedback');
+                    feedbackDiv.innerHTML = `❌ Oops! "${q.word}" means "${q.meaning}". Keep practicing! 💪`;
+                }
+            }
+        }
+
+        function checkAnswer(selectedIdx, selectedMeaning) {
+            if (userAnswers[currentIndex] !== null) return;
+            
+            const q = quizQuestions[currentIndex];
+            const isCorrect = (selectedMeaning === q.meaning);
+            
+            userAnswers[currentIndex] = selectedMeaning;
+            if (isCorrect) score++;
+            
+            updateStats();
+            renderQuestion();
+            
+            setTimeout(() => {
+                if (currentIndex < quizQuestions.length - 1) {
+                    currentIndex++;
+                    renderQuestion();
+                } else {
+                    currentIndex++;
+                    renderQuestion();
+                }
+            }, 1200);
+        }
+
+        function updateStats() {
+            document.getElementById('currentQ').innerText = currentIndex + 1;
+            document.getElementById('score').innerText = score;
+            const progressPercent = ((currentIndex + 1) / quizQuestions.length) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+        }
+
+        function showResults() {
+            const total = quizQuestions.length;
+            const percentage = Math.round((score / total) * 100);
+            let emoji = '';
+            let message = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🌟';
+                message = 'PERFECT SCORE! You are a Twi master!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You know your words well!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏✨';
+                message = 'Good job! A little review and you will get 100%!';
+            } else if (percentage >= 40) {
+                emoji = '📖💪🌱';
+                message = 'Keep going! Practice makes progress.';
+            } else {
+                emoji = '🌱💚📝';
+                message = 'You are just starting! Review the words and try again.';
+            }
+            
+            const missedWords = [];
+            for (let i = 0; i < quizQuestions.length; i++) {
+                if (userAnswers[i] !== quizQuestions[i].meaning) {
+                    missedWords.push(quizQuestions[i]);
+                }
+            }
+            
+            let missedHtml = '';
+            if (missedWords.length > 0) {
+                missedHtml = `
+                    <div class="missed-words">
+                        <strong>📚 Words to review (${missedWords.length}):</strong>
+                        <div style="margin-top: 0.8rem;">
+                            ${missedWords.map(w => `<span class="missed-word"><strong>${w.word}</strong> = ${w.meaning}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            const resultHtml = `
+                <div class="result-area">
+                    <div class="result-score">${score} / ${total}</div>
+                    <div class="result-emoji">${emoji}</div>
+                    <div style="font-size: 1.3rem; font-weight: 600; margin: 0.5rem 0;">${percentage}%</div>
+                    <p>${message}</p>
+                    ${missedHtml}
+                    <div class="nav-buttons" style="margin-top: 1.5rem;">
+                        <button class="reset-btn" onclick="resetQuiz()">🔄 Take Quiz Again</button>
+                        <button class="close-btn" onclick="window.close()">❌ Close</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultHtml;
+        }
+
+        function resetQuiz() {
+            generateQuiz();
+        }
+
+        generateQuiz();
+    </script>
+</body>
+</html>
