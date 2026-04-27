@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Spelling Bee | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .bee-icon { font-size: 2rem; animation: buzz 2s infinite; display: inline-block; }
+        @keyframes buzz {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(2px, -2px); }
+            75% { transform: translate(-2px, 2px); }
+        }
+        
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #2A9D8F10, #D4A37310);
+            padding: 1rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .stat-box {
+            background: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+        .score-box { background: #2A9D8F; color: white; }
+        
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        
+        .question-card {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 1rem 0;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+        .meaning-hint {
+            background: #D4A37320;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            color: #2A9D8F;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .audio-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            margin: 1rem auto;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .audio-btn:hover {
+            transform: scale(1.05);
+            background: #1f7a6e;
+        }
+        
+        .spelling-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 60px;
+            text-align: center;
+            font-family: monospace;
+            letter-spacing: 1px;
+            margin: 1rem 0;
+        }
+        .spelling-input:focus {
+            outline: none;
+            border-color: #2A9D8F;
+        }
+        .spelling-input.correct {
+            background: #2A9D8F20;
+            border-color: #2A9D8F;
+        }
+        .spelling-input.wrong {
+            background: #E76F5120;
+            border-color: #E76F51;
+        }
+        
+        .check-btn, .next-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        .next-btn {
+            background: #D4A373;
+            display: none;
+        }
+        .next-btn.show { display: inline-block; }
+        .check-btn:hover, .next-btn:hover { transform: translateY(-2px); }
+        
+        .feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+            text-align: center;
+            font-weight: 500;
+        }
+        .feedback.show { display: block; }
+        .feedback.correct-feedback {
+            background: #2A9D8F20;
+            color: #2A9D8F;
+        }
+        .feedback.wrong-feedback {
+            background: #E76F5120;
+            color: #E76F51;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .reset-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        .close-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        .score-area {
+            text-align: center;
+            padding: 1rem;
+            background: #2A9D8F10;
+            border-radius: 20px;
+            margin-top: 1rem;
+        }
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .results-table th, .results-table td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .results-table th {
+            background: #2A9D8F;
+            color: white;
+        }
+        .correct-mark { color: #2A9D8F; font-weight: bold; }
+        .wrong-mark { color: #E76F51; font-weight: bold; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .audio-btn { width: 60px; height: 60px; font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>🐝 Twi Spelling Bee <span class="badge">Listen & Spell</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎧 Click the 🔊 button to hear the word. Type what you hear!</p>
+
+        <div class="quiz-stats">
+            <div class="stat-box">📊 Word <span id="currentQ">1</span> / <span id="totalQ">0</span></div>
+            <div class="stat-box score-box">🏆 Score <span id="score">0</span></div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div id="quizContainer"></div>
+
+        <div class="nav-buttons">
+            <button class="reset-btn" onclick="resetQuiz()">🔄 New Game</button>
+            <button class="close-btn" onclick="window.close()">❌ Close</button>
+        </div>
+    </div>
+
+    <script>
+        // ============ WORDS WITH YOUR ACTUAL AUDIO FILES ============
+        const spellingWords = [
+            { word: "ba", meaning: "come / child", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/ba.m4a" },
+            { word: "bu", meaning: "bend / break / judge", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/bu.m4a" },
+            { word: "bɛ", meaning: "will / proverb", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/bɛ.m4a" },
+            { word: "bo", meaning: "hit / beat / chest", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/bo-hit.m4a" },
+            { word: "dɛ", meaning: "sweet", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/de(sweet).m4a" },
+            { word: "di", meaning: "eat", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/di.m4a" },
+            { word: "du", meaning: "arrive / ten", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/du.m4a" },
+            { word: "da", meaning: "sleep / day", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/da.m4a" },
+            { word: "ka", meaning: "speak / tell / bite", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/ka.m4a" },
+            { word: "ko", meaning: "fight / one", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/ko.m4a" },
+            { word: "kɔ", meaning: "go", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/kɔ.m4a" },
+            { word: "tɛ", meaning: "hide", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/tɛ.m4a" },
+            { word: "tɔ", meaning: "buy", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/tɔ.m4a" },
+            { word: "te", meaning: "hear / understand / live", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/te.m4a" },
+            { word: "ti", meaning: "head / because", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/ti.m4a" },
+            { word: "to", meaning: "throw", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/to.m4a" },
+            { word: "pa", meaning: "good / nice / wipe", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/pa.m4a" },
+            { word: "pe", meaning: "want / like", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/pe.m4a" },
+            { word: "pɛ", meaning: "want / like", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/pɛ.m4a" },
+            { word: "pu", meaning: "push / eject", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/pu.m4a" },
+            { word: "sa", meaning: "dance / change", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/sa.m4a" },
+            { word: "se", meaning: "say / like / as", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/se.m4a" },
+            { word: "si", meaning: "build / put", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/si.m4a" },
+            { word: "so", meaning: "carry / on top", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/so.m4a" },
+            { word: "sɔ", meaning: "catch", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/sɔ.m4a" },
+            { word: "su", meaning: "cry", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/sa-su.m4a" },
+            { word: "hu", meaning: "see", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/hu.m4a" },
+            { word: "wo", meaning: "you / your", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/wo.m4a" },
+            { word: "me", meaning: "I / me / my", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/me.m4a" },
+            { word: "gye", meaning: "take / receive", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/pronunciation/gye.m4a" }
+        ];
+
+        let quizWords = [];
+        let currentIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+        let answerChecked = false;
+        let currentAudio = null;
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function generateQuiz() {
+            const shuffled = shuffleArray([...spellingWords]);
+            quizWords = shuffled.slice(0, 15);
+            currentIndex = 0;
+            score = 0;
+            userAnswers = new Array(quizWords.length).fill(null);
+            answerChecked = false;
+            
+            document.getElementById('totalQ').innerText = quizWords.length;
+            updateStats();
+            renderQuestion();
+        }
+
+        function playAudio(audioUrl, word) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            currentAudio = new Audio(audioUrl);
+            currentAudio.play().catch(function(e) {
+                console.log("Audio play error:", e);
+                alert(`🔊 Could not play audio. The word is: "${word}"`);
+            });
+        }
+
+        function renderQuestion() {
+            if (currentIndex >= quizWords.length) {
+                showResults();
+                return;
+            }
+            
+            const q = quizWords[currentIndex];
+            const hasAnswered = userAnswers[currentIndex] !== null;
+            const isCorrect = hasAnswered ? userAnswers[currentIndex].isCorrect : false;
+            const userSpelling = hasAnswered ? userAnswers[currentIndex].spelling : '';
+            
+            let html = `
+                <div class="question-card">
+                    <div class="bee-icon">🐝</div>
+                    <div class="meaning-hint">📖 ${q.meaning}</div>
+                    <button class="audio-btn" onclick="playAudio('${q.audio}', '${q.word}')">🔊</button>
+                    <div style="font-size: 0.8rem; color: #999; margin-bottom: 1rem;">Click the button to hear the word</div>
+                    <input type="text" class="spelling-input" id="spellingInput" placeholder="Type the Twi word here..." ${hasAnswered ? 'disabled' : ''} value="${hasAnswered ? userSpelling : ''}">
+                    <div>
+                        <button class="check-btn" id="checkBtn" onclick="checkSpelling()" ${hasAnswered ? 'style="display:none;"' : ''}>✅ Check Spelling</button>
+                        <button class="next-btn ${hasAnswered ? 'show' : ''}" id="nextBtn" onclick="nextWord()">Next Word →</button>
+                    </div>
+                    <div id="feedback" class="feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('feedback');
+                feedbackDiv.classList.add('show');
+                const inputField = document.getElementById('spellingInput');
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct-feedback');
+                    feedbackDiv.innerHTML = `✅ Correct! "${userSpelling}" is right! Great spelling! 🎉`;
+                    inputField.classList.add('correct');
+                } else {
+                    feedbackDiv.classList.add('wrong-feedback');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct spelling is "${q.word}". Keep practicing! 💪`;
+                    inputField.classList.add('wrong');
+                }
+            }
+            
+            if (!hasAnswered) {
+                setTimeout(() => {
+                    const input = document.getElementById('spellingInput');
+                    if (input) input.focus();
+                }, 100);
+            }
+        }
+
+        function checkSpelling() {
+            if (answerChecked) return;
+            
+            const input = document.getElementById('spellingInput');
+            const userSpelling = input.value.trim().toLowerCase();
+            const q = quizWords[currentIndex];
+            const isCorrect = (userSpelling === q.word);
+            
+            userAnswers[currentIndex] = {
+                spelling: userSpelling,
+                isCorrect: isCorrect,
+                correctWord: q.word
+            };
+            
+            if (isCorrect) score++;
+            
+            answerChecked = true;
+            updateStats();
+            renderQuestion();
+        }
+
+        function nextWord() {
+            if (currentIndex < quizWords.length - 1) {
+                currentIndex++;
+                answerChecked = false;
+                renderQuestion();
+            } else {
+                currentIndex++;
+                renderQuestion();
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('currentQ').innerText = currentIndex + 1;
+            document.getElementById('score').innerText = score;
+            const progressPercent = ((currentIndex + 1) / quizWords.length) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+        }
+
+        function showResults() {
+            const total = quizWords.length;
+            const percentage = Math.round((score / total) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🐝';
+                message = 'PERFECT! You are the Spelling Bee Champion!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You have great spelling skills!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏🐝';
+                message = 'Good job! Keep practicing those tricky words!';
+            } else if (percentage >= 40) {
+                emoji = '📖💪✏️';
+                message = 'Keep going! Spelling takes practice!';
+            } else {
+                emoji = '🌱✨🐝';
+                message = 'You are just starting! Every bee was once a beginner!';
+            }
+            
+            let tableHtml = '<table class="results-table"><thead><tr><th>#</th><th>Your Spelling</th><th>Correct Spelling</th><th>Result</th></tr></thead><tbody>';
+            for (let i = 0; i < quizWords.length; i++) {
+                const answer = userAnswers[i];
+                const isCorrect = answer ? answer.isCorrect : false;
+                const yourSpelling = answer ? answer.spelling : '(no answer)';
+                const correctWord = quizWords[i].word;
+                tableHtml += `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td>${yourSpelling}</td>
+                        <td>${correctWord}</td>
+                        <td class="${isCorrect ? 'correct-mark' : 'wrong-mark'}">${isCorrect ? '✅' : '❌'}</td>
+                    </tr>
+                `;
+            }
+            tableHtml += '</tbody></table>';
+            
+            const resultHtml = `
+                <div class="score-area">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${score}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2.5rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0; font-weight: 600;">${message}</p>
+                    ${tableHtml}
+                    <div style="margin-top: 1.5rem;">
+                        <button onclick="resetQuiz()" style="background: #2A9D8F; color: white; border: none; padding: 0.6rem 1.5rem; border-radius: 50px; cursor: pointer; font-weight: bold;">🔄 Play Again</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultHtml;
+            document.getElementById('progressFill').style.width = '100%';
+        }
+
+        function resetQuiz() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            generateQuiz();
+        }
+
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const checkBtn = document.getElementById('checkBtn');
+                if (checkBtn && checkBtn.style.display !== 'none') {
+                    checkSpelling();
+                }
+                const nextBtn = document.getElementById('nextBtn');
+                if (nextBtn && nextBtn.style.display !== 'none') {
+                    nextWord();
+                }
+            }
+        });
+
+        generateQuiz();
+    </script>
+</body>
+</html>
