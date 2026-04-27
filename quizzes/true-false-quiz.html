@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True or False | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        /* Quiz Stats */
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #2A9D8F10, #D4A37310);
+            padding: 1rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .stat-box {
+            background: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+        .score-box { background: #2A9D8F; color: white; }
+        
+        /* Progress Bar */
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        
+        /* Conversation Card */
+        .conversation-card {
+            background: #1a1a2e;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            color: white;
+        }
+        .conversation-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #D4A373;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 0.5rem;
+        }
+        .dialogue {
+            margin-bottom: 0.8rem;
+            padding: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+        }
+        .speaker {
+            color: #D4A373;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        .twi-text {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .english-text {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+        
+        /* Question Card */
+        .question-card {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid #eee;
+        }
+        .statement {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 16px;
+            border-left: 4px solid #2A9D8F;
+        }
+        .true-false-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .tf-btn {
+            flex: 1;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .true-btn {
+            background: #2A9D8F;
+            color: white;
+        }
+        .true-btn:hover:not(:disabled) {
+            background: #1f7a6e;
+            transform: scale(1.02);
+        }
+        .false-btn {
+            background: #E76F51;
+            color: white;
+        }
+        .false-btn:hover:not(:disabled) {
+            background: #d45a3a;
+            transform: scale(1.02);
+        }
+        .tf-btn.correct {
+            background: #2A9D8F;
+            box-shadow: 0 0 0 3px #2A9D8F40;
+        }
+        .tf-btn.wrong {
+            background: #E76F51;
+            box-shadow: 0 0 0 3px #E76F5140;
+        }
+        .tf-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+        
+        .feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+            text-align: center;
+        }
+        .feedback.show { display: block; }
+        .feedback.correct-feedback {
+            background: #2A9D8F20;
+            color: #2A9D8F;
+            font-weight: 500;
+        }
+        .feedback.wrong-feedback {
+            background: #E76F5120;
+            color: #E76F51;
+            font-weight: 500;
+        }
+        
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        button {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .reset-btn { background: #D4A373; }
+        .close-btn { background: #D4A373; }
+        
+        .score-area {
+            text-align: center;
+            padding: 1rem;
+            background: #2A9D8F10;
+            border-radius: 20px;
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .true-false-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>✅ True or False? <span class="badge">Comprehension Quiz</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 Read the conversation, then decide if each statement is TRUE or FALSE.</p>
+
+        <div class="quiz-stats">
+            <div class="stat-box">📊 Question <span id="currentQ">1</span> / <span id="totalQ">0</span></div>
+            <div class="stat-box score-box">🏆 Score <span id="score">0</span></div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div id="conversationContainer"></div>
+        <div id="questionContainer"></div>
+
+        <div class="nav-buttons">
+            <button class="reset-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            <button class="close-btn" onclick="window.close()">❌ Close</button>
+        </div>
+    </div>
+
+    <script>
+        // ============ CONVERSATIONS AND TRUE/FALSE QUESTIONS ============
+        const conversations = [
+            {
+                id: 1,
+                title: "Greeting Each Other",
+                dialogue: [
+                    { speaker: "Kofi", twi: "Mema wo akye, Ama", english: "Good morning, Ama" },
+                    { speaker: "Ama", twi: "Yaa nua Kofi. Wo ho te sɛn?", english: "Good morning, Kofi. How are you?" },
+                    { speaker: "Kofi", twi: "Me ho yɛ, na wo nso ɛ?", english: "I am fine, and you?" },
+                    { speaker: "Ama", twi: "Me nso me ho yɛ.", english: "I am also fine." }
+                ],
+                statements: [
+                    { text: "Kofi greeted Ama in the morning.", answer: true },
+                    { text: "Ama asked Kofi where he is from.", answer: false },
+                    { text: "Kofi said he is not feeling well.", answer: false },
+                    { text: "Ama is also feeling fine.", answer: true },
+                    { text: "This conversation happens in the evening.", answer: false }
+                ]
+            },
+            {
+                id: 2,
+                title: "Introduction",
+                dialogue: [
+                    { speaker: "Kofi", twi: "Wofiri ɛhe?", english: "Where are you from?" },
+                    { speaker: "Ama", twi: "Mefiri Kumasi, na wo nso ɛ?", english: "I am from Kumasi, and you?" },
+                    { speaker: "Kofi", twi: "Me nso mefiri Kumasi.", english: "I am also from Kumasi." },
+                    { speaker: "Kofi", twi: "Ɛyɛ m’anigye sɛ mahyia wo.", english: "It is my pleasure to meet you." },
+                    { speaker: "Ama", twi: "Me nso saa.", english: "Same here." }
+                ],
+                statements: [
+                    { text: "Kofi asked Ama where she is from.", answer: true },
+                    { text: "Ama is from Accra.", answer: false },
+                    { text: "Kofi is also from Kumasi.", answer: true },
+                    { text: "Kofi said it is nice to meet Ama.", answer: true },
+                    { text: "Ama said she is not happy to meet Kofi.", answer: false }
+                ]
+            },
+            {
+                id: 3,
+                title: "Talking About Food",
+                dialogue: [
+                    { speaker: "Kofi", twi: "Wopɛ fufuo?", english: "Do you like fufu?" },
+                    { speaker: "Ama", twi: "Aane, mepɛ fufuo. Wo nso ɛ?", english: "Yes, I like fufu. And you?" },
+                    { speaker: "Kofi", twi: "Me nso mepɛ fufuo. Ɛyɛ dɛ papa!", english: "I also like fufu. It is very delicious!" },
+                    { speaker: "Ama", twi: "Aane, ɛyɛ dɛ!", english: "Yes, it is delicious!" }
+                ],
+                statements: [
+                    { text: "Kofi asked Ama if she likes banku.", answer: false },
+                    { text: "Ama said she likes fufu.", answer: true },
+                    { text: "Kofi does not like fufu.", answer: false },
+                    { text: "Kofi said fufu is very delicious.", answer: true },
+                    { text: "Ama said fufu is not good.", answer: false }
+                ]
+            },
+            {
+                id: 4,
+                title: "Morning Meeting",
+                dialogue: [
+                    { speaker: "Kofi", twi: "Maakye! Wo ho te sɛn?", english: "Good morning! How are you?" },
+                    { speaker: "Ama", twi: "Yaa nua! Nyame adom, me ho yɛ. Na wo nso ɛ?", english: "Good morning, sibling! By God's grace, I am fine. And you?" },
+                    { speaker: "Kofi", twi: "Nyame adom, ɛyɛ. Wo din de sɛn?", english: "By God's grace, I am fine. What is your name?" },
+                    { speaker: "Ama", twi: "Me din de Ama. Ɛyɛ me dɛ sɛ mehyia wo!", english: "My name is Ama. It is nice to meet you!" },
+                    { speaker: "Kofi", twi: "Me nso sa ara! Yɛbɛhyia bio.", english: "Same here! We will meet again." }
+                ],
+                statements: [
+                    { text: "Kofi greeted Ama in the morning.", answer: true },
+                    { text: "Ama said she is sick.", answer: false },
+                    { text: "Kofi asked Ama what her name is.", answer: true },
+                    { text: "Ama's name is Adwoa.", answer: false },
+                    { text: "Kofi said they will meet again.", answer: true }
+                ]
+            },
+            {
+                id: 5,
+                title: "At the Market",
+                dialogue: [
+                    { speaker: "Kofi", twi: "Maaha! Wo ho te sɛn?", english: "Good afternoon! How are you?" },
+                    { speaker: "Ama", twi: "Yaa! Me ho yɛ. Wopɛ deɛn?", english: "Hello! I am fine. What do you want?" },
+                    { speaker: "Kofi", twi: "Mepɛ mako ne gyeene. Mako no yɛ sɛn?", english: "I want pepper and onion. How much is the pepper?" },
+                    { speaker: "Ama", twi: "Cedi aduonnu.", english: "Twenty cedis." },
+                    { speaker: "Kofi", twi: "Medaase!", english: "Thank you!" }
+                ],
+                statements: [
+                    { text: "Kofi greeted Ama in the afternoon.", answer: true },
+                    { text: "Kofi wants to buy tomatoes and rice.", answer: false },
+                    { text: "The pepper costs twenty cedis.", answer: true },
+                    { text: "Ama asked Kofi what he wants.", answer: true },
+                    { text: "Kofi did not say thank you.", answer: false }
+                ]
+            }
+        ];
+
+        let currentIndex = 0;
+        let currentStatementIndex = 0;
+        let currentConversation = null;
+        let currentStatements = [];
+        let score = 0;
+        let userAnswers = [];
+        let totalQuestions = 0;
+
+        function initQuiz() {
+            // Collect all statements from all conversations
+            let allStatements = [];
+            conversations.forEach(conv => {
+                conv.statements.forEach(stmt => {
+                    allStatements.push({
+                        conversation: conv,
+                        statement: stmt.text,
+                        answer: stmt.answer,
+                        title: conv.title
+                    });
+                });
+            });
+            
+            // Shuffle all statements
+            for (let i = allStatements.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [allStatements[i], allStatements[j]] = [allStatements[j], allStatements[i]];
+            }
+            
+            // Take first 15 questions
+            currentStatements = allStatements.slice(0, 15);
+            totalQuestions = currentStatements.length;
+            currentIndex = 0;
+            score = 0;
+            userAnswers = new Array(totalQuestions).fill(null);
+            
+            document.getElementById('totalQ').innerText = totalQuestions;
+            updateStats();
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            if (currentIndex >= totalQuestions) {
+                showResults();
+                return;
+            }
+            
+            const item = currentStatements[currentIndex];
+            const hasAnswered = userAnswers[currentIndex] !== null;
+            
+            // Render conversation
+            let convHtml = `
+                <div class="conversation-card">
+                    <div class="conversation-title">💬 ${item.conversation.title}</div>
+            `;
+            
+            item.conversation.dialogue.forEach(d => {
+                convHtml += `
+                    <div class="dialogue">
+                        <div class="speaker">${d.speaker}:</div>
+                        <div class="twi-text">${d.twi}</div>
+                        <div class="english-text">${d.english}</div>
+                    </div>
+                `;
+            });
+            
+            convHtml += `</div>`;
+            document.getElementById('conversationContainer').innerHTML = convHtml;
+            
+            // Render question
+            let questionHtml = `
+                <div class="question-card">
+                    <div class="statement">📖 "${item.statement}"</div>
+                    <div class="true-false-buttons">
+                        <button class="tf-btn true-btn" onclick="checkAnswer(true)" ${hasAnswered ? 'disabled' : ''}>✅ TRUE</button>
+                        <button class="tf-btn false-btn" onclick="checkAnswer(false)" ${hasAnswered ? 'disabled' : ''}>❌ FALSE</button>
+                    </div>
+                    <div id="feedback" class="feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('questionContainer').innerHTML = questionHtml;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('feedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = userAnswers[currentIndex] === item.answer;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct-feedback');
+                    feedbackDiv.innerHTML = '✅ Correct! Well done.';
+                    // Highlight correct button
+                    const correctBtn = document.querySelector(item.answer ? '.true-btn' : '.false-btn');
+                    if (correctBtn) correctBtn.classList.add('correct');
+                } else {
+                    feedbackDiv.classList.add('wrong-feedback');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is ${item.answer ? 'TRUE' : 'FALSE'}.`;
+                    const selectedBtn = document.querySelector(userAnswers[currentIndex] ? '.true-btn' : '.false-btn');
+                    const correctBtn = document.querySelector(item.answer ? '.true-btn' : '.false-btn');
+                    if (selectedBtn) selectedBtn.classList.add('wrong');
+                    if (correctBtn) correctBtn.classList.add('correct');
+                }
+            }
+            
+            updateStats();
+        }
+
+        function checkAnswer(selectedAnswer) {
+            if (userAnswers[currentIndex] !== null) return;
+            
+            const item = currentStatements[currentIndex];
+            const isCorrect = (selectedAnswer === item.answer);
+            
+            userAnswers[currentIndex] = selectedAnswer;
+            if (isCorrect) score++;
+            
+            updateStats();
+            renderQuestion();
+            
+            // Auto advance after 1.5 seconds
+            setTimeout(() => {
+                if (currentIndex < totalQuestions - 1) {
+                    currentIndex++;
+                    renderQuestion();
+                } else {
+                    currentIndex++;
+                    renderQuestion();
+                }
+            }, 1500);
+        }
+
+        function updateStats() {
+            document.getElementById('currentQ').innerText = currentIndex + 1;
+            document.getElementById('score').innerText = score;
+            const progressPercent = ((currentIndex + 1) / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+        }
+
+        function showResults() {
+            const percentage = Math.round((score / totalQuestions) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🌟';
+                message = 'PERFECT! You have excellent comprehension!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍';
+                message = 'Excellent! You really understand the conversations!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏';
+                message = 'Good job! Review the conversations and try again.';
+            } else if (percentage >= 40) {
+                emoji = '📖💪';
+                message = 'Keep practicing! Read the conversations carefully.';
+            } else {
+                emoji = '🌱✨';
+                message = 'You\'re just starting! Take your time and try again.';
+            }
+            
+            // Find missed questions
+            let missedHtml = '';
+            let missedCount = 0;
+            for (let i = 0; i < currentStatements.length; i++) {
+                if (userAnswers[i] !== currentStatements[i].answer) {
+                    missedCount++;
+                    missedHtml += `<div style="margin-bottom: 0.8rem; padding: 0.5rem; background: #E76F5120; border-radius: 8px;">📖 "${currentStatements[i].statement}"<br>✅ Correct answer: <strong>${currentStatements[i].answer ? 'TRUE' : 'FALSE'}</strong></div>`;
+                }
+            }
+            
+            const resultHtml = `
+                <div class="score-area">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${score}/${totalQuestions}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0;">${message}</p>
+                    ${missedCount > 0 ? `
+                        <div style="margin-top: 1rem; text-align: left; border-top: 1px solid #eee; padding-top: 1rem;">
+                            <strong>📚 Statements to review (${missedCount}):</strong>
+                            <div style="margin-top: 0.8rem; max-height: 300px; overflow-y: auto;">
+                                ${missedHtml}
+                            </div>
+                        </div>
+                    ` : ''}
+                    <div style="margin-top: 1.5rem;">
+                        <button onclick="resetQuiz()" style="background: #2A9D8F; color: white; border: none; padding: 0.6rem 1.5rem; border-radius: 50px; cursor: pointer; font-weight: bold;">🔄 Take Quiz Again</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('conversationContainer').innerHTML = '';
+            document.getElementById('questionContainer').innerHTML = resultHtml;
+            document.getElementById('progressFill').style.width = '100%';
+        }
+
+        function resetQuiz() {
+            initQuiz();
+        }
+
+        // Start the quiz
+        initQuiz();
+    </script>
+</body>
+</html>
