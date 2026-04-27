@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Conversation Practice | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        /* Character Cards */
+        .characters {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        .character-card {
+            background: #FDF8F2;
+            border-radius: 20px;
+            padding: 1rem;
+            text-align: center;
+            width: 150px;
+            border: 2px solid #e2e8f0;
+        }
+        .character-avatar {
+            width: 80px;
+            height: 80px;
+            background: #2A9D8F;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.8rem;
+            font-size: 2.5rem;
+        }
+        .character-name {
+            font-weight: bold;
+            color: #2A9D8F;
+        }
+        .character-line {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+        
+        /* Conversation Box */
+        .conversation-box {
+            background: #1a1a2e;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            color: white;
+        }
+        .conversation-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #D4A373;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 0.5rem;
+        }
+        .dialogue-row {
+            display: flex;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+        }
+        .speaker {
+            width: 80px;
+            font-weight: bold;
+            color: #D4A373;
+        }
+        .twi-line {
+            flex: 1;
+            font-size: 1rem;
+        }
+        .english-line {
+            flex: 1;
+            color: #aaa;
+            font-size: 0.85rem;
+            padding-left: 1rem;
+            border-left: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        /* Questions Area */
+        .questions-area {
+            background: #f0f7f5;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .questions-title {
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .question-item {
+            background: white;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #1E1E1E;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .option-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        .option-btn:hover:not(:disabled) {
+            background: #2A9D8F;
+            color: white;
+        }
+        .option-btn.correct {
+            background: #2A9D8F;
+            color: white;
+        }
+        .option-btn.wrong {
+            background: #E76F51;
+            color: white;
+        }
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        .feedback {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            padding: 0.3rem;
+            border-radius: 8px;
+            display: none;
+        }
+        .feedback.show {
+            display: block;
+        }
+        .feedback.correct-feedback {
+            color: #2A9D8F;
+        }
+        .feedback.wrong-feedback {
+            color: #E76F51;
+        }
+        
+        /* Navigation */
+        .conv-nav {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .conv-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .conv-btn.active {
+            background: #2A9D8F;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        button {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .reset-btn { background: #D4A373; }
+        .close-btn { background: #D4A373; }
+        
+        .score-area {
+            text-align: center;
+            padding: 1rem;
+            background: #2A9D8F10;
+            border-radius: 20px;
+            margin-top: 1rem;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 6px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .dialogue-row { flex-direction: column; }
+            .speaker { width: auto; margin-bottom: 0.3rem; }
+            .english-line { border-left: none; padding-left: 0; margin-top: 0.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>💬 Twi Conversation Practice <span class="badge">Read & Understand</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎭 Read each conversation carefully, then answer the questions to test your understanding.</p>
+
+        <!-- Characters -->
+        <div class="characters">
+            <div class="character-card">
+                <div class="character-avatar">👧🏿</div>
+                <div class="character-name">Ama</div>
+                <div class="character-line">"Me din de Ama"</div>
+            </div>
+            <div class="character-card">
+                <div class="character-avatar">👦🏿</div>
+                <div class="character-name">Kofi</div>
+                <div class="character-line">"Me din de Kofi"</div>
+            </div>
+        </div>
+
+        <!-- Conversation Navigation -->
+        <div class="conv-nav" id="convNav"></div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <!-- Conversation Display -->
+        <div id="conversationBox" class="conversation-box"></div>
+
+        <!-- Questions Area -->
+        <div id="questionsArea" class="questions-area"></div>
+
+        <div id="scoreArea" class="score-area"></div>
+
+        <div class="nav-buttons">
+            <button class="reset-btn" onclick="resetCurrent()">🔄 Reset Questions</button>
+            <button onclick="window.close()">❌ Close</button>
+        </div>
+    </div>
+
+    <script>
+        // ============ CONVERSATIONS WITH COMPREHENSION QUESTIONS ============
+        const conversations = [
+            {
+                id: 0,
+                title: "Greeting Each Other",
+                dialogues: [
+                    { speaker: "Kofi", twi: "Mema wo akye, Ama", english: "Good morning, Ama" },
+                    { speaker: "Ama", twi: "Yaa nua Kofi. Wo ho te sɛn?", english: "Good morning, Kofi. How are you?" },
+                    { speaker: "Kofi", twi: "Me ho yɛ, na wo nso ɛ?", english: "I am fine, and you?" },
+                    { speaker: "Ama", twi: "Me nso me ho yɛ.", english: "I am also fine." }
+                ],
+                questions: [
+                    { text: "What time of day is this greeting?", options: ["Morning", "Afternoon", "Evening", "Night"], correct: 0 },
+                    { text: "What does 'Wo ho te sɛn?' mean?", options: ["What is your name?", "Where are you from?", "How are you?", "What do you want?"], correct: 2 },
+                    { text: "How is Kofi feeling?", options: ["He is sick", "He is fine", "He is tired", "He is sad"], correct: 1 },
+                    { text: "What does 'Me nso' mean?", options: ["Me too", "Not me", "Only me", "All of us"], correct: 0 }
+                ]
+            },
+            {
+                id: 1,
+                title: "Introduction",
+                dialogues: [
+                    { speaker: "Kofi", twi: "Wofiri ɛhe?", english: "Where are you from?" },
+                    { speaker: "Ama", twi: "Mefiri Kumasi, na wo nso ɛ?", english: "I am from Kumasi, and you?" },
+                    { speaker: "Kofi", twi: "Me nso mefiri Kumasi.", english: "I am also from Kumasi." },
+                    { speaker: "Kofi", twi: "Ɛyɛ m’anigye sɛ mahyia wo.", english: "It is my pleasure to meet you." },
+                    { speaker: "Ama", twi: "Me nso saa.", english: "Same here." }
+                ],
+                questions: [
+                    { text: "What does 'Wofiri ɛhe?' mean?", options: ["What is your name?", "Where are you from?", "How old are you?", "What do you do?"], correct: 1 },
+                    { text: "Where is Ama from?", options: ["Accra", "Kumasi", "Takoradi", "Cape Coast"], correct: 1 },
+                    { text: "Where is Kofi from?", options: ["Accra", "Kumasi", "Takoradi", "Cape Coast"], correct: 1 },
+                    { text: "What does 'Ɛyɛ m’anigye sɛ mahyia wo' express?", options: ["Sadness", "Anger", "Pleasure", "Fear"], correct: 2 }
+                ]
+            },
+            {
+                id: 2,
+                title: "Talking About Food",
+                dialogues: [
+                    { speaker: "Kofi", twi: "Wopɛ fufuo?", english: "Do you like fufu?" },
+                    { speaker: "Ama", twi: "Aane, mepɛ fufuo. Wo nso ɛ?", english: "Yes, I like fufu. And you?" },
+                    { speaker: "Kofi", twi: "Me nso mepɛ fufuo. Ɛyɛ dɛ papa!", english: "I also like fufu. It is very delicious!" },
+                    { speaker: "Ama", twi: "Aane, ɛyɛ dɛ!", english: "Yes, it is delicious!" }
+                ],
+                questions: [
+                    { text: "What food are they talking about?", options: ["Banku", "Fufu", "Jollof", "Rice"], correct: 1 },
+                    { text: "Does Ama like fufu?", options: ["Yes", "No", "Maybe", "Not sure"], correct: 0 },
+                    { text: "How does Kofi describe fufu?", options: ["Bad", "Delicious", "Expensive", "Cold"], correct: 1 },
+                    { text: "What does 'dɛ' mean in this context?", options: ["Bad", "Hot", "Sweet/Delicious", "Bitter"], correct: 2 }
+                ]
+            },
+            {
+                id: 3,
+                title: "Morning Meeting",
+                dialogues: [
+                    { speaker: "Kofi", twi: "Maakye! Wo ho te sɛn?", english: "Good morning! How are you?" },
+                    { speaker: "Ama", twi: "Yaa nua! Nyame adom, me ho yɛ. Na wo nso ɛ?", english: "Good morning, sibling! By God's grace, I am fine. And you?" },
+                    { speaker: "Kofi", twi: "Nyame adom, ɛyɛ. Wo din de sɛn?", english: "By God's grace, I am fine. What is your name?" },
+                    { speaker: "Ama", twi: "Me din de Ama. Ɛyɛ me dɛ sɛ mehyia wo!", english: "My name is Ama. It is nice to meet you!" },
+                    { speaker: "Kofi", twi: "Me nso sa ara! Yɛbɛhyia bio.", english: "Same here! We will meet again." }
+                ],
+                questions: [
+                    { text: "What does 'Nyame adom' mean?", options: ["Thank you", "By God's grace", "Good luck", "God willing"], correct: 1 },
+                    { text: "What is Ama's name?", options: ["Adwoa", "Ama", "Akosua", "Abena"], correct: 1 },
+                    { text: "How does Ama feel about meeting Kofi?", options: ["Sad", "Angry", "Happy/Nice", "Tired"], correct: 2 },
+                    { text: "What does 'Yɛbɛhyia bio' mean?", options: ["Goodbye", "We will meet again", "See you later", "Take care"], correct: 1 }
+                ]
+            },
+            {
+                id: 4,
+                title: "At the Market",
+                dialogues: [
+                    { speaker: "Kofi", twi: "Maaha! Wo ho te sɛn?", english: "Good afternoon! How are you?" },
+                    { speaker: "Ama", twi: "Yaa! Me ho yɛ. Wopɛ deɛn?", english: "Hello! I am fine. What do you want?" },
+                    { speaker: "Kofi", twi: "Mepɛ mako ne gyeene. Mako no yɛ sɛn?", english: "I want pepper and onion. How much is the pepper?" },
+                    { speaker: "Ama", twi: "Cedi aduonnu.", english: "Twenty cedis." },
+                    { speaker: "Kofi", twi: "Medaase!", english: "Thank you!" }
+                ],
+                questions: [
+                    { text: "What time greeting is 'Maaha'?", options: ["Morning", "Afternoon", "Evening", "Night"], correct: 1 },
+                    { text: "What does Kofi want to buy?", options: ["Tomatoes and rice", "Pepper and onion", "Fish and salt", "Oil and spice"], correct: 1 },
+                    { text: "How much is the pepper?", options: ["Ten cedis", "Fifteen cedis", "Twenty cedis", "Twenty-five cedis"], correct: 2 },
+                    { text: "What does 'Medaase' mean?", options: ["Please", "Sorry", "Thank you", "Hello"], correct: 2 }
+                ]
+            }
+        ];
+
+        let currentIndex = 0;
+        let userAnswers = {};
+
+        function renderConversationNav() {
+            let html = '';
+            conversations.forEach((conv, idx) => {
+                html += `<button class="conv-btn ${idx === currentIndex ? 'active' : ''}" onclick="goToConversation(${idx})">${conv.title}</button>`;
+            });
+            document.getElementById('convNav').innerHTML = html;
+        }
+
+        function goToConversation(index) {
+            currentIndex = index;
+            renderConversationNav();
+            renderConversation();
+            renderQuestions();
+            updateProgress();
+        }
+
+        function renderConversation() {
+            const conv = conversations[currentIndex];
+            let html = `<div class="conversation-title">💬 ${conv.title}</div>`;
+            conv.dialogues.forEach(d => {
+                html += `
+                    <div class="dialogue-row">
+                        <div class="speaker">${d.speaker}:</div>
+                        <div class="twi-line">${d.twi}</div>
+                        <div class="english-line">${d.english}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('conversationBox').innerHTML = html;
+        }
+
+        function renderQuestions() {
+            const conv = conversations[currentIndex];
+            let html = `<div class="questions-title">📝 Comprehension Questions</div>`;
+            
+            conv.questions.forEach((q, idx) => {
+                const answered = userAnswers[`${currentIndex}-${idx}`] !== undefined;
+                const selected = userAnswers[`${currentIndex}-${idx}`];
+                const isCorrect = answered && selected === q.correct;
+                
+                html += `
+                    <div class="question-item">
+                        <div class="question-text">${idx + 1}. ${q.text}</div>
+                        <div class="options" id="options-${idx}">
+                `;
+                
+                q.options.forEach((opt, optIdx) => {
+                    let additionalClass = '';
+                    if (answered && optIdx === q.correct) additionalClass = 'correct';
+                    if (answered && optIdx === selected && !isCorrect) additionalClass = 'wrong';
+                    
+                    html += `<button class="option-btn ${additionalClass}" onclick="checkAnswer(${idx}, ${optIdx})" ${answered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + optIdx)}. ${opt}
+                    </button>`;
+                });
+                
+                html += `</div><div id="feedback-${idx}" class="feedback"></div></div>`;
+            });
+            
+            document.getElementById('questionsArea').innerHTML = html;
+            updateScore();
+        }
+
+        function checkAnswer(qIdx, selectedIdx) {
+            const key = `${currentIndex}-${qIdx}`;
+            if (userAnswers[key] !== undefined) return;
+            
+            const conv = conversations[currentIndex];
+            const q = conv.questions[qIdx];
+            const isCorrect = (selectedIdx === q.correct);
+            userAnswers[key] = selectedIdx;
+            
+            const optionsDiv = document.getElementById(`options-${qIdx}`);
+            const btns = optionsDiv.querySelectorAll('.option-btn');
+            
+            btns.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === q.correct) btn.classList.add('correct');
+                if (idx === selectedIdx && !isCorrect) btn.classList.add('wrong');
+            });
+            
+            const feedbackDiv = document.getElementById(`feedback-${qIdx}`);
+            feedbackDiv.classList.add('show');
+            if (isCorrect) {
+                feedbackDiv.classList.add('correct-feedback');
+                feedbackDiv.innerHTML = '✅ Correct! Well done.';
+            } else {
+                feedbackDiv.classList.add('wrong-feedback');
+                const correctLetter = String.fromCharCode(65 + q.correct);
+                const correctText = q.options[q.correct];
+                feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is ${correctLetter}: ${correctText}`;
+            }
+            
+            updateScore();
+        }
+
+        function updateScore() {
+            const conv = conversations[currentIndex];
+            let correctCount = 0;
+            let total = conv.questions.length;
+            
+            for (let i = 0; i < total; i++) {
+                const key = `${currentIndex}-${i}`;
+                if (userAnswers[key] !== undefined && userAnswers[key] === conv.questions[i].correct) {
+                    correctCount++;
+                }
+            }
+            
+            const percentage = Math.round((correctCount / total) * 100);
+            document.getElementById('scoreArea').innerHTML = `
+                <strong>📊 Your Score: ${correctCount}/${total} (${percentage}%)</strong>
+                ${percentage === 100 ? '<br>🎉 Perfect! You understand this conversation completely! 🎉' : ''}
+                ${percentage >= 70 && percentage < 100 ? '<br>👍 Good job! Review the conversation and try again.' : ''}
+                ${percentage < 70 && correctCount > 0 ? '<br>📚 Keep practicing! Read the conversation one more time.' : ''}
+            `;
+            
+            // Update progress bar
+            const answeredCount = Object.keys(userAnswers).filter(k => k.startsWith(`${currentIndex}-`)).length;
+            const progressPercent = (answeredCount / total) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+        }
+
+        function updateProgress() {
+            const conv = conversations[currentIndex];
+            const answeredCount = Object.keys(userAnswers).filter(k => k.startsWith(`${currentIndex}-`)).length;
+            const progressPercent = (answeredCount / conv.questions.length) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+        }
+
+        function resetCurrent() {
+            // Clear answers only for current conversation
+            for (let i = 0; i < conversations[currentIndex].questions.length; i++) {
+                delete userAnswers[`${currentIndex}-${i}`];
+            }
+            renderQuestions();
+            updateProgress();
+        }
+
+        // Initialize
+        renderConversationNav();
+        renderConversation();
+        renderQuestions();
+    </script>
+</body>
+</html>
