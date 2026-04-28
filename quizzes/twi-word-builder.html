@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Word Builder | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #2A9D8F10, #D4A37310);
+            padding: 1rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .stat-box {
+            background: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+        .score-box { background: #2A9D8F; color: white; }
+        
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        
+        .question-card {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 1rem 0;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+        .meaning-hint {
+            background: #2A9D8F;
+            color: white;
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .audio-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            margin: 1rem auto;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .audio-btn:hover {
+            transform: scale(1.05);
+            background: #1f7a6e;
+        }
+        
+        .letter-tiles {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+        .letter-tile {
+            background: #2A9D8F;
+            color: white;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: monospace;
+        }
+        .letter-tile:hover {
+            transform: scale(1.05);
+            background: #1f7a6e;
+        }
+        .letter-tile.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .answer-area {
+            background: #f0f7f5;
+            border-radius: 60px;
+            padding: 1rem;
+            margin: 1rem 0;
+            min-height: 80px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .answer-letter {
+            background: #2A9D8F;
+            color: white;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: monospace;
+        }
+        .answer-letter:hover {
+            background: #E76F51;
+        }
+        .answer-letter.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .check-btn, .clear-btn, .next-btn {
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .check-btn { background: #2A9D8F; color: white; }
+        .clear-btn { background: #D4A373; color: #1E1E1E; }
+        .next-btn { background: #2A9D8F; color: white; display: none; }
+        .next-btn.show { display: inline-block; }
+        
+        .feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+            text-align: center;
+            font-weight: 500;
+        }
+        .feedback.show { display: block; }
+        .feedback.correct-feedback {
+            background: #2A9D8F20;
+            color: #2A9D8F;
+        }
+        .feedback.wrong-feedback {
+            background: #E76F5120;
+            color: #E76F51;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .reset-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        .close-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        .score-area {
+            text-align: center;
+            padding: 1rem;
+            background: #2A9D8F10;
+            border-radius: 20px;
+            margin-top: 1rem;
+        }
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .results-table th, .results-table td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .results-table th {
+            background: #2A9D8F;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .audio-btn { width: 60px; height: 60px; font-size: 1.5rem; }
+            .letter-tile { width: 55px; height: 55px; font-size: 1.2rem; }
+            .answer-letter { width: 50px; height: 50px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>🔨 Twi Word Builder <span class="badge">Build the Word</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎧 Listen to the word. Click letters to build the correct spelling!</p>
+
+        <div class="quiz-stats">
+            <div class="stat-box">📊 Word <span id="currentQ">1</span> / <span id="totalQ">0</span></div>
+            <div class="stat-box score-box">🏆 Score <span id="score">0</span></div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div id="quizContainer"></div>
+
+        <div class="nav-buttons">
+            <button class="reset-btn" onclick="resetQuiz()">🔄 New Game</button>
+            <button class="close-btn" onclick="window.close()">❌ Close</button>
+        </div>
+    </div>
+
+    <script>
+        const vocabularyWords = [
+            { word: "abaa", meaning: "cane / stick", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/abaa.m4a" },
+            { word: "aboa", meaning: "animal", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/aboa.m4a" },
+            { word: "aburo", meaning: "corn", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/aburo.m4a" },
+            { word: "amango", meaning: "mango", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/amango.m4a" },
+            { word: "ani", meaning: "eye", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ani.m4a" },
+            { word: "atadeɛ", meaning: "dress", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/atadeɛ.m4a" },
+            { word: "banku", meaning: "banku (food)", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/banku.m4a" },
+            { word: "bisa", meaning: "ask", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/bisa.m4a" },
+            { word: "didi", meaning: "eat (repeated)", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/didi.m4a" },
+            { word: "din", meaning: "name", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/din.m4a" },
+            { word: "duku", meaning: "headwrap", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/duku.m4a" },
+            { word: "efie", meaning: "house / home", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/efie.m4a" },
+            { word: "ewiase", meaning: "world", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ewiase.m4a" },
+            { word: "galɔn", meaning: "gallon", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/galɔn.m4a" },
+            { word: "gyata", meaning: "lion", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/gyata.m4a" },
+            { word: "hama", meaning: "rope", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/hama.m4a" },
+            { word: "hwɛ", meaning: "look", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/hwɛ.m4a" },
+            { word: "hyɛ", meaning: "wear", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/hyɛ.m4a" },
+            { word: "kanea", meaning: "lamp", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/kanea.m4a" },
+            { word: "kwadu", meaning: "banana", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/kwadu.m4a" },
+            { word: "lɔre", meaning: "lorry", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/lɔre.m4a" },
+            { word: "nana", meaning: "grandparent", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/nana.m4a" },
+            { word: "nante", meaning: "walk", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/nante.m4a" },
+            { word: "nnwom", meaning: "songs", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/nnwom.m4a" },
+            { word: "odwan", meaning: "sheep", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/odwan.m4a" },
+            { word: "owuo", meaning: "death", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/owuo.m4a" },
+            { word: "praeɛ", meaning: "broom", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/praeɛ.m4a" },
+            { word: "rɔba", meaning: "rubber", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/rɔba.m4a" },
+            { word: "sekan", meaning: "knife", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/sekan.m4a" },
+            { word: "sika", meaning: "money", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/sika.m4a" },
+            { word: "twerɛ", meaning: "write", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/twerɛ.m4a" },
+            { word: "waduro", meaning: "mortar", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/waduro.m4a" },
+            { word: "yoma", meaning: "camel", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/yoma.m4a" },
+            { word: "ɔbrɛ", meaning: "tiredness", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ɔbrɛ.m4a" },
+            { word: "ɔdɔ", meaning: "love", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ɔdɔ.m4a" },
+            { word: "ɔkyena", meaning: "tomorrow", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ɔkyena.m4a" },
+            { word: "ɛdan", meaning: "building", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ɛdan.m4a" },
+            { word: "ɛkyɛ", meaning: "gift", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ɛkyɛ.m4a" },
+            { word: "ɛpo", meaning: "ocean", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/new/ɛpo.m4a" }
+        ];
+
+        let quizWords = [];
+        let currentIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+        let currentAnswer = [];
+        let availableLetters = [];
+        let currentAudio = null;
+        let gameLocked = false;
+        let currentWord = null;
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function generateQuiz() {
+            const shuffled = shuffleArray([...vocabularyWords]);
+            quizWords = shuffled.slice(0, 10);
+            currentIndex = 0;
+            score = 0;
+            userAnswers = new Array(quizWords.length).fill(null);
+            gameLocked = false;
+            
+            document.getElementById('totalQ').innerText = quizWords.length;
+            updateStats();
+            loadWord();
+        }
+
+        function loadWord() {
+            if (currentIndex >= quizWords.length) {
+                showResults();
+                return;
+            }
+            currentWord = quizWords[currentIndex];
+            currentAnswer = [];
+            availableLetters = shuffleArray(currentWord.word.split(''));
+            gameLocked = false;
+            renderQuestion();
+        }
+
+        function playAudio(audioUrl, word) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            currentAudio = new Audio(audioUrl);
+            currentAudio.play().catch(function(e) {
+                alert(`🔊 Could not play audio. The word is: "${word}"`);
+            });
+        }
+
+        function renderQuestion() {
+            if (currentIndex >= quizWords.length) {
+                showResults();
+                return;
+            }
+            
+            const hasAnswered = userAnswers[currentIndex] !== null;
+            
+            let lettersHtml = '';
+            if (!hasAnswered && availableLetters.length > 0) {
+                lettersHtml = '<div class="letter-tiles">';
+                for (let idx = 0; idx < availableLetters.length; idx++) {
+                    const letter = availableLetters[idx];
+                    lettersHtml += `<div class="letter-tile" onclick="selectLetter(${idx})">${letter}</div>`;
+                }
+                lettersHtml += '</div>';
+            } else if (hasAnswered) {
+                lettersHtml = '<div class="letter-tiles"><div style="color:#999;">Answer checked. Click Next Word →</div></div>';
+            }
+            
+            let answerHtml = '<div class="answer-area">';
+            if (hasAnswered) {
+                const userSpelling = userAnswers[currentIndex].spelling;
+                for (let i = 0; i < userSpelling.length; i++) {
+                    answerHtml += `<div class="answer-letter disabled">${userSpelling[i]}</div>`;
+                }
+            } else {
+                for (let i = 0; i < currentAnswer.length; i++) {
+                    answerHtml += `<div class="answer-letter" onclick="removeLetter(${i})">${currentAnswer[i]}</div>`;
+                }
+                if (currentAnswer.length === 0) {
+                    answerHtml += '<div style="color: #999;">Click letters below to build the word...</div>';
+                }
+            }
+            answerHtml += '</div>';
+            
+            let html = `
+                <div class="question-card">
+                    <div class="meaning-hint">📖 ${currentWord.meaning}</div>
+                    <button class="audio-btn" onclick="playAudio('${currentWord.audio}', '${currentWord.word}')">🔊</button>
+                    <div style="font-size: 0.8rem; color: #999; margin-bottom: 1rem;">Click 🔊 to hear the word</div>
+                    ${answerHtml}
+                    ${lettersHtml}
+                    <div class="action-buttons">
+                        ${!hasAnswered ? `<button class="clear-btn" onclick="clearAnswer()">🗑️ Clear</button>` : ''}
+                        ${!hasAnswered ? `<button class="check-btn" onclick="checkAnswer()">✅ Check Answer</button>` : ''}
+                        <button class="next-btn ${hasAnswered ? 'show' : ''}" onclick="nextWord()">Next Word →</button>
+                    </div>
+                    <div id="feedback" class="feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('feedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = userAnswers[currentIndex].isCorrect;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct-feedback');
+                    feedbackDiv.innerHTML = `✅ Correct! "${userAnswers[currentIndex].spelling}" means "${currentWord.meaning}". Great job! 🎉`;
+                } else {
+                    feedbackDiv.classList.add('wrong-feedback');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct spelling is "${currentWord.word}". Keep practicing! 💪`;
+                }
+            }
+        }
+
+        function selectLetter(idx) {
+            if (userAnswers[currentIndex] !== null) return;
+            if (gameLocked) return;
+            if (idx >= availableLetters.length) return;
+            
+            const letter = availableLetters[idx];
+            currentAnswer.push(letter);
+            availableLetters.splice(idx, 1);
+            renderQuestion();
+        }
+
+        function removeLetter(idx) {
+            if (userAnswers[currentIndex] !== null) return;
+            if (gameLocked) return;
+            if (idx >= currentAnswer.length) return;
+            
+            const letter = currentAnswer[idx];
+            currentAnswer.splice(idx, 1);
+            availableLetters.push(letter);
+            renderQuestion();
+        }
+
+        function clearAnswer() {
+            if (userAnswers[currentIndex] !== null) return;
+            if (gameLocked) return;
+            
+            for (let i = 0; i < currentAnswer.length; i++) {
+                availableLetters.push(currentAnswer[i]);
+            }
+            currentAnswer = [];
+            renderQuestion();
+        }
+
+        function checkAnswer() {
+            if (userAnswers[currentIndex] !== null) return;
+            if (gameLocked) return;
+            
+            const userSpelling = currentAnswer.join('');
+            const isCorrect = (userSpelling === currentWord.word);
+            
+            userAnswers[currentIndex] = {
+                spelling: userSpelling,
+                isCorrect: isCorrect,
+                correctWord: currentWord.word
+            };
+            
+            if (isCorrect) {
+                score++;
+            }
+            
+            gameLocked = true;
+            updateStats();
+            renderQuestion();
+        }
+
+        function nextWord() {
+            if (currentIndex < quizWords.length - 1) {
+                currentIndex++;
+                loadWord();
+            } else if (currentIndex === quizWords.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('currentQ').innerText = currentIndex + 1;
+            document.getElementById('score').innerText = score;
+            if (quizWords.length > 0) {
+                const progressPercent = ((currentIndex + 1) / quizWords.length) * 100;
+                document.getElementById('progressFill').style.width = progressPercent + '%';
+            }
+        }
+
+        function showResults() {
+            const total = quizWords.length;
+            const percentage = Math.round((score / total) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🔨';
+                message = 'PERFECT! You are a Word Building Master!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You have great vocabulary skills!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏🔨';
+                message = 'Good job! Keep building those words!';
+            } else if (percentage >= 40) {
+                emoji = '📖💪✏️';
+                message = 'Keep going! Practice makes perfect!';
+            } else {
+                emoji = '🌱✨🔨';
+                message = 'You are just starting! Every word you learn is progress!';
+            }
+            
+            let tableHtml = '<table class="results-table"><thead><tr><th>#</th><th>Your Spelling</th><th>Correct Spelling</th><th>Meaning</th><th>Result</th></tr></thead><tbody>';
+            for (let i = 0; i < quizWords.length; i++) {
+                const answer = userAnswers[i];
+                const isCorrect = answer ? answer.isCorrect : false;
+                const yourSpelling = answer ? answer.spelling : '(no answer)';
+                const correctWord = quizWords[i].word;
+                const meaning = quizWords[i].meaning;
+                tableHtml += `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td>${yourSpelling}</td>
+                        <td>${correctWord}</td>
+                        <td>${meaning}</td>
+                        <td class="${isCorrect ? 'correct-mark' : 'wrong-mark'}">${isCorrect ? '✅' : '❌'}</td>
+                    </tr>
+                `;
+            }
+            tableHtml += '</tbody></table>';
+            
+            const resultHtml = `
+                <div class="score-area">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${score}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2.5rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0; font-weight: 600;">${message}</p>
+                    ${tableHtml}
+                    <div style="margin-top: 1.5rem;">
+                        <button onclick="resetQuiz()" style="background: #2A9D8F; color: white; border: none; padding: 0.6rem 1.5rem; border-radius: 50px; cursor: pointer; font-weight: bold;">🔄 Play Again</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultHtml;
+            document.getElementById('progressFill').style.width = '100%';
+        }
+
+        function resetQuiz() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            generateQuiz();
+        }
+
+        generateQuiz();
+    </script>
+</body>
+</html>
