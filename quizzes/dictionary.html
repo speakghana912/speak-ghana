@@ -157,10 +157,26 @@
             <button class="filter-btn" data-cat="greetings">👋 Greetings</button>
             <button class="filter-btn" data-cat="numbers">🔢 Numbers</button>
             <button class="filter-btn" data-cat="time">⏰ Time</button>
+            <button class="filter-btn" data-cat="days">📅 Days</button>
+            <button class="filter-btn" data-cat="months">🗓️ Months</button>
             <button class="filter-btn" data-cat="verbs">🏃 Verbs</button>
             <button class="filter-btn" data-cat="prepositions">📍 Prepositions</button>
             <button class="filter-btn" data-cat="conjunctions">🔗 Conjunctions</button>
             <button class="filter-btn" data-cat="question">❓ Question Words</button>
+            <button class="filter-btn" data-cat="clothes">👗 Clothes</button>
+            <button class="filter-btn" data-cat="health">🏥 Health</button>
+            <button class="filter-btn" data-cat="school">🎒 School</button>
+            <button class="filter-btn" data-cat="work">💼 Work</button>
+            <button class="filter-btn" data-cat="transport">🚗 Transport</button>
+            <button class="filter-btn" data-cat="money">💰 Money</button>
+            <button class="filter-btn" data-cat="religion">🙏 Religion</button>
+            <button class="filter-btn" data-cat="emotions">❤️ Emotions</button>
+            <button class="filter-btn" data-cat="directions">🧭 Directions</button>
+            <button class="filter-btn" data-cat="phrases">💬 Phrases</button>
+            <button class="filter-btn" data-cat="tense">🔧 Tense Markers</button>
+            <button class="filter-btn" data-cat="negation">🚫 Negation</button>
+            <button class="filter-btn" data-cat="places">🌍 Places</button>
+            <button class="filter-btn" data-cat="professions">👨‍⚕️ Professions</button>
         </div>
 
         <div class="table-wrapper">
@@ -185,29 +201,30 @@
 
     <script>
         const dictionary = [
-            // ===== PRONOUNS (15) =====
-            { twi: "me", english: "I/me", category: "pronouns" },
+
+            // ===== PRONOUNS =====
+            { twi: "me", english: "I / me", category: "pronouns" },
             { twi: "wo", english: "you (singular)", category: "pronouns" },
-            { twi: "ɔ", english: "he/she/him/her", category: "pronouns" },
-            { twi: "yɛ", english: "we/us", category: "pronouns" },
+            { twi: "ɔ", english: "he / she / him / her", category: "pronouns" },
+            { twi: "yɛ", english: "we / us", category: "pronouns" },
             { twi: "mo", english: "you (plural)", category: "pronouns" },
-            { twi: "wɔ", english: "they/them", category: "pronouns" },
+            { twi: "wɔ", english: "they / them", category: "pronouns" },
             { twi: "me ho", english: "myself", category: "pronouns" },
             { twi: "wo ho", english: "yourself", category: "pronouns" },
-            { twi: "ne ho", english: "himself/herself", category: "pronouns" },
+            { twi: "ne ho", english: "himself / herself", category: "pronouns" },
             { twi: "yɛn ho", english: "ourselves", category: "pronouns" },
             { twi: "mo ho", english: "yourselves", category: "pronouns" },
             { twi: "wɔn ho", english: "themselves", category: "pronouns" },
-            { twi: "nea", english: "who/whom/which", category: "pronouns" },
+            { twi: "nea", english: "who / whom / which", category: "pronouns" },
             { twi: "biribiara", english: "everything", category: "pronouns" },
             { twi: "hwee", english: "nothing", category: "pronouns" },
 
-            // ===== ADVERBS (40) =====
+            // ===== ADVERBS =====
             { twi: "ntɛm", english: "quickly", category: "adverbs" },
             { twi: "nwinwinn", english: "slowly", category: "adverbs" },
             { twi: "papaapa", english: "very well", category: "adverbs" },
             { twi: "bɔne", english: "badly", category: "adverbs" },
-            { twi: "daa", english: "always/every day", category: "adverbs" },
+            { twi: "daa", english: "always / every day", category: "adverbs" },
             { twi: "mpɛn pii", english: "often", category: "adverbs" },
             { twi: "ɛda bi", english: "sometimes", category: "adverbs" },
             { twi: "nkyɛ", english: "rarely", category: "adverbs" },
@@ -217,139 +234,122 @@
             { twi: "baabi", english: "somewhere", category: "adverbs" },
             { twi: "baabiara", english: "everywhere", category: "adverbs" },
             { twi: "fifri", english: "outside", category: "adverbs" },
-            { twi: "wɔ fie", english: "inside/home", category: "adverbs" },
+            { twi: "wɔ fie", english: "inside / home", category: "adverbs" },
             { twi: "mprempren", english: "now", category: "adverbs" },
             { twi: "ansa na", english: "before", category: "adverbs" },
-            { twi: "akyiri", english: "after/later", category: "adverbs" },
+            { twi: "akyiri", english: "after / later", category: "adverbs" },
             { twi: "dabɛn", english: "when", category: "adverbs" },
             { twi: "sɛn", english: "how", category: "adverbs" },
-            { twi: "dɛn", english: "what/why", category: "adverbs" },
+            { twi: "dɛn", english: "what / why", category: "adverbs" },
             { twi: "adɛn", english: "why", category: "adverbs" },
             { twi: "aane", english: "yes", category: "adverbs" },
-            { twi: "abi", english: "no/not", category: "adverbs" },
-            { twi: "ampɔ", english: "perhaps/maybe", category: "adverbs" },
+            { twi: "abi", english: "no / not", category: "adverbs" },
+            { twi: "ampɔ", english: "perhaps / maybe", category: "adverbs" },
             { twi: "amane", english: "unfortunately", category: "adverbs" },
             { twi: "anibere", english: "luckily", category: "adverbs" },
-            { twi: "pɛ", english: "exactly/precisely", category: "adverbs" },
-            { twi: "koraa", english: "very/indeed", category: "adverbs" },
-            { twi: "ara", english: "even/also", category: "adverbs" },
-            { twi: "nso", english: "also/too", category: "adverbs" },
+            { twi: "pɛ", english: "exactly / precisely", category: "adverbs" },
+            { twi: "koraa", english: "very / indeed", category: "adverbs" },
+            { twi: "ara", english: "even / also", category: "adverbs" },
+            { twi: "nso", english: "also / too", category: "adverbs" },
             { twi: "mpo", english: "even", category: "adverbs" },
-            { twi: "sɛnea", english: "as/like", category: "adverbs" },
+            { twi: "sɛnea", english: "as / like", category: "adverbs" },
             { twi: "te sɛ", english: "such as", category: "adverbs" },
             { twi: "bɔɔden", english: "forcefully", category: "adverbs" },
-            { twi: "dwo dwo", english: "gently/softly", category: "adverbs" },
+            { twi: "dwo dwo", english: "gently / softly", category: "adverbs" },
             { twi: "fɛm", english: "quietly", category: "adverbs" },
             { twi: "bɔɔbɔɔ", english: "gradually", category: "adverbs" },
             { twi: "pɛpɛɛpɛ", english: "suddenly", category: "adverbs" },
-            { twi: "nokware", english: "truly/honestly", category: "adverbs" },
+            { twi: "nokware", english: "truly / honestly", category: "adverbs" },
 
-            // ===== ADJECTIVES (60) =====
-            { twi: "papa", english: "good/nice", category: "adjectives" },
-            { twi: "bɔne", english: "bad/evil", category: "adjectives" },
-            { twi: "fofor", english: "new", category: "adjectives" },
-            { twi: "deda", english: "old", category: "adjectives" },
-            { twi: "kɛse", english: "big/large", category: "adjectives" },
+            // ===== ADJECTIVES =====
+            { twi: "papa", english: "good / nice", category: "adjectives" },
+            { twi: "bɔne", english: "bad / evil", category: "adjectives" },
+            { twi: "fofor", english: "new / fresh", category: "adjectives" },
+            { twi: "deda", english: "old / stale", category: "adjectives" },
+            { twi: "kɛse", english: "big / large", category: "adjectives" },
             { twi: "ketewa", english: "small", category: "adjectives" },
-            { twi: "tenten", english: "long/tall", category: "adjectives" },
+            { twi: "tenten", english: "long / tall", category: "adjectives" },
             { twi: "tia", english: "short", category: "adjectives" },
-            { twi: "yɛ", english: "soft", category: "adjectives" },
-            { twi: "so", english: "hard", category: "adjectives" },
             { twi: "funu", english: "thick", category: "adjectives" },
             { twi: "tɛrɛ", english: "thin", category: "adjectives" },
             { twi: "duru", english: "heavy", category: "adjectives" },
             { twi: "hare", english: "light (weight)", category: "adjectives" },
-            { twi: "dɛ", english: "sweet/pleasant", category: "adjectives" },
+            { twi: "dɛ", english: "sweet / pleasant", category: "adjectives" },
             { twi: "nwen", english: "sour", category: "adjectives" },
             { twi: "yɛdɛ", english: "beautiful", category: "adjectives" },
-            { twi: "ɛfɛ", english: "beautiful/pretty", category: "adjectives" },
+            { twi: "ɛfɛ", english: "beautiful / pretty", category: "adjectives" },
             { twi: "wowɔ", english: "ugly", category: "adjectives" },
-            { twi: "ahuhuro", english: "hot/heat", category: "adjectives" },
+            { twi: "ahuhuro", english: "hot / warm", category: "adjectives" },
             { twi: "awɔw", english: "cold", category: "adjectives" },
-            { twi: "fofor", english: "fresh", category: "adjectives" },
-            { twi: "dadaw", english: "stale/old", category: "adjectives" },
-            { twi: "mmerɛw", english: "weak", category: "adjectives" },
-            { twi: "den", english: "strong/hard", category: "adjectives" },
+            { twi: "mmerɛw", english: "weak / easy", category: "adjectives" },
+            { twi: "den", english: "strong / hard / difficult", category: "adjectives" },
             { twi: "brɛ", english: "tired", category: "adjectives" },
-            { twi: "ahɔho", english: "fresh/energetic", category: "adjectives" },
             { twi: "ano", english: "sharp", category: "adjectives" },
-            { twi: "nom", english: "blunt", category: "adjectives" },
             { twi: "kurakura", english: "round", category: "adjectives" },
-            { twi: "trɛw", english: "wide/broad", category: "adjectives" },
-            { twi: "ɛwo", english: "narrow", category: "adjectives" },
-            { twi: "bɔ", english: "deep", category: "adjectives" },
-            { twi: "dɔ", english: "shallow", category: "adjectives" },
-            { twi: "yɛ", english: "good/fine", category: "adjectives" },
-            { twi: "dinn", english: "calm/quiet", category: "adjectives" },
+            { twi: "trɛw", english: "wide / broad", category: "adjectives" },
+            { twi: "dinn", english: "calm / quiet", category: "adjectives" },
             { twi: "hurum", english: "noisy", category: "adjectives" },
             { twi: "nokwaredi", english: "honest", category: "adjectives" },
             { twi: "adaadaa", english: "dishonest", category: "adjectives" },
             { twi: "anigyesɛm", english: "happy", category: "adjectives" },
             { twi: "awerɛhow", english: "sad", category: "adjectives" },
             { twi: "abufuo", english: "angry", category: "adjectives" },
-            { twi: "suro", english: "afraid/scared", category: "adjectives" },
+            { twi: "suro", english: "afraid / scared", category: "adjectives" },
             { twi: "akokoduro", english: "brave", category: "adjectives" },
-            { twi: "ɔpɛ", english: "kind", category: "adjectives" },
-            { twi: "nyansa", english: "wise/smart", category: "adjectives" },
+            { twi: "nyansa", english: "wise / smart", category: "adjectives" },
             { twi: "nkwasea", english: "foolish", category: "adjectives" },
             { twi: "adefo", english: "rich", category: "adjectives" },
             { twi: "ohia", english: "poor", category: "adjectives" },
             { twi: "ahonya", english: "wealthy", category: "adjectives" },
-            { twi: "mmɔbɔ", english: "poor/destitute", category: "adjectives" },
-            { twi: "awo", english: "young", category: "adjectives" },
-            { twi: "akwadaa", english: "childish", category: "adjectives" },
-            { twi: "panin", english: "elder/mature", category: "adjectives" },
-            { twi: "ɔyare", english: "sick/ill", category: "adjectives" },
+            { twi: "panin", english: "elder / mature", category: "adjectives" },
+            { twi: "ɔyare", english: "sick / ill", category: "adjectives" },
             { twi: "nyan", english: "awake", category: "adjectives" },
-            { twi: "da", english: "asleep", category: "adjectives" },
-            { twi: "awo", english: "raw/uncooked", category: "adjectives" },
             { twi: "nono", english: "ripe", category: "adjectives" },
+            { twi: "ɛyɛ den", english: "it is difficult", category: "adjectives" },
+            { twi: "ɛyɛ mmerɛw", english: "it is easy", category: "adjectives" },
+            { twi: "wo ho yɛ fɛ", english: "you look beautiful", category: "adjectives" },
+            { twi: "paapaapa", english: "best / very good", category: "adjectives" },
 
-            // ===== PREPOSITIONS (25) =====
-            { twi: "wɔ", english: "in/at/on", category: "prepositions" },
-            { twi: "so", english: "on/upon", category: "prepositions" },
-            { twi: "ase", english: "under/below", category: "prepositions" },
+            // ===== PREPOSITIONS =====
+            { twi: "wɔ", english: "in / at / on", category: "prepositions" },
+            { twi: "so", english: "on / upon", category: "prepositions" },
+            { twi: "ase", english: "under / below", category: "prepositions" },
             { twi: "anim", english: "in front of", category: "prepositions" },
             { twi: "akyi", english: "behind", category: "prepositions" },
             { twi: "ɛtɛm", english: "between", category: "prepositions" },
-            { twi: "afa", english: "beside/near", category: "prepositions" },
+            { twi: "afa", english: "beside / near", category: "prepositions" },
             { twi: "mu", english: "inside", category: "prepositions" },
             { twi: "aban", english: "outside", category: "prepositions" },
-            { twi: "nkyɛn", english: "by/near", category: "prepositions" },
-            { twi: "kɔ", english: "to/towards", category: "prepositions" },
+            { twi: "nkyɛn", english: "by / near", category: "prepositions" },
             { twi: "fi", english: "from", category: "prepositions" },
             { twi: "mfa", english: "through", category: "prepositions" },
-            { twi: "ho", english: "about/concerning", category: "prepositions" },
-            { twi: "de", english: "with/using", category: "prepositions" },
-            { twi: "a", english: "without", category: "prepositions" },
+            { twi: "ho", english: "about / concerning", category: "prepositions" },
+            { twi: "de", english: "with / using", category: "prepositions" },
             { twi: "ma", english: "for", category: "prepositions" },
             { twi: "gye", english: "except", category: "prepositions" },
             { twi: "ansu", english: "instead of", category: "prepositions" },
             { twi: "ɛsiane", english: "because of", category: "prepositions" },
-            { twi: "nti", english: "therefore/because", category: "prepositions" },
+            { twi: "nti", english: "therefore / because", category: "prepositions" },
             { twi: "firi", english: "starting from", category: "prepositions" },
-            { twi: "bɛ", english: "until", category: "prepositions" },
             { twi: "ansana", english: "before (time)", category: "prepositions" },
             { twi: "akyire", english: "after (time)", category: "prepositions" },
+            { twi: "sen", english: "than / more than", category: "prepositions" },
 
-            // ===== CONJUNCTIONS (15) =====
+            // ===== CONJUNCTIONS =====
             { twi: "na", english: "and", category: "conjunctions" },
-            { twi: "nanso", english: "but/however", category: "conjunctions" },
+            { twi: "nanso", english: "but / however", category: "conjunctions" },
             { twi: "anaa", english: "or", category: "conjunctions" },
             { twi: "ɛfiri sɛ", english: "because", category: "conjunctions" },
-            { twi: "sɛ", english: "if/whether", category: "conjunctions" },
-            { twi: "nti", english: "so/therefore", category: "conjunctions" },
+            { twi: "sɛ", english: "if / whether", category: "conjunctions" },
+            { twi: "nti", english: "so / therefore", category: "conjunctions" },
             { twi: "mpa", english: "although", category: "conjunctions" },
-            { twi: "berɛ a", english: "when/while", category: "conjunctions" },
-            { twi: "ansana", english: "before", category: "conjunctions" },
-            { twi: "akyiri", english: "after", category: "conjunctions" },
+            { twi: "berɛ a", english: "when / while", category: "conjunctions" },
             { twi: "kosi sɛ", english: "until", category: "conjunctions" },
-            { twi: "sɛnea", english: "as/like", category: "conjunctions" },
+            { twi: "sɛnea", english: "as / like", category: "conjunctions" },
             { twi: "naaso", english: "nevertheless", category: "conjunctions" },
             { twi: "sɛdeɛ", english: "so that", category: "conjunctions" },
-            { twi: "ansu", english: "rather than", category: "conjunctions" },
 
-            // ===== QUESTION WORDS (12) =====
+            // ===== QUESTION WORDS =====
             { twi: "dɛn", english: "what", category: "question" },
             { twi: "hɛn", english: "where", category: "question" },
             { twi: "dabɛn", english: "when", category: "question" },
@@ -358,16 +358,17 @@
             { twi: "hema", english: "how many", category: "question" },
             { twi: "adɛn", english: "why", category: "question" },
             { twi: "ɔhema", english: "how much", category: "question" },
-            { twi: "ɔdɛn", english: "what kind", category: "question" },
             { twi: "hwan", english: "who", category: "question" },
             { twi: "dea", english: "whose", category: "question" },
-            { twi: "ɛyɛ dɛn", english: "how is it", category: "question" },
+            { twi: "ɛyɛ dɛn", english: "what is it / how is it", category: "question" },
+            { twi: "wo firi he?", english: "where are you from?", category: "question" },
+            { twi: "wo din de sɛn?", english: "what is your name?", category: "question" },
 
-            // ===== HOME (updated & expanded) =====
-            { twi: "efie", english: "house", category: "home" },
+            // ===== HOME =====
+            { twi: "efie", english: "house / home", category: "home" },
             { twi: "ɛpono", english: "door / table", category: "home" },
             { twi: "mpoma", english: "window", category: "home" },
-            { twi: "akonnwa", english: "chair/seat", category: "home" },
+            { twi: "akonnwa", english: "chair / seat", category: "home" },
             { twi: "adamadwa", english: "writing chair / desk chair", category: "home" },
             { twi: "didipono", english: "dining table", category: "home" },
             { twi: "mpa", english: "bed", category: "home" },
@@ -375,7 +376,7 @@
             { twi: "sumiiɛ nnuraho", english: "pillowcase", category: "home" },
             { twi: "mpasotam", english: "bedsheet", category: "home" },
             { twi: "kuntu", english: "blanket", category: "home" },
-            { twi: "kɛtɛ", english: "mat/basket", category: "home" },
+            { twi: "kɛtɛ", english: "mat", category: "home" },
             { twi: "asa so", english: "hall / living room", category: "home" },
             { twi: "piam", english: "chamber / bedroom", category: "home" },
             { twi: "abranaa so", english: "veranda", category: "home" },
@@ -407,7 +408,7 @@
             { twi: "praeɛ", english: "broom", category: "home" },
             { twi: "towuro", english: "towel", category: "home" },
             { twi: "samina", english: "soap", category: "home" },
-            { twi: "sapɔ", english: "sponge (bath sponge)", category: "home" },
+            { twi: "sapɔ", english: "sponge", category: "home" },
             { twi: "kuruwaba", english: "chamber pot", category: "home" },
             { twi: "ahwehwɛ", english: "mirror", category: "home" },
             { twi: "ahwehwɛniwa", english: "eyeglasses / spectacles", category: "home" },
@@ -415,20 +416,20 @@
             { twi: "apasoɔ", english: "scissors", category: "home" },
             { twi: "paneɛ", english: "needle", category: "home" },
             { twi: "burogya", english: "matches", category: "home" },
-            { twi: "nku", english: "pomade (hair cream)", category: "home" },
+            { twi: "nku", english: "pomade / hair cream", category: "home" },
             { twi: "kyiniiɛ", english: "umbrella", category: "home" },
             { twi: "akasanoma", english: "radio", category: "home" },
             { twi: "twerɛdua", english: "pen / pencil", category: "home" },
             { twi: "akuma", english: "axe", category: "home" },
             { twi: "ɛban", english: "fence / wall", category: "home" },
 
-            // ===== FAMILY (20) =====
+            // ===== FAMILY =====
             { twi: "agya", english: "father", category: "family" },
             { twi: "ɛna", english: "mother", category: "family" },
             { twi: "abaayewa", english: "girl", category: "family" },
             { twi: "baamua", english: "boy", category: "family" },
             { twi: "akwadaa", english: "child", category: "family" },
-            { twi: "nana", english: "grandfather/grandmother", category: "family" },
+            { twi: "nana", english: "grandfather / grandmother", category: "family" },
             { twi: "nua", english: "sibling", category: "family" },
             { twi: "okunu", english: "husband", category: "family" },
             { twi: "yere", english: "wife", category: "family" },
@@ -444,7 +445,7 @@
             { twi: "ɔtan", english: "enemy", category: "family" },
             { twi: "ɔhɔho", english: "stranger", category: "family" },
 
-            // ===== FOOD (30) =====
+            // ===== FOOD =====
             { twi: "aduane", english: "food", category: "food" },
             { twi: "kwadu", english: "banana", category: "food" },
             { twi: "ankaa", english: "orange", category: "food" },
@@ -464,12 +465,12 @@
             { twi: "mpotompoto", english: "mashed yam", category: "food" },
             { twi: "abɛ", english: "palm nut", category: "food" },
             { twi: "nkyene", english: "salt", category: "food" },
-            { twi: "ɛyɛ dɛ", english: "it's sweet", category: "food" },
-            { twi: "ɛyɛ nwen", english: "it's sour", category: "food" },
-            { twi: "ɔkɔm de me", english: "I'm hungry", category: "food" },
-            { twi: "sukɔm de me", english: "I'm thirsty", category: "food" },
+            { twi: "ɛyɛ dɛ", english: "it is sweet", category: "food" },
+            { twi: "ɛyɛ nwen", english: "it is sour", category: "food" },
+            { twi: "ɔkɔm de me", english: "I am hungry", category: "food" },
+            { twi: "sukɔm de me", english: "I am thirsty", category: "food" },
 
-            // ===== COLORS (12) =====
+            // ===== COLORS =====
             { twi: "tuntum", english: "black", category: "colors" },
             { twi: "bibire", english: "blue", category: "colors" },
             { twi: "dododeɛ", english: "brown", category: "colors" },
@@ -483,7 +484,7 @@
             { twi: "sum", english: "dark", category: "colors" },
             { twi: "fe", english: "bright", category: "colors" },
 
-            // ===== BODY PARTS (25) =====
+            // ===== BODY PARTS =====
             { twi: "ani", english: "eye", category: "body" },
             { twi: "nsa", english: "hand", category: "body" },
             { twi: "ti", english: "head", category: "body" },
@@ -510,7 +511,7 @@
             { twi: "honam", english: "skin", category: "body" },
             { twi: "ɛbɔ", english: "bone", category: "body" },
 
-            // ===== ANIMALS (updated & expanded) =====
+            // ===== ANIMALS =====
             { twi: "anomaa", english: "bird (general)", category: "animals" },
             { twi: "ntakraboa", english: "feathered animal / bird", category: "animals" },
             { twi: "kraman", english: "dog", category: "animals" },
@@ -526,16 +527,16 @@
             { twi: "nantwinini", english: "bull", category: "animals" },
             { twi: "nantwibedeɛ", english: "cow (female)", category: "animals" },
             { twi: "etwie", english: "leopard", category: "animals" },
-            { twi: "ɔsebɔ", english: "tiger/leopard", category: "animals" },
+            { twi: "ɔsebɔ", english: "tiger / leopard", category: "animals" },
             { twi: "afofrantɔ", english: "butterfly", category: "animals" },
             { twi: "apɔtorɔ", english: "frog", category: "animals" },
             { twi: "apɔnkyerɛne", english: "frog (alternate)", category: "animals" },
-            { twi: "akokɔ", english: "hen/chicken", category: "animals" },
+            { twi: "akokɔ", english: "hen / chicken", category: "animals" },
             { twi: "akokɔba", english: "chick", category: "animals" },
             { twi: "akokɔnini", english: "cock (male chicken)", category: "animals" },
             { twi: "akokɔbedeɛ", english: "hen (female chicken)", category: "animals" },
             { twi: "ako", english: "parrot", category: "animals" },
-            { twi: "nanka", english: "boa constrictor / crocodile", category: "animals" },
+            { twi: "nanka", english: "boa constrictor", category: "animals" },
             { twi: "ɔdɛnkyɛm", english: "crocodile", category: "animals" },
             { twi: "ɔhempɔn", english: "eagle", category: "animals" },
             { twi: "ɔkɔdeɛ", english: "eagle (alternate)", category: "animals" },
@@ -549,9 +550,7 @@
             { twi: "afono", english: "monkey (alternate)", category: "animals" },
             { twi: "ɔtwe", english: "duiker", category: "animals" },
             { twi: "ofui", english: "hyena", category: "animals" },
-            { twi: "pataku", english: "hyena (alternate)", category: "animals" },
             { twi: "sakraman", english: "jackal / wild dog / fox", category: "animals" },
-            { twi: "ɛpo", english: "hippo / sea/ocean", category: "animals" },
             { twi: "bonsu", english: "whale", category: "animals" },
             { twi: "oboodede", english: "shark", category: "animals" },
             { twi: "ɔkɔmfo", english: "bat", category: "animals" },
@@ -560,7 +559,6 @@
             { twi: "ɔkɔtɔ", english: "crab", category: "animals" },
             { twi: "ananse", english: "spider", category: "animals" },
             { twi: "opuro", english: "squirrel", category: "animals" },
-            { twi: "tawa", english: "squirrel (alternate)", category: "animals" },
             { twi: "amoakua", english: "ground squirrel", category: "animals" },
             { twi: "ɔkra", english: "cat", category: "animals" },
             { twi: "agyinamoa", english: "cat (alternate)", category: "animals" },
@@ -596,7 +594,6 @@
             { twi: "akyekyedeɛ", english: "tortoise", category: "animals" },
             { twi: "koterɛ", english: "lizard", category: "animals" },
             { twi: "ɔmampam", english: "monitor lizard", category: "animals" },
-            { twi: "akofena", english: "sword", category: "animals" },
             { twi: "akɔmfɛm", english: "guinea fowl", category: "animals" },
             { twi: "dabodabo", english: "duck", category: "animals" },
             { twi: "ɔpatuo", english: "owl", category: "animals" },
@@ -611,34 +608,31 @@
             { twi: "ɔforoteɛ", english: "deer", category: "animals" },
             { twi: "sisire", english: "bear", category: "animals" },
             { twi: "yoma", english: "camel", category: "animals" },
-            { twi: "santrofi anomaa", english: "nightjar", category: "animals" },
             { twi: "kontromfi", english: "baboon", category: "animals" },
             { twi: "apɛsɛ", english: "African brush-tailed porcupine", category: "animals" },
             { twi: "konkontiba", english: "tadpole", category: "animals" },
             { twi: "edwie", english: "louse", category: "animals" },
             { twi: "sommorɔ", english: "tick", category: "animals" },
-            { twi: "tfrɛ", english: "cockroach", category: "animals" },
+            { twi: "tɛfrɛ", english: "cockroach", category: "animals" },
             { twi: "nsonkuronsuo", english: "bedbug", category: "animals" },
             { twi: "huruiɛ", english: "tsetse fly", category: "animals" },
             { twi: "akokromfi", english: "praying mantis", category: "animals" },
             { twi: "abobɔnnua", english: "woodpecker", category: "animals" },
 
-            // ===== NATURE (25) =====
+            // ===== NATURE =====
             { twi: "awia", english: "sun", category: "nature" },
             { twi: "ɔsram", english: "moon", category: "nature" },
             { twi: "dua", english: "tree", category: "nature" },
             { twi: "nhwiren", english: "flower", category: "nature" },
             { twi: "bepɔ", english: "mountain", category: "nature" },
-            { twi: "ɛpo", english: "sea/ocean", category: "nature" },
+            { twi: "ɛpo", english: "sea / ocean", category: "nature" },
             { twi: "osu", english: "rain", category: "nature" },
             { twi: "mununkum", english: "cloud", category: "nature" },
             { twi: "nsoromma", english: "star", category: "nature" },
             { twi: "awiam", english: "sky", category: "nature" },
-            { twi: "asase", english: "earth/ground", category: "nature" },
-            { twi: "ɔkyena", english: "sky/heaven", category: "nature" },
+            { twi: "asase", english: "earth / ground", category: "nature" },
             { twi: "mframa", english: "wind", category: "nature" },
             { twi: "ɔhyew", english: "heat", category: "nature" },
-            { twi: "awɔw", english: "cold", category: "nature" },
             { twi: "sukɔm", english: "thirst", category: "nature" },
             { twi: "ɔkɔm", english: "hunger", category: "nature" },
             { twi: "awo", english: "birth", category: "nature" },
@@ -650,9 +644,9 @@
             { twi: "ɔhaw", english: "trouble", category: "nature" },
             { twi: "anigye", english: "joy", category: "nature" },
 
-            // ===== WEATHER (new category) =====
+            // ===== WEATHER =====
             { twi: "ewiem", english: "weather / sky", category: "weather" },
-            { twi: "nsuo", english: "rain / water", category: "weather" },
+            { twi: "osu", english: "rain", category: "weather" },
             { twi: "awia", english: "sun", category: "weather" },
             { twi: "mframa", english: "wind", category: "weather" },
             { twi: "munumkum", english: "cloud", category: "weather" },
@@ -666,29 +660,31 @@
             { twi: "awia pue", english: "the sun is out", category: "weather" },
             { twi: "mframa bɔ", english: "the wind is blowing", category: "weather" },
 
-            // ===== GREETINGS (20) =====
+            // ===== GREETINGS =====
             { twi: "akwaaba", english: "welcome", category: "greetings" },
             { twi: "medaase", english: "thank you", category: "greetings" },
-            { twi: "mepa wo kyɛw", english: "please/excuse me", category: "greetings" },
-            { twi: "maakye", english: "good morning", category: "greetings" },
-            { twi: "maaha", english: "good afternoon", category: "greetings" },
-            { twi: "maadwo", english: "good evening", category: "greetings" },
-            { twi: "da yie", english: "good night", category: "greetings" },
+            { twi: "meda wo ase", english: "I thank you", category: "greetings" },
+            { twi: "mepa wo kyɛw", english: "please / excuse me", category: "greetings" },
+            { twi: "maakye", english: "good morning (short)", category: "greetings" },
+            { twi: "mema wo akye", english: "good morning (formal)", category: "greetings" },
+            { twi: "maaha", english: "good afternoon (short)", category: "greetings" },
+            { twi: "mema wo aha", english: "good afternoon (formal)", category: "greetings" },
+            { twi: "maadwo", english: "good evening (short)", category: "greetings" },
+            { twi: "mema wo adwo", english: "good evening (formal)", category: "greetings" },
+            { twi: "da yie", english: "good night / rest well", category: "greetings" },
             { twi: "wo ho te sɛn?", english: "how are you?", category: "greetings" },
             { twi: "me ho yɛ", english: "I am fine", category: "greetings" },
             { twi: "yɛbɛhyia bio", english: "see you later", category: "greetings" },
             { twi: "yɛbɛhyia ɔkyena", english: "see you tomorrow", category: "greetings" },
             { twi: "nyame adom", english: "by God's grace", category: "greetings" },
-            { twi: "ɛyɛ", english: "it's nice/it's good", category: "greetings" },
-            { twi: "yoo", english: "okay/alright", category: "greetings" },
-            { twi: "mpa", english: "sorry", category: "greetings" },
-            { twi: "ɔyoo", english: "hooray/well done", category: "greetings" },
+            { twi: "ɛyɛ", english: "it is good / nice", category: "greetings" },
+            { twi: "yoo", english: "okay / alright", category: "greetings" },
+            { twi: "ɔyoo", english: "hooray / well done", category: "greetings" },
             { twi: "ayekoo", english: "well done", category: "greetings" },
             { twi: "yɛda ase", english: "we thank you", category: "greetings" },
-            { twi: "ɔdɔ yɛ", english: "love is good", category: "greetings" },
             { twi: "onyame nhyira wo", english: "God bless you", category: "greetings" },
 
-            // ===== NUMBERS (30) =====
+            // ===== NUMBERS =====
             { twi: "baako", english: "one", category: "numbers" },
             { twi: "mmienu", english: "two", category: "numbers" },
             { twi: "mmiɛnsa", english: "three", category: "numbers" },
@@ -720,7 +716,7 @@
             { twi: "apem", english: "one thousand", category: "numbers" },
             { twi: "ɔpepe", english: "ten thousand", category: "numbers" },
 
-            // ===== TIME (20) =====
+            // ===== TIME =====
             { twi: "ndɛ", english: "today", category: "time" },
             { twi: "ɛnnora", english: "yesterday", category: "time" },
             { twi: "ɔkyena", english: "tomorrow", category: "time" },
@@ -728,53 +724,77 @@
             { twi: "awia", english: "afternoon", category: "time" },
             { twi: "anwummerɛ", english: "evening", category: "time" },
             { twi: "anadwo", english: "night", category: "time" },
-            { twi: "dɔn", english: "hour/time", category: "time" },
+            { twi: "dɔn", english: "hour / time", category: "time" },
             { twi: "sema", english: "minute", category: "time" },
             { twi: "dapɛn", english: "week", category: "time" },
             { twi: "bosome", english: "month", category: "time" },
             { twi: "afe", english: "year", category: "time" },
             { twi: "mprempren", english: "now", category: "time" },
-            { twi: "afei", english: "then/next", category: "time" },
+            { twi: "afei", english: "then / next", category: "time" },
             { twi: "ansa", english: "before", category: "time" },
-            { twi: "akyiri", english: "after/later", category: "time" },
-            { twi: "ntɛm", english: "quickly", category: "time" },
-            { twi: "nwinwinn", english: "slowly", category: "time" },
-            { twi: "daa", english: "always/every day", category: "time" },
-            { twi: "ɛberɛ", english: "time/period", category: "time" },
+            { twi: "akyiri", english: "after / later", category: "time" },
+            { twi: "daa", english: "always / every day", category: "time" },
+            { twi: "ɛberɛ", english: "time / period", category: "time" },
+            { twi: "sɛnea ɛbɛyɛ", english: "in future", category: "time" },
+            { twi: "kane", english: "early", category: "time" },
+            { twi: "awiei", english: "the end / finally", category: "time" },
 
-            // ===== VERBS (60) =====
+            // ===== DAYS OF THE WEEK =====
+            { twi: "Dwowda", english: "Monday", category: "days" },
+            { twi: "Benada", english: "Tuesday", category: "days" },
+            { twi: "Wukuda", english: "Wednesday", category: "days" },
+            { twi: "Yawoada", english: "Thursday", category: "days" },
+            { twi: "Fida", english: "Friday", category: "days" },
+            { twi: "Memeneda", english: "Saturday", category: "days" },
+            { twi: "Kwasida", english: "Sunday", category: "days" },
+
+            // ===== MONTHS =====
+            { twi: "Ɔpɛpɔn", english: "January", category: "months" },
+            { twi: "Oforisuo", english: "February", category: "months" },
+            { twi: "Ɔbɛnim", english: "March", category: "months" },
+            { twi: "Ɔgyefuo", english: "April", category: "months" },
+            { twi: "Kotonimma", english: "May", category: "months" },
+            { twi: "Ayɛwohomumu", english: "June", category: "months" },
+            { twi: "Kitawonsa", english: "July", category: "months" },
+            { twi: "Ɔsannaa", english: "August", category: "months" },
+            { twi: "Ɛbɔ", english: "September", category: "months" },
+            { twi: "Ahinime", english: "October", category: "months" },
+            { twi: "Obubuo", english: "November", category: "months" },
+            { twi: "Ɔpenimma", english: "December", category: "months" },
+
+            // ===== VERBS =====
             { twi: "kɔ", english: "to go", category: "verbs" },
             { twi: "ba", english: "to come", category: "verbs" },
             { twi: "di", english: "to eat", category: "verbs" },
             { twi: "nom", english: "to drink", category: "verbs" },
             { twi: "da", english: "to sleep", category: "verbs" },
             { twi: "nyan", english: "to wake up", category: "verbs" },
-            { twi: "yɛ", english: "to do/make", category: "verbs" },
-            { twi: "ka", english: "to say/speak", category: "verbs" },
+            { twi: "yɛ", english: "to do / make", category: "verbs" },
+            { twi: "ka", english: "to say / speak", category: "verbs" },
             { twi: "hu", english: "to see", category: "verbs" },
             { twi: "te", english: "to hear", category: "verbs" },
             { twi: "nim", english: "to know", category: "verbs" },
             { twi: "sua", english: "to learn", category: "verbs" },
-            { twi: "kyerɛ", english: "to show/teach", category: "verbs" },
-            { twi: "bɔ", english: "to hit/create", category: "verbs" },
+            { twi: "kyerɛ", english: "to show / teach", category: "verbs" },
+            { twi: "bɔ", english: "to hit / create", category: "verbs" },
             { twi: "tɔ", english: "to buy", category: "verbs" },
             { twi: "tɔn", english: "to sell", category: "verbs" },
-            { twi: "pɛ", english: "to want/like", category: "verbs" },
+            { twi: "pɛ", english: "to want / like", category: "verbs" },
             { twi: "dɔ", english: "to love", category: "verbs" },
             { twi: "tan", english: "to hate", category: "verbs" },
             { twi: "suro", english: "to fear", category: "verbs" },
             { twi: "boa", english: "to help", category: "verbs" },
-            { twi: "hwɛ", english: "to look/watch", category: "verbs" },
+            { twi: "hwɛ", english: "to look / watch", category: "verbs" },
             { twi: "twa", english: "to cut", category: "verbs" },
             { twi: "kye", english: "to catch", category: "verbs" },
-            { twi: "si", english: "to stand/build", category: "verbs" },
+            { twi: "si", english: "to stand / build", category: "verbs" },
             { twi: "tɛn", english: "to sit", category: "verbs" },
-            { twi: "gu", english: "to pour/fall", category: "verbs" },
+            { twi: "gu", english: "to pour / fall", category: "verbs" },
             { twi: "bue", english: "to open", category: "verbs" },
             { twi: "to", english: "to close", category: "verbs" },
             { twi: "foro", english: "to climb", category: "verbs" },
             { twi: "sian", english: "to descend", category: "verbs" },
-            { twi: "tu", english: "to fly/jump", category: "verbs" },
+            { twi: "tu", english: "to fly / jump", category: "verbs" },
             { twi: "pa", english: "to swim", category: "verbs" },
             { twi: "nantew", english: "to walk", category: "verbs" },
             { twi: "hohoro", english: "to clean", category: "verbs" },
@@ -790,7 +810,7 @@
             { twi: "gye", english: "to receive", category: "verbs" },
             { twi: "ma", english: "to give", category: "verbs" },
             { twi: "fa", english: "to take", category: "verbs" },
-            { twi: "de", english: "to use", category: "verbs" },
+            { twi: "de", english: "to use / carry", category: "verbs" },
             { twi: "wɔ", english: "to have", category: "verbs" },
             { twi: "hia", english: "to need", category: "verbs" },
             { twi: "tumi", english: "to be able", category: "verbs" },
@@ -802,14 +822,311 @@
             { twi: "twɛn", english: "to wait", category: "verbs" },
             { twi: "dwen", english: "to think", category: "verbs" },
             { twi: "kae", english: "to remember", category: "verbs" },
-            { twi: "were", english: "to forget", category: "verbs" }
+            { twi: "were", english: "to forget", category: "verbs" },
+            { twi: "yɛ yare", english: "to be sick", category: "verbs" },
+            { twi: "tu kwan", english: "to travel / set off", category: "verbs" },
+            { twi: "san ba", english: "to come back / return", category: "verbs" },
+            { twi: "toa so", english: "to continue / keep on", category: "verbs" },
+            { twi: "goru", english: "to play", category: "verbs" },
+            { twi: "ware", english: "to marry", category: "verbs" },
+            { twi: "wo", english: "to give birth", category: "verbs" },
+            { twi: "wu", english: "to die", category: "verbs" },
+
+            // ===== CLOTHES & DRESSING =====
+            { twi: "ntoma", english: "cloth / fabric", category: "clothes" },
+            { twi: "atadeɛ", english: "dress / clothes (general)", category: "clothes" },
+            { twi: "taaba", english: "shirt", category: "clothes" },
+            { twi: "shɛɛte", english: "shirt (alternate)", category: "clothes" },
+            { twi: "sɔrɔ", english: "trousers / pants", category: "clothes" },
+            { twi: "trɔsa", english: "trousers (alternate)", category: "clothes" },
+            { twi: "sɛkɛ", english: "shoes", category: "clothes" },
+            { twi: "mpaboa", english: "shoes / sandals", category: "clothes" },
+            { twi: "kyɛ", english: "hat / cap", category: "clothes" },
+            { twi: "duku", english: "headscarf / headwrap", category: "clothes" },
+            { twi: "kaaba", english: "traditional blouse (for women)", category: "clothes" },
+            { twi: "swata", english: "sweater / jacket", category: "clothes" },
+            { twi: "nika", english: "shorts", category: "clothes" },
+            { twi: "skɛɛte", english: "skirt", category: "clothes" },
+            { twi: "ntomago", english: "rag / old cloth", category: "clothes" },
+            { twi: "asomadeɛ", english: "earrings", category: "clothes" },
+            { twi: "komadeɛ", english: "necklace", category: "clothes" },
+            { twi: "fitaa", english: "white cloth / traditional white attire", category: "clothes" },
+            { twi: "ntadeɛ hyɛ", english: "to wear clothes / to dress", category: "clothes" },
+            { twi: "tuo", english: "to put on / wear", category: "clothes" },
+
+            // ===== HEALTH =====
+            { twi: "yare", english: "sickness / illness", category: "health" },
+            { twi: "yɛ yare", english: "to be sick", category: "health" },
+            { twi: "dokɔta", english: "doctor", category: "health" },
+            { twi: "ayaresabea", english: "hospital", category: "health" },
+            { twi: "ayarehɔ", english: "clinic", category: "health" },
+            { twi: "tumi", english: "medicine", category: "health" },
+            { twi: "nnuru", english: "medicine / herb", category: "health" },
+            { twi: "meyare", english: "I am sick", category: "health" },
+            { twi: "me ho mfa me", english: "I don't feel well", category: "health" },
+            { twi: "me ho yɛ", english: "I am fine / I feel well", category: "health" },
+            { twi: "wo ho te sɛn?", english: "how are you feeling?", category: "health" },
+            { twi: "ani kum me", english: "I am sleepy", category: "health" },
+            { twi: "me ti yɛ me ya", english: "I have a headache", category: "health" },
+            { twi: "me yafunu yɛ me ya", english: "my stomach hurts", category: "health" },
+            { twi: "mogya", english: "blood", category: "health" },
+            { twi: "ahohora", english: "health / wellness", category: "health" },
+            { twi: "ayaresa", english: "treatment / cure", category: "health" },
+
+            // ===== SCHOOL & EDUCATION =====
+            { twi: "sukuu", english: "school", category: "school" },
+            { twi: "ɔkyerɛkyerɛfo", english: "teacher", category: "school" },
+            { twi: "ɔkyerɛkyerɛni", english: "teacher (alternate)", category: "school" },
+            { twi: "osuani", english: "student / pupil", category: "school" },
+            { twi: "nhoma", english: "book", category: "school" },
+            { twi: "twerɛdua", english: "pen / pencil", category: "school" },
+            { twi: "twerɛ", english: "writing", category: "school" },
+            { twi: "kenkan", english: "reading", category: "school" },
+            { twi: "atemmu", english: "examination / test", category: "school" },
+            { twi: "nhwehwɛmu", english: "examination / investigation", category: "school" },
+            { twi: "sukuu dan", english: "classroom", category: "school" },
+            { twi: "adaka", english: "school bag / box", category: "school" },
+            { twi: "bɔɔl", english: "ball (sports)", category: "school" },
+            { twi: "suase", english: "blackboard", category: "school" },
+            { twi: "sua", english: "to study / learn", category: "school" },
+            { twi: "kyerɛ", english: "to teach / show", category: "school" },
+            { twi: "adesua", english: "education / learning", category: "school" },
+            { twi: "mpɔtam", english: "chalk", category: "school" },
+            { twi: "nhoma twerɛ", english: "notebook", category: "school" },
+
+            // ===== WORK & OCCUPATIONS =====
+            { twi: "adwuma", english: "work / job", category: "work" },
+            { twi: "ɔdwumayɛfo", english: "worker", category: "work" },
+            { twi: "odwumahyɛfo", english: "boss / employer", category: "work" },
+            { twi: "ɔkuafo", english: "farmer", category: "work" },
+            { twi: "ɔtɔnfo", english: "trader / seller", category: "work" },
+            { twi: "ɔtɔnni", english: "seller (alternate)", category: "work" },
+            { twi: "ɔkyerɛkyerɛfo", english: "teacher", category: "work" },
+            { twi: "dɔkɔta", english: "doctor", category: "work" },
+            { twi: "sɔfo", english: "pastor / priest", category: "work" },
+            { twi: "polisi", english: "police officer", category: "work" },
+            { twi: "drɔba", english: "driver", category: "work" },
+            { twi: "adesuafo", english: "learner / apprentice", category: "work" },
+            { twi: "ɔdwontoni", english: "singer", category: "work" },
+            { twi: "ɔkannifoɔ", english: "leader", category: "work" },
+            { twi: "asraafoɔ", english: "soldier", category: "work" },
+            { twi: "ɔpanyin", english: "chief / elder / leader", category: "work" },
+            { twi: "adwuma yɛ", english: "to work", category: "work" },
+            { twi: "adwumaden", english: "hard work", category: "work" },
+
+            // ===== TRANSPORT & TRAVEL =====
+            { twi: "kaa", english: "car", category: "transport" },
+            { twi: "trotro", english: "minibus / trotro", category: "transport" },
+            { twi: "baabuu", english: "big bus", category: "transport" },
+            { twi: "hyɛn", english: "ship / boat", category: "transport" },
+            { twi: "wim hyɛn", english: "airplane", category: "transport" },
+            { twi: "kwan", english: "road / path / way", category: "transport" },
+            { twi: "nam kwan", english: "footpath", category: "transport" },
+            { twi: "stɛshɔn", english: "station", category: "transport" },
+            { twi: "bra", english: "come", category: "transport" },
+            { twi: "kɔ", english: "go", category: "transport" },
+            { twi: "twɛn me", english: "wait for me", category: "transport" },
+            { twi: "mekɔ", english: "I am going", category: "transport" },
+            { twi: "tu kwan", english: "to travel / set off", category: "transport" },
+            { twi: "kyerɛ me kwan", english: "show me the way", category: "transport" },
+            { twi: "me kɔ fie", english: "I am going home", category: "transport" },
+            { twi: "mere kɔ fie", english: "I am going home (progressive)", category: "transport" },
+            { twi: "hɛn na wo kɔ?", english: "where are you going?", category: "transport" },
+            { twi: "sikabaa", english: "ticket", category: "transport" },
+
+            // ===== MONEY & MARKET =====
+            { twi: "sika", english: "money", category: "money" },
+            { twi: "tɔ", english: "to buy", category: "money" },
+            { twi: "tɔn", english: "to sell", category: "money" },
+            { twi: "boɔ", english: "price", category: "money" },
+            { twi: "sika kɔkɔɔ", english: "gold", category: "money" },
+            { twi: "nsaano sika", english: "coins / change", category: "money" },
+            { twi: "fie sika", english: "change (money)", category: "money" },
+            { twi: "ɛsɛn?", english: "how much?", category: "money" },
+            { twi: "me pɛ sika", english: "I want money", category: "money" },
+            { twi: "minni sika", english: "I don't have money", category: "money" },
+            { twi: "mɛtua", english: "I will pay", category: "money" },
+            { twi: "tua ka", english: "to pay", category: "money" },
+            { twi: "adwa", english: "market stall", category: "money" },
+            { twi: "agorɔ", english: "market", category: "money" },
+            { twi: "ɛyɛ dɛn boɔ?", english: "what is the price?", category: "money" },
+            { twi: "ka", english: "debt", category: "money" },
+            { twi: "tua ka", english: "to pay a debt", category: "money" },
+
+            // ===== RELIGION & SPIRITUALITY =====
+            { twi: "Onyame", english: "God", category: "religion" },
+            { twi: "asɔre", english: "church / worship", category: "religion" },
+            { twi: "asɔredan", english: "church building", category: "religion" },
+            { twi: "Moslɛm", english: "Muslim", category: "religion" },
+            { twi: "Nyamesom", english: "mosque / Muslim worship", category: "religion" },
+            { twi: "mpae", english: "prayer", category: "religion" },
+            { twi: "adura", english: "blessing / charm", category: "religion" },
+            { twi: "sɔfo", english: "pastor / priest", category: "religion" },
+            { twi: "da yie", english: "rest in peace", category: "religion" },
+            { twi: "onyame nhyira wo", english: "God bless you", category: "religion" },
+            { twi: "gyidi", english: "faith / belief", category: "religion" },
+            { twi: "Onyame adom", english: "God's grace", category: "religion" },
+            { twi: "sɔre", english: "to worship / to rise", category: "religion" },
+            { twi: "mpae bɔ", english: "to pray", category: "religion" },
+            { twi: "nhyira", english: "blessing", category: "religion" },
+
+            // ===== EMOTIONS & FEELINGS =====
+            { twi: "anigye", english: "happiness / joy", category: "emotions" },
+            { twi: "awerɛhow", english: "sadness", category: "emotions" },
+            { twi: "abufuo", english: "anger", category: "emotions" },
+            { twi: "suro", english: "fear", category: "emotions" },
+            { twi: "dɔ", english: "love", category: "emotions" },
+            { twi: "ahotɔ", english: "peace / satisfaction / contentment", category: "emotions" },
+            { twi: "anigye sɛ", english: "it makes me happy", category: "emotions" },
+            { twi: "me bo fu", english: "I am angry", category: "emotions" },
+            { twi: "me dɔ wo", english: "I love you", category: "emotions" },
+            { twi: "me ho yɛ bɔkɔɔ", english: "I am at peace / I am fine", category: "emotions" },
+            { twi: "m'ani agye", english: "I am happy / glad", category: "emotions" },
+            { twi: "m'ani abu", english: "I am sad / disappointed", category: "emotions" },
+            { twi: "mesusu", english: "I am surprised / shocked", category: "emotions" },
+            { twi: "awerɛ", english: "sorrow / grief", category: "emotions" },
+            { twi: "ayamye", english: "envy / jealousy", category: "emotions" },
+            { twi: "anibre", english: "shame / embarrassment", category: "emotions" },
+            { twi: "ahodwo", english: "patience / calmness", category: "emotions" },
+            { twi: "ahoɔden", english: "strength / energy", category: "emotions" },
+
+            // ===== DIRECTIONS & PLACES =====
+            { twi: "nifa", english: "right", category: "directions" },
+            { twi: "benkum", english: "left", category: "directions" },
+            { twi: "anim", english: "front / forward", category: "directions" },
+            { twi: "akyi", english: "back / behind", category: "directions" },
+            { twi: "soro", english: "up / top", category: "directions" },
+            { twi: "fam", english: "down / below", category: "directions" },
+            { twi: "ha", english: "here", category: "directions" },
+            { twi: "hɔ", english: "there", category: "directions" },
+            { twi: "mu", english: "inside", category: "directions" },
+            { twi: "ase", english: "under / below", category: "directions" },
+            { twi: "ntam", english: "between", category: "directions" },
+            { twi: "apɔntem", english: "town / city", category: "directions" },
+            { twi: "kurow", english: "town / village", category: "directions" },
+            { twi: "efie", english: "home / house", category: "directions" },
+            { twi: "kyerɛ me kwan", english: "show me the way", category: "directions" },
+            { twi: "atɔeɛ", english: "west", category: "directions" },
+            { twi: "apuei", english: "east", category: "directions" },
+            { twi: "atifi", english: "north", category: "directions" },
+            { twi: "anafoɔ", english: "south", category: "directions" },
+
+            // ===== COMMON PHRASES =====
+            { twi: "mema wo akye", english: "good morning", category: "phrases" },
+            { twi: "maakye", english: "good morning (short)", category: "phrases" },
+            { twi: "mema wo aha", english: "good afternoon", category: "phrases" },
+            { twi: "mema wo adwo", english: "good evening", category: "phrases" },
+            { twi: "wo ho te sɛn?", english: "how are you?", category: "phrases" },
+            { twi: "me ho yɛ", english: "I am fine", category: "phrases" },
+            { twi: "meda wo ase", english: "thank you", category: "phrases" },
+            { twi: "mepa wo kyɛw", english: "please", category: "phrases" },
+            { twi: "ɛyɛ dɛn?", english: "what is it?", category: "phrases" },
+            { twi: "ɛyɛ sɛn?", english: "how is it?", category: "phrases" },
+            { twi: "mepɛ …", english: "I want …", category: "phrases" },
+            { twi: "me kɔ sukuu", english: "I go to school", category: "phrases" },
+            { twi: "yɛnkɔ", english: "let us go", category: "phrases" },
+            { twi: "twɛn me", english: "wait for me", category: "phrases" },
+            { twi: "deɛn ni?", english: "what is this?", category: "phrases" },
+            { twi: "me din de …", english: "my name is …", category: "phrases" },
+            { twi: "wo firi he?", english: "where are you from?", category: "phrases" },
+            { twi: "ɛkɔm de me", english: "I am hungry", category: "phrases" },
+            { twi: "mere kɔ fie", english: "I am going home", category: "phrases" },
+            { twi: "yɛbɛhyia bio", english: "we shall meet again / see you later", category: "phrases" },
+            { twi: "me dɔ wo", english: "I love you", category: "phrases" },
+            { twi: "wo ho yɛ fɛ", english: "you look beautiful", category: "phrases" },
+            { twi: "mepɛ nnidi", english: "I want to eat", category: "phrases" },
+            { twi: "menni sika", english: "I don't have money", category: "phrases" },
+            { twi: "ɛyɛ dɛ paapaapa", english: "it is very delicious", category: "phrases" },
+            { twi: "me nim", english: "I know", category: "phrases" },
+            { twi: "mennim", english: "I don't know", category: "phrases" },
+            { twi: "metumi", english: "I can / I am able", category: "phrases" },
+            { twi: "metumi amma", english: "I cannot", category: "phrases" },
+            { twi: "ɛyɛ den", english: "it is difficult", category: "phrases" },
+            { twi: "ɛyɛ mmerɛw", english: "it is easy", category: "phrases" },
+
+            // ===== TENSE MARKERS & AUXILIARIES =====
+            { twi: "bɛ", english: "will (future marker)", category: "tense" },
+            { twi: "a", english: "past marker / perfect", category: "tense" },
+            { twi: "re", english: "progressive marker (-ing)", category: "tense" },
+            { twi: "aduru", english: "already", category: "tense" },
+            { twi: "nkɔ", english: "let's go", category: "tense" },
+            { twi: "aka", english: "it remains / it is left", category: "tense" },
+            { twi: "ɛwɔ hɔ", english: "it is there / it exists", category: "tense" },
+            { twi: "ɛnyɛ", english: "it is not", category: "tense" },
+
+            // ===== NEGATION =====
+            { twi: "nni", english: "does not have / there is none", category: "negation" },
+            { twi: "nyɛ", english: "is not", category: "negation" },
+            { twi: "nkɔ", english: "do not go", category: "negation" },
+            { twi: "mmɔ", english: "do not hit", category: "negation" },
+            { twi: "nka", english: "do not speak", category: "negation" },
+            { twi: "mfa", english: "do not take / don't", category: "negation" },
+            { twi: "ɛnnyɛ", english: "it is not", category: "negation" },
+            { twi: "menni", english: "I don't have", category: "negation" },
+            { twi: "mennim", english: "I don't know", category: "negation" },
+            { twi: "metumi amma", english: "I cannot", category: "negation" },
+            { twi: "ɛnyɛ nokware", english: "it is not true", category: "negation" },
+
+            // ===== PLACES & COUNTRIES =====
+            { twi: "Gaana", english: "Ghana", category: "places" },
+            { twi: "Amɛrika", english: "America / USA", category: "places" },
+            { twi: "Britania", english: "Britain / UK", category: "places" },
+            { twi: "Nkran", english: "Accra", category: "places" },
+            { twi: "Kumase", english: "Kumasi", category: "places" },
+            { twi: "Takoradi", english: "Takoradi", category: "places" },
+            { twi: "Tamale", english: "Tamale", category: "places" },
+            { twi: "Afreka", english: "Africa", category: "places" },
+            { twi: "Yurop", english: "Europe", category: "places" },
+            { twi: "Kanada", english: "Canada", category: "places" },
+            { twi: "Ɔstrelia", english: "Australia", category: "places" },
+            { twi: "Nigyeria", english: "Nigeria", category: "places" },
+            { twi: "Abidjan", english: "Ivory Coast / Côte d'Ivoire", category: "places" },
+            { twi: "sukuu", english: "school", category: "places" },
+            { twi: "asɔredan", english: "church building", category: "places" },
+            { twi: "ayaresabea", english: "hospital", category: "places" },
+            { twi: "agorɔ", english: "market", category: "places" },
+            { twi: "stɛshɔn", english: "station", category: "places" },
+            { twi: "apɔntem", english: "city / town", category: "places" },
+            { twi: "kurow", english: "village / town", category: "places" },
+
+            // ===== PROFESSIONS =====
+            { twi: "ɔkyerɛkyerɛni", english: "teacher", category: "professions" },
+            { twi: "ɔdokota", english: "doctor", category: "professions" },
+            { twi: "ɔdwontoni", english: "singer", category: "professions" },
+            { twi: "ɔkannifoɔ", english: "leader", category: "professions" },
+            { twi: "asraafoɔ", english: "soldier", category: "professions" },
+            { twi: "ɔkuafo", english: "farmer", category: "professions" },
+            { twi: "ɔtɔnfo", english: "trader / seller", category: "professions" },
+            { twi: "sɔfo", english: "pastor / priest", category: "professions" },
+            { twi: "polisi", english: "police officer", category: "professions" },
+            { twi: "drɔba", english: "driver", category: "professions" },
+            { twi: "ɔdwumayɛfo", english: "worker", category: "professions" },
+            { twi: "odwumahyɛfo", english: "boss / employer", category: "professions" },
+            { twi: "adesuafo", english: "apprentice / learner", category: "professions" },
+            { twi: "ɔpanyin", english: "elder / chief", category: "professions" },
+            { twi: "ɔhemmaa", english: "queen mother", category: "professions" },
+            { twi: "ɔhene", english: "chief / king", category: "professions" },
+            { twi: "ɔbɔmmɔfo", english: "hunter", category: "professions" },
+            { twi: "ɔdwumahyɛni", english: "contractor / builder", category: "professions" },
         ];
 
         let currentCategory = "all";
         let currentSearch = "";
         let currentLetter = "";
 
-        const letters = ["A", "B", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "W", "Y", "Ɛ", "Ɔ"];
+        const letters = ["A","B","D","E","F","G","H","I","K","L","M","N","O","P","R","S","T","U","W","Y","Ɛ","Ɔ"];
+
+        const catIcons = {
+            pronouns: "🔤", adverbs: "⚡", adjectives: "🎨",
+            prepositions: "📍", conjunctions: "🔗", question: "❓",
+            verbs: "🏃", home: "🏠", family: "👨‍👩‍👧", food: "🍎",
+            colors: "🎨", body: "🦵", animals: "🐘", nature: "🌤️",
+            weather: "🌦️", greetings: "👋", numbers: "🔢", time: "⏰",
+            days: "📅", months: "🗓️", clothes: "👗", health: "🏥",
+            school: "🎒", work: "💼", transport: "🚗", money: "💰",
+            religion: "🙏", emotions: "❤️", directions: "🧭", phrases: "💬",
+            tense: "🔧", negation: "🚫", places: "🌍", professions: "👨‍⚕️"
+        };
 
         function buildLetterNav() {
             const nav = document.getElementById('letterNav');
@@ -829,9 +1146,7 @@
             currentLetter = letter;
             document.querySelectorAll('.letter-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.getAttribute('data-letter') === letter) {
-                    btn.classList.add('active');
-                }
+                if (btn.getAttribute('data-letter') === letter) btn.classList.add('active');
             });
             renderDictionary();
         }
@@ -842,15 +1157,13 @@
             if (currentCategory !== "all") {
                 filtered = filtered.filter(item => item.category === currentCategory);
             }
-
             if (currentSearch) {
-                const searchLower = currentSearch.toLowerCase();
+                const s = currentSearch.toLowerCase();
                 filtered = filtered.filter(item =>
-                    item.twi.toLowerCase().includes(searchLower) ||
-                    item.english.toLowerCase().includes(searchLower)
+                    item.twi.toLowerCase().includes(s) ||
+                    item.english.toLowerCase().includes(s)
                 );
             }
-
             if (currentLetter) {
                 filtered = filtered.filter(item =>
                     item.twi.charAt(0).toUpperCase() === currentLetter ||
@@ -862,23 +1175,13 @@
 
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = '';
-
             filtered.forEach((item, index) => {
                 const row = tbody.insertRow();
                 row.className = 'dictionary-row';
                 row.onclick = () => playAudio(item.twi);
-
                 row.insertCell(0).innerHTML = index + 1;
                 row.insertCell(1).innerHTML = `<span class="twi-word">${item.twi}</span>`;
                 row.insertCell(2).innerHTML = item.english;
-
-                const catIcons = {
-                    pronouns: "🔤", adverbs: "⚡", adjectives: "🎨",
-                    prepositions: "📍", conjunctions: "🔗", question: "❓",
-                    verbs: "🏃", home: "🏠", family: "👨‍👩‍👧", food: "🍎",
-                    colors: "🎨", body: "🦵", animals: "🐘", nature: "🌤️",
-                    weather: "🌦️", greetings: "👋", numbers: "🔢", time: "⏰"
-                };
                 const icon = catIcons[item.category] || "📚";
                 row.insertCell(3).innerHTML = `${icon} ${item.category}`;
             });
