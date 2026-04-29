@@ -177,6 +177,10 @@
             <button class="filter-btn" data-cat="negation">🚫 Negation</button>
             <button class="filter-btn" data-cat="places">🌍 Places</button>
             <button class="filter-btn" data-cat="professions">👨‍⚕️ Professions</button>
+            <button class="filter-btn" data-cat="demonstratives">👆 Demonstratives</button>
+            <button class="filter-btn" data-cat="modals">🔑 Modal Verbs</button>
+            <button class="filter-btn" data-cat="comparatives">⚖️ Comparatives</button>
+            <button class="filter-btn" data-cat="ordinals">🥇 Ordinals</button>
         </div>
 
         <div class="table-wrapper">
@@ -218,6 +222,24 @@
             { twi: "nea", english: "who / whom / which", category: "pronouns" },
             { twi: "biribiara", english: "everything", category: "pronouns" },
             { twi: "hwee", english: "nothing", category: "pronouns" },
+            // Possessive pronouns — NEW
+            { twi: "me (possessive)", english: "my / mine", category: "pronouns" },
+            { twi: "wo (possessive)", english: "your (singular)", category: "pronouns" },
+            { twi: "ne", english: "his / her / its", category: "pronouns" },
+            { twi: "yɛn", english: "our", category: "pronouns" },
+            { twi: "wɔn", english: "their", category: "pronouns" },
+
+            // ===== DEMONSTRATIVES — NEW CATEGORY =====
+            { twi: "wei", english: "this", category: "demonstratives" },
+            { twi: "yei", english: "this (alternate)", category: "demonstratives" },
+            { twi: "yi", english: "this (alternate)", category: "demonstratives" },
+            { twi: "ɛno", english: "that", category: "demonstratives" },
+            { twi: "no", english: "that (alternate)", category: "demonstratives" },
+            { twi: "yeinom", english: "these", category: "demonstratives" },
+            { twi: "eyinom", english: "these (alternate)", category: "demonstratives" },
+            { twi: "wɔnom", english: "those", category: "demonstratives" },
+            { twi: "ɛnonom", english: "those (alternate)", category: "demonstratives" },
+            { twi: "saa", english: "such / this kind", category: "demonstratives" },
 
             // ===== ADVERBS =====
             { twi: "ntɛm", english: "quickly", category: "adverbs" },
@@ -445,7 +467,7 @@
             { twi: "ɔtan", english: "enemy", category: "family" },
             { twi: "ɔhɔho", english: "stranger", category: "family" },
 
-            // ===== FOOD =====
+            // ===== FOOD & DRINK =====
             { twi: "aduane", english: "food", category: "food" },
             { twi: "kwadu", english: "banana", category: "food" },
             { twi: "ankaa", english: "orange", category: "food" },
@@ -469,6 +491,15 @@
             { twi: "ɛyɛ nwen", english: "it is sour", category: "food" },
             { twi: "ɔkɔm de me", english: "I am hungry", category: "food" },
             { twi: "sukɔm de me", english: "I am thirsty", category: "food" },
+            // Food & Drink — NEW additions
+            { twi: "nsuo", english: "water", category: "food" },
+            { twi: "tii", english: "tea", category: "food" },
+            { twi: "kafe", english: "coffee", category: "food" },
+            { twi: "mmre", english: "beer", category: "food" },
+            { twi: "bia", english: "beer (alternate)", category: "food" },
+            { twi: "nsa", english: "alcohol (general)", category: "food" },
+            { twi: "abɛ nsuo", english: "palm wine", category: "food" },
+            { twi: "akwantem", english: "snack / light food", category: "food" },
 
             // ===== COLORS =====
             { twi: "tuntum", english: "black", category: "colors" },
@@ -489,7 +520,7 @@
             { twi: "nsa", english: "hand", category: "body" },
             { twi: "ti", english: "head", category: "body" },
             { twi: "akoma", english: "heart", category: "body" },
-            { twi: "nan", english: "leg", category: "body" },
+            { twi: "nan", english: "leg / foot", category: "body" },
             { twi: "ano", english: "mouth", category: "body" },
             { twi: "aso", english: "ear", category: "body" },
             { twi: "yafunu", english: "stomach", category: "body" },
@@ -506,10 +537,22 @@
             { twi: "basa", english: "arm", category: "body" },
             { twi: "nsateaa", english: "finger", category: "body" },
             { twi: "kotodwe", english: "knee", category: "body" },
-            { twi: "nanso", english: "heel", category: "body" },
+            { twi: "nanso", english: "heel / toe", category: "body" },
             { twi: "mogya", english: "blood", category: "body" },
             { twi: "honam", english: "skin", category: "body" },
             { twi: "ɛbɔ", english: "bone", category: "body" },
+            // Body Parts — NEW additions
+            { twi: "etire", english: "head (formal)", category: "body" },
+            { twi: "anim", english: "face", category: "body" },
+            { twi: "ani ntɔn", english: "eyebrow", category: "body" },
+            { twi: "anisoatɛtɛ", english: "eyelash", category: "body" },
+            { twi: "afono", english: "cheek", category: "body" },
+            { twi: "hwene", english: "nose (alternate)", category: "body" },
+            { twi: "ɛse", english: "teeth (alternate)", category: "body" },
+            { twi: "tɛkyerɛma", english: "tongue (alternate spelling)", category: "body" },
+            { twi: "babaso", english: "thumb", category: "body" },
+            { twi: "bɔn ano", english: "elbow", category: "body" },
+            { twi: "tire", english: "waist", category: "body" },
 
             // ===== ANIMALS =====
             { twi: "anomaa", english: "bird (general)", category: "animals" },
@@ -643,6 +686,14 @@
             { twi: "ahonyade", english: "wealth", category: "nature" },
             { twi: "ɔhaw", english: "trouble", category: "nature" },
             { twi: "anigye", english: "joy", category: "nature" },
+            // Nature — NEW additions
+            { twi: "nyankontɔn", english: "rainbow", category: "nature" },
+            { twi: "asase so", english: "surface of the earth", category: "nature" },
+            { twi: "asase ase", english: "underground", category: "nature" },
+            { twi: "bepɔ a ogya tu", english: "volcano", category: "nature" },
+            { twi: "anwea", english: "sand", category: "nature" },
+            { twi: "nwea", english: "sand (alternate)", category: "nature" },
+            { twi: "nnua", english: "trees (plural)", category: "nature" },
 
             // ===== WEATHER =====
             { twi: "ewiem", english: "weather / sky", category: "weather" },
@@ -715,6 +766,22 @@
             { twi: "ɔha", english: "one hundred", category: "numbers" },
             { twi: "apem", english: "one thousand", category: "numbers" },
             { twi: "ɔpepe", english: "ten thousand", category: "numbers" },
+            // Numbers — NEW additions
+            { twi: "ɔpem", english: "one million", category: "numbers" },
+            { twi: "akoɔ", english: "one billion", category: "numbers" },
+
+            // ===== ORDINAL NUMBERS — NEW CATEGORY =====
+            { twi: "dikan", english: "first", category: "ordinals" },
+            { twi: "kan", english: "first (short form)", category: "ordinals" },
+            { twi: "ɛto so mmienu", english: "second", category: "ordinals" },
+            { twi: "ɛto so mmiɛnsa", english: "third", category: "ordinals" },
+            { twi: "ɛto so ɛnan", english: "fourth", category: "ordinals" },
+            { twi: "ɛto so anum", english: "fifth", category: "ordinals" },
+            { twi: "ɛto so ansia", english: "sixth", category: "ordinals" },
+            { twi: "ɛto so ason", english: "seventh", category: "ordinals" },
+            { twi: "ɛto so awɔtwe", english: "eighth", category: "ordinals" },
+            { twi: "ɛto so akron", english: "ninth", category: "ordinals" },
+            { twi: "ɛto so edu", english: "tenth", category: "ordinals" },
 
             // ===== TIME =====
             { twi: "ndɛ", english: "today", category: "time" },
@@ -738,6 +805,13 @@
             { twi: "sɛnea ɛbɛyɛ", english: "in future", category: "time" },
             { twi: "kane", english: "early", category: "time" },
             { twi: "awiei", english: "the end / finally", category: "time" },
+            // Time — NEW additions
+            { twi: "ɛnnora anɔpa", english: "yesterday morning", category: "time" },
+            { twi: "ɔkyena anadwo", english: "tomorrow night", category: "time" },
+            { twi: "awiepɔn", english: "evening (alternate)", category: "time" },
+            { twi: "bebree", english: "soon", category: "time" },
+            { twi: "kakra", english: "soon / a little", category: "time" },
+            { twi: "awie koraa", english: "at the very end", category: "time" },
 
             // ===== DAYS OF THE WEEK =====
             { twi: "Dwowda", english: "Monday", category: "days" },
@@ -831,6 +905,23 @@
             { twi: "ware", english: "to marry", category: "verbs" },
             { twi: "wo", english: "to give birth", category: "verbs" },
             { twi: "wu", english: "to die", category: "verbs" },
+
+            // ===== MODAL VERBS & AUXILIARIES — NEW CATEGORY =====
+            { twi: "tumi", english: "can / be able to", category: "modals" },
+            { twi: "bɛtumi", english: "will be able to", category: "modals" },
+            { twi: "sɛ", english: "should / ought to", category: "modals" },
+            { twi: "hia sɛ", english: "must / it is necessary that", category: "modals" },
+            { twi: "pɛ sɛ", english: "want to / like to", category: "modals" },
+            { twi: "Me tumi ba", english: "I can come (example)", category: "modals" },
+            { twi: "Ɛhia sɛ wo ba", english: "You must come (example)", category: "modals" },
+
+            // ===== COMPARATIVES & SUPERLATIVES — NEW CATEGORY =====
+            { twi: "sen", english: "than (comparative marker)", category: "comparatives" },
+            { twi: "koraa", english: "most / very / extremely", category: "comparatives" },
+            { twi: "paapaapa", english: "very good / best", category: "comparatives" },
+            { twi: "bɔne paapaapa", english: "very bad / worst", category: "comparatives" },
+            { twi: "ketewa sen", english: "smaller than", category: "comparatives" },
+            { twi: "kɛse sen", english: "bigger than", category: "comparatives" },
 
             // ===== CLOTHES & DRESSING =====
             { twi: "ntoma", english: "cloth / fabric", category: "clothes" },
@@ -1125,7 +1216,8 @@
             days: "📅", months: "🗓️", clothes: "👗", health: "🏥",
             school: "🎒", work: "💼", transport: "🚗", money: "💰",
             religion: "🙏", emotions: "❤️", directions: "🧭", phrases: "💬",
-            tense: "🔧", negation: "🚫", places: "🌍", professions: "👨‍⚕️"
+            tense: "🔧", negation: "🚫", places: "🌍", professions: "👨‍⚕️",
+            demonstratives: "👆", modals: "🔑", comparatives: "⚖️", ordinals: "🥇"
         };
 
         function buildLetterNav() {
