@@ -153,6 +153,7 @@
             <button class="filter-btn" data-cat="body">🦵 Body</button>
             <button class="filter-btn" data-cat="animals">🐘 Animals</button>
             <button class="filter-btn" data-cat="nature">🌤️ Nature</button>
+            <button class="filter-btn" data-cat="weather">🌦️ Weather</button>
             <button class="filter-btn" data-cat="greetings">👋 Greetings</button>
             <button class="filter-btn" data-cat="numbers">🔢 Numbers</button>
             <button class="filter-btn" data-cat="time">⏰ Time</button>
@@ -183,7 +184,6 @@
     </div>
 
     <script>
-        // ============ TWI-ENGLISH DICTIONARY (500+ WORDS) ============
         const dictionary = [
             // ===== PRONOUNS (15) =====
             { twi: "me", english: "I/me", category: "pronouns" },
@@ -201,7 +201,7 @@
             { twi: "nea", english: "who/whom/which", category: "pronouns" },
             { twi: "biribiara", english: "everything", category: "pronouns" },
             { twi: "hwee", english: "nothing", category: "pronouns" },
-            
+
             // ===== ADVERBS (40) =====
             { twi: "ntɛm", english: "quickly", category: "adverbs" },
             { twi: "nwinwinn", english: "slowly", category: "adverbs" },
@@ -243,7 +243,7 @@
             { twi: "bɔɔbɔɔ", english: "gradually", category: "adverbs" },
             { twi: "pɛpɛɛpɛ", english: "suddenly", category: "adverbs" },
             { twi: "nokware", english: "truly/honestly", category: "adverbs" },
-            
+
             // ===== ADJECTIVES (60) =====
             { twi: "papa", english: "good/nice", category: "adjectives" },
             { twi: "bɔne", english: "bad/evil", category: "adjectives" },
@@ -264,8 +264,8 @@
             { twi: "yɛdɛ", english: "beautiful", category: "adjectives" },
             { twi: "ɛfɛ", english: "beautiful/pretty", category: "adjectives" },
             { twi: "wowɔ", english: "ugly", category: "adjectives" },
-            { twi: "dɔ", english: "hot", category: "adjectives" },
-            { twi: "nwini", english: "cold", category: "adjectives" },
+            { twi: "ahuhuro", english: "hot/heat", category: "adjectives" },
+            { twi: "awɔw", english: "cold", category: "adjectives" },
             { twi: "fofor", english: "fresh", category: "adjectives" },
             { twi: "dadaw", english: "stale/old", category: "adjectives" },
             { twi: "mmerɛw", english: "weak", category: "adjectives" },
@@ -290,7 +290,6 @@
             { twi: "suro", english: "afraid/scared", category: "adjectives" },
             { twi: "akokoduro", english: "brave", category: "adjectives" },
             { twi: "ɔpɛ", english: "kind", category: "adjectives" },
-            { twi: "bɔne", english: "cruel", category: "adjectives" },
             { twi: "nyansa", english: "wise/smart", category: "adjectives" },
             { twi: "nkwasea", english: "foolish", category: "adjectives" },
             { twi: "adefo", english: "rich", category: "adjectives" },
@@ -305,7 +304,7 @@
             { twi: "da", english: "asleep", category: "adjectives" },
             { twi: "awo", english: "raw/uncooked", category: "adjectives" },
             { twi: "nono", english: "ripe", category: "adjectives" },
-            
+
             // ===== PREPOSITIONS (25) =====
             { twi: "wɔ", english: "in/at/on", category: "prepositions" },
             { twi: "so", english: "on/upon", category: "prepositions" },
@@ -332,7 +331,7 @@
             { twi: "bɛ", english: "until", category: "prepositions" },
             { twi: "ansana", english: "before (time)", category: "prepositions" },
             { twi: "akyire", english: "after (time)", category: "prepositions" },
-            
+
             // ===== CONJUNCTIONS (15) =====
             { twi: "na", english: "and", category: "conjunctions" },
             { twi: "nanso", english: "but/however", category: "conjunctions" },
@@ -349,7 +348,7 @@
             { twi: "naaso", english: "nevertheless", category: "conjunctions" },
             { twi: "sɛdeɛ", english: "so that", category: "conjunctions" },
             { twi: "ansu", english: "rather than", category: "conjunctions" },
-            
+
             // ===== QUESTION WORDS (12) =====
             { twi: "dɛn", english: "what", category: "question" },
             { twi: "hɛn", english: "where", category: "question" },
@@ -363,30 +362,67 @@
             { twi: "hwan", english: "who", category: "question" },
             { twi: "dea", english: "whose", category: "question" },
             { twi: "ɛyɛ dɛn", english: "how is it", category: "question" },
-            
-            // ===== HOME (25) - Existing =====
+
+            // ===== HOME (updated & expanded) =====
             { twi: "efie", english: "house", category: "home" },
-            { twi: "ɛpono", english: "table", category: "home" },
+            { twi: "ɛpono", english: "door / table", category: "home" },
             { twi: "mpoma", english: "window", category: "home" },
-            { twi: "agua", english: "chair", category: "home" },
+            { twi: "akonnwa", english: "chair/seat", category: "home" },
+            { twi: "adamadwa", english: "writing chair / desk chair", category: "home" },
+            { twi: "didipono", english: "dining table", category: "home" },
             { twi: "mpa", english: "bed", category: "home" },
+            { twi: "sumiiɛ", english: "pillow", category: "home" },
+            { twi: "sumiiɛ nnuraho", english: "pillowcase", category: "home" },
+            { twi: "mpasotam", english: "bedsheet", category: "home" },
+            { twi: "kuntu", english: "blanket", category: "home" },
+            { twi: "kɛtɛ", english: "mat/basket", category: "home" },
+            { twi: "asa so", english: "hall / living room", category: "home" },
+            { twi: "piam", english: "chamber / bedroom", category: "home" },
+            { twi: "abranaa so", english: "veranda", category: "home" },
+            { twi: "mukaase", english: "kitchen", category: "home" },
+            { twi: "adidibea", english: "dining place", category: "home" },
+            { twi: "adwareeɛ", english: "bathroom", category: "home" },
             { twi: "nsuo", english: "water", category: "home" },
             { twi: "ogya", english: "fire", category: "home" },
-            { twi: "kanea", english: "light", category: "home" },
-            { twi: "pono", english: "door", category: "home" },
+            { twi: "kanea", english: "lantern / light", category: "home" },
             { twi: "dan", english: "room", category: "home" },
             { twi: "adaka", english: "box", category: "home" },
-            { twi: "kuku", english: "cup", category: "home" },
-            { twi: "tray", english: "plate", category: "home" },
+            { twi: "kuruwa", english: "cup", category: "home" },
+            { twi: "tɔmmɛ", english: "drinking glass", category: "home" },
+            { twi: "prɛte", english: "plate", category: "home" },
             { twi: "ahina", english: "pot", category: "home" },
-            { twi: "sikani", english: "spoon", category: "home" },
-            { twi: "twerekan", english: "fork", category: "home" },
+            { twi: "atere", english: "spoon", category: "home" },
+            { twi: "kwantere", english: "ladle", category: "home" },
+            { twi: "adinam", english: "fork", category: "home" },
             { twi: "ɔkuku", english: "bowl", category: "home" },
-            { twi: "ato", english: "mortar", category: "home" },
-            { twi: "waduro", english: "pestle", category: "home" },
-            { twi: "kɛtɛ", english: "basket", category: "home" },
-            
-            // ===== FAMILY (20) - Existing =====
+            { twi: "waduro", english: "mortar", category: "home" },
+            { twi: "wɔma", english: "pestle", category: "home" },
+            { twi: "kɛntɛn", english: "basket", category: "home" },
+            { twi: "bokiti", english: "bucket", category: "home" },
+            { twi: "fononoo", english: "oven", category: "home" },
+            { twi: "muka", english: "hearth / fireplace", category: "home" },
+            { twi: "sekammoa", english: "knife", category: "home" },
+            { twi: "sɔneeɛ", english: "sieve", category: "home" },
+            { twi: "nkrantɛ", english: "cutlass", category: "home" },
+            { twi: "praeɛ", english: "broom", category: "home" },
+            { twi: "towuro", english: "towel", category: "home" },
+            { twi: "samina", english: "soap", category: "home" },
+            { twi: "sapɔ", english: "sponge (bath sponge)", category: "home" },
+            { twi: "kuruwaba", english: "chamber pot", category: "home" },
+            { twi: "ahwehwɛ", english: "mirror", category: "home" },
+            { twi: "ahwehwɛniwa", english: "eyeglasses / spectacles", category: "home" },
+            { twi: "afe", english: "comb", category: "home" },
+            { twi: "apasoɔ", english: "scissors", category: "home" },
+            { twi: "paneɛ", english: "needle", category: "home" },
+            { twi: "burogya", english: "matches", category: "home" },
+            { twi: "nku", english: "pomade (hair cream)", category: "home" },
+            { twi: "kyiniiɛ", english: "umbrella", category: "home" },
+            { twi: "akasanoma", english: "radio", category: "home" },
+            { twi: "twerɛdua", english: "pen / pencil", category: "home" },
+            { twi: "akuma", english: "axe", category: "home" },
+            { twi: "ɛban", english: "fence / wall", category: "home" },
+
+            // ===== FAMILY (20) =====
             { twi: "agya", english: "father", category: "family" },
             { twi: "ɛna", english: "mother", category: "family" },
             { twi: "abaayewa", english: "girl", category: "family" },
@@ -407,8 +443,8 @@
             { twi: "adamfo", english: "friend", category: "family" },
             { twi: "ɔtan", english: "enemy", category: "family" },
             { twi: "ɔhɔho", english: "stranger", category: "family" },
-            
-            // ===== FOOD (30) - Existing =====
+
+            // ===== FOOD (30) =====
             { twi: "aduane", english: "food", category: "food" },
             { twi: "kwadu", english: "banana", category: "food" },
             { twi: "ankaa", english: "orange", category: "food" },
@@ -419,7 +455,7 @@
             { twi: "aburo", english: "corn", category: "food" },
             { twi: "ɛmo", english: "rice", category: "food" },
             { twi: "nsumunam", english: "fish", category: "food" },
-            { twi: "akokɔnam", english: "chicken", category: "food" },
+            { twi: "akokɔnam", english: "chicken (meat)", category: "food" },
             { twi: "nam", english: "meat", category: "food" },
             { twi: "nkwan", english: "soup", category: "food" },
             { twi: "fufu", english: "fufu", category: "food" },
@@ -428,18 +464,11 @@
             { twi: "mpotompoto", english: "mashed yam", category: "food" },
             { twi: "abɛ", english: "palm nut", category: "food" },
             { twi: "nkyene", english: "salt", category: "food" },
-            { twi: "dɛ", english: "sweet", category: "food" },
-            { twi: "nwen", english: "sour", category: "food" },
-            { twi: "yɛ", english: "soft", category: "food" },
-            { twi: "so", english: "hard", category: "food" },
-            { twi: "funu", english: "thick", category: "food" },
-            { twi: "tenten", english: "long", category: "food" },
-            { twi: "tia", english: "short", category: "food" },
             { twi: "ɛyɛ dɛ", english: "it's sweet", category: "food" },
             { twi: "ɛyɛ nwen", english: "it's sour", category: "food" },
             { twi: "ɔkɔm de me", english: "I'm hungry", category: "food" },
             { twi: "sukɔm de me", english: "I'm thirsty", category: "food" },
-            
+
             // ===== COLORS (12) =====
             { twi: "tuntum", english: "black", category: "colors" },
             { twi: "bibire", english: "blue", category: "colors" },
@@ -453,8 +482,8 @@
             { twi: "nsunun", english: "light color", category: "colors" },
             { twi: "sum", english: "dark", category: "colors" },
             { twi: "fe", english: "bright", category: "colors" },
-            
-            // ===== BODY PARTS (25) - Existing =====
+
+            // ===== BODY PARTS (25) =====
             { twi: "ani", english: "eye", category: "body" },
             { twi: "nsa", english: "hand", category: "body" },
             { twi: "ti", english: "head", category: "body" },
@@ -480,35 +509,121 @@
             { twi: "mogya", english: "blood", category: "body" },
             { twi: "honam", english: "skin", category: "body" },
             { twi: "ɛbɔ", english: "bone", category: "body" },
-            
-            // ===== ANIMALS (25) - Existing =====
-            { twi: "anomaa", english: "bird", category: "animals" },
+
+            // ===== ANIMALS (updated & expanded) =====
+            { twi: "anomaa", english: "bird (general)", category: "animals" },
+            { twi: "ntakraboa", english: "feathered animal / bird", category: "animals" },
             { twi: "kraman", english: "dog", category: "animals" },
+            { twi: "kraman bedeɛ", english: "bitch (female dog)", category: "animals" },
             { twi: "ɛsono", english: "elephant", category: "animals" },
+            { twi: "susono", english: "hippopotamus", category: "animals" },
             { twi: "gyata", english: "lion", category: "animals" },
             { twi: "ɔwɔ", english: "snake", category: "animals" },
             { twi: "apɔnkye", english: "goat", category: "animals" },
-            { twi: "nantwie", english: "cow", category: "animals" },
-            { twi: "ɔkraman", english: "leopard", category: "animals" },
+            { twi: "abirekyie", english: "goat (alternate)", category: "animals" },
+            { twi: "nantwie", english: "cow (general)", category: "animals" },
+            { twi: "nantwieba", english: "calf", category: "animals" },
+            { twi: "nantwinini", english: "bull", category: "animals" },
+            { twi: "nantwibedeɛ", english: "cow (female)", category: "animals" },
+            { twi: "etwie", english: "leopard", category: "animals" },
+            { twi: "ɔsebɔ", english: "tiger/leopard", category: "animals" },
             { twi: "afofrantɔ", english: "butterfly", category: "animals" },
             { twi: "apɔtorɔ", english: "frog", category: "animals" },
-            { twi: "ɔkɔkɔ", english: "parrot", category: "animals" },
-            { twi: "akokɔ", english: "hen", category: "animals" },
-            { twi: "nanka", english: "crocodile", category: "animals" },
+            { twi: "apɔnkyerɛne", english: "frog (alternate)", category: "animals" },
+            { twi: "akokɔ", english: "hen/chicken", category: "animals" },
+            { twi: "akokɔba", english: "chick", category: "animals" },
+            { twi: "akokɔnini", english: "cock (male chicken)", category: "animals" },
+            { twi: "akokɔbedeɛ", english: "hen (female chicken)", category: "animals" },
+            { twi: "ako", english: "parrot", category: "animals" },
+            { twi: "nanka", english: "boa constrictor / crocodile", category: "animals" },
+            { twi: "ɔdɛnkyɛm", english: "crocodile", category: "animals" },
             { twi: "ɔhempɔn", english: "eagle", category: "animals" },
+            { twi: "ɔkɔdeɛ", english: "eagle (alternate)", category: "animals" },
             { twi: "sankofa", english: "a bird that goes back", category: "animals" },
-            { twi: "ɔpataku", english: "rabbit", category: "animals" },
-            { twi: "ɔkɔte", english: "pig", category: "animals" },
-            { twi: "afono", english: "monkey", category: "animals" },
-            { twi: "ɔtwe", english: "hyena", category: "animals" },
-            { twi: "ɔsraman", english: "jackal", category: "animals" },
-            { twi: "ɛpo", english: "hippo", category: "animals" },
+            { twi: "adanko", english: "rabbit", category: "animals" },
+            { twi: "prako", english: "pig", category: "animals" },
+            { twi: "prakonini", english: "boar (male pig)", category: "animals" },
+            { twi: "prakobedeɛ", english: "sow (female pig)", category: "animals" },
+            { twi: "kɔkɔte", english: "bush pig", category: "animals" },
+            { twi: "adoe", english: "monkey", category: "animals" },
+            { twi: "afono", english: "monkey (alternate)", category: "animals" },
+            { twi: "ɔtwe", english: "duiker", category: "animals" },
+            { twi: "ofui", english: "hyena", category: "animals" },
+            { twi: "pataku", english: "hyena (alternate)", category: "animals" },
+            { twi: "sakraman", english: "jackal / wild dog / fox", category: "animals" },
+            { twi: "ɛpo", english: "hippo / sea/ocean", category: "animals" },
+            { twi: "bonsu", english: "whale", category: "animals" },
+            { twi: "oboodede", english: "shark", category: "animals" },
             { twi: "ɔkɔmfo", english: "bat", category: "animals" },
-            { twi: "ɔkoto", english: "crab", category: "animals" },
-            { twi: "saman", english: "spider", category: "animals" },
-            { twi: "tawa", english: "squirrel", category: "animals" },
-            
-            // ===== NATURE (25) - Existing =====
+            { twi: "apan", english: "bat (alternate)", category: "animals" },
+            { twi: "nankwaasere", english: "flying fox", category: "animals" },
+            { twi: "ɔkɔtɔ", english: "crab", category: "animals" },
+            { twi: "ananse", english: "spider", category: "animals" },
+            { twi: "opuro", english: "squirrel", category: "animals" },
+            { twi: "tawa", english: "squirrel (alternate)", category: "animals" },
+            { twi: "amoakua", english: "ground squirrel", category: "animals" },
+            { twi: "ɔkra", english: "cat", category: "animals" },
+            { twi: "agyinamoa", english: "cat (alternate)", category: "animals" },
+            { twi: "pɔnkɔ", english: "horse", category: "animals" },
+            { twi: "pɔnkɔ ba", english: "foal", category: "animals" },
+            { twi: "afunumu", english: "donkey", category: "animals" },
+            { twi: "odwan", english: "sheep", category: "animals" },
+            { twi: "odwannini", english: "ram (male sheep)", category: "animals" },
+            { twi: "odwan bedeɛ", english: "ewe (female sheep)", category: "animals" },
+            { twi: "akura", english: "mouse", category: "animals" },
+            { twi: "ɔkusie", english: "rat", category: "animals" },
+            { twi: "kɔtɔkɔ", english: "porcupine", category: "animals" },
+            { twi: "aprawa", english: "pangolin", category: "animals" },
+            { twi: "akranteɛ", english: "grasscutter", category: "animals" },
+            { twi: "pɛtɛ", english: "vulture", category: "animals" },
+            { twi: "akorɔma", english: "hawk", category: "animals" },
+            { twi: "anene", english: "crow", category: "animals" },
+            { twi: "akyenkyena", english: "hornbill", category: "animals" },
+            { twi: "asɔkwaa", english: "white-crested hornbill", category: "animals" },
+            { twi: "nwansena", english: "housefly", category: "animals" },
+            { twi: "ntontom", english: "mosquito", category: "animals" },
+            { twi: "tɛtea", english: "ant", category: "animals" },
+            { twi: "nkrane", english: "driver ants", category: "animals" },
+            { twi: "wowa", english: "bee", category: "animals" },
+            { twi: "kotokurodu", english: "wasp", category: "animals" },
+            { twi: "mfɔteɛ", english: "termite", category: "animals" },
+            { twi: "abɛbɛ", english: "grasshopper", category: "animals" },
+            { twi: "ntutummɛ", english: "locust", category: "animals" },
+            { twi: "sakasaka", english: "centipede", category: "animals" },
+            { twi: "kankabi", english: "millipede", category: "animals" },
+            { twi: "sonsono", english: "earthworm", category: "animals" },
+            { twi: "nyanyankyerɛ", english: "scorpion", category: "animals" },
+            { twi: "akyekyedeɛ", english: "tortoise", category: "animals" },
+            { twi: "koterɛ", english: "lizard", category: "animals" },
+            { twi: "ɔmampam", english: "monitor lizard", category: "animals" },
+            { twi: "akofena", english: "sword", category: "animals" },
+            { twi: "akɔmfɛm", english: "guinea fowl", category: "animals" },
+            { twi: "dabodabo", english: "duck", category: "animals" },
+            { twi: "ɔpatuo", english: "owl", category: "animals" },
+            { twi: "sukɔnkɔn", english: "heron", category: "animals" },
+            { twi: "aserewa", english: "sunbird", category: "animals" },
+            { twi: "oyoyo", english: "eel", category: "animals" },
+            { twi: "wansane", english: "bushbuck", category: "animals" },
+            { twi: "trɔmo", english: "bongo", category: "animals" },
+            { twi: "kankane", english: "civet", category: "animals" },
+            { twi: "ɔbankuo", english: "beetle", category: "animals" },
+            { twi: "apatuprɛ", english: "bulbul", category: "animals" },
+            { twi: "ɔforoteɛ", english: "deer", category: "animals" },
+            { twi: "sisire", english: "bear", category: "animals" },
+            { twi: "yoma", english: "camel", category: "animals" },
+            { twi: "santrofi anomaa", english: "nightjar", category: "animals" },
+            { twi: "kontromfi", english: "baboon", category: "animals" },
+            { twi: "apɛsɛ", english: "African brush-tailed porcupine", category: "animals" },
+            { twi: "konkontiba", english: "tadpole", category: "animals" },
+            { twi: "edwie", english: "louse", category: "animals" },
+            { twi: "sommorɔ", english: "tick", category: "animals" },
+            { twi: "tfrɛ", english: "cockroach", category: "animals" },
+            { twi: "nsonkuronsuo", english: "bedbug", category: "animals" },
+            { twi: "huruiɛ", english: "tsetse fly", category: "animals" },
+            { twi: "akokromfi", english: "praying mantis", category: "animals" },
+            { twi: "abobɔnnua", english: "woodpecker", category: "animals" },
+
+            // ===== NATURE (25) =====
             { twi: "awia", english: "sun", category: "nature" },
             { twi: "ɔsram", english: "moon", category: "nature" },
             { twi: "dua", english: "tree", category: "nature" },
@@ -534,8 +649,24 @@
             { twi: "ahonyade", english: "wealth", category: "nature" },
             { twi: "ɔhaw", english: "trouble", category: "nature" },
             { twi: "anigye", english: "joy", category: "nature" },
-            
-            // ===== GREETINGS (20) - Existing =====
+
+            // ===== WEATHER (new category) =====
+            { twi: "ewiem", english: "weather / sky", category: "weather" },
+            { twi: "nsuo", english: "rain / water", category: "weather" },
+            { twi: "awia", english: "sun", category: "weather" },
+            { twi: "mframa", english: "wind", category: "weather" },
+            { twi: "munumkum", english: "cloud", category: "weather" },
+            { twi: "ahum", english: "storm", category: "weather" },
+            { twi: "agraadaa", english: "lightning", category: "weather" },
+            { twi: "ahyɛn", english: "thunder", category: "weather" },
+            { twi: "ahuhuro", english: "heat / hot weather", category: "weather" },
+            { twi: "hyew", english: "hot", category: "weather" },
+            { twi: "awɔw", english: "cold weather", category: "weather" },
+            { twi: "osu tɔ", english: "it is raining", category: "weather" },
+            { twi: "awia pue", english: "the sun is out", category: "weather" },
+            { twi: "mframa bɔ", english: "the wind is blowing", category: "weather" },
+
+            // ===== GREETINGS (20) =====
             { twi: "akwaaba", english: "welcome", category: "greetings" },
             { twi: "medaase", english: "thank you", category: "greetings" },
             { twi: "mepa wo kyɛw", english: "please/excuse me", category: "greetings" },
@@ -556,8 +687,8 @@
             { twi: "yɛda ase", english: "we thank you", category: "greetings" },
             { twi: "ɔdɔ yɛ", english: "love is good", category: "greetings" },
             { twi: "onyame nhyira wo", english: "God bless you", category: "greetings" },
-            
-            // ===== NUMBERS (30) - Existing =====
+
+            // ===== NUMBERS (30) =====
             { twi: "baako", english: "one", category: "numbers" },
             { twi: "mmienu", english: "two", category: "numbers" },
             { twi: "mmiɛnsa", english: "three", category: "numbers" },
@@ -588,8 +719,8 @@
             { twi: "ɔha", english: "one hundred", category: "numbers" },
             { twi: "apem", english: "one thousand", category: "numbers" },
             { twi: "ɔpepe", english: "ten thousand", category: "numbers" },
-            
-            // ===== TIME (20) - Existing =====
+
+            // ===== TIME (20) =====
             { twi: "ndɛ", english: "today", category: "time" },
             { twi: "ɛnnora", english: "yesterday", category: "time" },
             { twi: "ɔkyena", english: "tomorrow", category: "time" },
@@ -610,7 +741,7 @@
             { twi: "nwinwinn", english: "slowly", category: "time" },
             { twi: "daa", english: "always/every day", category: "time" },
             { twi: "ɛberɛ", english: "time/period", category: "time" },
-            
+
             // ===== VERBS (60) =====
             { twi: "kɔ", english: "to go", category: "verbs" },
             { twi: "ba", english: "to come", category: "verbs" },
@@ -678,12 +809,11 @@
         let currentSearch = "";
         let currentLetter = "";
 
-        // Build letter navigation
         const letters = ["A", "B", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "W", "Y", "Ɛ", "Ɔ"];
 
         function buildLetterNav() {
             const nav = document.getElementById('letterNav');
-            nav.innerHTML = '<button class="letter-btn" data-letter="">All</button>';
+            nav.innerHTML = '<button class="letter-btn active" data-letter="">All</button>';
             letters.forEach(letter => {
                 const btn = document.createElement('button');
                 btn.className = 'letter-btn';
@@ -692,13 +822,14 @@
                 btn.onclick = () => filterByLetter(letter);
                 nav.appendChild(btn);
             });
+            nav.querySelector('[data-letter=""]').onclick = () => filterByLetter("");
         }
 
         function filterByLetter(letter) {
             currentLetter = letter;
             document.querySelectorAll('.letter-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.getAttribute('data-letter') === letter || (letter === "" && btn.getAttribute('data-letter') === "")) {
+                if (btn.getAttribute('data-letter') === letter) {
                     btn.classList.add('active');
                 }
             });
@@ -707,59 +838,51 @@
 
         function renderDictionary() {
             let filtered = [...dictionary];
-            
+
             if (currentCategory !== "all") {
                 filtered = filtered.filter(item => item.category === currentCategory);
             }
-            
+
             if (currentSearch) {
                 const searchLower = currentSearch.toLowerCase();
-                filtered = filtered.filter(item => 
-                    item.twi.toLowerCase().includes(searchLower) || 
+                filtered = filtered.filter(item =>
+                    item.twi.toLowerCase().includes(searchLower) ||
                     item.english.toLowerCase().includes(searchLower)
                 );
             }
-            
+
             if (currentLetter) {
-                filtered = filtered.filter(item => item.twi.charAt(0).toUpperCase() === currentLetter || 
-                    item.twi.charAt(0).toUpperCase() === currentLetter.toLowerCase());
+                filtered = filtered.filter(item =>
+                    item.twi.charAt(0).toUpperCase() === currentLetter ||
+                    item.twi.charAt(0) === currentLetter.toLowerCase()
+                );
             }
-            
+
+            filtered.sort((a, b) => a.twi.localeCompare(b.twi));
+
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = '';
-            
-            filtered.sort((a, b) => a.twi.localeCompare(b.twi));
-            
+
             filtered.forEach((item, index) => {
                 const row = tbody.insertRow();
                 row.className = 'dictionary-row';
                 row.onclick = () => playAudio(item.twi);
-                
+
                 row.insertCell(0).innerHTML = index + 1;
                 row.insertCell(1).innerHTML = `<span class="twi-word">${item.twi}</span>`;
                 row.insertCell(2).innerHTML = item.english;
-                
-                let catIcon = "";
-                if (item.category === "pronouns") catIcon = "🔤";
-                else if (item.category === "adverbs") catIcon = "⚡";
-                else if (item.category === "adjectives") catIcon = "🎨";
-                else if (item.category === "prepositions") catIcon = "📍";
-                else if (item.category === "conjunctions") catIcon = "🔗";
-                else if (item.category === "question") catIcon = "❓";
-                else if (item.category === "verbs") catIcon = "🏃";
-                else if (item.category === "home") catIcon = "🏠";
-                else if (item.category === "family") catIcon = "👨‍👩‍👧";
-                else if (item.category === "food") catIcon = "🍎";
-                else if (item.category === "colors") catIcon = "🎨";
-                else if (item.category === "body") catIcon = "🦵";
-                else if (item.category === "animals") catIcon = "🐘";
-                else if (item.category === "nature") catIcon = "🌤️";
-                else if (item.category === "greetings") catIcon = "👋";
-                else if (item.category === "numbers") catIcon = "🔢";
-                else if (item.category === "time") catIcon = "⏰";
-                row.insertCell(3).innerHTML = `${catIcon} ${item.category}`;
+
+                const catIcons = {
+                    pronouns: "🔤", adverbs: "⚡", adjectives: "🎨",
+                    prepositions: "📍", conjunctions: "🔗", question: "❓",
+                    verbs: "🏃", home: "🏠", family: "👨‍👩‍👧", food: "🍎",
+                    colors: "🎨", body: "🦵", animals: "🐘", nature: "🌤️",
+                    weather: "🌦️", greetings: "👋", numbers: "🔢", time: "⏰"
+                };
+                const icon = catIcons[item.category] || "📚";
+                row.insertCell(3).innerHTML = `${icon} ${item.category}`;
             });
-            
+
             document.getElementById('wordCount').innerHTML = filtered.length;
         }
 
@@ -771,11 +894,11 @@
             setTimeout(() => notification.remove(), 1500);
         }
 
-        // Event listeners
         document.getElementById('searchInput').addEventListener('input', (e) => {
             currentSearch = e.target.value;
             currentLetter = "";
             document.querySelectorAll('.letter-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.letter-btn[data-letter=""]').classList.add('active');
             renderDictionary();
         });
 
@@ -788,7 +911,6 @@
             });
         });
 
-        // Initialize
         buildLetterNav();
         renderDictionary();
     </script>
