@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Two-Letter Words | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+
+        .stats {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #2A9D8F10, #D4A37310);
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+            text-align: center;
+        }
+        .stat-number { font-size: 2rem; font-weight: bold; color: #2A9D8F; }
+        .stat-label { font-size: 0.7rem; color: #666; }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .tab-btn.active { background: #2A9D8F; color: white; }
+        .tab-btn:hover:not(.active) { background: #D4A373; color: white; }
+
+        .panel { display: none; animation: fadeIn 0.3s; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .alphabet-filter {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .letter-btn {
+            background: #f0f0f0;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+        .letter-btn.active { background: #2A9D8F; color: white; }
+        .letter-btn:hover:not(.active) { background: #D4A373; color: white; }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .word-card {
+            background: #FDF8F2;
+            border-radius: 20px;
+            padding: 1.2rem;
+            border: 1px solid #eee;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .word-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .word-twi { font-size: 1.8rem; font-weight: bold; color: #2A9D8F; font-family: monospace; margin-bottom: 0.5rem; }
+        .word-meanings { font-size: 0.85rem; color: #666; line-height: 1.4; }
+        .word-meanings ul { margin-left: 1rem; }
+
+        .quiz-question {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-twi { font-size: 3rem; font-weight: bold; color: #2A9D8F; font-family: monospace; margin-bottom: 0.5rem; }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        .quiz-option:hover:not(:disabled) {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: translateX(5px);
+        }
+        .quiz-option.correct { background: #2A9D8F !important; border-color: #2A9D8F !important; color: white !important; }
+        .quiz-option.wrong { background: #E76F51 !important; border-color: #E76F51 !important; color: white !important; }
+        .quiz-option:disabled { cursor: not-allowed; }
+
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+            font-weight: 600;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #2A9D8F20; color: #2A9D8F; }
+        .quiz-feedback.wrong { background: #E76F5120; color: #E76F51; }
+
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+        .next-btn {
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .word-grid { grid-template-columns: 1fr; }
+            .quiz-twi { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>📖 Twi Two-Letter Words <span class="badge">Essential Vocabulary</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 Learn the building blocks of Twi – every two-letter word has meaning!</p>
+
+        <div class="stats">
+            <div class="stat-card"><div class="stat-number" id="totalWords">0</div><div class="stat-label">Total Words</div></div>
+            <div class="stat-card"><div class="stat-number" id="uniqueLetters">0</div><div class="stat-label">Letters</div></div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('study')">📚 Study</button>
+            <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz Yourself</button>
+        </div>
+
+        <!-- STUDY PANEL -->
+        <div id="studyPanel" class="panel active">
+            <div class="alphabet-filter" id="alphabetFilter"></div>
+            <div class="word-grid" id="wordGrid"></div>
+        </div>
+
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="panel">
+            <div class="progress-bar"><div class="progress-fill" id="quizProgress"></div></div>
+            <div class="quiz-stats">
+                <span>📊 Question <span id="quizCurrent">1</span> / <span id="quizTotal">0</span></span>
+                <span>🏆 Score: <span id="quizScore">0</span></span>
+            </div>
+            <div id="quizContainer"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const wordsData = [
+            { word: "ba", meanings: ["offspring", "child"] },
+            { word: "bo", meanings: ["chest (noun)", "beat (verb)", "booze (verb)"] },
+            { word: "bu", meanings: ["break (verb)", "swindle", "respect (verb)"] },
+            { word: "bi", meanings: ["some", "a certain… (e.g. 'akwadaa bi' meaning 'a certain child')"] },
+            { word: "bɛ", meanings: ["proverb"] },
+            { word: "bɔ", meanings: ["create (applicable to God's creation)", "kick (verb)"] },
+            { word: "da", meanings: ["sleep (verb)", "day", "solidify (of oil, e.g. 'ngo no ada' meaning 'the oil has solidified')"] },
+            { word: "dɛ", meanings: ["sweet (adjective)"] },
+            { word: "di", meanings: ["eat"] },
+            { word: "dɔ", meanings: ["weed (verb)", "deep (adjective)", "love (verb)"] },
+            { word: "du", meanings: ["heavy (adjective)", "reach/arrive"] },
+            { word: "fa", meanings: ["take (verb)", "half (noun)", "festival (e.g. 'Asanteman rehyɛ fa')"] },
+            { word: "fo", meanings: ["climb (verb)", "cheap (adjective)"] },
+            { word: "fi", meanings: ["filth", "leave (verb)"] },
+            { word: "fe", meanings: ["vomit (verb)"] },
+            { word: "fu", meanings: ["grow (plant/weeds' growth)", "grow (in anger, e.g. 'me bo afu' - my chest has grown in anger)"] },
+            { word: "fɔ", meanings: ["wet (verb)"] },
+            { word: "fɛ", meanings: ["beautiful/nice", "age mate/co-equal"] },
+            { word: "ka", meanings: ["bite (verb)", "debt"] },
+            { word: "ko", meanings: ["fight (verb)"] },
+            { word: "ku", meanings: ["kill (verb)"] },
+            { word: "kɔ", meanings: ["go (verb)"] },
+            { word: "sa", meanings: ["fetch", "dance (verb)", "apply the enema"] },
+            { word: "so", meanings: ["big", "top (adjective)", "reach the required amount/quantity"] },
+            { word: "si", meanings: ["wash (verb)", "descend", "happen"] },
+            { word: "se", meanings: ["tooth/teeth", "say (verb)"] },
+            { word: "sɛ", meanings: ["resemble (verb)", "that (conjunction)"] },
+            { word: "go", meanings: ["loosen"] },
+            { word: "gu", meanings: ["sow (verb, seed)", "end something interesting", "place on (e.g. 'fa gu fam' - place on the floor)"] },
+            { word: "ha", meanings: ["worry (verb)", "light (weight, adjective)", "here (adverb)"] },
+            { word: "hi", meanings: ["wear off"] },
+            { word: "hɔ", meanings: ["there (adverb)"] },
+            { word: "he", meanings: ["where?"] },
+            { word: "hu", meanings: ["see", "fear (noun)"] },
+            { word: "ta", meanings: ["fart (noun, verb)", "tool for preparing banku", "small pestle for grinding spices"] },
+            { word: "to", meanings: ["throw (verb)", "place (verb)", "bake", "buttock"] },
+            { word: "te", meanings: ["tear (verb)", "hear (verb)"] },
+            { word: "tɔ", meanings: ["buy (verb)", "drop/fall (verb, applicable to rain)", "die (idiom)"] },
+            { word: "tu", meanings: ["dig (verb)", "fly (verb)", "pack out of residence"] },
+            { word: "ti", meanings: ["pinch (verb)", "head (noun)"] },
+            { word: "tɛ", meanings: ["hide (verb)"] },
+            { word: "ma", meanings: ["give (verb)", "full (adjective)"] },
+            { word: "mu", meanings: ["inside"] },
+            { word: "me", meanings: ["I (subject pronoun)", "me (object pronoun)", "my (possessive adjective)"] },
+            { word: "mo", meanings: ["you (plural subject)", "you (plural object)", "your (plural possessive)", "kudos!/good job! (mo!)"] },
+            { word: "na", meanings: ["and (for conjoining clauses)"] },
+            { word: "ne", meanings: ["and (for conjoining individual elements)", "defecate"] },
+            { word: "ni", meanings: ["this is (e.g. 'Kofi ni' - This is Kofi)"] },
+            { word: "nu", meanings: ["harvest (verb, applicable to palm fruit e.g. 'nu abɛ no')"] },
+            { word: "pa", meanings: ["good (adjective)", "hip", "uncover/expose"] },
+            { word: "pe", meanings: ["ejaculate (verb)"] },
+            { word: "pu", meanings: ["bring swallowed food up into mouth again", "bring something up (e.g. 'pu w'afu' - make your tummy big)"] },
+            { word: "pi", meanings: ["heavily concentrated (applicable to soup and soluble substances)"] },
+            { word: "po", meanings: ["reject (verb)", "sea"] },
+            { word: "pɛ", meanings: ["find/look for", "only (adjective)", "harmattan/dry weather"] },
+            { word: "pɔ", meanings: ["bleach (verb)", "knot (noun)", "lump"] },
+            { word: "wa", meanings: ["long/tall"] },
+            { word: "we", meanings: ["chew"] },
+            { word: "wo", meanings: ["give birth", "you (singular subject)", "you (singular object)", "your (singular possessive)"] },
+            { word: "wu", meanings: ["die"] },
+            { word: "wɔ", meanings: ["pound (verb)"] },
+            { word: "ya", meanings: ["painful"] },
+            { word: "yi", meanings: ["remove", "shave (verb)"] },
+            { word: "yɛ", meanings: ["do (verb)", "well/good"] }
+        ];
+
+        let currentLetter = 'ALL';
+
+        // ===== QUIZ STATE =====
+        // Each quiz question stores its own shuffled options and correct index
+        // so re-rendering never changes what was already built.
+        let currentQuiz = [];        // array of { word, meanings, options, correctIndex }
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswers = [];        // stores the selected option index per question (-1 = not answered)
+
+        // ===== STUDY =====
+
+        function getUniqueLetters() {
+            const letters = new Set();
+            wordsData.forEach(w => letters.add(w.word.charAt(0).toUpperCase()));
+            return Array.from(letters).sort();
+        }
+
+        function renderAlphabetFilter() {
+            const letters = getUniqueLetters();
+            let html = `<button class="letter-btn ${currentLetter === 'ALL' ? 'active' : ''}" onclick="filterByLetter('ALL')">ALL</button>`;
+            letters.forEach(letter => {
+                html += `<button class="letter-btn ${currentLetter === letter ? 'active' : ''}" onclick="filterByLetter('${letter}')">${letter}</button>`;
+            });
+            document.getElementById('alphabetFilter').innerHTML = html;
+        }
+
+        function filterByLetter(letter) {
+            currentLetter = letter;
+            renderAlphabetFilter();
+            renderWordGrid();
+        }
+
+        function renderWordGrid() {
+            let filtered = wordsData;
+            if (currentLetter !== 'ALL') {
+                filtered = wordsData.filter(w => w.word.charAt(0).toUpperCase() === currentLetter);
+            }
+            let html = '';
+            filtered.forEach(word => {
+                html += `
+                    <div class="word-card" onclick="speakWord('${word.word}')">
+                        <div class="word-twi">${word.word}</div>
+                        <div class="word-meanings">
+                            <ul>${word.meanings.map(m => `<li>${m}</li>`).join('')}</ul>
+                        </div>
+                    </div>`;
+            });
+            document.getElementById('wordGrid').innerHTML = html;
+            document.getElementById('totalWords').innerText = filtered.length;
+            document.getElementById('uniqueLetters').innerText = getUniqueLetters().length;
+        }
+
+        function speakWord(word) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'tw';
+                utterance.rate = 0.7;
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'study') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('studyPanel').classList.add('active');
+                document.getElementById('quizPanel').classList.remove('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('studyPanel').classList.remove('active');
+                document.getElementById('quizPanel').classList.add('active');
+                startNewQuiz();
+            }
+        }
+
+        // ===== QUIZ =====
+
+        function buildQuizQuestion(wordEntry) {
+            // Collect all wrong answer candidates
+            const allMeanings = [];
+            wordsData.forEach(w => {
+                if (w.word !== wordEntry.word) {
+                    w.meanings.forEach(m => allMeanings.push(m));
+                }
+            });
+
+            // Pick 3 unique wrong options
+            const wrongOptions = [];
+            const shuffledAll = allMeanings.sort(() => Math.random() - 0.5);
+            for (let i = 0; i < shuffledAll.length && wrongOptions.length < 3; i++) {
+                const candidate = shuffledAll[i];
+                if (!wordEntry.meanings.includes(candidate) && !wrongOptions.includes(candidate)) {
+                    wrongOptions.push(candidate);
+                }
+            }
+
+            // Build options array: correct answer + 3 wrong
+            const correctMeaning = wordEntry.meanings[0];
+            const options = [correctMeaning, ...wrongOptions];
+
+            // Shuffle options
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+
+            // Find where the correct answer ended up after shuffle
+            const correctIndex = options.indexOf(correctMeaning);
+
+            return {
+                word: wordEntry.word,
+                meanings: wordEntry.meanings,
+                options: options,
+                correctIndex: correctIndex
+            };
+        }
+
+        function startNewQuiz() {
+            // Shuffle word list and pick 15
+            const shuffled = [...wordsData].sort(() => Math.random() - 0.5);
+            const selected = shuffled.slice(0, 15);
+
+            // Build each question ONCE — options and correctIndex are frozen here
+            currentQuiz = selected.map(entry => buildQuizQuestion(entry));
+
+            quizIndex = 0;
+            quizScore = 0;
+            quizAnswers = new Array(currentQuiz.length).fill(-1); // -1 = unanswered
+
+            document.getElementById('quizTotal').innerText = currentQuiz.length;
+            document.getElementById('quizScore').innerText = 0;
+            document.getElementById('quizProgress').style.width = '0%';
+
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (quizIndex >= currentQuiz.length) {
+                showQuizResults();
+                return;
+            }
+
+            const q = currentQuiz[quizIndex];
+            const answered = quizAnswers[quizIndex] !== -1;
+            const selectedIdx = quizAnswers[quizIndex];
+
+            let optionsHtml = '';
+            q.options.forEach((opt, idx) => {
+                let cls = 'quiz-option';
+                if (answered) {
+                    if (idx === q.correctIndex) {
+                        cls += ' correct';           // always highlight correct green
+                    } else if (idx === selectedIdx) {
+                        cls += ' wrong';             // only highlight chosen wrong answer red
+                    }
+                }
+                optionsHtml += `
+                    <button class="${cls}" onclick="checkQuizAnswer(${idx})" ${answered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </button>`;
+            });
+
+            let feedbackHtml = '';
+            if (answered) {
+                const isCorrect = selectedIdx === q.correctIndex;
+                const feedbackClass = isCorrect ? 'correct' : 'wrong';
+                const feedbackText = isCorrect
+                    ? `✅ Correct! "${q.word}" means: ${q.meanings.join(', ')}`
+                    : `❌ Incorrect. "${q.word}" means: ${q.meanings.join(', ')}`;
+                feedbackHtml = `<div class="quiz-feedback show ${feedbackClass}">${feedbackText}</div>`;
+            } else {
+                feedbackHtml = `<div class="quiz-feedback" id="quizFeedback"></div>`;
+            }
+
+            document.getElementById('quizContainer').innerHTML = `
+                <div class="quiz-question">
+                    <div class="quiz-twi">${q.word}</div>
+                    <div class="options">${optionsHtml}</div>
+                    ${feedbackHtml}
+                </div>`;
+
+            const progressPercent = ((quizIndex + 1) / currentQuiz.length) * 100;
+            document.getElementById('quizProgress').style.width = progressPercent + '%';
+            document.getElementById('quizCurrent').innerText = quizIndex + 1;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            // Ignore if already answered
+            if (quizAnswers[quizIndex] !== -1) return;
+
+            const q = currentQuiz[quizIndex];
+            const isCorrect = selectedIdx === q.correctIndex;
+
+            // Save answer
+            quizAnswers[quizIndex] = selectedIdx;
+
+            if (isCorrect) {
+                quizScore++;
+                document.getElementById('quizScore').innerText = quizScore;
+            }
+
+            // Re-render to show feedback colors
+            renderQuizQuestion();
+
+            // Auto-advance after 1.5 seconds
+            setTimeout(() => {
+                quizIndex++;
+                renderQuizQuestion();
+            }, 1500);
+        }
+
+        function showQuizResults() {
+            const total = currentQuiz.length;
+            const percentage = Math.round((quizScore / total) * 100);
+
+            let emoji = '🌱✨';
+            let message = "You're just starting! Review the words and try again.";
+            if (percentage === 100) { emoji = '🏆🎉🌟'; message = 'PERFECT! You are a Twi vocabulary master!'; }
+            else if (percentage >= 80) { emoji = '🎉👍⭐'; message = 'Excellent! You know most of these words!'; }
+            else if (percentage >= 60) { emoji = '📚👏'; message = 'Good job! Keep studying the ones you missed.'; }
+            else if (percentage >= 40) { emoji = '📖💪'; message = 'Keep going! Practice makes progress.'; }
+
+            // Find missed words — those where the saved answer was NOT the correct index
+            const missed = currentQuiz.filter((q, i) => quizAnswers[i] !== q.correctIndex);
+
+            let missedHtml = '';
+            if (missed.length > 0) {
+                const pills = missed.map(q =>
+                    `<span style="background:#E76F5120;padding:0.3rem 0.8rem;border-radius:50px;font-size:0.8rem;">
+                        <strong>${q.word}</strong> = ${q.meanings[0]}
+                    </span>`
+                ).join('');
+                missedHtml = `
+                    <div style="margin-top:1rem;text-align:left;background:#FDF8F2;padding:1rem;border-radius:20px;">
+                        <strong>📚 Words to Review (${missed.length}):</strong>
+                        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem;">${pills}</div>
+                    </div>`;
+            }
+
+            document.getElementById('quizContainer').innerHTML = `
+                <div class="quiz-question" style="text-align:center;">
+                    <div style="font-size:3rem;font-weight:bold;color:#2A9D8F;">${quizScore}/${total}</div>
+                    <div style="font-size:1.2rem;margin:0.5rem 0;">${percentage}%</div>
+                    <div style="font-size:2.5rem;">${emoji}</div>
+                    <p style="margin:0.5rem 0;">${message}</p>
+                    ${missedHtml}
+                    <button class="next-btn" onclick="startNewQuiz()">🔄 New Quiz</button>
+                </div>`;
+
+            document.getElementById('quizProgress').style.width = '100%';
+        }
+
+        function resetQuiz() {
+            startNewQuiz();
+        }
+
+        // ===== INIT =====
+        renderAlphabetFilter();
+        renderWordGrid();
+    </script>
+</body>
+</html>
