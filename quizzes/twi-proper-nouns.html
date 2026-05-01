@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Proper Nouns (Edin Pa) | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #2A9D8F;
+            color: white;
+        }
+        .tab-btn:hover:not(.active) {
+            background: #D4A373;
+            color: white;
+        }
+        
+        .panel { display: none; animation: fadeIn 0.3s; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .lesson-section {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .noun-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .noun-table th, .noun-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .noun-table th {
+            background: #2A9D8F;
+            color: white;
+        }
+        .twi-word {
+            font-weight: bold;
+            color: #2A9D8F;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+        .example-box {
+            background: #f0f7f5;
+            border-left: 4px solid #2A9D8F;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+        .example-twi {
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.3rem;
+        }
+        .example-english {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .grammar-note {
+            background: #FFF3CD;
+            border-left: 4px solid #D4A373;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .grammar-note strong { color: #E76F51; }
+        
+        .day-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .day-table th, .day-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .day-table th {
+            background: #D4A373;
+            color: white;
+        }
+        
+        .quiz-question {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover:not(:disabled) {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: translateX(5px);
+        }
+        .quiz-option.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+        }
+        .quiz-option.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+        }
+        .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #2A9D8F20; color: #2A9D8F; }
+        .quiz-feedback.wrong { background: #E76F5120; color: #E76F51; }
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .options { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>🏷️ Twi Proper Nouns <span class="badge">Edin Pa</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 Proper nouns are specific names of people, places, days, and deities</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('lesson')">📚 Lesson</button>
+            <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz</button>
+        </div>
+
+        <!-- LESSON PANEL -->
+        <div id="lessonPanel" class="panel active">
+            <!-- Introduction -->
+            <div class="lesson-section">
+                <div class="lesson-title">🏷️ What are Proper Nouns (Edin Pa)?</div>
+                <p>Proper nouns refer to <strong>specific, unique names</strong> of people, places, days, and deities. Unlike common nouns, proper nouns are always specific to a particular entity and, in written Twi, begin with a capital letter.</p>
+                <div class="grammar-note">
+                    <strong>💡 Examples:</strong> Kofi, Kumase, Ɛdwoda, Onyankopɔn
+                </div>
+            </div>
+
+            <!-- Categories of Proper Nouns -->
+            <div class="lesson-section">
+                <div class="lesson-title">📂 Categories of Proper Nouns</div>
+                <table class="noun-table">
+                    <thead>
+                        <tr><th>Category</th><th>Twi Examples</th><th>English Translation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">Personal Names</td>
+                        <td class="twi-word">Kofi, Amma, Opoku, Antwi</td>
+                        <td>Specific names of people</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Place Names</td>
+                        <td class="twi-word">Kumase, Nkran, Abibirem</td>
+                        <td>Kumasi, Accra, Africa</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Days of the Week</td>
+                        <td class="twi-word">Ɛdwoda, Benada, Wukuada</td>
+                        <td>Monday, Tuesday, Wednesday</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Deities/God</td>
+                        <td class="twi-word">Onyankopɔn, Tweaduampɔn</td>
+                        <td>God (The Supreme Being)</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">Months</td>
+                        <td class="twi-word">Ɔpɛpɔn, Ogyefuo, Ɔbɛnem</td>
+                        <td>January, February, March</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Day Names (Kradin) -->
+            <div class="lesson-section">
+                <div class="lesson-title">📅 Day Names (Kradin) - Soul Names</div>
+                <p>Every Twi speaker has a name based on the day they were born. These are proper nouns that also reflect the <strong>"soul" (okra)</strong> of the person.</p>
+                <table class="day-table">
+                    <thead>
+                        <tr><th>Day</th><th>Male Name</th><th>Female Name</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">Sunday (Kwasiada)</td><td class="twi-word">Kwasi</td><td class="twi-word">Akosua</td></tr>
+                        <tr><td class="twi-word">Monday (Ɛdwoda)</td><td class="twi-word">Kwadwo</td><td class="twi-word">Adwoa</td></tr>
+                        <tr><td class="twi-word">Tuesday (Benada)</td><td class="twi-word">Kwabena</td><td class="twi-word">Abena</td></tr>
+                        <tr><td class="twi-word">Wednesday (Wukuada)</td><td class="twi-word">Kwaku</td><td class="twi-word">Akua</td></tr>
+                        <tr><td class="twi-word">Thursday (Yawoada)</td><td class="twi-word">Yaw</td><td class="twi-word">Yaa</td></tr>
+                        <tr><td class="twi-word">Friday (Efiada)</td><td class="twi-word">Kofi</td><td class="twi-word">Afia</td></tr>
+                        <tr><td class="twi-word">Saturday (Memeneda)</td><td class="twi-word">Kwame</td><td class="twi-word">Amma</td></tr>
+                    </tbody>
+                </table>
+                <div class="grammar-note">
+                    <strong>💡 Cultural Note:</strong> In Akan culture, your day name is considered your "soul name" and reflects your spiritual identity.
+                </div>
+            </div>
+
+            <!-- Place Names and Suffixes -->
+            <div class="lesson-section">
+                <div class="lesson-title">📍 Place Names: Suffixes "-man" and "-krom"</div>
+                <p>Many proper nouns for towns or countries are formed by adding suffixes to a root word.</p>
+                <div class="example-box">
+                    <div class="example-twi">-man (nation/town)</div>
+                    <div class="example-english">Asanteman (The Ashanti Nation), Ghanamantoɔ (The Republic of Ghana)</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">-krom (town/village)</div>
+                    <div class="example-english">Koforidua-krom, Kumase-krom (The city of Kumasi)</div>
+                </div>
+            </div>
+
+            <!-- Pluralizing Proper Nouns -->
+            <div class="lesson-section">
+                <div class="lesson-title">👥 Pluralizing Proper Nouns</div>
+                <p>Generally, proper nouns are singular because they refer to a unique entity. However, you can pluralize them if you are talking about a group of people with that name by adding the suffix <strong class="twi-word">-nom</strong>.</p>
+                <table class="noun-table">
+                    <thead>
+                        <tr><th>Singular</th><th>Plural</th><th>Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">Kofi</td><td class="twi-word">Kofinom</td><td>Kofi and his group / The Kofis</td></tr>
+                        <tr><td class="twi-word">Amma</td><td class="twi-word">Ammanom</td><td>Amma and company</td></tr>
+                        <tr><td class="twi-word">Wɔfa Yaw</td><td class="twi-word">Wɔfa Yawnom</td><td>Uncle Yaw and those with him</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Proper Nouns vs Common Nouns -->
+            <div class="lesson-section">
+                <div class="lesson-title">📊 Proper Nouns vs Common Nouns</div>
+                <table class="noun-table">
+                    <thead>
+                        <tr><th>Type</th><th>Twi Example</th><th>English</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">Proper</td><td class="twi-word">Asante</td><td>Ashanti</td><td>Unique group/language</td></tr>
+                        <tr><td class="twi-word">Common</td><td class="twi-word">kasa</td><td>language</td><td>General concept</td></tr>
+                        <tr><td class="twi-word">Proper</td><td class="twi-word">Bosomtwe</td><td>Bosomtwe</td><td>A specific lake</td></tr>
+                        <tr><td class="twi-word">Common</td><td class="twi-word">tadeɛ</td><td>pond/lake</td><td>Any body of water</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Example Sentences -->
+            <div class="lesson-section">
+                <div class="lesson-title">📝 Example Sentences</div>
+                <div class="example-box">
+                    <div class="example-twi">Kofi kɔɔ Kumase.</div>
+                    <div class="example-english">Kofi went to Kumasi.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Onyankopɔn na ɔbɔɔ wiase.</div>
+                    <div class="example-english">It was God who created the world.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Yaw ne Akosua yɛ nuanom.</div>
+                    <div class="example-english">Yaw and Akosua are siblings.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Kofinom aba fie.</div>
+                    <div class="example-english">Kofi and his group have come home.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="panel">
+            <div class="progress-bar"><div class="progress-fill" id="quizProgress"></div></div>
+            <div class="quiz-stats">
+                <span>📊 Question <span id="quizCurrent">1</span> / <span id="quizTotal">0</span></span>
+                <span>🏆 Score: <span id="quizScore">0</span></span>
+            </div>
+            <div id="quizContainer"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============ QUIZ QUESTIONS ============
+        const quizQuestions = [
+            { text: "What is the male name for someone born on Sunday?", options: ["Kwasi", "Kwadwo", "Kofi", "Kwame"], correct: 0 },
+            { text: "What is the female name for someone born on Monday?", options: ["Adwoa", "Akosua", "Abena", "Amma"], correct: 0 },
+            { text: "What is the male name for someone born on Friday?", options: ["Kwame", "Kofi", "Yaw", "Kwaku"], correct: 1 },
+            { text: "What is the female name for someone born on Wednesday?", options: ["Akua", "Abena", "Adwoa", "Ama"], correct: 0 },
+            { text: "What is the male name for someone born on Tuesday?", options: ["Kwabena", "Kwadwo", "Kwaku", "Kofi"], correct: 0 },
+            { text: "What is the female name for someone born on Saturday?", options: ["Amma", "Akosua", "Adwoa", "Afia"], correct: 0 },
+            { text: "What is the male name for someone born on Thursday?", options: ["Yaw", "Kofi", "Kwame", "Kwasi"], correct: 0 },
+            { text: "What does 'Kumase' mean in English?", options: ["Accra", "Kumasi", "Takoradi", "Cape Coast"], correct: 1 },
+            { text: "What does 'Nkran' mean in English?", options: ["Kumasi", "Accra", "Tema", "Tamale"], correct: 1 },
+            { text: "What does 'Abibirem' mean?", options: ["America", "Europe", "Africa", "Asia"], correct: 2 },
+            { text: "What is the Twi name for January?", options: ["Ɔpɛpɔn", "Ogyefuo", "Ɔbɛnem", "Ɔforisuo"], correct: 0 },
+            { text: "What suffix means 'nation/town'?", options: ["-man", "-krom", "-nom", "-foɔ"], correct: 0 },
+            { text: "What suffix means 'town/village'?", options: ["-krom", "-man", "-nom", "-ni"], correct: 0 },
+            { text: "How do you pluralize a proper noun like 'Kofi'?", options: ["Add -nom", "Add -foɔ", "Add -m", "Add -n"], correct: 0 },
+            { text: "What is the plural of 'Amma'?", options: ["Ammanom", "Ammafoɔ", "Amman", "Amma"], correct: 0 },
+            { text: "What is the Twi name for God?", options: ["Onyankopɔn", "Nyame", "Onyame", "All of the above"], correct: 3 },
+            { text: "What day is 'Kwadwo' born?", options: ["Monday", "Tuesday", "Wednesday", "Thursday"], correct: 0 },
+            { text: "What day is 'Yaa' born?", options: ["Thursday", "Friday", "Saturday", "Sunday"], correct: 0 },
+            { text: "What does 'Asanteman' mean?", options: ["The Ashanti Nation", "A person from Ashanti", "Ashanti language", "Ashanti food"], correct: 0 },
+            { text: "What is the difference between 'Bosomtwe' and 'tadeɛ'?", options: ["Bosomtwe is a specific lake (proper), tadeɛ is any lake (common)", "Bosomtwe means river, tadeɛ means lake", "They are the same", "Bosomtwe is a person's name"], correct: 0 }
+        ];
+
+        let currentQuiz = [];
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswers = [];
+
+        function startNewQuiz() {
+            const shuffled = [...quizQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            currentQuiz = shuffled.slice(0, 15);
+            quizIndex = 0;
+            quizScore = 0;
+            quizAnswers = new Array(currentQuiz.length).fill(null);
+            document.getElementById('quizTotal').innerText = currentQuiz.length;
+            document.getElementById('quizScore').innerText = quizScore;
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (quizIndex >= currentQuiz.length) {
+                showQuizResults();
+                return;
+            }
+            
+            const q = currentQuiz[quizIndex];
+            const hasAnswered = quizAnswers[quizIndex] !== null;
+            
+            let html = `
+                <div class="quiz-question">
+                    <div class="quiz-question-text">${q.text}</div>
+                    <div class="options" id="quizOptions">
+            `;
+            
+            q.options.forEach((opt, idx) => {
+                let additionalClass = '';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx === q.correct) additionalClass = 'correct';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx !== q.correct) additionalClass = 'wrong';
+                
+                html += `
+                    <button class="quiz-option ${additionalClass}" onclick="checkQuizAnswer(${idx})" ${hasAnswered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </button>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div id="quizFeedback" class="quiz-feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('quizFeedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = quizAnswers[quizIndex] === q.correct;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = `✅ Correct! Great job!`;
+                } else {
+                    const correctAnswer = q.options[q.correct];
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is: ${correctAnswer}`;
+                }
+            }
+            
+            const progressPercent = ((quizIndex + 1) / currentQuiz.length) * 100;
+            document.getElementById('quizProgress').style.width = progressPercent + '%';
+            document.getElementById('quizCurrent').innerText = quizIndex + 1;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            if (quizAnswers[quizIndex] !== null) return;
+            
+            const q = currentQuiz[quizIndex];
+            const isCorrect = (selectedIdx === q.correct);
+            
+            quizAnswers[quizIndex] = selectedIdx;
+            if (isCorrect) {
+                quizScore++;
+                document.getElementById('quizScore').innerText = quizScore;
+            }
+            
+            renderQuizQuestion();
+            
+            setTimeout(() => {
+                if (quizIndex < currentQuiz.length - 1) {
+                    quizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    quizIndex++;
+                    renderQuizQuestion();
+                }
+            }, 1200);
+        }
+
+        function showQuizResults() {
+            const total = currentQuiz.length;
+            const percentage = Math.round((quizScore / total) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🌟';
+                message = 'PERFECT! You are a proper nouns master!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You understand Twi proper nouns well!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏';
+                message = 'Good job! Review the lesson and try again.';
+            } else if (percentage >= 40) {
+                emoji = '📖💪';
+                message = 'Keep going! Practice makes progress.';
+            } else {
+                emoji = '🌱✨';
+                message = 'You are just starting! Study the lesson and try again.';
+            }
+            
+            const resultsHtml = `
+                <div class="quiz-question" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${quizScore}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2.5rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0;">${message}</p>
+                    <button class="nav-btn" onclick="startNewQuiz()" style="margin-top: 1rem; background:#2A9D8F;">🔄 New Quiz</button>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultsHtml;
+            document.getElementById('quizProgress').style.width = '100%';
+        }
+
+        function resetQuiz() { startNewQuiz(); }
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'lesson') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('lessonPanel').classList.add('active');
+                document.getElementById('quizPanel').classList.remove('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('lessonPanel').classList.remove('active');
+                document.getElementById('quizPanel').classList.add('active');
+                startNewQuiz();
+            }
+        }
+
+        startNewQuiz();
+    </script>
+</body>
+</html>
