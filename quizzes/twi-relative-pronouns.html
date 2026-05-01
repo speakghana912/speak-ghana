@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Relative Pronouns | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #2A9D8F;
+            color: white;
+        }
+        .tab-btn:hover:not(.active) {
+            background: #D4A373;
+            color: white;
+        }
+        
+        .panel { display: none; animation: fadeIn 0.3s; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .lesson-section {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .pronoun-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .pronoun-table th, .pronoun-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .pronoun-table th {
+            background: #2A9D8F;
+            color: white;
+        }
+        .twi-word {
+            font-weight: bold;
+            color: #2A9D8F;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+        .example-box {
+            background: #f0f7f5;
+            border-left: 4px solid #2A9D8F;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+        .example-twi {
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.3rem;
+        }
+        .example-english {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .grammar-note {
+            background: #FFF3CD;
+            border-left: 4px solid #D4A373;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .grammar-note strong { color: #E76F51; }
+        
+        .quiz-question {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .quiz-twi {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            font-family: monospace;
+            margin-bottom: 0.5rem;
+            background: #f0f0f0;
+            padding: 0.8rem;
+            border-radius: 12px;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover:not(:disabled) {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: translateX(5px);
+        }
+        .quiz-option.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+        }
+        .quiz-option.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+        }
+        .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #2A9D8F20; color: #2A9D8F; }
+        .quiz-feedback.wrong { background: #E76F5120; color: #E76F51; }
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .options { grid-template-columns: 1fr; }
+            .quiz-twi { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>🔗 Twi Relative Pronouns <span class="badge">Lesson + Quiz</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 Relative pronouns connect clauses and add information about nouns (who, which, that, whatever, whoever)</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('lesson')">📚 Lesson</button>
+            <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz</button>
+        </div>
+
+        <!-- LESSON PANEL -->
+        <div id="lessonPanel" class="panel active">
+            <!-- What is a Relative Pronoun? -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔗 What is a Relative Pronoun?</div>
+                <p>A relative pronoun is a pronoun used to refer back to a noun or noun phrase that has already been mentioned in the sentence. It helps provide more information about that noun or to specify which one is being referred to.</p>
+                <div class="grammar-note">
+                    <strong>💡 English examples:</strong> who, whom, which, that, whose, whoever, whomever, etc.
+                </div>
+                <div class="grammar-note">
+                    <strong>📌 Note:</strong> Do not confuse relative pronouns with interrogative (question) words.
+                </div>
+            </div>
+
+            <!-- Relative Pronouns in Twi -->
+            <div class="lesson-section">
+                <div class="lesson-title">🇬🇭 Relative Pronouns in Twi</div>
+                <p>In Twi, the function of relative pronouns is mostly handled by a single particle: <strong class="twi-word">a</strong> (pronounced <strong>áà</strong> — with a high-low tone).</p>
+                <div class="grammar-note">
+                    <strong>📌 Rule:</strong> This particle <strong class="twi-word">a</strong> is placed <strong>after</strong> the noun or noun phrase it refers to.
+                </div>
+            </div>
+
+            <!-- Examples Table -->
+            <div class="lesson-section">
+                <div class="lesson-title">📝 Examples</div>
+                <table class="pronoun-table">
+                    <thead><tr><th>Twi</th><th>English</th></tr></thead>
+                    <tbody>
+                        <tr><td class="twi-word">maame no a gya tɔɔ n'afuom no resu</td>
+                        <td>The woman whose farm caught fire is crying</td></tr>
+                        <tr><td class="twi-word">Kofi waree ɔbaa a na ɔnhuu no da</td>
+                        <td>Kofi married a woman that he had never met</td></tr>
+                        <tr><td class="twi-word">papa no a ɔbaa ha no atu kwan</td>
+                        <td>The man who came here has traveled</td></tr>
+                        <tr><td class="twi-word">wokae berɛ a na wonni sika no?</td>
+                        <td>Do you remember the time when you didn't have money?</td></tr>
+                        <tr><td class="twi-word">akwadaa no a ne nan mu abuo no kɔ ayaresabea</td>
+                        <td>The child whose leg is broken has gone to the hospital</td></tr>
+                        <tr><td class="twi-word">aduro no a wode maa me no asa</td>
+                        <td>The medicine that you gave me is finished</td></tr>
+                        <tr><td class="twi-word">merehwehwɛ obi a ɔyɛ kwadwofoɔ</td>
+                        <td>I'm looking for someone who is lazy</td></tr>
+                        <tr><td class="twi-word">ɛdan no a yɛdaa mu nnora no adwiri agu</td>
+                        <td>The building in which we slept yesterday has collapsed</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Forming Whoever, Whatever, Wherever -->
+            <div class="lesson-section">
+                <div class="lesson-title">📝 Forming "Whoever", "Whatever", "Wherever"</div>
+                <p>To form these, take an indefinite pronoun and add the particle <strong class="twi-word">a</strong>.</p>
+                <table class="pronoun-table">
+                    <thead>
+                        <tr><th>Indefinite Pronoun</th><th>+ a</th><th>Result</th><th>Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">obiara</td><td>+ a</td><td class="twi-word">obiara a</td><td>whoever</td></tr>
+                        <tr><td class="twi-word">biribiara</td><td>+ a</td><td class="twi-word">biribiara a</td><td>whatever</td></tr>
+                        <tr><td class="twi-word">baabiara</td><td>+ a</td><td class="twi-word">baabiara a</td><td>wherever</td></tr>
+                        <tr><td class="twi-word">(e)biara</td><td>+ a</td><td class="twi-word">biara a</td><td>whichever</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Examples with Whoever, Whatever -->
+            <div class="lesson-section">
+                <div class="lesson-title">📝 Examples with Whoever, Whatever, Wherever</div>
+                <div class="example-box">
+                    <div class="example-twi">Awurade nhyira wo, obiara a woboaa me no</div>
+                    <div class="example-english">God bless you, whoever helped me</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">ɛdan anaa kaa, ebiara a wopɛ no, mɛtɔ ama wo</div>
+                    <div class="example-english">A house or car, whichever you like, I'll buy it for you</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">wiase afɛɛfɛdeɛ yi nyinaa, biribiara a yɛamfa anwo yɛn no, yɛbɛwu agya hɔ</div>
+                    <div class="example-english">All these niceties of the world, whatever we weren't born with, we'll die and leave them behind</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">yi baako, obiara a w'ani gye ne ho</div>
+                    <div class="example-english">Choose one, whomever you like</div>
+                </div>
+            </div>
+
+            <!-- Key Takeaways -->
+            <div class="lesson-section">
+                <div class="lesson-title">💡 Key Takeaways</div>
+                <div class="grammar-note">
+                    <strong>✓</strong> Twi uses the particle <strong class="twi-word">a</strong> as the main relative pronoun<br>
+                    <strong>✓</strong> <strong class="twi-word">a</strong> is placed AFTER the noun it refers to<br>
+                    <strong>✓</strong> Add <strong class="twi-word">a</strong> to indefinite pronouns to form whoever, whatever, wherever<br>
+                    <strong>✓</strong> Examples: obiara a (whoever), biribiara a (whatever), baabiara a (wherever)
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="panel">
+            <div class="progress-bar"><div class="progress-fill" id="quizProgress"></div></div>
+            <div class="quiz-stats">
+                <span>📊 Question <span id="quizCurrent">1</span> / <span id="quizTotal">0</span></span>
+                <span>🏆 Score: <span id="quizScore">0</span></span>
+            </div>
+            <div id="quizContainer"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============ QUIZ QUESTIONS ============
+        const quizQuestions = [
+            { text: "What particle is used as the main relative pronoun in Twi?", options: ["de", "a", "ho", "ni"], correct: 1 },
+            { text: "Where is the relative pronoun 'a' placed in a Twi sentence?", options: ["Before the noun", "After the noun", "At the end of the sentence", "At the beginning"], correct: 1 },
+            { text: "What does 'obiara a' mean in Twi?", options: ["whatever", "wherever", "whoever", "whichever"], correct: 2 },
+            { text: "What does 'biribiara a' mean in Twi?", options: ["whoever", "whatever", "wherever", "whomever"], correct: 1 },
+            { text: "What does 'baabiara a' mean in Twi?", options: ["whoever", "whatever", "wherever", "whichever"], correct: 2 },
+            { text: "What does 'biara a' mean in Twi?", options: ["whoever", "whatever", "wherever", "whichever"], correct: 3 },
+            { text: "How do you form 'whoever' in Twi?", options: ["obiara + a", "biribiara + a", "baabiara + a", "biara + a"], correct: 0 },
+            { text: "How do you form 'whatever' in Twi?", options: ["obiara + a", "biribiara + a", "baabiara + a", "biara + a"], correct: 1 },
+            { text: "How do you form 'wherever' in Twi?", options: ["obiara + a", "biribiara + a", "baabiara + a", "biara + a"], correct: 2 },
+            { text: "Translate: 'maame no a gya tɔɔ n'afuom no resu'", options: ["The woman whose farm caught fire is crying", "The man who came here has traveled", "The medicine you gave me is finished", "I'm looking for someone who is lazy"], correct: 0 },
+            { text: "Translate: 'Kofi waree ɔbaa a na ɔnhuu no da'", options: ["Kofi married a woman he had never met", "Kofi married a woman he knew", "Kofi married a woman from his village", "Kofi married a woman last year"], correct: 0 },
+            { text: "Translate: 'papa no a ɔbaa ha no atu kwan'", options: ["The woman who came here has traveled", "The child whose leg is broken went to hospital", "The man who came here has traveled", "The medicine you gave me is finished"], correct: 2 },
+            { text: "Translate: 'akwadaa no a ne nan mu abuo no kɔ ayaresabea'", options: ["The child has gone to school", "The child whose leg is broken has gone to hospital", "The child is crying", "The child is playing"], correct: 1 },
+            { text: "Translate: 'aduro no a wode maa me no asa'", options: ["The medicine is working", "The medicine you gave me is finished", "The medicine is bitter", "The medicine is expensive"], correct: 1 },
+            { text: "Translate: 'merehwehwɛ obi a ɔyɛ kwadwofoɔ'", options: ["I found a lazy person", "I'm looking for someone who is lazy", "I'm looking for a job", "I found a job"], correct: 1 },
+            { text: "Translate: 'Awurade nhyira wo, obiara a woboaa me no'", options: ["God bless you all", "God bless you, whoever helped me", "God bless this house", "God is good"], correct: 1 },
+            { text: "Translate: 'ɛdan anaa kaa, ebiara a wopɛ no, mɛtɔ ama wo'", options: ["I will buy a house for you", "A house or car, whichever you like, I'll buy it for you", "I will buy a car for you", "Choose what you want"], correct: 1 },
+            { text: "What is the tone pronunciation of the relative pronoun 'a' in Twi?", options: ["High-high", "Low-low", "High-low (áà)", "Low-high"], correct: 2 },
+            { text: "Which English relative pronouns function similarly to Twi's 'a'?", options: ["and, or, but", "who, which, that", "he, she, it", "in, on, at"], correct: 1 },
+            { text: "Translate: 'ɛdan no a yɛdaa mu nnora no adwiri agu'", options: ["The house we built yesterday is beautiful", "The building in which we slept yesterday has collapsed", "The building is new", "We slept in a hotel"], correct: 1 }
+        ];
+
+        let currentQuiz = [];
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswers = [];
+
+        function startNewQuiz() {
+            const shuffled = [...quizQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            currentQuiz = shuffled.slice(0, 15);
+            quizIndex = 0;
+            quizScore = 0;
+            quizAnswers = new Array(currentQuiz.length).fill(null);
+            document.getElementById('quizTotal').innerText = currentQuiz.length;
+            document.getElementById('quizScore').innerText = quizScore;
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (quizIndex >= currentQuiz.length) {
+                showQuizResults();
+                return;
+            }
+            
+            const q = currentQuiz[quizIndex];
+            const hasAnswered = quizAnswers[quizIndex] !== null;
+            
+            let html = `
+                <div class="quiz-question">
+                    <div class="quiz-question-text">${q.text}</div>
+                    <div class="options" id="quizOptions">
+            `;
+            
+            q.options.forEach((opt, idx) => {
+                let additionalClass = '';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx === q.correct) additionalClass = 'correct';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx !== q.correct) additionalClass = 'wrong';
+                
+                html += `
+                    <button class="quiz-option ${additionalClass}" onclick="checkQuizAnswer(${idx})" ${hasAnswered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </button>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div id="quizFeedback" class="quiz-feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('quizFeedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = quizAnswers[quizIndex] === q.correct;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = `✅ Correct! Great job!`;
+                } else {
+                    const correctAnswer = q.options[q.correct];
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is: ${correctAnswer}`;
+                }
+            }
+            
+            const progressPercent = ((quizIndex + 1) / currentQuiz.length) * 100;
+            document.getElementById('quizProgress').style.width = progressPercent + '%';
+            document.getElementById('quizCurrent').innerText = quizIndex + 1;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            if (quizAnswers[quizIndex] !== null) return;
+            
+            const q = currentQuiz[quizIndex];
+            const isCorrect = (selectedIdx === q.correct);
+            
+            quizAnswers[quizIndex] = selectedIdx;
+            if (isCorrect) {
+                quizScore++;
+                document.getElementById('quizScore').innerText = quizScore;
+            }
+            
+            renderQuizQuestion();
+            
+            setTimeout(() => {
+                if (quizIndex < currentQuiz.length - 1) {
+                    quizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    quizIndex++;
+                    renderQuizQuestion();
+                }
+            }, 1200);
+        }
+
+        function showQuizResults() {
+            const total = currentQuiz.length;
+            const percentage = Math.round((quizScore / total) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🌟';
+                message = 'PERFECT! You are a relative pronoun master!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You understand relative pronouns well!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏';
+                message = 'Good job! Review the lesson and try again.';
+            } else if (percentage >= 40) {
+                emoji = '📖💪';
+                message = 'Keep going! Practice makes progress.';
+            } else {
+                emoji = '🌱✨';
+                message = 'You are just starting! Study the lesson and try again.';
+            }
+            
+            const resultsHtml = `
+                <div class="quiz-question" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${quizScore}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2.5rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0;">${message}</p>
+                    <button class="nav-btn" onclick="startNewQuiz()" style="margin-top: 1rem; background:#2A9D8F;">🔄 New Quiz</button>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultsHtml;
+            document.getElementById('quizProgress').style.width = '100%';
+        }
+
+        function resetQuiz() { startNewQuiz(); }
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'lesson') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('lessonPanel').classList.add('active');
+                document.getElementById('quizPanel').classList.remove('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('lessonPanel').classList.remove('active');
+                document.getElementById('quizPanel').classList.add('active');
+                startNewQuiz();
+            }
+        }
+
+        startNewQuiz();
+    </script>
+</body>
+</html>
