@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twi Subject Pronouns | Speak Ghana</title>
+    <title>Twi Pronouns - Lesson & Quiz | Speak Ghana</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -24,6 +24,7 @@
         .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
         .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
         
+        /* Tabs */
         .tabs {
             display: flex;
             gap: 0.5rem;
@@ -52,9 +53,15 @@
             color: white;
         }
         
-        .panel { display: none; animation: fadeIn 0.3s; }
+        .panel {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
         .panel.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
         
         /* Lesson Styles */
         .lesson-section {
@@ -87,6 +94,9 @@
             background: #2A9D8F;
             color: white;
         }
+        .pronoun-table tr:hover {
+            background: #2A9D8F10;
+        }
         .twi-word {
             font-weight: bold;
             color: #2A9D8F;
@@ -117,8 +127,11 @@
             border-radius: 12px;
             font-size: 0.9rem;
         }
-        .grammar-note strong { color: #E76F51; }
+        .grammar-note strong {
+            color: #E76F51;
+        }
         
+        /* Comparison Box */
         .comparison-box {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -136,6 +149,10 @@
             padding: 1rem;
             border-radius: 16px;
             border-left: 4px solid #2A9D8F;
+        }
+        .comparison-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
         
         /* Quiz Styles */
@@ -192,7 +209,10 @@
             border-color: #E76F51;
             color: white;
         }
-        .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .quiz-option:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
         .quiz-feedback {
             margin-top: 1rem;
             padding: 0.8rem;
@@ -200,8 +220,14 @@
             display: none;
         }
         .quiz-feedback.show { display: block; }
-        .quiz-feedback.correct { background: #2A9D8F20; color: #2A9D8F; }
-        .quiz-feedback.wrong { background: #E76F5120; color: #E76F51; }
+        .quiz-feedback.correct {
+            background: #2A9D8F20;
+            color: #2A9D8F;
+        }
+        .quiz-feedback.wrong {
+            background: #E76F5120;
+            color: #E76F51;
+        }
         .quiz-stats {
             display: flex;
             justify-content: space-between;
@@ -229,7 +255,15 @@
             margin-top: 1.5rem;
             flex-wrap: wrap;
         }
-        .nav-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        .nav-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
         
         @media (max-width: 768px) {
             .container { padding: 1rem; }
@@ -241,10 +275,10 @@
 <body>
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <h1>🔤 Twi Subject Pronouns <span class="badge">Lesson + Quiz</span></h1>
+            <h1>📖 Twi Pronouns <span class="badge">Lesson + Quiz</span></h1>
             <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
         </div>
-        <p class="subtitle">🎯 A subject pronoun performs the action of the verb. Master them here!</p>
+        <p class="subtitle">🎯 Master Twi pronouns – the key to speaking naturally without repetition!</p>
 
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('lesson')">📚 Lesson</button>
@@ -253,123 +287,154 @@
 
         <!-- LESSON PANEL -->
         <div id="lessonPanel" class="panel active">
-            <!-- What is a Subject Pronoun? -->
+            <!-- What is a Pronoun? -->
             <div class="lesson-section">
-                <div class="lesson-title">🔤 What is a Subject Pronoun?</div>
-                <p>A subject pronoun is a pronoun that acts as the <strong>subject</strong> of a sentence (i.e., it performs the action of the verb).</p>
-                <p>When a personal pronoun replaces a noun or noun phrase that is the subject of the sentence, it becomes a subject pronoun.</p>
+                <div class="lesson-title">🔤 What is a Pronoun?</div>
+                <p>A pronoun is a word used to replace a noun or noun phrase to avoid repetition. Twi pronouns help you speak more naturally and fluently.</p>
+                
+                <div class="grammar-note">
+                    <strong>💡 Key Point:</strong> The same word can mean both "I" and "me" — context tells you which!
+                </div>
             </div>
 
-            <!-- Subject Pronouns Table -->
+            <!-- Basic Pronouns Table -->
             <div class="lesson-section">
-                <div class="lesson-title">📋 List of Subject Pronouns in Twi</div>
+                <div class="lesson-title">📋 Basic Twi Pronouns</div>
                 <table class="pronoun-table">
-                    <thead><tr><th>Twi Subject Pronoun</th><th>English</th></tr></thead>
+                    <thead>
+                        <tr><th>Twi</th><th>English</th></tr>
+                    </thead>
                     <tbody>
-                        <tr><td class="twi-word">me</td><td>I</td></tr>
-                        <tr><td class="twi-word">wo</td><td>you (singular)</td></tr>
-                        <tr><td class="twi-word">ɔno / ɔ</td><td>he / she</td></tr>
-                        <tr><td class="twi-word">ɛno / ɛ</td><td>it</td></tr>
-                        <tr><td class="twi-word">yɛn / yɛ</td><td>we</td></tr>
-                        <tr><td class="twi-word">mo</td><td>you (plural)</td></tr>
-                        <tr><td class="twi-word">wɔn / wɔ</td><td>they</td></tr>
+                        <tr><td class="twi-word">me</td><td>I / me / my</td></tr>
+                        <tr><td class="twi-word">wo</td><td>you / your (singular)</td></tr>
+                        <tr><td class="twi-word">ɔno</td><td>he / she (no gender distinction!)</td></tr>
+                        <tr><td class="twi-word">ɛno</td><td>it</td></tr>
+                        <tr><td class="twi-word">yɛn</td><td>we / us / our</td></tr>
+                        <tr><td class="twi-word">mo</td><td>you all / your (plural)</td></tr>
+                        <tr><td class="twi-word">wɔn</td><td>they / them / their</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- Usage Examples -->
+            <!-- Subject vs Object -->
             <div class="lesson-section">
-                <div class="lesson-title">📝 Usage Examples</div>
-                <div class="example-box">
-                    <div class="example-twi">Me tɔn mako.</div>
-                    <div class="example-english">I sell pepper.</div>
-                </div>
-                <div class="example-box">
-                    <div class="example-twi">Wo didii anɔpa.</div>
-                    <div class="example-english">You ate in the morning.</div>
-                </div>
-                <div class="example-box">
-                    <div class="example-twi">Ɔ pɛ aduane.</div>
-                    <div class="example-english">He/She likes food.</div>
-                </div>
-                <div class="example-box">
-                    <div class="example-twi">Ɛ foro nnua.</div>
-                    <div class="example-english">It climbs trees.</div>
-                </div>
-                <div class="example-box">
-                    <div class="example-twi">Yɛ ada.</div>
-                    <div class="example-english">We have slept.</div>
-                </div>
-                <div class="example-box">
-                    <div class="example-twi">Mo sere me a, mɛgyae.</div>
-                    <div class="example-english">If you (plural) laugh at me, I will stop.</div>
-                </div>
-                <div class="example-box">
-                    <div class="example-twi">Wɔ tan me.</div>
-                    <div class="example-english">They hate me.</div>
-                </div>
-            </div>
-
-            <!-- Rule 1: Combining Pronoun + Verb -->
-            <div class="lesson-section">
-                <div class="lesson-title">✂️ Rule 1: Combining Pronoun + Verb</div>
-                <p>When a subject pronoun is directly followed by a verb, combine the pronoun and the verb (including any tense markers) into <strong>one word</strong> when writing.</p>
-                <div class="example-box">
-                    <div class="example-twi">Yɛn + bɛ + ware = Yɛbɛware</div>
-                    <div class="example-english">We will marry</div>
-                </div>
-                <div class="example-box">
-                    <div class="example-twi">Me + re + kɔ + dware = Merekɔdware</div>
-                    <div class="example-english">I am going to bathe</div>
-                </div>
-                <div class="example-box">
-                    <div class="example-twi">Mo + re + twerɛ + nsɔhwɛ = Moretwerɛ nsɔhwɛ</div>
-                    <div class="example-english">You (plural) are writing an exam</div>
-                </div>
-            </div>
-
-            <!-- Rule 2: Contracted Forms -->
-            <div class="lesson-section">
-                <div class="lesson-title">📝 Rule 2: Contracted Forms</div>
-                <p>When the following pronouns are directly followed by a verb, they change to these shorter forms:</p>
+                <div class="lesson-title">🔄 Subject vs Object Forms</div>
                 <table class="pronoun-table">
-                    <thead><tr><th>Full Form</th><th>Contracted Form</th></tr></thead>
+                    <thead><tr><th>Pronoun</th><th>Subject Form</th><th>Object Form</th></tr></thead>
                     <tbody>
-                        <tr><td class="twi-word">ɔno (he/she)</td><td class="twi-word">ɔ</td></tr>
-                        <tr><td class="twi-word">ɛno (it)</td><td class="twi-word">ɛ</td></tr>
-                        <tr><td class="twi-word">yɛn (we)</td><td class="twi-word">yɛ</td></tr>
-                        <tr><td class="twi-word">wɔn (they)</td><td class="twi-word">wɔ</td></tr>
+                        <tr><td>I / me</td><td>me</td><td>me</td></tr>
+                        <tr><td>you (sing)</td><td>wo</td><td>wo</td></tr>
+                        <tr><td>he/she</td><td>ɔno</td><td>no</td></tr>
+                        <tr><td>it</td><td>ɛno</td><td>no</td></tr>
+                        <tr><td>we / us</td><td>yɛn</td><td>yɛn</td></tr>
+                        <tr><td>you (pl)</td><td>mo</td><td>mo</td></tr>
+                        <tr><td>they / them</td><td>wɔn</td><td>wɔn</td></tr>
                     </tbody>
                 </table>
+                
                 <div class="grammar-note">
-                    <strong>📌 Note:</strong> The pronouns <strong>me, wo, and mo</strong> usually keep their full form and are simply joined to the verb.
-                </div>
-                <div class="example-box">
-                    <div class="example-twi">ɔno + pɛ aduane → Ɔpɛ aduane</div>
-                    <div class="example-english">He/She likes food</div>
-                </div>
-                <div class="example-box">
-                    <div class="example-twi">ɛno + foro nnua → Ɛforo nnua</div>
-                    <div class="example-english">It climbs trees</div>
-                </div>
-                <div class="example-box">
-                    <div class="example-twi">yɛn + ada → Yɛada</div>
-                    <div class="example-english">We have slept</div>
-                </div>
-                <div class="example-box">
-                    <div class="example-twi">wɔn + tan me → Wɔtan me</div>
-                    <div class="example-english">They hate me</div>
+                    <strong>📌 Important:</strong> ɔno and ɛno become <strong>"no"</strong> when used as objects. Other pronouns stay the same.
                 </div>
             </div>
 
-            <!-- Key Takeaways -->
+            <!-- Contracted Subject Forms -->
             <div class="lesson-section">
-                <div class="lesson-title">💡 Key Takeaways</div>
+                <div class="lesson-title">✂️ Contracted Subject Forms</div>
+                <p>When a pronoun is directly followed by a verb, they contract:</p>
+                <table class="pronoun-table">
+                    <thead><tr><th>Full Form</th><th>Contracted</th><th>Example</th></tr></thead>
+                    <tbody>
+                        <tr><td>ɔno</td><td>ɔ-</td><td>ɔ-didi (he/she eats)</td></tr>
+                        <tr><td>ɛno</td><td>ɛ-</td><td>ɛ-yɛ (it is)</td></tr>
+                        <tr><td>yɛn</td><td>yɛ-</td><td>yɛ-kɔ (we go)</td></tr>
+                        <tr><td>wɔn</td><td>wɔ-</td><td>wɔ-ba (they come)</td></tr>
+                    </tbody>
+                </table>
+                <div class="grammar-note"><strong>💡 Note:</strong> me, wo, and mo usually stay the same.</div>
+            </div>
+
+            <!-- Two-Word Phrases -->
+            <div class="lesson-section">
+                <div class="lesson-title">🗣️ Two-Word Phrases (Subject + Verb)</div>
+                <div class="comparison-box">
+                    <div class="comparison-good">
+                        <div class="comparison-title">Twi Phrase</div>
+                        <div class="example-twi">Meba</div><div class="example-english">I come</div>
+                        <div class="example-twi">Wokɔ</div><div class="example-english">You go</div>
+                        <div class="example-twi">Medi</div><div class="example-english">I eat</div>
+                        <div class="example-twi">Meda</div><div class="example-english">I sleep</div>
+                        <div class="example-twi">Mete</div><div class="example-english">I live / I hear</div>
+                        <div class="example-twi">Meka</div><div class="example-english">I speak</div>
+                        <div class="example-twi">Mema</div><div class="example-english">I give</div>
+                        <div class="example-twi">Mefa</div><div class="example-english">I take</div>
+                    </div>
+                    <div class="comparison-good">
+                        <div class="comparison-title">Phrases with Others</div>
+                        <div class="example-twi">Ɔdɔ me</div><div class="example-english">He/She loves me</div>
+                        <div class="example-twi">Mepɛ wo</div><div class="example-english">I like you</div>
+                        <div class="example-twi">Wɔpɛ me</div><div class="example-english">They like me</div>
+                        <div class="example-twi">Yɛdɔ wo</div><div class="example-english">We love you</div>
+                    </div>
+                </div>
                 <div class="grammar-note">
-                    <strong>✓</strong> Subject pronouns PERFORM the action<br>
-                    <strong>✓</strong> Combine pronoun + verb into ONE word<br>
-                    <strong>✓</strong> ɔno → ɔ, ɛno → ɛ, yɛn → yɛ, wɔn → wɔ (when followed by verb)<br>
-                    <strong>✓</strong> me, wo, mo stay the same
+                    <strong>❓ Question form:</strong> Just raise your voice at the end!<br>
+                    • Woreba? (Are you coming?)<br>
+                    • Merekɔ? (Am I going?)
+                </div>
+            </div>
+
+            <!-- Why Pronouns Matter - Comparison -->
+            <div class="lesson-section">
+                <div class="lesson-title">🌟 Why Pronouns Matter (Avoid Repetition)</div>
+                <div class="comparison-box">
+                    <div class="comparison-bad">
+                        <div class="comparison-title">❌ Without Pronouns (Repetitive)</div>
+                        <div class="example-english">Akosua adi mfeɛ du.<br>
+                        Akosua te Nkran, nanso Akosua kɔ sukuu wɔ Kumase.<br>
+                        Akosua gyina gyinapɛn nsia.<br>
+                        Aduane a Akosua pɛ pa ara ne fufuo.</div>
+                    </div>
+                    <div class="comparison-good">
+                        <div class="comparison-title">✅ With Pronouns (Smoother)</div>
+                        <div class="example-english">Akosua adi mfeɛ du.<br>
+                        <strong>Ɔ</strong> te Nkran, nanso <strong>ɔ</strong> kɔ sukuu wɔ Kumase.<br>
+                        <strong>Ɔ</strong> gyina gyinapɛn nsia.<br>
+                        Aduane a <strong>ɔ</strong> pɛ pa ara ne fufuo.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example Sentences -->
+            <div class="lesson-section">
+                <div class="lesson-title">📝 Example Sentences</div>
+                <div class="example-box">
+                    <div class="example-twi">Me ne Kofi bɛkɔ</div>
+                    <div class="example-english">I and Kofi will go (I will go with Kofi)</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Wo yɛ barima!</div>
+                    <div class="example-english">You are a man!</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Ɔno na ɔkaeɛ</div>
+                    <div class="example-english">It was he/she who said it.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Ɛ bɔɔ me</div>
+                    <div class="example-english">It hit me.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Yɛn nyinaa wɔ ha</div>
+                    <div class="example-english">We are all here.</div>
+                </div>
+            </div>
+
+            <!-- Cultural Note -->
+            <div class="lesson-section">
+                <div class="lesson-title">🌍 Cultural Note</div>
+                <div class="grammar-note">
+                    <strong>No gender distinction!</strong> Twi does not distinguish between masculine and feminine.<br>
+                    <strong>ɔno</strong> is used for both <strong>"he"</strong> and <strong>"she"</strong>. Context tells you which!
                 </div>
             </div>
         </div>
@@ -391,34 +456,36 @@
     <script>
         // ============ QUIZ QUESTIONS ============
         const quizQuestions = [
-            { text: "What does the Twi subject pronoun 'me' mean?", options: ["You", "I", "He/She", "We"], correct: 1 },
-            { text: "What does the Twi subject pronoun 'wo' mean?", options: ["I", "We", "You (singular)", "They"], correct: 2 },
-            { text: "What is the contracted form of 'ɔno' when followed by a verb?", options: ["ɔ", "no", "o", "ɔn"], correct: 0 },
-            { text: "What is the contracted form of 'yɛn' when followed by a verb?", options: ["yɛ", "yɛn", "ye", "n"], correct: 0 },
-            { text: "What does 'Me tɔn mako' mean?", options: ["I buy pepper", "I sell pepper", "I eat pepper", "I cook pepper"], correct: 1 },
-            { text: "What does 'Wo didii anɔpa' mean?", options: ["You slept in the morning", "You ate in the morning", "You went in the morning", "You spoke in the morning"], correct: 1 },
-            { text: "What does 'Ɔ pɛ aduane' mean?", options: ["He/She likes food", "He/She hates food", "He/She cooks food", "He/SElls food"], correct: 0 },
-            { text: "What is the contracted form of 'wɔn' when followed by a verb?", options: ["wɔ", "wɔn", "w", "ɔn"], correct: 0 },
-            { text: "What does 'Yɛada' mean in English?", options: ["We are sleeping", "We will sleep", "We have slept", "We sleep"], correct: 2 },
-            { text: "What does 'Mo sere me a, mɛgyae' mean?", options: ["If you (pl) help me, I will stop", "If you (pl) laugh at me, I will stop", "If you (pl) see me, I will stop", "If you (pl) hear me, I will stop"], correct: 1 },
-            { text: "What does 'Wɔ tan me' mean?", options: ["They love me", "They hate me", "They see me", "They hear me"], correct: 1 },
-            { text: "Which pronoun usually keeps its full form (does NOT contract)?", options: ["ɔno", "ɛno", "me", "wɔn"], correct: 2 },
-            { text: "What is the contracted form of 'ɛno' when followed by a verb?", options: ["ɛ", "no", "ɛn", "e"], correct: 0 },
-            { text: "In Twi, when a subject pronoun is followed by a verb, you should:", options: ["Keep them separate", "Combine them into one word", "Add a hyphen", "Reverse the order"], correct: 1 },
-            { text: "What does 'Merekɔdware' mean?", options: ["I am going to eat", "I am going to bathe", "I am going to school", "I am going to sleep"], correct: 1 },
-            { text: "What does 'Yɛbɛware' mean?", options: ["We will eat", "We will sleep", "We will marry", "We will go"], correct: 2 },
-            { text: "What does 'Ɛforo nnua' mean?", options: ["It climbs trees", "It eats trees", "It cuts trees", "It sees trees"], correct: 0 },
-            { text: "Twi subject pronoun for 'you' (plural) is:", options: ["wo", "mo", "wɔ", "yɛ"], correct: 1 },
-            { text: "Twi subject pronoun for 'they' is:", options: ["yɛ", "wɔ", "mo", "me"], correct: 1 },
-            { text: "What does 'Moretwerɛ nsɔhwɛ' mean?", options: ["You (pl) are reading a book", "You (pl) are writing an exam", "You (pl) are taking a test", "You (pl) are studying"], correct: 1 }
+            { type: "multiple", text: "What does 'me' mean in Twi?", options: ["You", "I/me/my", "They", "We"], correct: 1 },
+            { type: "multiple", text: "What does 'wo' mean in Twi?", options: ["You/your (singular)", "We/us", "They/them", "He/she"], correct: 0 },
+            { type: "multiple", text: "Twi has no gender distinction. Which pronoun is used for BOTH 'he' and 'she'?", options: ["me", "wo", "ɔno", "yɛn"], correct: 2 },
+            { type: "multiple", text: "What is the contracted form of 'ɔno' when followed by a verb?", options: ["ɔ-", "no-", "o-", "ɔn-"], correct: 0 },
+            { type: "multiple", text: "What does 'Meba' mean?", options: ["You come", "He comes", "I come", "We come"], correct: 2 },
+            { type: "multiple", text: "What does 'Wokɔ' mean?", options: ["I go", "You go", "He goes", "We go"], correct: 1 },
+            { type: "multiple", text: "What does 'Mepɛ wo' mean?", options: ["I like you", "You like me", "He likes her", "We like them"], correct: 0 },
+            { type: "multiple", text: "What does 'Ɔdɔ me' mean?", options: ["I love her", "She loves me", "He loves her", "We love them"], correct: 1 },
+            { type: "multiple", text: "Which pronoun means 'we/us/our'?", options: ["me", "wo", "yɛn", "wɔn"], correct: 2 },
+            { type: "multiple", text: "How do you form a question in Twi?", options: ["Add 'ka' at the end", "Add 'sɛn' at the beginning", "Raise your voice at the end", "Add 'anaa' before the verb"], correct: 2 },
+            { type: "multiple", text: "What does 'Wɔn' mean?", options: ["We/us", "You all", "They/them/their", "He/she"], correct: 2 },
+            { type: "multiple", text: "What is the object form of 'ɔno' (he/she)?", options: ["ɔno", "no", "ɔ", "nɔ"], correct: 1 },
+            { type: "multiple", text: "What does 'Mete' mean?", options: ["I eat", "I sleep", "I live / I hear", "I go"], correct: 2 },
+            { type: "multiple", text: "What does 'Yɛn nyinaa wɔ ha' mean?", options: ["We are all here", "They are all here", "You are all here", "I am here"], correct: 0 },
+            { type: "multiple", text: "Which word means 'to speak'?", options: ["da", "di", "ka", "kɔ"], correct: 2 },
+            { type: "multiple", text: "What does 'Mefa' mean?", options: ["I give", "I take", "I eat", "I sleep"], correct: 1 },
+            { type: "multiple", text: "What does 'Mema' mean?", options: ["I take", "I give", "I speak", "I go"], correct: 1 },
+            { type: "multiple", text: "What does 'Wɔpɛ me' mean?", options: ["I like them", "They like me", "You like me", "She likes me"], correct: 1 },
+            { type: "multiple", text: "What does 'Meka' mean?", options: ["I eat", "I sleep", "I speak", "I go"], correct: 2 },
+            { type: "multiple", text: "What does 'Meda' mean?", options: ["I eat", "I sleep", "I speak", "I go"], correct: 1 }
         ];
 
         let currentQuiz = [];
         let quizIndex = 0;
         let quizScore = 0;
         let quizAnswers = [];
+        let currentQuestionCorrectAnswer = null;
 
         function startNewQuiz() {
+            // Shuffle and pick 15 random questions
             const shuffled = [...quizQuestions];
             for (let i = shuffled.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -442,6 +509,9 @@
             const q = currentQuiz[quizIndex];
             const hasAnswered = quizAnswers[quizIndex] !== null;
             
+            // Store correct answer index
+            currentQuestionCorrectAnswer = q.correct;
+            
             let html = `
                 <div class="quiz-question">
                     <div class="quiz-question-text">${q.text}</div>
@@ -449,12 +519,13 @@
             `;
             
             q.options.forEach((opt, idx) => {
+                const isDisabled = hasAnswered;
                 let additionalClass = '';
                 if (hasAnswered && quizAnswers[quizIndex] === idx && idx === q.correct) additionalClass = 'correct';
                 if (hasAnswered && quizAnswers[quizIndex] === idx && idx !== q.correct) additionalClass = 'wrong';
                 
                 html += `
-                    <button class="quiz-option ${additionalClass}" onclick="checkQuizAnswer(${idx})" ${hasAnswered ? 'disabled' : ''}>
+                    <button class="quiz-option ${additionalClass}" onclick="checkQuizAnswer(${idx})" ${isDisabled ? 'disabled' : ''}>
                         ${String.fromCharCode(65 + idx)}. ${opt}
                     </button>
                 `;
@@ -520,10 +591,10 @@
             
             if (percentage === 100) {
                 emoji = '🏆🎉🌟';
-                message = 'PERFECT! You are a Twi subject pronoun master!';
+                message = 'PERFECT! You are a Twi pronoun master!';
             } else if (percentage >= 80) {
                 emoji = '🎉👍⭐';
-                message = 'Excellent! You understand subject pronouns well!';
+                message = 'Excellent! You understand Twi pronouns well!';
             } else if (percentage >= 60) {
                 emoji = '📚👏';
                 message = 'Good job! Review the lesson and try again.';
@@ -532,7 +603,7 @@
                 message = 'Keep going! Practice makes progress.';
             } else {
                 emoji = '🌱✨';
-                message = 'You are just starting! Study the lesson and try again.';
+                message = 'You\'re just starting! Study the lesson and try again.';
             }
             
             const resultsHtml = `
@@ -549,7 +620,10 @@
             document.getElementById('quizProgress').style.width = '100%';
         }
 
-        function resetQuiz() { startNewQuiz(); }
+        function resetQuiz() {
+            startNewQuiz();
+        }
+
         function switchTab(tab) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             if (tab === 'lesson') {
@@ -564,6 +638,7 @@
             }
         }
 
+        // Initialize
         startNewQuiz();
     </script>
 </body>
