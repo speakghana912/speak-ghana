@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Noun Plurals - Person Nouns | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #2A9D8F;
+            color: white;
+        }
+        .tab-btn:hover:not(.active) {
+            background: #D4A373;
+            color: white;
+        }
+        
+        .panel { display: none; animation: fadeIn 0.3s; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .lesson-section {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .plural-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .plural-table th, .plural-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .plural-table th {
+            background: #2A9D8F;
+            color: white;
+        }
+        .twi-word {
+            font-weight: bold;
+            color: #2A9D8F;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+        .example-box {
+            background: #f0f7f5;
+            border-left: 4px solid #2A9D8F;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+        .example-twi {
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.3rem;
+        }
+        .example-english {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .grammar-note {
+            background: #FFF3CD;
+            border-left: 4px solid #D4A373;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .grammar-note strong { color: #E76F51; }
+        
+        .quiz-question {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover:not(:disabled) {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: translateX(5px);
+        }
+        .quiz-option.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+        }
+        .quiz-option.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+        }
+        .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #2A9D8F20; color: #2A9D8F; }
+        .quiz-feedback.wrong { background: #E76F5120; color: #E76F51; }
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .options { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>👥 Twi Noun Plurals <span class="badge">Part I: Person Nouns</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 Learn how to form plurals for person nouns in Twi (biako → bebree)</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('lesson')">📚 Lesson</button>
+            <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz</button>
+        </div>
+
+        <!-- LESSON PANEL -->
+        <div id="lessonPanel" class="panel active">
+            <!-- Introduction -->
+            <div class="lesson-section">
+                <div class="lesson-title">📚 Introduction</div>
+                <p>In Twi, forming plurals isn't as simple as adding an "s" like in English. Instead, we often <strong>change or add prefixes</strong>.</p>
+                <div class="grammar-note">
+                    <strong>💡 Note:</strong> This lesson focuses on nouns that refer to <strong>people</strong>.
+                </div>
+            </div>
+
+            <!-- Rule 1: The "A-" Prefix -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔤 Rule 1: The "A-" Prefix</div>
+                <p>Many singular nouns that refer to people form their plural by <strong>adding or changing the prefix to a-</strong>.</p>
+                <table class="plural-table">
+                    <thead>
+                        <tr><th>Singular (Biako)</th><th>Plural (Bebree)</th><th>English Translation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">ɔnua</td><td class="twi-word">anuanom</td><td>brother/sister</td></tr>
+                        <tr><td class="twi-word">ɔkunt</td><td class="twi-word">akununom</td><td>husband</td></tr>
+                        <tr><td class="twi-word">ɔyere</td><td class="twi-word">ayerenom</td><td>wife</td></tr>
+                        <tr><td class="twi-word">ɔbaa pa</td><td class="twi-word">amaa pa</td><td>good woman</td></tr>
+                        <tr><td class="twi-word">ɔdehyeɛ</td><td class="twi-word">adehyeɛ</td><td>royal</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Rule 2: The "N- / M-" Prefix -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔊 Rule 2: The "N- / M-" Prefix</div>
+                <p>For several nouns, the plural is formed by adding a <strong>nasal prefix</strong> (n- or m-). The choice between n and m depends on the first letter of the root word.</p>
+                <table class="plural-table">
+                    <thead>
+                        <tr><th>Singular (Biako)</th><th>Plural (Bebree)</th><th>English Translation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">ɔbarima</td><td class="twi-word">mmarima</td><td>man</td></tr>
+                        <tr><td class="twi-word">ɔbaa</td><td class="twi-word">mmaa</td><td>woman</td></tr>
+                        <tr><td class="twi-word">ɔkwadaa</td><td class="twi-word">nkwadaa</td><td>child</td></tr>
+                        <tr><td class="twi-word">ɔpanin</td><td class="twi-word">mpanyin</td><td>elder</td></tr>
+                        <tr><td class="twi-word">ɔkraman</td><td class="twi-word">nkraman</td><td>dog (often personified)</td></tr>
+                    </tbody>
+                </table>
+                <div class="grammar-note">
+                    <strong>📌 Note:</strong> The nasal prefix changes based on the first letter of the word:
+                    <ul style="margin-top: 0.3rem; margin-left: 1.5rem;">
+                        <li><strong>m-</strong> before b, p, m</li>
+                        <li><strong>n-</strong> before other consonants</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Rule 3: Nouns Ending in "-foɔ" or "-ni" -->
+            <div class="lesson-section">
+                <div class="lesson-title">👨‍🏫 Rule 3: Nouns Ending in "-foɔ" or "-ni"</div>
+                <p>Twi has specific suffixes for people belonging to groups, professions, or places. These have a very <strong>regular plural pattern</strong>.</p>
+                <div class="grammar-note">
+                    <strong>📌 Pattern:</strong> <strong>-ni</strong> (Singular) → <strong>-foɔ</strong> (Plural)
+                </div>
+                <table class="plural-table">
+                    <thead>
+                        <tr><th>Singular (Biako)</th><th>Plural (Bebree)</th><th>English Translation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">ɔkyerɛkyerɛni</td><td class="twi-word">akyerɛkyerɛfoɔ</td><td>teacher / teachers</td></tr>
+                        <tr><td class="twi-word">ɔsɔfo</td><td class="twi-word">asɔfoɔ</td><td>priest / priests</td></tr>
+                        <tr><td class="twi-word">ɔsraani</td><td class="twi-word">asraafoɔ</td><td>soldier / soldiers</td></tr>
+                        <tr><td class="twi-word">okuafoɔ</td><td class="twi-word">akuafoɔ</td><td>farmer / farmers</td></tr>
+                        <tr><td class="twi-word">oburoni</td><td class="twi-word">aburofoɔ</td><td>white person / foreigners</td></tr>
+                        <tr><td class="twi-word">bibini</td><td class="twi-word">abibifoɔ</td><td>black person / Africans</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Rule 4: Irregularities -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔄 Rule 4: Irregularities</div>
+                <p>Some family titles or specific person-nouns use different plural markers entirely, often adding <strong>-nom</strong> to the end.</p>
+                <table class="plural-table">
+                    <thead>
+                        <tr><th>Singular (Biako)</th><th>Plural (Bebree)</th><th>English Translation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">ɛna (maame)</td><td class="twi-word">ɛnanom</td><td>mothers</td></tr>
+                        <tr><td class="twi-word">agya (papa)</td><td class="twi-word">agyanom</td><td>fathers</td></tr>
+                        <tr><td class="twi-word">nua</td><td class="twi-word">nuanom</td><td>siblings</td></tr>
+                        <tr><td class="twi-word">kora</td><td class="twi-word">koranom</td><td>rival wives</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="lesson-section">
+                <div class="lesson-title">📊 Summary: Plural Formation Rules</div>
+                <table class="plural-table">
+                    <thead>
+                        <tr><th>Rule</th><th>Pattern</th><th>Example</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>The "A-" Prefix</td><td>ɔ- → a-</td><td>ɔnua → anuanom</td></tr>
+                        <tr><td>The "N-/M-" Prefix</td><td>ɔ- → n-/m-</td><td>ɔbarima → mmarima</td></tr>
+                        <tr><td>-foɔ / -ni</td><td>-ni → -foɔ</td><td>ɔkyerɛkyerɛni → akyerɛkyerɛfoɔ</td></tr>
+                        <tr><td>Irregular (-nom)</td><td>add -nom</td><td>ɛna → ɛnanom</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="panel">
+            <div class="progress-bar"><div class="progress-fill" id="quizProgress"></div></div>
+            <div class="quiz-stats">
+                <span>📊 Question <span id="quizCurrent">1</span> / <span id="quizTotal">0</span></span>
+                <span>🏆 Score: <span id="quizScore">0</span></span>
+            </div>
+            <div id="quizContainer"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============ QUIZ QUESTIONS ============
+        const quizQuestions = [
+            { text: "What is the plural of 'ɔnua' (brother/sister)?", options: ["anuanom", "nuanom", "anua", "nua"], correct: 0 },
+            { text: "What is the plural of 'ɔyere' (wife)?", options: ["ayerenom", "yerenom", "ayere", "yerɛ"], correct: 0 },
+            { text: "What is the plural of 'ɔbarima' (man)?", options: ["mmarima", "nbarima", "abarima", "ɔbarimanom"], correct: 0 },
+            { text: "What is the plural of 'ɔbaa' (woman)?", options: ["mmaa", "nbaa", "abaa", "ɔbaanom"], correct: 0 },
+            { text: "What is the plural of 'ɔkwadaa' (child)?", options: ["nkwadaa", "mkadaa", "akwadaa", "ɔkwadaanom"], correct: 0 },
+            { text: "What is the plural of 'ɔpanin' (elder)?", options: ["mpanyin", "npanyin", "apanin", "ɔpaninnom"], correct: 0 },
+            { text: "What is the plural of 'ɔkyerɛkyerɛni' (teacher)?", options: ["akyerɛkyerɛfoɔ", "ɔkyerɛkyerɛfo", "nkyerɛkyerɛni", "mkyerɛkyerɛni"], correct: 0 },
+            { text: "What is the plural of 'ɔsɔfo' (priest)?", options: ["asɔfoɔ", "ɔsɔfonim", "nsɔfo", "msɔfo"], correct: 0 },
+            { text: "What is the plural of 'ɔsraani' (soldier)?", options: ["asraafoɔ", "ɔsraafo", "nsraani", "msraani"], correct: 0 },
+            { text: "What is the plural of 'oburoni' (white person)?", options: ["aburofoɔ", "ɔburoni", "nburoni", "mburoni"], correct: 0 },
+            { text: "What is the plural of 'bibini' (black person)?", options: ["abibifoɔ", "bibinim", "nbibini", "mbibini"], correct: 0 },
+            { text: "What is the plural of 'ɛna/maame' (mother)?", options: ["ɛnanom", "ɛnam", "maamenom", "ɛnanomma"], correct: 0 },
+            { text: "What is the plural of 'agya/papa' (father)?", options: ["agyanom", "agya", "papanom", "agyanomma"], correct: 0 },
+            { text: "What is the plural of 'nua' (sibling)?", options: ["nuanom", "anuanom", "nuam", "nua"], correct: 0 },
+            { text: "What does the nasal prefix 'm-' typically come before?", options: ["b, p, m", "k, t, n", "a, e, o", "any consonant"], correct: 0 },
+            { text: "What does the nasal prefix 'n-' typically come before?", options: ["other consonants besides b, p, m", "only vowels", "only b, p, m", "only f, s, h"], correct: 0 },
+            { text: "What is the plural pattern for nouns ending in '-ni'?", options: ["-ni → -foɔ", "-ni → -nom", "-ni → -m", "-ni → -n"], correct: 0 },
+            { text: "What is the plural of 'ɔdehyeɛ' (royal)?", options: ["adehyeɛ", "ɔdehyeɛnom", "ndehyeɛ", "mdehyeɛ"], correct: 0 },
+            { text: "What is the plural of 'ɔbaa pa' (good woman)?", options: ["amaa pa", "mmaa pa", "nbaa pa", "ɔbaa pa nom"], correct: 0 },
+            { text: "Which rule adds '-nom' to form plurals?", options: ["Irregular (family titles)", "A- prefix", "N-/M- prefix", "-ni → -foɔ"], correct: 0 }
+        ];
+
+        let currentQuiz = [];
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswers = [];
+
+        function startNewQuiz() {
+            const shuffled = [...quizQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            currentQuiz = shuffled.slice(0, 15);
+            quizIndex = 0;
+            quizScore = 0;
+            quizAnswers = new Array(currentQuiz.length).fill(null);
+            document.getElementById('quizTotal').innerText = currentQuiz.length;
+            document.getElementById('quizScore').innerText = quizScore;
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (quizIndex >= currentQuiz.length) {
+                showQuizResults();
+                return;
+            }
+            
+            const q = currentQuiz[quizIndex];
+            const hasAnswered = quizAnswers[quizIndex] !== null;
+            
+            let html = `
+                <div class="quiz-question">
+                    <div class="quiz-question-text">${q.text}</div>
+                    <div class="options" id="quizOptions">
+            `;
+            
+            q.options.forEach((opt, idx) => {
+                let additionalClass = '';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx === q.correct) additionalClass = 'correct';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx !== q.correct) additionalClass = 'wrong';
+                
+                html += `
+                    <button class="quiz-option ${additionalClass}" onclick="checkQuizAnswer(${idx})" ${hasAnswered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </button>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div id="quizFeedback" class="quiz-feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('quizFeedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = quizAnswers[quizIndex] === q.correct;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = `✅ Correct! Great job!`;
+                } else {
+                    const correctAnswer = q.options[q.correct];
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is: ${correctAnswer}`;
+                }
+            }
+            
+            const progressPercent = ((quizIndex + 1) / currentQuiz.length) * 100;
+            document.getElementById('quizProgress').style.width = progressPercent + '%';
+            document.getElementById('quizCurrent').innerText = quizIndex + 1;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            if (quizAnswers[quizIndex] !== null) return;
+            
+            const q = currentQuiz[quizIndex];
+            const isCorrect = (selectedIdx === q.correct);
+            
+            quizAnswers[quizIndex] = selectedIdx;
+            if (isCorrect) {
+                quizScore++;
+                document.getElementById('quizScore').innerText = quizScore;
+            }
+            
+            renderQuizQuestion();
+            
+            setTimeout(() => {
+                if (quizIndex < currentQuiz.length - 1) {
+                    quizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    quizIndex++;
+                    renderQuizQuestion();
+                }
+            }, 1200);
+        }
+
+        function showQuizResults() {
+            const total = currentQuiz.length;
+            const percentage = Math.round((quizScore / total) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🌟';
+                message = 'PERFECT! You are a plural noun master!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You understand Twi noun plurals well!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏';
+                message = 'Good job! Review the lesson and try again.';
+            } else if (percentage >= 40) {
+                emoji = '📖💪';
+                message = 'Keep going! Practice makes progress.';
+            } else {
+                emoji = '🌱✨';
+                message = 'You are just starting! Study the lesson and try again.';
+            }
+            
+            const resultsHtml = `
+                <div class="quiz-question" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${quizScore}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2.5rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0;">${message}</p>
+                    <button class="nav-btn" onclick="startNewQuiz()" style="margin-top: 1rem; background:#2A9D8F;">🔄 New Quiz</button>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultsHtml;
+            document.getElementById('quizProgress').style.width = '100%';
+        }
+
+        function resetQuiz() { startNewQuiz(); }
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'lesson') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('lessonPanel').classList.add('active');
+                document.getElementById('quizPanel').classList.remove('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('lessonPanel').classList.remove('active');
+                document.getElementById('quizPanel').classList.add('active');
+                startNewQuiz();
+            }
+        }
+
+        startNewQuiz();
+    </script>
+</body>
+</html>
