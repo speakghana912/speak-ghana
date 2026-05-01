@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Affixes - Prefixes & Suffixes | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #2A9D8F;
+            color: white;
+        }
+        .tab-btn:hover:not(.active) {
+            background: #D4A373;
+            color: white;
+        }
+        
+        .panel { display: none; animation: fadeIn 0.3s; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .lesson-section {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .affix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .affix-table th, .affix-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .affix-table th {
+            background: #2A9D8F;
+            color: white;
+        }
+        .twi-word {
+            font-weight: bold;
+            color: #2A9D8F;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+        .example-box {
+            background: #f0f7f5;
+            border-left: 4px solid #2A9D8F;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+        .example-twi {
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.3rem;
+        }
+        .example-english {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .grammar-note {
+            background: #FFF3CD;
+            border-left: 4px solid #D4A373;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .grammar-note strong { color: #E76F51; }
+        
+        .breakdown-box {
+            background: #e8f4f1;
+            border-radius: 16px;
+            padding: 1rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .breakdown-parts {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 0.5rem 0;
+        }
+        .breakdown-part {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            border: 1px solid #2A9D8F;
+        }
+        
+        .quiz-question {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover:not(:disabled) {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: translateX(5px);
+        }
+        .quiz-option.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+        }
+        .quiz-option.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+        }
+        .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #2A9D8F20; color: #2A9D8F; }
+        .quiz-feedback.wrong { background: #E76F5120; color: #E76F51; }
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .options { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>🔤 Twi Affixes <span class="badge">Prefixes & Suffixes (Nsianimu & Nsiakyire)</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 Affixes are letters added to the beginning (prefix) or end (suffix) of a word to change its meaning</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('lesson')">📚 Lesson</button>
+            <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz</button>
+        </div>
+
+        <!-- LESSON PANEL -->
+        <div id="lessonPanel" class="panel active">
+            <!-- What is an Affix? -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔤 What is an Affix?</div>
+                <p>An affix is a word element that can be attached to a <strong>root</strong> to create a new word.</p>
+                <div class="breakdown-box">
+                    <div class="example-twi">Example: <strong>osuani</strong> (learner/disciple)</div>
+                    <div class="breakdown-parts">
+                        <div class="breakdown-part"><strong>o-</strong><br>Prefix</div>
+                        <div class="breakdown-part"><strong>sua</strong><br>Root (learn)</div>
+                        <div class="breakdown-part"><strong>-ni</strong><br>Suffix</div>
+                    </div>
+                    <div class="example-english">Verb "sua" (learn) → Noun "osuani" (learner)</div>
+                </div>
+                <div class="grammar-note">
+                    <strong>📌 Types of Affixes:</strong>
+                    <ul style="margin-top: 0.3rem; margin-left: 1.5rem;">
+                        <li><strong>Prefix (Nsianimu)</strong> - Attached to the beginning of the root</li>
+                        <li><strong>Suffix (Nsiakyire)</strong> - Attached to the end of the root</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Derivational vs Inflectional -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔄 Derivational vs Inflectional Affixes</div>
+                <div class="category-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="category-card">
+                        <div class="category-title">Derivational Affixes</div>
+                        <p>Create a <strong>completely new word</strong> with a different grammatical category.</p>
+                        <div class="example-box" style="margin-top: 0.5rem;">
+                            <div class="example-twi">sua (learn - verb) → osuani (learner - noun)</div>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-title">Inflectional Affixes</div>
+                        <p>Modify words to indicate tense or grammatical function without changing word class.</p>
+                        <div class="example-box" style="margin-top: 0.5rem;">
+                            <div class="example-twi">su (cry - present) → suiɛ (cried - past)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prefixes - Nominalizing Prefixes -->
+            <div class="lesson-section">
+                <div class="lesson-title">📌 Prefixes (Nsianimu) - Nominalizing Prefixes</div>
+                <p>These prefixes turn a <strong>verb</strong> (action) into a <strong>noun</strong> (thing/person).</p>
+                <table class="affix-table">
+                    <thead>
+                        <tr><th>Prefix</th><th>Function</th><th>Example</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">ɔ-</td>
+                        <td>Used for people</td>
+                        <td>kyerɛ (to teach) → <span class="twi-word">ɔkyerɛkyerɛni</span> (teacher)</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">a-</td>
+                        <td>Used for objects or results of actions</td>
+                        <td>foro (to climb) → <span class="twi-word">aforosie</span> (ascent/climb)</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">e- / ɛ-</td>
+                        <td>Used for various objects</td>
+                        <td>bu (to break/harvest) → <span class="twi-word">ɛbuo</span> (nest/stone)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Prefixes - Plural Prefixes -->
+            <div class="lesson-section">
+                <div class="lesson-title">📌 Prefixes (Nsianimu) - Plural Prefixes</div>
+                <p>Prefixes change to show there is <strong>more than one</strong> of something.</p>
+                <table class="affix-table">
+                    <thead>
+                        <tr><th>Prefix</th><th>Function</th><th>Example</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">m- / n-</td>
+                        <td>Most common plural markers</td>
+                        <td>dan (house) → <span class="twi-word">nnan</span> (houses)<br>bayerɛ (yam) → <span class="twi-word">mayerɛ</span> (yams)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Suffixes -->
+            <div class="lesson-section">
+                <div class="lesson-title">📌 Suffixes (Nsiakyire)</div>
+                <p>Suffixes are added to the end of a root word. They often define a person's profession, origin, or a state of being.</p>
+                
+                <div class="grammar-note">
+                    <strong>👤 Person Suffixes (-ni / -foɔ)</strong>
+                </div>
+                <table class="affix-table">
+                    <thead>
+                        <tr><th>Suffix</th><th>Function</th><th>Example</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">-ni</td>
+                        <td>Singular - person of a certain profession or place</td>
+                        <td>Asante + <span class="twi-word">-ni</span> = <span class="twi-word">Asanteni</span> (Ashanti person)</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">-foɔ</td>
+                        <td>Plural/Collective - groups or professions</td>
+                        <td>ɔkua (farm) + <span class="twi-word">-foɔ</span> = <span class="twi-word">ɔkuafoɔ</span> (farmer)</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="grammar-note">
+                    <strong>📍 Locative/State Suffixes (-eɛ / -yɛ)</strong>
+                </div>
+                <table class="affix-table">
+                    <thead>
+                        <tr><th>Suffix</th><th>Function</th><th>Example</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">-eɛ</td>
+                        <td>Indicates a place where an action happens</td>
+                        <td>gyina (to stand) → <span class="twi-word">gyinaeɛ</span> (bus stop)</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">-yɛ</td>
+                        <td>Indicates the act of doing something or a quality</td>
+                        <td>pɛ (to like) → <span class="twi-word">pɛyɛ</span> (liking/perfection)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="lesson-section">
+                <div class="lesson-title">📊 Summary Table of Common Affixes</div>
+                <table class="affix-table">
+                    <thead>
+                        <tr><th>Affix Type</th><th>Affix</th><th>Function</th><th>Example</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Prefix</td><td class="twi-word">ɔ-</td><td>Person (Singular)</td><td>ɔsɔfo (priest)</td></tr>
+                        <tr><td>Prefix</td><td class="twi-word">a-</td><td>Plural / Result</td><td>apono (tables)</td></tr>
+                        <tr><td>Prefix</td><td class="twi-word">n-</td><td>Plural</td><td>nnua (trees)</td></tr>
+                        <tr><td>Suffix</td><td class="twi-word">-ni</td><td>Individual</td><td>Buroni (white person)</td></tr>
+                        <tr><td>Suffix</td><td class="twi-word">-foɔ</td><td>Group/Profession</td><td>adwumayɛfoɔ (workers)</td></tr>
+                        <tr><td>Suffix</td><td class="twi-word">-nom</td><td>Plural for family</td><td>agyanom (fathers)</td></tr>
+                        <tr><td>Suffix</td><td class="twi-word">-eɛ</td><td>Place of action</td><td>gyinaeɛ (bus stop)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Examples of Affixed Words -->
+            <div class="lesson-section">
+                <div class="lesson-title">📝 Examples of Affixed Twi Words</div>
+                <div class="category-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+                    <div class="category-card"><span class="twi-word">Nkraman</span> - dogs</div>
+                    <div class="category-card"><span class="twi-word">osukuuni</span> - student</div>
+                    <div class="category-card"><span class="twi-word">ɔkyerɛkyerɛni</span> - teacher</div>
+                    <div class="category-card"><span class="twi-word">praeɛ</span> - broom</div>
+                    <div class="category-card"><span class="twi-word">ɛmo</span> - rice</div>
+                    <div class="category-card"><span class="twi-word">agyata</span> - lions</div>
+                    <div class="category-card"><span class="twi-word">atenaeɛ</span> - sitting place</div>
+                    <div class="category-card"><span class="twi-word">kɔwensani</span> - drunkard</div>
+                    <div class="category-card"><span class="twi-word">afuo</span> - farm</div>
+                    <div class="category-card"><span class="twi-word">ɔdɔ</span> - love</div>
+                    <div class="category-card"><span class="twi-word">ɔdanseni</span> - witness</div>
+                    <div class="category-card"><span class="twi-word">okunafoɔ</span> - widow</div>
+                    <div class="category-card"><span class="twi-word">obubuafoɔ</span> - cripple</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="panel">
+            <div class="progress-bar"><div class="progress-fill" id="quizProgress"></div></div>
+            <div class="quiz-stats">
+                <span>📊 Question <span id="quizCurrent">1</span> / <span id="quizTotal">0</span></span>
+                <span>🏆 Score: <span id="quizScore">0</span></span>
+            </div>
+            <div id="quizContainer"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============ QUIZ QUESTIONS ============
+        const quizQuestions = [
+            { text: "What is an affix that comes at the BEGINNING of a root called?", options: ["Suffix", "Prefix", "Infix", "Affix"], correct: 1 },
+            { text: "What is an affix that comes at the END of a root called?", options: ["Suffix", "Prefix", "Infix", "Affix"], correct: 0 },
+            { text: "What is the Twi term for 'prefix'?", options: ["Nsiakyire", "Nsianimu", "Edin", "Afiri"], correct: 1 },
+            { text: "What is the Twi term for 'suffix'?", options: ["Nsiakyire", "Nsianimu", "Edin", "Afiri"], correct: 0 },
+            { text: "What type of affix changes the grammatical category of a word?", options: ["Inflectional", "Derivational", "Plural", "Tense"], correct: 1 },
+            { text: "What type of affix only modifies tense or grammatical function?", options: ["Derivational", "Nominalizing", "Inflectional", "Plural"], correct: 2 },
+            { text: "What does the prefix 'ɔ-' typically indicate?", options: ["Plural", "Person (singular)", "Object", "Place"], correct: 1 },
+            { text: "What does the suffix '-ni' indicate?", options: ["Plural", "Person (singular)", "Place", "Action"], correct: 1 },
+            { text: "What does the suffix '-foɔ' indicate?", options: ["Singular person", "Plural/Group", "Place", "Quality"], correct: 1 },
+            { text: "What is the plural suffix for family titles?", options: ["-foɔ", "-ni", "-nom", "-eɛ"], correct: 2 },
+            { text: "What does the suffix '-eɛ' indicate?", options: ["A person", "A place where an action happens", "A quality", "A plural"], correct: 1 },
+            { text: "What is the root of the word 'osuani' (learner)?", options: ["o-", "sua", "-ni", "ani"], correct: 1 },
+            { text: "What does the word 'gyinaeɛ' mean?", options: ["Standing place", "Sitting place", "Bus stop/standing place", "Market"], correct: 2 },
+            { text: "What does 'ɔkyerɛkyerɛni' mean?", options: ["Student", "Teacher", "Learner", "Preacher"], correct: 1 },
+            { text: "What does 'okunafoɔ' mean?", options: ["Widower", "Widow", "Orphan", "Bachelor"], correct: 1 },
+            { text: "What does 'obubuafoɔ' mean?", options: ["A blind person", "A cripple", "A deaf person", "A mute person"], correct: 1 },
+            { text: "What are the plural markers in Twi?", options: ["a- and e-", "m- and n-", "ɔ- and ɛ-", "-ni and -foɔ"], correct: 1 },
+            { text: "What is the plural of 'dan' (house)?", options: ["ndan", "nnan", "adan", "ɛdan"], correct: 1 },
+            { text: "What does the suffix '-yɛ' indicate?", options: ["Place", "Action/quality", "Person", "Plural"], correct: 1 },
+            { text: "What is a derivational affix?", options: ["Creates a new word with different category", "Only changes tense", "Makes words plural", "Adds emphasis"], correct: 0 }
+        ];
+
+        let currentQuiz = [];
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswers = [];
+
+        function startNewQuiz() {
+            const shuffled = [...quizQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            currentQuiz = shuffled.slice(0, 15);
+            quizIndex = 0;
+            quizScore = 0;
+            quizAnswers = new Array(currentQuiz.length).fill(null);
+            document.getElementById('quizTotal').innerText = currentQuiz.length;
+            document.getElementById('quizScore').innerText = quizScore;
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (quizIndex >= currentQuiz.length) {
+                showQuizResults();
+                return;
+            }
+            
+            const q = currentQuiz[quizIndex];
+            const hasAnswered = quizAnswers[quizIndex] !== null;
+            
+            let html = `
+                <div class="quiz-question">
+                    <div class="quiz-question-text">${q.text}</div>
+                    <div class="options" id="quizOptions">
+            `;
+            
+            q.options.forEach((opt, idx) => {
+                let additionalClass = '';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx === q.correct) additionalClass = 'correct';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx !== q.correct) additionalClass = 'wrong';
+                
+                html += `
+                    <button class="quiz-option ${additionalClass}" onclick="checkQuizAnswer(${idx})" ${hasAnswered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </button>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div id="quizFeedback" class="quiz-feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('quizFeedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = quizAnswers[quizIndex] === q.correct;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = `✅ Correct! Great job!`;
+                } else {
+                    const correctAnswer = q.options[q.correct];
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is: ${correctAnswer}`;
+                }
+            }
+            
+            const progressPercent = ((quizIndex + 1) / currentQuiz.length) * 100;
+            document.getElementById('quizProgress').style.width = progressPercent + '%';
+            document.getElementById('quizCurrent').innerText = quizIndex + 1;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            if (quizAnswers[quizIndex] !== null) return;
+            
+            const q = currentQuiz[quizIndex];
+            const isCorrect = (selectedIdx === q.correct);
+            
+            quizAnswers[quizIndex] = selectedIdx;
+            if (isCorrect) {
+                quizScore++;
+                document.getElementById('quizScore').innerText = quizScore;
+            }
+            
+            renderQuizQuestion();
+            
+            setTimeout(() => {
+                if (quizIndex < currentQuiz.length - 1) {
+                    quizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    quizIndex++;
+                    renderQuizQuestion();
+                }
+            }, 1200);
+        }
+
+        function showQuizResults() {
+            const total = currentQuiz.length;
+            const percentage = Math.round((quizScore / total) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🌟';
+                message = 'PERFECT! You mastered Twi affixes!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You understand prefixes and suffixes well!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏';
+                message = 'Good job! Review the lesson and try again.';
+            } else if (percentage >= 40) {
+                emoji = '📖💪';
+                message = 'Keep going! Practice makes progress.';
+            } else {
+                emoji = '🌱✨';
+                message = 'You are just starting! Study the lesson and try again.';
+            }
+            
+            const resultsHtml = `
+                <div class="quiz-question" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${quizScore}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2.5rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0;">${message}</p>
+                    <button class="nav-btn" onclick="startNewQuiz()" style="margin-top: 1rem; background:#2A9D8F;">🔄 New Quiz</button>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultsHtml;
+            document.getElementById('quizProgress').style.width = '100%';
+        }
+
+        function resetQuiz() { startNewQuiz(); }
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'lesson') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('lessonPanel').classList.add('active');
+                document.getElementById('quizPanel').classList.remove('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('lessonPanel').classList.remove('active');
+                document.getElementById('quizPanel').classList.add('active');
+                startNewQuiz();
+            }
+        }
+
+        startNewQuiz();
+    </script>
+</body>
+</html>
