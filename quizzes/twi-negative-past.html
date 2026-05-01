@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Negative Past Tense (Twam Daabi Kabea) | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #2A9D8F;
+            color: white;
+        }
+        .tab-btn:hover:not(.active) {
+            background: #D4A373;
+            color: white;
+        }
+        
+        .panel { display: none; animation: fadeIn 0.3s; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .lesson-section {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .negation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .negation-table th, .negation-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .negation-table th {
+            background: #2A9D8F;
+            color: white;
+        }
+        .twi-word {
+            font-weight: bold;
+            color: #2A9D8F;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+        .example-box {
+            background: #f0f7f5;
+            border-left: 4px solid #2A9D8F;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+        .example-twi {
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.3rem;
+        }
+        .example-english {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .grammar-note {
+            background: #FFF3CD;
+            border-left: 4px solid #D4A373;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .grammar-note strong { color: #E76F51; }
+        
+        .rule-box {
+            background: #2A9D8F10;
+            border-radius: 16px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #2A9D8F;
+        }
+        
+        .quiz-question {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover:not(:disabled) {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: translateX(5px);
+        }
+        .quiz-option.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+        }
+        .quiz-option.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+        }
+        .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #2A9D8F20; color: #2A9D8F; }
+        .quiz-feedback.wrong { background: #E76F5120; color: #E76F51; }
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        .flexible-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .options { grid-template-columns: 1fr; }
+            .negation-table { font-size: 0.8rem; }
+            .negation-table th, .negation-table td { padding: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>🚫⏪ Twi Negative Past Tense <span class="badge">Twam Daabi Kabea</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 Learn how to say "I did not go", "She did not eat", "They did not come" in Twi</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('lesson')">📚 Lesson</button>
+            <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz</button>
+        </div>
+
+        <!-- LESSON PANEL -->
+        <div id="lessonPanel" class="panel active">
+            <!-- What is Negative Past Tense? -->
+            <div class="lesson-section">
+                <div class="lesson-title">🚫⏪ What is the Negative Past Tense?</div>
+                <p>To form the negative past tense, first form the <strong>negative present</strong> (using <strong class="twi-word">m-</strong> or <strong class="twi-word">n-</strong>), then add the appropriate <strong>past tense ending</strong> to that negative form.</p>
+                <div class="grammar-note">
+                    <strong>💡 Process:</strong> Negative Present → Add Past Tense Ending → Negative Past
+                </div>
+            </div>
+
+            <!-- Main Rules -->
+            <div class="lesson-section">
+                <div class="lesson-title">📜 Main Rules for Negative Past</div>
+                <div class="rule-box">
+                    <strong>Step 1:</strong> Start with the <strong>negative present</strong> form
+                </div>
+                <div class="rule-box">
+                    <strong>Step 2:</strong> Apply the same past tense changes:
+                    <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                        <li>Double the final letter if followed by an <strong>object/adverb</strong></li>
+                        <li>Add <strong class="twi-word">-iɛ / -eɛ</strong> (with possible linking vowel) if there is <strong>no object/adverb</strong></li>
+                    </ul>
+                </div>
+                <div class="rule-box">
+                    <strong>Step 3:</strong> The negation marker (<strong class="twi-word">m- / n-</strong>) stays in place
+                </div>
+            </div>
+
+            <!-- Negative Past Pronoun Table -->
+            <div class="lesson-section">
+                <div class="lesson-title">📋 Negative Past Tense – Pronoun Table</div>
+                <table class="negation-table">
+                    <thead>
+                        <tr><th>English Pronoun</th><th>Negative Present</th><th>Negative Past Form</th><th>English Translation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">I</td><td class="twi-word">Mennkɔ</td><td class="twi-word">Mennkɔɔ</td><td>I did not go</td></tr>
+                        <tr><td class="twi-word">You (sg.)</td><td class="twi-word">Wonnkɔ</td><td class="twi-word">Wonnkɔɔ</td><td>You did not go</td></tr>
+                        <tr><td class="twi-word">He/She/It</td><td class="twi-word">Ɔnkɔ</td><td class="twi-word">Ɔnkɔɔ</td><td>He/She/It did not go</td></tr>
+                        <tr><td class="twi-word">We</td><td class="twi-word">Yɛnnkɔ</td><td class="twi-word">Yɛnnkɔɔ</td><td>We did not go</td></tr>
+                        <tr><td class="twi-word">You (pl.)</td><td class="twi-word">Monnkɔ</td><td class="twi-word">Monnkɔɔ</td><td>You (pl.) did not go</td></tr>
+                        <tr><td class="twi-word">They</td><td class="twi-word">Wɔnnkɔ</td><td class="twi-word">Wɔnnkɔɔ</td><td>They did not go</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Examples in Sentences -->
+            <div class="lesson-section">
+                <div class="lesson-title">📝 Examples in Sentences (Negative Past)</div>
+                <div class="example-box">
+                    <div class="example-twi">Mennom nsuo. (present) → Mennomeeɛ. (past)</div>
+                    <div class="example-english">I did not drink water.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Wonnkɔ sukuu. (present) → Wonnkɔɔ sukuu.</div>
+                    <div class="example-english">You did not go to school.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Ɔntɔ borɔdeɛ. (present) → Ɔntɔnn borɔdeɛ.</div>
+                    <div class="example-english">He/She did not buy plantain.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Yɛnnni aduan. (present) → Yɛnnnii aduan.</div>
+                    <div class="example-english">We did not eat food.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Monnhu no. (present) → Monnhuuiɛ.</div>
+                    <div class="example-english">You (pl.) did not see him/her.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Kofi nnom nsuo. (present) → Kofi nnomeeɛ.</div>
+                    <div class="example-english">Kofi did not drink water.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Akosua nni fufu. (present) → Akosua nnii fufu.</div>
+                    <div class="example-english">Akosua did not eat fufu.</div>
+                </div>
+            </div>
+
+            <!-- More Negative Past Examples -->
+            <div class="lesson-section">
+                <div class="lesson-title">📝 More Negative Past Examples</div>
+
+                <div class="flexible-grid">
+                    <div class="grammar-note" style="flex: 1; min-width: 250px;">
+                        <strong>🔹 Verb: nom (drink)</strong><br>
+                        Present: Mennom nsuo<br>
+                        Past: Mennomeeɛ nsuo<br>
+                        Meaning: I did not drink water
+                    </div>
+                    <div class="grammar-note" style="flex: 1; min-width: 250px;">
+                        <strong>🔹 Verb: tɔ (buy)</strong><br>
+                        Present: Ɔntɔ borɔdeɛ<br>
+                        Past: Ɔntɔnn borɔdeɛ<br>
+                        Meaning: He did not buy plantain
+                    </div>
+                    <div class="grammar-note" style="flex: 1; min-width: 250px;">
+                        <strong>🔹 Verb: di (eat)</strong><br>
+                        Present: Yɛnnni aduan<br>
+                        Past: Yɛnnnii aduan<br>
+                        Meaning: We did not eat food
+                    </div>
+                    <div class="grammar-note" style="flex: 1; min-width: 250px;">
+                        <strong>🔹 Verb: hu (see)</strong><br>
+                        Present: Monnhu no<br>
+                        Past: Monnhuuiɛ no<br>
+                        Meaning: You (pl.) did not see him
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Notes -->
+            <div class="lesson-section">
+                <div class="lesson-title">📌 Key Notes on Negative Past</div>
+                <div class="grammar-note">
+                    <strong>✓</strong> Start with the <strong>negative present</strong> form.<br><br>
+                    <strong>✓</strong> Then apply the same past tense changes you learned earlier:
+                    <ul style="margin-top: 0.5rem; margin-left: 2rem;">
+                        <li>Double the final letter if followed by an object/adverb</li>
+                        <li>Add <strong class="twi-word">-iɛ / -eɛ</strong> (with possible linking vowel) if there is no object/adverb</li>
+                    </ul><br>
+                    <strong>✓</strong> The negation marker (<strong class="twi-word">m-/n-</strong>) stays in place.<br><br>
+                    <strong>✓</strong> For <strong>serialized verbs</strong>, negate and apply past tense mainly to the second verb.
+                </div>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="lesson-section">
+                <div class="lesson-title">📊 Summary: Positive Past vs Negative Past</div>
+                <table class="negation-table">
+                    <thead>
+                        <tr><th>English</th><th>Positive Past</th><th>Negative Past</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>I went</td><td class="twi-word">Mekɔɔ</td><td class="twi-word">Mennkɔɔ</td></tr>
+                        <tr><td>You ate</td><td class="twi-word">Wodiiɛ</td><td class="twi-word">Wonndiiɛ</td></tr>
+                        <tr><td>He/She came</td><td class="twi-word">Ɔbaa</td><td class="twi-word">Ɔnbaa</td></tr>
+                        <tr><td>We drank</td><td class="twi-word">Yɛnomeeɛ</td><td class="twi-word">Yɛnnomeeɛ</td></tr>
+                        <tr><td>They bought</td><td class="twi-word">Wɔtɔnn</td><td class="twi-word">Wɔntɔnn</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="panel">
+            <div class="progress-bar"><div class="progress-fill" id="quizProgress"></div></div>
+            <div class="quiz-stats">
+                <span>📊 Question <span id="quizCurrent">1</span> / <span id="quizTotal">0</span></span>
+                <span>🏆 Score: <span id="quizScore">0</span></span>
+            </div>
+            <div id="quizContainer"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizQuestions = [
+            { text: "What does 'Mennomeeɛ' mean?", options: ["I drink", "I drank", "I did not drink", "I will drink"], correct: 2 },
+            { text: "What does 'Wonnkɔɔ sukuu' mean?", options: ["You go to school", "You went to school", "You did not go to school", "You will go to school"], correct: 2 },
+            { text: "What does 'Ɔntɔnn borɔdeɛ' mean?", options: ["He buys plantain", "He bought plantain", "He did not buy plantain", "He will buy plantain"], correct: 2 },
+            { text: "What does 'Yɛnnnii aduan' mean?", options: ["We eat food", "We ate food", "We did not eat food", "We will eat food"], correct: 2 },
+            { text: "What does 'Monnhuuiɛ' mean?", options: ["You (pl.) see", "You (pl.) saw", "You (pl.) did not see", "You (pl.) will see"], correct: 2 },
+            { text: "What does 'Kofi nnomeeɛ' mean?", options: ["Kofi drinks", "Kofi drank", "Kofi did not drink", "Kofi will drink"], correct: 2 },
+            { text: "What does 'Akosua nnii fufu' mean?", options: ["Akosua eats fufu", "Akosua ate fufu", "Akosua did not eat fufu", "Akosua will eat fufu"], correct: 2 },
+            { text: "What is the negative past form of 'Me kɔ' (I went)?", options: ["Mekɔ", "Mɛkɔ", "Mennkɔɔ", "Mekɔɔ"], correct: 2 },
+            { text: "What is the negative past form of 'Wo di' (You ate)?", options: ["Wodi", "Wodiiɛ", "Wonndiiɛ", "Wobɛdi"], correct: 2 },
+            { text: "What is the negative past form of 'Ɔ ba' (He came)?", options: ["Ɔba", "Ɔbaa", "Ɔnbaa", "Ɔbɛba"], correct: 2 },
+            { text: "What is the negative past form of 'Wɔ tɔ' (They bought)?", options: ["Wɔtɔ", "Wɔtɔnn", "Wɔntɔnn", "Wɔbɛtɔ"], correct: 2 },
+            { text: "What is the negative past form of 'Me nom' (I drank)?", options: ["Mennom", "Mennomeeɛ", "Menom", "Mɛnom"], correct: 1 },
+            { text: "What is the negative past form of 'Yɛ sua' (We learned)?", options: ["Yɛsua", "Yɛsuaeɛ", "Yɛnsuaeɛ", "Yɛbɛsua"], correct: 2 },
+            { text: "What is the negative past form of 'Wɔ hu' (They saw)?", options: ["Wɔhu", "Wɔhuuiɛ", "Wɔnhuuiɛ", "Wɔbɛhu"], correct: 2 },
+            { text: "Translate: 'Mennkɔɔ'", options: ["I go", "I went", "I did not go", "I will go"], correct: 2 },
+            { text: "Translate: 'Ɔnkɔɔ'", options: ["He goes", "He went", "He did not go", "He will go"], correct: 2 },
+            { text: "Translate: 'Wɔnnkɔɔ'", options: ["They go", "They went", "They did not go", "They will go"], correct: 2 },
+            { text: "What is the correct negative past form of 'wo nom' (you drank)?", options: ["Wonom", "Wonommeeɛ", "Wonnomme"], correct: 1 },
+            { text: "What is the correct negative past form of 'ɔ di' (he ate)?", options: ["Ɔdi", "Ɔdiiɛ", "Ɔndiiɛ"], correct: 2 },
+            { text: "What is the correct negative past form of 'yɛ tɔ' (we bought)?", options: ["Yɛtɔ", "Yɛtɔnn", "Yɛntɔnn"], correct: 2 }
+        ];
+
+        let currentQuiz = [];
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswers = [];
+
+        function startNewQuiz() {
+            const shuffled = [...quizQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            currentQuiz = shuffled.slice(0, 15);
+            quizIndex = 0;
+            quizScore = 0;
+            quizAnswers = new Array(currentQuiz.length).fill(null);
+            document.getElementById('quizTotal').innerText = currentQuiz.length;
+            document.getElementById('quizScore').innerText = quizScore;
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (quizIndex >= currentQuiz.length) {
+                showQuizResults();
+                return;
+            }
+            
+            const q = currentQuiz[quizIndex];
+            const hasAnswered = quizAnswers[quizIndex] !== null;
+            
+            let html = `
+                <div class="quiz-question">
+                    <div class="quiz-question-text">${q.text}</div>
+                    <div class="options" id="quizOptions">
+            `;
+            
+            q.options.forEach((opt, idx) => {
+                let additionalClass = '';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx === q.correct) additionalClass = 'correct';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx !== q.correct) additionalClass = 'wrong';
+                
+                html += `
+                    <button class="quiz-option ${additionalClass}" onclick="checkQuizAnswer(${idx})" ${hasAnswered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </button>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div id="quizFeedback" class="quiz-feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('quizFeedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = quizAnswers[quizIndex] === q.correct;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = `✅ Correct! Great job!`;
+                } else {
+                    const correctAnswer = q.options[q.correct];
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is: ${correctAnswer}`;
+                }
+            }
+            
+            const progressPercent = ((quizIndex + 1) / currentQuiz.length) * 100;
+            document.getElementById('quizProgress').style.width = progressPercent + '%';
+            document.getElementById('quizCurrent').innerText = quizIndex + 1;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            if (quizAnswers[quizIndex] !== null) return;
+            
+            const q = currentQuiz[quizIndex];
+            const isCorrect = (selectedIdx === q.correct);
+            
+            quizAnswers[quizIndex] = selectedIdx;
+            if (isCorrect) {
+                quizScore++;
+                document.getElementById('quizScore').innerText = quizScore;
+            }
+            
+            renderQuizQuestion();
+            
+            setTimeout(() => {
+                if (quizIndex < currentQuiz.length - 1) {
+                    quizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    quizIndex++;
+                    renderQuizQuestion();
+                }
+            }, 1200);
+        }
+
+        function showQuizResults() {
+            const total = currentQuiz.length;
+            const percentage = Math.round((quizScore / total) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🌟';
+                message = 'PERFECT! You mastered the negative past tense!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You understand negative past tense well!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏';
+                message = 'Good job! Review the lesson and try again.';
+            } else if (percentage >= 40) {
+                emoji = '📖💪';
+                message = 'Keep going! Practice makes progress.';
+            } else {
+                emoji = '🌱✨';
+                message = 'You are just starting! Study the lesson and try again.';
+            }
+            
+            const resultsHtml = `
+                <div class="quiz-question" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${quizScore}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2.5rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0;">${message}</p>
+                    <button class="nav-btn" onclick="startNewQuiz()" style="margin-top: 1rem; background:#2A9D8F;">🔄 New Quiz</button>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultsHtml;
+            document.getElementById('quizProgress').style.width = '100%';
+        }
+
+        function resetQuiz() { startNewQuiz(); }
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'lesson') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('lessonPanel').classList.add('active');
+                document.getElementById('quizPanel').classList.remove('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('lessonPanel').classList.remove('active');
+                document.getElementById('quizPanel').classList.add('active');
+                startNewQuiz();
+            }
+        }
+
+        startNewQuiz();
+    </script>
+</body>
+</html>
