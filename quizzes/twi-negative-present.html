@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Negative Present Tense | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #2A9D8F;
+            color: white;
+        }
+        .tab-btn:hover:not(.active) {
+            background: #D4A373;
+            color: white;
+        }
+        
+        .panel { display: none; animation: fadeIn 0.3s; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .lesson-section {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .negation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .negation-table th, .negation-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .negation-table th {
+            background: #2A9D8F;
+            color: white;
+        }
+        .twi-word {
+            font-weight: bold;
+            color: #2A9D8F;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+        .example-box {
+            background: #f0f7f5;
+            border-left: 4px solid #2A9D8F;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+        .example-twi {
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.3rem;
+        }
+        .example-english {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .grammar-note {
+            background: #FFF3CD;
+            border-left: 4px solid #D4A373;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .grammar-note strong { color: #E76F51; }
+        
+        .rule-box {
+            background: #2A9D8F10;
+            border-radius: 16px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #2A9D8F;
+        }
+        
+        .quiz-question {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover:not(:disabled) {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: translateX(5px);
+        }
+        .quiz-option.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+        }
+        .quiz-option.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+        }
+        .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #2A9D8F20; color: #2A9D8F; }
+        .quiz-feedback.wrong { background: #E76F5120; color: #E76F51; }
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .options { grid-template-columns: 1fr; }
+            .negation-table { font-size: 0.8rem; }
+            .negation-table th, .negation-table td { padding: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>🚫 Twi Negative Present Tense <span class="badge">Daabi Kabea – Present</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 Learn how to say "I do not go", "She does not eat", "They do not come" in Twi</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('lesson')">📚 Lesson</button>
+            <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz</button>
+        </div>
+
+        <!-- LESSON PANEL -->
+        <div id="lessonPanel" class="panel active">
+            <!-- What is Negative Present Tense? -->
+            <div class="lesson-section">
+                <div class="lesson-title">🚫 What is the Negative Present Tense?</div>
+                <p>In Twi, to form the negative in the present tense (simple present / habitual), we use the negation marker <strong class="twi-word">"n-"</strong> or <strong class="twi-word">"m-"</strong> placed before the verb.</p>
+                <div class="grammar-note">
+                    <strong>💡 The exact form depends on:</strong>
+                    <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                        <li>The first letter/sound of the verb (vowel harmony and consonant rules)</li>
+                        <li>Whether the subject is a pronoun or a full noun</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Rules -->
+            <div class="lesson-section">
+                <div class="lesson-title">📜 Main Rules for Negative Present</div>
+                <div class="rule-box">
+                    <strong>Rule 1:</strong> For verbs beginning with consonants (especially m, b, p, f, etc.)<br>
+                    → Use <strong class="twi-word">m-</strong> before the verb (it often assimilates or changes based on the verb's initial sound)
+                </div>
+                <div class="rule-box">
+                    <strong>Rule 2:</strong> For verbs beginning with vowels or other consonants<br>
+                    → Use <strong class="twi-word">n-</strong> before the verb
+                </div>
+                <div class="rule-box">
+                    <strong>Rule 3:</strong> Pronoun subjects often <strong>merge</strong> with the negation marker
+                </div>
+            </div>
+
+            <!-- Common Negative Forms Table -->
+            <div class="lesson-section">
+                <div class="lesson-title">📋 Common Negative Forms with Pronouns (Present)</div>
+                <table class="negation-table">
+                    <thead>
+                        <tr><th>English Pronoun</th><th>Positive Example</th><th>Negative Form</th><th>Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">I</td><td>Me kɔ</td><td class="twi-word">Mennkɔ / Menkɔ</td><td>I do not go / I am not going</td></tr>
+                        <tr><td class="twi-word">You (sg.)</td><td>Wo kɔ</td><td class="twi-word">Wonnkɔ</td><td>You do not go</td></tr>
+                        <tr><td class="twi-word">He/She/It</td><td>Ɔ kɔ</td><td class="twi-word">Ɔnkɔ</td><td>He/She does not go</td></tr>
+                        <tr><td class="twi-word">We</td><td>Yɛ kɔ</td><td class="twi-word">Yɛnnkɔ</td><td>We do not go</td></tr>
+                        <tr><td class="twi-word">You (pl.)</td><td>Mo kɔ</td><td class="twi-word">Monnkɔ</td><td>You (plural) do not go</td></tr>
+                        <tr><td class="twi-word">They</td><td>Wɔ kɔ</td><td class="twi-word">Wɔnnkɔ</td><td>They do not go</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- More Negative Forms -->
+            <div class="lesson-section">
+                <div class="lesson-title">📝 More Negative Forms with Different Verbs</div>
+                <table class="negation-table">
+                    <thead><tr><th>Pronoun</th><th>Positive (Verbs)</th><th>Negative Form</th><th>Meaning</th></tr></thead>
+                    <tbody>
+                        <tr><td>Me</td><td>Me nom</td><td class="twi-word">Mennom</td><td>I do not drink</td></tr>
+                        <tr><td>Wo</td><td>Wo di</td><td class="twi-word">Wonndi</td><td>You do not eat</td></tr>
+                        <tr><td>Ɔ</td><td>Ɔ tɔ</td><td class="twi-word">Ɔntɔ</td><td>He/She does not buy</td></tr>
+                        <tr><td>Yɛ</td><td>Yɛ hu</td><td class="twi-word">Yɛnhu</td><td>We do not see</td></tr>
+                        <tr><td>Mo</td><td>Mo sa</td><td class="twi-word">Monnsa</td><td>You (pl.) do not dance</td></tr>
+                        <tr><td>Wɔ</td><td>Wɔ sua</td><td class="twi-word">Wɔnsua</td><td>They do not learn</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Examples in Sentences -->
+            <div class="lesson-section">
+                <div class="lesson-title">📝 Examples in Sentences (Negative Present)</div>
+                <div class="example-box">
+                    <div class="example-twi">Mennom nsuo.</div>
+                    <div class="example-english">I do not drink water. (or: I am not drinking water.)</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Wonnkɔ sukuu.</div>
+                    <div class="example-english">You do not go to school.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Ɔntɔ borɔdeɛ.</div>
+                    <div class="example-english">He/She does not buy plantain.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Yɛnnni aduan.</div>
+                    <div class="example-english">We do not eat food.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Monnhu no.</div>
+                    <div class="example-english">You (pl.) do not see him/her/it.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Wɔnni adowa.</div>
+                    <div class="example-english">They do not dance Adowa.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Kofi nnom nsuo.</div>
+                    <div class="example-english">Kofi does not drink water.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Akosua nni fufu.</div>
+                    <div class="example-english">Akosua does not eat fufu.</div>
+                </div>
+            </div>
+
+            <!-- Key Notes -->
+            <div class="lesson-section">
+                <div class="lesson-title">📌 Key Notes</div>
+                <div class="grammar-note">
+                    <strong>✓</strong> The negative marker often causes the verb to take a <strong>nasal sound</strong> (n/m).<br><br>
+                    <strong>✓</strong> For verbs starting with <strong>b, p, f, m</strong>, the negative frequently uses <strong class="twi-word">m-</strong> (e.g., menn-, monn-).<br><br>
+                    <strong>✓</strong> For many other verbs, <strong class="twi-word">n-</strong> is used (e.g., nnom, nni, nkɔ).<br><br>
+                    <strong>✓</strong> The negative present is commonly used for both <strong>simple present (habits)</strong> and <strong>general statements</strong> of not doing something now or usually.
+                </div>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="lesson-section">
+                <div class="lesson-title">📊 Summary: Positive vs Negative Present</div>
+                <table class="negation-table">
+                    <thead>
+                        <tr><th>English</th><th>Positive</th><th>Negative</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>I go</td><td class="twi-word">Mekɔ</td><td class="twi-word">Mennkɔ / Menkɔ</td></tr>
+                        <tr><td>You eat</td><td class="twi-word">Wodi</td><td class="twi-word">Wonndi</td></tr>
+                        <tr><td>He/She comes</td><td class="twi-word">Ɔba</td><td class="twi-word">Ɔnba</td></tr>
+                        <tr><td>We drink</td><td class="twi-word">Yɛnom</td><td class="twi-word">Yɛnnom</td></tr>
+                        <tr><td>They buy</td><td class="twi-word">Wɔtɔ</td><td class="twi-word">Wɔntɔ</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="panel">
+            <div class="progress-bar"><div class="progress-fill" id="quizProgress"></div></div>
+            <div class="quiz-stats">
+                <span>📊 Question <span id="quizCurrent">1</span> / <span id="quizTotal">0</span></span>
+                <span>🏆 Score: <span id="quizScore">0</span></span>
+            </div>
+            <div id="quizContainer"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizQuestions = [
+            { text: "What does 'Mennom nsuo' mean?", options: ["I drink water", "I will drink water", "I do not drink water", "I am drinking water"], correct: 2 },
+            { text: "What does 'Wonnkɔ sukuu' mean?", options: ["You go to school", "You will go to school", "You do not go to school", "You are going to school"], correct: 2 },
+            { text: "What does 'Ɔntɔ borɔdeɛ' mean?", options: ["He buys plantain", "He will buy plantain", "He does not buy plantain", "He is buying plantain"], correct: 2 },
+            { text: "What does 'Yɛnnni aduan' mean?", options: ["We eat food", "We will eat food", "We do not eat food", "We are eating food"], correct: 2 },
+            { text: "What does 'Monnhu no' mean?", options: ["You (pl.) see him", "You (pl.) will see him", "You (pl.) do not see him", "You (pl.) are seeing him"], correct: 2 },
+            { text: "What does 'Kofi nnom nsuo' mean?", options: ["Kofi drinks water", "Kofi will drink water", "Kofi does not drink water", "Kofi is drinking water"], correct: 2 },
+            { text: "What does 'Akosua nni fufu' mean?", options: ["Akosua eats fufu", "Akosua will eat fufu", "Akosua does not eat fufu", "Akosua is eating fufu"], correct: 2 },
+            { text: "What is the negative form of 'Me kɔ' (I go)?", options: ["Mekɔ", "Mɛkɔ", "Mennkɔ", "Mekɔeɛ"], correct: 2 },
+            { text: "What is the negative form of 'Wo di' (You eat)?", options: ["Wodi", "Wobɛdi", "Wonndi", "Wodiiɛ"], correct: 2 },
+            { text: "What is the negative form of 'Ɔ ba' (He comes)?", options: ["Ɔba", "Ɔbɛba", "Ɔnba", "Ɔbaa"], correct: 2 },
+            { text: "What is the negative form of 'Wɔ tɔ' (They buy)?", options: ["Wɔtɔ", "Wɔbɛtɔ", "Wɔntɔ", "Wɔtɔeɛ"], correct: 2 },
+            { text: "Which negative marker is used for verbs starting with b, p, f, m?", options: ["n-", "m-", "k-", "t-"], correct: 1 },
+            { text: "Which negative marker is used for verbs starting with vowels or other consonants?", options: ["n-", "m-", "k-", "t-"], correct: 0 },
+            { text: "What does 'Wɔnni adowa' mean?", options: ["They dance Adowa", "They will dance Adowa", "They do not dance Adowa", "They are dancing Adowa"], correct: 2 },
+            { text: "What does 'Yɛnhu' mean?", options: ["We see", "We will see", "We do not see", "We are seeing"], correct: 2 },
+            { text: "What is the negative form of 'Me nom' (I drink)?", options: ["Mennom", "Mɛnom", "Menom", "Monom"], correct: 0 },
+            { text: "What is the negative form of 'Wo sa' (You dance)?", options: ["Wosa", "Wobɛsa", "Wonsa", "Wosaeɛ"], correct: 2 },
+            { text: "What is the negative form of 'Yɛ sua' (We learn)?", options: ["Yɛsua", "Yɛbɛsua", "Yɛnsua", "Yɛsuaeɛ"], correct: 2 },
+            { text: "Translate: 'Wɔnnkɔ'", options: ["They go", "They will go", "They do not go", "They are going"], correct: 2 },
+            { text: "Translate: 'Ɔnni'", options: ["He eats", "He will eat", "He does not eat", "He is eating"], correct: 2 }
+        ];
+
+        let currentQuiz = [];
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswers = [];
+
+        function startNewQuiz() {
+            const shuffled = [...quizQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            currentQuiz = shuffled.slice(0, 15);
+            quizIndex = 0;
+            quizScore = 0;
+            quizAnswers = new Array(currentQuiz.length).fill(null);
+            document.getElementById('quizTotal').innerText = currentQuiz.length;
+            document.getElementById('quizScore').innerText = quizScore;
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (quizIndex >= currentQuiz.length) {
+                showQuizResults();
+                return;
+            }
+            
+            const q = currentQuiz[quizIndex];
+            const hasAnswered = quizAnswers[quizIndex] !== null;
+            
+            let html = `
+                <div class="quiz-question">
+                    <div class="quiz-question-text">${q.text}</div>
+                    <div class="options" id="quizOptions">
+            `;
+            
+            q.options.forEach((opt, idx) => {
+                let additionalClass = '';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx === q.correct) additionalClass = 'correct';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx !== q.correct) additionalClass = 'wrong';
+                
+                html += `
+                    <button class="quiz-option ${additionalClass}" onclick="checkQuizAnswer(${idx})" ${hasAnswered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </button>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div id="quizFeedback" class="quiz-feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('quizFeedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = quizAnswers[quizIndex] === q.correct;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = `✅ Correct! Great job!`;
+                } else {
+                    const correctAnswer = q.options[q.correct];
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is: ${correctAnswer}`;
+                }
+            }
+            
+            const progressPercent = ((quizIndex + 1) / currentQuiz.length) * 100;
+            document.getElementById('quizProgress').style.width = progressPercent + '%';
+            document.getElementById('quizCurrent').innerText = quizIndex + 1;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            if (quizAnswers[quizIndex] !== null) return;
+            
+            const q = currentQuiz[quizIndex];
+            const isCorrect = (selectedIdx === q.correct);
+            
+            quizAnswers[quizIndex] = selectedIdx;
+            if (isCorrect) {
+                quizScore++;
+                document.getElementById('quizScore').innerText = quizScore;
+            }
+            
+            renderQuizQuestion();
+            
+            setTimeout(() => {
+                if (quizIndex < currentQuiz.length - 1) {
+                    quizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    quizIndex++;
+                    renderQuizQuestion();
+                }
+            }, 1200);
+        }
+
+        function showQuizResults() {
+            const total = currentQuiz.length;
+            const percentage = Math.round((quizScore / total) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🌟';
+                message = 'PERFECT! You mastered the negative present tense!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You understand Twi negation well!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏';
+                message = 'Good job! Review the lesson and try again.';
+            } else if (percentage >= 40) {
+                emoji = '📖💪';
+                message = 'Keep going! Practice makes progress.';
+            } else {
+                emoji = '🌱✨';
+                message = 'You are just starting! Study the lesson and try again.';
+            }
+            
+            const resultsHtml = `
+                <div class="quiz-question" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${quizScore}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2.5rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0;">${message}</p>
+                    <button class="nav-btn" onclick="startNewQuiz()" style="margin-top: 1rem; background:#2A9D8F;">🔄 New Quiz</button>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultsHtml;
+            document.getElementById('quizProgress').style.width = '100%';
+        }
+
+        function resetQuiz() { startNewQuiz(); }
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'lesson') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('lessonPanel').classList.add('active');
+                document.getElementById('quizPanel').classList.remove('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('lessonPanel').classList.remove('active');
+                document.getElementById('quizPanel').classList.add('active');
+                startNewQuiz();
+            }
+        }
+
+        startNewQuiz();
+    </script>
+</body>
+</html>
