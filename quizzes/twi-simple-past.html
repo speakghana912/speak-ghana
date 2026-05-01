@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Simple Past Tense (Twam Kabea) | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #2A9D8F;
+            color: white;
+        }
+        .tab-btn:hover:not(.active) {
+            background: #D4A373;
+            color: white;
+        }
+        
+        .panel { display: none; animation: fadeIn 0.3s; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .lesson-section {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .rule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .rule-table th, .rule-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .rule-table th {
+            background: #2A9D8F;
+            color: white;
+        }
+        .rule-table th:nth-child(1) { width: 25%; }
+        .rule-table th:nth-child(2) { width: 40%; }
+        .rule-table th:nth-child(3) { width: 35%; }
+        
+        .twi-word {
+            font-weight: bold;
+            color: #2A9D8F;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+        .example-box {
+            background: #f0f7f5;
+            border-left: 4px solid #2A9D8F;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+        .example-twi {
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.3rem;
+        }
+        .example-english {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .grammar-note {
+            background: #FFF3CD;
+            border-left: 4px solid #D4A373;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .grammar-note strong { color: #E76F51; }
+        
+        .highlight {
+            background: #2A9D8F20;
+            padding: 0.1rem 0.3rem;
+            border-radius: 6px;
+            font-family: monospace;
+        }
+        
+        .quiz-question {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover:not(:disabled) {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: translateX(5px);
+        }
+        .quiz-option.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+        }
+        .quiz-option.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+        }
+        .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #2A9D8F20; color: #2A9D8F; }
+        .quiz-feedback.wrong { background: #E76F5120; color: #E76F51; }
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .options { grid-template-columns: 1fr; }
+            .rule-table { font-size: 0.8rem; }
+            .rule-table th, .rule-table td { padding: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>⏪ Twi Simple Past Tense <span class="badge">Twam Kabea</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 The simple past tense describes actions that have already happened</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('lesson')">📚 Lesson</button>
+            <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz</button>
+        </div>
+
+        <!-- LESSON PANEL -->
+        <div id="lessonPanel" class="panel active">
+            <!-- What is Simple Past Tense? -->
+            <div class="lesson-section">
+                <div class="lesson-title">⏪ What is the Simple Past Tense?</div>
+                <p>The simple past tense is used to talk about actions or events that have <strong>already happened</strong> — anything that took place before the present moment (a second ago, yesterday, last week, last year, etc.).</p>
+                <div class="grammar-note">
+                    <strong>💡 Formation depends on:</strong>
+                    <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                        <li>Whether the verb is followed by an object or adverb</li>
+                        <li>Whether the verb ends in a vowel or a consonant</li>
+                        <li>Whether the subject is a pronoun (combined) or noun (separate)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Rule A -->
+            <div class="lesson-section">
+                <div class="lesson-title">📜 Rule A: Verb + Object/Adverb</div>
+                <p><strong>Rule:</strong> Double the final letter of the verb (whether it ends in a vowel or consonant).</p>
+                <table class="rule-table">
+                    <thead><tr><th>Original Verb</th><th>Past Form</th><th>Example Sentence</th></tr></thead>
+                    <tbody>
+                        <tr><td class="twi-word">noa</td><td class="twi-word">noaa</td><td>Kofi noaa borɔdeɛ. (Kofi cooked plantain.)</td></tr>
+                        <tr><td class="twi-word">tɔn</td><td class="twi-word">tɔnn</td><td>Akosua tɔnn ne ntoma no. (Akosua sold her cloth.)</td></tr>
+                        <tr><td class="twi-word">pra</td><td class="twi-word">praa</td><td>Me praa dan no mu. (I swept the room.)</td></tr>
+                        <tr><td class="twi-word">didi</td><td class="twi-word">didii</td><td>Kofi didii nnora. (Kofi ate yesterday.)</td></tr>
+                        <tr><td class="twi-word">nom</td><td class="twi-word">nomm</td><td>Afia nomm nsuo. (Afia drank water.)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Rule B -->
+            <div class="lesson-section">
+                <div class="lesson-title">📜 Rule B: No Object, Verb ends in VOWEL</div>
+                <p><strong>Rule:</strong> Add suffix <strong class="twi-word">-iɛ</strong> or <strong class="twi-word">-eɛ</strong> (depends on vowel harmony).</p>
+                <table class="rule-table">
+                    <thead><tr><th>Original Verb</th><th>Past Form</th><th>Example Sentence</th></tr></thead>
+                    <tbody>
+                        <tr><td class="twi-word">kyini</td><td class="twi-word">kyiniiɛ</td><td>Ama kyiniiɛ. (Ama roamed.)</td></tr>
+                        <tr><td class="twi-word">te</td><td class="twi-word">teeɛ</td><td>Kofi teeɛ. (Kofi heard.)</td></tr>
+                        <tr><td class="twi-word">kyea</td><td class="twi-word">kyeaeɛ</td><td>Wo kyeaeɛ. (You greeted.)</td></tr>
+                        <tr><td class="twi-word">su</td><td class="twi-word">suiɛ</td><td>Yɛ suiɛ. (We cried.)</td></tr>
+                        <tr><td class="twi-word">to</td><td class="twi-word">toeɛ</td><td>Akosua toeɛ. (Akosua threw.)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Rule C -->
+            <div class="lesson-section">
+                <div class="lesson-title">📜 Rule C: No Object, Verb ends in CONSONANT</div>
+                <p><strong>Rule:</strong> First add -i or -e (vowel harmony), then add -ɛ → <strong class="twi-word">-iɛ</strong> or <strong class="twi-word">-eɛ</strong>.</p>
+                <table class="rule-table">
+                    <thead><tr><th>Original Verb</th><th>Past Form</th><th>Example Sentence</th></tr></thead>
+                    <tbody>
+                        <tr><td class="twi-word">nom</td><td class="twi-word">nomeeɛ</td><td>Akosua nomeeɛ. (Akosua drank.)</td></tr>
+                        <tr><td class="twi-word">dum</td><td class="twi-word">dumiiɛ</td><td>Kanea no dumiiɛ. (The light went off.)</td></tr>
+                        <tr><td class="twi-word">tɔn</td><td class="twi-word">tɔneeɛ</td><td>Kofi tɔneeɛ. (Kofi sold.)</td></tr>
+                        <tr><td class="twi-word">pɔn</td><td class="twi-word">pɔneeɛ</td><td>Asukuufoɔ no pɔneeɛ. (The students closed.)</td></tr>
+                        <tr><td class="twi-word">twɛn</td><td class="twi-word">twɛneeɛ</td><td>Yaw twɛneeɛ. (Yaw waited.)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Rule D: Serialized Verbs -->
+            <div class="lesson-section">
+                <div class="lesson-title">📜 Rule D: Serialized Verbs (Verb + Verb pairs)</div>
+                <p><strong>Examples:</strong> to twene (throw away), sɔ hwɛ (test), koto sa (bend down and dance), soa kɔ (carry away)</p>
+                <p><strong>Rule:</strong> First verb stays the same. Apply past tense rule to the <strong>second verb only</strong>. Pronoun subjects combine with the first verb.</p>
+                <table class="rule-table">
+                    <thead><tr><th>Original Pair</th><th>Past Form</th><th>Example Sentence</th></tr></thead>
+                    <tbody>
+                        <tr><td class="twi-word">to twene</td><td class="twi-word">to tweneeɛ</td><td>Kofi to tweneeɛ. (Kofi threw away.)</td></tr>
+                        <tr><td class="twi-word">sɔ hwɛ</td><td class="twi-word">sɔ hwɛeɛ</td><td>Me sɔ hwɛeɛ. (I tested it.)</td></tr>
+                        <tr><td class="twi-word">koto sa</td><td class="twi-word">koto saa</td><td>Ama koto saa Azonto. (Ama bent down and danced Azonto.)</td></tr>
+                        <tr><td class="twi-word">soa kɔ</td><td class="twi-word">soa kɔeɛ</td><td>Ɔ soa kɔeɛ. (He/She carried it away.)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Rule E: Habitual Past (Used to) -->
+            <div class="lesson-section">
+                <div class="lesson-title">📜 Rule E: Expressing "Used to" (Habitual Past)</div>
+                <p><strong>Rule:</strong> To express actions that <strong>used to happen</strong> in the past, keep the verb in its present/infinitive form and begin the sentence with <strong class="twi-word">Na</strong>.</p>
+                <div class="example-box">
+                    <div class="example-twi">Na Ama nom nsuo.</div>
+                    <div class="example-english">Ama used to drink water.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Na me dua aburoo.</div>
+                    <div class="example-english">I used to plant maize.</div>
+                </div>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="lesson-section">
+                <div class="lesson-title">📊 Summary: Simple Past Formation</div>
+                <table class="rule-table">
+                    <thead><tr><th>Situation</th><th>Rule</th><th>Example</th></tr></thead>
+                    <tbody>
+                        <tr><td>Verb + Object/Adverb</td><td>Double final letter</td><td>noa → noaa, tɔn → tɔnn</td></tr>
+                        <tr><td>No Object (Verb ends in vowel)</td><td>Add -iɛ / -eɛ</td><td>kyini → kyiniiɛ, te → teeɛ</td></tr>
+                        <tr><td>No Object (Verb ends in consonant)</td><td>Add -iɛ / -eɛ (after vowel insertion)</td><td>nom → nomeeɛ, dum → dumiiɛ</td></tr>
+                        <tr><td>Serialized Verbs</td><td>Change only second verb</td><td>to twene → to tweneeɛ</td></tr>
+                        <tr><td>Habitual Past (Used to)</td><td>Add "Na" + present verb</td><td>Na Ama nom nsuo</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="panel">
+            <div class="progress-bar"><div class="progress-fill" id="quizProgress"></div></div>
+            <div class="quiz-stats">
+                <span>📊 Question <span id="quizCurrent">1</span> / <span id="quizTotal">0</span></span>
+                <span>🏆 Score: <span id="quizScore">0</span></span>
+            </div>
+            <div id="quizContainer"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizQuestions = [
+            { text: "What does 'Kofi noaa borɔdeɛ' mean?", options: ["Kofi eats plantain", "Kofi is cooking plantain", "Kofi cooked plantain", "Kofi will cook plantain"], correct: 2 },
+            { text: "What does 'Akosua tɔnn ne ntoma no' mean?", options: ["Akosua sells her cloth", "Akosua sold her cloth", "Akosua is selling her cloth", "Akosua will sell her cloth"], correct: 1 },
+            { text: "What does 'Me praa dan no mu' mean?", options: ["I sweep the room", "I am sweeping the room", "I swept the room", "I will sweep the room"], correct: 2 },
+            { text: "What does 'Kofi didii nnora' mean?", options: ["Kofi eats yesterday", "Kofi ate yesterday", "Kofi will eat yesterday", "Kofi is eating yesterday"], correct: 1 },
+            { text: "What does 'Kofi teeɛ' mean?", options: ["Kofi hears", "Kofi is hearing", "Kofi heard", "Kofi will hear"], correct: 2 },
+            { text: "What does 'Yɛ suiɛ' mean?", options: ["We cry", "We are crying", "We cried", "We will cry"], correct: 2 },
+            { text: "What does 'Kofi tɔneeɛ' mean?", options: ["Kofi sells", "Kofi sold", "Kofi is selling", "Kofi will sell"], correct: 1 },
+            { text: "What does 'Na Ama nom nsuo' mean?", options: ["Ama drinks water", "Ama is drinking water", "Ama used to drink water", "Ama will drink water"], correct: 2 },
+            { text: "What does 'Na me dua aburoo' mean?", options: ["I plant maize", "I am planting maize", "I used to plant maize", "I will plant maize"], correct: 2 },
+            { text: "What is the past form of 'noa' (cook) when followed by an object?", options: ["noa", "noaeɛ", "noaa", "noayɛ"], correct: 2 },
+            { text: "What is the past form of 'tɔn' (sell) when followed by an object?", options: ["tɔn", "tɔneɛ", "tɔnn", "tɔnyɛ"], correct: 2 },
+            { text: "What is the past form of 'kyini' (roam) with no object?", options: ["kyiniiɛ", "kyini", "kyinia", "kyinayɛ"], correct: 0 },
+            { text: "What is the past form of 'nom' (drink) with no object?", options: ["nom", "nomeɛ", "nomeeɛ", "nomyɛ"], correct: 2 },
+            { text: "What is the past form of 'dum' (go off) with no object?", options: ["dum", "dumeɛ", "dumiiɛ", "dumyɛ"], correct: 2 },
+            { text: "What does 'Akosua nomeeɛ' mean?", options: ["Akosua drinks", "Akosua drank", "Akosua is drinking", "Akosua will drink"], correct: 1 },
+            { text: "What is the past form of 'to twene' (throw away)?", options: ["to twene", "to tweneeɛ", "to twenɛ", "tɔ twene"], correct: 1 },
+            { text: "What does 'Ama koto saa Azonto' express?", options: ["Ama will dance Azonto", "Ama is dancing Azonto", "Ama bent down and danced Azonto", "Ama used to dance Azonto"], correct: 2 },
+            { text: "What is the past form of 'sɔ hwɛ' (test)?", options: ["sɔ hwɛ", "sɔ hwɛeɛ", "sɔ hwɛyɛ", "sɔ hwɛɛ"], correct: 1 },
+            { text: "What does 'Ɔ soa kɔeɛ' mean?", options: ["He/She carries it away", "He/She is carrying it away", "He/She carried it away", "He/She will carry it away"], correct: 2 },
+            { text: "What marker is used for habitual past ('used to')?", options: ["bɛ", "re", "Na", "a"], correct: 2 }
+        ];
+
+        let currentQuiz = [];
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswers = [];
+
+        function startNewQuiz() {
+            const shuffled = [...quizQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            currentQuiz = shuffled.slice(0, 15);
+            quizIndex = 0;
+            quizScore = 0;
+            quizAnswers = new Array(currentQuiz.length).fill(null);
+            document.getElementById('quizTotal').innerText = currentQuiz.length;
+            document.getElementById('quizScore').innerText = quizScore;
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (quizIndex >= currentQuiz.length) {
+                showQuizResults();
+                return;
+            }
+            
+            const q = currentQuiz[quizIndex];
+            const hasAnswered = quizAnswers[quizIndex] !== null;
+            
+            let html = `
+                <div class="quiz-question">
+                    <div class="quiz-question-text">${q.text}</div>
+                    <div class="options" id="quizOptions">
+            `;
+            
+            q.options.forEach((opt, idx) => {
+                let additionalClass = '';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx === q.correct) additionalClass = 'correct';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx !== q.correct) additionalClass = 'wrong';
+                
+                html += `
+                    <button class="quiz-option ${additionalClass}" onclick="checkQuizAnswer(${idx})" ${hasAnswered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </button>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div id="quizFeedback" class="quiz-feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('quizFeedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = quizAnswers[quizIndex] === q.correct;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = `✅ Correct! Great job!`;
+                } else {
+                    const correctAnswer = q.options[q.correct];
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is: ${correctAnswer}`;
+                }
+            }
+            
+            const progressPercent = ((quizIndex + 1) / currentQuiz.length) * 100;
+            document.getElementById('quizProgress').style.width = progressPercent + '%';
+            document.getElementById('quizCurrent').innerText = quizIndex + 1;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            if (quizAnswers[quizIndex] !== null) return;
+            
+            const q = currentQuiz[quizIndex];
+            const isCorrect = (selectedIdx === q.correct);
+            
+            quizAnswers[quizIndex] = selectedIdx;
+            if (isCorrect) {
+                quizScore++;
+                document.getElementById('quizScore').innerText = quizScore;
+            }
+            
+            renderQuizQuestion();
+            
+            setTimeout(() => {
+                if (quizIndex < currentQuiz.length - 1) {
+                    quizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    quizIndex++;
+                    renderQuizQuestion();
+                }
+            }, 1200);
+        }
+
+        function showQuizResults() {
+            const total = currentQuiz.length;
+            const percentage = Math.round((quizScore / total) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🌟';
+                message = 'PERFECT! You mastered the simple past tense!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You understand Twi past tense well!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏';
+                message = 'Good job! Review the lesson and try again.';
+            } else if (percentage >= 40) {
+                emoji = '📖💪';
+                message = 'Keep going! Practice makes progress.';
+            } else {
+                emoji = '🌱✨';
+                message = 'You are just starting! Study the lesson and try again.';
+            }
+            
+            const resultsHtml = `
+                <div class="quiz-question" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${quizScore}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2.5rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0;">${message}</p>
+                    <button class="nav-btn" onclick="startNewQuiz()" style="margin-top: 1rem; background:#2A9D8F;">🔄 New Quiz</button>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultsHtml;
+            document.getElementById('quizProgress').style.width = '100%';
+        }
+
+        function resetQuiz() { startNewQuiz(); }
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'lesson') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('lessonPanel').classList.add('active');
+                document.getElementById('quizPanel').classList.remove('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('lessonPanel').classList.remove('active');
+                document.getElementById('quizPanel').classList.add('active');
+                startNewQuiz();
+            }
+        }
+
+        startNewQuiz();
+    </script>
+</body>
+</html>
