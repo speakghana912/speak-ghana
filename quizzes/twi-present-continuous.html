@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Present Continuous Tense | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #2A9D8F;
+            color: white;
+        }
+        .tab-btn:hover:not(.active) {
+            background: #D4A373;
+            color: white;
+        }
+        
+        .panel { display: none; animation: fadeIn 0.3s; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .lesson-section {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .continuous-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .continuous-table th, .continuous-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .continuous-table th {
+            background: #2A9D8F;
+            color: white;
+        }
+        .twi-word {
+            font-weight: bold;
+            color: #2A9D8F;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+        .example-box {
+            background: #f0f7f5;
+            border-left: 4px solid #2A9D8F;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+        .example-twi {
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.3rem;
+        }
+        .example-english {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .grammar-note {
+            background: #FFF3CD;
+            border-left: 4px solid #D4A373;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .grammar-note strong { color: #E76F51; }
+        
+        .rule-box {
+            background: #2A9D8F10;
+            border-radius: 16px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #2A9D8F;
+        }
+        
+        .quiz-question {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover:not(:disabled) {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: translateX(5px);
+        }
+        .quiz-option.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+        }
+        .quiz-option.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+        }
+        .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #2A9D8F20; color: #2A9D8F; }
+        .quiz-feedback.wrong { background: #E76F5120; color: #E76F51; }
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .options { grid-template-columns: 1fr; }
+            .continuous-table { font-size: 0.8rem; }
+            .continuous-table th, .continuous-table td { padding: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>🔄 Twi Present Continuous Tense <span class="badge">Present Progressive</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 Describes actions happening right now or around the current time (I am going, she is eating)</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('lesson')">📚 Lesson</button>
+            <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz</button>
+        </div>
+
+        <!-- LESSON PANEL -->
+        <div id="lessonPanel" class="panel active">
+            <!-- What is Present Continuous? -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔄 What is the Present Continuous Tense?</div>
+                <p>The Present Continuous (also called Present Progressive) describes actions happening <strong>right now</strong> or around the current time.</p>
+                <div class="grammar-note">
+                    <strong>💡 English examples:</strong> I am going, She is eating, They are sleeping
+                </div>
+            </div>
+
+            <!-- How to Form It -->
+            <div class="lesson-section">
+                <div class="lesson-title">📜 How to Form It</div>
+                <div class="rule-box">
+                    <strong>Rule:</strong> Use the auxiliary verb <strong class="twi-word">re-</strong> (or <strong class="twi-word">ri-</strong> in some dialects) prefixed to the main verb.
+                </div>
+                <div class="rule-box">
+                    <strong>Pronoun subjects merge with <span class="twi-word">re-</span>.</strong>
+                </div>
+            </div>
+
+            <!-- Present Continuous Pronoun Table -->
+            <div class="lesson-section">
+                <div class="lesson-title">📋 Present Continuous – Pronoun Table</div>
+                <table class="continuous-table">
+                    <thead>
+                        <tr><th>English Pronoun</th><th>Twi Pronoun</th><th>Present Continuous Form</th><th>English Translation</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">I</td>
+                        <td class="twi-word">Me</td>
+                        <td class="twi-word">Mere- (e.g. Merekɔ)</td>
+                        <td>I am going</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">You (sg.)</td>
+                        <td class="twi-word">Wo</td>
+                        <td class="twi-word">Wore-</td>
+                        <td>You are going</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">He/She/It</td>
+                        <td class="twi-word">Ɔ</td>
+                        <td class="twi-word">Ɔre-</td>
+                        <td>He/She is going</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">We</td>
+                        <td class="twi-word">Yɛ</td>
+                        <td class="twi-word">Yɛre-</td>
+                        <td>We are going</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">You (pl.)</td>
+                        <td class="twi-word">Mo</td>
+                        <td class="twi-word">More-</td>
+                        <td>You (pl.) are going</td>
+                    </tr>
+                    <tr>
+                        <td class="twi-word">They</td>
+                        <td class="twi-word">Wɔ</td>
+                        <td class="twi-word">Wɔre-</td>
+                        <td>They are going</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+
+            <!-- Examples in Sentences -->
+            <div class="lesson-section">
+                <div class="lesson-title">📝 Examples in Sentences</div>
+                <div class="example-box">
+                    <div class="example-twi">Merekɔ sukuu.</div>
+                    <div class="example-english">I am going to school (right now).</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Wore nom nsuo.</div>
+                    <div class="example-english">You are drinking water.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Ɔre di aduan.</div>
+                    <div class="example-english">He/She is eating food.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Yɛre hwɛ TV.</div>
+                    <div class="example-english">We are watching TV.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">More sa.</div>
+                    <div class="example-english">You (pl.) are dancing.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Wɔre kɔ fie.</div>
+                    <div class="example-english">They are going home.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Kofi re noa fufu.</div>
+                    <div class="example-english">Kofi is cooking fufu.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Akosua re tɔ ntoma.</div>
+                    <div class="example-english">Akosua is buying cloth.</div>
+                </div>
+            </div>
+
+            <!-- More Examples -->
+            <div class="lesson-section">
+                <div class="lesson-title">📝 More Example Sentences</div>
+                <div class="example-box">
+                    <div class="example-twi">Merebɔ agorɔ.</div>
+                    <div class="example-english">I am playing.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Ɔrekɔ sukuu nnɛ.</div>
+                    <div class="example-english">He is going to school today.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Woretwa adwuma.</div>
+                    <div class="example-english">You are working.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Yɛredi fufuo.</div>
+                    <div class="example-english">We are eating fufu.</div>
+                </div>
+                <div class="example-box">
+                    <div class="example-twi">Wɔresi dan foforɔ.</div>
+                    <div class="example-english">They are building a new house.</div>
+                </div>
+            </div>
+
+            <!-- Key Notes -->
+            <div class="lesson-section">
+                <div class="lesson-title">📌 Key Notes</div>
+                <div class="grammar-note">
+                    <strong>✓</strong> <strong class="twi-word">re-</strong> indicates the action is in progress <strong>now</strong>.<br><br>
+                    <strong>✓</strong> It is one of the most commonly used tenses in everyday spoken Twi.<br><br>
+                    <strong>✓</strong> For some verbs, <strong class="twi-word">ri-</strong> may appear (especially in certain dialects or with certain vowel harmony), but <strong class="twi-word">re-</strong> is the standard in Asante Twi.<br><br>
+                    <strong>✓</strong> You can add time adverbs like <strong class="twi-word">nnɛ</strong> (today/now), <strong class="twi-word">saa bere yi</strong> (at this time), etc., for emphasis.
+                </div>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="lesson-section">
+                <div class="lesson-title">📊 Summary: Present Continuous Conjugation</div>
+                <table class="continuous-table">
+                    <thead>
+                        <tr><th>Pronoun</th><th>Marker + Verb</th><th>Example (kɔ - go)</th><th>Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">Me</td><td>Mere + verb</td><td class="twi-word">Merekɔ</td><td>I am going</td></tr>
+                        <tr><td class="twi-word">Wo</td><td>Wore + verb</td><td class="twi-word">Worekɔ</td><td>You are going</td></tr>
+                        <tr><td class="twi-word">Ɔ</td><td>Ɔre + verb</td><td class="twi-word">Ɔrekɔ</td><td>He/She is going</td></tr>
+                        <tr><td class="twi-word">Yɛ</td><td>Yɛre + verb</td><td class="twi-word">Yɛrekɔ</td><td>We are going</td></tr>
+                        <tr><td class="twi-word">Mo</td><td>More + verb</td><td class="twi-word">Morekɔ</td><td>You (pl.) are going</td></tr>
+                        <tr><td class="twi-word">Wɔ</td><td>Wɔre + verb</td><td class="twi-word">Wɔrekɔ</td><td>They are going</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="panel">
+            <div class="progress-bar"><div class="progress-fill" id="quizProgress"></div></div>
+            <div class="quiz-stats">
+                <span>📊 Question <span id="quizCurrent">1</span> / <span id="quizTotal">15</span></span>
+                <span>🏆 Score: <span id="quizScore">0</span></span>
+            </div>
+            <div id="quizContainer"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizQuestions = [
+            { text: "What does 'Merekɔ sukuu' mean?", options: ["I go to school", "I went to school", "I am going to school", "I will go to school"], correct: 2 },
+            { text: "What does 'Wore nom nsuo' mean?", options: ["You drink water", "You drank water", "You are drinking water", "You will drink water"], correct: 2 },
+            { text: "What does 'Ɔre di aduan' mean?", options: ["He eats food", "He ate food", "He is eating food", "He will eat food"], correct: 2 },
+            { text: "What does 'Yɛre hwɛ TV' mean?", options: ["We watch TV", "We watched TV", "We are watching TV", "We will watch TV"], correct: 2 },
+            { text: "What does 'More sa' mean?", options: ["You (pl.) dance", "You (pl.) danced", "You (pl.) are dancing", "You (pl.) will dance"], correct: 2 },
+            { text: "What does 'Wɔre kɔ fie' mean?", options: ["They go home", "They went home", "They are going home", "They will go home"], correct: 2 },
+            { text: "What does 'Kofi re noa fufu' mean?", options: ["Kofi cooks fufu", "Kofi cooked fufu", "Kofi is cooking fufu", "Kofi will cook fufu"], correct: 2 },
+            { text: "What is the present continuous marker in Twi?", options: ["bɛ-", "re-", "-eɛ", "a-"], correct: 1 },
+            { text: "What is the correct form of 'Me kɔ' in present continuous?", options: ["Mekɔ", "Mɛkɔ", "Merekɔ", "Mekɔeɛ"], correct: 2 },
+            { text: "What is the correct form of 'Wo di' in present continuous?", options: ["Wodi", "Wobɛdi", "Woredi", "Wodiiɛ"], correct: 2 },
+            { text: "What is the correct form of 'Ɔ ba' in present continuous?", options: ["Ɔba", "Ɔbɛba", "Ɔreba", "Ɔbaa"], correct: 2 },
+            { text: "What is the correct form of 'Wɔ tɔ' in present continuous?", options: ["Wɔtɔ", "Wɔbɛtɔ", "Wɔretɔ", "Wɔtɔeɛ"], correct: 2 },
+            { text: "Translate: 'Merebɔ agorɔ'", options: ["I play", "I played", "I am playing", "I will play"], correct: 2 },
+            { text: "Translate: 'Ɔrekɔ sukuu nnɛ'", options: ["He goes to school today", "He went to school today", "He is going to school today", "He will go to school today"], correct: 2 },
+            { text: "What does 're-' indicate in Twi?", options: ["Future action", "Past action", "Action in progress now", "Habitual action"], correct: 2 },
+            { text: "What is the correct present continuous form of 'Me nom' (I drink)?", options: ["Mennom", "Mɛnom", "Merenom", "Menomeeɛ"], correct: 2 },
+            { text: "What is the correct present continuous form of 'Yɛ sua' (We learn)?", options: ["Yɛsua", "Yɛbɛsua", "Yɛresua", "Yɛsuaeɛ"], correct: 2 },
+            { text: "What does 'Woretwa adwuma' mean?", options: ["You work", "You worked", "You are working", "You will work"], correct: 2 },
+            { text: "What does 'Yɛredi fufuo' mean?", options: ["We eat fufu", "We ate fufu", "We are eating fufu", "We will eat fufu"], correct: 2 },
+            { text: "What does 'Wɔresi dan foforɔ' mean?", options: ["They build a new house", "They built a new house", "They are building a new house", "They will build a new house"], correct: 2 }
+        ];
+
+        let currentQuiz = [];
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswers = [];
+
+        function startNewQuiz() {
+            const shuffled = [...quizQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            currentQuiz = shuffled.slice(0, 15);
+            quizIndex = 0;
+            quizScore = 0;
+            quizAnswers = new Array(currentQuiz.length).fill(null);
+            document.getElementById('quizTotal').innerText = currentQuiz.length;
+            document.getElementById('quizScore').innerText = quizScore;
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (quizIndex >= currentQuiz.length) {
+                showQuizResults();
+                return;
+            }
+            
+            const q = currentQuiz[quizIndex];
+            const hasAnswered = quizAnswers[quizIndex] !== null;
+            
+            let html = `
+                <div class="quiz-question">
+                    <div class="quiz-question-text">${q.text}</div>
+                    <div class="options" id="quizOptions">
+            `;
+            
+            q.options.forEach((opt, idx) => {
+                let additionalClass = '';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx === q.correct) additionalClass = 'correct';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx !== q.correct) additionalClass = 'wrong';
+                
+                html += `
+                    <button class="quiz-option ${additionalClass}" onclick="checkQuizAnswer(${idx})" ${hasAnswered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </button>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div id="quizFeedback" class="quiz-feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('quizFeedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = quizAnswers[quizIndex] === q.correct;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = `✅ Correct! Great job!`;
+                } else {
+                    const correctAnswer = q.options[q.correct];
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is: ${correctAnswer}`;
+                }
+            }
+            
+            const progressPercent = ((quizIndex + 1) / currentQuiz.length) * 100;
+            document.getElementById('quizProgress').style.width = progressPercent + '%';
+            document.getElementById('quizCurrent').innerText = quizIndex + 1;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            if (quizAnswers[quizIndex] !== null) return;
+            
+            const q = currentQuiz[quizIndex];
+            const isCorrect = (selectedIdx === q.correct);
+            
+            quizAnswers[quizIndex] = selectedIdx;
+            if (isCorrect) {
+                quizScore++;
+                document.getElementById('quizScore').innerText = quizScore;
+            }
+            
+            renderQuizQuestion();
+            
+            setTimeout(() => {
+                if (quizIndex < currentQuiz.length - 1) {
+                    quizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    quizIndex++;
+                    renderQuizQuestion();
+                }
+            }, 1200);
+        }
+
+        function showQuizResults() {
+            const total = currentQuiz.length;
+            const percentage = Math.round((quizScore / total) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🌟';
+                message = 'PERFECT! You mastered the present continuous tense!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You understand present continuous tense well!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏';
+                message = 'Good job! Review the lesson and try again.';
+            } else if (percentage >= 40) {
+                emoji = '📖💪';
+                message = 'Keep going! Practice makes progress.';
+            } else {
+                emoji = '🌱✨';
+                message = 'You are just starting! Study the lesson and try again.';
+            }
+            
+            const resultsHtml = `
+                <div class="quiz-question" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${quizScore}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2.5rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0;">${message}</p>
+                    <button class="nav-btn" onclick="startNewQuiz()" style="margin-top: 1rem; background:#2A9D8F;">🔄 New Quiz</button>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultsHtml;
+            document.getElementById('quizProgress').style.width = '100%';
+        }
+
+        function resetQuiz() { startNewQuiz(); }
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'lesson') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('lessonPanel').classList.add('active');
+                document.getElementById('quizPanel').classList.remove('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('lessonPanel').classList.remove('active');
+                document.getElementById('quizPanel').classList.add('active');
+                startNewQuiz();
+            }
+        }
+
+        startNewQuiz();
+    </script>
+</body>
+</html>
