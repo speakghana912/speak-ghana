@@ -181,6 +181,8 @@
             <button class="filter-btn" data-cat="modals">🔑 Modal Verbs</button>
             <button class="filter-btn" data-cat="comparatives">⚖️ Comparatives</button>
             <button class="filter-btn" data-cat="ordinals">🥇 Ordinals</button>
+            <button class="filter-btn" data-cat="punctuation">✏️ Punctuation</button>
+            <button class="filter-btn" data-cat="grammar">📝 Grammar Terms</button>
         </div>
 
         <div class="table-wrapper">
@@ -222,14 +224,13 @@
             { twi: "nea", english: "who / whom / which", category: "pronouns" },
             { twi: "biribiara", english: "everything", category: "pronouns" },
             { twi: "hwee", english: "nothing", category: "pronouns" },
-            // Possessive pronouns — NEW
             { twi: "me (possessive)", english: "my / mine", category: "pronouns" },
             { twi: "wo (possessive)", english: "your (singular)", category: "pronouns" },
             { twi: "ne", english: "his / her / its", category: "pronouns" },
             { twi: "yɛn", english: "our", category: "pronouns" },
             { twi: "wɔn", english: "their", category: "pronouns" },
 
-            // ===== DEMONSTRATIVES — NEW CATEGORY =====
+            // ===== DEMONSTRATIVES =====
             { twi: "wei", english: "this", category: "demonstratives" },
             { twi: "yei", english: "this (alternate)", category: "demonstratives" },
             { twi: "yi", english: "this (alternate)", category: "demonstratives" },
@@ -491,7 +492,6 @@
             { twi: "ɛyɛ nwen", english: "it is sour", category: "food" },
             { twi: "ɔkɔm de me", english: "I am hungry", category: "food" },
             { twi: "sukɔm de me", english: "I am thirsty", category: "food" },
-            // Food & Drink — NEW additions
             { twi: "nsuo", english: "water", category: "food" },
             { twi: "tii", english: "tea", category: "food" },
             { twi: "kafe", english: "coffee", category: "food" },
@@ -541,7 +541,6 @@
             { twi: "mogya", english: "blood", category: "body" },
             { twi: "honam", english: "skin", category: "body" },
             { twi: "ɛbɔ", english: "bone", category: "body" },
-            // Body Parts — NEW additions
             { twi: "etire", english: "head (formal)", category: "body" },
             { twi: "anim", english: "face", category: "body" },
             { twi: "ani ntɔn", english: "eyebrow", category: "body" },
@@ -590,7 +589,6 @@
             { twi: "prakobedeɛ", english: "sow (female pig)", category: "animals" },
             { twi: "kɔkɔte", english: "bush pig", category: "animals" },
             { twi: "adoe", english: "monkey", category: "animals" },
-            { twi: "afono", english: "monkey (alternate)", category: "animals" },
             { twi: "ɔtwe", english: "duiker", category: "animals" },
             { twi: "ofui", english: "hyena", category: "animals" },
             { twi: "sakraman", english: "jackal / wild dog / fox", category: "animals" },
@@ -686,7 +684,6 @@
             { twi: "ahonyade", english: "wealth", category: "nature" },
             { twi: "ɔhaw", english: "trouble", category: "nature" },
             { twi: "anigye", english: "joy", category: "nature" },
-            // Nature — NEW additions
             { twi: "nyankontɔn", english: "rainbow", category: "nature" },
             { twi: "asase so", english: "surface of the earth", category: "nature" },
             { twi: "asase ase", english: "underground", category: "nature" },
@@ -766,11 +763,10 @@
             { twi: "ɔha", english: "one hundred", category: "numbers" },
             { twi: "apem", english: "one thousand", category: "numbers" },
             { twi: "ɔpepe", english: "ten thousand", category: "numbers" },
-            // Numbers — NEW additions
             { twi: "ɔpem", english: "one million", category: "numbers" },
             { twi: "akoɔ", english: "one billion", category: "numbers" },
 
-            // ===== ORDINAL NUMBERS — NEW CATEGORY =====
+            // ===== ORDINALS =====
             { twi: "dikan", english: "first", category: "ordinals" },
             { twi: "kan", english: "first (short form)", category: "ordinals" },
             { twi: "ɛto so mmienu", english: "second", category: "ordinals" },
@@ -805,7 +801,6 @@
             { twi: "sɛnea ɛbɛyɛ", english: "in future", category: "time" },
             { twi: "kane", english: "early", category: "time" },
             { twi: "awiei", english: "the end / finally", category: "time" },
-            // Time — NEW additions
             { twi: "ɛnnora anɔpa", english: "yesterday morning", category: "time" },
             { twi: "ɔkyena anadwo", english: "tomorrow night", category: "time" },
             { twi: "awiepɔn", english: "evening (alternate)", category: "time" },
@@ -813,7 +808,7 @@
             { twi: "kakra", english: "soon / a little", category: "time" },
             { twi: "awie koraa", english: "at the very end", category: "time" },
 
-            // ===== DAYS OF THE WEEK =====
+            // ===== DAYS =====
             { twi: "Dwowda", english: "Monday", category: "days" },
             { twi: "Benada", english: "Tuesday", category: "days" },
             { twi: "Wukuda", english: "Wednesday", category: "days" },
@@ -906,7 +901,7 @@
             { twi: "wo", english: "to give birth", category: "verbs" },
             { twi: "wu", english: "to die", category: "verbs" },
 
-            // ===== MODAL VERBS & AUXILIARIES — NEW CATEGORY =====
+            // ===== MODAL VERBS =====
             { twi: "tumi", english: "can / be able to", category: "modals" },
             { twi: "bɛtumi", english: "will be able to", category: "modals" },
             { twi: "sɛ", english: "should / ought to", category: "modals" },
@@ -915,7 +910,7 @@
             { twi: "Me tumi ba", english: "I can come (example)", category: "modals" },
             { twi: "Ɛhia sɛ wo ba", english: "You must come (example)", category: "modals" },
 
-            // ===== COMPARATIVES & SUPERLATIVES — NEW CATEGORY =====
+            // ===== COMPARATIVES =====
             { twi: "sen", english: "than (comparative marker)", category: "comparatives" },
             { twi: "koraa", english: "most / very / extremely", category: "comparatives" },
             { twi: "paapaapa", english: "very good / best", category: "comparatives" },
@@ -923,7 +918,7 @@
             { twi: "ketewa sen", english: "smaller than", category: "comparatives" },
             { twi: "kɛse sen", english: "bigger than", category: "comparatives" },
 
-            // ===== CLOTHES & DRESSING =====
+            // ===== CLOTHES =====
             { twi: "ntoma", english: "cloth / fabric", category: "clothes" },
             { twi: "atadeɛ", english: "dress / clothes (general)", category: "clothes" },
             { twi: "taaba", english: "shirt", category: "clothes" },
@@ -964,7 +959,7 @@
             { twi: "ahohora", english: "health / wellness", category: "health" },
             { twi: "ayaresa", english: "treatment / cure", category: "health" },
 
-            // ===== SCHOOL & EDUCATION =====
+            // ===== SCHOOL =====
             { twi: "sukuu", english: "school", category: "school" },
             { twi: "ɔkyerɛkyerɛfo", english: "teacher", category: "school" },
             { twi: "ɔkyerɛkyerɛni", english: "teacher (alternate)", category: "school" },
@@ -985,7 +980,7 @@
             { twi: "mpɔtam", english: "chalk", category: "school" },
             { twi: "nhoma twerɛ", english: "notebook", category: "school" },
 
-            // ===== WORK & OCCUPATIONS =====
+            // ===== WORK =====
             { twi: "adwuma", english: "work / job", category: "work" },
             { twi: "ɔdwumayɛfo", english: "worker", category: "work" },
             { twi: "odwumahyɛfo", english: "boss / employer", category: "work" },
@@ -1005,7 +1000,7 @@
             { twi: "adwuma yɛ", english: "to work", category: "work" },
             { twi: "adwumaden", english: "hard work", category: "work" },
 
-            // ===== TRANSPORT & TRAVEL =====
+            // ===== TRANSPORT =====
             { twi: "kaa", english: "car", category: "transport" },
             { twi: "trotro", english: "minibus / trotro", category: "transport" },
             { twi: "baabuu", english: "big bus", category: "transport" },
@@ -1025,7 +1020,7 @@
             { twi: "hɛn na wo kɔ?", english: "where are you going?", category: "transport" },
             { twi: "sikabaa", english: "ticket", category: "transport" },
 
-            // ===== MONEY & MARKET =====
+            // ===== MONEY =====
             { twi: "sika", english: "money", category: "money" },
             { twi: "tɔ", english: "to buy", category: "money" },
             { twi: "tɔn", english: "to sell", category: "money" },
@@ -1042,9 +1037,8 @@
             { twi: "agorɔ", english: "market", category: "money" },
             { twi: "ɛyɛ dɛn boɔ?", english: "what is the price?", category: "money" },
             { twi: "ka", english: "debt", category: "money" },
-            { twi: "tua ka", english: "to pay a debt", category: "money" },
 
-            // ===== RELIGION & SPIRITUALITY =====
+            // ===== RELIGION =====
             { twi: "Onyame", english: "God", category: "religion" },
             { twi: "asɔre", english: "church / worship", category: "religion" },
             { twi: "asɔredan", english: "church building", category: "religion" },
@@ -1061,7 +1055,7 @@
             { twi: "mpae bɔ", english: "to pray", category: "religion" },
             { twi: "nhyira", english: "blessing", category: "religion" },
 
-            // ===== EMOTIONS & FEELINGS =====
+            // ===== EMOTIONS =====
             { twi: "anigye", english: "happiness / joy", category: "emotions" },
             { twi: "awerɛhow", english: "sadness", category: "emotions" },
             { twi: "abufuo", english: "anger", category: "emotions" },
@@ -1081,7 +1075,7 @@
             { twi: "ahodwo", english: "patience / calmness", category: "emotions" },
             { twi: "ahoɔden", english: "strength / energy", category: "emotions" },
 
-            // ===== DIRECTIONS & PLACES =====
+            // ===== DIRECTIONS =====
             { twi: "nifa", english: "right", category: "directions" },
             { twi: "benkum", english: "left", category: "directions" },
             { twi: "anim", english: "front / forward", category: "directions" },
@@ -1102,7 +1096,7 @@
             { twi: "atifi", english: "north", category: "directions" },
             { twi: "anafoɔ", english: "south", category: "directions" },
 
-            // ===== COMMON PHRASES =====
+            // ===== PHRASES =====
             { twi: "mema wo akye", english: "good morning", category: "phrases" },
             { twi: "maakye", english: "good morning (short)", category: "phrases" },
             { twi: "mema wo aha", english: "good afternoon", category: "phrases" },
@@ -1135,7 +1129,7 @@
             { twi: "ɛyɛ den", english: "it is difficult", category: "phrases" },
             { twi: "ɛyɛ mmerɛw", english: "it is easy", category: "phrases" },
 
-            // ===== TENSE MARKERS & AUXILIARIES =====
+            // ===== TENSE MARKERS =====
             { twi: "bɛ", english: "will (future marker)", category: "tense" },
             { twi: "a", english: "past marker / perfect", category: "tense" },
             { twi: "re", english: "progressive marker (-ing)", category: "tense" },
@@ -1158,7 +1152,7 @@
             { twi: "metumi amma", english: "I cannot", category: "negation" },
             { twi: "ɛnyɛ nokware", english: "it is not true", category: "negation" },
 
-            // ===== PLACES & COUNTRIES =====
+            // ===== PLACES =====
             { twi: "Gaana", english: "Ghana", category: "places" },
             { twi: "Amɛrika", english: "America / USA", category: "places" },
             { twi: "Britania", english: "Britain / UK", category: "places" },
@@ -1199,6 +1193,82 @@
             { twi: "ɔhene", english: "chief / king", category: "professions" },
             { twi: "ɔbɔmmɔfo", english: "hunter", category: "professions" },
             { twi: "ɔdwumahyɛni", english: "contractor / builder", category: "professions" },
+
+            // ===== PUNCTUATION — NEW =====
+            { twi: "agyinahyɛdeɛ", english: "punctuation mark (general)", category: "punctuation" },
+            { twi: "osiwieɛ", english: "full stop ( . )", category: "punctuation" },
+            { twi: "nsanhɔ", english: "comma ( , )", category: "punctuation" },
+            { twi: "osiprenu", english: "colon ( : )", category: "punctuation" },
+            { twi: "osisan", english: "semi colon ( ; )", category: "punctuation" },
+            { twi: "asɛmmisa nsɛnkyerɛne", english: "question mark ( ? )", category: "punctuation" },
+            { twi: "ogya nsɛnkyerɛne", english: "apostrophe ( ' )", category: "punctuation" },
+            { twi: "nkabom nsɛnkyerɛne", english: "hyphen ( – )", category: "punctuation" },
+            { twi: "nteamudeɛ", english: "exclamation mark ( ! )", category: "punctuation" },
+            { twi: "nkatomdeɛ", english: "inverted commas / quotation marks ( ' ' \" \" )", category: "punctuation" },
+            { twi: "nkahyɛmdeɛ", english: "bracket ( ) [ ]", category: "punctuation" },
+
+            // ===== GRAMMAR TERMS — NEW =====
+            { twi: "kasa mmara", english: "grammar", category: "grammar" },
+            { twi: "atwerɛdeɛ", english: "letter (alphabet)", category: "grammar" },
+            { twi: "ntwerɛdeɛ", english: "alphabet", category: "grammar" },
+            { twi: "asɛmfua", english: "word", category: "grammar" },
+            { twi: "ɔkasasin", english: "phrase", category: "grammar" },
+            { twi: "ɔkasamufa", english: "clause", category: "grammar" },
+            { twi: "ɔkasamufa titire", english: "main clause", category: "grammar" },
+            { twi: "ɔkasamufa kumaa", english: "subordinate clause", category: "grammar" },
+            { twi: "ɔkasamu", english: "sentence", category: "grammar" },
+            { twi: "ɔkasamu tiawa", english: "simple sentence", category: "grammar" },
+            { twi: "ɔkasamu tenten", english: "compound sentence", category: "grammar" },
+            { twi: "kasapɛn", english: "paragraph", category: "grammar" },
+            { twi: "kratafa", english: "page", category: "grammar" },
+            { twi: "ɔfa", english: "chapter", category: "grammar" },
+            { twi: "nsianimu", english: "prefix", category: "grammar" },
+            { twi: "nsiakyire", english: "suffix", category: "grammar" },
+            { twi: "nnianumu", english: "preface", category: "grammar" },
+            { twi: "aseda", english: "acknowledgement", category: "grammar" },
+            { twi: "anom nnyegyeɛ", english: "consonants", category: "grammar" },
+            { twi: "ɛnne nnyegyeɛ", english: "vowels", category: "grammar" },
+            { twi: "adeyɛ", english: "verb", category: "grammar" },
+            { twi: "ɔkyerɛfoɔ", english: "adverb", category: "grammar" },
+            { twi: "adeyɛ boafoɔ", english: "verb complement", category: "grammar" },
+            { twi: "edin", english: "noun", category: "grammar" },
+            { twi: "edin nkyerɛkyerɛmu", english: "adjective", category: "grammar" },
+            { twi: "edinnsiananmu", english: "pronoun", category: "grammar" },
+            { twi: "ɔdedeɛ", english: "possessive pronoun", category: "grammar" },
+            { twi: "edin hunu", english: "common noun", category: "grammar" },
+            { twi: "edin pa", english: "proper noun", category: "grammar" },
+            { twi: "nkabomdeɛ", english: "conjunction", category: "grammar" },
+            { twi: "ntamgyinafoɔ", english: "emphatic particle", category: "grammar" },
+            { twi: "daa kabea", english: "simple present tense", category: "grammar" },
+            { twi: "twam kabea", english: "simple past tense", category: "grammar" },
+            { twi: "daakye kabea", english: "future tense", category: "grammar" },
+            { twi: "ayɛasie kabea", english: "perfect tense", category: "grammar" },
+            { twi: "ɛnsiiɛ kabea", english: "continuous tense", category: "grammar" },
+            { twi: "aane kabea", english: "affirmative / positive", category: "grammar" },
+            { twi: "dabi kabea", english: "negative", category: "grammar" },
+            { twi: "baako kabea", english: "singular", category: "grammar" },
+            { twi: "dodoɔ kabea", english: "plural", category: "grammar" },
+            { twi: "ɔhyɛ kabea", english: "imperative", category: "grammar" },
+            { twi: "abirabɔ", english: "antonym", category: "grammar" },
+            { twi: "nkyerɛase korɔ", english: "synonym", category: "grammar" },
+            { twi: "akontabudeɛ", english: "numeral", category: "grammar" },
+            { twi: "ɔyɛfoɔ", english: "subject", category: "grammar" },
+            { twi: "ayɛdeɛ", english: "object", category: "grammar" },
+            { twi: "nkasaeɛ", english: "predicate", category: "grammar" },
+            { twi: "asɛmmisa", english: "question", category: "grammar" },
+            { twi: "nhwɛsoɔ", english: "example", category: "grammar" },
+            { twi: "dwumadie", english: "exercise", category: "grammar" },
+            { twi: "ayɛsɛm", english: "story", category: "grammar" },
+            { twi: "abasɛm", english: "story (alternate)", category: "grammar" },
+            { twi: "susutwerɛ", english: "composition / essay", category: "grammar" },
+            { twi: "ɔkatwerɛ", english: "dictation", category: "grammar" },
+            { twi: "ɛbɛ", english: "proverb", category: "grammar" },
+            { twi: "kasakoa", english: "idiom", category: "grammar" },
+            { twi: "asesɛsɛm", english: "simile", category: "grammar" },
+            { twi: "ntotohosɛm", english: "simile (alternate)", category: "grammar" },
+            { twi: "nnyinahɔma", english: "metaphor", category: "grammar" },
+            { twi: "anwensɛm", english: "poem", category: "grammar" },
+            { twi: "anihanehane", english: "hyperbole", category: "grammar" },
         ];
 
         let currentCategory = "all";
@@ -1217,7 +1287,8 @@
             school: "🎒", work: "💼", transport: "🚗", money: "💰",
             religion: "🙏", emotions: "❤️", directions: "🧭", phrases: "💬",
             tense: "🔧", negation: "🚫", places: "🌍", professions: "👨‍⚕️",
-            demonstratives: "👆", modals: "🔑", comparatives: "⚖️", ordinals: "🥇"
+            demonstratives: "👆", modals: "🔑", comparatives: "⚖️", ordinals: "🥇",
+            punctuation: "✏️", grammar: "📝"
         };
 
         function buildLetterNav() {
