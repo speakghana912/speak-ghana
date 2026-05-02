@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Stories & Exercises | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .story-nav {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .story-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .story-btn.active {
+            background: #2A9D8F;
+            color: white;
+        }
+        .story-btn:hover:not(.active) {
+            background: #D4A373;
+            color: white;
+        }
+        
+        .story-card {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .story-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.3rem;
+        }
+        .story-level {
+            font-size: 0.7rem;
+            color: #E76F51;
+            margin-bottom: 1rem;
+        }
+        .twi-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            border: 1px solid #e2e8f0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        
+        .exercise-section {
+            background: #f0f7f5;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .exercise-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #D4A373;
+            display: inline-block;
+        }
+        .question-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .option {
+            background: #f0f0f0;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .option:hover:not(:disabled) { background: #2A9D8F; color: white; transform: translateX(3px); }
+        .option.correct { background: #2A9D8F; color: white; }
+        .option.wrong { background: #E76F51; color: white; }
+        .option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .feedback { margin-top: 0.5rem; font-size: 0.75rem; display: none; }
+        .feedback.show { display: block; }
+        .feedback.correct { color: #2A9D8F; }
+        .feedback.wrong { color: #E76F51; }
+        
+        .blank-input {
+            width: 150px;
+            padding: 0.3rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin: 0 0.3rem;
+        }
+        .blank-input.correct {
+            background: #2A9D8F20;
+            border-color: #2A9D8F;
+        }
+        
+        .translation-input {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+        }
+        .check-btn {
+            margin-top: 0.5rem;
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        .check-btn:hover { background: #1e6f64; }
+        
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .score-area {
+            text-align: center;
+            padding: 1rem;
+            background: #2A9D8F10;
+            border-radius: 20px;
+            margin-top: 1rem;
+        }
+        .hint-text {
+            font-size: 0.7rem;
+            color: #999;
+            margin-left: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .twi-text { font-size: 1rem; }
+            .blank-input { width: 100px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>📖 Twi Stories & Exercises <span class="badge">Reading + Grammar</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;" onerror="this.style.display='none'">
+        </div>
+        <p class="subtitle">🎯 Read the story, then complete all exercises below (questions in Twi, grammar, vocabulary, translation)</p>
+
+        <div class="story-nav" id="storyNav"></div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+        <div id="storyContainer"></div>
+        <div id="exercisesContainer"></div>
+        <div id="scoreArea"></div>
+    </div>
+
+    <script>
+        // Simple escape that preserves Twi special characters
+        function safeText(str) {
+            if (!str) return '';
+            return str;
+        }
+
+        const stories = [
+            {
+                id: 1,
+                title: "Kofi Ne Ne Maame",
+                level: "Beginner 1",
+                twi: "Me din de Kofi. Me ne me maame te Nkran. Me maame din de Ama. Me maame yɛ ɔkyerɛkyerɛni. Me nso mekɔ sukuu. Mepɛ sɛ meyɛ ɔyaresani daakye. Na me maame nso pɛ sɛ meyɛ ɔyaresani. Medaase me maame.",
+                exercises: {
+                    comprehension: [
+                        { text: "Ɛhe na Kofi ne ne maame te?", options: ["Kumase", "Nkran", "Tema", "Takoradi"], correct: 1 },
+                        { text: "Kofi maame din de sɛn?", options: ["Ama", "Adwoa", "Akosua", "Abena"], correct: 0 },
+                        { text: "Kofi maame yɛ adwuma bɛn?", options: ["ɔyaresani", "ɔkyerɛkyerɛni", "ɔtɔnfo", "kuafo"], correct: 1 },
+                        { text: "Kofi pɛ sɛ ɔyɛ dɛn daakye?", options: ["ɔkyerɛkyerɛni", "ɔsraani", "ɔyaresani", "ɔtɔnfo"], correct: 2 }
+                    ],
+                    fillBlanks: [
+                        { text: "Me ne me maame ___ Nkran.", correct: "te", hint: "to live/stay" },
+                        { text: "Me maame yɛ ___ .", correct: "ɔkyerɛkyerɛni", hint: "teacher" },
+                        { text: "Mepɛ sɛ meyɛ ___ daakye.", correct: "ɔyaresani", hint: "doctor" },
+                        { text: "___ me maame.", correct: "Medaase", hint: "thank you" }
+                    ],
+                    verbTense: [
+                        { text: "Tɛnse bɛn na wɔde 'Mepɛ' (I want) yɛ?", correct: 0, options: ["Present", "Past", "Future", "Continuous"] },
+                        { text: "Sɛ woka 'mekɔ sukuu' a, verb no ne dɛn?", correct: 1, options: ["mekɔ", "kɔ", "sukuu", "me"] },
+                        { text: "Sɛ yɛpɛ sɛ yɛka 'I will go to school' wɔ Twi mu a, yɛbɛka dɛn?", correct: 1, options: ["Mekɔ sukuu", "Mɛkɔ sukuu", "Mekɔɔ sukuu", "Merekɔ sukuu"] }
+                    ],
+                    translation: [
+                        { twi: "Me maame yɛ ɔkyerɛkyerɛni", correct: "My mother is a teacher" },
+                        { twi: "Mepɛ sɛ meyɛ ɔyaresani", correct: "I want to be a doctor" }
+                    ],
+                    nounPlural: [
+                        { singular: "ɔkyerɛkyerɛni", correct: "akyerɛkyerɛfoɔ", hint: "teachers" },
+                        { singular: "ɔyaresani", correct: "ayaresafoɔ", hint: "doctors" }
+                    ]
+                }
+            },
+            {
+                id: 2,
+                title: "Ɛdwadie Ho Asɛm",
+                level: "Beginner 1",
+                twi: "Me ne me maame kɔɔ edwam. Yɛtɔɔ aburo, nkwan ne nam. Ɛdwam no mu yɛ hare. Me maame tɔɔ bayerɛ. Ɛboɔ no yɛ pa. Me maame tɔɔ amango baako maa me. Medaase me maame. Afei yɛbɛɛ fie.",
+                exercises: {
+                    comprehension: [
+                        { text: "Ɛhe na wɔkɔɔ?", options: ["sukuu", "edwam", "asɔre", "fie"], correct: 1 },
+                        { text: "Dɛn na wɔtɔɔ?", options: ["aburo, nkwan ne nam", "ɛmo ne nkyene", "kube ne ankaa", "banku ne fufuo"], correct: 0 },
+                        { text: "Ɛboɔ no te sɛn?", options: ["ɛyɛ den", "ɛyɛ hare", "ɛyɛ pa", "ɛyɛ fɛ"], correct: 2 },
+                        { text: "Dɛn na me maame tɔɔ maa me?", options: ["kube", "ankaa", "amango", "bayerɛ"], correct: 2 }
+                    ],
+                    fillBlanks: [
+                        { text: "Me ne me maame ___ edwam.", correct: "kɔɔ", hint: "went (past of kɔ)" },
+                        { text: "Wɔtɔɔ ___, nkwan ne nam.", correct: "aburo", hint: "corn" },
+                        { text: "Ɛdwam no mu yɛ ___ .", correct: "hare", hint: "busy" },
+                        { text: "Me maame tɔɔ ___ baako maa me.", correct: "amango", hint: "mango" }
+                    ],
+                    verbTense: [
+                        { text: "Verb 'kɔ' wɔ past tense mu yɛ dɛn?", correct: 1, options: ["kɔ", "kɔɔ", "bɛkɔ", "rekɔ"] }
+                    ],
+                    translation: [
+                        { twi: "Me maame tɔɔ amango maa me", correct: "My mother bought me a mango" },
+                        { twi: "Yɛbɛɛ fie", correct: "We came back home" }
+                    ],
+                    nounPlural: [
+                        { singular: "amango", correct: "amango", hint: "mangoes (doesn't change)" }
+                    ]
+                }
+            },
+            {
+                id: 3,
+                title: "Me Busua",
+                level: "Beginner 2",
+                twi: "Mewɔ busua kɛse. Me agya ne me ɛna. Mewɔ nuabarima baako ne nuabea baako. Yɛte fie baako mu. Me pɛ me busua. Da biara, yɛdi bom. Yɛdɔ yɛn ho. Me maame noa aduane. Me agya yɛ adwuma. Yɛbɔ mpaeɛ ansa na yɛredidi. Me busua yɛ me anigyeɛ.",
+                exercises: {
+                    comprehension: [
+                        { text: "Ɔka sɛ ɔwɔ busua ___ ?", options: ["ketewa", "kɛse", "fɛ", "hare"], correct: 1 },
+                        { text: "Nuanom aha a ɔwɔ?", options: ["baako", "mmienu", "mmiɛnsa", "nnan"], correct: 1 },
+                        { text: "Dɛn na wɔyɛ ansa na wɔredi?", options: ["wɔsua", "wɔbɔ mpaeɛ", "wɔto dwom", "wɔsa"], correct: 1 },
+                        { text: "Me busua yɛ me ___ .", options: ["awerɛhoɔ", "anigyeɛ", "abufuo", "ehu"], correct: 1 }
+                    ],
+                    fillBlanks: [
+                        { text: "Mewɔ nuabarima ___ ne nuabea baako.", correct: "baako", hint: "one" },
+                        { text: "Da biara, ___ yɛdi bom.", correct: "yɛdi", hint: "we eat" },
+                        { text: "Yɛbɔ mpaeɛ ___ na yɛredidi.", correct: "ansa", hint: "before" },
+                        { text: "Me busua ___ me anigyeɛ.", correct: "yɛ", hint: "is" }
+                    ],
+                    verbTense: [
+                        { text: "'Yɛdɔ yɛn ho' - Verb no ne?", correct: 2, options: ["yɛ", "ho", "dɔ", "yɛn"] },
+                        { text: "Sɛ woka 'Na me maame noa aduane' a, ɛyɛ tense bɛn?", correct: 1, options: ["Past", "Present", "Future", "Continuous"] }
+                    ],
+                    translation: [
+                        { twi: "Yɛbɔ mpaeɛ ansa na yɛredidi", correct: "We pray before we eat" },
+                        { twi: "Me busua yɛ me anigyeɛ", correct: "My family is my happiness" }
+                    ],
+                    nounPlural: [
+                        { singular: "nuabarima", correct: "nuabarimanom", hint: "brothers" },
+                        { singular: "nuabea", correct: "nuabeanom", hint: "sisters" }
+                    ]
+                }
+            },
+            {
+                id: 4,
+                title: "Me Da Yi",
+                level: "Beginner 2",
+                twi: "Me sɔre anɔpa. Mede nsuo gu m'anim. Medi aduane. Afei mekɔ sukuu. Wɔ sukuu no, mesua Twi kasa. Me kyerɛkyerɛni no yɛ pa. Ɔkyerɛ yie. Me nso mete ase yie. Me sukuu no wɔ Nkran. Mepɛ me sukuu. Mepɛ sɛ misua ade.",
+                exercises: {
+                    comprehension: [
+                        { text: "Dɛn na ɔyɛ anɔpa?", options: ["ɔbɔ mpaeɛ", "ɔsɔre", "ɔkɔ sukuu", "ɔdidi"], correct: 1 },
+                        { text: "Dɛn na ɔsua wɔ sukuu?", options: ["Brofo", "Twi", "Nkontabudeɛ", "Gyeografi"], correct: 1 },
+                        { text: "Ɔka sɛ ne kyerɛkyerɛni yɛ dɛn?", options: ["bɔne", "pa", "hare", "den"], correct: 1 },
+                        { text: "Ɛhe na ne sukuu wɔ?", options: ["Kumase", "Nkran", "Tema", "Takoradi"], correct: 1 }
+                    ],
+                    fillBlanks: [
+                        { text: "Me ___ anɔpa.", correct: "sɔre", hint: "wake up" },
+                        { text: "Mede ___ gu m'anim.", correct: "nsuo", hint: "water" },
+                        { text: "Mekɔ ___.", correct: "sukuu", hint: "school" },
+                        { text: "Me ___ no yɛ pa.", correct: "kyerɛkyerɛni", hint: "teacher" }
+                    ],
+                    verbTense: [
+                        { text: "Tɛnse bɛn na wɔde 'mekɔ' yɛ?", correct: 1, options: ["Past", "Present", "Future", "Continuous"] },
+                        { text: "Sɛ woka 'mesua' a, verb no ne dɛn?", correct: 1, options: ["me", "sua", "mesua", "ade"] }
+                    ],
+                    translation: [
+                        { twi: "Me kyerɛkyerɛni no yɛ pa", correct: "My teacher is good" },
+                        { twi: "Mepɛ sɛ misua ade", correct: "I want to learn" }
+                    ],
+                    nounPlural: [
+                        { singular: "kyerɛkyerɛni", correct: "akyerɛkyerɛfoɔ", hint: "teachers" }
+                    ]
+                }
+            }
+        ];
+
+        let currentStory = 0;
+        let answers = {
+            comprehension: {},
+            fillBlanks: {},
+            verbTense: {},
+            translation: {},
+            nounPlural: {}
+        };
+        let blankValues = {};
+
+        function renderStoryNav() {
+            let html = '';
+            stories.forEach((story, idx) => {
+                html += `<button class="story-btn ${idx === currentStory ? 'active' : ''}" onclick="selectStory(${idx})">${story.title}</button>`;
+            });
+            document.getElementById('storyNav').innerHTML = html;
+        }
+
+        window.selectStory = function(idx) {
+            currentStory = idx;
+            answers = { comprehension: {}, fillBlanks: {}, verbTense: {}, translation: {}, nounPlural: {} };
+            blankValues = {};
+            renderStoryNav();
+            renderStory();
+            renderExercises();
+            updateProgress();
+            updateScore();
+        };
+
+        function renderStory() {
+            const story = stories[currentStory];
+            let html = `
+                <div class="story-card">
+                    <div class="story-title">${story.title}</div>
+                    <div class="story-level">📚 Level: ${story.level}</div>
+                    <div class="twi-text">${story.twi}</div>
+                </div>
+            `;
+            document.getElementById('storyContainer').innerHTML = html;
+        }
+
+        function renderExercises() {
+            const story = stories[currentStory];
+            let html = '';
+            
+            // Comprehension Questions
+            if (story.exercises.comprehension && story.exercises.comprehension.length > 0) {
+                html += `<div class="exercise-section"><div class="exercise-title">📝 Adesua 1: Nsɛmmisa a Wɔteɛ (Comprehension Questions)</div>`;
+                story.exercises.comprehension.forEach((q, idx) => {
+                    const answered = answers.comprehension[idx] !== undefined;
+                    const selected = answers.comprehension[idx];
+                    const isCorrect = answered && selected === q.correct;
+                    
+                    html += `<div class="question-item"><div class="question-text">${idx + 1}. ${q.text}</div><div class="options" id="comp-options-${idx}">`;
+                    q.options.forEach((opt, optIdx) => {
+                        let cls = '';
+                        if (answered && optIdx === q.correct) cls = 'correct';
+                        if (answered && optIdx === selected && !isCorrect) cls = 'wrong';
+                        html += `<button class="option ${cls}" onclick="checkAnswer('comprehension', ${idx}, ${optIdx})" ${answered ? 'disabled' : ''}>${String.fromCharCode(65 + optIdx)}. ${opt}</button>`;
+                    });
+                    html += `</div><div id="comp-feedback-${idx}" class="feedback"></div></div>`;
+                });
+                html += `</div>`;
+            }
+            
+            // Fill in the Blanks
+            if (story.exercises.fillBlanks && story.exercises.fillBlanks.length > 0) {
+                html += `<div class="exercise-section"><div class="exercise-title">✏️ Adesua 2: Hyɛ nkontonpɔ no mu (Fill in the Blanks)</div>`;
+                story.exercises.fillBlanks.forEach((q, idx) => {
+                    const answered = blankValues[idx] !== undefined;
+                    const isCorrect = answered && blankValues[idx] === q.correct;
+                    const displayValue = blankValues[idx] || '';
+                    html += `<div class="question-item"><div class="question-text">${idx + 1}. ${q.text.replace('___', `<input type="text" class="blank-input ${isCorrect ? 'correct' : ''}" data-fbidx="${idx}" value="${displayValue}" placeholder="...">`)} <span class="hint-text">💡 ${q.hint}</span></div><div id="fb-feedback-${idx}" class="feedback"></div></div>`;
+                });
+                html += `</div>`;
+            }
+            
+            // Verb Tense
+            if (story.exercises.verbTense && story.exercises.verbTense.length > 0) {
+                html += `<div class="exercise-section"><div class="exercise-title">⏰ Adesua 3: Tɛnse (Verb Tenses)</div>`;
+                story.exercises.verbTense.forEach((q, idx) => {
+                    const answered = answers.verbTense[idx] !== undefined;
+                    const selected = answers.verbTense[idx];
+                    const isCorrect = answered && selected === q.correct;
+                    
+                    html += `<div class="question-item"><div class="question-text">${idx + 1}. ${q.text}</div><div class="options" id="verb-options-${idx}">`;
+                    q.options.forEach((opt, optIdx) => {
+                        let cls = '';
+                        if (answered && optIdx === q.correct) cls = 'correct';
+                        if (answered && optIdx === selected && !isCorrect) cls = 'wrong';
+                        html += `<button class="option ${cls}" onclick="checkAnswer('verbTense', ${idx}, ${optIdx})" ${answered ? 'disabled' : ''}>${String.fromCharCode(65 + optIdx)}. ${opt}</button>`;
+                    });
+                    html += `</div><div id="verb-feedback-${idx}" class="feedback"></div></div>`;
+                });
+                html += `</div>`;
+            }
+            
+            // Translation
+            if (story.exercises.translation && story.exercises.translation.length > 0) {
+                html += `<div class="exercise-section"><div class="exercise-title">🌍 Adesua 4: Nkyerɛaseɛ (Translation Twi → English)</div>`;
+                story.exercises.translation.forEach((q, idx) => {
+                    const answered = answers.translation[idx] !== undefined;
+                    html += `<div class="question-item"><div class="question-text">${idx + 1}. <strong>${q.twi}</strong></div><div class="options"><input type="text" id="trans-input-${idx}" class="translation-input" placeholder="Type English translation..." ${answered ? 'disabled' : ''} value="${answers.translation[idx] || ''}"><button class="check-btn" onclick="checkTranslation(${idx})" ${answered ? 'disabled' : ''}>Check Answer</button></div><div id="trans-feedback-${idx}" class="feedback"></div></div>`;
+                });
+                html += `</div>`;
+            }
+            
+            // Noun Plurals
+            if (story.exercises.nounPlural && story.exercises.nounPlural.length > 0) {
+                html += `<div class="exercise-section"><div class="exercise-title">🔢 Adesua 5: Dodoɔ (Noun Plurals)</div>`;
+                story.exercises.nounPlural.forEach((q, idx) => {
+                    const answered = answers.nounPlural[idx] !== undefined;
+                    const isCorrect = answered && answers.nounPlural[idx] === q.correct;
+                    const displayValue = answers.nounPlural[idx] || '';
+                    html += `<div class="question-item"><div class="question-text">${idx + 1}. Biako: <strong>${q.singular}</strong> → Bebree: <input type="text" class="blank-input ${isCorrect ? 'correct' : ''}" data-pluralidx="${idx}" value="${displayValue}" placeholder="plural form..."> <span class="hint-text">💡 ${q.hint}</span></div><div id="plural-feedback-${idx}" class="feedback"></div></div>`;
+                });
+                html += `</div>`;
+            }
+            
+            document.getElementById('exercisesContainer').innerHTML = html;
+            
+            // Add event listeners
+            document.querySelectorAll('[data-fbidx]').forEach(input => {
+                const idx = parseInt(input.dataset.fbidx);
+                input.addEventListener('blur', () => checkFillBlank(idx, input.value));
+            });
+            document.querySelectorAll('[data-pluralidx]').forEach(input => {
+                const idx = parseInt(input.dataset.pluralidx);
+                input.addEventListener('blur', () => checkNounPlural(idx, input.value));
+            });
+        }
+        
+        window.checkAnswer = function(type, idx, selectedIdx) {
+            if (answers[type][idx] !== undefined) return;
+            
+            const story = stories[currentStory];
+            const q = story.exercises[type][idx];
+            const isCorrect = (selectedIdx === q.correct);
+            answers[type][idx] = selectedIdx;
+            
+            const optionsDiv = document.getElementById(`${type === 'comprehension' ? 'comp' : 'verb'}-options-${idx}`);
+            if (optionsDiv) {
+                const btns = optionsDiv.querySelectorAll('.option');
+                btns.forEach((btn, btnIdx) => {
+                    btn.disabled = true;
+                    if (btnIdx === q.correct) btn.classList.add('correct');
+                    if (btnIdx === selectedIdx && !isCorrect) btn.classList.add('wrong');
+                });
+            }
+            
+            const feedbackDiv = document.getElementById(`${type === 'comprehension' ? 'comp' : 'verb'}-feedback-${idx}`);
+            if (feedbackDiv) {
+                feedbackDiv.classList.add('show');
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = '✅ Ɛyɛ! Wudi mu. (Correct!)';
+                } else {
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Ɛnyɛ. Nnwanseɛ pa ne: "${q.options[q.correct]}". (Incorrect. Correct answer is: "${q.options[q.correct]}")`;
+                }
+            }
+            
+            updateScore();
+            updateProgress();
+        };
+        
+        window.checkFillBlank = function(idx, value) {
+            const story = stories[currentStory];
+            const q = story.exercises.fillBlanks[idx];
+            const isCorrect = (value.toLowerCase().trim() === q.correct.toLowerCase());
+            blankValues[idx] = value;
+            
+            const input = document.querySelector(`input[data-fbidx="${idx}"]`);
+            if (input) {
+                if (isCorrect) input.classList.add('correct');
+                else input.classList.remove('correct');
+            }
+            
+            const feedbackDiv = document.getElementById(`fb-feedback-${idx}`);
+            if (feedbackDiv) {
+                feedbackDiv.classList.add('show');
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = '✅ Ɛyɛ! (Correct!)';
+                } else {
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Ɛnyɛ. Nnwanseɛ pa ne: "${q.correct}". (Incorrect. Correct answer is: "${q.correct}")`;
+                }
+            }
+            
+            updateScore();
+            updateProgress();
+        };
+        
+        window.checkTranslation = function(idx) {
+            const input = document.getElementById(`trans-input-${idx}`);
+            const value = input.value.trim();
+            const story = stories[currentStory];
+            const q = story.exercises.translation[idx];
+            const isCorrect = (value.toLowerCase() === q.correct.toLowerCase());
+            answers.translation[idx] = value;
+            
+            const feedbackDiv = document.getElementById(`trans-feedback-${idx}`);
+            if (feedbackDiv) {
+                feedbackDiv.classList.add('show');
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = '✅ Ɛyɛ! Translation correct!';
+                } else {
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Ɛnyɛ. Nnwanseɛ pa ne: "${q.correct}". (Incorrect. Correct translation is: "${q.correct}")`;
+                }
+            }
+            
+            input.disabled = true;
+            const btn = input.nextElementSibling;
+            if (btn) btn.disabled = true;
+            
+            updateScore();
+            updateProgress();
+        };
+        
+        window.checkNounPlural = function(idx, value) {
+            const story = stories[currentStory];
+            const q = story.exercises.nounPlural[idx];
+            const isCorrect = (value.toLowerCase().trim() === q.correct.toLowerCase());
+            answers.nounPlural[idx] = value;
+            
+            const input = document.querySelector(`input[data-pluralidx="${idx}"]`);
+            if (input) {
+                if (isCorrect) input.classList.add('correct');
+                else input.classList.remove('correct');
+            }
+            
+            const feedbackDiv = document.getElementById(`plural-feedback-${idx}`);
+            if (feedbackDiv) {
+                feedbackDiv.classList.add('show');
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = '✅ Ɛyɛ! (Correct!)';
+                } else {
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Ɛnyɛ. Nnwanseɛ pa ne: "${q.correct}". (Incorrect. Correct answer is: "${q.correct}")`;
+                }
+            }
+            
+            updateScore();
+            updateProgress();
+        };
+        
+        function updateScore() {
+            const story = stories[currentStory];
+            let totalQuestions = 0;
+            let correctCount = 0;
+            
+            if (story.exercises.comprehension) {
+                story.exercises.comprehension.forEach((q, idx) => {
+                    totalQuestions++;
+                    if (answers.comprehension[idx] !== undefined && answers.comprehension[idx] === q.correct) correctCount++;
+                });
+            }
+            if (story.exercises.fillBlanks) {
+                story.exercises.fillBlanks.forEach((q, idx) => {
+                    totalQuestions++;
+                    if (blankValues[idx] !== undefined && blankValues[idx].toLowerCase().trim() === q.correct.toLowerCase()) correctCount++;
+                });
+            }
+            if (story.exercises.verbTense) {
+                story.exercises.verbTense.forEach((q, idx) => {
+                    totalQuestions++;
+                    if (answers.verbTense[idx] !== undefined && answers.verbTense[idx] === q.correct) correctCount++;
+                });
+            }
+            if (story.exercises.translation) {
+                story.exercises.translation.forEach((q, idx) => {
+                    totalQuestions++;
+                    if (answers.translation[idx] !== undefined && answers.translation[idx].toLowerCase().trim() === q.correct.toLowerCase()) correctCount++;
+                });
+            }
+            if (story.exercises.nounPlural) {
+                story.exercises.nounPlural.forEach((q, idx) => {
+                    totalQuestions++;
+                    if (answers.nounPlural[idx] !== undefined && answers.nounPlural[idx].toLowerCase().trim() === q.correct.toLowerCase()) correctCount++;
+                });
+            }
+            
+            const percentage = totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0;
+            let message = '';
+            if (percentage === 100) message = '🏆 Yɛyɛ! Woadi nkonim! Woate ase yie! (Perfect! You understood everything!)';
+            else if (percentage >= 80) message = '🎉 Ɛyɛ paa! Woyɛ adwuma pa! (Excellent! Great work!)';
+            else if (percentage >= 60) message = '📚 Yɛbɛtumi ayɛ yie. San hwɛ nsɛm no bio. (Good! Review the story again.)';
+            else message = '💪 Mma w\'abrɛ. Kɔ so su. Kwasiada biara yɛ da foforɔ. (Don\'t give up. Keep learning.)';
+            
+            document.getElementById('scoreArea').innerHTML = `
+                <div class="score-area">
+                    <strong>📊 Wo nkɔsoɔ: ${correctCount}/${totalQuestions} (${percentage}%)</strong><br>
+                    ${message}
+                </div>
+            `;
+        }
+        
+        function updateProgress() {
+            const story = stories[currentStory];
+            let answeredCount = 0;
+            let total = 0;
+            
+            if (story.exercises.comprehension) total += story.exercises.comprehension.length;
+            if (story.exercises.fillBlanks) total += story.exercises.fillBlanks.length;
+            if (story.exercises.verbTense) total += story.exercises.verbTense.length;
+            if (story.exercises.translation) total += story.exercises.translation.length;
+            if (story.exercises.nounPlural) total += story.exercises.nounPlural.length;
+            
+            if (story.exercises.comprehension) {
+                for (let i = 0; i < story.exercises.comprehension.length; i++) {
+                    if (answers.comprehension[i] !== undefined) answeredCount++;
+                }
+            }
+            if (story.exercises.fillBlanks) {
+                for (let i = 0; i < story.exercises.fillBlanks.length; i++) {
+                    if (blankValues[i] !== undefined) answeredCount++;
+                }
+            }
+            if (story.exercises.verbTense) {
+                for (let i = 0; i < story.exercises.verbTense.length; i++) {
+                    if (answers.verbTense[i] !== undefined) answeredCount++;
+                }
+            }
+            if (story.exercises.translation) {
+                for (let i = 0; i < story.exercises.translation.length; i++) {
+                    if (answers.translation[i] !== undefined) answeredCount++;
+                }
+            }
+            if (story.exercises.nounPlural) {
+                for (let i = 0; i < story.exercises.nounPlural.length; i++) {
+                    if (answers.nounPlural[i] !== undefined) answeredCount++;
+                }
+            }
+            
+            const progressPercent = total > 0 ? (answeredCount / total) * 100 : 0;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+        }
+        
+        // Initialize
+        renderStoryNav();
+        renderStory();
+        renderExercises();
+    </script>
+</body>
+</html>
