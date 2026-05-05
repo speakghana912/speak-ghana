@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Alphabet | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #2A9D8F;
+            color: white;
+        }
+        .tab-btn:hover:not(.active) {
+            background: #D4A373;
+            color: white;
+        }
+        
+        .panel { display: none; animation: fadeIn 0.3s; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .lesson-section {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .letter-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1rem;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+        .letter-card:hover {
+            border-color: #2A9D8F;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .letter-upper {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            font-family: monospace;
+        }
+        .letter-lower {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        .letter-sound {
+            font-size: 0.75rem;
+            color: #D4A373;
+            margin: 0.3rem 0;
+        }
+        .letter-example {
+            font-size: 0.85rem;
+            color: #1E1E1E;
+            font-weight: 500;
+        }
+        .letter-meaning {
+            font-size: 0.7rem;
+            color: #999;
+        }
+        .play-audio {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: #2A9D8F;
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .play-audio:hover {
+            background: #1f7a6e;
+        }
+        
+        .digraph-section {
+            background: #2A9D8F10;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .digraph-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .digraph-card {
+            background: white;
+            border-radius: 12px;
+            padding: 0.8rem;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+        .digraph-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #E76F51;
+            font-family: monospace;
+        }
+        
+        .special-box {
+            background: #E76F5120;
+            border-left: 4px solid #E76F51;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+        
+        .vowel-grid, .consonant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .sound-card {
+            background: white;
+            border-radius: 12px;
+            padding: 0.8rem;
+            border: 1px solid #e2e8f0;
+        }
+        .sound-symbol {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            font-family: monospace;
+        }
+        .sound-desc {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .sound-example {
+            font-size: 0.85rem;
+            color: #1E1E1E;
+            margin-top: 0.3rem;
+        }
+        
+        .complete-audio {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            padding: 1rem;
+            border-radius: 60px;
+            text-align: center;
+            margin: 1rem 0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .complete-audio:hover {
+            transform: scale(1.02);
+        }
+        
+        .quiz-question {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover:not(:disabled) {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: translateX(5px);
+        }
+        .quiz-option.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+        }
+        .quiz-option.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+        }
+        .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #2A9D8F20; color: #2A9D8F; }
+        .quiz-feedback.wrong { background: #E76F5120; color: #E76F51; }
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .alphabet-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .letter-upper { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>🔤 Twi Alphabet <span class="badge">With Audio</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 Click the 🔊 button to hear each letter pronounced. Listen, repeat, and learn!</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('lesson')">📚 Lesson</button>
+            <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz</button>
+        </div>
+
+        <!-- LESSON PANEL -->
+        <div id="lessonPanel" class="panel active">
+            <div class="lesson-section">
+                <div class="lesson-title">🔤 The Twi Alphabet (22 Letters)</div>
+                <p>The Twi alphabet has <strong>22 letters</strong>. Click the 🔊 button on any card to hear the pronunciation.</p>
+                <div class="special-box">
+                    <strong>📌 Complete Alphabet:</strong> A, B, D, E, Ɛ, F, G, H, I, K, L, M, N, O, Ɔ, P, R, S, T, U, W, Y
+                </div>
+                <div class="alphabet-grid" id="alphabetGrid"></div>
+                
+                <!-- Complete Alphabet Audio -->
+                <div class="complete-audio" onclick="playCompleteAlphabet()">
+                    🔊 Listen to Complete Alphabet (A-Y)
+                </div>
+            </div>
+
+            <!-- Digraphs Section -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔤 Twi Digraphs (Two Letters = One Sound)</div>
+                <p>Digraphs are two letters that combine to make one sound. Practice these common Twi digraphs.</p>
+                <div class="digraph-grid" id="digraphGrid"></div>
+                <div class="complete-audio" style="background: #D4A373;" onclick="playCompleteDigraphs()">
+                    🔊 Listen to All Digraphs
+                </div>
+            </div>
+
+            <!-- Special Letters - Ɛ and Ɔ -->
+            <div class="lesson-section">
+                <div class="lesson-title">⭐ Special Letters – Ɛ and Ɔ</div>
+                <p>These two letters are the most important to master because they change meaning completely!</p>
+                <div class="special-box">
+                    <strong>🔊 Practice these pairs out loud:</strong><br><br>
+                    • <strong>e vs ɛ</strong>: eye (eye) vs ɛyɛ (it is)<br>
+                    • <strong>o vs ɔ</strong>: obi? (someone) vs ɔdɔ (love)
+                </div>
+                <table style="width:100%; margin-top:1rem; border-collapse:collapse;">
+                    <thead><tr style="background:#2A9D8F; color:white;"><th style="padding:0.5rem;">Letter</th><th style="padding:0.5rem;">Sound</th><th style="padding:0.5rem;">Example</th><th style="padding:0.5rem;">Audio</th></tr></thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid #eee;"><td style="padding:0.5rem;"><strong>Ɛ ɛ</strong></td><td style="padding:0.5rem;">e in "bed"</td><td style="padding:0.5rem;">ɛyɛ (it is)</td><td style="padding:0.5rem;"><button onclick="playAudio('https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ɛ.m4a')" style="background:#2A9D8F; color:white; border:none; padding:0.2rem 0.6rem; border-radius:50px; cursor:pointer;">🔊</button></td></tr>
+                        <tr style="border-bottom:1px solid #eee;"><td style="padding:0.5rem;"><strong>Ɔ ɔ</strong></td><td style="padding:0.5rem;">aw in "law"</td><td style="padding:0.5rem;">ɔdɔ (love)</td><td style="padding:0.5rem;"><button onclick="playAudio('https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ɔ.m4a')" style="background:#2A9D8F; color:white; border:none; padding:0.2rem 0.6rem; border-radius:50px; cursor:pointer;">🔊</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Vowel Sounds -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔊 Twi Vowel Sounds</div>
+                <div class="vowel-grid">
+                    <div class="sound-card"><span class="sound-symbol">i</span><div class="sound-desc">ee in "see" (shorter)</div><div class="sound-example">sika (money), bisa (ask)</div></div>
+                    <div class="sound-card"><span class="sound-symbol">ɪ</span><div class="sound-desc">i in "sit"</div><div class="sound-example">sekan (knife)</div></div>
+                    <div class="sound-card"><span class="sound-symbol">u</span><div class="sound-desc">oo in "food" (shorter)</div><div class="sound-example">duku (headwrap)</div></div>
+                    <div class="sound-card"><span class="sound-symbol">ʊ</span><div class="sound-desc">u in "put"</div><div class="sound-example">ɛpo (ocean)</div></div>
+                    <div class="sound-card"><span class="sound-symbol">e</span><div class="sound-desc">ey in "they" (shorter)</div><div class="sound-example">efie (house)</div></div>
+                    <div class="sound-card"><span class="sound-symbol">ɛ</span><div class="sound-desc">e in "bed"</div><div class="sound-example">ɛdan (building)</div></div>
+                    <div class="sound-card"><span class="sound-symbol">o</span><div class="sound-desc">o in "go"</div><div class="sound-example">owuo (death)</div></div>
+                    <div class="sound-card"><span class="sound-symbol">ɔ</span><div class="sound-desc">aw in "law"</div><div class="sound-example">ɔdɔ (love)</div></div>
+                    <div class="sound-card"><span class="sound-symbol">æ</span><div class="sound-desc">a in "cat"</div><div class="sound-example">ani (eye)</div></div>
+                    <div class="sound-card"><span class="sound-symbol">a</span><div class="sound-desc">a in "father"</div><div class="sound-example">aboa (animal)</div></div>
+                </div>
+            </div>
+
+            <!-- Consonants -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔊 Twi Consonants</div>
+                <div class="consonant-grid">
+                    <div class="sound-card"><span class="sound-symbol">b</span><div class="sound-desc">b in "boy"</div><div class="sound-example">banku</div></div>
+                    <div class="sound-card"><span class="sound-symbol">d</span><div class="sound-desc">d in "dog"</div><div class="sound-example">din</div></div>
+                    <div class="sound-card"><span class="sound-symbol">f</span><div class="sound-desc">f in "fun"</div><div class="sound-example">fie</div></div>
+                    <div class="sound-card"><span class="sound-symbol">g</span><div class="sound-desc">g in "go"</div><div class="sound-example">galɔn</div></div>
+                    <div class="sound-card"><span class="sound-symbol">h</span><div class="sound-desc">h in "hat"</div><div class="sound-example">hama</div></div>
+                    <div class="sound-card"><span class="sound-symbol">k</span><div class="sound-desc">k in "key"</div><div class="sound-example">kanea</div></div>
+                    <div class="sound-card"><span class="sound-symbol">l</span><div class="sound-desc">l in "love"</div><div class="sound-example">lɔre</div></div>
+                    <div class="sound-card"><span class="sound-symbol">m</span><div class="sound-desc">m in "man"</div><div class="sound-example">amango</div></div>
+                    <div class="sound-card"><span class="sound-symbol">n</span><div class="sound-desc">n in "no"</div><div class="sound-example">nana</div></div>
+                    <div class="sound-card"><span class="sound-symbol">p</span><div class="sound-desc">p in "pen"</div><div class="sound-example">praeɛ</div></div>
+                    <div class="sound-card"><span class="sound-symbol">r</span><div class="sound-desc">r in "run" (rolled)</div><div class="sound-example">rɔba</div></div>
+                    <div class="sound-card"><span class="sound-symbol">s</span><div class="sound-desc">s in "sun"</div><div class="sound-example">sika</div></div>
+                    <div class="sound-card"><span class="sound-symbol">t</span><div class="sound-desc">t in "top"</div><div class="sound-example">atadeɛ</div></div>
+                    <div class="sound-card"><span class="sound-symbol">w</span><div class="sound-desc">w in "win"</div><div class="sound-example">waduro</div></div>
+                    <div class="sound-card"><span class="sound-symbol">y</span><div class="sound-desc">y in "yes"</div><div class="sound-example">yoma</div></div>
+                </div>
+                <div class="special-box" style="margin-top:1rem;">
+                    <strong>💡 Note on R:</strong> The Twi 'r' is lighter than English – tap your tongue quickly, like the 'tt' in "butter" (American accent)
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="panel">
+            <div class="progress-bar"><div class="progress-fill" id="quizProgress"></div></div>
+            <div class="quiz-stats">
+                <span>📊 Question <span id="quizCurrent">1</span> / <span id="quizTotal">15</span></span>
+                <span>🏆 Score: <span id="quizScore">0</span></span>
+            </div>
+            <div id="quizContainer"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentAudio = null;
+
+        function playAudio(url) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            currentAudio = new Audio(url);
+            currentAudio.play().catch(e => console.log("Audio error:", e));
+        }
+
+        function playCompleteAlphabet() {
+            playAudio('https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/twi-alphabet-complete.m4a');
+        }
+
+        function playCompleteDigraphs() {
+            playAudio('https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/twi-digraphs.m4a');
+        }
+
+        // Alphabet data with audio URLs
+        const alphabetData = [
+            { letter: "A", lower: "a", sound: "a like 'a' in 'father'", example: "abɛ", meaning: "palm-nut", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-a.m4a" },
+            { letter: "B", lower: "b", sound: "b like 'b' in 'boy'", example: "bankye", meaning: "cassava", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-b.m4a" },
+            { letter: "D", lower: "d", sound: "d like 'd' in 'dog'", example: "din", meaning: "name", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-d.m4a" },
+            { letter: "E", lower: "e", sound: "e like 'e' in 'say' (shorter)", example: "efie", meaning: "house", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-e.m4a" },
+            { letter: "Ɛ", lower: "ɛ", sound: "ɛ like 'e' in 'bed'", example: "ɛyɛ", meaning: "it is", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ɛ.m4a" },
+            { letter: "F", lower: "f", sound: "f like 'f' in 'fun'", example: "fa", meaning: "take", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-f.m4a" },
+            { letter: "G", lower: "g", sound: "g like 'g' in 'go'", example: "Ghana", meaning: "Ghana", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-g.m4a" },
+            { letter: "H", lower: "h", sound: "h like 'h' in 'hat'", example: "hanam", meaning: "prey", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-h.m4a" },
+            { letter: "I", lower: "i", sound: "i like 'ee' in 'see' (shorter)", example: "efie", meaning: "home", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-i.m4a" },
+            { letter: "K", lower: "k", sound: "k like 'k' in 'key'", example: "kasa", meaning: "speak", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-k.m4a" },
+            { letter: "L", lower: "l", sound: "l like 'l' in 'love'", example: "lɔre", meaning: "lorry", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-l.m4a" },
+            { letter: "M", lower: "m", sound: "m like 'm' in 'man'", example: "me", meaning: "me/my", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-m.m4a" },
+            { letter: "N", lower: "n", sound: "n like 'n' in 'no'", example: "na", meaning: "and/or", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-n.m4a" },
+            { letter: "O", lower: "o", sound: "o like 'o' in 'go'", example: "obi", meaning: "someone", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-o.m4a" },
+            { letter: "Ɔ", lower: "ɔ", sound: "ɔ like 'aw' in 'law'", example: "ɔdɔ", meaning: "love", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-ɔ.m4a" },
+            { letter: "P", lower: "p", sound: "p like 'p' in 'pen'", example: "papa", meaning: "father/good", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-p.m4a" },
+            { letter: "R", lower: "r", sound: "r like 'r' in 'run' (rolled)", example: "Roma", meaning: "Rome", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-r.m4a" },
+            { letter: "S", lower: "s", sound: "s like 's' in 'sun'", example: "sukuu", meaning: "school", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-s.m4a" },
+            { letter: "T", lower: "t", sound: "t like 't' in 'top'", example: "te", meaning: "hear/live", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-t.m4a" },
+            { letter: "U", lower: "u", sound: "u like 'oo' in 'food'", example: "U", meaning: "letter name", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-u.m4a" },
+            { letter: "W", lower: "w", sound: "w like 'w' in 'win'", example: "wo", meaning: "you/your", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-w.m4a" },
+            { letter: "Y", lower: "y", sound: "y like 'y' in 'yes'", example: "yɛ", meaning: "do/make", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/letter-y.m4a" }
+        ];
+
+        // Digraph data
+        const digraphData = [
+            { name: "DW", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-dw.m4a" },
+            { name: "GY", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-gy.m4a" },
+            { name: "HW", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-hw.m4a" },
+            { name: "HY", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-hy.m4a" },
+            { name: "KW", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-kw.m4a" },
+            { name: "KY", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-ky.m4a" },
+            { name: "NW", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-nw.m4a" },
+            { name: "NY", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-ny.m4a" },
+            { name: "TW", audio: "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/twi-alphabet/digraphs-tw.m4a" }
+        ];
+
+        function renderAlphabetGrid() {
+            let html = '';
+            alphabetData.forEach(letter => {
+                html += `
+                    <div class="letter-card">
+                        <div class="letter-upper">${letter.letter}</div>
+                        <div class="letter-lower">${letter.lower}</div>
+                        <div class="letter-sound">🔊 ${letter.sound}</div>
+                        <div class="letter-example"><strong>${letter.example}</strong> - ${letter.meaning}</div>
+                        <button class="play-audio" onclick="playAudio('${letter.audio}')">▶</button>
+                    </div>
+                `;
+            });
+            document.getElementById('alphabetGrid').innerHTML = html;
+        }
+
+        function renderDigraphGrid() {
+            let html = '';
+            digraphData.forEach(digraph => {
+                html += `
+                    <div class="digraph-card">
+                        <div class="digraph-text">${digraph.name}</div>
+                        <button class="play-audio" onclick="playAudio('${digraph.audio}')" style="background:#E76F51; color:white; border:none; width:28px; height:28px; border-radius:50%; cursor:pointer; margin-top:0.5rem;">▶</button>
+                    </div>
+                `;
+            });
+            document.getElementById('digraphGrid').innerHTML = html;
+        }
+
+        // Quiz questions
+        const quizQuestions = [
+            { text: "How many letters are in the Twi alphabet?", options: ["26", "22", "24", "20"], correct: 1 },
+            { text: "Which special letters are NOT in the English alphabet but ARE in Twi?", options: ["Æ and Œ", "Ɛ and Ɔ", "Ð and Þ", "Å and Ä"], correct: 1 },
+            { text: "What sound does 'Ɛ' make?", options: ["aw as in 'law'", "ee as in 'see'", "e as in 'bed'", "a as in 'father'"], correct: 2 },
+            { text: "What sound does 'Ɔ' make?", options: ["aw as in 'law'", "e as in 'bed'", "o as in 'go'", "u as in 'put'"], correct: 0 },
+            { text: "What does the Twi word 'ɛyɛ' mean?", options: ["eye", "it is", "house", "love"], correct: 1 },
+            { text: "What does the Twi word 'ɔdɔ' mean?", options: ["name", "love", "water", "school"], correct: 1 },
+            { text: "Which letter is rolled lightly in Twi (like 'tt' in 'butter')?", options: ["L", "R", "W", "Y"], correct: 1 },
+            { text: "What is the Twi word for 'water'?", options: ["sika", "nsuo", "kube", "fie"], correct: 1 },
+            { text: "What is the Twi word for 'money'?", options: ["sika", "din", "fie", "kasa"], correct: 0 },
+            { text: "What does 'akwaaba' mean?", options: ["thank you", "goodbye", "welcome", "sorry"], correct: 2 },
+            { text: "What is the Twi word for 'house'?", options: ["dan", "sika", "fie", "kɔ"], correct: 2 },
+            { text: "What does 'medaase' mean?", options: ["please", "thank you", "sorry", "hello"], correct: 1 },
+            { text: "What is the Twi word for 'eat'?", options: ["kɔ", "ba", "di", "da"], correct: 2 },
+            { text: "What is a digraph?", options: ["single letter", "two letters making one sound", "three letters", "a vowel"], correct: 1 },
+            { text: "Which of these is a Twi digraph?", options: ["AB", "TW", "CD", "XY"], correct: 1 }
+        ];
+
+        let currentQuiz = [];
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswers = [];
+
+        function startNewQuiz() {
+            const shuffled = [...quizQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            currentQuiz = shuffled.slice(0, 15);
+            quizIndex = 0;
+            quizScore = 0;
+            quizAnswers = new Array(currentQuiz.length).fill(null);
+            document.getElementById('quizTotal').innerText = currentQuiz.length;
+            document.getElementById('quizScore').innerText = quizScore;
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (quizIndex >= currentQuiz.length) {
+                showQuizResults();
+                return;
+            }
+            
+            const q = currentQuiz[quizIndex];
+            const hasAnswered = quizAnswers[quizIndex] !== null;
+            
+            let html = `
+                <div class="quiz-question">
+                    <div class="quiz-question-text">${q.text}</div>
+                    <div class="options" id="quizOptions">
+            `;
+            
+            q.options.forEach((opt, idx) => {
+                let additionalClass = '';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx === q.correct) additionalClass = 'correct';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx !== q.correct) additionalClass = 'wrong';
+                
+                html += `
+                    <button class="quiz-option ${additionalClass}" onclick="checkQuizAnswer(${idx})" ${hasAnswered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </button>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div id="quizFeedback" class="quiz-feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('quizFeedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = quizAnswers[quizIndex] === q.correct;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = `✅ Correct! Great job!`;
+                } else {
+                    const correctAnswer = q.options[q.correct];
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is: ${correctAnswer}`;
+                }
+            }
+            
+            const progressPercent = ((quizIndex + 1) / currentQuiz.length) * 100;
+            document.getElementById('quizProgress').style.width = progressPercent + '%';
+            document.getElementById('quizCurrent').innerText = quizIndex + 1;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            if (quizAnswers[quizIndex] !== null) return;
+            
+            const q = currentQuiz[quizIndex];
+            const isCorrect = (selectedIdx === q.correct);
+            
+            quizAnswers[quizIndex] = selectedIdx;
+            if (isCorrect) {
+                quizScore++;
+                document.getElementById('quizScore').innerText = quizScore;
+            }
+            
+            renderQuizQuestion();
+            
+            setTimeout(() => {
+                if (quizIndex < currentQuiz.length - 1) {
+                    quizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    quizIndex++;
+                    renderQuizQuestion();
+                }
+            }, 1200);
+        }
+
+        function showQuizResults() {
+            const total = currentQuiz.length;
+            const percentage = Math.round((quizScore / total) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🌟';
+                message = 'PERFECT! You mastered the Twi alphabet!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You know the Twi alphabet well!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏';
+                message = 'Good job! Review the lesson and try again.';
+            } else if (percentage >= 40) {
+                emoji = '📖💪';
+                message = 'Keep going! Practice makes progress.';
+            } else {
+                emoji = '🌱✨';
+                message = 'You are just starting! Study the lesson and try again.';
+            }
+            
+            const resultsHtml = `
+                <div class="quiz-question" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${quizScore}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2.5rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0;">${message}</p>
+                    <button class="nav-btn" onclick="startNewQuiz()" style="margin-top: 1rem; background:#2A9D8F;">🔄 New Quiz</button>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultsHtml;
+            document.getElementById('quizProgress').style.width = '100%';
+        }
+
+        function resetQuiz() { startNewQuiz(); }
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'lesson') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('lessonPanel').classList.add('active');
+                document.getElementById('quizPanel').classList.remove('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('lessonPanel').classList.remove('active');
+                document.getElementById('quizPanel').classList.add('active');
+                startNewQuiz();
+            }
+        }
+
+        renderAlphabetGrid();
+        renderDigraphGrid();
+        startNewQuiz();
+    </script>
+</body>
+</html>
