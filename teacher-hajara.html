@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hajara Hashim - Hausa Language Teacher | Speak Ghana</title>
+    <meta name="description" content="Meet Hajara Hashim, Speak Ghana's dedicated Hausa language teacher. Native Hausa speaker with experience in teaching, translation, and community engagement. M.Sc. Biological Sciences in view.">
+    
+    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZXFR0LFLH6');
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 3-Month Program Banner */
+        .program-banner {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .deadline-badge {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #E76F51;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            animation: pulse-red 1.5s infinite;
+        }
+        @keyframes pulse-red {
+            0% { background: #E76F51; transform: scale(1); }
+            50% { background: #c95a3e; transform: scale(1.05); }
+            100% { background: #E76F51; transform: scale(1); }
+        }
+        .program-tag {
+            background: #D4A373;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--black);
+            font-weight: 600;
+        }
+        .price-box {
+            background: rgba(212, 163, 115, 0.2);
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem auto;
+            display: inline-block;
+        }
+        .price-highlight {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .price-highlight span {
+            color: #D4A373;
+        }
+
+        /* Header & Navigation */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid var(--gold);
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .contact-info a:hover {
+            color: var(--gold);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.5rem 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+        }
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+        .logo-text h1 span {
+            color: var(--gold);
+        }
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+        }
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: var(--gold);
+            font-weight: 500;
+            text-align: right;
+        }
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            border-bottom: 1px solid #eee;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0.8rem 0;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.3rem 0;
+            transition: color 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--green);
+            border-bottom-color: var(--green);
+        }
+        .dropdown-item { display: contents; }
+        .dropdown-toggle { display: none; }
+        .dropdown-submenu { display: contents; }
+        .menu-toggle {
+            display: none;
+            background: var(--gold);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 0.5rem;
+            }
+            nav { position: relative; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+                width: 100%;
+                background: white;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            .nav-links.show { display: flex; }
+            .nav-links > a, .nav-links > .dropdown-item {
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid var(--cream);
+            }
+            .dropdown-toggle {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                background: white;
+                border: none;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+            }
+            .dropdown-submenu {
+                display: none;
+                flex-direction: column;
+                background: var(--cream);
+                margin-top: 0.5rem;
+                border-radius: 12px;
+            }
+            .dropdown-submenu.show { display: flex; }
+            .dropdown-submenu a {
+                padding: 0.8rem 1.5rem 0.8rem 2.5rem;
+                text-decoration: none;
+                color: var(--gray);
+                font-size: 0.95rem;
+            }
+            .dropdown-item { display: block; padding: 0 !important; }
+            .deadline-badge {
+                position: relative;
+                top: auto;
+                right: auto;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Teacher Profile Styles */
+        .teacher-header {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .teacher-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .teacher-header .language-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.3rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        .teacher-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+        .teacher-sidebar {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--shadow);
+            text-align: center;
+        }
+        .teacher-photo {
+            width: 220px;
+            height: 220px;
+            background: linear-gradient(135deg, var(--gold), var(--green));
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            overflow: hidden;
+        }
+        .teacher-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+        .teacher-info {
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+        .teacher-info p {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .teacher-info i {
+            width: 25px;
+            color: var(--green);
+        }
+        .teacher-main {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        .teacher-main h2 {
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .teacher-main h2::after {
+            display: none;
+        }
+        .teacher-main h3 {
+            color: var(--gold);
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.2rem;
+        }
+        .teacher-main p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        .cert-badge {
+            display: inline-block;
+            background: var(--cream);
+            color: var(--green);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin: 0.3rem 0.3rem 0 0;
+        }
+        .btn-back {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+        .btn-back:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        @media (max-width: 768px) {
+            .teacher-content {
+                grid-template-columns: 1fr;
+            }
+            .teacher-header h1 {
+                font-size: 1.8rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="mailto:info@speakghana.org">info@speakghana.org</a>
+                <a href="tel:+233552263323">+233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container" style="position: relative;">
+            <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownLearnBtn">
+                        <span>Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownLearnMenu">
+                        <a href="languages.html">Languages</a>
+                        <a href="kids-teens.html">Kids & Teens</a>
+                        <a href="concierge.html">Concierge</a>
+                    </div>
+                </div>
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownResourcesBtn">
+                        <span>Resources</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownResourcesMenu">
+                        <a href="resources.html">Free Resources</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="student-portal.html">Student Portal</a>
+                    </div>
+                </div>
+                <a href="students.html">Students</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="program-banner">
+            <div class="deadline-badge">Deadline: May 30th</div>
+            <div class="program-tag">SPEAK ONE, LEARN ONE SCHOLARSHIP</div>
+            <h2 style="color: white; margin-bottom: 0.5rem; font-size: 1.8rem;">Do You Have a Ghana Card?</h2>
+            <div class="price-box">
+                <p class="price-highlight">Learn Any Language for <span>GHS 599</span> (3 months)</p>
+                <p class="price-highlight" style="margin-top: 0.5rem;">Diaspora with Ghana Card? Same offer applies.</p>
+            </div>
+            <div class="price-box" style="background: rgba(231, 111, 81, 0.3);">
+                <p class="price-highlight">Without Ghana Card: <span>GHS 1,200</span> (3 months)</p>
+            </div>
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Weekend / Evening Classes • Live on Zoom</p>
+            <p style="margin-bottom: 1rem;">Twi • Ga • Ewe • Fante • Dagbani • Hausa</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://apply.speakghana.org" class="btn" style="background: #D4A373; color: #1E1E1E; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">Apply Now</a>
+                <a href="https://wa.me/233552263323?text=Hi%20Speak%20Ghana!%20I%20have%20a%20Ghana%20Card%20and%20want%20to%20learn%20a%20language%20for%20GHS%20500.%20Please%20send%20me%20more%20info." class="btn" style="background: rgba(255,255,255,0.2); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">WhatsApp Us</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.9;">Limited spots • First come, first served • Application closes May 30th</p>
+        </div>
+    </div>
+
+    <div class="teacher-header">
+        <div class="container">
+            <h1>Hajara Hashim</h1>
+            <p>Dedicated Hausa Language Educator & Cultural Bridge</p>
+            <div class="language-badge">Hausa Language Teacher</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="teacher-content">
+            <div class="teacher-sidebar">
+                <div class="teacher-photo">
+                    <img src="images/hajara.jpeg" alt="Hajara Hashim">
+                </div>
+                <h3 style="color: var(--green);">Hajara Hashim</h3>
+                <p style="color: var(--gray);">Hausa Language Specialist</p>
+                
+                <div class="teacher-info">
+                    <p><i class="fas fa-graduation-cap"></i> M.Sc. Biological Sciences (In View)</p>
+                    <p><i class="fas fa-university"></i> B.Sc. Biological Sciences, GSU</p>
+                    <p><i class="fas fa-language"></i> Native Hausa Speaker</p>
+                    <p><i class="fas fa-chalkboard-user"></i> 6+ Years Teaching Experience</p>
+                    <p><i class="fas fa-globe"></i> Fluent in English & Fulfulde</p>
+                    <p><i class="fas fa-handshake"></i> Translator & Community Facilitator</p>
+                </div>
+            </div>
+
+            <div class="teacher-main">
+                <h2>About Hajara</h2>
+                <p>Hajara Hashim is a dedicated Hausa language educator with proven experience in teaching, translation, and community engagement. As a native Hausa speaker, she is skilled in delivering structured and conversational lessons to diverse learners, including non-native speakers. She is experienced in both physical and virtual learning environments, with a strong passion for language education and cultural exchange.</p>
+                
+                <p>Hajara believes that language is the key to understanding culture and building meaningful connections. Her students consistently praise her patience, clarity, and ability to make complex concepts accessible to learners at any level.</p>
+
+                <h3>Professional Summary</h3>
+                <p>Dedicated Hausa language educator with proven experience in teaching, translation, and community engagement. A native Hausa speaker skilled in delivering structured and conversational lessons to diverse learners, including non-native speakers. Experienced in both physical and virtual learning environments, with a strong passion for language education and cultural exchange.</p>
+
+                <h3>Education</h3>
+                <p><strong>Gombe State University</strong><br>M.Sc. Biological Sciences (In View)</p>
+                <p><strong>Gombe State University</strong><br>B.Sc. Biological Sciences (2017 - 2023)</p>
+
+                <h3>Core Skills</h3>
+                <div>
+                    <span class="cert-badge">Hausa Language Instruction (Beginner to Advanced)</span>
+                    <span class="cert-badge">Hausa–English Translation & Interpretation</span>
+                    <span class="cert-badge">Online Teaching & Virtual Facilitation</span>
+                    <span class="cert-badge">Lesson Planning & Curriculum Development</span>
+                    <span class="cert-badge">Classroom Management & Student Engagement</span>
+                    <span class="cert-badge">Communication & Public Speaking</span>
+                    <span class="cert-badge">Microsoft Office & Digital Tools</span>
+                    <span class="cert-badge">Zoom & Google Meet</span>
+                </div>
+
+                <h3>Language Skills</h3>
+                <p><strong>Hausa:</strong> Native-level fluency — Speaking, Reading, Writing, and Comprehension<br>
+                <strong>English:</strong> Fluent Professional Proficiency<br>
+                <strong>Fulfulde:</strong> Proficient</p>
+
+                <h3>Professional Experience</h3>
+                
+                <p><strong>Hausa Language Teacher</strong><br>
+                <em>Demonstration Secondary School</em> (2018 - 2020)<br>
+                • Delivered Hausa language instruction to secondary school students<br>
+                • Developed structured lesson plans and teaching materials<br>
+                • Monitored and evaluated student performance<br>
+                • Encouraged active participation and language fluency</p>
+                
+                <p><strong>Hausa Language Teacher</strong><br>
+                <em>Government Comprehensive Day Secondary School</em> (2021 - 2022)<br>
+                • Taught Hausa language across multiple class levels<br>
+                • Improved students' reading, writing, and speaking skills<br>
+                • Maintained effective classroom management and discipline<br>
+                • Prepared students for internal examinations</p>
+                
+                <p><strong>Hausa Tutor (NYSC)</strong><br>
+                <em>Amada Camp, Gombe State</em> (2023 - 2024)<br>
+                • Provided practical Hausa language training to corps members<br>
+                • Supported non-native speakers in achieving conversational fluency<br>
+                • Designed simplified teaching approaches for rapid learning<br>
+                • Facilitated communication between corps members and local communities</p>
+                
+                <p><strong>Private Hausa Tutor</strong><br>
+                <em>Self-Employed</em> (2022 - Present)<br>
+                • Teach Hausa to non-native learners (online and in-person)<br>
+                • Customize lessons based on individual learning needs<br>
+                • Focus on pronunciation, grammar, and conversational skills</p>
+                
+                <p><strong>Translator / Community Facilitator</strong><br>
+                <em>Save the Children Initiative</em> (2023 - 2025)<br>
+                • Provided Hausa-English translation during community programs<br>
+                • Facilitated communication between organizations and local communities<br>
+                • Supported outreach, education, and engagement activities<br>
+                • Ensured accurate and culturally appropriate interpretation</p>
+
+                <h3>Additional Experience</h3>
+                <p>• Translator and mediator for NGOs and community programs<br>
+                • Experience in community outreach and engagement<br>
+                • Strong communication and facilitation skills</p>
+
+                <h3>Technical Skills</h3>
+                <p>• Microsoft Word, Excel, PowerPoint<br>
+                • Zoom, Google Meet<br>
+                • Email and digital communication tools</p>
+
+                <h3>Why Learn Hausa with Hajara?</h3>
+                <p>"Hausa is more than just a language — it's a gateway to West African culture, business, and community. As a native speaker with years of teaching experience, I understand the challenges learners face. My approach is patient, structured, and tailored to your goals. Whether you're a complete beginner or looking to refine your fluency, I'm here to guide you every step of the way. Let's learn together, one word at a time." — Hajara Hashim</p>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="languages.html" class="btn-primary">Enroll in Hausa Classes →</a>
+                    <a href="about.html" class="btn-back">← Back to About Page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>KNUST Campus, Kumasi</p>
+                    <p>+233 55 226 3323</p>
+                    <p>info@speakghana.org</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="languages.html">Languages</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">Instagram</a>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">YouTube</a>
+                    <a href="https://wa.me/233552263323" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School — Reconnect. Speak. Thrive.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        }
+        
+        const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
+        const dropdownLearnMenu = document.getElementById('dropdownLearnMenu');
+        const dropdownResourcesBtn = document.getElementById('dropdownResourcesBtn');
+        const dropdownResourcesMenu = document.getElementById('dropdownResourcesMenu');
+        
+        if (dropdownLearnBtn && dropdownLearnMenu) {
+            dropdownLearnBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownLearnMenu.classList.toggle('show');
+                dropdownLearnBtn.classList.toggle('open');
+                if (dropdownResourcesMenu && dropdownResourcesMenu.classList.contains('show')) {
+                    dropdownResourcesMenu.classList.remove('show');
+                    dropdownResourcesBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        if (dropdownResourcesBtn && dropdownResourcesMenu) {
+            dropdownResourcesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownResourcesMenu.classList.toggle('show');
+                dropdownResourcesBtn.classList.toggle('open');
+                if (dropdownLearnMenu && dropdownLearnMenu.classList.contains('show')) {
+                    dropdownLearnMenu.classList.remove('show');
+                    dropdownLearnBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        document.querySelectorAll('.dropdown-submenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.nav-links > a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 968) {
+                if (navLinks) navLinks.classList.remove('show');
+                if (dropdownLearnMenu) dropdownLearnMenu.classList.remove('show');
+                if (dropdownResourcesMenu) dropdownResourcesMenu.classList.remove('show');
+                if (dropdownLearnBtn) dropdownLearnBtn.classList.remove('open');
+                if (dropdownResourcesBtn) dropdownResourcesBtn.classList.remove('open');
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/69c6e0467a89d01c3c2d3244/1jkodo5c8';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+</body>
+</html>

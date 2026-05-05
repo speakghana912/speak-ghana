@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Princess Akweley Ayettey - Ga Language Teacher | Speak Ghana</title>
+    <meta name="description" content="Meet Princess Akweley Ayettey, Speak Ghana's dedicated Ga language teacher. Native Ga speaker with excellent proficiency and a passion for language education. BSc Land Economy, KNUST.">
+    
+    <link rel="icon" type="image/x-icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="shortcut icon" href="https://speak-ghana.speakghana912.workers.dev/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://speak-ghana.speakghana912.workers.dev/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://speak-ghana.speakghana912.workers.dev/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="https://speak-ghana.speakghana912.workers.dev/apple-touch-icon.png">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXFR0LFLH6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZXFR0LFLH6');
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4A373;
+            --green: #2A9D8F;
+            --red: #E76F51;
+            --black: #1E1E1E;
+            --cream: #FDF8F2;
+            --white: #FFFFFF;
+            --gray: #666666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 3-Month Program Banner */
+        .program-banner {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            border-radius: 30px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .deadline-badge {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #E76F51;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            animation: pulse-red 1.5s infinite;
+        }
+        @keyframes pulse-red {
+            0% { background: #E76F51; transform: scale(1); }
+            50% { background: #c95a3e; transform: scale(1.05); }
+            100% { background: #E76F51; transform: scale(1); }
+        }
+        .program-tag {
+            background: #D4A373;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--black);
+            font-weight: 600;
+        }
+        .price-box {
+            background: rgba(212, 163, 115, 0.2);
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem auto;
+            display: inline-block;
+        }
+        .price-highlight {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .price-highlight span {
+            color: #D4A373;
+        }
+
+        /* Header & Navigation */
+        .top-bar {
+            background: var(--black);
+            color: white;
+            padding: 0.8rem 0;
+            border-bottom: 4px solid var(--gold);
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .contact-info a:hover {
+            color: var(--gold);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a, var(--green));
+            color: white;
+            padding: 1.5rem 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        .logo img {
+            height: 70px;
+            width: auto;
+            border-radius: 10px;
+        }
+        .logo-text h1 {
+            font-size: 2rem;
+            color: white;
+        }
+        .logo-text h1 span {
+            color: var(--gold);
+        }
+        .logo-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+        }
+        .motto-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: var(--gold);
+            font-weight: 500;
+            text-align: right;
+        }
+        .motto-badge span {
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            border-bottom: 1px solid #eee;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0.8rem 0;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.3rem 0;
+            transition: color 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--green);
+            border-bottom-color: var(--green);
+        }
+        .dropdown-item { display: contents; }
+        .dropdown-toggle { display: none; }
+        .dropdown-submenu { display: contents; }
+        .menu-toggle {
+            display: none;
+            background: var(--gold);
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 0.5rem;
+            }
+            nav { position: relative; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+                width: 100%;
+                background: white;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            .nav-links.show { display: flex; }
+            .nav-links > a, .nav-links > .dropdown-item {
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid var(--cream);
+            }
+            .dropdown-toggle {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                background: white;
+                border: none;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+            }
+            .dropdown-submenu {
+                display: none;
+                flex-direction: column;
+                background: var(--cream);
+                margin-top: 0.5rem;
+                border-radius: 12px;
+            }
+            .dropdown-submenu.show { display: flex; }
+            .dropdown-submenu a {
+                padding: 0.8rem 1.5rem 0.8rem 2.5rem;
+                text-decoration: none;
+                color: var(--gray);
+                font-size: 0.95rem;
+            }
+            .dropdown-item { display: block; padding: 0 !important; }
+            .deadline-badge {
+                position: relative;
+                top: auto;
+                right: auto;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Teacher Profile Styles */
+        .teacher-header {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .teacher-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .teacher-header .language-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.3rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        .teacher-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+        .teacher-sidebar {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--shadow);
+            text-align: center;
+        }
+        .teacher-photo {
+            width: 220px;
+            height: 220px;
+            background: linear-gradient(135deg, var(--gold), var(--green));
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            overflow: hidden;
+        }
+        .teacher-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+        .teacher-info {
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+        .teacher-info p {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .teacher-info i {
+            width: 25px;
+            color: var(--green);
+        }
+        .teacher-main {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        .teacher-main h2 {
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .teacher-main h2::after {
+            display: none;
+        }
+        .teacher-main h3 {
+            color: var(--gold);
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.2rem;
+        }
+        .teacher-main p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        .cert-badge {
+            display: inline-block;
+            background: var(--cream);
+            color: var(--green);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin: 0.3rem 0.3rem 0 0;
+        }
+        .btn-back {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+        .btn-back:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--green), #1f7a6e);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        @media (max-width: 768px) {
+            .teacher-content {
+                grid-template-columns: 1fr;
+            }
+            .teacher-header h1 {
+                font-size: 1.8rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="mailto:info@speakghana.org">info@speakghana.org</a>
+                <a href="tel:+233552263323">+233 55 226 3323</a>
+                <a href="https://wa.me/233552263323">WhatsApp: +233 55 226 3323</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/speako.jpg" alt="Speak Ghana">
+                    <div class="logo-text">
+                        <h1>Speak <span>Ghana</span></h1>
+                        <p>Reconnect. Speak. Thrive.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="motto-badge">
+                Reconnect. Speak. Thrive.
+                <span>Your journey home begins here</span>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container" style="position: relative;">
+            <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownLearnBtn">
+                        <span>Learn</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownLearnMenu">
+                        <a href="languages.html">Languages</a>
+                        <a href="kids-teens.html">Kids & Teens</a>
+                        <a href="concierge.html">Concierge</a>
+                    </div>
+                </div>
+                <div class="dropdown-item">
+                    <button class="dropdown-toggle" id="dropdownResourcesBtn">
+                        <span>Resources</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-submenu" id="dropdownResourcesMenu">
+                        <a href="resources.html">Free Resources</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="student-portal.html">Student Portal</a>
+                    </div>
+                </div>
+                <a href="students.html">Students</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="program-banner">
+            <div class="deadline-badge">Deadline: May 30th</div>
+            <div class="program-tag">SPEAK ONE, LEARN ONE SCHOLARSHIP</div>
+            <h2 style="color: white; margin-bottom: 0.5rem; font-size: 1.8rem;">Do You Have a Ghana Card?</h2>
+            <div class="price-box">
+                <p class="price-highlight">Learn Any Language for <span>GHS 599</span> (3 months)</p>
+                <p class="price-highlight" style="margin-top: 0.5rem;">Diaspora with Ghana Card? Same offer applies.</p>
+            </div>
+            <div class="price-box" style="background: rgba(231, 111, 81, 0.3);">
+                <p class="price-highlight">Without Ghana Card: <span>GHS 1,200</span> (3 months)</p>
+            </div>
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Weekend / Evening Classes • Live on Zoom</p>
+            <p style="margin-bottom: 1rem;">Twi • Ga • Ewe • Fante • Dagbani • Hausa</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://apply.speakghana.org" class="btn" style="background: #D4A373; color: #1E1E1E; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">Apply Now</a>
+                <a href="https://wa.me/233552263323?text=Hi%20Speak%20Ghana!%20I%20have%20a%20Ghana%20Card%20and%20want%20to%20learn%20a%20language%20for%20GHS%20500.%20Please%20send%20me%20more%20info." class="btn" style="background: rgba(255,255,255,0.2); color: white; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">WhatsApp Us</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.9;">Limited spots • First come, first served • Application closes May 30th</p>
+        </div>
+    </div>
+
+    <div class="teacher-header">
+        <div class="container">
+            <h1>Princess Akweley Ayettey</h1>
+            <p>Dedicated Ga Language Educator & Cultural Advocate</p>
+            <div class="language-badge">Ga Language Teacher</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="teacher-content">
+            <div class="teacher-sidebar">
+                <div class="teacher-photo">
+                    <img src="images/princess.jpeg" alt="Princess Akweley Ayettey">
+                </div>
+                <h3 style="color: var(--green);">Princess Akweley Ayettey</h3>
+                <p style="color: var(--gray);">Ga Language Specialist</p>
+                
+                <div class="teacher-info">
+                    <p><i class="fas fa-graduation-cap"></i> BSc. Land Economy, KNUST</p>
+                    <p><i class="fas fa-language"></i> Native Ga Speaker</p>
+                    <p><i class="fas fa-certificate"></i> UAV Certified</p>
+                    <p><i class="fas fa-chalkboard-user"></i> Teaching & Research Assistant</p>
+                    <p><i class="fas fa-microphone-alt"></i> Ga Master of Ceremonies</p>
+                    <p><i class="fas fa-map-marked-alt"></i> GIS & Spatial Analysis</p>
+                </div>
+            </div>
+
+            <div class="teacher-main">
+                <h2>About Princess</h2>
+                <p>Princess Akweley Ayettey is a native Ga speaker with excellent written and spoken proficiency and a deep passion for language education. She brings a unique blend of linguistic expertise and professional experience to Speak Ghana, with a strong ability to translate and explain concepts clearly between Ga and English for learners at all levels.</p>
+                
+                <p>Her background in teaching assistance, research, and client communication from KNUST has developed her skills in structured instruction, lesson preparation, and one-on-one coaching. Princess is confident in conversational teaching, pronunciation guidance, and building learner confidence through patient and culturally relevant instruction.</p>
+
+                <h3>Personal Statement</h3>
+                <p>"Language is the bridge that connects us to our heritage. As a native Ga speaker, I believe that every word learned is a step closer to understanding who we are and where we come from. My goal is to help you speak Ga confidently, whether you're a beginner taking your first steps or someone looking to deepen your cultural connection. Together, we'll explore the sounds, tones, and expressions that make Ga such a beautiful language." — Princess Akweley Ayettey</p>
+
+                <h3>Education</h3>
+                <p><strong>Kwame Nkrumah University of Science and Technology (KNUST), Kumasi</strong><br>BSc. Land Economy (January 2021 - September 2024)<br>Relevant courses: Property Valuation, Land Law, Geographic Information Systems, Real Estate Finance, Rating and Taxation, Estate Management, Building Construction, Urban Planning</p>
+                
+                <p><strong>University Practice Senior High School, Cape Coast</strong><br>Senior High School Certificate (September 2017 - September 2020)<br>Relevant courses: Geography, Economics, Government</p>
+                
+                <p><strong>Kings Palace School, Accra</strong><br>Junior High School Certificate (September 2009 - June 2017)<br>Relevant courses: English, Ga, French, Mathematics</p>
+
+                <h3>Certifications</h3>
+                <div>
+                    <span class="cert-badge">Unmanned Aerial Vehicles for Professionals (UAV) - KNUST CSS</span>
+                    <span class="cert-badge">Microsoft Office Suites</span>
+                    <span class="cert-badge">SPSS Certified</span>
+                    <span class="cert-badge">Canva & Trello</span>
+                    <span class="cert-badge">Drone Piloting</span>
+                    <span class="cert-badge">AutoCAD & QGis</span>
+                </div>
+
+                <h3>Language Skills</h3>
+                <p><strong>Ga (Native-level fluency):</strong> Speaking, Reading, Writing and Comprehension<br>
+                <strong>English:</strong> Professional Proficiency<br>
+                <strong>Translation & Instruction:</strong> Strong ability to break down Ga vocabulary, grammar, and expressions for English speakers and vice versa<br>
+                <strong>Pronunciation Coaching:</strong> Ga tones, sounds, and everyday expressions</p>
+
+                <h3>Teaching & Professional Experience</h3>
+                
+                <p><strong>Pure Skincare Ghana, Accra</strong> (December 2025 - March 2026)<br>
+                <em>Customer Service Representative / Virtual Assistant</em><br>
+                • Managed customer calls, messages, and social media inquiries<br>
+                • Provided clear explanations of services in Ga, Twi, and English to local and international clients<br>
+                • Processed orders and coordinated timely deliveries<br>
+                • Conducted professional skincare consultations and product recommendations<br>
+                • Scheduled daily tasks using Trello and Canva</p>
+                
+                <p><strong>Kwame Nkrumah University of Science and Technology, Kumasi</strong> (October 2024 - October 2025)<br>
+                <em>Teaching and Research Assistant</em><br>
+                • Assisted supervisors with research at The Centre for Settlement Studies, KNUST<br>
+                • Assisted with teaching and evaluating students<br>
+                • Transcribed interviews and meetings for research sponsored by GIZ</p>
+                
+                <p><strong>KNUST, Centre for Settlement Studies</strong> (October 2024 - October 2025)<br>
+                <em>Administrative Assistant</em><br>
+                • Designed newsletters and managed social media pages<br>
+                • Assisted with writing minutes and letters</p>
+
+                <h3>Voluntary Activities & Leadership</h3>
+                <p>• <strong>Ga Master of Ceremonies (MC)</strong> for the Presbyterian Church Kaajano Congregation<br>
+                • <strong>Smartix Summer School</strong> volunteer (November 2024)<br>
+                • <strong>POS Foundation Donation</strong> in collaboration with The German Embassy to Nsawam Prisons (September 2024)<br>
+                • Student representative for discussions on infrastructure development with United Nations Office for Project Services (UNOPS)<br>
+                • <strong>Agritalk 2023</strong> participant (January 2024)<br>
+                • Student representative for inter-schools Ga quiz</p>
+
+                <h3>Research & Projects</h3>
+                <p><strong>Adoption of Sustainable Materials for Energy Efficient Residential Buildings in Ghana</strong><br>
+                This research focused on the intricate interplay between day-to-day operational energy needs and the embodied energy consumed during the construction phase.</p>
+
+                <h3>Professional Memberships</h3>
+                <p>• Ghana Institution of Surveyors Students' Society (GHIS-SS) (February 2024 - September 2024)<br>
+                • POS Foundation (October 2024 - present)</p>
+
+                <h3>Why Learn Ga with Princess?</h3>
+                <p>"Ga is a rich, tonal language that carries the history and spirit of the Ga people. When you learn with me, you're not just memorizing vocabulary — you're learning the proverbs, the rhythms, and the cultural context that make Ga come alive. I pride myself on patience, clarity, and making every student feel comfortable to speak, make mistakes, and grow. Whether you're a diaspora learner reconnecting with your roots or someone passionate about Ghanaian languages, I'll be with you every step of the way." — Princess Akweley Ayettey</p>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="languages.html" class="btn-primary">Enroll in Ga Classes →</a>
+                    <a href="about.html" class="btn-back">← Back to About Page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Speak Ghana</h4>
+                    <p>KNUST Campus, Kumasi</p>
+                    <p>+233 55 226 3323</p>
+                    <p>info@speakghana.org</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="languages.html">Languages</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.instagram.com/speak_ghana" target="_blank">Instagram</a>
+                    <a href="https://www.youtube.com/@SpeakGhana" target="_blank">YouTube</a>
+                    <a href="https://wa.me/233552263323" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Speak Ghana Language School — Reconnect. Speak. Thrive.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        }
+        
+        const dropdownLearnBtn = document.getElementById('dropdownLearnBtn');
+        const dropdownLearnMenu = document.getElementById('dropdownLearnMenu');
+        const dropdownResourcesBtn = document.getElementById('dropdownResourcesBtn');
+        const dropdownResourcesMenu = document.getElementById('dropdownResourcesMenu');
+        
+        if (dropdownLearnBtn && dropdownLearnMenu) {
+            dropdownLearnBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownLearnMenu.classList.toggle('show');
+                dropdownLearnBtn.classList.toggle('open');
+                if (dropdownResourcesMenu && dropdownResourcesMenu.classList.contains('show')) {
+                    dropdownResourcesMenu.classList.remove('show');
+                    dropdownResourcesBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        if (dropdownResourcesBtn && dropdownResourcesMenu) {
+            dropdownResourcesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdownResourcesMenu.classList.toggle('show');
+                dropdownResourcesBtn.classList.toggle('open');
+                if (dropdownLearnMenu && dropdownLearnMenu.classList.contains('show')) {
+                    dropdownLearnMenu.classList.remove('show');
+                    dropdownLearnBtn.classList.remove('open');
+                }
+            });
+        }
+        
+        document.querySelectorAll('.dropdown-submenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        document.querySelectorAll('.nav-links > a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 968) {
+                if (navLinks) navLinks.classList.remove('show');
+                if (dropdownLearnMenu) dropdownLearnMenu.classList.remove('show');
+                if (dropdownResourcesMenu) dropdownResourcesMenu.classList.remove('show');
+                if (dropdownLearnBtn) dropdownLearnBtn.classList.remove('open');
+                if (dropdownResourcesBtn) dropdownResourcesBtn.classList.remove('open');
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/69c6e0467a89d01c3c2d3244/1jkodo5c8';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+</body>
+</html>
