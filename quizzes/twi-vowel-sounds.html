@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Vowel Sounds | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #2A9D8F; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { background: #E76F51; color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem; }
+        .subtitle { color: #666; margin-bottom: 1.5rem; border-left: 3px solid #2A9D8F; padding-left: 1rem; }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #2A9D8F;
+            color: white;
+        }
+        .tab-btn:hover:not(.active) {
+            background: #D4A373;
+            color: white;
+        }
+        
+        .panel { display: none; animation: fadeIn 0.3s; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .lesson-section {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+        }
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .vowel-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .vowel-table th, .vowel-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .vowel-table th {
+            background: #2A9D8F;
+            color: white;
+        }
+        .twi-word {
+            font-weight: bold;
+            color: #2A9D8F;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+        .phonetic {
+            font-family: monospace;
+            color: #E76F51;
+            font-size: 0.9rem;
+        }
+        .grammar-note {
+            background: #FFF3CD;
+            border-left: 4px solid #D4A373;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .grammar-note strong { color: #E76F51; }
+        
+        .compare-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .compare-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+        .compare-title {
+            font-weight: bold;
+            color: #2A9D8F;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        .video-placeholder {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: white;
+        }
+        .video-placeholder i {
+            font-size: 3rem;
+            color: #D4A373;
+        }
+        
+        .quiz-question {
+            background: #FDF8F2;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-question-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quiz-option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover:not(:disabled) {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+            transform: translateX(5px);
+        }
+        .quiz-option.correct {
+            background: #2A9D8F;
+            border-color: #2A9D8F;
+            color: white;
+        }
+        .quiz-option.wrong {
+            background: #E76F51;
+            border-color: #E76F51;
+            color: white;
+        }
+        .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .quiz-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.correct { background: #2A9D8F20; color: #2A9D8F; }
+        .quiz-feedback.wrong { background: #E76F5120; color: #E76F51; }
+        .quiz-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .nav-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .options { grid-template-columns: 1fr; }
+            .compare-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h1>🔊 Twi Vowel Sounds <span class="badge">a, e, o & Variants</span></h1>
+            <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/images/speako.jpg" alt="Speak Ghana" style="height: 45px; border-radius: 8px;">
+        </div>
+        <p class="subtitle">🎯 Master the two sound forms of a, e, and o - /a/ vs /æ/, /e/ vs /ɪ/, /o/ vs /ʊ/</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('lesson')">📚 Lesson</button>
+            <button class="tab-btn" onclick="switchTab('quiz')">🎯 Quiz</button>
+        </div>
+
+        <!-- LESSON PANEL -->
+        <div id="lessonPanel" class="panel active">
+            <!-- Video Lesson Placeholder -->
+            <div class="video-placeholder">
+                <i>📺</i>
+                <p style="margin-top: 0.5rem;">🎥 Video Lesson Available</p>
+                <p style="font-size: 0.8rem; opacity: 0.8;">Watch the embedded video to hear how each sound is produced</p>
+            </div>
+
+            <!-- Introduction -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔊 The Vowels a, e, o in Twi</div>
+                <p>In Twi, the vowels <strong>a</strong>, <strong>e</strong>, and <strong>o</strong> can each be pronounced in two different ways depending on the word. Learning these sound pairs is essential for correct pronunciation!</p>
+                <div class="grammar-note">
+                    <strong>💡 Important Note:</strong> The /æ/, /ɪ/, /ʊ/ variants are only realised when speaking and <strong>not written</strong> in standard Twi. When writing, these sounds are represented by the letters 'a', 'i', and 'o' respectively.
+                </div>
+            </div>
+
+            <!-- Vowel A: /a/ vs /æ/ -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔊 Vowel 'a' - Two Sounds</div>
+                <p>The vowel <strong>'a'</strong> can be pronounced as <strong>/a/</strong> (like 'a' in "BLACK") or as <strong>/æ/</strong> (like 'a' in "ANIMAL").</p>
+                
+                <div class="compare-grid">
+                    <div class="compare-card">
+                        <div class="compare-title">/a/ sound</div>
+                        <div><span class="twi-word">anomaa</span> - bird</div>
+                        <div><span class="twi-word">adaka</span> - box</div>
+                        <div><span class="twi-word">akokɔ</span> - fowl</div>
+                        <div><span class="twi-word">ankaa</span> - orange</div>
+                        <div><span class="twi-word">adanko</span> - rabbit</div>
+                    </div>
+                    <div class="compare-card">
+                        <div class="compare-title">/æ/ sound</div>
+                        <div><span class="twi-word">barima</span> <span class="phonetic">/bærima/</span> - male/man</div>
+                        <div><span class="twi-word">aduane</span> <span class="phonetic">/æduane/</span> - food</div>
+                        <div><span class="twi-word">ani</span> <span class="phonetic">/æni/</span> - eye</div>
+                        <div><span class="twi-word">baabi</span> <span class="phonetic">/bææbi/</span> - somewhere</div>
+                        <div><span class="twi-word">aburoo</span> <span class="phonetic">/æburoo/</span> - maize</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vowel E: /e/ vs /ɪ/ -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔊 Vowel 'e' - Two Sounds</div>
+                <p>The vowel <strong>'e'</strong> can be pronounced as <strong>/e/</strong> (like 'e' in "EIGHT") or as <strong>/ɪ/</strong> (like 'i' in "PIT").</p>
+                
+                <div class="compare-grid">
+                    <div class="compare-card">
+                        <div class="compare-title">/e/ sound</div>
+                        <div><span class="twi-word">edin</span> - name</div>
+                        <div><span class="twi-word">esum</span> - darkness</div>
+                        <div><span class="twi-word">esie</span> - (ant)hill</div>
+                        <div><span class="twi-word">keteke</span> - train</div>
+                        <div><span class="twi-word">efie</span> - home</div>
+                    </div>
+                    <div class="compare-card">
+                        <div class="compare-title">/ɪ/ sound</div>
+                        <div><span class="twi-word">ketewa</span> <span class="phonetic">/kɪtɪwa/</span> - small</div>
+                        <div><span class="twi-word">tenten</span> <span class="phonetic">/tɪntɪn/</span> - tall/long</div>
+                        <div><span class="twi-word">sensene</span> <span class="phonetic">/sɪnsɪnɪ/</span> - peel</div>
+                        <div><span class="twi-word">sere</span> <span class="phonetic">/sɪrɪ/</span> - laugh</div>
+                        <div><span class="twi-word">kenkan</span> <span class="phonetic">/kɪnkan/</span> - read</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vowel O: /o/ vs /ʊ/ -->
+            <div class="lesson-section">
+                <div class="lesson-title">🔊 Vowel 'o' - Two Sounds</div>
+                <p>The vowel <strong>'o'</strong> can be pronounced as <strong>/o/</strong> (like 'o' in "POTENT") or as <strong>/ʊ/</strong> (like 'oo' in "PUT").</p>
+                
+                <div class="compare-grid">
+                    <div class="compare-card">
+                        <div class="compare-title">/o/ sound</div>
+                        <div><span class="twi-word">koko</span> - porridge</div>
+                        <div><span class="twi-word">afuo</span> - farm</div>
+                        <div><span class="twi-word">abufuo</span> - anger</div>
+                        <div><span class="twi-word">tuo</span> - gun</div>
+                        <div><span class="twi-word">aduro</span> - medicine</div>
+                    </div>
+                    <div class="compare-card">
+                        <div class="compare-title">/ʊ/ sound</div>
+                        <div><span class="twi-word">soronko</span> <span class="phonetic">/sʊrʊnkʊ/</span> - unique</div>
+                        <div><span class="twi-word">poma</span> <span class="phonetic">/pʊma/</span> - walking stick</div>
+                        <div><span class="twi-word">adanko</span> <span class="phonetic">/adankʊ/</span> - rabbit</div>
+                        <div><span class="twi-word">foro</span> <span class="phonetic">/fʊrʊ/</span> - climb</div>
+                        <div><span class="twi-word">pono</span> <span class="phonetic">/pʊnʊ/</span> - door</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Takeaways -->
+            <div class="lesson-section">
+                <div class="lesson-title">📌 Key Takeaways</div>
+                <div class="grammar-note">
+                    <strong>✓</strong> The /æ/, /ɪ/, /ʊ/ variants are <strong>SPOKEN</strong> but not written in standard Twi.<br><br>
+                    <strong>✓</strong> When writing, these sounds are represented by the letters 'a', 'i', and 'o'.<br><br>
+                    <strong>✓</strong> The choice of sound variant follows <strong>Vowel Harmony</strong> rules.<br><br>
+                    <strong>✓</strong> Practice these pairs daily to train your ear and mouth!
+                </div>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="lesson-section">
+                <div class="lesson-title">📊 Quick Reference Chart</div>
+                <table class="vowel-table">
+                    <thead>
+                        <tr><th>Vowel</th><th>Sound 1</th><th>Like English</th><th>Sound 2</th><th>Like English</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="twi-word">a</td><td>/a/</td><td>'a' in "BLACK"</td><td>/æ/</td><td>'a' in "ANIMAL"</td></tr>
+                        <tr><td class="twi-word">e</td><td>/e/</td><td>'e' in "EIGHT"</td><td>/ɪ/</td><td>'i' in "PIT"</td></tr>
+                        <tr><td class="twi-word">o</td><td>/o/</td><td>'o' in "POTENT"</td><td>/ʊ/</td><td>'oo' in "PUT"</td></tr>
+                    </tbody>
+                </table>
+                <div class="grammar-note" style="margin-top: 1rem;">
+                    <strong>💡 Tip:</strong> The best way to learn these sounds is to listen to native speakers and practice out loud. Don't be afraid to make mistakes!
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ PANEL -->
+        <div id="quizPanel" class="panel">
+            <div class="progress-bar"><div class="progress-fill" id="quizProgress"></div></div>
+            <div class="quiz-stats">
+                <span>📊 Question <span id="quizCurrent">1</span> / <span id="quizTotal">15</span></span>
+                <span>🏆 Score: <span id="quizScore">0</span></span>
+            </div>
+            <div id="quizContainer"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="resetQuiz()">🔄 New Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentQuiz = [];
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswers = [];
+
+        const quizQuestions = [
+            { text: "Which Twi word has the /æ/ sound (like 'a' in 'animal')?", options: ["adaka (box)", "ani (eye)", "akokɔ (fowl)", "ankaa (orange)"], correct: 1 },
+            { text: "Which Twi word has the /a/ sound (like 'a' in 'black')?", options: ["barima (man)", "aduane (food)", "ani (eye)", "adaka (box)"], correct: 3 },
+            { text: "Which Twi word has the /ɪ/ sound (like 'i' in 'pit')?", options: ["efie (home)", "edin (name)", "ketewa (small)", "esum (darkness)"], correct: 2 },
+            { text: "Which Twi word has the /e/ sound (like 'e' in 'eight')?", options: ["tenten (tall)", "ketewa (small)", "sensene (peel)", "efie (home)"], correct: 3 },
+            { text: "Which Twi word has the /ʊ/ sound (like 'oo' in 'put')?", options: ["tuo (gun)", "koko (porridge)", "pono (door)", "aduro (medicine)"], correct: 2 },
+            { text: "Which Twi word has the /o/ sound (like 'o' in 'potent')?", options: ["foro (climb)", "pono (door)", "soronko (unique)", "koko (porridge)"], correct: 3 },
+            { text: "What does 'barima' mean?", options: ["woman", "child", "man/male", "elder"], correct: 2 },
+            { text: "What is the Twi word for 'food'?", options: ["ani", "aduane", "adaka", "anomaa"], correct: 1 },
+            { text: "What is the Twi word for 'small'?", options: ["tenten", "ketewa", "kɛseɛ", "poma"], correct: 1 },
+            { text: "What is the Twi word for 'door'?", options: ["pono", "foro", "poma", "tuo"], correct: 0 },
+            { text: "What is the Twi word for 'eye'?", options: ["ani", "aso", "anom", "anim"], correct: 0 },
+            { text: "What does 'kenkan' mean?", options: ["write", "read", "speak", "listen"], correct: 1 },
+            { text: "What does 'soronko' mean?", options: ["common", "ordinary", "unique", "normal"], correct: 2 },
+            { text: "Which word means 'to climb'?", options: ["foro", "sere", "nante", "sɔre"], correct: 0 },
+            { text: "Which word means 'to laugh'?", options: ["su", "te", "sere", "ka"], correct: 2 }
+        ];
+
+        function startNewQuiz() {
+            const shuffled = [...quizQuestions];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            currentQuiz = shuffled.slice(0, 15);
+            quizIndex = 0;
+            quizScore = 0;
+            quizAnswers = new Array(currentQuiz.length).fill(null);
+            document.getElementById('quizTotal').innerText = currentQuiz.length;
+            document.getElementById('quizScore').innerText = quizScore;
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (quizIndex >= currentQuiz.length) {
+                showQuizResults();
+                return;
+            }
+            
+            const q = currentQuiz[quizIndex];
+            const hasAnswered = quizAnswers[quizIndex] !== null;
+            
+            let html = `
+                <div class="quiz-question">
+                    <div class="quiz-question-text">${q.text}</div>
+                    <div class="options" id="quizOptions">
+            `;
+            
+            q.options.forEach((opt, idx) => {
+                let additionalClass = '';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx === q.correct) additionalClass = 'correct';
+                if (hasAnswered && quizAnswers[quizIndex] === idx && idx !== q.correct) additionalClass = 'wrong';
+                
+                html += `
+                    <button class="quiz-option ${additionalClass}" onclick="checkQuizAnswer(${idx})" ${hasAnswered ? 'disabled' : ''}>
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </button>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div id="quizFeedback" class="quiz-feedback"></div>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = html;
+            
+            if (hasAnswered) {
+                const feedbackDiv = document.getElementById('quizFeedback');
+                feedbackDiv.classList.add('show');
+                const isCorrect = quizAnswers[quizIndex] === q.correct;
+                if (isCorrect) {
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.innerHTML = `✅ Correct! Great job!`;
+                } else {
+                    const correctAnswer = q.options[q.correct];
+                    feedbackDiv.classList.add('wrong');
+                    feedbackDiv.innerHTML = `❌ Incorrect. The correct answer is: ${correctAnswer}`;
+                }
+            }
+            
+            const progressPercent = ((quizIndex + 1) / currentQuiz.length) * 100;
+            document.getElementById('quizProgress').style.width = progressPercent + '%';
+            document.getElementById('quizCurrent').innerText = quizIndex + 1;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            if (quizAnswers[quizIndex] !== null) return;
+            
+            const q = currentQuiz[quizIndex];
+            const isCorrect = (selectedIdx === q.correct);
+            
+            quizAnswers[quizIndex] = selectedIdx;
+            if (isCorrect) {
+                quizScore++;
+                document.getElementById('quizScore').innerText = quizScore;
+            }
+            
+            renderQuizQuestion();
+            
+            setTimeout(() => {
+                if (quizIndex < currentQuiz.length - 1) {
+                    quizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    quizIndex++;
+                    renderQuizQuestion();
+                }
+            }, 1200);
+        }
+
+        function showQuizResults() {
+            const total = currentQuiz.length;
+            const percentage = Math.round((quizScore / total) * 100);
+            let message = '';
+            let emoji = '';
+            
+            if (percentage === 100) {
+                emoji = '🏆🎉🌟';
+                message = 'PERFECT! You mastered the Twi vowel sounds!';
+            } else if (percentage >= 80) {
+                emoji = '🎉👍⭐';
+                message = 'Excellent! You understand the vowel distinctions well!';
+            } else if (percentage >= 60) {
+                emoji = '📚👏';
+                message = 'Good job! Practice the sounds and try again.';
+            } else if (percentage >= 40) {
+                emoji = '📖💪';
+                message = 'Keep going! Listen to native speakers and practice.';
+            } else {
+                emoji = '🌱✨';
+                message = 'You are just starting! Review the lesson and try again.';
+            }
+            
+            const resultsHtml = `
+                <div class="quiz-question" style="text-align: center;">
+                    <div style="font-size: 3rem; font-weight: bold; color: #2A9D8F;">${quizScore}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 0.5rem 0;">${percentage}%</div>
+                    <div style="font-size: 2.5rem;">${emoji}</div>
+                    <p style="margin: 0.5rem 0;">${message}</p>
+                    <button class="nav-btn" onclick="startNewQuiz()" style="margin-top: 1rem; background:#2A9D8F;">🔄 New Quiz</button>
+                </div>
+            `;
+            
+            document.getElementById('quizContainer').innerHTML = resultsHtml;
+            document.getElementById('quizProgress').style.width = '100%';
+        }
+
+        function resetQuiz() { startNewQuiz(); }
+        
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'lesson') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('lessonPanel').classList.add('active');
+                document.getElementById('quizPanel').classList.remove('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('lessonPanel').classList.remove('active');
+                document.getElementById('quizPanel').classList.add('active');
+                startNewQuiz();
+            }
+        }
+
+        startNewQuiz();
+    </script>
+</body>
+</html>
