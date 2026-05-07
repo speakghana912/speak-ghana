@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Twi Greetings for Kids | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Comic Neue', 'Inter', 'Comic Neue', cursive;
+            background: linear-gradient(135deg, #f9e547, #f5a623);
+            min-height: 100vh;
+            padding: 1.5rem;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        
+        .fun-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .fun-header h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 4px 4px 0 #e67e22;
+            margin-bottom: 0.5rem;
+        }
+        .fun-header p {
+            font-size: 1.3rem;
+            color: #fff;
+            background: rgba(0,0,0,0.2);
+            display: inline-block;
+            padding: 0.3rem 1.5rem;
+            border-radius: 60px;
+        }
+        
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .time-card {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 3px solid transparent;
+        }
+        .time-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+        }
+        .time-card.selected {
+            border-color: #f5a623;
+            background: #fff8e7;
+        }
+        .time-emoji {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+        .time-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e67e22;
+            margin-bottom: 0.3rem;
+        }
+        .twi-greeting {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #27ae60;
+            font-family: monospace;
+            margin: 0.5rem 0;
+        }
+        .pronounce {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        .character-area {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            border-radius: 50px;
+            padding: 2rem;
+            margin: 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .character {
+            text-align: center;
+        }
+        .character-avatar {
+            font-size: 8rem;
+            background: #fff;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            margin-bottom: 0.5rem;
+        }
+        .character-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #e67e22;
+        }
+        .speech-bubble {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 40px;
+            border: 15px solid transparent;
+            border-right-color: white;
+        }
+        .twi-speech {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 0.5rem;
+        }
+        .english-speech {
+            font-size: 1rem;
+            color: #666;
+        }
+        .audio-btn {
+            background: #27ae60;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: transform 0.2s;
+        }
+        .audio-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .practice-area {
+            background: white;
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .practice-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e67e22;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .match-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .match-card {
+            background: #f0f0f0;
+            border-radius: 20px;
+            padding: 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+        .match-card:hover {
+            background: #e0e0e0;
+            transform: scale(1.02);
+        }
+        .match-card.selected {
+            background: #27ae60;
+            color: white;
+        }
+        .match-card.matched {
+            background: #27ae60;
+            color: white;
+            opacity: 0.6;
+            text-decoration: line-through;
+            cursor: default;
+        }
+        .match-text {
+            flex: 1;
+            text-align: left;
+            font-size: 1rem;
+        }
+        .match-audio-btn {
+            background: #f5a623;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .match-audio-btn:hover {
+            background: #e67e22;
+        }
+        .match-card.matched .match-audio-btn {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .quiz-area {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+        }
+        .quiz-question {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .quiz-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            padding: 1rem;
+            border-radius: 60px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .quiz-btn:hover:not([disabled]) {
+            background: white;
+            color: #764ba2;
+            transform: scale(1.02);
+        }
+        .quiz-btn[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .quiz-feedback {
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 50px;
+            display: none;
+        }
+        .quiz-feedback.show {
+            display: block;
+        }
+        .quiz-feedback.correct {
+            background: #27ae60;
+        }
+        .quiz-feedback.wrong {
+            background: #e74c3c;
+        }
+        
+        .score-area {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+        
+        .next-btn {
+            background: #f5a623;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            display: block;
+            width: 100%;
+        }
+        .next-btn:hover {
+            background: #e67e22;
+            transform: scale(1.02);
+        }
+        
+        /* Confetti canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        @media (max-width: 768px) {
+            .character-area {
+                flex-direction: column;
+            }
+            .speech-bubble::before {
+                left: 40px;
+                top: -25px;
+                border-right-color: transparent;
+                border-bottom-color: white;
+            }
+            .fun-header h1 {
+                font-size: 2rem;
+            }
+            .twi-greeting {
+                font-size: 1.2rem;
+            }
+            .match-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="fun-header">
+            <h1>🌟 Twi Greetings 🌟</h1>
+            <p>Let's learn how to say hello in Twi!</p>
+        </div>
+
+        <!-- Time of Day Cards -->
+        <div class="time-grid" id="timeGrid"></div>
+
+        <!-- Character Conversation -->
+        <div class="character-area">
+            <div class="character">
+                <div class="character-avatar">👧🏿</div>
+                <div class="character-name">Ama</div>
+            </div>
+            <div class="speech-bubble" id="speechBubble">
+                <div class="twi-speech" id="twiSpeech">Maakye! 🌞</div>
+                <div class="english-speech" id="englishSpeech">Good morning!</div>
+                <button class="audio-btn" id="speechAudioBtn" onclick="playSpeechAudio()">🔊 Listen</button>
+            </div>
+            <div class="character">
+                <div class="character-avatar">👦🏿</div>
+                <div class="character-name">Kofi</div>
+            </div>
+        </div>
+
+        <!-- Matching Game -->
+        <div class="practice-area">
+            <div class="practice-title">🎮 Match the Greeting</div>
+            <p style="text-align: center; margin-bottom: 1rem;">Click on a Twi greeting, then click its English meaning!</p>
+            <div class="match-grid" id="matchGrid"></div>
+            <div class="score-area" id="matchScore">🎯 Matched: 0 / 5</div>
+        </div>
+
+        <!-- Quiz Time -->
+        <div class="quiz-area" id="quizArea" style="display: none;">
+            <div class="quiz-question" id="quizQuestion"></div>
+            <div class="quiz-options" id="quizOptions"></div>
+            <div id="quizFeedback" class="quiz-feedback"></div>
+            <div class="score-area" id="quizScoreDisplay"></div>
+            <button class="next-btn" id="nextQuizBtn" onclick="nextQuizQuestion()">Next Question →</button>
+        </div>
+
+        <button class="next-btn" id="startQuizBtn" onclick="startQuiz()">🎯 Take the Quiz! 🎯</button>
+    </div>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <script>
+        let currentAudio = null;
+
+        // Audio URL mapping (fixed - added Mema wo akye)
+        const audioUrls = {
+            "Maakye": "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/maakye.m4a",
+            "Maaha": "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/maaha.m4a",
+            "Maadwo": "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/maadwo.m4a",
+            "Akwaaba": "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/akwaaba.m4a",
+            "Mema wo akye": "https://raw.githubusercontent.com/speakghana912/speak-ghana/main/audio/words/mema-wo-akye.m4a"
+        };
+
+        function playAudio(url) {
+            if (!url) {
+                console.log("No audio URL provided");
+                return;
+            }
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            currentAudio = new Audio(url);
+            currentAudio.play().catch(e => console.log("Audio error:", e));
+        }
+
+        // Greetings data
+        const greetings = [
+            { twi: "Maakye", english: "Good morning", emoji: "🌞", time: "morning", audio: audioUrls["Maakye"] },
+            { twi: "Maaha", english: "Good afternoon", emoji: "☀️", time: "afternoon", audio: audioUrls["Maaha"] },
+            { twi: "Maadwo", english: "Good evening", emoji: "🌆", time: "evening", audio: audioUrls["Maadwo"] },
+            { twi: "Akwaaba", english: "Welcome", emoji: "🤝", time: "any", audio: audioUrls["Akwaaba"] },
+            { twi: "Mema wo akye", english: "Good morning (formal)", emoji: "🌅", time: "morning", audio: audioUrls["Mema wo akye"] }
+        ];
+
+        let selectedTime = 0;
+        let matchCards = [];
+        let matchSelected = null;
+        let quizQuestions = [];
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizAnswers = [];
+
+        // Confetti function for celebrations
+        function startConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            let particles = [];
+            for (let i = 0; i < 150; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 8 + 3,
+                    speedY: Math.random() * 5 + 3,
+                    speedX: (Math.random() - 0.5) * 3,
+                    color: `hsl(${Math.random() * 360}, 70%, 60%)`,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: (Math.random() - 0.5) * 10
+                });
+            }
+            
+            let animationId;
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                let allDead = true;
+                for (let p of particles) {
+                    if (p.y < canvas.height + 50) {
+                        allDead = false;
+                        p.y += p.speedY;
+                        p.x += p.speedX;
+                        p.rotation += p.rotationSpeed;
+                        ctx.save();
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate(p.rotation * Math.PI / 180);
+                        ctx.fillStyle = p.color;
+                        ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+                        ctx.restore();
+                    }
+                }
+                if (!allDead) {
+                    animationId = requestAnimationFrame(animate);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            animate();
+            setTimeout(() => {
+                if (animationId) cancelAnimationFrame(animationId);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }, 3000);
+        }
+
+        // Add XP to the main portal system (if it exists)
+        function addXP(amount) {
+            if (typeof window.parent !== 'undefined' && window.parent !== window) {
+                try {
+                    window.parent.postMessage({ type: 'addXP', amount: amount }, '*');
+                } catch(e) {}
+            }
+            try {
+                let currentXP = parseInt(localStorage.getItem('sg_xp') || '0');
+                currentXP += amount;
+                localStorage.setItem('sg_xp', currentXP);
+                console.log(`🎉 +${amount} XP! Total: ${currentXP}`);
+            } catch(e) {}
+        }
+
+        function playSpeechAudio() {
+            const twiText = document.getElementById('twiSpeech').innerText.replace(/[!🌟🌞🌅☀️🌆🤝]/g, '').trim();
+            const audioUrl = audioUrls[twiText];
+            if (audioUrl) {
+                playAudio(audioUrl);
+            } else {
+                alert("🔊 Say it aloud: " + twiText);
+            }
+        }
+
+        function renderTimeCards() {
+            const times = [
+                { name: "Morning", emoji: "🌅", greeting: "Maakye", english: "Good morning", audio: audioUrls["Maakye"] },
+                { name: "Afternoon", emoji: "☀️", greeting: "Maaha", english: "Good afternoon", audio: audioUrls["Maaha"] },
+                { name: "Evening", emoji: "🌆", greeting: "Maadwo", english: "Good evening", audio: audioUrls["Maadwo"] },
+                { name: "Anytime", emoji: "🤝", greeting: "Akwaaba", english: "Welcome", audio: audioUrls["Akwaaba"] }
+            ];
+            
+            let html = '';
+            times.forEach((time, idx) => {
+                html += `
+                    <div class="time-card" onclick="selectTime(${idx})">
+                        <div class="time-emoji">${time.emoji}</div>
+                        <div class="time-name">${time.name}</div>
+                        <div class="twi-greeting">${time.greeting}</div>
+                        <div class="pronounce">${time.english}</div>
+                        <button class="audio-btn" style="margin-top:0.5rem; background:#f5a623;" onclick="event.stopPropagation(); playAudio('${time.audio}')">🔊</button>
+                    </div>
+                `;
+            });
+            document.getElementById('timeGrid').innerHTML = html;
+        }
+
+        function selectTime(idx) {
+            selectedTime = idx;
+            const timesList = ["Maakye", "Maaha", "Maadwo", "Akwaaba"];
+            const greetingsList = ["Good morning!", "Good afternoon!", "Good evening!", "Welcome!"];
+            const emojis = ["🌞", "☀️", "🌆", "🤝"];
+            
+            document.getElementById('twiSpeech').innerHTML = timesList[idx] + " " + emojis[idx];
+            document.getElementById('englishSpeech').innerHTML = greetingsList[idx];
+            
+            document.querySelectorAll('.time-card').forEach((card, i) => {
+                if (i === idx) card.classList.add('selected');
+                else card.classList.remove('selected');
+            });
+        }
+
+        // Matching Game
+        function initMatching() {
+            matchCards = [];
+            const matchGreetings = [
+                { twi: "Maakye", english: "Good morning" },
+                { twi: "Maaha", english: "Good afternoon" },
+                { twi: "Maadwo", english: "Good evening" },
+                { twi: "Akwaaba", english: "Welcome" },
+                { twi: "Mema wo akye", english: "Good morning (formal)" }
+            ];
+            
+            matchGreetings.forEach((g, idx) => {
+                matchCards.push({ id: idx, type: 'twi', text: g.twi, matchId: idx, matched: false });
+                matchCards.push({ id: idx, type: 'english', text: g.english, matchId: idx, matched: false });
+            });
+            
+            // Shuffle
+            for (let i = matchCards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [matchCards[i], matchCards[j]] = [matchCards[j], matchCards[i]];
+            }
+            matchSelected = null;
+            renderMatching();
+        }
+
+        function renderMatching() {
+            let html = '';
+            matchCards.forEach((card, idx) => {
+                let displayText = card.text;
+                let matchedClass = card.matched ? 'matched' : '';
+                let audioUrl = audioUrls[card.text] || '';
+                
+                html += `
+                    <div class="match-card ${matchedClass}" data-idx="${idx}" onclick="selectMatchCard(${idx})">
+                        <span class="match-text">${card.type === 'twi' ? '🔊' : '📖'} ${displayText}</span>
+                        ${card.type === 'twi' && !card.matched && audioUrl ? `<button class="match-audio-btn" onclick="event.stopPropagation(); playAudio('${audioUrl}')">🔊 Listen</button>` : ''}
+                    </div>
+                `;
+            });
+            document.getElementById('matchGrid').innerHTML = html;
+            
+            let matchedCount = matchCards.filter(c => c.matched).length / 2;
+            document.getElementById('matchScore').innerHTML = `🎯 Matched: ${matchedCount} / 5`;
+            
+            if (matchedCount === 5 && !window.gameCompleted) {
+                window.gameCompleted = true;
+                document.getElementById('matchScore').innerHTML = '<span style="font-size:1.5rem;">🎉 PERFECT! You know all the greetings! 🎉</span><br>🌟 +50 XP! 🌟';
+                startConfetti();
+                addXP(50);
+                // Mark lesson as completed in localStorage
+                let completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+                if (!completed.includes('greetings_kids')) {
+                    completed.push('greetings_kids');
+                    localStorage.setItem('completedLessons', JSON.stringify(completed));
+                }
+            }
+        }
+
+        function selectMatchCard(idx) {
+            if (matchCards[idx].matched) return;
+            
+            // Remove previous selection styling
+            document.querySelectorAll('.match-card').forEach(card => {
+                card.style.background = '';
+                card.style.color = '';
+            });
+            
+            if (matchSelected === null) {
+                matchSelected = idx;
+                const selectedCard = document.querySelector(`.match-card[data-idx="${idx}"]`);
+                if (selectedCard) {
+                    selectedCard.style.background = '#27ae60';
+                    selectedCard.style.color = 'white';
+                }
+            } else {
+                const first = matchCards[matchSelected];
+                const second = matchCards[idx];
+                
+                if (first.matchId === second.matchId && first.type !== second.type) {
+                    first.matched = true;
+                    second.matched = true;
+                    addXP(10); // +10 XP per correct match
+                }
+                matchSelected = null;
+                renderMatching();
+            }
+        }
+
+        // Quiz
+        function startQuiz() {
+            quizQuestions = [
+                { text: "How do you say 'Good morning' in Twi?", options: ["Maaha", "Maakye", "Maadwo", "Akwaaba"], correct: 1 },
+                { text: "What does 'Maaha' mean?", options: ["Good morning", "Good afternoon", "Good evening", "Welcome"], correct: 1 },
+                { text: "When do you say 'Maadwo'?", options: ["Morning", "Afternoon", "Evening", "Night"], correct: 2 },
+                { text: "What does 'Akwaaba' mean?", options: ["Goodbye", "Thank you", "Welcome", "Sorry"], correct: 2 },
+                { text: "How do you say 'Good afternoon' in Twi?", options: ["Maakye", "Mema wo akye", "Maaha", "Maadwo"], correct: 2 }
+            ];
+            quizIndex = 0;
+            quizScore = 0;
+            quizAnswers = new Array(quizQuestions.length).fill(null);
+            
+            document.getElementById('quizArea').style.display = 'block';
+            document.getElementById('startQuizBtn').style.display = 'none';
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            if (quizIndex >= quizQuestions.length) {
+                showQuizResults();
+                return;
+            }
+            
+            const q = quizQuestions[quizIndex];
+            const hasAnswered = quizAnswers[quizIndex] !== null;
+            
+            document.getElementById('quizQuestion').innerHTML = `❓ ${q.text}`;
+            
+            let optionsHtml = '';
+            q.options.forEach((opt, idx) => {
+                let disabled = hasAnswered ? 'disabled' : '';
+                optionsHtml += `
+                    <div class="quiz-btn" onclick="checkQuizAnswer(${idx})" ${disabled}>
+                        ${String.fromCharCode(65 + idx)}. ${opt}
+                    </div>
+                `;
+            });
+            document.getElementById('quizOptions').innerHTML = optionsHtml;
+            document.getElementById('quizScoreDisplay').innerHTML = `🏆 Score: ${quizScore} / ${quizQuestions.length}`;
+            
+            const feedbackDiv = document.getElementById('quizFeedback');
+            if (hasAnswered) {
+                feedbackDiv.classList.add('show');
+                const isCorrect = quizAnswers[quizIndex] === q.correct;
+                feedbackDiv.className = 'quiz-feedback show ' + (isCorrect ? 'correct' : 'wrong');
+                if (isCorrect) {
+                    feedbackDiv.innerHTML = '✅ Correct! Great job! 🎉';
+                } else {
+                    feedbackDiv.innerHTML = `❌ Oops! The correct answer is ${String.fromCharCode(65 + q.correct)}. ${q.options[q.correct]}`;
+                }
+            } else {
+                feedbackDiv.classList.remove('show');
+            }
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            if (quizAnswers[quizIndex] !== null) return;
+            
+            const q = quizQuestions[quizIndex];
+            const isCorrect = (selectedIdx === q.correct);
+            quizAnswers[quizIndex] = selectedIdx;
+            if (isCorrect) {
+                quizScore++;
+                addXP(20);
+            }
+            
+            renderQuizQuestion();
+            
+            setTimeout(() => {
+                if (quizIndex < quizQuestions.length - 1) {
+                    quizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    quizIndex++;
+                    renderQuizQuestion();
+                }
+            }, 1500);
+        }
+
+        function nextQuizQuestion() {
+            if (quizIndex < quizQuestions.length && quizAnswers[quizIndex] !== null) {
+                if (quizIndex < quizQuestions.length - 1) {
+                    quizIndex++;
+                    renderQuizQuestion();
+                } else {
+                    quizIndex++;
+                    renderQuizQuestion();
+                }
+            } else if (quizAnswers[quizIndex] === null) {
+                alert("Please answer the current question first!");
+            }
+        }
+
+        function showQuizResults() {
+            const total = quizQuestions.length;
+            const percentage = Math.round((quizScore / total) * 100);
+            let message = '';
+            if (percentage === 100) {
+                message = '🎉 PERFECT! You are a Twi greetings master! 🎉';
+                startConfetti();
+                addXP(100);
+            } else if (percentage >= 80) message = '🌟 Excellent! Great job! 🌟';
+            else if (percentage >= 60) message = '📚 Good job! Review and try again! 📚';
+            else message = '💪 Keep practicing! You will get it! 💪';
+            
+            document.getElementById('quizQuestion').innerHTML = message;
+            document.getElementById('quizOptions').innerHTML = '';
+            document.getElementById('quizFeedback').classList.remove('show');
+            document.getElementById('quizScoreDisplay').innerHTML = `🏆 Final Score: ${quizScore} / ${total} (${percentage}%)`;
+            document.getElementById('nextQuizBtn').style.display = 'none';
+            
+            let restartBtn = document.createElement('button');
+            restartBtn.className = 'next-btn';
+            restartBtn.innerHTML = '🔄 Play Quiz Again';
+            restartBtn.onclick = () => {
+                location.reload();
+            };
+            document.getElementById('quizArea').appendChild(restartBtn);
+        }
+
+        // Initialize
+        renderTimeCards();
+        initMatching();
+        
+        // Make functions global
+        window.selectTime = selectTime;
+        window.selectMatchCard = selectMatchCard;
+        window.startQuiz = startQuiz;
+        window.checkQuizAnswer = checkQuizAnswer;
+        window.nextQuizQuestion = nextQuizQuestion;
+        window.playAudio = playAudio;
+        window.playSpeechAudio = playSpeechAudio;
+    </script>
+</body>
+</html>
