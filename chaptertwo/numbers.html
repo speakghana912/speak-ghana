@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Speak Ghana • Twi Numbers & Counting | Nnɔma Nkyerɛ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .chapter-header {
+            border-bottom: 3px solid #2A9D8F;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #2A9D8F;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .chapter-badge {
+            background: #E76F51;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .sub {
+            color: #4b6a5e;
+            margin-top: 0.25rem;
+            font-size: 1rem;
+        }
+
+        /* Number chart */
+        .number-chart {
+            background: #FEF9F0;
+            border-radius: 32px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #f0e5d8;
+            overflow-x: auto;
+        }
+
+        .number-chart h3 {
+            color: #2A9D8F;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .num-item {
+            background: white;
+            border-radius: 16px;
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid #e2d9ce;
+            font-size: 0.9rem;
+            align-items: center;
+        }
+
+        .num-item .twi {
+            font-weight: 700;
+            color: #2A9D8F;
+        }
+
+        .num-item .eng {
+            color: #6f7a6e;
+            font-size: 0.8rem;
+        }
+
+        .num-item .count-example {
+            color: #8a6e4b;
+            font-size: 0.75rem;
+        }
+
+        .num-item .emoji-group {
+            font-size: 1.1rem;
+            margin-right: 6px;
+        }
+
+        /* Exercise area */
+        .exercise-area {
+            background: #fef7ec;
+            border-radius: 32px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: #e8f1ec;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+        }
+
+        .q-counter,
+        .score-badge {
+            font-weight: bold;
+            background: #2A9D8F;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+        }
+
+        .restart-btn {
+            background: #D4A373;
+            border: none;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .restart-btn:hover {
+            background: #b87c4a;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1rem;
+        }
+
+        .part-label {
+            display: inline-block;
+            background: #E76F51;
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3e1f;
+            border-left: 5px solid #E76F51;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .question-text .twi-word {
+            color: #2A9D8F;
+            font-weight: 700;
+        }
+
+        .emoji-display {
+            font-size: 3.5rem;
+            text-align: center;
+            margin: 0.5rem 0 1rem;
+            letter-spacing: 6px;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 1.2rem 0;
+            justify-content: center;
+        }
+
+        .opt-btn {
+            background: #eddea4;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.1s linear;
+            color: #2a2b12;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #ffd58c;
+            transform: scale(0.97);
+        }
+
+        .opt-btn .sub-opt {
+            display: block;
+            font-weight: normal;
+            font-size: 0.7rem;
+            color: #5a5a3a;
+            margin-top: 2px;
+        }
+
+        .correct-feedback {
+            background: #56943e;
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .wrong-feedback {
+            background: #b5452c;
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+        }
+
+        .next-btn {
+            background: #f2bc5e;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: 0.1s;
+            color: #2d281c;
+        }
+
+        .next-btn:active {
+            transform: translateY(2px);
+        }
+
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-screen {
+            text-align: center;
+            background: #fff3e0;
+            border-radius: 32px;
+            padding: 2rem;
+        }
+
+        .result-screen h2 {
+            color: #2A9D8F;
+            font-size: 1.8rem;
+        }
+
+        .missed-review {
+            background: #fff0cf;
+            border-radius: 24px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0d9ce;
+            color: #8f9b8a;
+            font-size: 0.75rem;
+        }
+
+        .close-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .close-btn:hover {
+            background: #b87c4a;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.2rem;
+            }
+            .question-text {
+                font-size: 1.05rem;
+            }
+            .opt-btn {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+                min-width: 70px;
+            }
+            .number-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            .num-item {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chapter-header">
+            <div>
+                <h1>🔢 Nnɔma Nkyerɛ · Numbers & Counting</h1>
+                <p class="sub">Learn to count people, things, and answer "Ɛyɛ ahe?" (How many?)</p>
+            </div>
+            <div class="chapter-badge">Nnipa aduonu · 20</div>
+        </div>
+
+        <!-- Number Chart -->
+        <div class="number-chart">
+            <h3>📊 Twi Numbers 1–20 (Counting People & Things)</h3>
+            <p style="margin-bottom: 1rem; color: #5a6a5e;">
+                When counting <strong>people</strong>, place the number after the noun: <em>nipa baako</em> (one person), <em>nnipa du</em> (ten people), <em>nnipa aduonu</em> (twenty people).
+                For <strong>things</strong>, use the same numbers with the noun: <em>akonnwa baako</em> (one chair), <em>mpaboa du</em> (ten shoes).
+            </p>
+            <div class="number-grid" id="numberGrid">
+                <!-- JavaScript will populate this -->
+            </div>
+        </div>
+
+        <!-- Exercise Area -->
+        <div class="exercise-area" id="exerciseApp">
+            <div style="text-align: center; padding: 2rem; color: #7a8f82;">Loading exercises...</div>
+        </div>
+
+        <div style="text-align: center; margin-top: 1rem;">
+            <button class="close-btn" onclick="window.close()">❌ Close</button>
+        </div>
+        <footer>💡 Read the emojis, count them, and answer "Ɛyɛ ahe?" (How many?). Ayekoo!</footer>
+    </div>
+
+    <script>
+        // ============================================================
+        //  NUMBER DATA
+        // ============================================================
+        const NUMBERS = [
+            { number: 1, twi: "baako", emoji: "👤", peopleExample: "nipa baako", thingExample: "akonnwa baako" },
+            { number: 2, twi: "mmienu", emoji: "👥", peopleExample: "nnipa baanu", thingExample: "mpaboa mmienu" },
+            { number: 3, twi: "mmiɛnsa", emoji: "👥👤", peopleExample: "nnipa baasa", thingExample: "kuruwa mmiɛnsa" },
+            { number: 4, twi: "nnan", emoji: "👥👥", peopleExample: "nnipa baanan", thingExample: "towuro nnan" },
+            { number: 5, twi: "nnum", emoji: "👥👥👤", peopleExample: "nnipa baaɛnum", thingExample: "afe nnum" },
+            { number: 6, twi: "nsia", emoji: "👥👥👥", peopleExample: "nnipa baansia", thingExample: "nkuruwa nsia" },
+            { number: 7, twi: "nson", emoji: "👥👥👥👤", peopleExample: "nnipa baanson", thingExample: "ntoma nson" },
+            { number: 8, twi: "nwɔtwe", emoji: "👥👥👥👥", peopleExample: "nnipa baanwɔtwe", thingExample: "mpaboa nwɔtwe" },
+            { number: 9, twi: "nkron", emoji: "👥👥👥👥👤", peopleExample: "nnipa baankron", thingExample: "toa nkron" },
+            { number: 10, twi: "du", emoji: "👥👥👥👥👥", peopleExample: "nnipa du", thingExample: "nnwoma du" },
+            { number: 11, twi: "du baako", emoji: "👥👥👥👥👥👤", peopleExample: "nnipa du baako", thingExample: "akonnwa du baako" },
+            { number: 12, twi: "du mmienu", emoji: "👥👥👥👥👥👥", peopleExample: "nnipa du mmienu", thingExample: "nnwoma du mmienu" },
+            { number: 13, twi: "du mmiɛnsa", emoji: "👥👥👥👥👥👥👤",
+            peopleExample: "nnipa du mmiɛnsa", thingExample: "mpaboa du mmiɛnsa" },
+            { number: 14, twi: "du nnan", emoji: "👥👥👥👥👥👥👥",
+            peopleExample: "nnipa du nnan", thingExample: "nkuruwa du nnan" },
+            { number: 15, twi: "du nnum", emoji: "👥👥👥👥👥👥👥👤",
+            peopleExample: "nnipa du nnum", thingExample: "towuro du nnum" },
+            { number: 16, twi: "du nsia", emoji: "👥👥👥👥👥👥👥👥",
+            peopleExample: "nnipa du nsia", thingExample: "afe du nsia" },
+            { number: 17, twi: "du nson", emoji: "👥👥👥👥👥👥👥👥👤",
+            peopleExample: "nnipa du nson", thingExample: "ntoma du nson" },
+            { number: 18, twi: "du nwɔtwe", emoji: "👥👥👥👥👥👥👥👥👥",
+            peopleExample: "nnipa du nwɔtwe", thingExample: "mpaboa du nwɔtwe" },
+            { number: 19, twi: "du nkron", emoji: "👥👥👥👥👥👥👥👥👥👤",
+            peopleExample: "nnipa du nkron", thingExample: "toa du nkron" },
+            { number: 20, twi: "aduonu", emoji: "👥👥👥👥👥👥👥👥👥👥",
+            peopleExample: "nnipa aduonu", thingExample: "nnwoma aduonu" }
+        ];
+
+        // ============================================================
+        //  BUILD EXERCISES
+        // ============================================================
+        const exercises = [];
+
+        // ---- Part 1: Count the Emojis (Ɛyɛ ahe?) ----
+        // Generate 8 questions with random emoji counts (1-20)
+        const usedNumbers = [];
+        for (let i = 0; i < 8; i++) {
+            let num;
+            do {
+                num = Math.floor(Math.random() * 20) + 1;
+            } while (usedNumbers.includes(num));
+            usedNumbers.push(num);
+
+            const numData = NUMBERS.find(n => n.number === num);
+            // Build emoji string based on number
+            let emojiString = '';
+            // Use a mix of emojis for variety
+            const emojiOptions = ['🐘', '🦁', '🐕', '🐈', '🐓', '🐐', '🐄', '🐒', '🦋', '🐝', '🪲', '🐢', '🐊', '🦎', '🐇', '🦉', '🐦', '🐟'];
+            const chosenEmoji = emojiOptions[Math.floor(Math.random() * emojiOptions.length)];
+            for (let j = 0; j < num; j++) {
+                emojiString += chosenEmoji;
+            }
+
+            // Build options (4 options including correct)
+            const correctTwi = numData.twi;
+            // Get 3 wrong numbers
+            let wrongNums = [];
+            const available = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].filter(n => n !== num);
+            for (let k = 0; k < 3; k++) {
+                const idx = Math.floor(Math.random() * available.length);
+                wrongNums.push(available[idx]);
+                available.splice(idx, 1);
+            }
+            const optionValues = [num, ...wrongNums];
+            // Shuffle
+            for (let k = optionValues.length - 1; k > 0; k--) {
+                const j = Math.floor(Math.random() * (k + 1));
+                [optionValues[k], optionValues[j]] = [optionValues[j], optionValues[k]];
+            }
+            const options = optionValues.map(val => ({
+                value: val,
+                label: NUMBERS.find(n => n.number === val).twi
+            }));
+
+            exercises.push({
+                type: "count",
+                part: "Part 1: Count the Emojis (Ɛyɛ ahe?)",
+                prompt: `How many ${chosenEmoji} are there? <br> <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">"Ɛyɛ ahe?" — How many?</span>`,
+                emojiDisplay: emojiString,
+                correct: num,
+                options: options,
+                numData: numData
+            });
+        }
+
+        // ---- Part 2: Choose the Correct Twi Number Word ----
+        // Show an emoji group and ask to match the Twi word
+        for (let i = 0; i < 4; i++) {
+            const num = Math.floor(Math.random() * 20) + 1;
+            const numData = NUMBERS.find(n => n.number === num);
+            const emojiOptions = ['🐘', '🦁', '🐕', '🐈', '🐓', '🐐', '🐄', '🐒', '🦋', '🐝', '🪲', '🐢', '🐊', '🦎', '🐇', '🦉', '🐦',
+                '🐟'
+            ];
+            const chosenEmoji = emojiOptions[Math.floor(Math.random() * emojiOptions.length)];
+            let emojiString = '';
+            for (let j = 0; j < num; j++) {
+                emojiString += chosenEmoji;
+            }
+
+            // Build options (4 Twi words)
+            const correctTwi = numData.twi;
+            const wrongNums = [];
+            const available = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].filter(n => n !== num);
+            for (let k = 0; k < 3; k++) {
+                const idx = Math.floor(Math.random() * available.length);
+                wrongNums.push(available[idx]);
+                available.splice(idx, 1);
+            }
+            const optionValues = [num, ...wrongNums];
+            // Shuffle
+            for (let k = optionValues.length - 1; k > 0; k--) {
+                const j = Math.floor(Math.random() * (k + 1));
+                [optionValues[k], optionValues[j]] = [optionValues[j], optionValues[k]];
+            }
+            const options = optionValues.map(val => ({
+                value: val,
+                label: NUMBERS.find(n => n.number === val).twi
+            }));
+
+            exercises.push({
+                type: "matchword",
+                part: "Part 2: Match the Number Word",
+                prompt: `Count the ${chosenEmoji} below. Which Twi number matches? <br> <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">Choose the correct Twi word.</span>`,
+                emojiDisplay: emojiString,
+                correct: num,
+                options: options,
+                numData: numData
+            });
+        }
+
+        // ---- Part 3: Count the People (Nnipa) ----
+        for (let i = 0; i < 4; i++) {
+            const num = Math.floor(Math.random() * 15) + 2;
+            const numData = NUMBERS.find(n => n.number === num);
+            let emojiString = '';
+            for (let j = 0; j < num; j++) {
+                emojiString += '👤';
+            }
+
+            const wrongNums = [];
+            const available = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].filter(n => n !== num);
+            for (let k = 0; k < 3; k++) {
+                const idx = Math.floor(Math.random() * available.length);
+                wrongNums.push(available[idx]);
+                available.splice(idx, 1);
+            }
+            const optionValues = [num, ...wrongNums];
+            for (let k = optionValues.length - 1; k > 0; k--) {
+                const j = Math.floor(Math.random() * (k + 1));
+                [optionValues[k], optionValues[j]] = [optionValues[j], optionValues[k]];
+            }
+            const options = optionValues.map(val => ({
+                value: val,
+                label: NUMBERS.find(n => n.number === val).twi
+            }));
+
+            exercises.push({
+                type: "countpeople",
+                part: "Part 3: Count the People (Nnipa)",
+                prompt: `How many people (nnipa) are there? <br> <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">Count and answer "Ɛyɛ ahe?"</span>`,
+                emojiDisplay: emojiString,
+                correct: num,
+                options: options,
+                numData: numData
+            });
+        }
+
+        // ---- Shuffle all exercises ----
+        for (let i = exercises.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [exercises[i], exercises[j]] = [exercises[j], exercises[i]];
+        }
+
+        // ============================================================
+        //  POPULATE NUMBER GRID
+        // ============================================================
+        function populateNumberGrid() {
+            const grid = document.getElementById('numberGrid');
+            grid.innerHTML = '';
+            NUMBERS.forEach(n => {
+                const div = document.createElement('div');
+                div.className = 'num-item';
+                div.innerHTML = `
+                    <span>
+                        <span class="emoji-group">${n.emoji}</span>
+                        <span class="twi">${n.twi}</span>
+                    </span>
+                    <span class="eng">${n.number}</span>
+                    <span class="count-example">${n.peopleExample}</span>
+                `;
+                grid.appendChild(div);
+            });
+        }
+        populateNumberGrid();
+
+        // ============================================================
+        //  QUIZ ENGINE
+        // ============================================================
+        let currentQIndex = 0;
+        let userAnswers = new Array(exercises.length).fill(null);
+        let answerStatus = new Array(exercises.length).fill(null);
+        let quizCompleted = false;
+
+        const appContainer = document.getElementById("exerciseApp");
+
+        function renderCurrentQuestion() {
+            if (quizCompleted) {
+                renderResultScreen();
+                return;
+            }
+
+            const q = exercises[currentQIndex];
+            const isAnswered = userAnswers[currentQIndex] !== null;
+            const selectedAnswer = userAnswers[currentQIndex];
+            const feedbackStatus = answerStatus[currentQIndex];
+
+            let optionsHtml = '';
+            q.options.forEach(opt => {
+                let isSelected = (selectedAnswer === opt.value);
+                let btnStyle = '';
+                let disabledAttr = isAnswered ? 'disabled' : '';
+                if (isAnswered && feedbackStatus === 'correct' && isSelected) {
+                    btnStyle = 'background: #6fbf4c; color: white; border: 2px solid #f9e45b;';
+                } else if (isAnswered && feedbackStatus === 'wrong' && isSelected) {
+                    btnStyle = 'background: #d9534f; color: white; text-decoration: line-through;';
+                } else if (isAnswered && feedbackStatus === 'wrong' && opt.value === q.correct) {
+                    btnStyle = 'background: #2A9D8F; color: white; border: 2px solid gold;';
+                }
+                optionsHtml +=
+                    `<button class="opt-btn" data-value="${opt.value}" ${disabledAttr} style="${btnStyle}">${opt.label}</button>`;
+            });
+
+            let feedbackHtml = '';
+            if (feedbackStatus === 'correct') {
+                const numData = q.numData || NUMBERS.find(n => n.number === q.correct);
+                let msg = `✅ Ayekoo! <strong>${numData ? numData.twi : q.correct}</strong> is correct!`;
+                if (q.type === "countpeople") {
+                    msg += ` ${numData ? numData.peopleExample : ''}`;
+                }
+                feedbackHtml = `<div class="correct-feedback">${msg}</div>`;
+            } else if (feedbackStatus === 'wrong' && selectedAnswer !== null) {
+                const numData = q.numData || NUMBERS.find(n => n.number === q.correct);
+                let msg = `❌ Not quite. The correct answer is <strong>${numData ? numData.twi : q.correct}</strong>`;
+                if (q.type === "countpeople") {
+                    msg += ` (${numData ? numData.peopleExample : ''})`;
+                }
+                feedbackHtml = `<div class="wrong-feedback">${msg}</div>`;
+            }
+
+            const totalAnswered = userAnswers.filter(a => a !== null).length;
+            const nextDisabled = (userAnswers[currentQIndex] === null) ? 'disabled' : '';
+
+            const partLabel = q.part || "Exercise";
+
+            const html = `
+                <div class="progress">
+                    <div class="q-counter">📌 ${currentQIndex+1} / ${exercises.length}</div>
+                    <div class="score-badge">⭐ Completed: ${totalAnswered} / ${exercises.length}</div>
+                    <button class="restart-btn" id="restartQuizBtn">⟳ Restart Quiz</button>
+                </div>
+                <div class="question-card">
+                    <div class="part-label">${partLabel}</div>
+                    <div class="question-text">${q.prompt}</div>
+                    <div class="emoji-display">${q.emojiDisplay || ''}</div>
+                    <div class="options" id="optionsContainer">
+                        ${optionsHtml}
+                    </div>
+                    ${feedbackHtml}
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="next-btn" id="nextQuestionBtn" ${nextDisabled}>➡ Next Question</button>
+                    </div>
+                </div>
+            `;
+
+            appContainer.innerHTML = html;
+
+            // Attach option listeners
+            const optButtons = document.querySelectorAll('.opt-btn');
+            optButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if (userAnswers[currentQIndex] !== null) return;
+                    const chosen = parseInt(btn.getAttribute('data-value'));
+                    handleAnswer(chosen);
+                });
+            });
+
+            const nextBtn = document.getElementById('nextQuestionBtn');
+            if (nextBtn) nextBtn.addEventListener('click', goToNext);
+            const restartBtn = document.getElementById('restartQuizBtn');
+            if (restartBtn) restartBtn.addEventListener('click', restartQuiz);
+        }
+
+        function handleAnswer(chosen) {
+            if (userAnswers[currentQIndex] !== null) return;
+            const currentEx = exercises[currentQIndex];
+            const isCorrect = (chosen === currentEx.correct);
+            userAnswers[currentQIndex] = chosen;
+            answerStatus[currentQIndex] = isCorrect ? 'correct' : 'wrong';
+            renderCurrentQuestion();
+        }
+
+        function goToNext() {
+            if (userAnswers[currentQIndex] === null) return;
+            if (currentQIndex + 1 < exercises.length) {
+                currentQIndex++;
+                renderCurrentQuestion();
+            } else {
+                quizCompleted = true;
+                renderResultScreen();
+            }
+        }
+
+        function renderResultScreen() {
+            const totalCorrect = answerStatus.filter(st => st === 'correct').length;
+            const total = exercises.length;
+            const wrongCount = total - totalCorrect;
+            let message = "";
+            if (totalCorrect === total) message = "🏆 Perfect! You've mastered Twi numbers! Ayekoo! 🏆";
+            else if (totalCorrect >= 12) message = "🎉 Excellent! You really know your numbers! 🎉";
+            else if (totalCorrect >= 8) message = "📖 Good effort! Review the number chart and try again. 👍";
+            else message = "🌱 Keep learning! Study the numbers and retake the quiz. Wo betumi ayɛ! 💪";
+
+            let missedItems = [];
+            for (let i = 0; i < exercises.length; i++) {
+                if (answerStatus[i] !== 'correct') {
+                    const numData = exercises[i].numData || NUMBERS.find(n => n.number === exercises[i].correct);
+                    missedItems.push(`Q${i+1}: Count → correct: ${numData ? numData.twi : exercises[i].correct}`);
+                }
+            }
+            let missedHtml = '';
+            if (missedItems.length > 0) {
+                missedHtml =
+                    `<div class="missed-review"><strong>🔁 Review these:</strong><br> ${missedItems.map(m => `• ${m}`).join('<br>')}</div>`;
+            }
+
+            const resultHtml = `
+                <div class="result-screen">
+                    <h2>✨ Quiz Completed ✨</h2>
+                    <div style="font-size: 2.8rem; font-weight: bold; color: #2A9D8F;">${totalCorrect} / ${total}</div>
+                    <div style="font-size: 1.1rem; margin: 15px auto;">${message}</div>
+                    <div>❌ Wrong answers: ${wrongCount}</div>
+                    ${missedHtml}
+                    <div style="margin-top: 30px;">
+                        <button class="next-btn" id="restartCompleteBtn">🔄 Start New Quiz</button>
+                    </div>
+                </div>
+            `;
+            appContainer.innerHTML = resultHtml;
+            const restartBtn = document.getElementById('restartCompleteBtn');
+            if (restartBtn) restartBtn.addEventListener('click', () => {
+                resetFullQuiz();
+                renderCurrentQuestion();
+            });
+        }
+
+        function resetFullQuiz() {
+            currentQIndex = 0;
+            userAnswers = new Array(exercises.length).fill(null);
+            answerStatus = new Array(exercises.length).fill(null);
+            quizCompleted = false;
+
+            // Regenerate exercises (simple: rebuild)
+            const newExercises = [];
+
+            // Part 1: Count emojis (8 questions)
+            const usedNums = [];
+            for (let i = 0; i < 8; i++) {
+                let num;
+                do {
+                    num = Math.floor(Math.random() * 20) + 1;
+                } while (usedNums.includes(num));
+                usedNums.push(num);
+                const numData = NUMBERS.find(n => n.number === num);
+                const emojiOptions = ['🐘', '🦁', '🐕', '🐈', '🐓', '🐐', '🐄', '🐒', '🦋', '🐝', '🪲', '🐢', '🐊', '🦎', '🐇', '🦉', '🐦',
+                    '🐟'
+                ];
+                const chosenEmoji = emojiOptions[Math.floor(Math.random() * emojiOptions.length)];
+                let emojiString = '';
+                for (let j = 0; j < num; j++) emojiString += chosenEmoji;
+
+                const wrongNums = [];
+                const available = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].filter(n => n !== num);
+                for (let k = 0; k < 3; k++) {
+                    const idx = Math.floor(Math.random() * available.length);
+                    wrongNums.push(available[idx]);
+                    available.splice(idx, 1);
+                }
+                const optionValues = [num, ...wrongNums];
+                for (let k = optionValues.length - 1; k > 0; k--) {
+                    const j = Math.floor(Math.random() * (k + 1));
+                    [optionValues[k], optionValues[j]] = [optionValues[j], optionValues[k]];
+                }
+                const options = optionValues.map(val => ({ value: val, label: NUMBERS.find(n => n.number === val).twi }));
+                newExercises.push({
+                    type: "count",
+                    part: "Part 1: Count the Emojis (Ɛyɛ ahe?)",
+                    prompt: `How many ${chosenEmoji} are there? <br> <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">"Ɛyɛ ahe?" — How many?</span>`,
+                    emojiDisplay: emojiString,
+                    correct: num,
+                    options: options,
+                    numData: numData                });
+            }
+
+            // Part 2: Match the word (4 questions)
+            for (let i = 0; i < 4; i++) {
+                const num = Math.floor(Math.random() * 20) + 1;
+                const numData = NUMBERS.find(n => n.number === num);
+                const emojiOptions = ['🐘', '🦁', '🐕', '🐈', '🐓', '🐐', '🐄', '🐒', '🦋', '🐝', '🪲', '🐢', '🐊', '🦎', '🐇', '🦉', '🐦',
+                    '🐟'
+                ];
+                const chosenEmoji = emojiOptions[Math.floor(Math.random() * emojiOptions.length)];
+                let emojiString = '';
+                for (let j = 0; j < num; j++) emojiString += chosenEmoji;
+
+                const wrongNums = [];
+                const available = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].filter(n => n !== num);
+                for (let k = 0; k < 3; k++) {
+                    const idx = Math.floor(Math.random() * available.length);
+                    wrongNums.push(available[idx]);
+                    available.splice(idx, 1);
+                }
+                const optionValues = [num, ...wrongNums];
+                for (let k = optionValues.length - 1; k > 0; k--) {
+                    const j = Math.floor(Math.random() * (k + 1));
+                    [optionValues[k], optionValues[j]] = [optionValues[j], optionValues[k]];
+                }
+                const options = optionValues.map(val => ({ value: val, label: NUMBERS.find(n => n.number === val).twi }));
+                newExercises.push({
+                    type: "matchword",
+                    part: "Part 2: Match the Number Word",
+                    prompt: `Count the ${chosenEmoji} below. Which Twi number matches? <br> <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">Choose the correct Twi word.</span>`,
+                    emojiDisplay: emojiString,
+                    correct: num,
+                    options: options,
+                    numData: numData
+                });
+            }
+
+            // Part 3: Count people (4 questions)
+            for (let i = 0; i < 4; i++) {
+                const num = Math.floor(Math.random() * 15) + 2;
+                const numData = NUMBERS.find(n => n.number === num);
+                let emojiString = '';
+                for (let j = 0; j < num; j++) emojiString += '👤';
+
+                const wrongNums = [];
+                const available = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].filter(n => n !== num);
+                for (let k = 0; k < 3; k++) {
+                    const idx = Math.floor(Math.random() * available.length);
+                    wrongNums.push(available[idx]);
+                    available.splice(idx, 1);
+                }
+                const optionValues = [num, ...wrongNums];
+                for (let k = optionValues.length - 1; k > 0; k--) {
+                    const j = Math.floor(Math.random() * (k + 1));
+                    [optionValues[k], optionValues[j]] = [optionValues[j], optionValues[k]];
+                }
+                const options = optionValues.map(val => ({ value: val, label: NUMBERS.find(n => n.number === val).twi }));
+                newExercises.push({
+                    type: "countpeople",
+                    part: "Part 3: Count the People (Nnipa)",
+                    prompt: `How many people (nnipa) are there? <br> <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">Count and answer "Ɛyɛ ahe?"</span>`,
+                    emojiDisplay: emojiString,
+                    correct: num,
+                    options: options,
+                    numData: numData
+                });
+            }
+
+            // Shuffle
+            for (let i = newExercises.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newExercises[i], newExercises[j]] = [newExercises[j], newExercises[i]];
+            }
+
+            exercises.length = 0;
+            exercises.push(...newExercises);
+        }
+
+        function restartQuiz() {
+            resetFullQuiz();
+            renderCurrentQuestion();
+        }
+
+        // Initial render
+        renderCurrentQuestion();
+    </script>
+</body>
+</html>
