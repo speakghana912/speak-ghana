@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Speak Ghana • Twi Noun Exercises | Edin Ahorow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .chapter-header {
+            border-bottom: 3px solid #2A9D8F;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #2A9D8F;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .chapter-badge {
+            background: #E76F51;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .sub {
+            color: #4b6a5e;
+            margin-top: 0.25rem;
+            font-size: 1rem;
+        }
+
+        /* Theory card */
+        .theory-card {
+            background: #FEF9F0;
+            border-radius: 32px;
+            padding: 1.6rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #f0e5d8;
+            border-left: 8px solid #2A9D8F;
+        }
+
+        .theory-card h3 {
+            color: #2A9D8F;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .noun-category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .cat-block {
+            background: white;
+            border-radius: 20px;
+            padding: 0.8rem 1rem;
+            border: 1px solid #e2d9ce;
+        }
+
+        .cat-block strong {
+            display: block;
+            color: #E76F51;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .cat-block span {
+            font-size: 0.85rem;
+            color: #3a5a4e;
+        }
+
+        /* Exercise area */
+        .exercise-area {
+            background: #fef7ec;
+            border-radius: 32px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: #e8f1ec;
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+        }
+
+        .q-counter,
+        .score-badge {
+            font-weight: bold;
+            background: #2A9D8F;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+        }
+
+        .restart-btn {
+            background: #D4A373;
+            border: none;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .restart-btn:hover {
+            background: #b87c4a;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1rem;
+        }
+
+        .part-label {
+            display: inline-block;
+            background: #E76F51;
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2d3e1f;
+            border-left: 5px solid #E76F51;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .question-text .twi-word {
+            color: #2A9D8F;
+            font-weight: 700;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 1.2rem 0;
+            justify-content: center;
+        }
+
+        .opt-btn {
+            background: #eddea4;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.1s linear;
+            color: #2a2b12;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .opt-btn:hover:not(:disabled) {
+            background: #ffd58c;
+            transform: scale(0.97);
+        }
+
+        .opt-btn .sub-opt {
+            display: block;
+            font-weight: normal;
+            font-size: 0.7rem;
+            color: #5a5a3a;
+            margin-top: 2px;
+        }
+
+        .correct-feedback {
+            background: #56943e;
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .wrong-feedback {
+            background: #b5452c;
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+        }
+
+        .next-btn {
+            background: #f2bc5e;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: 0.1s;
+            color: #2d281c;
+        }
+
+        .next-btn:active {
+            transform: translateY(2px);
+        }
+
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-screen {
+            text-align: center;
+            background: #fff3e0;
+            border-radius: 32px;
+            padding: 2rem;
+        }
+
+        .result-screen h2 {
+            color: #2A9D8F;
+            font-size: 1.8rem;
+        }
+
+        .missed-review {
+            background: #fff0cf;
+            border-radius: 24px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .missed-review li {
+            margin: 0.4rem 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0d9ce;
+            color: #8f9b8a;
+            font-size: 0.75rem;
+        }
+
+        .close-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .close-btn:hover {
+            background: #b87c4a;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.2rem;
+            }
+            .question-text {
+                font-size: 1.05rem;
+            }
+            .opt-btn {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+                min-width: 100px;
+            }
+            .theory-card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chapter-header">
+            <div>
+                <h1>📚 Edin Ahorow · Noun Exercises</h1>
+                <p class="sub">Identify Twi nouns as: Person · Place · Thing · Animal · Idea/Quality/State</p>
+            </div>
+            <div class="chapter-badge">Twi Grammar · Practice</div>
+        </div>
+
+        <!-- Theory / Grammar reminder -->
+        <div class="theory-card">
+            <h3>📘 Noun Categories Review (Edin Ahorow)</h3>
+            <p>A noun is a word used to identify a <strong>person</strong>, <strong>place</strong>, <strong>thing</strong>, <strong>animal</strong>, or <strong>idea/quality/state</strong>.</p>
+            <div class="noun-category-grid">
+                <div class="cat-block">
+                    <strong>👤 Person</strong>
+                    <span>Kofi, Adwoa, ɔsɔfo, ɔkyerɛkyerɛni, ɔsraani, ɔtomfoɔ, Yaa, Boafo</span>
+                </div>
+                <div class="cat-block">
+                    <strong>📍 Place</strong>
+                    <span>Amɛreka, aburokyire, ayaresabea, Sunyani, Berekum, Tafo, mmarahyɛ badwam</span>
+                </div>
+                <div class="cat-block">
+                    <strong>📦 Thing</strong>
+                    <span>krataa, ahoma, toa, didipono, ntoma, mpaboa, kasafidie, dadeɛ, kyiniiɛ</span>
+                </div>
+                <div class="cat-block">
+                    <strong>🐘 Animal</strong>
+                    <span>akokɔ, tɛfrɛ, odwan, kɔtɔ, dɛnkyɛm, ntontom, afunumu pɔnkɔ, ɔwɔ</span>
+                </div>
+                <div class="cat-block">
+                    <strong>💡 Idea/Quality/State</strong>
+                    <span>ahummɔborɔ, ahoɔfɛ, animuonyam, abufuo, anigyeɛ, awerɛhoɔ, nokorɛ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Quiz Area -->
+        <div class="exercise-area" id="exerciseApp">
+            <div style="text-align: center; padding: 2rem; color: #7a8f82;">Loading Twi noun exercises...</div>
+        </div>
+
+        <div style="text-align: center; margin-top: 1rem;">
+            <button class="close-btn" onclick="window.close()">❌ Close</button>
+        </div>
+        <footer>💡 Read each question carefully and select the correct answer. Test your knowledge of Twi nouns (Edin Ahorow).</footer>
+    </div>
+
+    <script>
+        // ============================================================
+        //  NOUN DATABASE (based on provided lists)
+        // ============================================================
+        const NOUNS = [
+            // Persons
+            { twi: "ɔkyerɛkyerɛni", category: "person", english: "teacher" },
+            { twi: "ɔsɔfo", category: "person", english: "pastor/priest" },
+            { twi: "ɔsraani", category: "person", english: "soldier" },
+            { twi: "ɔtomfoɔ", category: "person", english: "blacksmith" },
+            { twi: "ɔkuafo", category: "person", english: "farmer" },
+            { twi: "ɔtɔnfo", category: "person", english: "trader/seller" },
+            { twi: "ɔdwontoni", category: "person", english: "singer" },
+            { twi: "dɔkɔta", category: "person", english: "doctor" },
+            { twi: "polisi", category: "person", english: "police officer" },
+            { twi: "drɔba", category: "person", english: "driver" },
+            { twi: "Opanin", category: "person", english: "elder" },
+            { twi: "Adwoa", category: "person", english: "Adwoa (name)" },
+            { twi: "Kwadwo", category: "person", english: "Kwadwo (name)" },
+            { twi: "Ama", category: "person", english: "Ama (name)" },
+
+            // Places
+            { twi: "ayaresabea", category: "place", english: "hospital" },
+            { twi: "asieeɛ", category: "place", english: "cemetery" },
+            { twi: "mmarahyɛ badwam", category: "place", english: "parliament house" },
+            { twi: "sukuu", category: "place", english: "school" },
+            { twi: "asɔredan", category: "place", english: "church building" },
+            { twi: "agorɔ", category: "place", english: "market" },
+            { twi: "stɛshɔn", category: "place", english: "station" },
+            { twi: "apɔntem", category: "place", english: "city/town" },
+            { twi: "kurow", category: "place", english: "village/town" },
+            { twi: "Koforidua", category: "place", english: "Koforidua (town)" },
+            { twi: "Kumase", category: "place", english: "Kumasi (city)" },
+            { twi: "Nkran", category: "place", english: "Accra (city)" },
+            { twi: "Atonsu", category: "place", english: "Atonsu (town)" },
+
+            // Things
+            { twi: "didipono", category: "thing", english: "dining table" },
+            { twi: "krataa", category: "thing", english: "paper" },
+            { twi: "ahoma", category: "thing", english: "rope" },
+            { twi: "toa", category: "thing", english: "bottle" },
+            { twi: "ntoma", category: "thing", english: "cloth/fabric" },
+            { twi: "mpaboa", category: "thing", english: "footwear/shoes" },
+            { twi: "kasafidie", category: "thing", english: "radio set" },
+            { twi: "dadeɛ", category: "thing", english: "metal" },
+            { twi: "kyiniiɛ", category: "thing", english: "umbrella" },
+            { twi: "akonnwa", category: "thing", english: "chair" },
+            { twi: "towuro", category: "thing", english: "towel" },
+            { twi: "afe", category: "thing", english: "comb" },
+            { twi: "nwoma", category: "thing", english: "book" },
+            { twi: "pon", category: "thing", english: "door" },
+            { twi: "kuruwa", category: "thing", english: "cup" },
+
+            // Animals
+            { twi: "abirekyie", category: "animal", english: "goat" },
+            { twi: "akokɔ", category: "animal", english: "fowl/chicken" },
+            { twi: "tɛfrɛ", category: "animal", english: "cockroach" },
+            { twi: "odwan", category: "animal", english: "sheep" },
+            { twi: "kɔtɔ", category: "animal", english: "crab" },
+            { twi: "dɛnkyɛm", category: "animal", english: "crocodile" },
+            { twi: "ntontom", category: "animal", english: "mosquito" },
+            { twi: "afunumu pɔnkɔ", category: "animal", english: "donkey" },
+            { twi: "ɔwɔ", category: "animal", english: "snake" },
+            { twi: "ɔkraman", category: "animal", english: "dog" },
+            { twi: "agyinammoa", category: "animal", english: "cat" },
+            { twi: "pɔnkɔ", category: "animal", english: "horse" },
+            { twi: "ananse", category: "animal", english: "spider" },
+            { twi: "ɔsono", category: "animal", english: "elephant" },
+
+            // Ideas / Qualities / States
+            { twi: "anigyeɛ", category: "idea", english: "happiness" },
+            { twi: "awerɛhoɔ", category: "idea", english: "sadness" },
+            { twi: "ahummɔborɔ", category: "idea", english: "sympathy" },
+            { twi: "ahoɔfɛ", category: "idea", english: "beauty" },
+            { twi: "animuonyam", category: "idea", english: "honour" },
+            { twi: "abufuo", category: "idea", english: "anger" },
+            { twi: "nokorɛ", category: "idea", english: "truth" },
+            { twi: "ahoɔden", category: "idea", english: "strength/energy" },
+            { twi: "ahotɔ", category: "idea", english: "peace/satisfaction" },
+            { twi: "dɔ", category: "idea", english: "love" }
+        ];
+
+        const CAT_LABELS = {
+            person: "👤 Person",
+            place: "📍 Place",
+            thing: "📦 Thing",
+            animal: "🐘 Animal",
+            idea: "💡 Idea/Quality/State"
+        };
+
+        const CAT_KEYS = ["person", "place", "thing", "animal", "idea"];
+        const CAT_SHORT = {
+            person: "Person",
+            place: "Place",
+            thing: "Thing",
+            animal: "Animal",
+            idea: "Idea/Quality/State"
+        };
+
+        // ============================================================
+        //  BUILD EXERCISES: 15 questions
+        //  Part 1: Identify the Category (5 questions)
+        //  Part 2: Fill in the Blanks (5 questions)  
+        //  Part 3: Odd One Out (5 questions)
+        // ============================================================
+        const exercises = [];
+
+        // ---- PART 1: Identify the Category (5 questions) ----
+        const part1Nouns = NOUNS.filter(n => n.twi.length > 2);
+        const shuffled1 = [...part1Nouns].sort(() => Math.random() - 0.5);
+        const selectedPart1 = shuffled1.slice(0, 5);
+
+        selectedPart1.forEach(n => {
+            const options = CAT_KEYS.map(cat => ({
+                value: cat,
+                label: CAT_SHORT[cat]
+            }));
+            // shuffle options
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+
+            exercises.push({
+                type: "category",
+                part: "Part 1: Identify the Category (Nkyekyɛmu)",
+                prompt: `Read the Twi word <span class="twi-word">${n.twi}</span>. What category does it belong to? <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">(${n.english})</span>`,
+                correct: n.category,
+                options: options,
+                twiWord: n.twi,
+                english: n.english
+            });
+        });
+
+        // ---- PART 2: Fill in the Blanks (5 questions) ----
+        const fillBlankQuestions = [{
+            prompt: `Me kɔɔ <span class="twi-word">____________</span> kɔhwehwɛɛ aduro yareɛ ho. <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">(I went to the... to look for medicine for sickness.)</span>`,
+            correct: "ayaresabea",
+            options: ["odwan", "ayaresabea", "krataa", "akonnwa"]
+        }, {
+            prompt: `Tikya de <span class="twi-word">____________</span> twerɛɛ biribi guu pono no so. <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">(The teacher used a... to write something on the table.)</span>`,
+            correct: "nwoma",
+            options: ["nwoma", "ɔsraani", "Sunyani", "dɛnkyɛm"]
+        }, {
+            prompt: `<span class="twi-word">____________</span> no bɔɔ n'atukɔkɔɔ anɔpa yi. <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">(The... crowed this morning.)</span>`,
+            correct: "akokɔ",
+            options: ["akokɔ", "afe", "Berekum", "ntoma"]
+        }, {
+            prompt: `Kofi dwen ne ho dodo; ne mfeɛ nyinaa yɛ <span class="twi-word">____________</span> nkoaa. <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">(Kofi worries too much; his whole face is just...)</span>`,
+            correct: "awerɛhoɔ",
+            options: ["pɔnkɔ", "awerɛhoɔ", "ɔtomfoɔ", "mpaboa"]
+        }, {
+            prompt: `Ɔbaa no de <span class="twi-word">____________</span> kɔɔ asɔredan mu. <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">(The woman went to church with a...)</span>`,
+            correct: "kyiniiɛ",
+            options: ["kyiniiɛ", "odwan", "Tafo", "anigyeɛ"]
+        }];
+
+        fillBlankQuestions.forEach((q, index) => {
+            const shuffledOptions = [...q.options];
+            for (let i = shuffledOptions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+            }
+            exercises.push({
+                type: "fillblank",
+                part: "Part 2: Fill in the Blanks (Fa Edin a Ɛfata To Mu)",
+                prompt: q.prompt,
+                correct: q.correct,
+                options: shuffledOptions.map(opt => ({ value: opt, label: opt }))
+            });
+        });
+
+        // ---- PART 3: Odd One Out (5 questions) ----
+        function buildOddOneOut() {
+            const oddCategory = CAT_KEYS[Math.floor(Math.random() * CAT_KEYS.length)];
+            let majorityCats = CAT_KEYS.filter(c => c !== oddCategory);
+            let majorityCategory = majorityCats[Math.floor(Math.random() * majorityCats.length)];
+
+            let majorityNouns = NOUNS.filter(n => n.category === majorityCategory);
+            let oddNouns = NOUNS.filter(n => n.category === oddCategory);
+
+            // Fallback if not enough nouns
+            if (majorityNouns.length < 3) {
+                const backup = CAT_KEYS.filter(c => c !== oddCategory && NOUNS.filter(n => n.category === c).length >= 3);
+                if (backup.length > 0) {
+                    majorityCategory = backup[0];
+                    majorityNouns = NOUNS.filter(n => n.category === majorityCategory);
+                }
+            }
+            if (oddNouns.length < 1) {
+                const backup = CAT_KEYS.filter(c => c !== majorityCategory && NOUNS.filter(n => n.category === c).length >= 1);
+                if (backup.length > 0) {
+                    oddCategory = backup[0];
+                    oddNouns = NOUNS.filter(n => n.category === oddCategory);
+                }
+            }
+
+            const shuffledMajority = [...majorityNouns].sort(() => Math.random() - 0.5).slice(0, 3);
+            const oddOne = [...oddNouns].sort(() => Math.random() - 0.5)[0];
+
+            if (shuffledMajority.length < 3 || !oddOne) {
+                return {
+                    words: ["ɔkyerɛkyerɛni", "ɔsɔfo", "ɔsraani", "ayaresabea"],
+                    correctIndex: 3,
+                    categories: ["Person", "Person", "Person", "Place"]
+                };
+            }
+
+            const words = [...shuffledMajority.map(n => n.twi), oddOne.twi];
+            const correctIndex = words.length - 1;
+            const categoryNames = [...shuffledMajority.map(n => CAT_SHORT[n.category]), CAT_SHORT[oddOne.category]];
+
+            // Shuffle words but track correct index
+            const indices = words.map((_, i) => i);
+            for (let i = indices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [indices[i], indices[j]] = [indices[j], indices[i]];
+            }
+            const shuffledWords = indices.map(i => words[i]);
+            const newCorrectIndex = indices.indexOf(correctIndex);
+
+            return {
+                words: shuffledWords,
+                correctIndex: newCorrectIndex,
+                categories: indices.map(i => categoryNames[i]),
+                majorityCategory: CAT_SHORT[majorityCategory],
+                oddCategory: CAT_SHORT[oddCategory]
+            };
+        }
+
+        for (let i = 0; i < 5; i++) {
+            const q = buildOddOneOut();
+            const options = q.words.map((w, idx) => ({
+                value: idx,
+                label: w,
+                sub: q.categories[idx]
+            }));
+
+            exercises.push({
+                type: "oddoneout",
+                part: "Part 3: Odd One Out (Ebi Frapɔn)",
+                prompt: `Which word does <strong>NOT</strong> belong with the others? (Find the Odd One Out)`,
+                correct: q.correctIndex,
+                options: options,
+                majorityCategory: q.majorityCategory,
+                oddCategory: q.oddCategory,
+                words: q.words
+            });
+        }
+
+        // ---- Shuffle all exercises ----
+        for (let i = exercises.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [exercises[i], exercises[j]] = [exercises[j], exercises[i]];
+        }
+
+        // ============================================================
+        //  QUIZ ENGINE
+        // ============================================================
+        let currentQIndex = 0;
+        let userAnswers = new Array(exercises.length).fill(null);
+        let answerStatus = new Array(exercises.length).fill(null);
+        let quizCompleted = false;
+
+        const appContainer = document.getElementById("exerciseApp");
+
+        function renderCurrentQuestion() {
+            if (quizCompleted) {
+                renderResultScreen();
+                return;
+            }
+
+            const q = exercises[currentQIndex];
+            const isAnswered = userAnswers[currentQIndex] !== null;
+            const selectedAnswer = userAnswers[currentQIndex];
+            const feedbackStatus = answerStatus[currentQIndex];
+
+            let optionsHtml = '';
+            q.options.forEach(opt => {
+                let isSelected = (selectedAnswer === opt.value);
+                let btnStyle = '';
+                let disabledAttr = isAnswered ? 'disabled' : '';
+                let displayLabel = opt.label;
+                let subLabel = opt.sub ? `<span class="sub-opt">${opt.sub}</span>` : '';
+
+                if (isAnswered && feedbackStatus === 'correct' && isSelected) {
+                    btnStyle = 'background: #6fbf4c; color: white; border: 2px solid #f9e45b;';
+                } else if (isAnswered && feedbackStatus === 'wrong' && isSelected) {
+                    btnStyle = 'background: #d9534f; color: white; text-decoration: line-through;';
+                } else if (isAnswered && feedbackStatus === 'wrong' && opt.value === q.correct) {
+                    btnStyle = 'background: #2A9D8F; color: white; border: 2px solid gold;';
+                }
+                optionsHtml +=
+                    `<button class="opt-btn" data-value="${opt.value}" ${disabledAttr} style="${btnStyle}">${displayLabel} ${subLabel}</button>`;
+            });
+
+            let feedbackHtml = '';
+            if (feedbackStatus === 'correct') {
+                let msg = "✅ Ayekoo! That's correct!";
+                if (q.type === "oddoneout") {
+                    const oddWord = q.words[q.correct];
+                    const oddCat = q.oddCategory || "different category";
+                    msg += ` <strong>${oddWord}</strong> is the odd one out (${oddCat}).`;
+                } else if (q.type === "fillblank") {
+                    msg += ` "<strong>${q.correct}</strong>" is the right answer.`;
+                } else if (q.type === "category") {
+                    msg += ` "<strong>${q.twiWord || q.correct}</strong>" is a <strong>${CAT_SHORT[q.correct]}</strong>.`;
+                }
+                feedbackHtml = `<div class="correct-feedback">${msg}</div>`;
+            } else if (feedbackStatus === 'wrong' && selectedAnswer !== null) {
+                let msg = `❌ Not quite. `;
+                if (q.type === "category") {
+                    const correctCat = CAT_SHORT[q.correct];
+                    msg += `The correct category is <strong>${correctCat}</strong>.`;
+                } else if (q.type === "oddoneout") {
+                    const oddWord = q.words[q.correct];
+                    const oddCat = q.oddCategory || "different category";
+                    msg += `The odd one out is <strong>${oddWord}</strong> (${oddCat}).`;
+                } else if (q.type === "fillblank") {
+                    msg += `The correct answer is <strong>${q.correct}</strong>.`;
+                }
+                feedbackHtml = `<div class="wrong-feedback">${msg}</div>`;
+            }
+
+            const totalAnswered = userAnswers.filter(a => a !== null).length;
+            const nextDisabled = (userAnswers[currentQIndex] === null) ? 'disabled' : '';
+
+            const partLabel = q.part || "Exercise";
+
+            const html = `
+                <div class="progress">
+                    <div class="q-counter">📌 ${currentQIndex+1} / ${exercises.length}</div>
+                    <div class="score-badge">⭐ Completed: ${totalAnswered} / ${exercises.length}</div>
+                    <button class="restart-btn" id="restartQuizBtn">⟳ Restart Quiz</button>
+                </div>
+                <div class="question-card">
+                    <div class="part-label">${partLabel}</div>
+                    <div class="question-text">${q.prompt}</div>
+                    <div class="options" id="optionsContainer">
+                        ${optionsHtml}
+                    </div>
+                    ${feedbackHtml}
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="next-btn" id="nextQuestionBtn" ${nextDisabled}>➡ Next Question</button>
+                    </div>
+                </div>
+            `;
+
+            appContainer.innerHTML = html;
+
+            // Attach option listeners
+            const optButtons = document.querySelectorAll('.opt-btn');
+            optButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if (userAnswers[currentQIndex] !== null) return;
+                    const chosen = btn.getAttribute('data-value');
+                    let chosenValue;
+                    if (q.type === "category" || q.type === "fillblank") {
+                        chosenValue = chosen;
+                    } else if (q.type === "oddoneout") {
+                        chosenValue = parseInt(chosen);
+                    }
+                    handleAnswer(chosenValue);
+                });
+            });
+
+            const nextBtn = document.getElementById('nextQuestionBtn');
+            if (nextBtn) nextBtn.addEventListener('click', goToNext);
+            const restartBtn = document.getElementById('restartQuizBtn');
+            if (restartBtn) restartBtn.addEventListener('click', restartQuiz);
+        }
+
+        function handleAnswer(chosen) {
+            if (userAnswers[currentQIndex] !== null) return;
+            const currentEx = exercises[currentQIndex];
+            const isCorrect = (chosen === currentEx.correct);
+            userAnswers[currentQIndex] = chosen;
+            answerStatus[currentQIndex] = isCorrect ? 'correct' : 'wrong';
+            renderCurrentQuestion();
+        }
+
+        function goToNext() {
+            if (userAnswers[currentQIndex] === null) return;
+            if (currentQIndex + 1 < exercises.length) {
+                currentQIndex++;
+                renderCurrentQuestion();
+            } else {
+                quizCompleted = true;
+                renderResultScreen();
+            }
+        }
+
+        function renderResultScreen() {
+            const totalCorrect = answerStatus.filter(st => st === 'correct').length;
+            const total = exercises.length;
+            const wrongCount = total - totalCorrect;
+            let message = "";
+            if (totalCorrect === total) message = "🏆 Perfect! You've mastered Twi noun categories! Ayekoo! 🏆";
+            else if (totalCorrect >= 12) message = "🎉 Excellent! You really know your Edin Ahorow! 🎉";
+            else if (totalCorrect >= 8) message = "📖 Good effort! Review the categories and try again. 👍";
+            else message = "🌱 Keep learning! Study the noun types and retake the quiz. Wo betumi ayɛ! 💪";
+
+            let missedItems = [];
+            for (let i = 0; i < exercises.length; i++) {
+                if (answerStatus[i] !== 'correct') {
+                    let correctDisplay = exercises[i].correct;
+                    if (exercises[i].type === "category") {
+                        correctDisplay = CAT_SHORT[exercises[i].correct];
+                    } else if (exercises[i].type === "oddoneout") {
+                        correctDisplay = exercises[i].words[exercises[i].correct];
+                    }
+                    let promptShort = exercises[i].prompt.replace(/<[^>]*>/g, '').substring(0, 50) + '...';
+                    missedItems.push(`Q${i+1}: ${promptShort} → ✔️ correct: ${correctDisplay}`);
+                }
+            }
+            let missedHtml = '';
+            if (missedItems.length > 0) {
+                missedHtml = `<div class="missed-review"><strong>🔁 Review these questions:</strong><br> ${missedItems.map(m => `• ${m}`).join('<br>')}</div>`;
+            }
+
+            const resultHtml = `
+                <div class="result-screen">
+                    <h2>✨ Quiz Completed ✨</h2>
+                    <div style="font-size: 2.8rem; font-weight: bold; color: #2A9D8F;">${totalCorrect} / ${total}</div>
+                    <div style="font-size: 1.1rem; margin: 15px auto;">${message}</div>
+                    <div>❌ Wrong answers: ${wrongCount}</div>
+                    ${missedHtml}
+                    <div style="margin-top: 30px;">
+                        <button class="next-btn" id="restartCompleteBtn">🔄 Start New Quiz</button>
+                    </div>
+                </div>
+            `;
+            appContainer.innerHTML = resultHtml;
+            const restartBtn = document.getElementById('restartCompleteBtn');
+            if (restartBtn) restartBtn.addEventListener('click', () => {
+                resetFullQuiz();
+                renderCurrentQuestion();
+            });
+        }
+
+        function resetFullQuiz() {
+            // Reset state
+            currentQIndex = 0;
+            userAnswers = new Array(exercises.length).fill(null);
+            answerStatus = new Array(exercises.length).fill(null);
+            quizCompleted = false;
+
+            // Regenerate Part 1 questions with new random nouns
+            const newPart1 = [];
+            const freshPart1 = [...NOUNS].sort(() => Math.random() - 0.5).slice(0, 5);
+            freshPart1.forEach(n => {
+                const options = CAT_KEYS.map(cat => ({ value: cat, label: CAT_SHORT[cat] }));
+                for (let i = options.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                newPart1.push({
+                    type: "category",
+                    part: "Part 1: Identify the Category (Nkyekyɛmu)",
+                    prompt: `Read the Twi word <span class="twi-word">${n.twi}</span>. What category does it belong to? <span style="font-size:0.8rem; font-weight:normal; color:#6f8a7a;">(${n.english})</span>`,
+                    correct: n.category,
+                    options: options,
+                    twiWord: n.twi,
+                    english: n.english
+                });
+            });
+
+            // Regenerate Part 3: Odd One Out
+            const newOddOnes = [];
+            for (let i = 0; i < 5; i++) {
+                const q = buildOddOneOut();
+                const options = q.words.map((w, idx) => ({
+                    value: idx,
+                    label: w,
+                    sub: q.categories[idx]
+                }));
+                newOddOnes.push({
+                    type: "oddoneout",
+                    part: "Part 3: Odd One Out (Ebi Frapɔn)",
+                    prompt: `Which word does <strong>NOT</strong> belong with the others? (Find the Odd One Out)`,
+                    correct: q.correctIndex,
+                    options: options,
+                    majorityCategory: q.majorityCategory,
+                    oddCategory: q.oddCategory,
+                    words: q.words
+                });
+            }
+
+            // Keep Part 2 questions as-is but reshuffle options
+            const part2Questions = exercises.filter(e => e.type === "fillblank");
+            part2Questions.forEach(q => {
+                const shuffled = [...q.options.map(o => o.value)];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                q.options = shuffled.map(opt => ({ value: opt, label: opt }));
+            });
+
+            // Combine all exercises
+            let newExercises = [...newPart1, ...part2Questions, ...newOddOnes];
+            // Shuffle all
+            for (let i = newExercises.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newExercises[i], newExercises[j]] = [newExercises[j], newExercises[i]];
+            }
+
+            // Replace exercises array
+            exercises.length = 0;
+            exercises.push(...newExercises);
+        }
+
+        function restartQuiz() {
+            resetFullQuiz();
+            renderCurrentQuestion();
+        }
+
+        // Initial render
+        renderCurrentQuestion();
+    </script>
+</body>
+</html>
