@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Speak Ghana • Twi Chapter 2: Greetings & Introductions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 2rem 2rem 2rem 2rem;
+        }
+
+        .chapter-header {
+            border-bottom: 3px solid #2A9D8F;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+        h1 {
+            font-size: 1.9rem;
+            color: #2A9D8F;
+            letter-spacing: -0.3px;
+        }
+        .chapter-badge {
+            background: #E76F51;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .sub {
+            color: #4b6a5e;
+            margin-top: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .section-card {
+            background: #FEF9F0;
+            border-radius: 32px;
+            padding: 1.6rem 2rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: all 0.2s;
+            border: 1px solid #f0e5d8;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.4rem;
+            border-left: 6px solid #2A9D8F;
+            padding-left: 1.2rem;
+        }
+        .section-letter {
+            background: #2A9D8F;
+            color: white;
+            width: 42px;
+            height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+        .section-title h2 {
+            font-size: 1.7rem;
+            color: #1e3a38;
+        }
+
+        .passage-box {
+            background: #fff6e8;
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 1px solid #f0dbb4;
+            margin: 1rem 0 1.5rem 0;
+            font-family: 'Courier New', 'SF Mono', monospace;
+        }
+        .twi-passage {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            font-weight: 500;
+            color: #1f3b37;
+        }
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 0.8rem;
+            margin: 1.2rem 0;
+        }
+        .vocab-item {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border: 1px solid #e2d9ce;
+            font-size: 0.9rem;
+        }
+        .twi-word {
+            font-weight: 700;
+            color: #2A9D8F;
+        }
+        .eng-def {
+            color: #555;
+        }
+
+        .question-box {
+            background: #eef5f2;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            margin-top: 1rem;
+        }
+        .question-list {
+            padding-left: 1.5rem;
+            margin: 0.8rem 0;
+        }
+        .question-list li {
+            margin: 0.6rem 0;
+            line-height: 1.4;
+        }
+
+        .greeting-table, .intro-table, .phrase-table, .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        .greeting-table th, .intro-table th, .phrase-table th, .grammar-table th {
+            background: #2A9D8F;
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+        }
+        .greeting-table td, .intro-table td, .phrase-table td, .grammar-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e0dbd0;
+        }
+        .mini-dialogue {
+            background: #f9f3e8;
+            padding: 1rem;
+            border-radius: 24px;
+            font-family: monospace;
+            margin: 1rem 0;
+        }
+        .btn-audio-sim {
+            background: #d4a37330;
+            border: 1px solid #d4a373;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            display: inline-block;
+            color: #b87333;
+            cursor: pointer;
+        }
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            border-top: 1px solid #e0d9ce;
+            padding-top: 1.2rem;
+            color: #6c7a6e;
+        }
+        button.close-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 0.5rem;
+        }
+        button.close-btn:hover {
+            background: #b87c4a;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.2rem;
+            }
+            .section-card {
+                padding: 1.2rem;
+            }
+            .section-title h2 {
+                font-size: 1.3rem;
+            }
+            .twi-passage {
+                font-size: 1rem;
+            }
+        }
+        hr {
+            margin: 1.2rem 0;
+            border-color: #ddd;
+        }
+        .grammar-corner {
+            background: #e3f2ed;
+            border-radius: 28px;
+            padding: 1.5rem;
+            margin: 1.8rem 0 1rem 0;
+            border-left: 8px solid #2A9D8F;
+        }
+        .examples-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+        .example-item {
+            background: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="chapter-header">
+        <div>
+            <h1>Nkyea ne Daadaa Nkɔmmɔdie</h1>
+            <p class="sub">Chapter 2 · Basic Greetings, Politeness & Simple Introductions</p>
+        </div>
+        <div class="chapter-badge">Akwaaba bio</div>
+    </div>
+
+    <!-- SECTION A: KENKAN (READING PASSAGE) + VOCAB + MMUAEƐ -->
+    <div class="section-card" id="sectionA">
+        <div class="section-title">
+            <span class="section-letter">A</span>
+            <h2>Kenkan · Reading Passage</h2>
+        </div>
+        <div class="passage-box">
+            <div class="twi-passage">
+                <p><strong>Dabi anɔpa, Kofi kɔɔ efie.</strong><br>
+                Ɔhyiaa ne yɔnko Ama.<br>
+                Kofi kaa sɛ:<br>
+                “Maakye Ama! Wo ho te sɛn?”<br>
+                Ama buae sɛ:<br>
+                “Maakye Kofi! Me ho yɛ. Mepa wo kyɛw, wo nso ɛ? Me din de Ama. Na wo din de sɛn?”<br>
+                Kofi kaa sɛ:<br>
+                “Me din de Kofi. Ɛyɛ me anigyeɛ sɛ mehyiaa wo. Meda wo ase.”<br>
+                Ama kaa sɛ:<br>
+                “Meda wo nso ase. Yɛbɛhyia bio!”<br>
+                Wɔn nyinaa serewee na wɔkɔɔ wɔn kwan.</p>
+            </div>
+        </div>
+
+        <!-- Vocabulary list corrected -->
+        <div>
+            <h3 style="color: #E76F51; margin-bottom: 8px;">Vocabulary from the passage</h3>
+            <div class="vocab-grid">
+                <div class="vocab-item"><span class="twi-word">Dabi anɔpa</span> <span class="eng-def">One morning</span></div>
+                <div class="vocab-item"><span class="twi-word">kɔɔ efie</span> <span class="eng-def">went home</span></div>
+                <div class="vocab-item"><span class="twi-word">hyiaa</span> <span class="eng-def">met</span></div>
+                <div class="vocab-item"><span class="twi-word">yɔnko</span> <span class="eng-def">friend</span></div>
+                <div class="vocab-item"><span class="twi-word">kaa sɛ</span> <span class="eng-def">said that</span></div>
+                <div class="vocab-item"><span class="twi-word">Maakye</span> <span class="eng-def">Good morning</span></div>
+                <div class="vocab-item"><span class="twi-word">Wo ho te sɛn?</span> <span class="eng-def">How are you?</span></div>
+                <div class="vocab-item"><span class="twi-word">Me ho yɛ</span> <span class="eng-def">I am fine</span></div>
+                <div class="vocab-item"><span class="twi-word">Mepa wo kyɛw</span> <span class="eng-def">Please / Excuse me</span></div>
+                <div class="vocab-item"><span class="twi-word">wo nso ɛ?</span> <span class="eng-def">And you?</span></div>
+                <div class="vocab-item"><span class="twi-word">Me din de ...</span> <span class="eng-def">My name is ...</span></div>
+                <div class="vocab-item"><span class="twi-word">Na wo din de sɛn?</span> <span class="eng-def">What is your name?</span></div>
+                <div class="vocab-item"><span class="twi-word">Ɛyɛ me anigyeɛ sɛ mehyia wo</span> <span class="eng-def">I am happy to meet you</span></div>
+                <div class="vocab-item"><span class="twi-word">Meda wo ase</span> <span class="eng-def">Thank you</span></div>
+                <div class="vocab-item"><span class="twi-word">Meda wo nso ase</span> <span class="eng-def">Thank you too</span></div>
+                <div class="vocab-item"><span class="twi-word">Yɛbɛhyia bio</span> <span class="eng-def">We will meet again</span></div>
+                <div class="vocab-item"><span class="twi-word">serewee</span> <span class="eng-def">smiled / laughed</span></div>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <h4>Nsɛm Nhwehwɛmu (Comprehension Questions)</h4>
+            <ul class="question-list">
+                <li>1. Dabi anɔpa, Kofi kɔɔ ɛhe? (Where did Kofi go?)</li>
+                <li>2. Kofi hyiaa obi? (Did Kofi meet someone?)</li>
+                <li>3. Kofi din de sɛn? (What is Kofi's name?)</li>
+                <li>4. Ama buae sɛ “Me ho yɛ”. Ɛkyerɛ sɛn? (What does “Me ho yɛ” mean?)</li>
+                <li>5. Kofi kaa “Meda wo ase”. Ɛkyerɛ sɛn? (What does “Meda wo ase” mean?)</li>
+                <li>6. Wɔn nyinaa yɛɛ dɛn awiei no? (What did they all do at the end?)</li>
+            </ul>
+            <details style="margin-top: 12px; cursor: pointer;">
+                <summary style="color: #2A9D8F; font-weight: 600;">Check answers (click)</summary>
+                <div style="background: white; padding: 12px; border-radius: 20px; margin-top: 8px;">
+                    1. Kofi kɔɔ efie (went home).<br>
+                    2. Ɔhyiaa ne yɔnko Ama (He met his friend Ama).<br>
+                    3. Ne din de Kofi (His name is Kofi).<br>
+                    4. “Me ho yɛ” means “I am fine”.<br>
+                    5. “Meda wo ase” means “Thank you”.<br>
+                    6. Wɔn nyinaa serewii na wɔkɔɔ wɔn kwan (They all smiled and went their way).
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <!-- SECTION B: GREETINGS, RESPECT, MMUAEƐ (RESPONSES) -->
+    <div class="section-card" id="sectionB">
+        <div class="section-title">
+            <span class="section-letter">B</span>
+            <h2>Nkyea ne Mmuaeɛ · Greetings & Responses</h2>
+        </div>
+        <p>Greetings honor the person and show obuo (respect). In Ghana, always greet elders first and reply warmly.</p>
+        
+        <table class="greeting-table">
+            <thead><tr><th>English</th><th>Formal Twi</th><th>Short/Informal</th><th>Pronunciation tip</th></tr></thead>
+            <tbody>
+                <tr><td>Good morning</td><td>Mema wo akye</td><td>Maakye</td><td>mah-chye</td></tr>
+                <tr><td>Good afternoon</td><td>Mema wo aha</td><td>Maaha</td><td>mah-hah</td></tr>
+                <tr><td>Good evening</td><td>Mema wo adwo</td><td>Maadwo</td><td>mah-jwo</td></tr>
+                <tr><td>Welcome (singular)</td><td>Akwaaba</td><td>—</td><td>ah-kwah-bah</td></tr>
+                <tr><td>Welcome (plural)</td><td>Mema mo akwaaba</td><td>—</td><td>meh-mah moh ah-kwah-bah</td></tr>
+            </tbody>
+        </table>
+
+        <h4 style="margin-top: 1rem;">How are you? & Natural Replies</h4>
+        <table class="greeting-table">
+            <thead><tr><th>Twi</th><th>English</th></tr></thead>
+            <tbody>
+                <tr><td>Wo ho te sɛn?</td><td>How are you?</td></tr>
+                <tr><td>Me ho yɛ / Ɛyɛ yie</td><td>I'm fine / It's good</td></tr>
+                <tr><td>Nyame adom</td><td>By God's grace</td></tr>
+                <tr><td>Nyame adom, me ho yɛ</td><td>By God's grace, I am fine</td></tr>
+                <tr><td>Bɔkɔɔ</td><td>Cool / calm</td></tr>
+                <tr><td>Na wo nsoɛ? / wo nso ɛ?</td><td>And you?</td></tr>
+            </tbody>
+        </table>
+
+        <div style="background: #fff2e2; border-radius: 24px; padding: 1rem; margin: 1rem 0;">
+            <span style="font-weight: bold;">Respectful responses to elders:</span><br>
+            → To elder man: <span class="twi-word">Yaa agya</span> (Thank you, father)<br>
+            → To elder woman: <span class="twi-word">Yaa ɛna</span> (Thank you, mother)<br>
+            → To peer/sibling: <span class="twi-word">Yaa nua</span><br>
+            → General group reply: <span class="twi-word">Yaanom!</span>
+        </div>
+
+        <div class="mini-dialogue">
+            <p><strong>Example: Greeting an elder</strong><br>
+            <span class="twi-word">Mema wo akye, agya! Wo ho te sɛn?</span><br>
+            <span class="twi-word">Yaa, me ba! Nyame adom, me ho yɛ. Na wo nsoɛ?</span><br>
+            <span class="twi-word">Bɔkɔɔ, medaase.</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- SECTION C: INTRODUCTIONS + POLITE PHRASES -->
+    <div class="section-card" id="sectionC">
+        <div class="section-title">
+            <span class="section-letter">C</span>
+            <h2>Me Ho Ntotoho · Introductions & Polite Phrases</h2>
+        </div>
+        <p>Now you can introduce yourself with confidence. Use these patterns in markets, churches, or at family gatherings.</p>
+        <table class="intro-table">
+            <thead><tr><th>Twi</th><th>English</th></tr></thead>
+            <tbody>
+                <tr><td>Me din de ______</td><td>My name is ______</td></tr>
+                <tr><td>Wo din de sɛn?</td><td>What is your name?</td></tr>
+                <tr><td>Wɔfrɛ wo sɛn?</td><td>What do they call you?</td></tr>
+                <tr><td>Mefiri ______</td><td>I am from ______</td></tr>
+                <tr><td>Wofiri ɛhe?</td><td>Where are you from?</td></tr>
+                <tr><td>Mete ______</td><td>I live in ______</td></tr>
+                <tr><td>Wote ɛhe?</td><td>Where do you live?</td></tr>
+                <tr><td>Ɛyɛ me anigyeɛ sɛ mehyia wo</td><td>Nice to meet you</td></tr>
+            </tbody>
+        </table>
+
+        <h4>Politeness Words (Everyday Magic)</h4>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">Medaase / Me da wo ase</span><span class="eng-def">Thank you</span></div>
+            <div class="vocab-item"><span class="twi-word">Mepa wo kyɛw</span><span class="eng-def">Please / excuse me</span></div>
+            <div class="vocab-item"><span class="twi-word">Da yie</span><span class="eng-def">Good night / sleep well</span></div>
+            <div class="vocab-item"><span class="twi-word">Aane</span><span class="eng-def">Yes</span></div>
+            <div class="vocab-item"><span class="twi-word">Daabi</span><span class="eng-def">No</span></div>
+            <div class="vocab-item"><span class="twi-word">Yɛbɛhyia bio</span><span class="eng-def">We'll meet again / goodbye</span></div>
+            <div class="vocab-item"><span class="twi-word">Nante yie</span><span class="eng-def">Safe journey</span></div>
+            <div class="vocab-item"><span class="twi-word">Ayekoo</span><span class="eng-def">Well done</span></div>
+            <div class="vocab-item"><span class="twi-word">Ɛdeɛn?</span><span class="eng-def">What? (alternative)</span></div>
+        </div>
+
+        <h4>Everyday Helpers</h4>
+        <table class="phrase-table">
+            <thead><tr><th>Twi</th><th>English</th></tr></thead>
+            <tbody>
+                <tr><td>Mete aseɛ</td><td>I understand</td></tr>
+                <tr><td>Mente aseɛ</td><td>I don't understand</td></tr>
+                <tr><td>Ka bio</td><td>Say it again</td></tr>
+                <tr><td>Nkakrankakra</td><td>Slowly / little by little</td></tr>
+                <tr><td>Yoo</td><td>Okay / alright</td></tr>
+                <tr><td>Ɛyɛ</td><td>It's good / Yes</td></tr>
+                <tr><td>Ɛhe?</td><td>Where?</td></tr>
+                <tr><td>Hwan?</td><td>Who?</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- GRAMMAR CORNER: NOUNS (fused as requested) -->
+    <div class="grammar-corner">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1rem;">
+            <span style="background: #2A9D8F; color: white; width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; border-radius: 30px; font-weight: bold;">📘</span>
+            <h3 style="color: #1e3a38;">Grammar Corner · What is a noun?</h3>
+        </div>
+        <p>A noun is a word that is used to identify:</p>
+        <ul style="margin-left: 2rem; margin-top: 0.5rem; margin-bottom: 1rem;">
+            <li>a <strong>person</strong> (e.g. Kofi, Adwoa, Amakye, Ɔsɛe)</li>
+            <li>a <strong>place</strong> (e.g. Koforidua, Kumase, Nkran, Atonsu)</li>
+            <li>a <strong>thing</strong> (e.g. akonnwa (chair), towuro (towel), afe (comb), nwoma (book))</li>
+            <li>an <strong>animal</strong> (e.g. ɔkraman (dog), agyinammoa (cat), abirekyie (goat), pɔnkɔ (horse))</li>
+            <li>an <strong>idea, quality, or state</strong> (e.g. nokorɛ (truth), anigyeɛ (happiness), awerɛhoɔ (sadness))</li>
+        </ul>
+        
+        <h4 style="margin: 1rem 0 0.5rem 0;">Examples of Twi Nouns</h4>
+        <div class="examples-list">
+            <div class="example-item"><span class="twi-word">Person:</span> Yaw, buroni, bibini, Opoku, Konadu, Asumadu, Ama, Akosua, Kwabena, Kwadwo, ɔsɔfo, ɔkyerɛkyerɛni, ɔsraani, ɔtomfoɔ, Yaa, Boafo</div>
+            <div class="example-item"><span class="twi-word">Place:</span> Amɛreka, aburokyire, Abibirem, ayaresabea, asieeɛ, Sunyani, Berekum, Tafo, Kɔnɔngo, Bepɔso, mmarahyɛ badwam</div>
+            <div class="example-item"><span class="twi-word">Thing:</span> krataa, ahoma, toa, didipono, ntoma, mpaboa, kasafidie, dadeɛ, kyiniiɛ</div>
+            <div class="example-item"><span class="twi-word">Animal:</span> akokɔ, tɛfrɛ, odwan, kɔtɔ, dɛnkyɛm, ntontom, afunumu pɔnkɔ, ɔwɔ</div>
+            <div class="example-item"><span class="twi-word">Idea/quality/state:</span> ahummɔborɔ, ahoɔfɛ, animuonyam, abufuo</div>
+        </div>
+        <p style="margin-top: 0.8rem; font-size: 0.85rem; font-style: italic;">Nouns are the foundation of every sentence. In Twi, nouns don't change form for gender, but they can be pluralized by adding prefix "nn-" or changing tone.</p>
+    </div>
+
+    <!-- SECTION D: DIALOGUES + EXERCISES (no numbers section, no Chapter 3 mention) -->
+    <div class="section-card" id="sectionD">
+        <div class="section-title">
+            <span class="section-letter">D</span>
+            <h2>Nkɔmmɔdie ne Nsɛmmisa · Dialogues & Practice</h2>
+        </div>
+        <p><strong>Role-play — practice aloud with a friend or record yourself.</strong></p>
+        
+        <div class="mini-dialogue">
+            <p><strong>Dialogue 1: Morning Meeting (Peers)</strong><br>
+            A: Maakye! Wo ho te sɛn?<br>
+            B: Yaa nua! Nyame adom, me ho yɛ. Na wo nsoɛ?<br>
+            A: Nyame adom, ɛyɛ. Wo din de sɛn?<br>
+            B: Me din de Kofi. Na wo nsoɛ?<br>
+            A: Me din de Ama. Ɛyɛ me anigyeɛ sɛ mehyia wo!<br>
+            B: Yɛbɛhyia bio.
+            </p>
+        </div>
+
+        <div class="mini-dialogue">
+            <p><strong>Dialogue 2: Greeting an Elder (Worekyea panin)</strong><br>
+            A: Mema wo akye, agya! Wo ho te sɛn?<br>
+            B: Yaa me ba! Nyame adom, me ho yɛ.<br>
+            A: Medaase, agya. Yɛbɛhyia bio.<br>
+            B: Yoo, nante yie.
+            </p>
+        </div>
+
+        <div class="mini-dialogue">
+            <p><strong>Dialogue 3: At the market (Wɔ edwam)</strong><br>
+            A: Maaha! Wo ho te sɛn?<br>
+            B: Yaa! Me ho yɛ. Wopɛ dɛn?<br>
+            A: Mepɛ mako ne gyeene. Ɛsɛn?<br>
+            B: Cedi aduonnu. Medaase.<br>
+            A: Yoo, medaase.
+            </p>
+        </div>
+
+        <hr>
+        <h3>Practice Exercises (Build your fluency)</h3>
+        <div class="question-box">
+            <ol class="question-list" style="list-style-type: decimal;">
+                <li><strong>Matching:</strong> Connect the greeting to the correct time: (1) Mema wo akye – (Morning) , Mema wo adwo – (Evening), Mema wo aha – (Afternoon).</li>
+                <li><strong>Fill the blank:</strong> A: Maakye! Wo ho te sɛn? B: ________ (answer “I’m fine”).</li>
+                <li><strong>Introduce yourself:</strong> Write a short self-introduction in Twi: your name, where you’re from, and say “nice to meet you”.</li>
+                <li><strong>Syllable drill:</strong> Break these into syllables: <span class="twi-word">Akwaaba, Mema wo akye, Medaase, Yɛbɛhyia bio.</span></li>
+                <li><strong>Translation:</strong> “Good morning, how are you?” / “My name is… Thank you very much!”</li>
+                <li><strong>Noun identification:</strong> Find 3 nouns in the passage (e.g. Kofi, Ama, efie) and tell if they are person/place/thing.</li>
+            </ol>
+            <details>
+                <summary style="color:#2A9D8F; font-weight:500;">Suggested answers (partial)</summary>
+                <div style="background:white; border-radius: 20px; padding: 10px; margin-top: 8px;">
+                    2. “Me ho yɛ” / “Nyame adom, me ho yɛ”<br>
+                    3. Example: “Me din de James. Mefiri Canada. Ɛyɛ me anigyeɛ sɛ mehyia wo.”<br>
+                    4. A-kwaa-ba, Me-ma wo a-kye, Me-daa-se, Yɛ-bɛ-hyi-a bi-o.<br>
+                    5. “Maakye! Wo ho te sɛn?” “Me din de … Medaase!”<br>
+                    6. Kofi (person), Ama (person), efie (place/thing).
+                </div>
+            </details>
+        </div>
+
+        <div class="footer-note">
+            <p><span class="btn-audio-sim" onclick="speakPhrase('Maakye! Wo ho te sɛn?')">🔊 Hear: Maakye! Wo ho te sɛn?</span> 
+            <span class="btn-audio-sim" onclick="speakPhrase('Medaase, me ho yɛ')">🔊 Medaase, me ho yɛ</span>
+            <span class="btn-audio-sim" onclick="speakPhrase('Ɛyɛ me anigyeɛ sɛ mehyia wo')">🔊 Nice to meet you</span></p>
+            <p><strong>Chapter 2 Summary</strong>: Time-of-day greetings, respectful responses, self-introductions, politeness markers, noun basics, and real-life dialogues. Kɔ so sua! (Keep learning!)</p>
+        </div>
+        <div style="text-align: center; margin-top: 0.8rem;">
+            <button class="close-btn" onclick="window.close()">Close chapter</button>
+        </div>
+    </div>
+    <p style="font-size: 0.7rem; text-align: center; margin-top: 1rem; color: #a2b9b0;">Speak Ghana — Chapter 2: Greetings & Introductions | Grammar Corner: Nouns</p>
+</div>
+
+<script>
+    function speakPhrase(phrase) {
+        if ('speechSynthesis' in window) {
+            let utterance = new SpeechSynthesisUtterance(phrase);
+            utterance.lang = 'tw';
+            utterance.rate = 0.85;
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(utterance);
+        } else {
+            alert("🔊 " + phrase);
+        }
+    }
+    // make all .twi-word clickable for audio practice
+    document.querySelectorAll('.twi-word').forEach(el => {
+        if(!el.hasAttribute('data-listener')) {
+            el.setAttribute('data-listener', 'true');
+            el.addEventListener('click', (e) => {
+                let text = e.currentTarget.innerText.trim();
+                if(text && text !== 'Twi' && text !== 'Person:' && text !== 'Place:' && text !== 'Thing:' && text !== 'Animal:') {
+                    speakPhrase(text);
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
