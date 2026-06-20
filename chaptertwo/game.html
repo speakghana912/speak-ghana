@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Twi Noun Spinner - Guess & Reveal | Vocabulary Game</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background: linear-gradient(145deg, #1e5a3a 0%, #0a3b24 100%);
+            font-family: 'Segoe UI', 'Poppins', 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .game-container {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(255,248,225,0.95);
+            border-radius: 70px 70px 60px 60px;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,200,0.6);
+            padding: 20px 25px 35px 25px;
+            backdrop-filter: blur(1px);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 0 0 5px;
+            color: #ffefc0;
+            text-shadow: 4px 4px 0 #9b4b1e;
+            letter-spacing: 2px;
+            background: #2c5a2e80;
+            display: inline-block;
+            width: 100%;
+            border-radius: 60px;
+            padding: 8px 12px;
+        }
+
+        .sub {
+            text-align: center;
+            font-weight: bold;
+            color: #f9e0a0;
+            background: #2b482b;
+            display: inline-block;
+            width: auto;
+            margin: 0 auto 20px;
+            padding: 6px 24px;
+            border-radius: 40px;
+            font-size: 1rem;
+            box-shadow: inset 0 1px 3px #c9a87b;
+        }
+
+        .wheel-area {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 20px 0 25px;
+        }
+
+        .wheel-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            flex: 1 1 460px;
+        }
+
+        canvas {
+            background: #fef2e0;
+            border-radius: 50%;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.5), 0 0 0 12px #f3cd81, 0 0 0 14px #b97f2e;
+            transition: box-shadow 0.2s;
+            width: 100%;
+            height: auto;
+            max-width: 460px;
+            cursor: pointer;
+        }
+
+        .quiz-panel {
+            flex: 1 1 320px;
+            background: #fdf8ed;
+            border-radius: 56px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: inset 0 0 0 2px #fff8e7, 0 12px 20px rgba(0,0,0,0.2);
+        }
+
+        .question-card {
+            background: #2c2118;
+            border-radius: 48px;
+            padding: 20px 15px;
+            margin-bottom: 20px;
+        }
+
+        .question-label {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            color: #ffd78c;
+            font-weight: bold;
+        }
+
+        .twi-word {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: #f7d98c;
+            color: #2d2b1f;
+            display: inline-block;
+            padding: 0.2rem 1.2rem;
+            border-radius: 60px;
+            margin: 15px 0 10px;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+
+        .category-hint {
+            background: #e6b87e;
+            display: inline-block;
+            padding: 5px 18px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #2d2b0e;
+            font-weight: bold;
+        }
+
+        .answer-area {
+            background: #e9dbbc;
+            border-radius: 40px;
+            padding: 15px;
+            margin: 20px 0;
+            transition: all 0.2s;
+        }
+
+        .answer-hidden {
+            background: #c9b282;
+            color: #c9b282;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 50px;
+            padding: 12px;
+            font-size: 1.2rem;
+            transition: 0.1s linear;
+        }
+
+        .answer-hidden span {
+            visibility: hidden;
+        }
+
+        .answer-hidden::before {
+            content: "❓ CLICK TO REVEAL ANSWER ❓";
+            visibility: visible;
+            display: block;
+            color: #2d2418;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .answer-visible {
+            background: #4c7a3a;
+            color: #fff3cf;
+            padding: 15px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .meaning-text {
+            font-size: 1.3rem;
+            word-break: break-word;
+        }
+
+        button {
+            background: #e6a157;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 12px 28px;
+            border-radius: 50px;
+            margin: 8px 8px;
+            cursor: pointer;
+            transition: 0.05s linear;
+            box-shadow: 0 5px 0 #7a3e1a;
+            color: #2c1a0a;
+            font-family: inherit;
+        }
+
+        button:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #7a3e1a;
+        }
+
+        .spin-btn {
+            background: #f5bc70;
+            font-size: 1.7rem;
+            padding: 12px 28px;
+            box-shadow: 0 7px 0 #9b571f;
+        }
+
+        .reset-btn {
+            background: #a4bf7a;
+            box-shadow: 0 5px 0 #557a2c;
+            color: #263f0c;
+        }
+
+        .vocab-list {
+            margin-top: 30px;
+            background: #ebddb0;
+            border-radius: 50px;
+            padding: 20px 20px;
+        }
+
+        .vocab-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding-left: 15px;
+            color: #482a1a;
+            border-left: 12px solid #c7792e;
+            margin-bottom: 15px;
+        }
+
+        .badge-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 6px;
+        }
+
+        .noun-chip {
+            background: #fff4e2;
+            border-radius: 40px;
+            padding: 8px 18px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            color: #1b3c21;
+            font-family: monospace;
+            border-left: 6px solid #bc8f4b;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.75rem;
+            margin-top: 20px;
+            color: #fff2cf;
+            background: #3b2a1e80;
+            border-radius: 40px;
+            padding: 6px;
+        }
+
+        @media (max-width: 850px) {
+            .twi-word { font-size: 2.2rem; }
+            button { font-size: 1.2rem; padding: 8px 18px; }
+            .spin-btn { font-size: 1.4rem; }
+            .meaning-text { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <h1>🌀 TWI NOUN SPINNER 🌀</h1>
+    <div style="text-align: center;"><span class="sub">✨ SPIN · GUESS · REVEAL ✨</span></div>
+
+    <div class="wheel-area">
+        <div class="wheel-wrapper">
+            <canvas id="wheelCanvas" width="500" height="500"></canvas>
+        </div>
+        <div class="quiz-panel">
+            <div class="question-card">
+                <div class="question-label">🎲 CURRENT QUESTION 🎲</div>
+                <div class="twi-word" id="currentTwiWord">—</div>
+                <div id="categoryBadge" class="category-hint">👤 ?</div>
+            </div>
+            <div id="answerBox" class="answer-area answer-hidden">
+                <div id="answerMeaning" class="meaning-text">???</div>
+            </div>
+            <div>
+                <button id="spinButton" class="spin-btn">🎡 SPIN THE WHEEL 🎡</button>
+                <button id="resetSpinBtn" class="reset-btn">🔄 NEW RANDOM WORD</button>
+            </div>
+            <p style="font-size:0.8rem; margin-top: 12px;"><i>👉 Click wheel or press SPIN | Click grey box to see answer</i></p>
+        </div>
+    </div>
+
+    <div class="vocab-list">
+        <div class="vocab-title">📚 ALL TWI IMPROPER NOUNS (Common Nouns)</div>
+        <div class="badge-grid" id="vocabGrid"></div>
+        <div style="text-align: center; font-size: 0.75rem; margin-top: 10px;">⭐ Person · Place · Thing · Animal ⭐</div>
+    </div>
+    <footer>🎓 Game rules: Spin → Read the Twi word → Guess meaning → Click answer box to check!</footer>
+</div>
+
+<script>
+    // --------------------------------------------------------------
+    // FULL DATABASE: Twi improper nouns (common nouns) with categories & meanings
+    // No answers shown initially; only after click on answer area
+    // --------------------------------------------------------------
+    const NOUNS_DB = [
+        // PERSON
+        { word: "buroni", category: "person", meaning: "foreigner / white person" },
+        { word: "bibini", category: "person", meaning: "black person" },
+        { word: "ɔsɔfo", category: "person", meaning: "priest / pastor" },
+        { word: "ɔkyerɛkyerɛni", category: "person", meaning: "teacher" },
+        { word: "ɔsraani", category: "person", meaning: "soldier" },
+        { word: "ɔtomfoɔ", category: "person", meaning: "blacksmith" },
+        { word: "boafo", category: "person", meaning: "helper / assistant" },
+        { word: "ɔbarima", category: "person", meaning: "man" },
+        { word: "ɔbea", category: "person", meaning: "woman" },
+        { word: "abofra", category: "person", meaning: "child" },
+        { word: "ɔdwomtoni", category: "person", meaning: "singer" },
+        { word: "ɔfotufoɔ", category: "person", meaning: "advisor" },
+        // PLACE
+        { word: "ayaresabea", category: "place", meaning: "hospital" },
+        { word: "asieeɛ", category: "place", meaning: "cemetery / grave" },
+        { word: "bepɔso", category: "place", meaning: "mountain" },
+        { word: "mmarahyɛ badwam", category: "place", meaning: "parliament house" },
+        { word: "sukuu", category: "place", meaning: "school" },
+        { word: "dwabɔ", category: "place", meaning: "market" },
+        { word: "tema", category: "place", meaning: "harbour / port city" },
+        { word: "nkyene", category: "place", meaning: "salt pond" },
+        { word: "ɔpon", category: "place", meaning: "door / gateway (location)" },
+        { word: "fie", category: "place", meaning: "home / house" },
+        { word: "nkwantan", category: "place", meaning: "crossroads / junction" },
+        // THING
+        { word: "krataa", category: "thing", meaning: "paper" },
+        { word: "ahoma", category: "thing", meaning: "rope / string" },
+        { word: "toa", category: "thing", meaning: "basket" },
+        { word: "didipono", category: "thing", meaning: "dining table" },
+        { word: "ntoma", category: "thing", meaning: "cloth / fabric" },
+        { word: "mpaboa", category: "thing", meaning: "shoes" },
+        { word: "kasafidie", category: "thing", meaning: "radio / speaker device" },
+        { word: "dadeɛ", category: "thing", meaning: "iron / metal" },
+        { word: "kyiniiɛ", category: "thing", meaning: "spoon" },
+        { word: "akonnwa", category: "thing", meaning: "chair" },
+        { word: "towuro", category: "thing", meaning: "towel" },
+        { word: "afe", category: "thing", meaning: "comb" },
+        { word: "nwoma", category: "thing", meaning: "book" },
+        { word: "kanea", category: "thing", meaning: "lamp / light" },
+        { word: "sika", category: "thing", meaning: "money" },
+        // ANIMAL
+        { word: "ɔkraman", category: "animal", meaning: "dog" },
+        { word: "agyinammoa", category: "animal", meaning: "cat" },
+        { word: "abirekyie", category: "animal", meaning: "goat" },
+        { word: "pɔnkɔ", category: "animal", meaning: "horse" },
+        { word: "akokɔ", category: "animal", meaning: "hen / chicken" },
+        { word: "tɛfrɛ", category: "animal", meaning: "sheep" },
+        { word: "odwan", category: "animal", meaning: "ram / sheep" },
+        { word: "kɔtɔ", category: "animal", meaning: "crab" },
+        { word: "dɛnkyɛm", category: "animal", meaning: "crocodile" },
+        { word: "ntontom", category: "animal", meaning: "mosquito" },
+        { word: "afunumu", category: "animal", meaning: "donkey" },
+        { word: "ɔwɔ", category: "animal", meaning: "snake" },
+        { word: "samanfo", category: "animal", meaning: "owl (spiritual)" },
+        { word: "pataku", category: "animal", meaning: "lizard" }
+    ];
+
+    // WHEEL SEGMENTS using all nouns (spin selects one of them)
+    const SEGMENTS = [...NOUNS_DB];
+    const PI = Math.PI;
+    const TAU = PI * 2;
+    
+    let canvas = document.getElementById('wheelCanvas');
+    let ctx = canvas.getContext('2d');
+    let currentRotation = 0;
+    let spinning = false;
+    let animationId = null;
+    let spinStartTime = 0;
+    let spinDuration = 1600; // ms smooth spin
+    let finalRotation = 0;
+    
+    // UI elements
+    const currentTwiWordSpan = document.getElementById('currentTwiWord');
+    const categoryBadgeSpan = document.getElementById('categoryBadge');
+    const answerBox = document.getElementById('answerBox');
+    const answerMeaningDiv = document.getElementById('answerMeaning');
+    
+    // current active noun object (the word displayed after spin)
+    let currentNoun = null;
+    
+    // Helper: update display with noun (answer hidden by default)
+    function displayQuestionFromNoun(noun) {
+        if (!noun) return;
+        currentNoun = noun;
+        currentTwiWordSpan.innerText = noun.word;
+        // show category hint but not meaning
+        let catIcon = "";
+        if (noun.category === "person") catIcon = "👤 ";
+        else if (noun.category === "place") catIcon = "📍 ";
+        else if (noun.category === "thing") catIcon = "📦 ";
+        else catIcon = "🐾 ";
+        categoryBadgeSpan.innerHTML = `${catIcon}${noun.category.toUpperCase()}`;
+        
+        // reset answer area to HIDDEN state (no meaning visible)
+        answerBox.classList.remove("answer-visible");
+        answerBox.classList.add("answer-hidden");
+        answerMeaningDiv.innerText = noun.meaning;  // store meaning but hidden by parent styling
+        // the answer-hidden class hides the inner text via CSS (visibility hidden)
+        // We need to ensure that the text is not visible until click.
+    }
+    
+    // reveal answer (triggered by clicking answer area)
+    function revealAnswer() {
+        if (!currentNoun) return;
+        if (answerBox.classList.contains("answer-hidden")) {
+            answerBox.classList.remove("answer-hidden");
+            answerBox.classList.add("answer-visible");
+            // ensure meaning text is shown (already stored)
+            answerMeaningDiv.innerText = currentNoun.meaning;
+        } else {
+            // optional: if visible and click again? nothing, but we allow "hide"? better keep visible.
+            // But spec says answer appears after click; keep shown once revealed.
+        }
+    }
+    
+    // reset answer to hidden for new question
+    function resetAnswerHidden() {
+        if (answerBox.classList.contains("answer-visible")) {
+            answerBox.classList.remove("answer-visible");
+        }
+        answerBox.classList.add("answer-hidden");
+        if (currentNoun) {
+            answerMeaningDiv.innerText = currentNoun.meaning;
+        } else {
+            answerMeaningDiv.innerText = "???";
+        }
+    }
+    
+    // draw wheel with current rotation
+    function drawWheel() {
+        if (!ctx) return;
+        const segCount = SEGMENTS.length;
+        const angleStep = TAU / segCount;
+        const w = canvas.width;
+        const h = canvas.height;
+        const centerX = w/2;
+        const centerY = h/2;
+        const radius = w * 0.44;
+        ctx.clearRect(0, 0, w, h);
+        
+        for (let i = 0; i < segCount; i++) {
+            const start = i * angleStep + currentRotation;
+            const end = (i+1) * angleStep + currentRotation;
+            const noun = SEGMENTS[i];
+            let color = "";
+            if (noun.category === "person") color = "#FFB347";
+            else if (noun.category === "place") color = "#6A9C78";
+            else if (noun.category === "thing") color = "#5D9BD5";
+            else color = "#D96C6C";
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, radius, start, end);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.save();
+            ctx.shadowBlur = 0;
+            ctx.strokeStyle = "#fff2cf";
+            ctx.lineWidth = 1.8;
+            ctx.stroke();
+            ctx.restore();
+            // draw label
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate(start + angleStep/2);
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            let label = noun.word;
+            if (label.length > 12) label = label.slice(0,10)+"..";
+            let fontSize = Math.max(11, Math.floor(radius * 0.11));
+            ctx.font = `bold ${fontSize}px "Segoe UI", "Tw", monospace`;
+            ctx.fillStyle = "#1e2a1a";
+            ctx.fillText(label, radius * 0.68, 6);
+            ctx.restore();
+        }
+        // inner circle & marker
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius*0.13, 0, TAU);
+        ctx.fillStyle = "#f7d96b";
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY - radius - 8);
+        ctx.lineTo(centerX-14, centerY - radius + 12);
+        ctx.lineTo(centerX+14, centerY - radius + 12);
+        ctx.fillStyle = "#f0b27a";
+        ctx.fill();
+        ctx.fillStyle = "#34200c";
+        ctx.font = "bold 20px monospace";
+        ctx.fillText("▲", centerX-7, centerY - radius - 3);
+    }
+    
+    // get index under the top marker (fixed angle = -PI/2)
+    function getCurrentSegmentIndex() {
+        const angleStep = TAU / SEGMENTS.length;
+        let markerAngle = -PI/2;
+        let rawAngle = markerAngle - currentRotation;
+        rawAngle = ((rawAngle % TAU) + TAU) % TAU;
+        let idx = Math.floor(rawAngle / angleStep);
+        return idx % SEGMENTS.length;
+    }
+    
+    // after spin finishes, update question based on selected segment
+    function updateGameFromWheel() {
+        const idx = getCurrentSegmentIndex();
+        const selectedNoun = SEGMENTS[idx];
+        displayQuestionFromNoun(selectedNoun);
+        resetAnswerHidden();
+    }
+    
+    // animation easing
+    function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+    }
+    
+    function startSpin() {
+        if (spinning) return;
+        spinning = true;
+        spinStartTime = performance.now();
+        const extraSpins = 8 + Math.random() * 12; // between 8 and 20 full turns
+        const targetDelta = TAU * extraSpins + (Math.random() * TAU);
+        const startRot = currentRotation;
+        finalRotation = startRot + targetDelta;
+        
+        function step(now) {
+            const elapsed = now - spinStartTime;
+            let t = Math.min(1, elapsed / spinDuration);
+            const easeT = easeOutCubic(t);
+            currentRotation = startRot + (finalRotation - startRot) * easeT;
+            drawWheel();
+            if (t < 1) {
+                animationId = requestAnimationFrame(step);
+            } else {
+                currentRotation = finalRotation % TAU;
+                drawWheel();
+                updateGameFromWheel();
+                spinning = false;
+                if (animationId) cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+        }
+        if (animationId) cancelAnimationFrame(animationId);
+        animationId = requestAnimationFrame(step);
+    }
+    
+    // reset to a random noun without spinning, but reposition wheel accordingly
+    function resetToRandomNoun() {
+        if (spinning) return;
+        const randomIndex = Math.floor(Math.random() * SEGMENTS.length);
+        const targetNoun = SEGMENTS[randomIndex];
+        const angleStep = TAU / SEGMENTS.length;
+        const targetSliceMid = randomIndex * angleStep + angleStep/2;
+        let newRotation = (-PI/2) - targetSliceMid;
+        newRotation = ((newRotation % TAU) + TAU) % TAU;
+        currentRotation = newRotation;
+        drawWheel();
+        displayQuestionFromNoun(targetNoun);
+        resetAnswerHidden();
+    }
+    
+    // spin handler
+    function handleSpin() {
+        if (spinning) return;
+        startSpin();
+    }
+    
+    function handleReset() {
+        if (spinning) return;
+        resetToRandomNoun();
+    }
+    
+    // populate full vocabulary grid (reference list)
+    function buildVocabGrid() {
+        const grid = document.getElementById("vocabGrid");
+        grid.innerHTML = "";
+        SEGMENTS.forEach(item => {
+            const chip = document.createElement("div");
+            chip.className = "noun-chip";
+            let emoji = "";
+            if (item.category === "person") emoji = "🧑 ";
+            else if (item.category === "place") emoji = "🏞️ ";
+            else if (item.category === "thing") emoji = "🔧 ";
+            else emoji = "🐾 ";
+            chip.innerHTML = `${emoji}<strong>${item.word}</strong> <span style="font-size:0.7rem;">(${item.category})</span> <span style="font-size:0.7rem;">— ${item.meaning}</span>`;
+            grid.appendChild(chip);
+        });
+    }
+    
+    // canvas resize & initial draw
+    function resizeCanvas() {
+        const container = document.querySelector('.wheel-wrapper');
+        const maxSize = Math.min(500, window.innerWidth * 0.65);
+        canvas.width = maxSize;
+        canvas.height = maxSize;
+        canvas.style.width = `${maxSize}px`;
+        canvas.style.height = `${maxSize}px`;
+        drawWheel();
+    }
+    
+    // event listeners and initial setup
+    function init() {
+        resizeCanvas();
+        buildVocabGrid();
+        // set initial random noun & wheel orientation
+        const initIndex = Math.floor(Math.random() * SEGMENTS.length);
+        const initNoun = SEGMENTS[initIndex];
+        const angleStep = TAU / SEGMENTS.length;
+        const targetMid = initIndex * angleStep + angleStep/2;
+        currentRotation = ((-PI/2) - targetMid) % TAU;
+        drawWheel();
+        displayQuestionFromNoun(initNoun);
+        resetAnswerHidden();
+        
+        document.getElementById("spinButton").addEventListener('click', handleSpin);
+        document.getElementById("resetSpinBtn").addEventListener('click', handleReset);
+        canvas.addEventListener('click', (e) => {
+            if (!spinning) handleSpin();
+        });
+        // answer reveal logic: click on answer box to toggle/ reveal
+        answerBox.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!currentNoun) return;
+            revealAnswer();
+        });
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+        });
+    }
+    
+    init();
+</script>
+</body>
+</html>
