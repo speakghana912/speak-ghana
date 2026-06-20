@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Speak Ghana • Chapter 2: Greetings & Introductions – Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .chapter-header {
+            border-bottom: 3px solid #2A9D8F;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #2A9D8F;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .chapter-badge {
+            background: #E76F51;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .sub {
+            color: #4b6a5e;
+            margin-top: 0.25rem;
+            font-size: 1rem;
+        }
+
+        /* Exercise sections */
+        .section-card {
+            background: #FEF9F0;
+            border-radius: 32px;
+            padding: 1.6rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #f0e5d8;
+        }
+
+        .section-card h2 {
+            color: #2A9D8F;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            border-left: 5px solid #E76F51;
+            padding-left: 1rem;
+        }
+
+        .section-card h3 {
+            color: #E76F51;
+            font-size: 1.1rem;
+            margin: 1.2rem 0 0.6rem;
+        }
+
+        .section-card p,
+        .section-card li {
+            line-height: 1.6;
+            color: #2d3e2a;
+        }
+
+        .section-card ul,
+        .section-card ol {
+            padding-left: 1.8rem;
+            margin: 0.6rem 0;
+        }
+
+        .section-card li {
+            margin: 0.4rem 0;
+        }
+
+        .fill-blank {
+            background: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 16px;
+            border: 1px dashed #2A9D8F;
+            margin: 0.8rem 0;
+        }
+
+        .fill-blank .blank {
+            display: inline-block;
+            min-width: 120px;
+            border-bottom: 2px solid #E76F51;
+            margin: 0 4px;
+            padding: 0 4px;
+            color: #2A9D8F;
+            font-weight: 600;
+        }
+
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 2rem;
+            margin: 1rem 0;
+            background: white;
+            padding: 1rem;
+            border-radius: 20px;
+        }
+
+        .matching-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .matching-item .twi {
+            font-weight: 700;
+            color: #2A9D8F;
+        }
+
+        .matching-item .eng {
+            color: #6f7a6e;
+        }
+
+        .roleplay-box {
+            background: #fff3e0;
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+        }
+
+        .roleplay-box .speaker {
+            font-weight: 700;
+            color: #E76F51;
+        }
+
+        .tip-box {
+            background: #e8f4f1;
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+        }
+
+        .tip-box strong {
+            color: #2A9D8F;
+        }
+
+        .btn-answer {
+            background: #2A9D8F20;
+            border: 1px solid #2A9D8F;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            color: #2A9D8F;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-answer:hover {
+            background: #2A9D8F;
+            color: white;
+        }
+
+        .answer-box {
+            display: none;
+            background: #f0f7f4;
+            padding: 0.8rem 1rem;
+            border-radius: 16px;
+            margin-top: 0.5rem;
+            border-left: 4px solid #2A9D8F;
+        }
+
+        .answer-box.show {
+            display: block;
+        }
+
+        .close-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .close-btn:hover {
+            background: #b87c4a;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0d9ce;
+            color: #8f9b8a;
+            font-size: 0.75rem;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 1rem;
+            }
+            .section-card {
+                padding: 1rem;
+            }
+            .grid-2col {
+                grid-template-columns: 1fr;
+            }
+            .matching-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chapter-header">
+            <div>
+                <h1>👋 Nkyea ne Daadaa Nkɔmmɔdie</h1>
+                <p class="sub">Chapter 2 · Greetings & Introductions – Practice Exercises</p>
+            </div>
+            <div class="chapter-badge">Ayekoo! · Practice Makes Perfect</div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 1: BUILD YOUR OWN GREETING -->
+        <!-- ============================================================ -->
+        <div class="section-card">
+            <h2>📝 Build Your Own Greeting</h2>
+            <p>Combine what you've learned to create your own greeting dialogue. Fill in the blanks:</p>
+            <div class="fill-blank">
+                <ol style="list-style-type: decimal; padding-left: 1.5rem;">
+                    <li>Greet someone in the morning: <span class="blank">____________</span></li>
+                    <li>Ask how they are: <span class="blank">____________</span></li>
+                    <li>Reply that you're fine: <span class="blank">____________</span></li>
+                    <li>Ask their name: <span class="blank">____________</span></li>
+                    <li>Say your name: <span class="blank">____________</span></li>
+                    <li>Say nice to meet you: <span class="blank">____________</span></li>
+                    <li>Say goodbye: <span class="blank">____________</span></li>
+                </ol>
+                <button class="btn-answer" onclick="toggleAnswer('buildGreeting')">Show Suggested Answers</button>
+                <div id="buildGreeting" class="answer-box">
+                    <strong>Suggested Answers:</strong><br>
+                    1. Maakye! / Mema wo akye<br>
+                    2. Wo ho te sɛn?<br>
+                    3. Me ho yɛ / Nyame adom, me ho yɛ<br>
+                    4. Wo din de sɛn?<br>
+                    5. Me din de [your name]<br>
+                    6. Ɛyɛ me anigyeɛ sɛ mehyia wo<br>
+                    7. Yɛbɛhyia bio / Da yie
+                </div>
+            </div>
+            <p style="margin-top: 0.5rem; font-style: italic;">Now practice this dialogue with a partner!</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 2: MATCHING EXERCISE -->
+        <!-- ============================================================ -->
+        <div class="section-card">
+            <h2>🔗 Matching Exercise</h2>
+            <p>Draw lines matching each greeting to the correct time of day.</p>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="twi">Mema wo akye</span> <span class="eng">→ Evening</span></div>
+                <div class="matching-item"><span class="twi">Mema wo adwo</span> <span class="eng">→ Morning</span></div>
+                <div class="matching-item"><span class="twi">Mema wo aha</span> <span class="eng">→ Afternoon</span></div>
+            </div>
+            <button class="btn-answer" onclick="toggleAnswer('matchingAnswers')">Show Answers</button>
+            <div id="matchingAnswers" class="answer-box">
+                <strong>Correct Matches:</strong><br>
+                • Mema wo akye → Morning<br>
+                • Mema wo adwo → Evening<br>
+                • Mema wo aha → Afternoon
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 3: FILL IN THE BLANK -->
+        <!-- ============================================================ -->
+        <div class="section-card">
+            <h2>✏️ Fill-in-the-Blank</h2>
+            <p>Complete these dialogues with the correct Twi phrase.</p>
+
+            <div class="fill-blank">
+                <p><strong>Dialogue 1:</strong><br>
+                A: Maakye! Wo ho te sɛn?<br>
+                B: <span class="blank">____________</span>
+                </p>
+                <button class="btn-answer" onclick="toggleAnswer('fill1')">Show Answer</button>
+                <div id="fill1" class="answer-box">
+                    <strong>Answer:</strong> Me ho yɛ / Nyame adom, me ho yɛ
+                </div>
+            </div>
+
+            <div class="fill-blank">
+                <p><strong>Dialogue 2:</strong><br>
+                A: Wo din de sɛn?<br>
+                B: <span class="blank">____________</span>
+                </p>
+                <button class="btn-answer" onclick="toggleAnswer('fill2')">Show Answer</button>
+                <div id="fill2" class="answer-box">
+                    <strong>Answer:</strong> Me din de [your name]
+                </div>
+            </div>
+
+            <div class="fill-blank">
+                <p><strong>Dialogue 3:</strong><br>
+                A: Mepa wo kyɛw, <span class="blank">____________</span> ? (What is your name?)<br>
+                B: Me din de Kofi.
+                </p>
+                <button class="btn-answer" onclick="toggleAnswer('fill3')">Show Answer</button>
+                <div id="fill3" class="answer-box">
+                    <strong>Answer:</strong> wo din de sɛn?
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 4: ROLE-PLAY SCENARIOS -->
+        <!-- ============================================================ -->
+        <div class="section-card">
+            <h2>🎭 Role-Play Scenarios</h2>
+            <p>With a partner, practice greeting the following. Record yourself and listen back.</p>
+
+            <div class="roleplay-box">
+                <p><span class="speaker">Scenario 1:</span> Greet an <strong>elder</strong> (use proper respect)</p>
+                <p style="font-size: 0.9rem; color: #5a6a5e;">Hint: Use "agya" for elder man or "ɛna" for elder woman.</p>
+                <button class="btn-answer" onclick="toggleAnswer('roleplay1')">Show Example</button>
+                <div id="roleplay1" class="answer-box">
+                    <strong>Example:</strong><br>
+                    You: Mema wo akye, agya! Wo ho te sɛn?<br>
+                    Elder: Yaa, me ba! Nyame adom, me ho yɛ. Na wo nsoɛ?<br>
+                    You: Nyame adom, me ho yɛ. Medaase, agya.
+                </div>
+            </div>
+
+            <div class="roleplay-box">
+                <p><span class="speaker">Scenario 2:</span> Greet a <strong>friend your age</strong></p>
+                <p style="font-size: 0.9rem; color: #5a6a5e;">Hint: Use "Yaa nua" or just "Yaa" for peers.</p>
+                <button class="btn-answer" onclick="toggleAnswer('roleplay2')">Show Example</button>
+                <div id="roleplay2" class="answer-box">
+                    <strong>Example:</strong><br>
+                    You: Maakye! Wo ho te sɛn?<br>
+                    Friend: Yaa nua! Me ho yɛ. Na wo nsoɛ?<br>
+                    You: Me ho yɛ. Wo din de sɛn?<br>
+                    Friend: Me din de Ama.
+                </div>
+            </div>
+
+            <div class="roleplay-box">
+                <p><span class="speaker">Scenario 3:</span> Greet a <strong>group of people</strong></p>
+                <p style="font-size: 0.9rem; color: #5a6a5e;">Hint: Use "Mema mo nyinaa akwaaba" or "Yaanom!" for group reply.</p>
+                <button class="btn-answer" onclick="toggleAnswer('roleplay3')">Show Example</button>
+                <div id="roleplay3" class="answer-box">
+                    <strong>Example:</strong><br>
+                    You: Mema mo nyinaa akwaaba! Wo ho te sɛn?<br>
+                    Group: Yaanom! Nyame adom, yɛ ho yɛ. Na wo nsoɛ?<br>
+                    You: Me ho yɛ. Medaase.
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 5: SYLLABLE DRILL -->
+        <!-- ============================================================ -->
+        <div class="section-card">
+            <h2>🗣️ Syllable Drill</h2>
+            <p>Break these 5 greetings into syllables and say them with correct tones.</p>
+            <ul>
+                <li><strong>Akwaaba</strong> → <span class="blank" style="min-width:200px;">____________</span></li>
+                <li><strong>Medaase</strong> → <span class="blank" style="min-width:200px;">____________</span></li>
+                <li><strong>Mema wo akye</strong> → <span class="blank" style="min-width:200px;">____________</span></li>
+                <li><strong>Wo ho te sɛn?</strong> → <span class="blank" style="min-width:200px;">____________</span></li>
+                <li><strong>Yɛbɛhyia bio</strong> → <span class="blank" style="min-width:200px;">____________</span></li>
+            </ul>
+            <button class="btn-answer" onclick="toggleAnswer('syllableAnswers')">Show Answers</button>
+            <div id="syllableAnswers" class="answer-box">
+                <strong>Syllable Breakdown:</strong><br>
+                • A-kwaa-ba<br>
+                • Me-daa-se<br>
+                • Me-ma wo a-kye<br>
+                • Wo ho te sɛn?<br>
+                • Yɛ-bɛ-hyi-a bi-o
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 6: TRANSLATION PRACTICE -->
+        <!-- ============================================================ -->
+        <div class="section-card">
+            <h2>🌍 Translation Practice</h2>
+            <p>Translate these sentences into Twi.</p>
+            <ul>
+                <li><strong>Good morning, how are you?</strong> → <span class="blank" style="min-width:200px;">____________</span></li>
+                <li><strong>My name is ______</strong> → <span class="blank" style="min-width:200px;">____________</span></li>
+                <li><strong>Thank you very much!</strong> → <span class="blank" style="min-width:200px;">____________</span></li>
+                <li><strong>Where are you from?</strong> → <span class="blank" style="min-width:200px;">____________</span></li>
+                <li><strong>Nice to meet you</strong> → <span class="blank" style="min-width:200px;">____________</span></li>
+            </ul>
+            <button class="btn-answer" onclick="toggleAnswer('translationAnswers')">Show Answers</button>
+            <div id="translationAnswers" class="answer-box">
+                <strong>Translations:</strong><br>
+                • Maakye / Mema wo akye! Wo ho te sɛn?<br>
+                • Me din de ______<br>
+                • Medaase paapaapa / Meda wo ase paapaapa<br>
+                • Wofiri he? / Wofiri ɛhe?<br>
+                • Ɛyɛ me anigyeɛ sɛ mehyia wo
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 7: CREATE YOUR OWN DIALOGUE -->
+        <!-- ============================================================ -->
+        <div class="section-card">
+            <h2>✍️ Create Your Own Dialogue</h2>
+            <p>Write a short introduction dialogue (4–6 lines) using your name, where you're from, and where you live.</p>
+            <div class="fill-blank" style="min-height:120px;">
+                <p><strong>Your Dialogue:</strong></p>
+                <p style="color: #6f8a7a; font-style: italic;">Write your dialogue here. Include greeting, introduction, and farewell.</p>
+                <br>
+                <p>_________________________________________________</p>
+                <p>_________________________________________________</p>
+                <p>_________________________________________________</p>
+                <p>_________________________________________________</p>
+                <p>_________________________________________________</p>
+            </div>
+            <button class="btn-answer" onclick="toggleAnswer('createDialogue')">Show Example</button>
+            <div id="createDialogue" class="answer-box">
+                <strong>Example Dialogue:</strong><br>
+                A: Maakye! Wo ho te sɛn?<br>
+                B: Me ho yɛ. Na wo nsoɛ?<br>
+                A: Me ho yɛ. Wo din de sɛn?<br>
+                B: Me din de Kofi. Mefiri Kumase. Na wo nso?<br>
+                A: Me din de Ama. Mefiri Nkran nanso mete London.<br>
+                B: Ɛyɛ me anigyeɛ sɛ mehyia wo! Yɛbɛhyia bio.
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 8: EXTRA PRACTICE (NEW) -->
+        <!-- ============================================================ -->
+        <div class="section-card">
+            <h2>➕ Extra Practice</h2>
+
+            <h3>🔊 Pronunciation Practice</h3>
+            <p>Read these phrases aloud 3 times each. Focus on the tones.</p>
+            <ul>
+                <li><strong>Mema wo akye, agya.</strong> (Good morning, sir.)</li>
+                <li><strong>Yaa ɛna, me ho yɛ.</strong> (Thank you, ma, I am fine.)</li>
+                <li><strong>Mepa wo kyɛw, ka bio.</strong> (Please, say it again.)</li>
+                <li><strong>Nante yie, yɛbɛhyia bio.</strong> (Safe journey, we'll meet again.)</li>
+            </ul>
+
+            <h3>🔄 Greeting Variations</h3>
+            <p>Practice these different ways to greet:</p>
+            <ul>
+                <li><strong>Informal:</strong> Maakye! (Morning!) / Maaha! (Afternoon!) / Maadwo! (Evening!)</li>
+                <li><strong>Formal:</strong> Mema wo akye / Mema wo aha / Mema wo adwo</li>
+                <li><strong>To elders:</strong> Add "agya" (sir) or "ɛna" (ma) at the end</li>
+                <li><strong>To a group:</strong> Mema mo nyinaa akwaaba</li>
+            </ul>
+
+            <h3>📝 Write Your Own Sentences</h3>
+            <p>Create 5 sentences using the vocabulary from this chapter.</p>
+            <div class="fill-blank" style="min-height:100px;">
+                <p>1. _________________________________________________</p>
+                <p>2. _________________________________________________</p>
+                <p>3. _________________________________________________</p>
+                <p>4. _________________________________________________</p>
+                <p>5. _________________________________________________</p>
+            </div>
+            <button class="btn-answer" onclick="toggleAnswer('ownSentences')">Show Example Sentences</button>
+            <div id="ownSentences" class="answer-box">
+                <strong>Example Sentences:</strong><br>
+                1. Maakye! Me ho yɛ.<br>
+                2. Mepa wo kyɛw, me din de Ama.<br>
+                3. Mefiri Nkran nanso mete Kumase.<br>
+                4. Ɛyɛ me anigyeɛ sɛ mehyia wo.<br>
+                5. Yɛbɛhyia bio, nante yie.
+            </div>
+
+            <h3>🎯 Quick Quiz: True or False</h3>
+            <ul>
+                <li>1. "Maakye" means "Good afternoon." <span class="blank" style="min-width:80px;">______</span></li>
+                <li>2. "Yaa agya" is used to greet an elder woman. <span class="blank" style="min-width:80px;">______</span></li>
+                <li>3. "Me ho yɛ" means "I am fine." <span class="blank" style="min-width:80px;">______</span></li>
+                <li>4. "Mepa wo kyɛw" means "Thank you." <span class="blank" style="min-width:80px;">______</span></li>
+                <li>5. "Da yie" is used when going to sleep. <span class="blank" style="min-width:80px;">______</span></li>
+            </ul>
+            <button class="btn-answer" onclick="toggleAnswer('trueFalse')">Show Answers</button>
+            <div id="trueFalse" class="answer-box">
+                <strong>Answers:</strong><br>
+                1. False — "Maakye" means "Good morning."<br>
+                2. False — "Yaa agya" is for an elder man. "Yaa ɛna" is for an elder woman.<br>
+                3. True<br>
+                4. False — "Mepa wo kyɛw" means "Please/Excuse me." "Medaase" means "Thank you."<br>
+                5. True
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 9: DAILY CHALLENGE & TIPS -->
+        <!-- ============================================================ -->
+        <div class="section-card">
+            <h2>🌟 Daily Challenge</h2>
+            <div class="tip-box">
+                <p><strong>Today's Challenge:</strong> Greet 5 people in Twi!</p>
+                <ul>
+                    <li>Family members</li>
+                    <li>Friends</li>
+                    <li>Yourself in the mirror</li>
+                    <li>A language partner</li>
+                    <li>Practice at least 3 different greetings</li>
+                </ul>
+                <p style="margin-top: 0.5rem; font-style: italic;">✅ Check off each person you greet: _____ _____ _____ _____ _____</p>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>💡 Tips for Success in Ghana</h2>
+            <ul>
+                <li><strong>Practice everywhere:</strong> Try your greetings in Osu, Makola Market, or even in a trotro — people will respond warmly!</li>
+                <li><strong>Listen to music:</strong> Highlife and Afrobeats songs are full of natural Twi phrases. Listen for greetings and responses.</li>
+                <li><strong>Watch Ghanaian movies:</strong> YouTube has many Ghanaian films with subtitles. Notice how people greet each other.</li>
+                <li><strong>Don't be shy:</strong> If you forget a word, smile and say "Mepa wo kyɛw, metumi aka bio?" (Please, can I say it again?)</li>
+                <li><strong>Join WhatsApp groups:</strong> Practice with other learners. Send voice notes and get feedback.</li>
+                <li><strong>When in doubt:</strong> A warm smile and "Medaase" can fix almost anything!</li>
+            </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- CLOSE BUTTON -->
+        <!-- ============================================================ -->
+        <div style="text-align: center; margin-top: 1.5rem;">
+            <button class="close-btn" onclick="window.close()">❌ Close Chapter</button>
+        </div>
+
+        <footer>
+            Speak Ghana — Chapter 2: Greetings & Introductions Practice | Ayekoo!
+        </footer>
+    </div>
+
+    <script>
+        // Toggle answer visibility
+        function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.toggle('show');
+            }
+        }
+
+        // Optional: Keyboard shortcut to reveal all answers
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'a' && e.ctrlKey) {
+                e.preventDefault();
+                document.querySelectorAll('.answer-box').forEach(el => el.classList.add('show'));
+            }
+        });
+    </script>
+</body>
+</html>
