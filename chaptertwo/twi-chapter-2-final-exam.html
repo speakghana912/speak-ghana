@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twi Language Exam: Greetings, Numbers & Conversation | Speak Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #FDF8F2;
+            color: #1E1E1E;
+            line-height: 1.6;
+        }
+        .exam-header {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .exam-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .exam-header p {
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .exam-info {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-left: 4px solid #D4A373;
+        }
+        .exam-info p {
+            margin: 0.5rem 0;
+        }
+        .exam-info strong {
+            color: #2A9D8F;
+        }
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 30px;
+            height: 10px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%;
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.3s;
+        }
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin: 2.2rem 0 1.2rem 0;
+        }
+        .section-divider .label {
+            background: #2A9D8F;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            white-space: nowrap;
+        }
+        .section-divider .line {
+            flex: 1;
+            height: 1px;
+            background: #e0e0e0;
+        }
+        .reading-card, .audio-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        .reading-card h3, .audio-card h3 {
+            color: #2A9D8F;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        .passage-text {
+            background: #FDF8F2;
+            border-radius: 14px;
+            padding: 1.2rem;
+            font-size: 1rem;
+        }
+        .passage-line {
+            margin-bottom: 0.6rem;
+        }
+        .passage-line strong {
+            color: #2A9D8F;
+        }
+        .passage-translation {
+            display: block;
+            font-size: 0.8rem;
+            color: #888;
+            font-style: italic;
+            margin-top: 0.1rem;
+        }
+        .audio-card audio {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+        .audio-note {
+            font-size: 0.82rem;
+            color: #856404;
+            background: #FFF3CD;
+            border-left: 4px solid #D4A373;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            margin-top: 0.8rem;
+        }
+        .exam-question {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .exam-question.correct {
+            border-left: 4px solid #2A9D8F;
+            background: #f0faf8;
+        }
+        .exam-question.incorrect {
+            border-left: 4px solid #E76F51;
+            background: #fef5f2;
+        }
+        .question-text {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1E1E1E;
+        }
+        .question-points {
+            display: inline-block;
+            background: #D4A37320;
+            color: #D4A373;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            margin-left: 0.5rem;
+        }
+        .exam-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .exam-options label {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+        .exam-options label:hover {
+            background: #FDF8F2;
+        }
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .feedback {
+            font-size: 0.85rem;
+            margin-top: 0.8rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        .feedback.correct {
+            display: block;
+            background: #d4f5ef;
+            color: #1f7a6e;
+        }
+        .feedback.incorrect {
+            display: block;
+            background: #fde5dd;
+            color: #E76F51;
+        }
+        .exam-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42,157,143,0.3);
+        }
+        .btn-secondary {
+            background: #D4A373;
+            color: #1E1E1E;
+        }
+        .btn-secondary:hover {
+            background: #c49a6c;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: white;
+            border: 2px solid #2A9D8F;
+            color: #2A9D8F;
+        }
+        .btn-outline:hover {
+            background: #2A9D8F;
+            color: white;
+        }
+        .score-section {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            margin-top: 2rem;
+            display: none;
+        }
+        .score-section.show {
+            display: block;
+        }
+        .score-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2A9D8F;
+        }
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 9px;
+            color: rgba(0,0,0,0.1);
+            pointer-events: none;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .exam-header h1 { font-size: 1.5rem; }
+            .btn { padding: 0.6rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="exam-header">
+        <h1>📝 Chapter 2 Final Exam: Greetings, Numbers & Conversation</h1>
+        <p>Test what you've learned about greetings, polite responses, numbers, and real conversation</p>
+    </div>
+
+    <div class="container">
+        <div class="exam-info">
+            <p><strong>📋 Exam Information:</strong></p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li>25 multiple choice questions</li>
+                <li><strong>Total points: 100</strong> (4 points per question)</li>
+                <li><strong>Passing score: 75 points (75%)</strong></li>
+                <li>Read the passage and listen to the audio dialogue below before answering</li>
+                <li>You can retake the exam as many times as you want</li>
+            </ul>
+        </div>
+
+        <!-- READING PASSAGE -->
+        <div class="reading-card">
+            <h3>📖 Read First: "Wɔ Edwam" (At the Market)</h3>
+            <div class="passage-text">
+                <div class="passage-line"><strong>Anɔpa bi, Akosua kɔɔ edwam.</strong><span class="passage-translation">One morning, Akosua went to the market.</span></div>
+                <div class="passage-line"><strong>Ɔhyiaa ne yɔnko Kofi wɔ hɔ.</strong><span class="passage-translation">She met her friend Kofi there.</span></div>
+                <div class="passage-line"><strong>Kofi kaa sɛ: "Maakye, Akosua! Wo ho te sɛn?"</strong></div>
+                <div class="passage-line"><strong>Akosua buae sɛ: "Maakye, Kofi! Me ho yɛ, medaase. Wo nso ɛ?"</strong></div>
+                <div class="passage-line"><strong>Kofi kaa sɛ: "Me ho nso yɛ. Wopɛ dɛn wɔ edwam ha?"</strong><span class="passage-translation">I am fine too. What do you want here at the market?</span></div>
+                <div class="passage-line"><strong>Akosua kaa sɛ: "Mepɛ akonnwa mmienu ne abirekyie baako."</strong><span class="passage-translation">I want two chairs and one goat.</span></div>
+                <div class="passage-line"><strong>Kofi serewee na ɔkaa sɛ: "Ɛyɛ! Wobɛtɔ akonnwa mmienu ne abirekyie baako wɔ ha."</strong><span class="passage-translation">Nice! You will buy two chairs and one goat here.</span></div>
+                <div class="passage-line"><strong>Akosua kaa sɛ: "Medaase, Kofi. Yɛbɛhyia bio!"</strong></div>
+                <div class="passage-line"><strong>Kofi buae sɛ: "Yoo, nante yie!"</strong></div>
+            </div>
+        </div>
+
+        <!-- AUDIO DIALOGUE -->
+        <div class="audio-card">
+            <h3>🎧 Listen Next: Kofi & Akosua at Home</h3>
+            <p style="color: #666; font-size: 0.9rem;">Listen carefully — some questions below are based only on this audio, not the passage above.</p>
+            <audio controls preload="none" controlslist="nodownload" oncontextmenu="return false;">
+                <source src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chaptertwo/kofineakosua.m4a" type="audio/mp4">
+            </audio>
+            <div class="audio-note">
+                💡 Tip: You can listen as many times as you like before answering Section B below.
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <form id="examForm">
+
+            <div class="section-divider"><span class="label">Section A · From the Passage</span><span class="line"></span></div>
+
+            <div class="exam-question" data-question="1" data-correct="B" data-points="4">
+                <div class="question-text">1. Anɔpa bi, Akosua kɔɔ ɛhe? (Where did Akosua go one morning?) <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q1" value="A"> A) Efie (home)</label>
+                    <label><input type="radio" name="q1" value="B"> B) Edwam (the market)</label>
+                    <label><input type="radio" name="q1" value="C"> C) Asɔre (church)</label>
+                    <label><input type="radio" name="q1" value="D"> D) Sukuu (school)</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="2" data-correct="C" data-points="4">
+                <div class="question-text">2. Akosua hyiaa hwan wɔ edwam? (Who did Akosua meet at the market?) <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q2" value="A"> A) Ne agya (her father)</label>
+                    <label><input type="radio" name="q2" value="B"> B) Ne ɛna (her mother)</label>
+                    <label><input type="radio" name="q2" value="C"> C) Kofi</label>
+                    <label><input type="radio" name="q2" value="D"> D) Ne nua (her sibling)</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="3" data-correct="B" data-points="4">
+                <div class="question-text">3. What TWO things did Akosua want to buy, and how many of each? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q3" value="A"> A) One chair and two goats</label>
+                    <label><input type="radio" name="q3" value="B"> B) Two chairs and one goat</label>
+                    <label><input type="radio" name="q3" value="C"> C) Two chairs and two goats</label>
+                    <label><input type="radio" name="q3" value="D"> D) One chair and one goat</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="4" data-correct="B" data-points="4">
+                <div class="question-text">4. In the passage, Kofi says "Ɛyɛ!" after hearing what Akosua wants. What does "Ɛyɛ!" mean here? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q4" value="A"> A) No</label>
+                    <label><input type="radio" name="q4" value="B"> B) Nice! / Good!</label>
+                    <label><input type="radio" name="q4" value="C"> C) Goodbye</label>
+                    <label><input type="radio" name="q4" value="D"> D) Thank you</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="5" data-correct="B" data-points="4">
+                <div class="question-text">5. What did Kofi and Akosua do at the end of the passage, just before parting ways? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q5" value="A"> A) They argued</label>
+                    <label><input type="radio" name="q5" value="B"> B) Kofi smiled (serewee) and they said goodbye warmly</label>
+                    <label><input type="radio" name="q5" value="C"> C) They went to buy food together</label>
+                    <label><input type="radio" name="q5" value="D"> D) They sang a song</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="section-divider"><span class="label">Section B · From the Audio</span><span class="line"></span></div>
+
+            <div class="exam-question" data-question="6" data-correct="B" data-points="4">
+                <div class="question-text">6. In the audio, where does the conversation between Kofi and Akosua take place? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q6" value="A"> A) At the market</label>
+                    <label><input type="radio" name="q6" value="B"> B) At Akosua's home</label>
+                    <label><input type="radio" name="q6" value="C"> C) At church</label>
+                    <label><input type="radio" name="q6" value="D"> D) At school</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="7" data-correct="B" data-points="4">
+                <div class="question-text">7. In the audio, what does Kofi ask when he arrives? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q7" value="A"> A) Wo ho te sɛn?</label>
+                    <label><input type="radio" name="q7" value="B"> B) Akosua, wo wɔ efie? (Are you home?)</label>
+                    <label><input type="radio" name="q7" value="C"> C) Wo din de sɛn?</label>
+                    <label><input type="radio" name="q7" value="D"> D) Wodi nuanom sɛn?</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="8" data-correct="B" data-points="4">
+                <div class="question-text">8. In the audio, how many siblings does Akosua say are at home with her? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q8" value="A"> A) One</label>
+                    <label><input type="radio" name="q8" value="B"> B) Two</label>
+                    <label><input type="radio" name="q8" value="C"> C) Three</label>
+                    <label><input type="radio" name="q8" value="D"> D) None</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="9" data-correct="C" data-points="4">
+                <div class="question-text">9. In the audio, where does Akosua say her father and mother are? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q9" value="A"> A) At the market</label>
+                    <label><input type="radio" name="q9" value="B"> B) At church</label>
+                    <label><input type="radio" name="q9" value="C"> C) At work (adwuma)</label>
+                    <label><input type="radio" name="q9" value="D"> D) At home with her</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="10" data-correct="A" data-points="4">
+                <div class="question-text">10. How does Kofi end the conversation in the audio? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q10" value="A"> A) Yɛbɛhyia bio</label>
+                    <label><input type="radio" name="q10" value="B"> B) Da yie, Akosua</label>
+                    <label><input type="radio" name="q10" value="C"> C) Medaase</label>
+                    <label><input type="radio" name="q10" value="D"> D) Akwaaba</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="section-divider"><span class="label">Section C · Greetings</span><span class="line"></span></div>
+
+            <div class="exam-question" data-question="11" data-correct="B" data-points="4">
+                <div class="question-text">11. What is the FORMAL way to say "Good morning"? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q11" value="A"> A) Maakye</label>
+                    <label><input type="radio" name="q11" value="B"> B) Mema wo akye</label>
+                    <label><input type="radio" name="q11" value="C"> C) Mema wo aha</label>
+                    <label><input type="radio" name="q11" value="D"> D) Akwaaba</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="12" data-correct="B" data-points="4">
+                <div class="question-text">12. "Maaha" is the short/informal form of which formal greeting? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q12" value="A"> A) Mema wo akye</label>
+                    <label><input type="radio" name="q12" value="B"> B) Mema wo aha</label>
+                    <label><input type="radio" name="q12" value="C"> C) Mema wo adwo</label>
+                    <label><input type="radio" name="q12" value="D"> D) Mema mo akwaaba</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="13" data-correct="C" data-points="4">
+                <div class="question-text">13. "Mema wo adwo" is the formal way to say: <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q13" value="A"> A) Good morning</label>
+                    <label><input type="radio" name="q13" value="B"> B) Good afternoon</label>
+                    <label><input type="radio" name="q13" value="C"> C) Good evening</label>
+                    <label><input type="radio" name="q13" value="D"> D) Welcome</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="14" data-correct="B" data-points="4">
+                <div class="question-text">14. How would you welcome a GROUP of people (plural), not just one person? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q14" value="A"> A) Akwaaba</label>
+                    <label><input type="radio" name="q14" value="B"> B) Mema mo akwaaba</label>
+                    <label><input type="radio" name="q14" value="C"> C) Mema wo akye</label>
+                    <label><input type="radio" name="q14" value="D"> D) Yɛbɛhyia bio</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="15" data-correct="B" data-points="4">
+                <div class="question-text">15. In the audio dialogue, Akosua checks that it is morning by saying "Mema wo akye — ɛyɛ anɔpa, ɛnti?" What form of greeting is "Mema wo akye"? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q15" value="A"> A) Short/informal</label>
+                    <label><input type="radio" name="q15" value="B"> B) Formal</label>
+                    <label><input type="radio" name="q15" value="C"> C) A question about the weather</label>
+                    <label><input type="radio" name="q15" value="D"> D) A farewell</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="section-divider"><span class="label">Section D · Responses</span><span class="line"></span></div>
+
+            <div class="exam-question" data-question="16" data-correct="B" data-points="4">
+                <div class="question-text">16. A young person response to an OLDER MAN's greetings. What should they say? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q16" value="A"> A) Yaa ɛna</label>
+                    <label><input type="radio" name="q16" value="B"> B) Yaa agya</label>
+                    <label><input type="radio" name="q16" value="C"> C) Yaa nua</label>
+                    <label><input type="radio" name="q16" value="D"> D) Yaanom</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="17" data-correct="A" data-points="4">
+                <div class="question-text">17. A young person response an OLDER WOMAN's greetings. What should they say? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q17" value="A"> A) Yaa ɛna</label>
+                    <label><input type="radio" name="q17" value="B"> B) Yaa agya</label>
+                    <label><input type="radio" name="q17" value="C"> C) Yaa nua</label>
+                    <label><input type="radio" name="q17" value="D"> D) Bɔkɔɔ</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="18" data-correct="C" data-points="4">
+                <div class="question-text">18. You are replying to a friend your own age (a peer or sibling). What do you say? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q18" value="A"> A) Yaa agya</label>
+                    <label><input type="radio" name="q18" value="B"> B) Yaa ɛna</label>
+                    <label><input type="radio" name="q18" value="C"> C) Yaa nua</label>
+                    <label><input type="radio" name="q18" value="D"> D) Mema wo akye</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="19" data-correct="C" data-points="4">
+                <div class="question-text">19. "Nyame adom" is commonly added to a greeting reply. It means: <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q19" value="A"> A) Good morning</label>
+                    <label><input type="radio" name="q19" value="B"> B) Thank you very much</label>
+                    <label><input type="radio" name="q19" value="C"> C) By God's grace</label>
+                    <label><input type="radio" name="q19" value="D"> D) Welcome</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="20" data-correct="B" data-points="4">
+                <div class="question-text">20. In the passage, Akosua replies "Me ho yɛ, medaase. Wo nso ɛ?" What does "Wo nso ɛ?" mean? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q20" value="A"> A) What is your name?</label>
+                    <label><input type="radio" name="q20" value="B"> B) And you? (asking the same question back)</label>
+                    <label><input type="radio" name="q20" value="C"> C) Where do you live?</label>
+                    <label><input type="radio" name="q20" value="D"> D) Goodbye</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="section-divider"><span class="label">Section E · Numbers</span><span class="line"></span></div>
+
+            <div class="exam-question" data-question="21" data-correct="B" data-points="4">
+                <div class="question-text">21. In the passage, Akosua wants "akonnwa mmienu." How many chairs is that? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q21" value="A"> A) One</label>
+                    <label><input type="radio" name="q21" value="B"> B) Two</label>
+                    <label><input type="radio" name="q21" value="C"> C) Three</label>
+                    <label><input type="radio" name="q21" value="D"> D) Four</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="22" data-correct="A" data-points="4">
+                <div class="question-text">22. In the passage, how many goats ("abirekyie") does Akosua want? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q22" value="A"> A) One (baako)</label>
+                    <label><input type="radio" name="q22" value="B"> B) Two (mmienu)</label>
+                    <label><input type="radio" name="q22" value="C"> C) Three (mmiɛnsa)</label>
+                    <label><input type="radio" name="q22" value="D"> D) Four (nnan)</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="23" data-correct="C" data-points="4">
+                <div class="question-text">23. How do you say "ten people" in Twi? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q23" value="A"> A) nnipa baako</label>
+                    <label><input type="radio" name="q23" value="B"> B) nnipa aduonu</label>
+                    <label><input type="radio" name="q23" value="C"> C) nnipa du</label>
+                    <label><input type="radio" name="q23" value="D"> D) nnipa baanan</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="24" data-correct="B" data-points="4">
+                <div class="question-text">24. What number comes right after "du" (10) in the counting pattern, and how is it formed? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q24" value="A"> A) aduonu — a completely new word</label>
+                    <label><input type="radio" name="q24" value="B"> B) du baako — "ten" + "one"</label>
+                    <label><input type="radio" name="q24" value="C"> C) du du — "ten" repeated</label>
+                    <label><input type="radio" name="q24" value="D"> D) nkron — meaning nine</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-question" data-question="25" data-correct="C" data-points="4">
+                <div class="question-text">25. How do you say "twenty people" in Twi? <span class="question-points">4 points</span></div>
+                <div class="exam-options">
+                    <label><input type="radio" name="q25" value="A"> A) nnipa du mmienu</label>
+                    <label><input type="radio" name="q25" value="B"> B) nnipa du nkron</label>
+                    <label><input type="radio" name="q25" value="C"> C) nnipa aduonu</label>
+                    <label><input type="radio" name="q25" value="D"> D) nnipa du nson</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="exam-actions">
+                <button type="button" class="btn btn-secondary" onclick="resetExam()">⟳ Reset Answers</button>
+                <button type="button" class="btn btn-primary" onclick="submitExam()">Submit Exam ✓</button>
+            </div>
+        </form>
+
+        <div id="scoreSection" class="score-section">
+            <h3>🎉 Exam Complete!</h3>
+            <p>Your Score:</p>
+            <div class="score-number" id="scoreNumber">0/100</div>
+            <p id="scoreMessage"></p>
+            <button class="btn btn-primary" onclick="retakeExam()">Retake Exam ↻</button>
+            <br><br>
+            <a href="https://portal.speakghana.org" class="btn btn-outline">← Back to Portal</a>
+        </div>
+    </div>
+
+    <div class="watermark">
+        Speak Ghana Language School | Licensed Student - Do Not Share
+    </div>
+
+    <script>
+        let examSubmitted = false;
+        const TOTAL_QUESTIONS = 25;
+
+        function updateProgress() {
+            let answered = 0;
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                let radios = document.getElementsByName('q' + i);
+                for (let j = 0; j < radios.length; j++) {
+                    if (radios[j].checked) {
+                        answered++;
+                        break;
+                    }
+                }
+            }
+            let percent = (answered / TOTAL_QUESTIONS) * 100;
+            document.getElementById('progressFill').style.width = percent + '%';
+        }
+
+        function attachRadioListeners() {
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                let radios = document.getElementsByName('q' + i);
+                for (let j = 0; j < radios.length; j++) {
+                    radios[j].addEventListener('change', function() {
+                        updateProgress();
+                        if (examSubmitted) {
+                            let questionDiv = this.closest('.exam-question');
+                            questionDiv.classList.remove('correct', 'incorrect');
+                            let feedbackDiv = questionDiv.querySelector('.feedback');
+                            feedbackDiv.classList.remove('correct', 'incorrect');
+                            feedbackDiv.style.display = 'none';
+                        }
+                    });
+                }
+            }
+        }
+
+        function submitExam() {
+            let score = 0;
+            let pointsPerQuestion = 4;
+
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                let selected = null;
+                let radios = document.getElementsByName('q' + i);
+                let questionDiv = document.querySelector('.exam-question[data-question="' + i + '"]');
+                let correctAnswer = questionDiv.getAttribute('data-correct');
+                let feedbackDiv = questionDiv.querySelector('.feedback');
+
+                for (let j = 0; j < radios.length; j++) {
+                    if (radios[j].checked) {
+                        selected = radios[j].value;
+                        break;
+                    }
+                }
+
+                if (selected === correctAnswer) {
+                    score += pointsPerQuestion;
+                    questionDiv.classList.add('correct');
+                    questionDiv.classList.remove('incorrect');
+                    feedbackDiv.innerHTML = '✅ Correct! (+4 points)';
+                    feedbackDiv.classList.add('correct');
+                    feedbackDiv.classList.remove('incorrect');
+                    feedbackDiv.style.display = 'block';
+                } else {
+                    questionDiv.classList.add('incorrect');
+                    questionDiv.classList.remove('correct');
+                    let correctText = "";
+                    let options = questionDiv.querySelectorAll('.exam-options label');
+                    for (let k = 0; k < options.length; k++) {
+                        if (options[k].querySelector('input').value === correctAnswer) {
+                            correctText = options[k].innerText;
+                            break;
+                        }
+                    }
+                    feedbackDiv.innerHTML = '❌ Incorrect. The correct answer is: ' + correctText + ' (+0 points)';
+                    feedbackDiv.classList.add('incorrect');
+                    feedbackDiv.classList.remove('correct');
+                    feedbackDiv.style.display = 'block';
+                }
+            }
+
+            examSubmitted = true;
+
+            let passed = score >= 75;
+            let message = "";
+
+            if (passed) {
+                message = "🎉 Congratulations! You passed the exam with " + score + "/100 points! Keep up the great work!";
+                if (typeof gtag === 'function') {
+                    gtag('event', 'exam_passed', { 'event_category': 'engagement', 'event_label': 'chapter2_final_exam' });
+                }
+            } else {
+                let needed = 75 - score;
+                message = "📚 You scored " + score + "/100 points. You need " + needed + " more points to pass. Review the passage and audio, then try again!";
+                if (typeof gtag === 'function') {
+                    gtag('event', 'exam_failed', { 'event_category': 'engagement', 'event_label': 'chapter2_final_exam' });
+                }
+            }
+
+            document.getElementById('scoreNumber').innerHTML = score + '/100';
+            document.getElementById('scoreMessage').innerHTML = message;
+            document.getElementById('scoreSection').classList.add('show');
+
+            document.getElementById('scoreSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function resetExam() {
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                let radios = document.getElementsByName('q' + i);
+                for (let j = 0; j < radios.length; j++) {
+                    radios[j].checked = false;
+                }
+                let questionDiv = document.querySelector('.exam-question[data-question="' + i + '"]');
+                questionDiv.classList.remove('correct', 'incorrect');
+                let feedbackDiv = questionDiv.querySelector('.feedback');
+                feedbackDiv.classList.remove('correct', 'incorrect');
+                feedbackDiv.style.display = 'none';
+            }
+            examSubmitted = false;
+            updateProgress();
+            document.getElementById('scoreSection').classList.remove('show');
+        }
+
+        function retakeExam() {
+            resetExam();
+        }
+
+        attachRadioListeners();
+        updateProgress();
+    </script>
+</body>
+</html>
