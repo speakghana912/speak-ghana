@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Kasa Ntɛm! Speak Fast | Chapter 3 Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(145deg, #0f2b2a 0%, #1f7a6e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .game-container {
+            max-width: 560px;
+            width: 100%;
+            background: #FDF8F2;
+            border-radius: 36px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            padding: 1.8rem;
+            text-align: center;
+        }
+        .game-title {
+            color: #2A9D8F;
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+        }
+        .game-sub {
+            color: #4b6a5e;
+            font-size: 0.85rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .mode-toggle {
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            padding: 0.3rem;
+            margin-bottom: 1.4rem;
+            border: 1px solid #e2d9ce;
+        }
+        .mode-btn {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            border: none;
+            background: transparent;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #888;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .mode-btn.active {
+            background: #2A9D8F;
+            color: white;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+            gap: 0.6rem;
+        }
+        .stat-box {
+            flex: 1;
+            background: white;
+            border-radius: 16px;
+            padding: 0.6rem;
+            border: 1px solid #e2d9ce;
+        }
+        .stat-label {
+            font-size: 0.65rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #2A9D8F;
+        }
+
+        .timer-bar {
+            background: #e0dbd0;
+            border-radius: 30px;
+            height: 10px;
+            overflow: hidden;
+            margin-bottom: 1.4rem;
+        }
+        .timer-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            height: 100%;
+            width: 100%;
+            border-radius: 30px;
+            transition: width 0.1s linear, background 0.3s;
+        }
+        .timer-fill.urgent {
+            background: #E76F51;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.4rem;
+            margin-bottom: 1.4rem;
+            border: 2px solid #2A9D8F;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .question-prompt {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        .question-main {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #1e3a38;
+            line-height: 1.3;
+        }
+        .question-hint {
+            font-size: 0.95rem;
+            color: #E76F51;
+            font-weight: 600;
+            margin-top: 0.4rem;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+        .option-btn {
+            background: white;
+            border: 2px solid #2A9D8F;
+            color: #1e3a38;
+            padding: 1rem 0.6rem;
+            border-radius: 18px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .option-btn:hover {
+            background: #2A9D8F;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .option-btn.correct {
+            background: #2A9D8F;
+            color: white;
+            border-color: #2A9D8F;
+        }
+        .option-btn.incorrect {
+            background: #E76F51;
+            color: white;
+            border-color: #E76F51;
+        }
+        .option-btn:disabled {
+            cursor: default;
+        }
+
+        .feedback-text {
+            font-size: 0.9rem;
+            font-weight: 700;
+            min-height: 1.3rem;
+            margin-bottom: 0.6rem;
+        }
+        .feedback-text.correct { color: #2A9D8F; }
+        .feedback-text.incorrect { color: #E76F51; }
+
+        .start-screen, .end-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+        .start-screen p, .end-screen p {
+            color: #4b6a5e;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+        .big-btn {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white;
+            border: none;
+            padding: 1rem 2.4rem;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 20px rgba(42,157,143,0.35);
+        }
+        .big-btn:hover {
+            transform: translateY(-2px);
+        }
+        .end-score {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2A9D8F;
+        }
+        .end-streak {
+            background: #D4A37320;
+            color: #D4A373;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 420px) {
+            .question-main { font-size: 1.5rem; }
+            .option-btn { font-size: 0.92rem; padding: 0.8rem 0.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-title">⚡ Kasa Ntɛm!</div>
+        <div class="game-sub">Speak Fast — Chapter 3 Verb & Vocabulary Game</div>
+
+        <div class="mode-toggle">
+            <button class="mode-btn active" id="modeVerbsBtn" onclick="setMode('verbs')">🔤 Verbs</button>
+            <button class="mode-btn" id="modeVocabBtn" onclick="setMode('vocab')">🍲 Vocabulary</button>
+        </div>
+
+        <div class="start-screen" id="startScreen">
+            <p id="startDescription">Match each pronoun + verb to its correct contracted form. 15 rounds. The clock speeds up as you go — how many can you get right?</p>
+            <button class="big-btn" onclick="startGame()">Start Game ▶</button>
+        </div>
+
+        <div class="hidden" id="gameScreen">
+            <div class="stats-row">
+                <div class="stat-box">
+                    <div class="stat-label">Score</div>
+                    <div class="stat-value" id="scoreDisplay">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Streak</div>
+                    <div class="stat-value" id="streakDisplay">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Round</div>
+                    <div class="stat-value" id="roundDisplay">1/15</div>
+                </div>
+            </div>
+
+            <div class="timer-bar"><div class="timer-fill" id="timerFill"></div></div>
+
+            <div class="question-card">
+                <div class="question-prompt" id="questionPrompt">Match the contracted form:</div>
+                <div class="question-main" id="questionMain">Wo + kɔ</div>
+                <div class="question-hint" id="questionHint">(you go)</div>
+            </div>
+
+            <div class="feedback-text" id="feedbackText"></div>
+
+            <div class="options-grid" id="optionsGrid"></div>
+        </div>
+
+        <div class="hidden end-screen" id="endScreen">
+            <div style="font-size: 2.5rem;">🎉</div>
+            <div>Your Score</div>
+            <div class="end-score" id="finalScore">0/15</div>
+            <div class="end-streak" id="finalStreak">Best streak: 0</div>
+            <p id="endMessage">Great effort!</p>
+            <button class="big-btn" onclick="startGame()">Play Again ↻</button>
+        </div>
+    </div>
+
+    <script>
+        const VERBS = [
+            { base: "di", english: "eat" }, { base: "kɔ", english: "go" },
+            { base: "ba", english: "come" }, { base: "da", english: "sleep" },
+            { base: "te", english: "live" }, { base: "pɛ", english: "like" },
+            { base: "yɛ", english: "do" }, { base: "ka", english: "speak" },
+            { base: "sua", english: "learn" }, { base: "tɔ", english: "buy" },
+            { base: "noa", english: "cook" }, { base: "frɛ", english: "call" },
+            { base: "gye", english: "receive" }, { base: "bɔ", english: "play" }
+        ];
+
+        const PRONOUNS = [
+            { twi: "Me", english: "I", prefix: "me" },
+            { twi: "Wo", english: "you", prefix: "wo" },
+            { twi: "Ɔ", english: "he/she", prefix: "ɔ" },
+            { twi: "Yɛn", english: "we", prefix: "yɛ" },
+            { twi: "Mo", english: "you (pl.)", prefix: "mo" },
+            { twi: "Wɔn", english: "they", prefix: "wɔ" }
+        ];
+
+        const VOCAB = [
+            { twi: "fufu", english: "fufu" }, { twi: "banku", english: "banku" },
+            { twi: "ɛmo", english: "rice" }, { twi: "bayere", english: "yam" },
+            { twi: "nsuo", english: "water" }, { twi: "mako", english: "pepper" },
+            { twi: "papa", english: "father" }, { twi: "maame", english: "mother" },
+            { twi: "nua", english: "sibling" }, { twi: "adamfo", english: "friend" },
+            { twi: "abusua", english: "family" }, { twi: "onipa", english: "person" },
+            { twi: "fie", english: "home" }, { twi: "sukuu", english: "school" },
+            { twi: "ɛdwam", english: "market" }, { twi: "asɔre", english: "church" },
+            { twi: "kuro", english: "town" }, { twi: "ayaresabea", english: "hospital" }
+        ];
+
+        let mode = 'verbs';
+        let score = 0;
+        let streak = 0;
+        let bestStreak = 0;
+        let round = 0;
+        const TOTAL_ROUNDS = 15;
+        let timerInterval = null;
+        let timeLeft = 0;
+        let maxTime = 6000;
+        let answered = false;
+        let currentCorrect = '';
+
+        function setMode(newMode) {
+            mode = newMode;
+            document.getElementById('modeVerbsBtn').classList.toggle('active', mode === 'verbs');
+            document.getElementById('modeVocabBtn').classList.toggle('active', mode === 'vocab');
+            document.getElementById('startDescription').textContent = mode === 'verbs'
+                ? 'Match each pronoun + verb to its correct contracted form. 15 rounds. The clock speeds up as you go.'
+                : 'Match each Twi word to its English meaning (food, family, and places from Chapter 3). 15 rounds.';
+            resetToStart();
+        }
+
+        function resetToStart() {
+            clearInterval(timerInterval);
+            document.getElementById('startScreen').classList.remove('hidden');
+            document.getElementById('gameScreen').classList.add('hidden');
+            document.getElementById('endScreen').classList.add('hidden');
+        }
+
+        function startGame() {
+            score = 0;
+            streak = 0;
+            bestStreak = 0;
+            round = 0;
+            maxTime = 6000;
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('endScreen').classList.add('hidden');
+            document.getElementById('gameScreen').classList.remove('hidden');
+            updateStats();
+            nextRound();
+        }
+
+        function updateStats() {
+            document.getElementById('scoreDisplay').textContent = score;
+            document.getElementById('streakDisplay').textContent = streak;
+            document.getElementById('roundDisplay').textContent = round + '/' + TOTAL_ROUNDS;
+        }
+
+        function shuffle(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+            }
+            return a;
+        }
+
+        function nextRound() {
+            round++;
+            answered = false;
+            document.getElementById('feedbackText').textContent = '';
+            document.getElementById('feedbackText').className = 'feedback-text';
+
+            if (round > TOTAL_ROUNDS) {
+                endGame();
+                return;
+            }
+
+            updateStats();
+            maxTime = Math.max(2500, 6000 - (round * 200));
+
+            if (mode === 'verbs') {
+                buildVerbRound();
+            } else {
+                buildVocabRound();
+            }
+
+            startTimer();
+        }
+
+        function buildVerbRound() {
+            const verb = VERBS[Math.floor(Math.random() * VERBS.length)];
+            const pronoun = PRONOUNS[Math.floor(Math.random() * PRONOUNS.length)];
+            const correctForm = pronoun.prefix + verb.base;
+            currentCorrect = correctForm;
+
+            document.getElementById('questionPrompt').textContent = 'Match the contracted form:';
+            document.getElementById('questionMain').textContent = pronoun.twi + ' + ' + verb.base;
+            document.getElementById('questionHint').textContent = '(' + pronoun.english + ' ' + verb.english + ')';
+
+            const wrongPronouns = shuffle(PRONOUNS.filter(function(p) { return p.twi !== pronoun.twi; })).slice(0, 3);
+            const wrongForms = wrongPronouns.map(function(p) { return p.prefix + verb.base; });
+            const options = shuffle([correctForm].concat(wrongForms));
+            renderOptions(options, correctForm);
+        }
+
+        function buildVocabRound() {
+            const item = VOCAB[Math.floor(Math.random() * VOCAB.length)];
+            const showTwi = Math.random() < 0.5;
+            currentCorrect = showTwi ? item.english : item.twi;
+
+            document.getElementById('questionPrompt').textContent = showTwi ? 'What does this mean in English?' : 'What is this in Twi?';
+            document.getElementById('questionMain').textContent = showTwi ? item.twi : item.english;
+            document.getElementById('questionHint').textContent = '';
+
+            const others = shuffle(VOCAB.filter(function(v) { return v.twi !== item.twi; })).slice(0, 3);
+            const wrongOptions = others.map(function(o) { return showTwi ? o.english : o.twi; });
+            const options = shuffle([currentCorrect].concat(wrongOptions));
+            renderOptions(options, currentCorrect);
+        }
+
+        function renderOptions(options, correctAnswer) {
+            const grid = document.getElementById('optionsGrid');
+            grid.innerHTML = '';
+            options.forEach(function(opt) {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                btn.onclick = function() { selectAnswer(btn, opt, correctAnswer); };
+                grid.appendChild(btn);
+            });
+        }
+
+        function selectAnswer(btn, selected, correctAnswer) {
+            if (answered) return;
+            answered = true;
+            clearInterval(timerInterval);
+
+            const allBtns = document.querySelectorAll('.option-btn');
+            allBtns.forEach(function(b) {
+                b.disabled = true;
+                if (b.textContent === correctAnswer) b.classList.add('correct');
+            });
+
+            const feedback = document.getElementById('feedbackText');
+            if (selected === correctAnswer) {
+                score++;
+                streak++;
+                bestStreak = Math.max(bestStreak, streak);
+                feedback.textContent = '✅ Correct!';
+                feedback.className = 'feedback-text correct';
+            } else {
+                streak = 0;
+                btn.classList.add('incorrect');
+                feedback.textContent = '❌ Correct answer: ' + correctAnswer;
+                feedback.className = 'feedback-text incorrect';
+            }
+            updateStats();
+            setTimeout(nextRound, 1100);
+        }
+
+        function startTimer() {
+            timeLeft = maxTime;
+            const fill = document.getElementById('timerFill');
+            fill.style.width = '100%';
+            fill.classList.remove('urgent');
+            clearInterval(timerInterval);
+
+            const stepMs = 50;
+            timerInterval = setInterval(function() {
+                timeLeft -= stepMs;
+                const percent = Math.max(0, (timeLeft / maxTime) * 100);
+                fill.style.width = percent + '%';
+                if (percent < 30) fill.classList.add('urgent');
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    if (!answered) {
+                        answered = true;
+                        streak = 0;
+                        const feedback = document.getElementById('feedbackText');
+                        feedback.textContent = 'Time is up! Answer: ' + currentCorrect;
+                        feedback.className = 'feedback-text incorrect';
+                        document.querySelectorAll('.option-btn').forEach(function(b) {
+                            b.disabled = true;
+                            if (b.textContent === currentCorrect) b.classList.add('correct');
+                        });
+                        updateStats();
+                        setTimeout(nextRound, 1300);
+                    }
+                }
+            }, stepMs);
+        }
+
+        function endGame() {
+            clearInterval(timerInterval);
+            document.getElementById('gameScreen').classList.add('hidden');
+            document.getElementById('endScreen').classList.remove('hidden');
+            document.getElementById('finalScore').textContent = score + '/' + TOTAL_ROUNDS;
+            document.getElementById('finalStreak').textContent = 'Best streak: ' + bestStreak;
+
+            const pct = score / TOTAL_ROUNDS;
+            let msg = 'Good try — practice makes perfect!';
+            if (pct >= 0.9) msg = 'Outstanding! You really know this!';
+            else if (pct >= 0.7) msg = 'Great job! Keep it up!';
+            else if (pct >= 0.5) msg = 'Nice work — review Section C and try again!';
+            document.getElementById('endMessage').textContent = msg;
+        }
+    </script>
+</body>
+</html>

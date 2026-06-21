@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Speak Ghana • Chapter 3: Talking About Yourself – Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .chapter-header {
+            border-bottom: 3px solid #2A9D8F;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #2A9D8F;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .chapter-badge {
+            background: #E76F51;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .sub {
+            color: #4b6a5e;
+            margin-top: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .section-card {
+            background: #FEF9F0;
+            border-radius: 32px;
+            padding: 1.6rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #f0e5d8;
+        }
+
+        .section-card h2 {
+            color: #2A9D8F;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            border-left: 5px solid #E76F51;
+            padding-left: 1rem;
+        }
+
+        .section-card h3 {
+            color: #E76F51;
+            font-size: 1.1rem;
+            margin: 1.2rem 0 0.6rem;
+        }
+
+        .section-card p,
+        .section-card li {
+            line-height: 1.6;
+            color: #2d3e2a;
+        }
+
+        .section-card ul,
+        .section-card ol {
+            padding-left: 1.8rem;
+            margin: 0.6rem 0;
+        }
+
+        .word-bank {
+            background: #e3f2ed;
+            border-radius: 16px;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #1e3a38;
+            text-align: center;
+        }
+
+        .fill-blank {
+            background: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 16px;
+            border: 1px dashed #2A9D8F;
+            margin: 0.8rem 0;
+        }
+
+        .fill-blank .blank {
+            display: inline-block;
+            min-width: 100px;
+            border-bottom: 2px solid #E76F51;
+            margin: 0 4px;
+            padding: 0 4px;
+            color: #2A9D8F;
+            font-weight: 600;
+        }
+
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 2rem;
+            margin: 1rem 0;
+            background: white;
+            padding: 1rem;
+            border-radius: 20px;
+        }
+
+        .matching-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .matching-item .twi {
+            font-weight: 700;
+            color: #2A9D8F;
+        }
+
+        .matching-item .eng {
+            color: #6f7a6e;
+        }
+
+        .roleplay-box {
+            background: #fff3e0;
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+        }
+
+        .roleplay-box .speaker {
+            font-weight: 700;
+            color: #E76F51;
+        }
+
+        .tip-box {
+            background: #e8f4f1;
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+        }
+
+        .tip-box strong {
+            color: #2A9D8F;
+        }
+
+        .write-area {
+            width: 100%;
+            min-height: 100px;
+            border: 1px dashed #2A9D8F;
+            border-radius: 16px;
+            padding: 1rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            margin: 0.8rem 0;
+            resize: vertical;
+        }
+        .write-area:focus {
+            outline: none;
+            border-color: #E76F51;
+            border-style: solid;
+        }
+
+        .btn-answer {
+            background: #2A9D8F20;
+            border: 1px solid #2A9D8F;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            color: #2A9D8F;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-answer:hover {
+            background: #2A9D8F;
+            color: white;
+        }
+
+        .answer-box {
+            display: none;
+            background: #f0f7f4;
+            padding: 0.8rem 1rem;
+            border-radius: 16px;
+            margin-top: 0.5rem;
+            border-left: 4px solid #2A9D8F;
+        }
+
+        .answer-box.show {
+            display: block;
+        }
+
+        .close-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .close-btn:hover {
+            background: #b87c4a;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0d9ce;
+            color: #8f9b8a;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 1rem; }
+            .section-card { padding: 1rem; }
+            .matching-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chapter-header">
+            <div>
+                <h1>📝 Chapter 3 Practice</h1>
+                <p class="sub">Talking About Yourself and Your Daily Life — 9 Exercises</p>
+            </div>
+            <div class="chapter-badge">Ayekoo! · Practice Makes Perfect</div>
+        </div>
+
+        <!-- EXERCISE 1 -->
+        <div class="section-card">
+            <h2>Exercise 1: Fill in the Correct Verb</h2>
+            <p>Choose the right verb from the box and complete each sentence.</p>
+            <div class="word-bank">di &nbsp;•&nbsp; kɔ &nbsp;•&nbsp; te &nbsp;•&nbsp; pɛ &nbsp;•&nbsp; yɛ &nbsp;•&nbsp; sua</div>
+            <div class="fill-blank">
+                <ol>
+                    <li>Me <span class="blank">______</span> fufu daa. <em>(eat)</em></li>
+                    <li>Wo <span class="blank">______</span> he? <em>(live)</em></li>
+                    <li>Ɔ <span class="blank">______</span> adwuma anɔpa. <em>(go)</em></li>
+                    <li>Me <span class="blank">______</span> Twi kakra. <em>(learn)</em></li>
+                    <li><span class="blank">______</span> dɛn nnɛ? <em>(do)</em></li>
+                    <li>Me <span class="blank">______</span> banku paa. <em>(like)</em></li>
+                </ol>
+                <button class="btn-answer" onclick="toggleAnswer('ex1')">Show Answers</button>
+                <div id="ex1" class="answer-box">
+                    1. Me <strong>di</strong> fufu daa.<br>
+                    2. Wo <strong>te</strong> he?<br>
+                    3. Ɔ <strong>kɔ</strong> adwuma anɔpa.<br>
+                    4. Me <strong>sua</strong> Twi kakra.<br>
+                    5. <strong>Yɛ</strong> dɛn nnɛ?<br>
+                    6. Me <strong>pɛ</strong> banku paa.
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 2 -->
+        <div class="section-card">
+            <h2>Exercise 2: Make Sentences</h2>
+            <p>Use the patterns you learned to write each sentence in Twi.</p>
+            <div class="fill-blank">
+                <ol>
+                    <li>I live in Accra. → <span class="blank">______________</span></li>
+                    <li>You go to school every day. → <span class="blank">______________</span></li>
+                    <li>He likes banku. → <span class="blank">______________</span></li>
+                    <li>We eat fufu. → <span class="blank">______________</span></li>
+                    <li>They don't eat kenkey. → <span class="blank">______________</span></li>
+                    <li>She speaks Twi. → <span class="blank">______________</span></li>
+                </ol>
+                <button class="btn-answer" onclick="toggleAnswer('ex2')">Show Answers</button>
+                <div id="ex2" class="answer-box">
+                    1. Mete Accra.<br>
+                    2. Wokɔ sukuu da biara.<br>
+                    3. Ɔpɛ banku.<br>
+                    4. Yɛdi fufu.<br>
+                    5. Wɔnni dɔkono.<br>
+                    6. Ɔka Twi.
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 3 -->
+        <div class="section-card">
+            <h2>Exercise 3: Translate to Twi</h2>
+            <div class="fill-blank">
+                <ol>
+                    <li>I eat fufu every day. → <span class="blank">______________</span></li>
+                    <li>Where do you live? → <span class="blank">______________</span></li>
+                    <li>What do you want? → <span class="blank">______________</span></li>
+                    <li>I don't understand. → <span class="blank">______________</span></li>
+                    <li>My brother goes to work. → <span class="blank">______________</span></li>
+                    <li>We will meet tomorrow. → <span class="blank">______________</span></li>
+                </ol>
+                <button class="btn-answer" onclick="toggleAnswer('ex3')">Show Answers</button>
+                <div id="ex3" class="answer-box">
+                    1. Medi fufu daa.<br>
+                    2. Wote he?<br>
+                    3. Wopɛ dɛn?<br>
+                    4. Mente aseɛ.<br>
+                    5. Me nuabarima kɔ adwuma.<br>
+                    6. Yɛbɛhyia ɔkyena.
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 4 -->
+        <div class="section-card">
+            <h2>Exercise 4: Make It Negative</h2>
+            <p>Change these positive sentences to negative using <strong>n-</strong>.</p>
+            <div class="fill-blank">
+                <ol>
+                    <li>Medi fufu. → <span class="blank">______________</span></li>
+                    <li>Mekɔ sukuu. → <span class="blank">______________</span></li>
+                    <li>Mepɛ banku. → <span class="blank">______________</span></li>
+                    <li>Mete Accra. → <span class="blank">______________</span></li>
+                    <li>Yɛka Twi. → <span class="blank">______________</span></li>
+                </ol>
+                <button class="btn-answer" onclick="toggleAnswer('ex4')">Show Answers</button>
+                <div id="ex4" class="answer-box">
+                    1. Menni fufu.<br>
+                    2. Menkɔ sukuu.<br>
+                    3. Mempɛ banku.<br>
+                    4. Mente Accra.<br>
+                    5. Yɛnka Twi.
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 5 -->
+        <div class="section-card">
+            <h2>Exercise 5: Question and Answer</h2>
+            <p>Answer these questions in complete Twi sentences about yourself.</p>
+            <div class="fill-blank">
+                <ol>
+                    <li>Wote he? → <span class="blank">______________</span></li>
+                    <li>Wodi dɛn? → <span class="blank">______________</span></li>
+                    <li>Wopɛ dɛn aduane? → <span class="blank">______________</span></li>
+                    <li>Wowɔ nua ahe? → <span class="blank">______________</span></li>
+                    <li>Deɛn na woyɛ anɔpa? → <span class="blank">______________</span></li>
+                </ol>
+                <div class="tip-box">
+                    💡 <strong>Tip:</strong> There's no single "correct" answer here — these are about YOU. Try answering out loud, then check that your sentence follows the patterns from this chapter (Pronoun + Verb + Object/Place/Time).
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 6 -->
+        <div class="section-card">
+            <h2>Exercise 6: Match the Question to the Answer</h2>
+            <p>Draw lines (or just say them aloud) matching each question with its correct answer.</p>
+            <div class="matching-grid">
+                <div class="matching-item"><span class="twi">Wodi dɛn?</span> <span class="eng">→ ?</span></div>
+                <div class="matching-item"><span class="twi">Wote he?</span> <span class="eng">→ ?</span></div>
+                <div class="matching-item"><span class="twi">Wopɛ dɛn?</span> <span class="eng">→ ?</span></div>
+                <div class="matching-item"><span class="twi">Woyɛ dɛn?</span> <span class="eng">→ ?</span></div>
+                <div class="matching-item"><span class="twi">Wowɔ nuanom ahe?</span> <span class="eng">→ ?</span></div>
+            </div>
+            <div class="word-bank" style="text-align:left;">
+                Mete Accra. &nbsp;•&nbsp; Mepɛ banku. &nbsp;•&nbsp; Me di fufu. &nbsp;•&nbsp; Mewɔ nua nnuanom baanu. &nbsp;•&nbsp; Meyɛ ɔkyerɛkyerɛni.
+            </div>
+            <button class="btn-answer" onclick="toggleAnswer('ex6')">Show Correct Matches</button>
+            <div id="ex6" class="answer-box">
+                • Wodi dɛn? → Me di fufu.<br>
+                • Wote he? → Mete Accra.<br>
+                • Wopɛ dɛn? → Mepɛ banku.<br>
+                • Woyɛ dɛn? → Meyɛ ɔkyerɛkyerɛni.<br>
+                • Wowɔ nuanom ahe? → Mewɔ nua nnuanom baanu.
+            </div>
+        </div>
+
+        <!-- EXERCISE 7 -->
+        <div class="section-card">
+            <h2>Exercise 7: Build Your Own Dialogue</h2>
+            <p>Write a short dialogue (6–8 lines) between two people meeting for the first time. Include:</p>
+            <ul>
+                <li>A greeting</li>
+                <li>Asking how they are</li>
+                <li>Asking where they live</li>
+                <li>Asking what they eat/like</li>
+                <li>Asking what they do</li>
+                <li>Saying goodbye</li>
+            </ul>
+            <div class="roleplay-box">
+                <p><span class="speaker">A:</span> ___________________________</p>
+                <p><span class="speaker">B:</span> ___________________________</p>
+                <p><span class="speaker">A:</span> ___________________________</p>
+                <p><span class="speaker">B:</span> ___________________________</p>
+                <p><span class="speaker">A:</span> ___________________________</p>
+                <p><span class="speaker">B:</span> ___________________________</p>
+            </div>
+            <textarea class="write-area" placeholder="Write your dialogue here..."></textarea>
+            <div class="tip-box">
+                💡 <strong>Tip:</strong> Reuse phrases from this chapter's dialogues — you don't need to invent everything from scratch. Once you're done, read it aloud with a friend!
+            </div>
+        </div>
+
+        <!-- EXERCISE 8 -->
+        <div class="section-card">
+            <h2>Exercise 8: Daily Routine Timeline</h2>
+            <p>Write 5 sentences about what you do each day, in order.</p>
+            <div class="fill-blank">
+                <ol>
+                    <li>Anɔpa, me <span class="blank">______________</span></li>
+                    <li>Ekyiri no, me <span class="blank">______________</span></li>
+                    <li>Awia, me <span class="blank">______________</span></li>
+                    <li>Anwummere, me <span class="blank">______________</span></li>
+                    <li>Anadwo, me <span class="blank">______________</span></li>
+                </ol>
+            </div>
+            <div class="tip-box">
+                💡 <strong>Tip:</strong> Look back at Section 4's Daily Routine vocabulary (Mesɔre, Medware, Medi, Meba fie, Meda...) for words to use in each blank.
+            </div>
+        </div>
+
+        <!-- EXERCISE 9 -->
+        <div class="section-card">
+            <h2>Exercise 9: Describe Your Family</h2>
+            <p>Write 4 sentences about your family using the vocabulary you learned in this chapter (papa, maame, nua, abusua...).</p>
+            <textarea class="write-area" placeholder="1. ...
+2. ...
+3. ...
+4. ..."></textarea>
+            <div class="tip-box">
+                💡 <strong>Tip:</strong> Try patterns like "Me papa yɛ ___" (My father is a ___) or "Mewɔ nua ___" (I have ___ siblings).
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 1rem;">
+            <button class="close-btn" onclick="window.close()">❌ Close</button>
+        </div>
+        <footer>
+            Speak Ghana — Chapter 3: Talking About Yourself and Your Daily Life Practice | Ayekoo!
+        </footer>
+    </div>
+
+    <script>
+        function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.toggle('show');
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'a' && e.ctrlKey) {
+                e.preventDefault();
+                document.querySelectorAll('.answer-box').forEach(el => el.classList.add('show'));
+            }
+        });
+    </script>
+</body>
+</html>
