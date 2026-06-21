@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Speak Ghana • Twi Chapter 3: Talking About Yourself and Your Daily Life</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 2rem 2rem 2rem 2rem;
+        }
+
+        .chapter-header {
+            border-bottom: 3px solid #2A9D8F;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+        h1 {
+            font-size: 1.9rem;
+            color: #2A9D8F;
+            letter-spacing: -0.3px;
+        }
+        .chapter-badge {
+            background: #E76F51;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .sub {
+            color: #4b6a5e;
+            margin-top: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .section-card {
+            background: #FEF9F0;
+            border-radius: 32px;
+            padding: 1.6rem 2rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: all 0.2s;
+            border: 1px solid #f0e5d8;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.4rem;
+            border-left: 6px solid #2A9D8F;
+            padding-left: 1.2rem;
+        }
+        .section-letter {
+            background: #2A9D8F;
+            color: white;
+            width: 42px;
+            height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+        .section-title h2 {
+            font-size: 1.7rem;
+            color: #1e3a38;
+        }
+
+        .intro-box {
+            background: #e3f2ed;
+            border-radius: 28px;
+            padding: 1.5rem 1.8rem;
+            margin-bottom: 2rem;
+            border-left: 8px solid #2A9D8F;
+        }
+        .intro-box ul {
+            margin: 0.8rem 0 0.8rem 1.3rem;
+        }
+        .intro-box li {
+            margin: 0.4rem 0;
+        }
+
+        .passage-box {
+            background: #fff6e8;
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 1px solid #f0dbb4;
+            margin: 1rem 0 1.5rem 0;
+            font-family: 'Courier New', 'SF Mono', monospace;
+        }
+        .twi-passage {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            font-weight: 500;
+            color: #1f3b37;
+        }
+        .lesson-image {
+            width: 100%;
+            max-height: 360px;
+            object-fit: cover;
+            border-radius: 28px;
+            margin: 1rem 0 1.5rem 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+            display: block;
+        }
+        .lesson-image-caption {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: -1.1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 0.8rem;
+            margin: 1.2rem 0;
+        }
+        .vocab-item {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border: 1px solid #e2d9ce;
+            font-size: 0.9rem;
+        }
+        .twi-word {
+            font-weight: 700;
+            color: #2A9D8F;
+        }
+        .eng-def {
+            color: #555;
+        }
+
+        .question-box {
+            background: #eef5f2;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            margin-top: 1rem;
+        }
+        .question-list {
+            padding-left: 1.5rem;
+            margin: 0.8rem 0;
+        }
+        .question-list li {
+            margin: 0.6rem 0;
+            line-height: 1.4;
+        }
+
+        .greeting-table, .intro-table, .phrase-table, .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+        }
+        .greeting-table th, .intro-table th, .phrase-table th, .grammar-table th {
+            background: #2A9D8F;
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+        }
+        .greeting-table td, .intro-table td, .phrase-table td, .grammar-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e0dbd0;
+        }
+        .mini-dialogue {
+            background: #f9f3e8;
+            padding: 1rem;
+            border-radius: 24px;
+            font-family: monospace;
+            margin: 1rem 0;
+        }
+        .btn-audio-sim {
+            background: #d4a37330;
+            border: 1px solid #d4a373;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            display: inline-block;
+            color: #b87333;
+            cursor: pointer;
+        }
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            border-top: 1px solid #e0d9ce;
+            padding-top: 1.2rem;
+            color: #6c7a6e;
+        }
+        button.close-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 0.5rem;
+        }
+        button.close-btn:hover {
+            background: #b87c4a;
+        }
+
+        .practice-tip {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 1rem 1.4rem;
+            margin: 1.2rem 0;
+            border-left: 6px solid #D4A373;
+            font-size: 0.9rem;
+            color: #856404;
+        }
+
+        .checklist {
+            list-style: none;
+            margin: 0.8rem 0;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 0.5rem 0.8rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.92rem;
+        }
+        .checklist li::before {
+            content: "☐";
+            color: #2A9D8F;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.2rem;
+            }
+            .section-card {
+                padding: 1.2rem;
+            }
+            .section-title h2 {
+                font-size: 1.3rem;
+            }
+            .twi-passage {
+                font-size: 1rem;
+            }
+        }
+        hr {
+            margin: 1.2rem 0;
+            border-color: #ddd;
+        }
+        .grammar-corner {
+            background: #e3f2ed;
+            border-radius: 28px;
+            padding: 1.5rem;
+            margin: 1.8rem 0 1rem 0;
+            border-left: 8px solid #2A9D8F;
+        }
+        .examples-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+        .example-item {
+            background: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="chapter-header">
+        <div>
+            <h1>Me ne Me Daadaa Mu Nsɛm</h1>
+            <p class="sub">Chapter 3 · Talking About Yourself and Your Daily Life</p>
+        </div>
+        <div class="chapter-badge">Akwaaba bio!</div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro-box">
+        <p>In Chapter 2 you learned how to greet people and introduce yourself. Now Ghanaians will ask you real questions about your life:</p>
+        <ul>
+            <li><strong>Wodi deɛn?</strong> (What do you eat?)</li>
+            <li><strong>Wote he?</strong> (Where do you live?)</li>
+            <li><strong>Woyɛ deɛn?</strong> (What do you do?)</li>
+            <li><strong>Wo ho te sɛn nnɛ?</strong> (How are you today?)</li>
+            <li><strong>Wopɛ deɛn?</strong> (What do you like?)</li>
+        </ul>
+        <p style="margin-top: 0.8rem;">This chapter teaches you to answer those questions in Twi with confidence. You will use the short words (me, wo, di, kɔ, ba, te, pɛ…) you already met in Chapters 1 and 2 — now you will build real sentences about your life, your day, your food, your home, and your family.</p>
+
+        <h3 style="color: #E76F51; margin-top: 1.2rem; margin-bottom: 0.5rem;">What You'll Achieve in This Chapter</h3>
+        <p>By the end of this chapter you will be able to say things like:</p>
+        <ul>
+            <li><strong>Mete Accra.</strong> (I live in Accra.)</li>
+            <li><strong>Medi banku daa.</strong> (I eat banku every day.)</li>
+            <li><strong>Mepɛ fufu pa ara.</strong> (I really like fufu.)</li>
+            <li><strong>Mekɔ sukuu / adwuma daa.</strong> (I go to school/work every day.)</li>
+            <li><strong>Me ne me nua na ɛte.</strong> (I live with my sibling.)</li>
+            <li><strong>Me papa yɛ ɔkyerɛkyerɛni.</strong> (My father is a teacher.)</li>
+        </ul>
+        <p style="margin-top: 0.8rem; font-weight: 600; color: #2A9D8F;">Let's begin — with a story you can read right now.</p>
+    </div>
+
+    <!-- SECTION A: READING PASSAGE FIRST -->
+    <div class="section-card" id="sectionA">
+        <div class="section-title">
+            <span class="section-letter">A</span>
+            <h2>Kenkan · Me Daadaa Abrabɔ (My Everyday Life)</h2>
+        </div>
+        <p style="margin-bottom: 1rem; color: #555;">Read this short passage about a typical day. Don't worry if you don't understand every word yet — the rest of this chapter will teach you exactly how each part works.</p>
+        <div class="passage-box">
+            <div class="twi-passage">
+                <p>Anɔpa biara, mesɔre nnɔnsia. Medware, mɛhyɛ me ntadeɛ, na medi anɔpa aduane. Mepɛ ɛmo ne nkosua pa ara. Mekɔ adwuma anɔpa nnɔnwɔtwe, ɛfiri sɛ mete Kumasi nanso meyɛ adwuma wɔ Ejisu — ɛkwan no ware, ɛno nti ɛsɛ sɛ mesɔre ntɛm.<br><br>
+                Awia, medi banku ne nsuomunam. Anwummerɛ, meba fie na menoa aduane. Me ne me nua baa na ɛte.</p>
+            </div>
+        </div>
+
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chapterthree/chapter3-evening-sister.jpg" alt="Two sisters watching TV together in the evening" class="lesson-image">
+        <p class="lesson-image-caption">Anadwo, yɛhwɛ kasamfonin — In the evening, we watch TV together.</p>
+
+        <div class="passage-box">
+            <div class="twi-passage">
+                <p>Anadwo, yɛhwɛ kasamfonin. Ɔbisa me sɛ: "Wopɛ Twi asua no?" Mebua sɛ: "Aane, mepɛ no paa!" Yɛsere bɔkɔɔ, na afei yada.</p>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <h4>Nsɛmbisa (Comprehension Questions)</h4>
+            <ul class="question-list">
+                <li>1. Berɛ bɛn na ɔsɔre anɔpa? (What time does she wake up?)</li>
+                <li>2. Dɛn na ɔpɛ sɛ odi anɔpa? (What does she like to eat in the morning?)</li>
+                <li>3. Ɔte he, na ɔyɛ adwuma he? (Where does she live, and where does she work?)</li>
+                <li>4. Adɛn nti na ɛsɛ sɛ ɔsɔre ntɛm? (Why does she need to wake up early?)</li>
+                <li>5. Dɛn na ne nua baa bisa no anadwo? (What does her sister ask her at night?)</li>
+            </ul>
+            <details style="margin-top: 12px; cursor: pointer;">
+                <summary style="color: #2A9D8F; font-weight: 600;">Check answers (click)</summary>
+                <div style="background: white; padding: 12px; border-radius: 20px; margin-top: 8px;">
+                    1. Ɔsɔre nnɔnsia (She wakes up at six).<br>
+                    2. Ɔpɛ ɛmo ne nkosua (She likes rice and eggs).<br>
+                    3. Ɔte Kumasi, nanso ɔyɛ adwuma wɔ Ejisu (She lives in Kumasi, but works in Ejisu).<br>
+                    4. Ɛfiri sɛ ɛkwan no ware (Because the journey/road is long).<br>
+                    5. Ɔbisa no sɛ ɔpɛ Twi asua no (She asks if she likes learning Twi).
+                </div>
+            </details>
+        </div>
+        <div class="practice-tip">
+            💡 <strong>Teacher's Note:</strong> Look for keywords like <strong>sɔre</strong> (wake up), <strong>te</strong> (live), and <strong>nua baa</strong> (sister) to find your answers. For a challenge, try rewriting the first paragraph using <strong>ɔno</strong> (he/she) instead of <strong>me</strong>.
+        </div>
+    </div>
+
+    <!-- SECTION B: PRONOUN REVIEW (BRIEF) -->
+    <div class="section-card" id="sectionB">
+        <div class="section-title">
+            <span class="section-letter">B</span>
+            <h2>Ɔyɛfoɔ Edinnsiananmu · Subject Pronouns (Quick Review)</h2>
+        </div>
+        <p style="margin-bottom: 1rem; color: #555;">You already learned these in Chapter 1 — here's a quick refresher before we move on to verbs.</p>
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>English</th><th>Example</th></tr>
+            <tr><td><strong>me</strong></td><td>I / me / my</td><td>Me din de Kofi.</td></tr>
+            <tr><td><strong>wo</strong></td><td>you / your</td><td>Wo ho te sɛn?</td></tr>
+            <tr><td><strong>ɔno / ɛno</strong></td><td>he / she / it</td><td>Ɔdɔ me.</td></tr>
+            <tr><td><strong>yɛn</strong></td><td>we / us / our</td><td>Yɛbɛhyia bio.</td></tr>
+            <tr><td><strong>mo</strong></td><td>you (plural)</td><td>Mote hen?</td></tr>
+            <tr><td><strong>wɔn</strong></td><td>they / them / their</td><td>Wɔn di fufu.</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin-top: 1.2rem; margin-bottom: 0.5rem;">Pronoun + Verb Contractions</h3>
+        <p style="margin-bottom: 0.8rem;">In Twi, the pronoun attaches to the verb when it's the subject of the sentence:</p>
+        <table class="grammar-table">
+            <tr><th>Full Form</th><th>Contracted Form</th><th>Meaning</th></tr>
+            <tr><td>me + di</td><td><strong>medi</strong></td><td>I eat</td></tr>
+            <tr><td>wo + kɔ</td><td><strong>wokɔ</strong></td><td>you go</td></tr>
+            <tr><td>ɔno + ba</td><td><strong>ɔba</strong></td><td>he/she comes</td></tr>
+            <tr><td>yɛn + di</td><td><strong>yɛdi</strong></td><td>we eat</td></tr>
+            <tr><td>mo + kɔ</td><td><strong>mokɔ</strong></td><td>you (plural) go</td></tr>
+            <tr><td>wɔn + di</td><td><strong>wɔdi</strong></td><td>they eat</td></tr>
+        </table>
+        <div class="practice-tip">
+            🗣️ Practice saying these aloud: <strong>medi, wokɔ, ɔba, yɛdi, mokɔ, wɔdi</strong>
+        </div>
+    </div>
+
+    <!-- SECTION C: VERBS -->
+    <div class="section-card" id="sectionC">
+        <div class="section-title">
+            <span class="section-letter">C</span>
+            <h2>The Most Useful Everyday Verbs</h2>
+        </div>
+        <p style="margin-bottom: 1rem; color: #555;">These short verbs describe almost everything you do every day.</p>
+        <table class="grammar-table">
+            <tr><th>Verb</th><th>Meaning</th><th>Example Sentence</th><th>Note</th></tr>
+            <tr><td><strong>di</strong></td><td>eat</td><td>Medi banku.</td><td>dee — very common!</td></tr>
+            <tr><td><strong>kɔ</strong></td><td>go</td><td>Mekɔ sukuu daa.</td><td>koh — high tone often</td></tr>
+            <tr><td><strong>bra</strong></td><td>come</td><td>Bra fie!</td><td>bah — command form is "bra"</td></tr>
+            <tr><td><strong>da</strong></td><td>sleep / lie down</td><td>Meda anadwo.</td><td>dah — Wo da adi? (Did you sleep well?)</td></tr>
+            <tr><td><strong>te</strong></td><td>live / sit / understand</td><td>Mete Accra. / Mente ase.</td><td>teh — very versatile</td></tr>
+            <tr><td><strong>pɛ</strong></td><td>like / want / love</td><td>Mepɛ fufu paa.</td><td>peh — can be romantic</td></tr>
+            <tr><td><strong>yɛ</strong></td><td>do / be / make</td><td>Meyɛ adwuma.</td><td>yeh — also Ɛyɛ dɛ (It is sweet)</td></tr>
+            <tr><td><strong>ka</strong></td><td>speak / say / bite</td><td>Me ka Twi kakra.</td><td>kah — I speak a little Twi</td></tr>
+            <tr><td><strong>sua</strong></td><td>learn</td><td>Mesua Twi.</td><td>soo-ah</td></tr>
+            <tr><td><strong>hyia</strong></td><td>meet</td><td>Mahyia wo.</td><td>hee-ah — I meet you</td></tr>
+            <tr><td><strong>tɔ</strong></td><td>buy</td><td>Metɔ aduane.</td><td>toh — common at markets</td></tr>
+            <tr><td><strong>noa</strong></td><td>cook</td><td>Menoa nkwan.</td><td>no-ah</td></tr>
+            <tr><td><strong>hwehwɛ</strong></td><td>look for / need</td><td>Mehwehwɛ nsu.</td><td>hweh-weh — I'm looking for water</td></tr>
+            <tr><td><strong>frɛ</strong></td><td>call</td><td>Mɛfrɛ wo ɔkyena.</td><td>freh — I'll call you tomorrow</td></tr>
+            <tr><td><strong>gye</strong></td><td>receive / take</td><td>Megye sika.</td><td>jyeh — I receive money</td></tr>
+            <tr><td><strong>bɔ</strong></td><td>hit / play</td><td>Mebɔ bɔɔl.</td><td>bɔh — I play football</td></tr>
+        </table>
+
+        <div class="practice-tip">
+            🔁 <strong>Verb Conjugation Drill</strong> — say each verb with different pronouns until they feel natural:
+            <div class="examples-list">
+                <div class="example-item"><strong>di:</strong> medi / wodi / ɔdi / yɛdi / modi / wɔdi</div>
+                <div class="example-item"><strong>kɔ:</strong> mekɔ / wokɔ / ɔkɔ / yɛkɔ / mokɔ / wɔkɔ</div>
+                <div class="example-item"><strong>ba:</strong> meba / woba / ɔba / yɛba / moba / wɔba</div>
+                <div class="example-item"><strong>pɛ:</strong> mepɛ / wopɛ / ɔpɛ / yɛpɛ / mopɛ / wɔpɛ</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION D: SENTENCE PATTERNS + WORD ORDER -->
+    <div class="section-card" id="sectionD">
+        <div class="section-title">
+            <span class="section-letter">D</span>
+            <h2>Building Simple Sentences About Your Life</h2>
+        </div>
+
+        <div class="grammar-corner">
+            <h3 style="color: #1e3a38; margin-bottom: 0.5rem;">📘 Word Order in Twi Sentences</h3>
+            <p>Twi follows a simple word order:</p>
+            <p style="font-weight: 700; color: #2A9D8F; margin: 0.6rem 0; font-size: 1.05rem;">SUBJECT + VERB + OBJECT + PLACE/TIME</p>
+            <ul style="margin-left: 1.3rem;">
+                <li><strong>Me</strong> (subject) + <strong>di</strong> (verb) + <strong>fufu</strong> (object) = <strong>Medi fufu.</strong></li>
+                <li><strong>Wo</strong> (subject) + <strong>kɔ</strong> (verb) + <strong>sukuu</strong> (object) + <strong>anɔpa</strong> (time) = <strong>Wokɔ sukuu anɔpa.</strong></li>
+            </ul>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.2rem 0 0.5rem;">Pattern 1: Pronoun + Verb (Just the action)</h3>
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>Meaning</th></tr>
+            <tr><td>Medi.</td><td>I eat.</td></tr>
+            <tr><td>Wokɔ.</td><td>You go.</td></tr>
+            <tr><td>Ɔba.</td><td>He/She comes.</td></tr>
+            <tr><td>Yɛda.</td><td>We sleep.</td></tr>
+            <tr><td>Wɔsa.</td><td>They dance.</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.2rem 0 0.5rem;">Pattern 2: Pronoun + Verb + What (Object)</h3>
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>Meaning</th></tr>
+            <tr><td>Me di fufu.</td><td>I eat fufu.</td></tr>
+            <tr><td>Mepɛ banku.</td><td>I like banku.</td></tr>
+            <tr><td>Metɔ aduane.</td><td>I buy food.</td></tr>
+            <tr><td>Ɔka Twi.</td><td>He/She speaks Twi.</td></tr>
+            <tr><td>Yɛnom nsu.</td><td>We drink water.</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.2rem 0 0.5rem;">Pattern 3: Pronoun + Verb + Place / Time</h3>
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>Meaning</th></tr>
+            <tr><td>Mete Accra.</td><td>I live in Accra.</td></tr>
+            <tr><td>Mekɔ sukuu da biara.</td><td>I go to school every day.</td></tr>
+            <tr><td>Meda anadwo.</td><td>I sleep at night.</td></tr>
+            <tr><td>Ɔkɔ adwuma anɔpa.</td><td>He goes to work in the morning.</td></tr>
+            <tr><td>Yɛba fie anwummerɛ.</td><td>We come home in the evening.</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.2rem 0 0.5rem;">Pattern 4: Simple Questions</h3>
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>Meaning</th></tr>
+            <tr><td>Wodi dɛn?</td><td>What do you eat?</td></tr>
+            <tr><td>Wote he?</td><td>Where do you live?</td></tr>
+            <tr><td>Wopɛ dɛn?</td><td>What do you like?</td></tr>
+            <tr><td>Woyɛ dɛn?</td><td>What do you do?</td></tr>
+            <tr><td>Ɔkɔ he?</td><td>Where is he/she going?</td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION E: NEGATION -->
+    <div class="section-card" id="sectionE">
+        <div class="section-title">
+            <span class="section-letter">E</span>
+            <h2>Pattern 5: Saying "No" or "Not" (Negation)</h2>
+        </div>
+        <p style="margin-bottom: 1rem; color: #555;">To make a sentence negative, add <strong>n-</strong> before the verb:</p>
+        <table class="grammar-table">
+            <tr><th>Positive</th><th>Negative</th></tr>
+            <tr><td>Me di fufu. (I eat fufu.)</td><td>Menni fufu. (I don't eat fufu.)</td></tr>
+            <tr><td>Mekɔ sukuu. (I go to school.)</td><td>Menkɔ sukuu. (I don't go to school.)</td></tr>
+            <tr><td>Mete Accra. (I live in Accra.)</td><td>Mente Accra. (I don't live in Accra.)</td></tr>
+            <tr><td>Mepɛ banku. (I like banku.)</td><td>Mempɛ banku. (I don't like banku.)</td></tr>
+        </table>
+        <div class="practice-tip">
+            ⚠️ <strong>Important:</strong> The prefix <strong>n-</strong> changes the tone and flow of the word. Practice these pairs:
+            <div class="examples-list">
+                <div class="example-item">me di → menni</div>
+                <div class="example-item">me kɔ → menkɔ</div>
+                <div class="example-item">me te → mente</div>
+                <div class="example-item">me pɛ → mempɛ</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION F: VOCABULARY EXPANSIONS -->
+    <div class="section-card" id="sectionF">
+        <div class="section-title">
+            <span class="section-letter">F</span>
+            <h2>Vocabulary Expansions</h2>
+        </div>
+
+        <h3 style="color: #E76F51; margin-bottom: 0.5rem;">🍲 Food & Eating — Aduane ne Adidie</h3>
+        <p style="margin-bottom: 0.8rem; color: #555;">Ghanaian food is central to conversation! Food questions often come right after greetings.</p>
+
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chapterthree/chapter3-ghanaian-food.jpg" alt="A spread of Ghanaian dishes including fufu, banku, waakye, and grilled fish" class="lesson-image">
+        <p class="lesson-image-caption">Aduane pii — lots of food! Can you name any of these dishes in Twi already?</p>
+
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">fufu</span><span class="eng-def">fufu</span></div>
+            <div class="vocab-item"><span class="twi-word">banku</span><span class="eng-def">banku</span></div>
+            <div class="vocab-item"><span class="twi-word">Dɔkono</span><span class="eng-def">kenkey</span></div>
+            <div class="vocab-item"><span class="twi-word">Awaakye</span><span class="eng-def">waakye (rice & beans)</span></div>
+            <div class="vocab-item"><span class="twi-word">nkwan</span><span class="eng-def">soup</span></div>
+            <div class="vocab-item"><span class="twi-word">nkatenkwan</span><span class="eng-def">groundnut soup</span></div>
+            <div class="vocab-item"><span class="twi-word">abɛnkwan</span><span class="eng-def">palm nut soup</span></div>
+            <div class="vocab-item"><span class="twi-word">ɛmo</span><span class="eng-def">rice</span></div>
+            <div class="vocab-item"><span class="twi-word">borɔdeɛ</span><span class="eng-def">plantain</span></div>
+            <div class="vocab-item"><span class="twi-word">bayere</span><span class="eng-def">yam</span></div>
+            <div class="vocab-item"><span class="twi-word">nsuo</span><span class="eng-def">water</span></div>
+            <div class="vocab-item"><span class="twi-word">mako</span><span class="eng-def">pepper</span></div>
+            <div class="vocab-item"><span class="twi-word">ntoosi</span><span class="eng-def">tomatoes</span></div>
+            <div class="vocab-item"><span class="twi-word">nsuomunam</span><span class="eng-def">fish</span></div>
+            <div class="vocab-item"><span class="twi-word">akokɔnam</span><span class="eng-def">chicken</span></div>
+        </div>
+        <div class="practice-tip">
+            🗣️ <strong>Useful Food Phrases</strong>
+            <div class="examples-list">
+                <div class="example-item">ɛkɔm de me — I'm hungry</div>
+                <div class="example-item">Nsukɔm de me — I'm thirsty</div>
+                <div class="example-item">Mepɛ aduane — I like food</div>
+                <div class="example-item">Aduane no yɛ dɛ — The food is delicious</div>
+                <div class="example-item">Mepa wo kyɛw, ma me nsu — Please give me water</div>
+            </div>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">⏰ Daily Routine — Nnɛ Da Mu Nsɛm</h3>
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>English</th></tr>
+            <tr><td>Mesɔre anɔpa</td><td>I wake up in the morning</td></tr>
+            <tr><td>Medwaree</td><td>I bathe</td></tr>
+            <tr><td>Mehyɛ ataadeɛ</td><td>I get dressed</td></tr>
+            <tr><td>Medi anɔpa aduane</td><td>I eat breakfast</td></tr>
+            <tr><td>Mekɔ adwuma / sukuu</td><td>I go to work / school</td></tr>
+            <tr><td>Medi awia aduane</td><td>I eat lunch</td></tr>
+            <tr><td>Meba fie</td><td>I return home</td></tr>
+            <tr><td>Medi anwummere aduane</td><td>I eat dinner</td></tr>
+            <tr><td>Mɛhwɛ kasamfonin</td><td>I watch TV</td></tr>
+            <tr><td>Meda</td><td>I sleep / lie down</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">🕐 Time Words for Routine</h3>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">anɔpa</span><span class="eng-def">morning</span></div>
+            <div class="vocab-item"><span class="twi-word">awia</span><span class="eng-def">afternoon</span></div>
+            <div class="vocab-item"><span class="twi-word">anwummerɛ</span><span class="eng-def">evening</span></div>
+            <div class="vocab-item"><span class="twi-word">anadwo</span><span class="eng-def">night</span></div>
+            <div class="vocab-item"><span class="twi-word">nnɛ</span><span class="eng-def">today</span></div>
+            <div class="vocab-item"><span class="twi-word">ɔkyena</span><span class="eng-def">tomorrow</span></div>
+            <div class="vocab-item"><span class="twi-word">nnora</span><span class="eng-def">yesterday</span></div>
+            <div class="vocab-item"><span class="twi-word">daa / da biara</span><span class="eng-def">every day</span></div>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">👪 Family & People — Abusua</h3>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">papa</span><span class="eng-def">father</span></div>
+            <div class="vocab-item"><span class="twi-word">maame</span><span class="eng-def">mother</span></div>
+            <div class="vocab-item"><span class="twi-word">nana</span><span class="eng-def">grandparent / elder</span></div>
+            <div class="vocab-item"><span class="twi-word">ɔba</span><span class="eng-def">child</span></div>
+            <div class="vocab-item"><span class="twi-word">mma</span><span class="eng-def">children</span></div>
+            <div class="vocab-item"><span class="twi-word">nua</span><span class="eng-def">sibling</span></div>
+            <div class="vocab-item"><span class="twi-word">nuabarima</span><span class="eng-def">brother</span></div>
+            <div class="vocab-item"><span class="twi-word">nuabaa</span><span class="eng-def">sister</span></div>
+            <div class="vocab-item"><span class="twi-word">adamfo</span><span class="eng-def">friend</span></div>
+            <div class="vocab-item"><span class="twi-word">nnamfoɔ</span><span class="eng-def">friends</span></div>
+            <div class="vocab-item"><span class="twi-word">onipa</span><span class="eng-def">person</span></div>
+            <div class="vocab-item"><span class="twi-word">nnipa</span><span class="eng-def">people</span></div>
+            <div class="vocab-item"><span class="twi-word">abusua</span><span class="eng-def">family / clan</span></div>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">📍 Places — Mmoa</h3>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">fie</span><span class="eng-def">home / house</span></div>
+            <div class="vocab-item"><span class="twi-word">sukuu</span><span class="eng-def">school</span></div>
+            <div class="vocab-item"><span class="twi-word">adwumayɛbea</span><span class="eng-def">workplace</span></div>
+            <div class="vocab-item"><span class="twi-word">ɛdwam</span><span class="eng-def">market</span></div>
+            <div class="vocab-item"><span class="twi-word">ayaresabea</span><span class="eng-def">hospital</span></div>
+            <div class="vocab-item"><span class="twi-word">asɔre</span><span class="eng-def">church</span></div>
+            <div class="vocab-item"><span class="twi-word">kuro</span><span class="eng-def">town / city</span></div>
+            <div class="vocab-item"><span class="twi-word">akura</span><span class="eng-def">village</span></div>
+        </div>
+    </div>
+
+    <!-- SECTION G: GRAMMAR DEEP DIVE -->
+    <div class="section-card" id="sectionG">
+        <div class="section-title">
+            <span class="section-letter">G</span>
+            <h2>Grammar Deep Dive: te, wɔ, nim</h2>
+        </div>
+
+        <div class="grammar-corner">
+            <h3 style="color: #1e3a38; margin-bottom: 0.5rem;">The Versatile Verb "te"</h3>
+            <p>The word <strong>te</strong> has several important meanings depending on context:</p>
+            <ul style="margin-left: 1.3rem; margin-top: 0.6rem;">
+                <li><strong>To live / reside:</strong> Mete Accra. (I live in Accra.)</li>
+                <li><strong>To hear / understand:</strong> Mete aseɛ. (I understand.) / Mente aseɛ. (I don't understand.)</li>
+                <li><strong>To sit / be located:</strong> Ɔte fie. (He is at home / sitting at home.)</li>
+                <li><strong>To be in a state:</strong> Wo ho te sɛn? (How are you? — lit. How is your body?)</li>
+            </ul>
+        </div>
+
+        <div class="grammar-corner">
+            <h3 style="color: #1e3a38; margin-bottom: 0.5rem;">The Verb "wɔ" — To Have / To Be At</h3>
+            <p>Use <strong>wɔ</strong> to show possession or location:</p>
+            <ul style="margin-left: 1.3rem; margin-top: 0.6rem;">
+                <li>Mewɔ sika. (I have money.)</li>
+                <li>Ɔwɔ fie. (He is at home.)</li>
+                <li>Fufu wɔ hɔ? (Is there fufu?)</li>
+                <li>Menni sika. (I don't have money — negative)</li>
+            </ul>
+        </div>
+
+        <div class="grammar-corner">
+            <h3 style="color: #1e3a38; margin-bottom: 0.5rem;">The Verb "nim" — To Know</h3>
+            <ul style="margin-left: 1.3rem; margin-top: 0.6rem;">
+                <li>Mennim. (I don't know.)</li>
+                <li>Wonim no? (Do you know him/her?)</li>
+                <li>Mennim sɛ ɔbɛba a. (I don't know if he'll come.)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SECTION H: CHAPTER SUMMARY + CAN-DO CHECKLIST -->
+    <div class="section-card" id="sectionH">
+        <div class="section-title">
+            <span class="section-letter">H</span>
+            <h2>Chapter Summary — What You've Learned</h2>
+        </div>
+        <ul class="question-list">
+            <li>Subject pronouns and how they attach to verbs</li>
+            <li>20+ essential everyday verbs</li>
+            <li>5 sentence patterns for daily life</li>
+            <li>How to make negative sentences</li>
+            <li>Food vocabulary and phrases</li>
+            <li>Daily routine vocabulary</li>
+            <li>Family and people vocabulary</li>
+            <li>Place vocabulary</li>
+        </ul>
+
+        <h3 style="color: #E76F51; margin: 1.4rem 0 0.6rem;">✅ Can-Do Checklist</h3>
+        <p style="margin-bottom: 0.6rem; color: #555;">Check what you can now do:</p>
+        <ul class="checklist">
+            <li>I can say where I live (Mete Accra/Kumasi...)</li>
+            <li>I can say what I eat (Me di fufu/banku...)</li>
+            <li>I can say what I like (Mepɛ...)</li>
+            <li>I can talk about my daily routine</li>
+            <li>I can talk about my family</li>
+            <li>I can ask others about their lives</li>
+            <li>I can say what I don't do/eat/like</li>
+            <li>I can have a 2–3 minute conversation about daily life</li>
+        </ul>
+    </div>
+
+    <div class="footer-note">
+        <p><span class="btn-audio-sim" onclick="speakPhrase('Mete Accra')">🔊 Hear: Mete Accra</span>
+        <span class="btn-audio-sim" onclick="speakPhrase('Medi banku daa')">🔊 Medi banku daa</span>
+        <span class="btn-audio-sim" onclick="speakPhrase('Mepɛ fufu pa ara')">🔊 Mepɛ fufu pa ara</span></p>
+        <p><strong>Chapter 3 Summary</strong>: Daily life vocabulary, everyday verbs, sentence patterns, negation, and a reading passage about a typical day. Kɔ so sua! (Keep learning!)</p>
+    </div>
+    <div style="text-align: center; margin-top: 0.8rem;">
+        <button class="close-btn" onclick="window.close()">Close chapter</button>
+    </div>
+</div>
+<p style="font-size: 0.7rem; text-align: center; margin-top: 1rem; color: #a2b9b0;">Speak Ghana — Chapter 3: Talking About Yourself and Your Daily Life</p>
+</body>
+</html>
