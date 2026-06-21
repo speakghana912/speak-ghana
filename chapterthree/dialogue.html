@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Speak Ghana • Twi Chapter 3: Dialogues & Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 2rem 2rem 2rem 2rem;
+        }
+
+        .chapter-header {
+            border-bottom: 3px solid #2A9D8F;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+        h1 {
+            font-size: 1.9rem;
+            color: #2A9D8F;
+            letter-spacing: -0.3px;
+        }
+        .chapter-badge {
+            background: #E76F51;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .sub {
+            color: #4b6a5e;
+            margin-top: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .intro-box {
+            background: #e3f2ed;
+            border-radius: 28px;
+            padding: 1.4rem 1.8rem;
+            margin-bottom: 2rem;
+            border-left: 8px solid #2A9D8F;
+        }
+
+        .section-card {
+            background: #FEF9F0;
+            border-radius: 32px;
+            padding: 1.6rem 2rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #f0e5d8;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.4rem;
+            border-left: 6px solid #2A9D8F;
+            padding-left: 1.2rem;
+        }
+        .section-letter {
+            background: #2A9D8F;
+            color: white;
+            width: 42px;
+            height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .section-title h2 {
+            font-size: 1.5rem;
+            color: #1e3a38;
+        }
+        .section-title .subtitle {
+            font-size: 0.85rem;
+            color: #888;
+            display: block;
+            margin-top: 0.2rem;
+        }
+
+        .mini-dialogue {
+            background: #f9f3e8;
+            padding: 1.3rem 1.5rem;
+            border-radius: 24px;
+            margin: 0;
+        }
+        .dialogue-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 24px;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            display: block;
+        }
+        .dialogue-line {
+            margin-bottom: 0.7rem;
+            line-height: 1.5;
+        }
+        .dialogue-line:last-child {
+            margin-bottom: 0;
+        }
+        .speaker {
+            font-weight: 800;
+            color: #2A9D8F;
+        }
+        .twi-line {
+            font-family: 'Courier New', 'SF Mono', monospace;
+            font-size: 1.05rem;
+            color: #1f3b37;
+        }
+        .eng-line {
+            display: block;
+            font-size: 0.82rem;
+            color: #888;
+            font-style: italic;
+            margin-top: 0.1rem;
+            margin-left: 1.7rem;
+        }
+
+        .btn-audio-sim {
+            background: #d4a37330;
+            border: 1px solid #d4a373;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            display: inline-block;
+            color: #b87333;
+            cursor: pointer;
+        }
+        .practice-tip {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 1rem 1.4rem;
+            margin: 1.2rem 0 0 0;
+            border-left: 6px solid #D4A373;
+            font-size: 0.88rem;
+            color: #856404;
+        }
+        .footer-note {
+            margin-top: 1rem;
+            text-align: center;
+            border-top: 1px solid #e0d9ce;
+            padding-top: 1.2rem;
+            color: #6c7a6e;
+        }
+        button.close-btn {
+            background: #D4A373;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 0.5rem;
+        }
+        button.close-btn:hover {
+            background: #b87c4a;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 1.2rem; }
+            .section-card { padding: 1.2rem; }
+            .section-title h2 { font-size: 1.2rem; }
+            .eng-line { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="chapter-header">
+        <div>
+            <h1>Nkɔmmɔdie ne Nsɛmmisa</h1>
+            <p class="sub">Chapter 3 · Dialogues & Practice — Talking About Yourself and Your Daily Life</p>
+        </div>
+        <div class="chapter-badge">Role-play time!</div>
+    </div>
+
+    <div class="intro-box">
+        <p><strong>Role-play — practice aloud with a friend, a family member, or by recording yourself.</strong></p>
+        <p style="margin-top: 0.6rem;">These five dialogues use everything from this chapter — greetings, daily routine, food, family, and weekend plans. Read both parts out loud, then try switching roles.</p>
+    </div>
+
+    <!-- DIALOGUE 1 -->
+    <div class="section-card">
+        <div class="section-title">
+            <span class="section-letter">1</span>
+            <div>
+                <h2>Aduane ho nkɔmmɔ</h2>
+                <span class="subtitle">Talking about Food</span>
+            </div>
+        </div>
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chapterthree/dia1.jpg" alt="Two friends eating fufu and banku together at a table" class="dialogue-image">
+        <div class="mini-dialogue">
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Wo ho te sɛn nnɛ?</span><span class="eng-line">How are you today?</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Nyame adom, me ho yɛ. Wo nso ɛɛ?</span><span class="eng-line">By God's grace, I am fine. And you?</span></div>
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Me ho yɛ. Woredi deɛn awia yi?</span><span class="eng-line">I am fine. What are you eating this afternoon?</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Meredi banku ne nkwan. Wo nso ɛɛ?</span><span class="eng-line">I'm eating banku and soup. And you?</span></div>
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Meredi fufuo. Ɛyɛ dɛ pa ara!</span><span class="eng-line">I'm eating fufu. It's very delicious!</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Ɛyɛ, me nso mepɛ fufuo. Yɛbɛdi bi daakye!</span><span class="eng-line">Nice, I also like fufu. We'll eat some together another time!</span></div>
+        </div>
+    </div>
+
+    <!-- DIALOGUE 2 -->
+    <div class="section-card">
+        <div class="section-title">
+            <span class="section-letter">2</span>
+            <div>
+                <h2>Daadaa Dwumadie</h2>
+                <span class="subtitle">Daily Routine</span>
+            </div>
+        </div>
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chapterthree/dia2.jpg" alt="A Ghanaian teacher with a class of smiling children" class="dialogue-image">
+        <div class="mini-dialogue">
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Wote he?</span><span class="eng-line">Where do you live?</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Mete Nkran, Osu. Na wo nso ɛɛ?</span><span class="eng-line">I live in Accra, Osu. And you?</span></div>
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Mete Kumasi nanso mekɔ adwuma wɔ Nkran daa.</span><span class="eng-line">I live in Kumasi but I go to work in Accra every day.</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Woyɛ adwuma bɛn?</span><span class="eng-line">What work do you do?</span></div>
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Meyɛ ɔkyerɛkyerɛni. Mekyerɛ mmofra Asante Twi.</span><span class="eng-line">I am a teacher. I teach children Asante Twi.</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Ɛyɛ papa! Na wo nso woyɛ dɛn?</span><span class="eng-line">That's great! And what about you, what do you do?</span></div>
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Mesua Twi na mekɔ sukuu. Mepɛ sɛ mekasa yie.</span><span class="eng-line">I am learning Twi and I go to school. I want to speak well.</span></div>
+        </div>
+    </div>
+
+    <!-- DIALOGUE 3 -->
+    <div class="section-card">
+        <div class="section-title">
+            <span class="section-letter">3</span>
+            <div>
+                <h2>Nea wopɛ ne nea wompɛ</h2>
+                <span class="subtitle">Likes & Dislikes</span>
+            </div>
+        </div>
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chapterthree/dia3.jpg" alt="Two friends at a colorful street food stand" class="dialogue-image">
+        <div class="mini-dialogue">
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Wopɛ deɛn aduane?</span><span class="eng-line">What food do you like?</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Mepɛ fufu ne nkwan pa ara! Na wo ɛɛ?</span><span class="eng-line">I really like fufu and soup! And you?</span></div>
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Mepɛ banku, nanso menni dɔkono.</span><span class="eng-line">I like banku, but I don't eat kenkey.</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Adɛn nti na wompɛ dɔkono?</span><span class="eng-line">Why don't you like kenkey?</span></div>
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Ne die yɛ den ma me, nanso mepɛ awaakye.</span><span class="eng-line">Eating it is hard for me, but I like waakye.</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Ɛyɛ, waakye yɛ dɛ! Yɛbɛdi bi ɔkyena?</span><span class="eng-line">Nice, waakye is delicious! Shall we eat some tomorrow?</span></div>
+        </div>
+    </div>
+
+    <!-- DIALOGUE 4 -->
+    <div class="section-card">
+        <div class="section-title">
+            <span class="section-letter">4</span>
+            <div>
+                <h2>Abusuabɔ</h2>
+                <span class="subtitle">Family</span>
+            </div>
+        </div>
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chapterthree/dia4.jpg" alt="A joyful multi-generational Ghanaian family gathered together" class="dialogue-image">
+        <div class="mini-dialogue">
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Wowɔ nuanom dodoɔ sɛn?</span><span class="eng-line">How many siblings do you have?</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Mewɔ nua barima baako ne nuammaa baanu. Na wo nso ɛɛ?</span><span class="eng-line">I have one brother and two sisters. And you?</span></div>
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Mewɔ nua barima baanu. Wɔn nyinaa te Kumasi.</span><span class="eng-line">I have two brothers. They all live in Kumasi.</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Wo papa ne wo maame te he?</span><span class="eng-line">Where do your father and mother live?</span></div>
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Me papa te Nkran, ɛna me maame te Oguaa.</span><span class="eng-line">My father lives in Accra, and my mother lives in Cape Coast.</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Ɛhɔ yɛ?</span><span class="eng-line">Is that good / how is that?</span></div>
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Ɛyɛ kakra, mekɔ hwɛ wɔn daa.</span><span class="eng-line">It's a bit much, I go to visit them often.</span></div>
+        </div>
+    </div>
+
+    <!-- DIALOGUE 5 -->
+    <div class="section-card">
+        <div class="section-title">
+            <span class="section-letter">5</span>
+            <div>
+                <h2>Nnawɔtwe Awieeɛ Nhyehyɛeɛ</h2>
+                <span class="subtitle">Weekend Plans</span>
+            </div>
+        </div>
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chapterthree/dia5.jpg" alt="Two friends walking on a lively beach at sunset" class="dialogue-image">
+        <div class="mini-dialogue">
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Ɛdeɛn na woyɛ Memeneda?</span><span class="eng-line">What are you doing on Saturday?</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Memeneda, me taa da. Na wo nso ɛɛ?</span><span class="eng-line">On Saturday, I usually sleep/rest. And you?</span></div>
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Me ne me nua kɔ biikyi. Yɛkɔgye yɛn ani.</span><span class="eng-line">My sibling and I are going to the beach. We're going to enjoy ourselves.</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Ɛyɛ anigye! Mokɔ biikyi bɛn?</span><span class="eng-line">That's fun! Which beach are you going to?</span></div>
+            <div class="dialogue-line"><span class="speaker">A:</span> <span class="twi-line">Yɛkɔ Labadi. Wobɛba?</span><span class="eng-line">We're going to Labadi. Will you come?</span></div>
+            <div class="dialogue-line"><span class="speaker">B:</span> <span class="twi-line">Daabi, mɛkɔ asɔre. Yɛbɛhyia anwummerɛ.</span><span class="eng-line">No, I'm going to church. We'll meet in the evening.</span></div>
+        </div>
+    </div>
+
+    <div class="practice-tip">
+        🗣️ <strong>Practice idea:</strong> Pick one dialogue and act it out with a friend, your sibling, or your teacher. Then try changing the details — your own food, your own family, your own weekend plans — and say it again in your own words.
+    </div>
+
+    <div class="footer-note">
+        <p><span class="btn-audio-sim" onclick="speakPhrase('Wo ho te sɛn nnɛ?')">🔊 Hear: Wo ho te sɛn nnɛ?</span>
+        <span class="btn-audio-sim" onclick="speakPhrase('Mepɛ fufu ne nkwan pa ara')">🔊 Mepɛ fufu ne nkwan pa ara</span>
+        <span class="btn-audio-sim" onclick="speakPhrase('Yɛbɛhyia anwummerɛ')">🔊 Yɛbɛhyia anwummerɛ</span></p>
+        <p><strong>Chapter 3 Dialogues</strong>: Food, daily routine, likes & dislikes, family, and weekend plans — five real conversations to practice aloud. Kɔ so sua! (Keep learning!)</p>
+    </div>
+    <div style="text-align: center; margin-top: 0.8rem;">
+        <button class="close-btn" onclick="window.close()">Close chapter</button>
+    </div>
+</div>
+<p style="font-size: 0.7rem; text-align: center; margin-top: 1rem; color: #a2b9b0;">Speak Ghana — Chapter 3: Talking About Yourself and Your Daily Life | Dialogues & Practice</p>
+</body>
+</html>
