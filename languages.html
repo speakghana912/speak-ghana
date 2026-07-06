@@ -592,8 +592,8 @@
         /* Package Grid */
         .package-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
             margin: 1.5rem 0;
         }
 
@@ -602,6 +602,8 @@
             border-radius: 20px;
             overflow: hidden;
             transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
         .package-card:hover {
@@ -628,12 +630,16 @@
         }
 
         .package-body {
-            padding: 1.2rem;
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .package-features {
             list-style: none;
             margin-bottom: 1rem;
+            flex: 1;
         }
 
         .package-features li {
@@ -651,22 +657,26 @@
         }
 
         .package-price {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin: 0.8rem 0;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0.8rem 0 0.3rem;
             color: var(--green);
         }
 
         .package-price small {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             font-weight: normal;
             color: var(--gray);
         }
 
         .discount-note {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--gray);
-            margin: 0.5rem 0;
+            margin: 0.3rem 0 0.5rem;
+            background: #e8f5e9;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            display: inline-block;
         }
 
         .guarantee-badge {
@@ -677,14 +687,14 @@
             font-size: 0.7rem;
             font-weight: 700;
             color: var(--black);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         .money-back {
             background: #e8f5e9;
             border-radius: 16px;
             padding: 0.5rem;
-            margin-top: 0.5rem;
+            margin-top: 0.8rem;
             text-align: center;
             font-size: 0.7rem;
             font-weight: 600;
@@ -695,24 +705,51 @@
             background: linear-gradient(135deg, #fff5e8, white);
             border-radius: 16px;
             padding: 1rem;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
             text-align: center;
             border: 1px solid var(--gold);
         }
 
         .perks-section p {
             font-size: 0.8rem;
-            margin: 0.3rem 0;
+            margin: 0.2rem 0;
         }
 
         .cultural-box {
-            background: var(--cream);
+            background: linear-gradient(135deg, #fef9f0, #fdf0e0);
             border-radius: 16px;
-            padding: 0.8rem;
-            margin-top: 0.8rem;
-            text-align: center;
-            font-size: 0.75rem;
-            border-left: 3px solid var(--gold);
+            padding: 1rem 1.2rem;
+            margin: 0.8rem 0;
+            border-left: 4px solid var(--gold);
+            font-size: 0.85rem;
+        }
+
+        .cultural-box i {
+            color: var(--gold);
+            margin-right: 0.5rem;
+        }
+
+        .cultural-box strong {
+            color: var(--green);
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .cultural-box .cultural-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.4rem;
+        }
+
+        .cultural-box .cultural-tags span {
+            background: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            border: 1px solid var(--gold);
+            color: var(--black);
         }
 
         .testimonials-strip {
@@ -811,6 +848,35 @@
 
         .scholarship-text p {
             font-size: 0.85rem;
+        }
+
+        /* Price row for package cards */
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .price-row .price-main {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--green);
+        }
+
+        .price-row .price-period {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .price-row .price-discount {
+            font-size: 0.75rem;
+            color: var(--red);
+            background: #fee;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-weight: 600;
         }
 
         /* Modal Styles */
@@ -1032,6 +1098,9 @@
             .form-row {
                 grid-template-columns: 1fr;
             }
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -1236,18 +1305,34 @@
                             <li>Quizzes to test progress</li>
                             <li>Certificate upon completion</li>
                         </ul>
+
+                        <!-- Cultural Box - Improved Layout -->
                         <div class="cultural-box">
-                            <i class="fas fa-music"></i> Cultural Immersion: Proverbs, Adinkra symbols, festivals, traditional songs
+                            <strong><i class="fas fa-music"></i> Cultural Immersion</strong>
+                            <div class="cultural-tags">
+                                <span>📖 Proverbs</span>
+                                <span>🖤 Adinkra symbols</span>
+                                <span>🎭 Festivals</span>
+                                <span>🎵 Traditional songs</span>
+                            </div>
                         </div>
-                        <div class="package-price">$50 <small>/ month</small></div>
-                        <div class="discount-note">Pay as low as $45/month with 3-month commit • $40/month with 6-month commit</div>
+
+                        <!-- Price with clear display -->
+                        <div class="price-row">
+                            <span class="price-main">$50</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <div class="discount-note">
+                            💰 Pay as low as $45/month with 3-month commit • $40/month with 6-month commit
+                        </div>
+
                         <div class="perks-section">
-                            <p>Loyalty Perk: 10% discount on next level after 3 months</p>
-                            <p>Referral Perk: Bring a friend → both get 15% off for 1 month</p>
-                            <p>Perfect Attendance: Free bonus lesson every 4 weeks</p>
+                            <p>🎁 Loyalty Perk: 10% discount on next level after 3 months</p>
+                            <p>👫 Referral Perk: Bring a friend → both get 15% off for 1 month</p>
+                            <p>⭐ Perfect Attendance: Free bonus lesson every 4 weeks</p>
                         </div>
                         <div class="money-back">7-day money-back guarantee</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Group 90min Weekly')" class="btn btn-primary" style="margin-top: 0.5rem;">Enroll Now</button>
+                        <button onclick="openEnrollmentModal('Twi', 'Group 90min Weekly')" class="btn btn-primary" style="margin-top: 0.5rem; width: 100%;">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1273,19 +1358,34 @@
                             <li>Quizzes to test progress</li>
                             <li>Certificate upon completion</li>
                         </ul>
+
+                        <!-- Cultural Box - Improved Layout -->
                         <div class="cultural-box">
-                            <i class="fas fa-drumstick-bite"></i> Bonus: Family conversation prompts • Traditional recipes • Cultural etiquette guides
+                            <strong><i class="fas fa-drumstick-bite"></i> Bonus Cultural Add-ons</strong>
+                            <div class="cultural-tags">
+                                <span>💬 Family conversation prompts</span>
+                                <span>🍲 Traditional recipes</span>
+                                <span>🤝 Cultural etiquette guides</span>
+                            </div>
                         </div>
-                        <div class="package-price">$75 <small>/ month</small></div>
-                        <div class="discount-note">Pay as low as $67.50/month with 3-month commit • $60/month with 6-month commit</div>
+
+                        <!-- Price with clear display -->
+                        <div class="price-row">
+                            <span class="price-main">$75</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <div class="discount-note">
+                            💰 Pay as low as $67.50/month with 3-month commit • $60/month with 6-month commit
+                        </div>
+
                         <div class="perks-section">
-                            <p>Loyalty Perk: 10% discount on next level after 3 months</p>
-                            <p>Referral Perk: Bring a friend → both get 15% off for 1 month</p>
-                            <p>Perfect Attendance: Free bonus lesson every 4 weeks</p>
-                            <p>Lesson Recordings: Review anytime</p>
+                            <p>🎁 Loyalty Perk: 10% discount on next level after 3 months</p>
+                            <p>👫 Referral Perk: Bring a friend → both get 15% off for 1 month</p>
+                            <p>⭐ Perfect Attendance: Free bonus lesson every 4 weeks</p>
+                            <p>📹 Lesson Recordings: Review anytime</p>
                         </div>
                         <div class="money-back">7-day money-back guarantee</div>
-                        <button onclick="openEnrollmentModal('Twi', 'Private 60min Weekly')" class="btn btn-primary" style="margin-top: 0.5rem;">Enroll Now</button>
+                        <button onclick="openEnrollmentModal('Twi', 'Private 60min Weekly')" class="btn btn-primary" style="margin-top: 0.5rem; width: 100%;">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1349,16 +1449,37 @@
                     <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly Zoom Lessons</div></div>
                     <div class="package-body">
                         <ul class="package-features"><li>Cultural immersion</li><li>PDF textbook included</li><li>Worksheets & quizzes</li><li>Certificate upon completion</li></ul>
-                        <div class="package-price">$50 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Ga', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
+                        <div class="cultural-box">
+                            <strong><i class="fas fa-music"></i> Cultural Immersion</strong>
+                            <div class="cultural-tags">
+                                <span>📖 Proverbs</span>
+                                <span>🎭 Festivals</span>
+                                <span>🎵 Traditional songs</span>
+                            </div>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-main">$50</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <button onclick="openEnrollmentModal('Ga', 'Group 90min')" class="btn btn-primary" style="width: 100%;">Enroll Now</button>
                     </div>
                 </div>
                 <div class="package-card">
                     <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
                     <div class="package-body">
                         <ul class="package-features"><li>1-on-1 with teacher</li><li>Flexible scheduling</li><li>Cultural immersion</li><li>Certificate upon completion</li></ul>
-                        <div class="package-price">$75 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Ga', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                        <div class="cultural-box">
+                            <strong><i class="fas fa-drumstick-bite"></i> Bonus Cultural Add-ons</strong>
+                            <div class="cultural-tags">
+                                <span>💬 Family conversation prompts</span>
+                                <span>🍲 Traditional recipes</span>
+                            </div>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-main">$75</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <button onclick="openEnrollmentModal('Ga', 'Private 60min')" class="btn btn-primary" style="width: 100%;">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1411,16 +1532,37 @@
                     <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly Zoom Lessons</div></div>
                     <div class="package-body">
                         <ul class="package-features"><li>Cultural immersion (drumming, festivals)</li><li>PDF textbook included</li><li>Certificate upon completion</li></ul>
-                        <div class="package-price">$50 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Ewe', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
+                        <div class="cultural-box">
+                            <strong><i class="fas fa-music"></i> Cultural Immersion</strong>
+                            <div class="cultural-tags">
+                                <span>🥁 Drumming</span>
+                                <span>🎭 Festivals</span>
+                                <span>🎵 Traditional songs</span>
+                            </div>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-main">$50</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <button onclick="openEnrollmentModal('Ewe', 'Group 90min')" class="btn btn-primary" style="width: 100%;">Enroll Now</button>
                     </div>
                 </div>
                 <div class="package-card">
                     <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
                     <div class="package-body">
                         <ul class="package-features"><li>1-on-1 with native speaker</li><li>Flexible scheduling</li><li>Certificate upon completion</li></ul>
-                        <div class="package-price">$75 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Ewe', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                        <div class="cultural-box">
+                            <strong><i class="fas fa-drumstick-bite"></i> Bonus Cultural Add-ons</strong>
+                            <div class="cultural-tags">
+                                <span>💬 Conversation prompts</span>
+                                <span>🍲 Traditional recipes</span>
+                            </div>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-main">$75</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <button onclick="openEnrollmentModal('Ewe', 'Private 60min')" class="btn btn-primary" style="width: 100%;">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1464,15 +1606,21 @@
                 <div class="package-card">
                     <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly Zoom Lessons</div></div>
                     <div class="package-body">
-                        <div class="package-price">$50 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Fante', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
+                        <div class="price-row">
+                            <span class="price-main">$50</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <button onclick="openEnrollmentModal('Fante', 'Group 90min')" class="btn btn-primary" style="width: 100%;">Enroll Now</button>
                     </div>
                 </div>
                 <div class="package-card">
                     <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
                     <div class="package-body">
-                        <div class="package-price">$75 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Fante', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                        <div class="price-row">
+                            <span class="price-main">$75</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <button onclick="openEnrollmentModal('Fante', 'Private 60min')" class="btn btn-primary" style="width: 100%;">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1516,15 +1664,21 @@
                 <div class="package-card">
                     <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly Zoom Lessons</div></div>
                     <div class="package-body">
-                        <div class="package-price">$50 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Dagbani', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
+                        <div class="price-row">
+                            <span class="price-main">$50</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <button onclick="openEnrollmentModal('Dagbani', 'Group 90min')" class="btn btn-primary" style="width: 100%;">Enroll Now</button>
                     </div>
                 </div>
                 <div class="package-card">
                     <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
                     <div class="package-body">
-                        <div class="package-price">$75 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Dagbani', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                        <div class="price-row">
+                            <span class="price-main">$75</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <button onclick="openEnrollmentModal('Dagbani', 'Private 60min')" class="btn btn-primary" style="width: 100%;">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1569,16 +1723,37 @@
                     <div class="package-header"><h4>Group 90 min</h4><div class="package-type">Weekly Zoom Lessons</div></div>
                     <div class="package-body">
                         <ul class="package-features"><li>Cultural immersion (Hausa traditions, music)</li><li>PDF textbook included</li><li>Worksheets & quizzes</li><li>Certificate upon completion</li></ul>
-                        <div class="package-price">$50 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Hausa', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
+                        <div class="cultural-box">
+                            <strong><i class="fas fa-music"></i> Cultural Immersion</strong>
+                            <div class="cultural-tags">
+                                <span>📖 Traditions</span>
+                                <span>🎵 Music</span>
+                                <span>🎭 Festivals</span>
+                            </div>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-main">$50</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <button onclick="openEnrollmentModal('Hausa', 'Group 90min')" class="btn btn-primary" style="width: 100%;">Enroll Now</button>
                     </div>
                 </div>
                 <div class="package-card">
                     <div class="package-header"><h4>Private 60 min</h4><div class="package-type">Weekly</div></div>
                     <div class="package-body">
                         <ul class="package-features"><li>1-on-1 with native speaker</li><li>Flexible scheduling</li><li>Personalized learning path</li><li>Certificate upon completion</li></ul>
-                        <div class="package-price">$75 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('Hausa', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                        <div class="cultural-box">
+                            <strong><i class="fas fa-drumstick-bite"></i> Bonus Cultural Add-ons</strong>
+                            <div class="cultural-tags">
+                                <span>💬 Conversation prompts</span>
+                                <span>🍲 Traditional recipes</span>
+                            </div>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-main">$75</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <button onclick="openEnrollmentModal('Hausa', 'Private 60min')" class="btn btn-primary" style="width: 100%;">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -1677,8 +1852,11 @@
                             <li>PDF textbook included</li>
                             <li>Certificate upon completion</li>
                         </ul>
-                        <div class="package-price">$50 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('International Language', 'Group 90min')" class="btn btn-primary">Enroll Now</button>
+                        <div class="price-row">
+                            <span class="price-main">$50</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <button onclick="openEnrollmentModal('International Language', 'Group 90min')" class="btn btn-primary" style="width: 100%;">Enroll Now</button>
                     </div>
                 </div>
                 <div class="package-card">
@@ -1690,14 +1868,21 @@
                             <li>Personalized learning path</li>
                             <li>Certificate upon completion</li>
                         </ul>
-                        <div class="package-price">$75 <small>/ month</small></div>
-                        <button onclick="openEnrollmentModal('International Language', 'Private 60min')" class="btn btn-primary">Enroll Now</button>
+                        <div class="cultural-box">
+                            <strong><i class="fas fa-globe-americas"></i> Learn any international language</strong>
+                            <div class="cultural-tags">
+                                <span>💼 Business focus</span>
+                                <span>✈️ Travel focus</span>
+                                <span>🎭 Cultural focus</span>
+                            </div>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-main">$75</span>
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <button onclick="openEnrollmentModal('International Language', 'Private 60min')" class="btn btn-primary" style="width: 100%;">Enroll Now</button>
                     </div>
                 </div>
-            </div>
-
-            <div class="cultural-box" style="border-left-color: var(--green);">
-                <i class="fas fa-globe-americas"></i> Learn any international language with native-level teachers. Business, travel, or cultural focus available.
             </div>
         </section>
 
