@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>Twi Time Lesson | O'clocks + Clock Exercises</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(145deg, #1f4f3a 0%, #0f2f1f 100%);
+            font-family: 'Segoe UI', 'Poppins', 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .lesson-card {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fcf6e8;
+            border-radius: 70px;
+            padding: 30px 35px 45px;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #f9d48b;
+            background: #2a5d33;
+            padding: 14px 20px;
+            border-radius: 80px;
+            text-shadow: 3px 3px 0 #6b3d1a;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        .subhead {
+            text-align: center;
+            font-weight: bold;
+            background: #3f7842;
+            color: #f7e7be;
+            padding: 8px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: auto;
+            margin: 0 auto 25px;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: #fef7ea;
+            border-radius: 48px;
+            padding: 18px 25px;
+            margin: 25px 0;
+            box-shadow: inset 0 1px 4px #fffcf5, 0 8px 16px rgba(0,0,0,0.08);
+            border-left: 10px solid #d68d4a;
+        }
+
+        .section h2 {
+            font-size: 1.9rem;
+            color: #3d5e2b;
+            margin-bottom: 12px;
+            border-bottom: 4px dotted #cfb385;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #5f3c1a;
+            margin: 18px 0 8px;
+        }
+
+        .highlight-box {
+            background: #e9dbbc;
+            border-radius: 40px;
+            padding: 14px 20px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .vocab-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .vocab-item {
+            background: #eadbc0;
+            border-radius: 40px;
+            padding: 10px 22px;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 1.05rem;
+            border-left: 6px solid #bb8b4b;
+        }
+
+        .vocab-item span {
+            font-weight: normal;
+            color: #4d3720;
+            font-size: 0.85rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fcf3e0;
+            border-radius: 40px;
+            overflow: hidden;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: #b78b4e;
+            color: #fff8e6;
+            padding: 12px 8px;
+            font-size: 1.1rem;
+        }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #d6c19a;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .twi-word {
+            font-weight: 700;
+            color: #2f4a1e;
+        }
+
+        .eng-word {
+            color: #6b3f1a;
+        }
+
+        .example-sent {
+            background: #ebdfc2;
+            border-radius: 30px;
+            padding: 15px 20px;
+            margin: 12px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Quiz / Exercise Styles */
+        .quiz-area {
+            background: #f2e5cc;
+            border-radius: 50px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .quiz-question {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1f3f14;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 18px 0;
+        }
+
+        .quiz-btn {
+            background: #eedbaa;
+            border: none;
+            padding: 12px 26px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.08s linear;
+            font-family: monospace;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .quiz-btn:hover:not(:disabled) {
+            background: #f8d88a;
+            transform: scale(0.97);
+        }
+
+        .quiz-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .feedback-correct {
+            background: #548c3a;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+
+        .feedback-wrong {
+            background: #b84a2e;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+
+        .next-btn {
+            background: #e7b15a;
+            border: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            padding: 10px 32px;
+            border-radius: 60px;
+            cursor: pointer;
+            margin-top: 12px;
+            box-shadow: 0 5px 0 #8b541e;
+            transition: 0.05s linear;
+        }
+
+        .next-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #8b541e;
+        }
+
+        .restart-btn {
+            background: #737f53;
+            color: white;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 12px;
+        }
+
+        .result-box {
+            background: #e1d2b0;
+            border-radius: 50px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        /* Clock SVG */
+        .clock-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .clock-svg {
+            width: 200px;
+            height: 200px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            color: #b8a47a;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 700px) {
+            .lesson-card { padding: 18px; }
+            h1 { font-size: 1.8rem; }
+            .section h2 { font-size: 1.5rem; }
+            .quiz-btn { padding: 8px 16px; font-size: 0.9rem; }
+            .clock-svg { width: 150px; height: 150px; }
+        }
+    </style>
+</head>
+<body>
+<div class="lesson-card">
+    <h1>⏰ Tell the Time in Twi</h1>
+    <div style="text-align: center;"><span class="subhead">O'clocks · Clock Exercises · Practice</span></div>
+
+    <!-- 1. Introduction -->
+    <div class="section">
+        <h2>📘 Introduction</h2>
+        <p style="font-size:1.1rem;">Having learned to count in Twi, and equipped yourself with time-telling vocabulary, let's now move on to see how to actually <strong>tell time in Twi</strong>. We begin with the <strong>o’clocks</strong>.</p>
+        <div class="highlight-box">
+            <strong>🔑 Key rule:</strong> The Twi term for ‘o’clock’ comes in two forms:
+            <ul style="margin-top:8px; list-style:none; padding-left:0;">
+                <li>• <strong>dɔn</strong> (singular) — used <em>only</em> for <strong>1 o’clock</strong></li>
+                <li>• <strong>nnɔn</strong> (plural) — used for <strong>2 o’clock through 12 o’clock</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 2. O'clocks Table -->
+    <div class="section">
+        <h2>🕐 O’clocks in Twi</h2>
+        <table>
+            <thead><tr><th>Twi</th><th>English</th></tr></thead>
+            <tbody>
+                <tr><td class="twi-word">dɔn ko / dɔn koro</td><td class="eng-word">one (1) o’clock</td></tr>
+                <tr><td class="twi-word">nnɔn mienu</td><td class="eng-word">two (2) o’clock</td></tr>
+                <tr><td class="twi-word">nnɔn miɛnsa</td><td class="eng-word">three (3) o’clock</td></tr>
+                <tr><td class="twi-word">nnɔn nan</td><td class="eng-word">four (4) o’clock</td></tr>
+                <tr><td class="twi-word">nnɔn num</td><td class="eng-word">five (5) o’clock</td></tr>
+                <tr><td class="twi-word">nnɔn sia</td><td class="eng-word">six (6) o’clock</td></tr>
+                <tr><td class="twi-word">nnɔn son</td><td class="eng-word">seven (7) o’clock</td></tr>
+                <tr><td class="twi-word">nnɔn wɔtwe</td><td class="eng-word">eight (8) o’clock</td></tr>
+                <tr><td class="twi-word">nnɔn kron</td><td class="eng-word">nine (9) o’clock</td></tr>
+                <tr><td class="twi-word">nnɔn du</td><td class="eng-word">ten (10) o’clock</td></tr>
+                <tr><td class="twi-word">nnɔn dubaako</td><td class="eng-word">eleven (11) o’clock</td></tr>
+                <tr><td class="twi-word">nnɔn dumienu</td><td class="eng-word">twelve (12) o’clock</td></tr>
+            </tbody>
+        </table>
+        <p style="font-size:0.9rem; margin-top:6px;"><em>💡 The emboldened parts (ko, mienu, miɛnsa, etc.) are the Twi numbers you've learned previously.</em></p>
+    </div>
+
+    <!-- 3. Full Sentences with abɔ -->
+    <div class="section">
+        <h2>🗣️ Telling the Time (Full Sentences)</h2>
+        <p>Use <strong>abɔ</strong> (“it has struck”) followed by the o’clock expression.</p>
+        <table>
+            <thead><tr><th>Twi</th><th>English</th></tr></thead>
+            <tbody>
+                <tr><td class="twi-word">abɔ dɔn ko / dɔn koro</td><td class="eng-word">it’s one (1) o’clock</td></tr>
+                <tr><td class="twi-word">abɔ nnɔn mienu</td><td class="eng-word">it’s two (2) o’clock</td></tr>
+                <tr><td class="twi-word">abɔ nnɔn miɛnsa</td><td class="eng-word">it’s three (3) o’clock</td></tr>
+                <tr><td class="twi-word">abɔ nnɔn nan</td><td class="eng-word">it’s four (4) o’clock</td></tr>
+                <tr><td class="twi-word">abɔ nnɔn num</td><td class="eng-word">it’s five (5) o’clock</td></tr>
+                <tr><td class="twi-word">abɔ nnɔn sia</td><td class="eng-word">it’s six (6) o’clock</td></tr>
+                <tr><td class="twi-word">abɔ nnɔn son</td><td class="eng-word">it’s seven (7) o’clock</td></tr>
+                <tr><td class="twi-word">abɔ nnɔn wɔtwe</td><td class="eng-word">it’s eight (8) o’clock</td></tr>
+                <tr><td class="twi-word">abɔ nnɔn kron</td><td class="eng-word">it’s nine (9) o’clock</td></tr>
+                <tr><td class="twi-word">abɔ nnɔn du</td><td class="eng-word">it’s ten (10) o’clock</td></tr>
+                <tr><td class="twi-word">abɔ nnɔn dubaako</td><td class="eng-word">it’s eleven (11) o’clock</td></tr>
+                <tr><td class="twi-word">abɔ nnɔn dumienu</td><td class="eng-word">it’s twelve (12) o’clock</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 4. Adding a.m./p.m. / Time of Day -->
+    <div class="section">
+        <h2>🌅 Adding a.m./p.m. or Time of Day</h2>
+        <p>Add the name of the time period <strong>before</strong> the o’clock:</p>
+        <table>
+            <thead><tr><th>Twi</th><th>English</th></tr></thead>
+            <tbody>
+                <tr><td class="twi-word">abɔ awia dɔn ko</td><td class="eng-word">it’s 1 p.m.</td></tr>
+                <tr><td class="twi-word">abɔ anwummerɛ nnɔn sia</td><td class="eng-word">it’s 6 p.m.</td></tr>
+                <tr><td class="twi-word">abɔ anɔpa nnɔn son</td><td class="eng-word">it’s 7 a.m.</td></tr>
+                <tr><td class="twi-word">abɔ anɔpa nnɔn wɔtwe</td><td class="eng-word">it’s 8 a.m.</td></tr>
+                <tr><td class="twi-word">abɔ anadwo nnɔn du</td><td class="eng-word">it’s 10 p.m.</td></tr>
+                <tr><td class="twi-word">prɛmo ato</td><td class="eng-word">it’s midday / noon</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 5. Asking for the Time & Vocabulary -->
+    <div class="section">
+        <h2>❓ Asking for the Time</h2>
+        <div class="example-sent">
+            <span style="font-size:1.5rem; font-weight:bold;">abɔ sɛn?</span> — “What time is it?”
+        </div>
+        <h3>📚 Must-Know Time Vocabulary</h3>
+        <div class="vocab-grid">
+            <div class="vocab-item">berɛ <span>time (pl. mmerɛ)</span></div>
+            <div class="vocab-item">bɔ <span>strike</span></div>
+            <div class="vocab-item">abɔ sɛn? <span>what’s the time?</span></div>
+            <div class="vocab-item">abɔ <span>it’s struck</span></div>
+            <div class="vocab-item">dɔn (pl. nnɔn) <span>o’clock</span></div>
+            <div class="vocab-item">dɔn hwere <span>hour</span></div>
+            <div class="vocab-item">sima <span>minute</span></div>
+            <div class="vocab-item">anibɔ <span>second</span></div>
+            <div class="vocab-item">ko/koro <span>single / one</span></div>
+            <div class="vocab-item">apa ho <span>past / after</span></div>
+            <div class="vocab-item">aka… na abɔ <span>it’s left with… to strike</span></div>
+            <div class="vocab-item">pɛpɛɛpɛ <span>exactly</span></div>
+            <div class="vocab-item">anɔpa <span>morning (a.m.)</span></div>
+            <div class="vocab-item">awiaberɛ <span>afternoon (p.m.)</span></div>
+            <div class="vocab-item">anwummerɛ <span>evening (p.m.)</span></div>
+            <div class="vocab-item">anadwo <span>night (p.m.)</span></div>
+        </div>
+    </div>
+
+    <!-- 6. EXERCISES: Clock + Multiple Choice -->
+    <div class="section" style="background: #efebd0; border-left-color: #b5823a;">
+        <h2>🧪 Practice Exercises</h2>
+        <p style="margin-bottom:12px;">Read the clock and choose the correct Twi time expression. Or select the right translation.</p>
+        <div id="quizContainer" class="quiz-area">
+            <!-- dynamically rendered -->
+        </div>
+    </div>
+
+    <footer>📖 Based on "How to Tell the Time in Twi | The O’clocks Version" — LearnAkan. Includes interactive clock exercises.</footer>
+</div>
+
+<script>
+    // ------------------------------------------------------------
+    // EXERCISE DATA: 14 questions (Clock images + regular)
+    // First 7 are clock-based (show SVG clock), rest are translation.
+    // ------------------------------------------------------------
+    const exerciseData = [
+        // ---- CLOCK EXERCISES (read the clock) ----
+        {
+            type: 'clock',
+            hour: 1,
+            minute: 0,
+            question: 'What time is shown on the clock?',
+            options: ['abɔ dɔn ko', 'abɔ nnɔn mienu', 'abɔ nnɔn nan', 'abɔ nnɔn son'],
+            correct: 'abɔ dɔn ko'
+        },
+        {
+            type: 'clock',
+            hour: 2,
+            minute: 0,
+            question: 'Read the clock. Choose the correct Twi time.',
+            options: ['abɔ nnɔn mienu', 'abɔ dɔn ko', 'abɔ nnɔn miɛnsa', 'abɔ nnɔn sia'],
+            correct: 'abɔ nnɔn mienu'
+        },
+        {
+            type: 'clock',
+            hour: 3,
+            minute: 0,
+            question: 'What time is it in Twi? (Look at the clock)',
+            options: ['abɔ nnɔn miɛnsa', 'abɔ nnɔn nan', 'abɔ nnɔn num', 'abɔ nnɔn sia'],
+            correct: 'abɔ nnɔn miɛnsa'
+        },
+        {
+            type: 'clock',
+            hour: 5,
+            minute: 0,
+            question: 'Read the clock and select the correct Twi expression.',
+            options: ['abɔ nnɔn num', 'abɔ nnɔn nan', 'abɔ nnɔn mienu', 'abɔ nnɔn wɔtwe'],
+            correct: 'abɔ nnɔn num'
+        },
+        {
+            type: 'clock',
+            hour: 7,
+            minute: 0,
+            question: 'What does this clock say in Twi?',
+            options: ['abɔ nnɔn son', 'abɔ nnɔn sia', 'abɔ nnɔn wɔtwe', 'abɔ nnɔn kron'],
+            correct: 'abɔ nnɔn son'
+        },
+        {
+            type: 'clock',
+            hour: 9,
+            minute: 0,
+            question: 'Choose the correct Twi for the time on the clock.',
+            options: ['abɔ nnɔn kron', 'abɔ nnɔn du', 'abɔ nnɔn wɔtwe', 'abɔ nnɔn dubaako'],
+            correct: 'abɔ nnɔn kron'
+        },
+        {
+            type: 'clock',
+            hour: 11,
+            minute: 0,
+            question: 'What time is shown? Pick the right Twi phrase.',
+            options: ['abɔ nnɔn dubaako', 'abɔ nnɔn dumienu', 'abɔ nnɔn du', 'abɔ nnɔn son'],
+            correct: 'abɔ nnɔn dubaako'
+        },
+        // ---- REGULAR TRANSLATION EXERCISES (7 more) ----
+        {
+            type: 'translation',
+            question: 'How do you say "it\'s four (4) o\'clock" in Twi?',
+            options: ['abɔ nnɔn nan', 'abɔ nnɔn sia', 'abɔ dɔn ko', 'abɔ nnɔn du'],
+            correct: 'abɔ nnɔn nan'
+        },
+        {
+            type: 'translation',
+            question: 'What is the Twi for "six (6) o\'clock"?',
+            options: ['nnɔn sia', 'nnɔn son', 'nnɔn du', 'nnɔn dubaako'],
+            correct: 'nnɔn sia'
+        },
+        {
+            type: 'translation',
+            question: 'Choose the correct translation: "it\'s eight (8) o\'clock".',
+            options: ['abɔ nnɔn wɔtwe', 'abɔ nnɔn son', 'abɔ nnɔn kron', 'abɔ nnɔn miɛnsa'],
+            correct: 'abɔ nnɔn wɔtwe'
+        },
+        {
+            type: 'translation',
+            question: 'What is "it\'s ten (10) o\'clock" in Twi?',
+            options: ['abɔ nnɔn du', 'abɔ nnɔn dubaako', 'abɔ nnɔn dumienu', 'abɔ nnɔn sia'],
+            correct: 'abɔ nnɔn du'
+        },
+        {
+            type: 'translation',
+            question: 'How do you say "twelve (12) o\'clock" in Twi?',
+            options: ['nnɔn dumienu', 'nnɔn dubaako', 'nnɔn du', 'nnɔn sia'],
+            correct: 'nnɔn dumienu'
+        },
+        {
+            type: 'translation',
+            question: 'What is the Twi for "it\'s 7 a.m."?',
+            options: ['abɔ anɔpa nnɔn son', 'abɔ anwummerɛ nnɔn sia', 'abɔ awia dɔn ko', 'abɔ anadwo nnɔn du'],
+            correct: 'abɔ anɔpa nnɔn son'
+        },
+        {
+            type: 'translation',
+            question: 'How do you say "it\'s 6 p.m." in Twi?',
+            options: ['abɔ anwummerɛ nnɔn sia', 'abɔ anɔpa nnɔn wɔtwe', 'abɔ awia dɔn ko', 'prɛmo ato'],
+            correct: 'abɔ anwummerɛ nnɔn sia'
+        }
+    ];
+
+    let currentQ = 0;
+    let answers = new Array(exerciseData.length).fill(null);
+    let status = new Array(exerciseData.length).fill(null);
+    let quizCompleted = false;
+
+    const container = document.getElementById('quizContainer');
+
+    // ----- helper: draw clock SVG -----
+    function clockSVG(hour, minute) {
+        const angleH = (hour % 12) * 30 + minute * 0.5;
+        const angleM = minute * 6;
+        const radH = (angleH - 90) * Math.PI / 180;
+        const radM = (angleM - 90) * Math.PI / 180;
+        const cx = 100, cy = 100, r = 85;
+        const hLen = 40, mLen = 55;
+        const hx = cx + hLen * Math.cos(radH);
+        const hy = cy + hLen * Math.sin(radH);
+        const mx = cx + mLen * Math.cos(radM);
+        const my = cy + mLen * Math.sin(radM);
+        return `
+            <svg viewBox="0 0 200 200" class="clock-svg">
+                <circle cx="100" cy="100" r="90" fill="#fcf3e0" stroke="#4a3a2a" stroke-width="4"/>
+                <circle cx="100" cy="100" r="4" fill="#2d1f0f"/>
+                <!-- hour marks -->
+                ${[1,2,3,4,5,6,7,8,9,10,11,12].map(h => {
+                    const a = (h/12)*360 - 90;
+                    const rad = a * Math.PI / 180;
+                    const x1 = 100 + 75 * Math.cos(rad);
+                    const y1 = 100 + 75 * Math.sin(rad);
+                    const x2 = 100 + 85 * Math.cos(rad);
+                    const y2 = 100 + 85 * Math.sin(rad);
+                    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#2d1f0f" stroke-width="3"/>`;
+                }).join('')}
+                <!-- hour hand -->
+                <line x1="100" y1="100" x2="${hx}" y2="${hy}" stroke="#2d1f0f" stroke-width="6" stroke-linecap="round"/>
+                <!-- minute hand -->
+                <line x1="100" y1="100" x2="${mx}" y2="${my}" stroke="#4a3a2a" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+        `;
+    }
+
+    function renderExercise() {
+        if (quizCompleted) {
+            renderResult();
+            return;
+        }
+
+        const ex = exerciseData[currentQ];
+        const selected = answers[currentQ];
+        const feedback = status[currentQ];
+        const isAnswered = (selected !== null);
+
+        let clockHtml = '';
+        if (ex.type === 'clock') {
+            clockHtml = `<div class="clock-container">${clockSVG(ex.hour, ex.minute)}</div>`;
+        }
+
+        let optionsHtml = '';
+        ex.options.forEach(opt => {
+            let style = '';
+            let disabled = isAnswered ? 'disabled' : '';
+            if (isAnswered && feedback === 'correct' && opt === selected) {
+                style = 'background: #6faa4a; color: white; border: 2px solid #f9e45b;';
+            } else if (isAnswered && feedback === 'wrong' && opt === selected) {
+                style = 'background: #d9534f; color: white; text-decoration: line-through;';
+            } else if (isAnswered && feedback === 'wrong' && opt === ex.correct) {
+                style = 'background: #6fbf4c; color: white; border: 2px solid gold;';
+            }
+            optionsHtml += `<button class="quiz-btn" data-opt="${opt}" ${disabled} style="${style}">${opt}</button>`;
+        });
+
+        let feedbackHtml = '';
+        if (feedback === 'correct') {
+            feedbackHtml = `<div class="feedback-correct">✅ Correct! "${ex.correct}" is the right time expression.</div>`;
+        } else if (feedback === 'wrong' && selected) {
+            feedbackHtml = `<div class="feedback-wrong">❌ Oops! The correct answer is <strong>${ex.correct}</strong>. Review the tables above.</div>`;
+        }
+
+        const progress = answers.filter(a => a !== null).length;
+        const total = exerciseData.length;
+
+        const html = `
+            <div style="display:flex; justify-content:space-between; flex-wrap:wrap; margin-bottom:18px;">
+                <span style="font-weight:bold; background:#b78b4e; padding:6px 20px; border-radius:40px; color:white;">Question ${currentQ+1}/${total}</span>
+                <span style="font-weight:bold; background:#3f6b3a; padding:6px 20px; border-radius:40px; color:#f5e6be;">✅ ${progress}/${total} answered</span>
+                <button class="restart-btn" id="resetQuizBtn">⟳ Restart</button>
+            </div>
+            ${clockHtml}
+            <div class="quiz-question">${ex.question}</div>
+            <div class="quiz-options" id="optionsContainer">${optionsHtml}</div>
+            ${feedbackHtml}
+            <div style="text-align:center; margin-top:12px;">
+                <button class="next-btn" id="nextQuizBtn" ${isAnswered ? '' : 'disabled'}>➡ Next Exercise</button>
+            </div>
+        `;
+
+        container.innerHTML = html;
+
+        document.querySelectorAll('.quiz-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (answers[currentQ] !== null) return;
+                const chosen = btn.getAttribute('data-opt');
+                handleAnswer(chosen);
+            });
+        });
+
+        const nextBtn = document.getElementById('nextQuizBtn');
+        if (nextBtn) nextBtn.addEventListener('click', goNext);
+        const resetBtn = document.getElementById('resetQuizBtn');
+        if (resetBtn) resetBtn.addEventListener('click', resetQuiz);
+    }
+
+    function handleAnswer(chosen) {
+        if (answers[currentQ] !== null) return;
+        const ex = exerciseData[currentQ];
+        const isCorrect = (chosen === ex.correct);
+        answers[currentQ] = chosen;
+        status[currentQ] = isCorrect ? 'correct' : 'wrong';
+        renderExercise();
+    }
+
+    function goNext() {
+        if (answers[currentQ] === null) return;
+        if (currentQ + 1 < exerciseData.length) {
+            currentQ++;
+            renderExercise();
+        } else {
+            quizCompleted = true;
+            renderResult();
+        }
+    }
+
+    function renderResult() {
+        const correctCount = status.filter(s => s === 'correct').length;
+        const total = exerciseData.length;
+        let message = '';
+        if (correctCount === total) message = '🏆 Perfect! You\'ve mastered telling the time in Twi! Ayekoo! 🏆';
+        else if (correctCount >= 12) message = '🎉 Excellent! You really know your o\'clocks. Keep it up! 🎉';
+        else if (correctCount >= 9) message = '📖 Good effort! Review the tables and try again. 👍';
+        else message = '🌱 Keep learning! Re-study the lesson and retake the quiz. 💪';
+
+        let missedHtml = '';
+        const missed = [];
+        for (let i = 0; i < exerciseData.length; i++) {
+            if (status[i] !== 'correct') {
+                missed.push(`Q${i+1}: ${exerciseData[i].question.substring(0,50)}… → ✔️ ${exerciseData[i].correct}`);
+            }
+        }
+        if (missed.length > 0) {
+            missedHtml = `<div style="background:#efe0c2; border-radius:32px; padding:16px; margin-top:20px; text-align:left;">
+                <strong>🔁 Review these:</strong><br> ${missed.map(m => `• ${m}`).join('<br>')}
+            </div>`;
+        }
+
+        const resultHtml = `
+            <div class="result-box">
+                <h2>✨ Exercise Complete ✨</h2>
+                <div style="font-size:2.8rem; font-weight:bold;">${correctCount} / ${total}</div>
+                <div style="font-size:1.3rem; margin:12px;">${message}</div>
+                ${missedHtml}
+                <div style="margin-top:28px;">
+                    <button class="next-btn" id="restartCompleteBtn">🔄 Retry All Exercises</button>
+                </div>
+            </div>
+        `;
+        container.innerHTML = resultHtml;
+        document.getElementById('restartCompleteBtn').addEventListener('click', resetQuiz);
+    }
+
+    function resetQuiz() {
+        currentQ = 0;
+        answers = new Array(exerciseData.length).fill(null);
+        status = new Array(exerciseData.length).fill(null);
+        quizCompleted = false;
+        renderExercise();
+    }
+
+    renderExercise();
+</script>
+</body>
+</html>
