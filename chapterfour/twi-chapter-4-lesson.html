@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Speak Ghana • Twi Chapter 4: Time, Days, Family & Numbers</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            padding: 2rem 1.5rem;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+            overflow: hidden;
+            padding: 2rem;
+        }
+        .chapter-header {
+            border-bottom: 3px solid #2A9D8F;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+        h1 { font-size: 1.9rem; color: #2A9D8F; letter-spacing: -0.3px; }
+        .chapter-badge {
+            background: #E76F51; color: white;
+            padding: 0.4rem 1rem; border-radius: 40px;
+            font-size: 0.85rem; font-weight: 600;
+        }
+        .sub { color: #4b6a5e; margin-top: 0.25rem; font-size: 1rem; }
+        .section-card {
+            background: #FEF9F0; border-radius: 32px;
+            padding: 1.6rem 2rem; margin-bottom: 2.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #f0e5d8;
+        }
+        .section-title {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 1.4rem;
+            border-left: 6px solid #2A9D8F; padding-left: 1.2rem;
+        }
+        .section-letter {
+            background: #2A9D8F; color: white;
+            width: 42px; height: 42px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 30px; font-weight: 800; font-size: 1.4rem; flex-shrink: 0;
+        }
+        .section-title h2 { font-size: 1.5rem; color: #1e3a38; }
+        .section-title .subtitle { font-size: 0.85rem; color: #888; display: block; margin-top: 0.2rem; }
+        .intro-box {
+            background: #e3f2ed; border-radius: 28px;
+            padding: 1.4rem 1.8rem; margin-bottom: 2rem;
+            border-left: 8px solid #2A9D8F;
+        }
+        .intro-box ul { margin: 0.8rem 0 0 1.3rem; }
+        .intro-box li { margin: 0.4rem 0; }
+        .passage-box {
+            background: #fff6e8; border-radius: 28px;
+            padding: 1.5rem; border: 1px solid #f0dbb4;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .twi-passage {
+            font-family: 'Courier New', 'SF Mono', monospace;
+            font-size: 1.1rem; line-height: 1.8;
+            font-weight: 500; color: #1f3b37;
+        }
+        .twi-passage .translation {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem; color: #888;
+            font-style: italic; display: block;
+            margin-bottom: 0.6rem;
+        }
+        .lesson-image {
+            width: 100%; height: auto;
+            object-fit: contain; border-radius: 28px;
+            margin: 1rem 0 1.5rem 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+            display: block;
+        }
+        .lesson-image-caption {
+            text-align: center; font-size: 0.8rem;
+            color: #888; margin-top: -1.1rem;
+            margin-bottom: 1.5rem; font-style: italic;
+        }
+        .question-box {
+            background: #eef5f2; border-radius: 24px;
+            padding: 1.2rem 1.8rem; margin-top: 1rem;
+        }
+        .question-list { padding-left: 1.5rem; margin: 0.8rem 0; }
+        .question-list li { margin: 0.6rem 0; line-height: 1.4; }
+        .grammar-table {
+            width: 100%; border-collapse: collapse;
+            background: white; border-radius: 20px;
+            overflow: hidden; margin: 1.2rem 0; font-size: 0.9rem;
+        }
+        .grammar-table th {
+            background: #2A9D8F; color: white;
+            padding: 10px 8px; text-align: left;
+        }
+        .grammar-table td { padding: 10px 8px; border-bottom: 1px solid #e0dbd0; }
+        .grammar-table tr:last-child td { border-bottom: none; }
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 0.8rem; margin: 1.2rem 0;
+        }
+        .vocab-item {
+            background: white; padding: 0.5rem 1rem;
+            border-radius: 60px;
+            display: flex; justify-content: space-between; align-items: baseline;
+            border: 1px solid #e2d9ce; font-size: 0.9rem;
+        }
+        .twi-word { font-weight: 700; color: #2A9D8F; }
+        .eng-def { color: #555; }
+        .practice-tip {
+            background: #fff3cd; border-radius: 20px;
+            padding: 1rem 1.4rem; margin: 1.2rem 0;
+            border-left: 6px solid #D4A373;
+            font-size: 0.9rem; color: #856404;
+        }
+        .grammar-corner {
+            background: #e3f2ed; border-radius: 28px;
+            padding: 1.5rem; margin: 1.8rem 0 1rem 0;
+            border-left: 8px solid #2A9D8F;
+        }
+        .grammar-corner h3 { color: #1e3a38; margin-bottom: 0.5rem; }
+        .examples-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 0.6rem; margin-top: 1rem;
+        }
+        .example-item {
+            background: white; padding: 0.3rem 0.8rem;
+            border-radius: 20px; font-size: 0.85rem;
+        }
+        .adj-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.6rem; margin: 1rem 0;
+        }
+        .adj-card {
+            background: white; border-radius: 16px;
+            padding: 0.7rem 1rem;
+            border-left: 4px solid #D4A373;
+        }
+        .adj-card .twi { font-weight: 700; color: #2A9D8F; font-size: 1rem; }
+        .adj-card .eng { color: #555; font-size: 0.82rem; }
+        .adj-card .example { color: #888; font-size: 0.78rem; font-style: italic; margin-top: 0.2rem; }
+        .cultural-note {
+            background: #FFF3CD; border-left: 4px solid #D4A373;
+            padding: 0.8rem 1rem; border-radius: 12px; margin: 0.8rem 0;
+            font-size: 0.88rem; color: #856404;
+        }
+        .checklist { list-style: none; margin: 0.8rem 0; padding: 0; }
+        .checklist li {
+            padding: 0.5rem 0.8rem; margin-bottom: 0.5rem;
+            background: white; border-radius: 14px;
+            display: flex; align-items: center; gap: 0.6rem;
+            font-size: 0.92rem;
+        }
+        .checklist li::before { content: "☐"; color: #2A9D8F; font-size: 1.2rem; }
+        .footer-note {
+            margin-top: 1rem; text-align: center;
+            border-top: 1px solid #e0d9ce;
+            padding-top: 1.2rem; color: #6c7a6e;
+        }
+        .btn-audio-sim {
+            background: #d4a37330; border: 1px solid #d4a373;
+            padding: 0.2rem 0.7rem; border-radius: 30px;
+            font-size: 0.7rem; display: inline-block;
+            color: #b87333; cursor: pointer;
+        }
+        button.close-btn {
+            background: #D4A373; color: white; border: none;
+            padding: 0.6rem 1.8rem; border-radius: 50px;
+            font-size: 0.9rem; cursor: pointer; margin-top: 0.5rem;
+        }
+        button.close-btn:hover { background: #b87c4a; }
+        @media (max-width: 700px) {
+            .container { padding: 1.2rem; }
+            .section-card { padding: 1.2rem; }
+            .section-title h2 { font-size: 1.2rem; }
+            .twi-passage { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="chapter-header">
+        <div>
+            <h1>Berɛ, Nnafua, Abusua ne Nnɔmma</h1>
+            <p class="sub">Chapter 4 · Time, Days of the Week, Family & Numbers</p>
+        </div>
+        <div class="chapter-badge">Kɔ so sua!</div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro-box">
+        <p>In Chapters 2 and 3 you learned to greet people, talk about yourself, and count to 20. Now people will ask you deeper questions about your life:</p>
+        <ul>
+            <li><strong>Woadi mfeɛ sɛn?</strong> (How old are you?)</li>
+            <li><strong>Abɔ sɛn / Ɛyɛ berɛ bɛn?</strong> (What time is it?)</li>
+            <li><strong>Ɛnnɛ yɛ da bɛn?</strong> (What day is today?)</li>
+            <li><strong>Wo papa te he?</strong> (Where does your father live?)</li>
+            <li><strong>Adɛn nti na wopɛ Twi?</strong> (Why do you like Twi?)</li>
+        </ul>
+        <p style="margin-top: 0.8rem;">This chapter gives you the tools to answer and ask these questions confidently, with numbers up to 100, telling time, the days of the week and their cultural meanings, deeper family vocabulary, adjectives to describe people and things, and question patterns for real conversation.</p>
+        <h3 style="color: #E76F51; margin-top: 1.2rem; margin-bottom: 0.5rem;">What You Will Achieve</h3>
+        <ul>
+            <li><strong>Mewɔ mfeɛ aduonu nwɔtwe.</strong> (I am 28 years old.)</li>
+            <li><strong>Abɔ nnɔnnum apa ho simma dunnum.</strong> (It is quarter past five.)</li>
+            <li><strong>Ɛnnɛ yɛ Yawoada.</strong> (Today is Thursday.)</li>
+            <li><strong>Me papa ne me maame te Kumasi.</strong> (My father and mother live in Kumasi.)</li>
+            <li><strong>Hwan ni? Ɔyɛ me nua barima.</strong> (Who is this? He is my brother.)</li>
+            <li><strong>Adɛn nti na wopɛ Twi?</strong> (Why do you like Twi?)</li>
+        </ul>
+    </div>
+
+    <!-- SECTION A: READING PASSAGE -->
+    <div class="section-card" id="sectionA">
+        <div class="section-title">
+            <span class="section-letter">A</span>
+            <div>
+                <h2>Kenkan · Ɔpɛnpenha Kofi (Kofi's Birthday)</h2>
+                <span class="subtitle">Read first — the rest of the chapter explains how every part works</span>
+            </div>
+        </div>
+        <p style="margin-bottom: 1rem; color: #555; font-size: 0.9rem;">Read this passage carefully. Notice the numbers, the day, the time, and the family words — the rest of this chapter will teach you exactly how each one works.</p>
+
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chapterfour/chapter4-birthday.jpg" alt="Kofi's birthday celebration with his family" class="lesson-image">
+        <p class="lesson-image-caption">Ɔpɛnpenha Kofi — Kofi's birthday with all his family</p>
+
+        <div class="passage-box">
+            <div class="twi-passage">
+                <span>Ɛnnɛ yɛ Efiada.</span>
+                <span class="translation">Today is Friday.</span>
+                <span>Kofi wɔ ne ɔpɛnpenha nnɛ. Ɔwɔ mfeɛ aduonu nwɔtwe nnɛ.</span>
+                <span class="translation">Kofi has his birthday today. He is 28 years old today.</span>
+                <span>Ɔsɔre anɔpa nnɔnsia. Ɔdi ne anɔpa aduane, na ɔhyɛ ne ntadeɛ fɛfɛ.</span>
+                <span class="translation">He wakes up at six in the morning. He eats his breakfast and puts on his nice clothes.</span>
+                <span>Abɔ nnɔnwɔtwe, ne maame frɛ no.</span>
+                <span class="translation">At eight o'clock, his mother calls him.</span>
+                <span>Ɔkaa sɛ: "Kofi, ɔpɛnpenha pa! Wo abɔ mfeɛ aduonu nwɔtwe nnɛ!"</span>
+                <span class="translation">She said: "Kofi, happy birthday! You are 28 years old today!"</span>
+                <span>Kofi buae sɛ: "Medaase, maame! Wobɛba anadwonhwere bɛn?"</span>
+                <span class="translation">Kofi replied: "Thank you, mother! What time will you come?"</span>
+                <span>Ne maame kaa sɛ: "Mɛba anwummerɛ. Abɔ nnɔnsia."</span>
+                <span class="translation">His mother said: "I will come in the evening. At six o'clock."</span>
+                <span>Awia no, Kofi kɔɔ ɛdwam. Ɔtɔɔ aduane ne nneɛma foforo.</span>
+                <span class="translation">In the afternoon, Kofi went to the market. He bought food and other things.</span>
+                <span>Wɔ ɛdwam hɔ, ɔhyiaa ne wɔfa ɔpanyin.</span>
+                <span class="translation">At the market, he met his elderly uncle.</span>
+                <span>Ne wɔfa bisaa no sɛ: "Woadi mfeɛ sɛn nnɛ, Kofi?"</span>
+                <span class="translation">His uncle asked him: "How old are you today, Kofi?"</span>
+                <span>Kofi buae sɛ: "Mewɔ mfeɛ aduonu nwɔtwe."</span>
+                <span class="translation">Kofi replied: "I am 28 years old."</span>
+                <span>Ne wɔfa sɛree na ɔkaa sɛ: "Wo na wo yɛ aberante kɛseɛ! Yɛbɛhyia anwummerɛ wɔ wo fie!"</span>
+                <span class="translation">His uncle laughed and said: "You are such a big young man! We will meet at your house in the evening!"</span>
+                <span>Anwummerɛ no, ne abusua nyinaa baa. Ne papa, ne maame, ne nuanom, ne nananom — wɔn nyinaa baa.</span>
+                <span class="translation">In the evening, all his family came. His father, his mother, his siblings, his grandparents — they all came.</span>
+                <span>Wɔdi, wɔnom, na wɔserew bɔkɔɔ.</span>
+                <span class="translation">They ate, drank, and laughed together.</span>
+                <span>Kofi kaa sɛ: "Medaase, me nuanom nyinaa. Ɛyɛ me anigyeɛ pa ara."</span>
+                <span class="translation">Kofi said: "Thank you, all my family. I am very happy."</span>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <h4>Nsɛmbisa — Comprehension Questions</h4>
+            <ul class="question-list">
+                <li>1. Ɛnnɛ yɛ da bɛn? (What day is today?)</li>
+                <li>2. Kofi wɔ mfeɛ sɛn? (How old is Kofi?)</li>
+                <li>3. Ne maame frɛɛ no berɛ bɛn? (What time did his mother call him?)</li>
+                <li>4. Kofi kɔɔ he awia no? (Where did Kofi go in the afternoon?)</li>
+                <li>5. Hwan na Kofi hyiaa wɔ ɛdwam? (Who did Kofi meet at the market?)</li>
+                <li>6. Ne wɔfa bɛba berɛ bɛn? (When did his uncle say he would come?)</li>
+                <li>7. Hwan na baa anwummerɛ no? (Who came in the evening?)</li>
+            </ul>
+            <details style="margin-top: 12px; cursor: pointer;">
+                <summary style="color: #2A9D8F; font-weight: 600;">Check answers (click)</summary>
+                <div style="background: white; padding: 12px; border-radius: 20px; margin-top: 8px; font-size: 0.9rem;">
+                    1. Ɛnnɛ yɛ Efiada. (Today is Friday.)<br>
+                    2. Ɔwɔ mfeɛ aduonu nwɔtwe. (He is 28 years old.)<br>
+                    3. Abɔ nnɔnwɔtwe. (At 8 o'clock.)<br>
+                    4. Ɔkɔɔ ɛdwam. (He went to the market.)<br>
+                    5. Ɔhyiaa ne wɔfa. (He met his uncle.)<br>
+                    6. Anwummerɛ — abɔ nnɔnsia. (In the evening — at 6 o'clock.)<br>
+                    7. Ne abusua nyinaa baa. (All his family came.)
+                </div>
+            </details>
+        </div>
+        <div class="practice-tip">
+            💡 <strong>Teacher's Note:</strong> Ask students why Kofi is named "Kofi" — the answer is in Section D (Day Names). Anyone born on a Friday is named Kofi (male) or Afia/Efua (female). The passage plants this connection before it is explained.
+        </div>
+    </div>
+
+    <!-- SECTION B: NUMBERS 21-100 -->
+    <div class="section-card" id="sectionB">
+        <div class="section-title">
+            <span class="section-letter">B</span>
+            <div>
+                <h2>Nnɔmma — Numbers 21–100</h2>
+                <span class="subtitle">Continuing from Chapter 2 (1–20)</span>
+            </div>
+        </div>
+        <p style="margin-bottom: 1rem; color: #555;">You already know 1–20 from Chapter 2. Now we build to 100 using the same foundation.</p>
+
+        <h3 style="color: #E76F51; margin: 1rem 0 0.5rem;">The Tens — Aduonu to Ɔha</h3>
+        <table class="grammar-table">
+            <tr><th>Number</th><th>Twi</th><th>Pronunciation</th><th>Pattern</th></tr>
+            <tr><td>20</td><td><strong>aduonu</strong></td><td>ah-doo-oh-noo</td><td>aduo- + nu</td></tr>
+            <tr><td>30</td><td><strong>aduasa</strong></td><td>ah-doo-ah-sah</td><td>aduo- + sa</td></tr>
+            <tr><td>40</td><td><strong>aduanan</strong></td><td>ah-doo-ah-nahn</td><td>aduo- + nan</td></tr>
+            <tr><td>50</td><td><strong>aduonum</strong></td><td>ah-doo-oh-noom</td><td>aduo- + num</td></tr>
+            <tr><td>60</td><td><strong>aduosia</strong></td><td>ah-doo-oh-see-ah</td><td>aduo- + sia</td></tr>
+            <tr><td>70</td><td><strong>aduoson</strong></td><td>ah-doo-ohn-sohn</td><td>aduo- + son</td></tr>
+            <tr><td>80</td><td><strong>aduonwɔtwe</strong></td><td>ah-doo-ohn-woh-tweh</td><td>aduo- + nwɔtwe</td></tr>
+            <tr><td>90</td><td><strong>aduonkron</strong></td><td>ah-doo-ohn-krohn</td><td>aduo- + nkron</td></tr>
+            <tr><td>100</td><td><strong>ɔha</strong></td><td>oh-hah</td><td>New word — memorise!</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Compound Numbers 21–99</h3>
+        <p style="margin-bottom: 0.8rem; color: #555;">Add the unit number after the ten — same pattern as 11–19 in Chapter 2:</p>
+        <table class="grammar-table">
+            <tr><th>Number</th><th>Twi</th><th>Pattern</th></tr>
+            <tr><td>21</td><td><strong>aduonu baako</strong></td><td>twenty + one</td></tr>
+            <tr><td>32</td><td><strong>aduasa mmienu</strong></td><td>thirty + two</td></tr>
+            <tr><td>45</td><td><strong>aduanan enum</strong></td><td>forty + five</td></tr>
+            <tr><td>58</td><td><strong>aduonum nwɔtwe</strong></td><td>fifty + eight</td></tr>
+            <tr><td>64</td><td><strong>aduosia ɛnan</strong></td><td>sixty + four</td></tr>
+            <tr><td>77</td><td><strong>aduoson nson</strong></td><td>seventy + seven</td></tr>
+            <tr><td>89</td><td><strong>aduonwɔtwe nkron</strong></td><td>eighty + nine</td></tr>
+            <tr><td>99</td><td><strong>aduonkron nkron</strong></td><td>ninety + nine</td></tr>
+        </table>
+
+        <div class="practice-tip">
+            🔁 <strong>Drill:</strong> Say the tens in order — du, aduonu, aduasa, aduanan, aduonum, aduosia, aduoson, aduonwɔtwe, aduonkron, ɔha — until they feel natural.
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Using Numbers in Daily Life</h3>
+        <table class="grammar-table">
+            <tr><th>Situation</th><th>Twi</th><th>English</th></tr>
+            <tr><td>Age</td><td>Mewɔ mfeɛ aduonu nwɔtwe.</td><td>I am 28 years old.</td></tr>
+            <tr><td>Age question</td><td>Woadi mfeɛ sɛn?</td><td>How old are you?</td></tr>
+            <tr><td>Price</td><td>Ɛyɛ sika ahe?</td><td>How much is it?</td></tr>
+            <tr><td>Price answer</td><td>Ɛyɛ sika aduonu.</td><td>It is 20 cedis.</td></tr>
+            <tr><td>Phone number</td><td>Me phone nɔmba yɛ...</td><td>My phone number is...</td></tr>
+            <tr><td>Counting people</td><td>nnipa baasa</td><td>three people (note: mmiɛnsa → baasa)</td></tr>
+            <tr><td>Counting things</td><td>nwoma mmiɛnsa</td><td>three books</td></tr>
+        </table>
+        <div class="cultural-note">
+            🌍 <strong>Cultural Note:</strong> Some older Ghanaians may not know their exact birth year, or may consider it impolite to ask directly. If someone hesitates, do not push. You can ask "Wɔwoo wo berɛ bɛn?" (When were you born?) instead.
+        </div>
+    </div>
+
+    <!-- SECTION C: TELLING TIME -->
+    <div class="section-card" id="sectionC">
+        <div class="section-title">
+            <span class="section-letter">C</span>
+            <div>
+                <h2>Berɛ — Telling Time</h2>
+                <span class="subtitle">Half past, quarter past, minutes to — building on timetwo.html</span>
+            </div>
+        </div>
+        <p style="margin-bottom: 1rem; color: #555;">You already learned o'clocks and time periods in Chapter 2. Now let us add half hours, quarter hours, and minutes.</p>
+
+        <h3 style="color: #E76F51; margin: 1rem 0 0.5rem;">Time Periods</h3>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">anɔpa</span><span class="eng-def">morning (dawn to ~10AM)</span></div>
+            <div class="vocab-item"><span class="twi-word">awia</span><span class="eng-def">afternoon / midday</span></div>
+            <div class="vocab-item"><span class="twi-word">anwummerɛ</span><span class="eng-def">evening (late afternoon to dark)</span></div>
+            <div class="vocab-item"><span class="twi-word">anadwo</span><span class="eng-def">night (after dark)</span></div>
+            <div class="vocab-item"><span class="twi-word">ahemadakye</span><span class="eng-def">midnight</span></div>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Half Hours and Quarter Hours</h3>
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>Meaning</th><th>Example</th></tr>
+            <tr><td><strong>... ne fa</strong></td><td>... and half (half past)</td><td>abɔ nnɔmmienu ne fa = 2:30</td></tr>
+            <tr><td><strong>... simma dunnum</strong></td><td>quarter past</td><td>nnɔmmiɛnsa abɔ apa ho simma dunnum = 3:15</td></tr>
+            <tr><td><strong>... simma aduonu</strong></td><td>twenty past</td><td>nnɔnnan abɔ apa ho simma aduonu = 4:20</td></tr>
+            <tr><td><strong>... simma aduonunum</strong></td><td>twenty-five past</td><td>nnɔnnum abɔ apa ho simma aduonunum = 5:25</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Minutes To the Hour</h3>
+        <p style="margin-bottom: 0.8rem; color: #555;">For minutes before the next hour, use <strong>"Aka"</strong> (remaining):</p>
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>English</th></tr>
+            <tr><td>Aka simma mmienu na nnɔmmienu abɔ.</td><td>Eight minutes to two.</td></tr>
+            <tr><td>Aka simma dunnum na nnɔmmiɛnsa abɔ.</td><td>Fifteen minutes to three (quarter to three).</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Time Questions and Answers</h3>
+        <table class="grammar-table">
+            <tr><th>Question</th><th>Answer</th></tr>
+            <tr><td>Abɔ sɛn? / Ɛyɛ berɛ bɛn?</td><td>Abɔ nnon du. (It is 10 o'clock.)</td></tr>
+            <tr><td>Wobɛba berɛ bɛn?</td><td>Mɛba anwummerɛ. (I will come in the evening.)</td></tr>
+            <tr><td>Wobɛkɔ berɛ bɛn?</td><td>Mɛkɔ anɔpa. (I will go in the morning.)</td></tr>
+            <tr><td>Yɛbɛhyia berɛ bɛn?</td><td>Yɛbɛhyia awia. (We will meet in the afternoon.)</td></tr>
+        </table>
+
+        <div class="cultural-note">
+            🌍 <strong>Ghanaian Time:</strong> Social events often start later than announced. "Mereba" (I am coming) can mean "I am on my way" or "I will come eventually." For business and appointments, however, be on time!
+        </div>
+    </div>
+
+    <!-- SECTION D: DAYS OF THE WEEK -->
+    <div class="section-card" id="sectionD">
+        <div class="section-title">
+            <span class="section-letter">D</span>
+            <div>
+                <h2>Nnafua — Days of the Week</h2>
+                <span class="subtitle">Each day has a name, a meaning, and a birth name attached to it</span>
+            </div>
+        </div>
+
+        <table class="grammar-table">
+            <tr><th>Day</th><th>Twi</th><th>Pronunciation</th><th>Origin</th></tr>
+            <tr><td>Monday</td><td><strong>Dwoada</strong></td><td>Dwoh-ah-dah</td><td>Day of peace/calm</td></tr>
+            <tr><td>Tuesday</td><td><strong>Benada</strong></td><td>Beh-nah-dah</td><td>Day of the sea</td></tr>
+            <tr><td>Wednesday</td><td><strong>Wukuda</strong></td><td>Woo-koo-dah</td><td>Day of the spider</td></tr>
+            <tr><td>Thursday</td><td><strong>Yawoada</strong></td><td>Yah-woh-ah-dah</td><td>Day of the earth</td></tr>
+            <tr><td>Friday</td><td><strong>Efiada</strong></td><td>Eh-fee-ah-dah</td><td>Day of fertility</td></tr>
+            <tr><td>Saturday</td><td><strong>Memeneda</strong></td><td>Meh-meh-neh-dah</td><td>God's day</td></tr>
+            <tr><td>Sunday</td><td><strong>Kwasiada</strong></td><td>Kwah-see-ah-dah</td><td>Day of the universe/sun</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Using Days in Sentences</h3>
+        <div class="examples-list">
+            <div class="example-item">Ɛnnɛ yɛ Dwoada. — Today is Monday.</div>
+            <div class="example-item">Ɔkyena yɛ Benada. — Tomorrow is Tuesday.</div>
+            <div class="example-item">Nnora yɛ Kwasiada. — Yesterday was Sunday.</div>
+            <div class="example-item">Mekɔ sukuu Dwoada. — I go to school on Monday.</div>
+            <div class="example-item">Yɛhyia Memeneda biara. — We meet every Saturday.</div>
+            <div class="example-item">Mepɛ Efiada. — I like Friday.</div>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Kradin — Day Names</h3>
+        <p style="margin-bottom: 0.8rem; color: #555;">In Akan culture, children are named after the day they were born. This is why Kofi in our passage was born on a Friday!</p>
+        <table class="grammar-table">
+            <tr><th>Day</th><th>Male Name</th><th>Female Name</th></tr>
+            <tr><td>Monday</td><td>Kwadwo / Kojo</td><td>Adwoa</td></tr>
+            <tr><td>Tuesday</td><td>Kwabena / Kobina</td><td>Abena</td></tr>
+            <tr><td>Wednesday</td><td>Kwaku</td><td>Akua</td></tr>
+            <tr><td>Thursday</td><td>Yaw</td><td>Yaa</td></tr>
+            <tr><td>Friday</td><td><strong>Kofi</strong></td><td>Afia / Efua</td></tr>
+            <tr><td>Saturday</td><td>Kwame</td><td>Ama</td></tr>
+            <tr><td>Sunday</td><td>Akwasi / Kwasi</td><td>Akosua / Esi</td></tr>
+        </table>
+        <div class="practice-tip">
+            💡 Now you know: Kofi was born on Friday, Ama on Saturday, Akosua on Sunday, Yaw on Thursday. These names tell a story about the person before you even ask!
+        </div>
+    </div>
+
+    <!-- SECTION E: FAMILY DEEP DIVE -->
+    <div class="section-card" id="sectionE">
+        <div class="section-title">
+            <span class="section-letter">E</span>
+            <div>
+                <h2>Abusua — Family Deep Dive</h2>
+                <span class="subtitle">Building on the basics from Chapter 3</span>
+            </div>
+        </div>
+
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chapterfour/chapter4-family.jpg" alt="A multi-generational Ghanaian family" class="lesson-image">
+        <p class="lesson-image-caption">Abusua kɛseɛ — A big family, all different ages</p>
+
+        <h3 style="color: #E76F51; margin: 0.5rem 0;">Immediate Family — Abusua a Ɛbɛn</h3>
+        <table class="grammar-table">
+            <tr><th>English</th><th>Twi</th><th>Possessive Form</th></tr>
+            <tr><td>father</td><td><strong>papa</strong></td><td>me papa</td></tr>
+            <tr><td>mother</td><td><strong>maame</strong></td><td>me maame</td></tr>
+            <tr><td>parents</td><td><strong>awofoɔ</strong></td><td>me awofoɔ</td></tr>
+            <tr><td>child</td><td><strong>ba</strong></td><td>me ba</td></tr>
+            <tr><td>children</td><td><strong>mma</strong></td><td>me mma</td></tr>
+            <tr><td>son</td><td><strong>ba barima</strong></td><td>me ba barima</td></tr>
+            <tr><td>daughter</td><td><strong>ba baa</strong></td><td>me ba baa</td></tr>
+            <tr><td>brother</td><td><strong>nua barima</strong></td><td>me nua barima</td></tr>
+            <tr><td>sister</td><td><strong>nua baa</strong></td><td>me nua baa</td></tr>
+            <tr><td>siblings</td><td><strong>nuanom</strong></td><td>me nuanom</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Extended Family — Abusua Mufoɔ</h3>
+        <table class="grammar-table">
+            <tr><th>English</th><th>Twi</th><th>Notes</th></tr>
+            <tr><td>grandfather</td><td><strong>nana barima</strong></td><td>"nana" used for both genders</td></tr>
+            <tr><td>grandmother</td><td><strong>nana baa</strong></td><td>add barima/baa to specify</td></tr>
+            <tr><td>grandparents</td><td><strong>nananom</strong></td><td>plural form</td></tr>
+            <tr><td>uncle (maternal)</td><td><strong>wɔfa</strong></td><td>mother's brother</td></tr>
+            <tr><td>uncle (paternal)</td><td><strong>agya</strong></td><td>father's brother / older man</td></tr>
+            <tr><td>aunt (maternal)</td><td><strong>ɛna</strong></td><td>mother's sister / older woman</td></tr>
+            <tr><td>aunt (paternal)</td><td><strong>sewaa</strong></td><td>father's sister</td></tr>
+            <tr><td>nephew / niece</td><td><strong>wɔfase / wɔfasewa</strong></td><td>sibling's child</td></tr>
+            <tr><td>husband</td><td><strong>kunu</strong></td><td></td></tr>
+            <tr><td>wife</td><td><strong>yere</strong></td><td></td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Describing Your Family</h3>
+        <div class="examples-list">
+            <div class="example-item">Me papa yɛ ɔkyerɛkyerɛni. Ɔte Kumasi.</div>
+            <div class="example-item">Me maame yɛ nɛɛse. Ɔte Nkran.</div>
+            <div class="example-item">Mewɔ nua barima baako ne nuammaa baanu.</div>
+            <div class="example-item">Me nana te akura ase.</div>
+            <div class="example-item">Me wɔfa yɛ oburoni!</div>
+        </div>
+
+        <div class="cultural-note">
+            🌍 <strong>Family in Ghana:</strong> "Abusua" includes not just parents and siblings but grandparents, aunts, uncles, cousins — sometimes entire villages! Children call all adults "auntie" or "uncle" as a sign of respect. If you have money, you are expected to help family members. This is normal and expected.
+        </div>
+    </div>
+
+    <!-- SECTION F: ADJECTIVES -->
+    <div class="section-card" id="sectionF">
+        <div class="section-title">
+            <span class="section-letter">F</span>
+            <div>
+                <h2>Adjectives — Describing People and Things</h2>
+                <span class="subtitle">The key rule: adjective comes AFTER the noun in Twi</span>
+            </div>
+        </div>
+
+        <div class="grammar-corner">
+            <h3>The Golden Rule of Twi Adjectives</h3>
+            <p>In English you say "the <strong>big</strong> man." In Twi, the adjective comes <strong>after</strong> the noun:</p>
+            <p style="font-weight: 700; color: #2A9D8F; margin: 0.6rem 0; font-size: 1.05rem;">NOUN + ADJECTIVE</p>
+            <ul style="margin-left: 1.3rem;">
+                <li>onipa <strong>kɛseɛ</strong> — the big/tall man (man big)</li>
+                <li>ba <strong>ketewa</strong> — the small child (child small)</li>
+                <li>ntadeɛ <strong>fɛfɛ</strong> — beautiful clothes (clothes beautiful)</li>
+                <li>aduane <strong>dɛ</strong> — delicious food (food sweet/delicious)</li>
+            </ul>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.8rem;">Essential Adjectives — 20 You Need Now</h3>
+        <div class="adj-grid">
+            <div class="adj-card">
+                <div class="twi">kɛseɛ</div>
+                <div class="eng">big / tall / large</div>
+                <div class="example">onipa kɛseɛ — big person</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">ketewa</div>
+                <div class="eng">small / little</div>
+                <div class="example">ba ketewa — small child</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">fɛfɛ</div>
+                <div class="eng">beautiful / nice</div>
+                <div class="example">baa fɛfɛ — beautiful woman</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">brɔfo</div>
+                <div class="eng">foreign / Western</div>
+                <div class="example">kasa brɔfo — foreign language</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">ɔpanyin</div>
+                <div class="eng">elder / old</div>
+                <div class="example">wɔfa ɔpanyin — elderly uncle</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">aberante</div>
+                <div class="eng">young man / youth</div>
+                <div class="example">aberante kɛseɛ — big young man</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">dɛ</div>
+                <div class="eng">sweet / delicious</div>
+                <div class="example">aduane dɛ — delicious food</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">dɔ</div>
+                <div class="eng">expensive</div>
+                <div class="example">sika dɔ — expensive price</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">ware</div>
+                <div class="eng">long / far</div>
+                <div class="example">kwan ware — long road</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">tia</div>
+                <div class="eng">short (height)</div>
+                <div class="example">onipa tia — short person</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">foforɔ</div>
+                <div class="eng">new / fresh</div>
+                <div class="example">nneɛma foforɔ — new things</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">dedaw</div>
+                <div class="eng">old (things, not people)</div>
+                <div class="example">nwoma dedaw — old book</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">papa</div>
+                <div class="eng">good</div>
+                <div class="example">adwuma papa — good work</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">bone</div>
+                <div class="eng">bad / wicked</div>
+                <div class="example">nnipa bone — bad people</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">tumi</div>
+                <div class="eng">strong / powerful</div>
+                <div class="example">onipa tumi — strong person</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">hare</div>
+                <div class="eng">fast / quick</div>
+                <div class="example">okyerɛkyerɛni hare — quick teacher</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">siw</div>
+                <div class="eng">slow</div>
+                <div class="example">ɔpanyin siw — slow elder</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">hu</div>
+                <div class="eng">afraid / fearful</div>
+                <div class="example">ɔba hu — fearful child</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">nyansa</div>
+                <div class="eng">wise / intelligent</div>
+                <div class="example">aberante nyansa — wise young man</div>
+            </div>
+            <div class="adj-card">
+                <div class="twi">dɔɔso</div>
+                <div class="eng">many / much</div>
+                <div class="example">nnipa dɔɔso — many people</div>
+            </div>
+        </div>
+
+        <div class="practice-tip">
+            🗣️ <strong>Practice:</strong> Describe the people in the birthday passage using adjectives — ne wɔfa (his uncle) is <strong>ɔpanyin</strong> (elderly), Kofi wears ntadeɛ <strong>fɛfɛ</strong> (nice clothes). Try describing your own family members now.
+        </div>
+    </div>
+
+    <!-- SECTION G: QUESTION WORDS -->
+    <div class="section-card" id="sectionG">
+        <div class="section-title">
+            <span class="section-letter">G</span>
+            <div>
+                <h2>Nsɛmmisa — Question Words (Extension)</h2>
+                <span class="subtitle">You know these from Chapter 3 — now let us master the patterns</span>
+            </div>
+        </div>
+
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>English</th><th>Example</th></tr>
+            <tr><td><strong>Hena? / Hwan?</strong></td><td>Who?</td><td>Hwan nie? (Who is this?)</td></tr>
+            <tr><td><strong>Dɛn?</strong></td><td>What?</td><td>Wodi dɛn? (What do you eat?)</td></tr>
+            <tr><td><strong>He?</strong></td><td>Where?</td><td>Wote he? (Where do you live?)</td></tr>
+            <tr><td><strong>Sɛn?</strong></td><td>How? / How much?</td><td>Wo ho te sɛn? (How are you?)</td></tr>
+            <tr><td><strong>Berɛ bɛn?</strong></td><td>When? / What time?</td><td>Wobɛba berɛ bɛn? (When will you come?)</td></tr>
+            <tr><td><strong>Adɛn nti?</strong></td><td>Why?</td><td>Adɛn nti na wosua Twi? (Why do you learn Twi?)</td></tr>
+            <tr><td><strong>Bɛn?</strong></td><td>Which?</td><td>Ɛnnɛ yɛ da bɛn? (Which day is today?)</td></tr>
+            <tr><td><strong>Ahe?</strong></td><td>How many?</td><td>Wowɔ mma ahe? (How many children?)</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">The Three Question Patterns</h3>
+        <div class="grammar-corner">
+            <h3>Pattern 1 — Question word at the END (most common)</h3>
+            <div class="examples-list">
+                <div class="example-item">Wote <strong>he?</strong></div>
+                <div class="example-item">Wodi <strong>dɛn?</strong></div>
+                <div class="example-item">Wobɛba berɛ <strong>bɛn?</strong></div>
+                <div class="example-item">Wowɔ mma <strong>ahe?</strong></div>
+            </div>
+        </div>
+        <div class="grammar-corner">
+            <h3>Pattern 2 — Question word + "na" + statement</h3>
+            <div class="examples-list">
+                <div class="example-item"><strong>Hwan na</strong> ɔreba? (Who is coming?)</div>
+                <div class="example-item"><strong>Dɛn na</strong> wopɛ? (What do you want?)</div>
+                <div class="example-item"><strong>He na</strong> worekɔ? (Where are you going?)</div>
+                <div class="example-item"><strong>Adɛn nti na</strong> woresua Twi? (Why are you learning Twi?)</div>
+            </div>
+        </div>
+        <div class="grammar-corner">
+            <h3>Pattern 3 — Polite openers</h3>
+            <div class="examples-list">
+                <div class="example-item">Mepa wo kyɛw, wo din de sɛn?</div>
+                <div class="example-item">Mesrɛ wo, wobɛboa me?</div>
+                <div class="example-item">Ɛyɛ sɛ wote Twi?</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION H: GRAMMAR DEEP DIVE -->
+    <div class="section-card" id="sectionH">
+        <div class="section-title">
+            <span class="section-letter">H</span>
+            <h2>Grammar Deep Dive</h2>
+        </div>
+
+        <div class="grammar-corner">
+            <h3>Numbers come AFTER nouns</h3>
+            <ul style="margin-left: 1.3rem; margin-top: 0.6rem;">
+                <li>nnipa <strong>baako</strong> — one person (person one)</li>
+                <li>mma <strong>mmienu</strong> — two children (children two)</li>
+                <li>sika <strong>ɛnum</strong> — five cedis (money five)</li>
+            </ul>
+        </div>
+
+        <div class="grammar-corner">
+            <h3>The Verb "wɔ" — to have / to be at (with numbers)</h3>
+            <ul style="margin-left: 1.3rem; margin-top: 0.6rem;">
+                <li>Mewɔ mfeɛ aduonu. (I am 20 years old.)</li>
+                <li>Ɔwɔ sika. (He has money.)</li>
+                <li>Yɛwɔ nuanom baasa. (We have three siblings.)</li>
+            </ul>
+            <p style="margin-top: 0.6rem;"><strong>Negative — nni:</strong></p>
+            <ul style="margin-left: 1.3rem; margin-top: 0.3rem;">
+                <li>Me nni sika. (I do not have money.)</li>
+                <li>Ɔ nni fie. (He is not at home.)</li>
+            </ul>
+        </div>
+
+        <div class="grammar-corner">
+            <h3>The Verb "yɛ" — extremely versatile</h3>
+            <ul style="margin-left: 1.3rem; margin-top: 0.6rem;">
+                <li>Ɔyɛ ɔkyerɛkyerɛni. (He is a teacher.) — to be</li>
+                <li>Dɛn na woyɛ? (What do you do?) — to do</li>
+                <li>Ɛyɛ dɛ. (It is sweet.) — quality</li>
+                <li>Ɛyɛ berɛ mmiɛnsa. (It is 3 o'clock.) — time</li>
+            </ul>
+        </div>
+
+        <div class="grammar-corner">
+            <h3>"Ahe?" vs "Sɛn?" — How many vs How much</h3>
+            <ul style="margin-left: 1.3rem; margin-top: 0.6rem;">
+                <li><strong>Ahe?</strong> — for countable things: Mma <strong>ahe?</strong> (How many children?)</li>
+                <li><strong>Sɛn?</strong> — for uncountable or general: Sika <strong>sɛn?</strong> (How much money?)</li>
+                <li>Note: sometimes they overlap — context is key.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SECTION I: CHAPTER SUMMARY + CAN-DO CHECKLIST -->
+    <div class="section-card" id="sectionI">
+        <div class="section-title">
+            <span class="section-letter">I</span>
+            <h2>Chapter Summary — What You Have Learned</h2>
+        </div>
+        <ul class="question-list">
+            <li>Numbers 21–100 and how to build compound numbers</li>
+            <li>Talking about age, prices, counting people and things</li>
+            <li>Telling time — half past, quarter past, minutes to</li>
+            <li>Days of the week and their cultural meanings</li>
+            <li>Akan day names (Kradin) and what they tell you about a person</li>
+            <li>Immediate and extended family vocabulary with possessive forms</li>
+            <li>20 essential adjectives — placed after the noun in Twi</li>
+            <li>Question word patterns — end position, "na" structure, polite openers</li>
+            <li>Grammar: wɔ/nni with numbers, yɛ versatility, ahe vs sɛn</li>
+        </ul>
+
+        <h3 style="color: #E76F51; margin: 1.4rem 0 0.6rem;">Can-Do Checklist</h3>
+        <ul class="checklist">
+            <li>I can say my age in Twi</li>
+            <li>I can tell the time — half past, quarter past, and minutes to</li>
+            <li>I can say and ask what day it is</li>
+            <li>I know the Akan day names and what day my name comes from</li>
+            <li>I can talk about my immediate and extended family</li>
+            <li>I can use adjectives to describe people and things</li>
+            <li>I can form questions using all the main question words</li>
+            <li>I can count to 100 and use numbers in real sentences</li>
+        </ul>
+    </div>
+
+    <div class="footer-note">
+        <p>
+            <span class="btn-audio-sim" onclick="speakPhrase('Mewɔ mfeɛ aduonu nwɔtwe')">🔊 Mewɔ mfeɛ aduonu nwɔtwe</span>
+            <span class="btn-audio-sim" onclick="speakPhrase('Ɛnnɛ yɛ Efiada')">🔊 Ɛnnɛ yɛ Efiada</span>
+            <span class="btn-audio-sim" onclick="speakPhrase('Adɛn nti na wopɛ Twi')">🔊 Adɛn nti na wopɛ Twi?</span>
+        </p>
+        <p><strong>Chapter 4:</strong> Numbers, time, days of the week, family, adjectives, and question patterns. Kɔ so sua! (Keep learning!)</p>
+    </div>
+    <div style="text-align: center; margin-top: 0.8rem;">
+        <button class="close-btn" onclick="window.close()">Close chapter</button>
+    </div>
+
+</div>
+<p style="font-size: 0.7rem; text-align: center; margin-top: 1rem; color: #a2b9b0;">Speak Ghana — Chapter 4: Time, Days of the Week, Family & Numbers</p>
+</body>
+</html>
