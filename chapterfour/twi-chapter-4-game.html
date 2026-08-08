@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Gyae Ntɛm! | Chapter 4 Game</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(145deg, #0f2b2a 0%, #1f7a6e 100%);
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 1.5rem;
+        }
+        .game-container {
+            max-width: 580px; width: 100%;
+            background: #FDF8F2; border-radius: 36px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            padding: 1.8rem; text-align: center;
+        }
+        .game-title { color: #2A9D8F; font-size: 1.6rem; font-weight: 800; margin-bottom: 0.2rem; }
+        .game-sub { color: #4b6a5e; font-size: 0.85rem; margin-bottom: 1.2rem; }
+
+        .mode-toggle {
+            display: flex; background: white; border-radius: 50px;
+            padding: 0.3rem; margin-bottom: 0.8rem; border: 1px solid #e2d9ce;
+            flex-wrap: wrap; gap: 0.2rem;
+        }
+        .mode-btn {
+            flex: 1; min-width: 80px;
+            padding: 0.5rem 0.6rem; border: none;
+            background: transparent; border-radius: 40px;
+            font-weight: 700; font-size: 0.78rem; color: #888;
+            cursor: pointer; transition: 0.2s;
+        }
+        .mode-btn.active { background: #2A9D8F; color: white; }
+
+        .stats-row { display: flex; justify-content: space-between; margin-bottom: 1.2rem; gap: 0.6rem; }
+        .stat-box { flex: 1; background: white; border-radius: 16px; padding: 0.6rem; border: 1px solid #e2d9ce; }
+        .stat-label { font-size: 0.65rem; color: #999; text-transform: uppercase; letter-spacing: 0.04em; }
+        .stat-value { font-size: 1.3rem; font-weight: 800; color: #2A9D8F; }
+
+        .category-badge {
+            display: inline-block; background: #D4A37320; color: #D4A373;
+            border: 1px solid #D4A373; padding: 0.25rem 0.9rem;
+            border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .timer-bar { background: #e0dbd0; border-radius: 30px; height: 10px; overflow: hidden; margin-bottom: 1.4rem; }
+        .timer-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            height: 100%; width: 100%; border-radius: 30px;
+            transition: width 0.1s linear, background 0.3s;
+        }
+        .timer-fill.urgent { background: #E76F51; }
+
+        .question-card {
+            background: white; border-radius: 28px;
+            padding: 1.8rem 1.4rem; margin-bottom: 1.2rem;
+            border: 2px solid #2A9D8F;
+            min-height: 130px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+        }
+        .question-prompt { font-size: 0.85rem; color: #888; margin-bottom: 0.5rem; }
+        .question-main { font-size: 1.8rem; font-weight: 800; color: #1e3a38; line-height: 1.3; }
+        .question-hint { font-size: 0.9rem; color: #E76F51; font-weight: 600; margin-top: 0.4rem; }
+
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.2rem; }
+        .option-btn {
+            background: white; border: 2px solid #2A9D8F;
+            color: #1e3a38; padding: 0.9rem 0.5rem;
+            border-radius: 18px; font-size: 0.95rem; font-weight: 700;
+            cursor: pointer; transition: 0.15s; line-height: 1.3;
+        }
+        .option-btn:hover { background: #2A9D8F; color: white; transform: translateY(-2px); }
+        .option-btn.correct { background: #2A9D8F; color: white; border-color: #2A9D8F; }
+        .option-btn.incorrect { background: #E76F51; color: white; border-color: #E76F51; }
+        .option-btn:disabled { cursor: default; }
+
+        .feedback-text { font-size: 0.9rem; font-weight: 700; min-height: 1.3rem; margin-bottom: 0.6rem; }
+        .feedback-text.correct { color: #2A9D8F; }
+        .feedback-text.incorrect { color: #E76F51; }
+
+        .start-screen, .end-screen {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 1rem; padding: 1rem 0;
+        }
+        .start-screen p, .end-screen p { color: #4b6a5e; font-size: 0.92rem; line-height: 1.5; }
+        .big-btn {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white; border: none; padding: 1rem 2.4rem;
+            border-radius: 50px; font-size: 1.05rem; font-weight: 700;
+            cursor: pointer; transition: 0.2s;
+            box-shadow: 0 8px 20px rgba(42,157,143,0.35);
+        }
+        .big-btn:hover { transform: translateY(-2px); }
+        .end-score { font-size: 3rem; font-weight: 800; color: #2A9D8F; }
+        .end-streak { background: #D4A37320; color: #D4A373; padding: 0.4rem 1.2rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem; }
+        .hidden { display: none !important; }
+
+        @media (max-width: 420px) {
+            .question-main { font-size: 1.4rem; }
+            .option-btn { font-size: 0.82rem; padding: 0.7rem 0.4rem; }
+            .mode-btn { font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-title">⚡ Gyae Ntɛm!</div>
+    <div class="game-sub">Stop Fast — Chapter 4 Category Challenge</div>
+
+    <div class="mode-toggle">
+        <button class="mode-btn active" id="modeAllBtn" onclick="setMode('all')">🎯 All</button>
+        <button class="mode-btn" id="modeNumBtn" onclick="setMode('numbers')">🔢 Numbers</button>
+        <button class="mode-btn" id="modeTimeBtn" onclick="setMode('time')">🕐 Time</button>
+        <button class="mode-btn" id="modeDaysBtn" onclick="setMode('days')">📅 Days</button>
+        <button class="mode-btn" id="modeFamBtn" onclick="setMode('family')">👨‍👩‍👧 Family</button>
+        <button class="mode-btn" id="modeAdjBtn" onclick="setMode('adj')">📝 Adjectives</button>
+    </div>
+
+    <div class="start-screen" id="startScreen">
+        <p id="startDescription">15 rounds across all 5 categories — numbers, time, days, family, and adjectives. The clock speeds up as you go. How many can you get right?</p>
+        <button class="big-btn" onclick="startGame()">Start Game ▶</button>
+    </div>
+
+    <div class="hidden" id="gameScreen">
+        <div class="stats-row">
+            <div class="stat-box"><div class="stat-label">Score</div><div class="stat-value" id="scoreDisplay">0</div></div>
+            <div class="stat-box"><div class="stat-label">Streak</div><div class="stat-value" id="streakDisplay">0</div></div>
+            <div class="stat-box"><div class="stat-label">Round</div><div class="stat-value" id="roundDisplay">1/15</div></div>
+        </div>
+        <div id="categoryBadge" class="category-badge">🔢 Numbers</div>
+        <div class="timer-bar"><div class="timer-fill" id="timerFill"></div></div>
+        <div class="question-card">
+            <div class="question-prompt" id="questionPrompt">What is this in Twi?</div>
+            <div class="question-main" id="questionMain">47</div>
+            <div class="question-hint" id="questionHint"></div>
+        </div>
+        <div class="feedback-text" id="feedbackText"></div>
+        <div class="options-grid" id="optionsGrid"></div>
+    </div>
+
+    <div class="hidden end-screen" id="endScreen">
+        <div style="font-size: 2.5rem;">🎉</div>
+        <div>Your Score</div>
+        <div class="end-score" id="finalScore">0/15</div>
+        <div class="end-streak" id="finalStreak">Best streak: 0</div>
+        <p id="endMessage">Great effort!</p>
+        <button class="big-btn" onclick="startGame()">Play Again ↻</button>
+    </div>
+</div>
+
+<script>
+var NUMBERS_DATA = [
+    { q: "47", prompt: "What is this number in Twi?", answer: "aduanan nson", wrong: ["aduonum nson", "aduasa nson", "aduanan nwɔtwe"] },
+    { q: "23", prompt: "What is this number in Twi?", answer: "aduonu mmiɛnsa", wrong: ["aduasa mmiɛnsa", "aduonu mmienu", "du mmiɛnsa"] },
+    { q: "38", prompt: "What is this number in Twi?", answer: "aduasa nwɔtwe", wrong: ["aduonu nwɔtwe", "aduanan nwɔtwe", "aduasa nkron"] },
+    { q: "56", prompt: "What is this number in Twi?", answer: "aduonum nsia", wrong: ["aduosia nnum", "aduonum nson", "aduosia nsia"] },
+    { q: "71", prompt: "What is this number in Twi?", answer: "aduoson baako", wrong: ["aduosia baako", "aduoson mmienu", "aduonwɔtwe baako"] },
+    { q: "89", prompt: "What is this number in Twi?", answer: "aduonwɔtwe nkron", wrong: ["aduonkron nwɔtwe", "aduonwɔtwe nson", "aduoson nkron"] },
+    { q: "100", prompt: "What is this number in Twi?", answer: "ɔha", wrong: ["aduonkron baako", "du du", "aduonum mmienu"] },
+    { q: "aduonu nwɔtwe", prompt: "What number is this?", answer: "28", wrong: ["38", "27", "29"] },
+    { q: "aduasa baako", prompt: "What number is this?", answer: "31", wrong: ["21", "41", "30"] },
+    { q: "aduonum", prompt: "What number is this?", answer: "50", wrong: ["40", "60", "55"] }
+];
+
+var TIME_DATA = [
+    { q: "2:30", prompt: "How do you say this time in Twi?", answer: "abɔ nnɔmmienu ne fa", wrong: ["abɔ nnɔmmiɛnsa ne fa", "abɔ nnɔnnan ne fa", "abɔ nnɔmmienu apa ho simma dunnum"], hint: "half past two" },
+    { q: "3:15", prompt: "How do you say this time in Twi?", answer: "nnɔmmiɛnsa abɔ apa ho simma dunnum", wrong: ["nnɔmmienu abɔ apa ho simma dunnum", "nnɔnnan abɔ apa ho simma dunnum", "nnɔmmiɛnsa abɔ ne fa"], hint: "quarter past three" },
+    { q: "5:20", prompt: "How do you say this time in Twi?", answer: "nnɔnnum abɔ apa ho simma aduonu", wrong: ["nnɔnnum ne fa", "nnɔnnum apa ho simma dunnum", "nnɔnsia abɔ apa ho simma aduonu"], hint: "twenty past five" },
+    { q: "anwummerɛ", prompt: "What time of day is this?", answer: "evening", wrong: ["morning", "afternoon", "midnight"] },
+    { q: "anɔpa", prompt: "What time of day is this?", answer: "morning", wrong: ["evening", "night", "noon"] },
+    { q: "Abɔ sɛn?", prompt: "What does this question mean?", answer: "What time is it?", wrong: ["How are you?", "Where are you going?", "When will you come?"] },
+    { q: "Mɛba anwummerɛ.", prompt: "What does this sentence mean?", answer: "I will come in the evening.", wrong: ["I came in the evening.", "Come in the evening!", "I am in the evening."] }
+];
+
+var DAYS_DATA = [
+    { q: "Efiada", prompt: "Which day of the week is this?", answer: "Friday", wrong: ["Monday", "Thursday", "Saturday"] },
+    { q: "Yawoada", prompt: "Which day of the week is this?", answer: "Thursday", wrong: ["Monday", "Wednesday", "Friday"] },
+    { q: "Memeneda", prompt: "Which day of the week is this?", answer: "Saturday", wrong: ["Sunday", "Friday", "Monday"] },
+    { q: "Kwasiada", prompt: "Which day of the week is this?", answer: "Sunday", wrong: ["Saturday", "Monday", "Wednesday"] },
+    { q: "Kofi", prompt: "Which day was this person born?", answer: "Friday", wrong: ["Monday", "Saturday", "Thursday"] },
+    { q: "Ama", prompt: "Which day was this person born?", answer: "Saturday", wrong: ["Sunday", "Monday", "Friday"] },
+    { q: "Kwaku", prompt: "Which day was this person born?", answer: "Wednesday", wrong: ["Tuesday", "Thursday", "Monday"] },
+    { q: "Adwoa", prompt: "Which day was this person born?", answer: "Monday", wrong: ["Wednesday", "Friday", "Sunday"] },
+    { q: "Ɛnnɛ yɛ da bɛn?", prompt: "What does this question mean?", answer: "What day is today?", wrong: ["What time is it?", "Where are you today?", "Who is coming today?"] }
+];
+
+var FAMILY_DATA = [
+    { q: "wɔfa", prompt: "What does this family word mean?", answer: "maternal uncle", wrong: ["paternal uncle", "grandfather", "nephew"] },
+    { q: "nana barima", prompt: "What does this family word mean?", answer: "grandfather", wrong: ["grandmother", "uncle", "father"] },
+    { q: "ba baa", prompt: "What does this family word mean?", answer: "daughter", wrong: ["sister", "son", "niece"] },
+    { q: "awofoɔ", prompt: "What does this family word mean?", answer: "parents", wrong: ["grandparents", "siblings", "children"] },
+    { q: "nuanom", prompt: "What does this family word mean?", answer: "siblings", wrong: ["children", "parents", "cousins"] },
+    { q: "kunu", prompt: "What does this family word mean?", answer: "husband", wrong: ["wife", "lover", "brother"] },
+    { q: "nananom", prompt: "What does this family word mean?", answer: "grandparents", wrong: ["parents", "elders", "ancestors"] },
+    { q: "Wo wɔ nuanom ahe?", prompt: "What does this question mean?", answer: "How many siblings do you have?", wrong: ["How many children do you have?", "Who are your siblings?", "Where are your siblings?"] }
+];
+
+var ADJ_DATA = [
+    { q: "onipa ___", prompt: "Which adjective means BIG PERSON?", answer: "kɛseɛ", wrong: ["ketewa", "fɛfɛ", "dɛ"] },
+    { q: "ba ___", prompt: "Which adjective means SMALL CHILD?", answer: "ketewa", wrong: ["kɛseɛ", "ɔpanyin", "papa"] },
+    { q: "aduane ___", prompt: "Which adjective means DELICIOUS FOOD?", answer: "dɛ", wrong: ["fɛfɛ", "papa", "dɔ"] },
+    { q: "ntadeɛ ___", prompt: "Which adjective means BEAUTIFUL CLOTHES?", answer: "fɛfɛ", wrong: ["dɛ", "foforɔ", "kɛseɛ"] },
+    { q: "adwuma ___", prompt: "Which adjective means GOOD WORK?", answer: "papa", wrong: ["bone", "dɛ", "ware"] },
+    { q: "nneɛma ___", prompt: "Which adjective means NEW THINGS?", answer: "foforɔ", wrong: ["dedaw", "dɔ", "tumi"] },
+    { q: "kwan ___", prompt: "Which adjective means LONG ROAD?", answer: "ware", wrong: ["tia", "ketewa", "hare"] },
+    { q: "Which is correct?", prompt: "Choose the correct Twi word order:", answer: "onipa kɛseɛ", wrong: ["kɛseɛ onipa", "kɛseɛ ba", "onipa papa kɛseɛ"] },
+    { q: "Which is correct?", prompt: "Choose the correct Twi word order:", answer: "aduane dɛ", wrong: ["dɛ aduane", "aduane fɛfɛ dɛ", "fɛfɛ aduane"] }
+];
+
+var ALL_CATEGORIES = [
+    { key: 'numbers', label: 'Numbers', icon: 'Numbers', data: NUMBERS_DATA },
+    { key: 'time', label: 'Time', icon: 'Time', data: TIME_DATA },
+    { key: 'days', label: 'Days', icon: 'Days', data: DAYS_DATA },
+    { key: 'family', label: 'Family', icon: 'Family', data: FAMILY_DATA },
+    { key: 'adj', label: 'Adjectives', icon: 'Adjectives', data: ADJ_DATA }
+];
+
+var mode = 'all';
+var score = 0;
+var streak = 0;
+var bestStreak = 0;
+var round = 0;
+var TOTAL_ROUNDS = 15;
+var timerInterval = null;
+var timeLeft = 0;
+var maxTime = 6000;
+var answered = false;
+var currentCorrect = '';
+
+var categoryDescriptions = {
+    all: '15 rounds across all 5 categories — numbers, time, days, family, and adjectives. The clock speeds up as you go.',
+    numbers: 'Numbers only — translate between English numbers and Twi, and back again. 15 rounds.',
+    time: 'Time only — telling the time, time periods (anɔpa, awia, anwummerɛ), and time questions. 15 rounds.',
+    days: 'Days only — days of the week, Akan day names (Kradin), and day questions. 15 rounds.',
+    family: 'Family only — immediate and extended family vocabulary. 15 rounds.',
+    adj: 'Adjectives only — match adjectives to nouns and choose the correct word order. 15 rounds.'
+};
+
+function setMode(newMode) {
+    mode = newMode;
+    var modes = ['all', 'numbers', 'time', 'days', 'family', 'adj'];
+    var btns = ['modeAllBtn', 'modeNumBtn', 'modeTimeBtn', 'modeDaysBtn', 'modeFamBtn', 'modeAdjBtn'];
+    for (var i = 0; i < modes.length; i++) {
+        document.getElementById(btns[i]).classList.toggle('active', modes[i] === newMode);
+    }
+    document.getElementById('startDescription').textContent = categoryDescriptions[newMode];
+    resetToStart();
+}
+
+function resetToStart() {
+    clearInterval(timerInterval);
+    document.getElementById('startScreen').classList.remove('hidden');
+    document.getElementById('gameScreen').classList.add('hidden');
+    document.getElementById('endScreen').classList.add('hidden');
+}
+
+function startGame() {
+    score = 0; streak = 0; bestStreak = 0; round = 0; maxTime = 6000;
+    document.getElementById('startScreen').classList.add('hidden');
+    document.getElementById('endScreen').classList.add('hidden');
+    document.getElementById('gameScreen').classList.remove('hidden');
+    updateStats();
+    nextRound();
+}
+
+function updateStats() {
+    document.getElementById('scoreDisplay').textContent = score;
+    document.getElementById('streakDisplay').textContent = streak;
+    document.getElementById('roundDisplay').textContent = round + '/' + TOTAL_ROUNDS;
+}
+
+function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+}
+
+function getCategoryData() {
+    if (mode === 'all') {
+        var catIndex = round % ALL_CATEGORIES.length;
+        return ALL_CATEGORIES[catIndex];
+    }
+    for (var i = 0; i < ALL_CATEGORIES.length; i++) {
+        if (ALL_CATEGORIES[i].key === mode) return ALL_CATEGORIES[i];
+    }
+    return ALL_CATEGORIES[0];
+}
+
+function nextRound() {
+    round++;
+    answered = false;
+    document.getElementById('feedbackText').textContent = '';
+    document.getElementById('feedbackText').className = 'feedback-text';
+
+    if (round > TOTAL_ROUNDS) { endGame(); return; }
+
+    updateStats();
+    maxTime = Math.max(2500, 6000 - (round * 200));
+
+    var cat = getCategoryData();
+    document.getElementById('categoryBadge').textContent = cat.icon;
+
+    var pool = cat.data;
+    var item = pool[Math.floor(Math.random() * pool.length)];
+    currentCorrect = item.answer;
+
+    document.getElementById('questionPrompt').textContent = item.prompt;
+    document.getElementById('questionMain').textContent = item.q;
+    document.getElementById('questionHint').textContent = item.hint || '';
+
+    var options = shuffle([item.answer].concat(item.wrong.slice(0, 3)));
+    renderOptions(options, item.answer);
+    startTimer();
+}
+
+function renderOptions(options, correctAnswer) {
+    var grid = document.getElementById('optionsGrid');
+    grid.innerHTML = '';
+    options.forEach(function(opt) {
+        var btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt;
+        btn.onclick = function() { selectAnswer(btn, opt, correctAnswer); };
+        grid.appendChild(btn);
+    });
+}
+
+function selectAnswer(btn, selected, correctAnswer) {
+    if (answered) return;
+    answered = true;
+    clearInterval(timerInterval);
+
+    var allBtns = document.querySelectorAll('.option-btn');
+    allBtns.forEach(function(b) {
+        b.disabled = true;
+        if (b.textContent === correctAnswer) b.classList.add('correct');
+    });
+
+    var feedback = document.getElementById('feedbackText');
+    if (selected === correctAnswer) {
+        score++; streak++;
+        bestStreak = Math.max(bestStreak, streak);
+        feedback.textContent = 'Correct!';
+        feedback.className = 'feedback-text correct';
+    } else {
+        streak = 0;
+        btn.classList.add('incorrect');
+        feedback.textContent = 'Correct answer: ' + correctAnswer;
+        feedback.className = 'feedback-text incorrect';
+    }
+    updateStats();
+    setTimeout(nextRound, 1100);
+}
+
+function startTimer() {
+    timeLeft = maxTime;
+    var fill = document.getElementById('timerFill');
+    fill.style.width = '100%';
+    fill.classList.remove('urgent');
+    clearInterval(timerInterval);
+
+    var stepMs = 50;
+    timerInterval = setInterval(function() {
+        timeLeft -= stepMs;
+        var percent = Math.max(0, (timeLeft / maxTime) * 100);
+        fill.style.width = percent + '%';
+        if (percent < 30) fill.classList.add('urgent');
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            if (!answered) {
+                answered = true;
+                streak = 0;
+                var feedback = document.getElementById('feedbackText');
+                feedback.textContent = 'Time is up! Answer: ' + currentCorrect;
+                feedback.className = 'feedback-text incorrect';
+                document.querySelectorAll('.option-btn').forEach(function(b) {
+                    b.disabled = true;
+                    if (b.textContent === currentCorrect) b.classList.add('correct');
+                });
+                updateStats();
+                setTimeout(nextRound, 1300);
+            }
+        }
+    }, stepMs);
+}
+
+function endGame() {
+    clearInterval(timerInterval);
+    document.getElementById('gameScreen').classList.add('hidden');
+    document.getElementById('endScreen').classList.remove('hidden');
+    document.getElementById('finalScore').textContent = score + '/' + TOTAL_ROUNDS;
+    document.getElementById('finalStreak').textContent = 'Best streak: ' + bestStreak;
+
+    var pct = score / TOTAL_ROUNDS;
+    var msg = 'Good try — review the chapter and play again!';
+    if (pct >= 0.9) msg = 'Outstanding! Chapter 4 mastered!';
+    else if (pct >= 0.7) msg = 'Great job! You are getting there!';
+    else if (pct >= 0.5) msg = 'Nice effort — try a single category to drill further!';
+    document.getElementById('endMessage').textContent = msg;
+}
+</script>
+</body>
+</html>
