@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Chapter 3 Final Exam | Speak Ghana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            min-height: 100vh; padding: 2rem 1.5rem;
+        }
+        .exam-wrapper {
+            max-width: 860px; margin: 0 auto; background: white;
+            border-radius: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            overflow: hidden; padding: 2rem;
+        }
+        .exam-header {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white; padding: 1.8rem 2rem; margin: -2rem -2rem 2rem -2rem;
+            text-align: center;
+        }
+        .exam-header h1 { font-size: 1.8rem; margin-bottom: 0.4rem; }
+        .exam-header p { opacity: 0.9; font-size: 0.9rem; }
+        .exam-meta {
+            display: flex; justify-content: center; gap: 1.5rem;
+            flex-wrap: wrap; margin-top: 1rem;
+        }
+        .exam-meta span {
+            background: rgba(255,255,255,0.2); padding: 0.3rem 1rem;
+            border-radius: 50px; font-size: 0.8rem; font-weight: 600;
+        }
+        .instructions {
+            background: #fff3cd; border-radius: 20px; padding: 1.2rem 1.5rem;
+            margin-bottom: 1.5rem; border-left: 6px solid #D4A373;
+            font-size: 0.88rem; color: #856404;
+        }
+        .instructions ul { margin: 0.5rem 0 0 1.3rem; }
+        .instructions li { margin: 0.3rem 0; }
+        .progress-bar {
+            background: #e0dbd0; border-radius: 30px; height: 12px;
+            overflow: hidden; margin-bottom: 2rem;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #2A9D8F, #D4A373);
+            width: 0%; height: 100%; border-radius: 30px; transition: width 0.3s;
+        }
+        .reading-card, .audio-card {
+            background: #FEF9F0; border-radius: 24px;
+            padding: 1.5rem; margin-bottom: 1.5rem;
+            border: 1px solid #f0e5d8;
+        }
+        .reading-card h3, .audio-card h3 {
+            color: #2A9D8F; margin-bottom: 1rem; font-size: 1.1rem;
+        }
+        .passage-text { font-size: 0.95rem; }
+        .passage-line { margin-bottom: 0.7rem; line-height: 1.7; }
+        .passage-line strong {
+            color: #1e3a38; font-family: 'Courier New', monospace;
+            font-size: 1rem; display: block;
+        }
+        .passage-translation {
+            font-size: 0.8rem; color: #888; font-style: italic;
+            margin-top: 0.1rem; display: block;
+        }
+        .audio-card audio { width: 100%; margin: 0.8rem 0; height: 40px; }
+        .audio-note {
+            background: #e3f2ed; border-radius: 12px; padding: 0.6rem 1rem;
+            font-size: 0.82rem; color: #2A9D8F; margin-top: 0.5rem;
+        }
+        .section-divider {
+            display: flex; align-items: center; gap: 1rem;
+            margin: 2rem 0 1.5rem; font-weight: 700; color: #2A9D8F; font-size: 0.9rem;
+        }
+        .section-divider .line { flex: 1; height: 2px; background: #2A9D8F30; border-radius: 2px; }
+        .section-divider .label {
+            white-space: nowrap; background: #2A9D8F; color: white;
+            padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.8rem;
+        }
+        .exam-question {
+            background: #FEF9F0; border-radius: 20px;
+            padding: 1.2rem 1.5rem; margin-bottom: 1.2rem;
+            border: 2px solid transparent; transition: border-color 0.3s;
+        }
+        .exam-question.correct { border-color: #2A9D8F; background: #e3f2ed; }
+        .exam-question.incorrect { border-color: #E76F51; background: #fdf0ec; }
+        .question-text {
+            font-weight: 600; color: #1e3a38; margin-bottom: 0.8rem;
+            line-height: 1.5; font-size: 0.95rem;
+        }
+        .question-points {
+            background: #D4A37320; color: #D4A373; padding: 0.1rem 0.6rem;
+            border-radius: 50px; font-size: 0.75rem; font-weight: 700; margin-left: 0.5rem;
+        }
+        .exam-options { display: flex; flex-direction: column; gap: 0.5rem; }
+        .exam-options label {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            background: white; padding: 0.6rem 1rem; border-radius: 14px;
+            cursor: pointer; font-size: 0.88rem; line-height: 1.4;
+            border: 1px solid #e2d9ce; transition: background 0.2s;
+        }
+        .exam-options label:hover { background: #e3f2ed; }
+        .exam-options input[type="radio"] { margin-top: 2px; flex-shrink: 0; accent-color: #2A9D8F; }
+        .feedback {
+            display: none; margin-top: 0.8rem; padding: 0.6rem 1rem;
+            border-radius: 12px; font-size: 0.85rem; font-weight: 600;
+        }
+        .feedback.correct { background: #e3f2ed; color: #2A9D8F; }
+        .feedback.incorrect { background: #fdf0ec; color: #E76F51; }
+        .submit-area { text-align: center; margin: 2rem 0 1rem; }
+        .btn {
+            padding: 0.9rem 2.5rem; border: none; border-radius: 50px;
+            font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.2s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #2A9D8F, #1f7a6e);
+            color: white; box-shadow: 0 8px 20px rgba(42,157,143,0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-outline {
+            background: white; color: #2A9D8F; border: 2px solid #2A9D8F;
+            text-decoration: none; display: inline-block; margin-top: 0.5rem;
+        }
+        .score-section {
+            display: none; background: linear-gradient(135deg, #FEF9F0, white);
+            border-radius: 28px; padding: 2rem; text-align: center;
+            border: 2px solid #2A9D8F; margin-top: 2rem;
+        }
+        .score-section.show { display: block; }
+        .score-section h3 { color: #2A9D8F; font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .score-number { font-size: 3.5rem; font-weight: 800; color: #2A9D8F; margin: 0.5rem 0; }
+        .watermark {
+            position: fixed; bottom: 8px; right: 10px;
+            font-size: 9px; color: rgba(0,0,0,0.12); pointer-events: none;
+        }
+        @media (max-width: 600px) {
+            .exam-wrapper { padding: 1.2rem; }
+            .exam-header { margin: -1.2rem -1.2rem 1.5rem; padding: 1.2rem; }
+            .exam-header h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="exam-wrapper">
+    <div class="exam-header">
+        <h1>Chapter 3 Final Exam</h1>
+        <p>Talking About Yourself and Your Daily Life</p>
+        <div class="exam-meta">
+            <span>📝 25 Questions</span>
+            <span>💯 100 Points</span>
+            <span>✅ Pass: 75 Points (75%)</span>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <strong>Instructions:</strong>
+        <ul>
+            <li>Read the passage and listen to the audio monologue carefully before answering</li>
+            <li>Select ONE answer per question — think carefully, some answers are close</li>
+            <li>All 25 questions must be answered before submitting</li>
+            <li>Each correct answer = 4 points | Total = 100 | Pass = 75</li>
+            <li>You can retake the exam as many times as needed</li>
+        </ul>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- READING PASSAGE -->
+    <div class="reading-card">
+        <h3>📖 Reading Passage — Read carefully before answering Section A</h3>
+        <p style="font-size: 0.82rem; color: #888; margin-bottom: 1rem; font-style: italic;">Read every sentence carefully — the passage uses exactly what you studied in Chapter 3.</p>
+        <div class="passage-text">
+
+            <div class="passage-line">
+                <strong>Me din de Ama Tetebea. Meyɛ ɔkyerɛkyerɛni.</strong>
+                <span class="passage-translation">My name is Ama Tetebea. I am a teacher.</span>
+            </div>
+            <div class="passage-line">
+                <strong>Mekyerɛ adeɛ wɔ Suhum D/A Experimental C.</strong>
+                <span class="passage-translation">I teach at Suhum D/A Experimental C.</span>
+            </div>
+            <div class="passage-line">
+                <strong>Mekyerɛ brɔfo nanso mete Twi paa.</strong>
+                <span class="passage-translation">I teach English but I understand Twi very well.</span>
+            </div>
+            <div class="passage-line">
+                <strong>Anɔpa biara mesɔre ntɛm na masua adeɛ. Efirisɛ mempɛ sɛ me worɛ befiri bibiara.</strong>
+                <span class="passage-translation">Every morning I wake up early and study. Because I do not want to be left behind by anyone.</span>
+            </div>
+            <div class="passage-line">
+                <strong>Mewɔ sukuu nkwadaa aduonu wɔ me klasse.</strong>
+                <span class="passage-translation">I have twenty students in my class.</span>
+            </div>
+            <div class="passage-line">
+                <strong>Sɛ meba fie a, medi kan yi m'atadeɛ, mehome kakra na afei menoa me awia aduane.</strong>
+                <span class="passage-translation">When I come home, I first take off my clothes, rest a little, and then cook my afternoon food.</span>
+            </div>
+            <div class="passage-line">
+                <strong>Mepɛ ɛmo paa ara enti menoa anwummerɛ ɛmo ne nkosua. Mempɛ fufu ne banku.</strong>
+                <span class="passage-translation">I love rice very much so I cook oil rice and eggs in the evening. I do not like fufu or banku.</span>
+            </div>
+            <div class="passage-line">
+                <strong>Menni ba, menni kunu. Me nkoa na ɛte.</strong>
+                <span class="passage-translation">I have no children, I have no husband. I live alone.</span>
+            </div>
+            <div class="passage-line">
+                <strong>Anwummerɛ mekɔ asɔre. Mepɛ mpae bɔ paa ara.</strong>
+                <span class="passage-translation">In the evening I go to church. I love to pray very much.</span>
+            </div>
+            <div class="passage-line">
+                <strong>Mefiri asɔre ba efie a, mehwɛ kasanfonim kakra, mekɔ TikTok na afei mefrɛ me mpena.</strong>
+                <span class="passage-translation">When I come home from church, I watch a little TV, go on TikTok, and then call my boyfriend.</span>
+            </div>
+            <div class="passage-line">
+                <strong>Me kasa kakra pɛ na meda. Daakye me ne me mpena bɛware.</strong>
+                <span class="passage-translation">I talk just a little then I sleep. In the future, my boyfriend and I will marry.</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- AUDIO -->
+    <div class="audio-card">
+        <h3>🎧 Audio Monologue — Listen carefully before answering Section B</h3>
+        <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">One person speaks about themselves and their daily life. Section B questions are based <strong>only on what you hear</strong> — not the passage above.</p>
+        <audio controls preload="none" controlslist="nodownload" oncontextmenu="return false;">
+            <source src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chapterthree/cha3-exam-audio.m4a" type="audio/mp4">
+        </audio>
+        <div class="audio-note">
+            💡 Listen at least twice. The speaker moves quickly and does not repeat key details.
+        </div>
+    </div>
+
+    <form id="examForm">
+
+        <!-- SECTION A: PASSAGE (Q1-7) -->
+        <div class="section-divider"><span class="label">Section A · From the Passage</span><span class="line"></span></div>
+
+        <div class="exam-question" data-question="1" data-correct="A" data-points="4">
+            <div class="question-text">1. Ama Tetebea yɛ dɛn, na ɔkyerɛ he? (What does Ama do, and where does she teach?) <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q1" value="A"> A) Ɔyɛ ɔkyerɛkyerɛni wɔ Suhum D/A Experimental C</label>
+                <label><input type="radio" name="q1" value="B"> B) Ɔyɛ nɛɛse wɔ ayaresabea</label>
+                <label><input type="radio" name="q1" value="C"> C) Ɔyɛ ɔkyerɛkyerɛni wɔ Kumasi</label>
+                <label><input type="radio" name="q1" value="D"> D) Ɔkyerɛ Twi wɔ sukuu</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="2" data-correct="C" data-points="4">
+            <div class="question-text">2. Adɛn nti na Ama sɔre ntɛm anɔpa biara? (Why does Ama wake up early every morning?) <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q2" value="A"> A) Efirisɛ ɔpɛ sɛ ɔbɔ mpae</label>
+                <label><input type="radio" name="q2" value="B"> B) Efirisɛ sukuu kwan ware</label>
+                <label><input type="radio" name="q2" value="C"> C) Efirisɛ mempɛ sɛ me worɛ befiri bibiara</label>
+                <label><input type="radio" name="q2" value="D"> D) Efirisɛ ɔpɛ sɛ ɔnoa anɔpa aduane</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="3" data-correct="D" data-points="4">
+            <div class="question-text">3. "Sɛ meba fie a, medi kan yi m'atadeɛ, mehome kakra." What is the FIRST thing Ama does when she gets home? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q3" value="A"> A) She cooks her food immediately</label>
+                <label><input type="radio" name="q3" value="B"> B) She rests</label>
+                <label><input type="radio" name="q3" value="C"> C) She calls her boyfriend</label>
+                <label><input type="radio" name="q3" value="D"> D) She takes off her clothes first</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="4" data-correct="B" data-points="4">
+            <div class="question-text">4. "Mewɔ sukuu nkwadaa aduonu wɔ me klasse." What does this tell us about Ama's class? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q4" value="A"> A) She has been teaching for twenty years</label>
+                <label><input type="radio" name="q4" value="B"> B) She has twenty students in her class</label>
+                <label><input type="radio" name="q4" value="C"> C) She teaches twenty subjects</label>
+                <label><input type="radio" name="q4" value="D"> D) Her school has twenty classrooms</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="5" data-correct="A" data-points="4">
+            <div class="question-text">5. Which THREE sentences from the passage use the NEGATIVE form? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q5" value="A"> A) Mempɛ fufu ne banku / Menni ba / Menni kunu</label>
+                <label><input type="radio" name="q5" value="B"> B) Mepɛ ɛmo paa ara / Mekɔ asɔre / Meda</label>
+                <label><input type="radio" name="q5" value="C"> C) Mesɔre ntɛm / Masua adeɛ / Mehome kakra</label>
+                <label><input type="radio" name="q5" value="D"> D) Mefrɛ me mpena / Mekɔ TikTok / Mehwɛ kasanfonim</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="6" data-correct="C" data-points="4">
+            <div class="question-text">6. "Daakye me ne me mpena bɛware." What does "daakye" tell us about this event? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q6" value="A"> A) It happened yesterday</label>
+                <label><input type="radio" name="q6" value="B"> B) It is happening right now</label>
+                <label><input type="radio" name="q6" value="C"> C) It will happen in the future</label>
+                <label><input type="radio" name="q6" value="D"> D) It already happened last year</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="7" data-correct="D" data-points="4">
+            <div class="question-text">7. "Me nkoa na ɛte." What does this sentence reveal about Ama's living situation? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q7" value="A"> A) She lives with her students</label>
+                <label><input type="radio" name="q7" value="B"> B) She lives with her parents</label>
+                <label><input type="radio" name="q7" value="C"> C) She lives with her boyfriend</label>
+                <label><input type="radio" name="q7" value="D"> D) She lives alone</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <!-- SECTION B: AUDIO (Q8-12) -->
+        <div class="section-divider"><span class="label">Section B · From the Audio</span><span class="line"></span></div>
+
+        <div class="exam-question" data-question="8" data-correct="D" data-points="4">
+            <div class="question-text">8. The speaker has two names — one from his parents and one from his sister. What are they? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q8" value="A"> A) His parents call him Baron, his sister calls him Kofi</label>
+                <label><input type="radio" name="q8" value="B"> B) His mother calls him Kofi, his father calls him Baron</label>
+                <label><input type="radio" name="q8" value="C"> C) His parents call him Kwame, his sister calls him Baron</label>
+                <label><input type="radio" name="q8" value="D"> D) His parents call him Kofi, his sister calls him Baron</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="9" data-correct="A" data-points="4">
+            <div class="question-text">9. The speaker wakes up very early. Why? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q9" value="A"> A) Efirisɛ me sukuu kwan ware</label>
+                <label><input type="radio" name="q9" value="B"> B) Efirisɛ ɔpɛ sɛ ɔdi anɔpa aduane ntɛm</label>
+                <label><input type="radio" name="q9" value="C"> C) Efirisɛ ne maame frɛ no</label>
+                <label><input type="radio" name="q9" value="D"> D) Efirisɛ ɔpɛ sɛ ɔbɔ bɔɔl</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="10" data-correct="C" data-points="4">
+            <div class="question-text">10. The speaker says "Mempɛ banku enti me di bayerɛ ne nkwan." What does this tell us? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q10" value="A"> A) He likes banku and eats it every afternoon</label>
+                <label><input type="radio" name="q10" value="B"> B) He does not eat yam, he prefers banku</label>
+                <label><input type="radio" name="q10" value="C"> C) He does not like banku, so he eats yam and soup instead</label>
+                <label><input type="radio" name="q10" value="D"> D) His sister does not cook banku for him</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="11" data-correct="B" data-points="4">
+            <div class="question-text">11. What do the speaker's parents do for work? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q11" value="A"> A) Mother drives trotro, father sells at Makola market</label>
+                <label><input type="radio" name="q11" value="B"> B) Mother sells at Makola market, father drives trotro</label>
+                <label><input type="radio" name="q11" value="C"> C) Both parents work at a school</label>
+                <label><input type="radio" name="q11" value="D"> D) Father sells at the market, mother is a teacher</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="12" data-correct="D" data-points="4">
+            <div class="question-text">12. The speaker says "Daakye mepɛ sɛ meyɛ ɔkyerɛkyerɛni nti menhwɛ kasanfonim." What is the connection between these two things? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q12" value="A"> A) He watches TV to learn how to become a teacher</label>
+                <label><input type="radio" name="q12" value="B"> B) He does not want to be a teacher because teachers cannot watch TV</label>
+                <label><input type="radio" name="q12" value="C"> C) He watches TV every day because he wants to be a teacher</label>
+                <label><input type="radio" name="q12" value="D"> D) Because he wants to become a teacher in the future, he does not watch TV</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <!-- SECTION C: VERB CONJUGATION (Q13-16) -->
+        <div class="section-divider"><span class="label">Section C · Verb Conjugation</span><span class="line"></span></div>
+
+        <div class="exam-question" data-question="13" data-correct="C" data-points="4">
+            <div class="question-text">13. Ama says "Meyɛ adwuma wɔ sukuu." Which pronoun does "me-" represent here? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q13" value="A"> A) You</label>
+                <label><input type="radio" name="q13" value="B"> B) They</label>
+                <label><input type="radio" name="q13" value="C"> C) I</label>
+                <label><input type="radio" name="q13" value="D"> D) We</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="14" data-correct="B" data-points="4">
+            <div class="question-text">14. How do you say "She cooks" in Twi? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q14" value="A"> A) Yɛnoa</label>
+                <label><input type="radio" name="q14" value="B"> B) Ɔnoa</label>
+                <label><input type="radio" name="q14" value="C"> C) Wonoa</label>
+                <label><input type="radio" name="q14" value="D"> D) Menoa</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="15" data-correct="D" data-points="4">
+            <div class="question-text">15. "Wɔte Kumasi" means: <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q15" value="A"> A) I live in Kumasi</label>
+                <label><input type="radio" name="q15" value="B"> B) You live in Kumasi</label>
+                <label><input type="radio" name="q15" value="C"> C) We live in Kumasi</label>
+                <label><input type="radio" name="q15" value="D"> D) They live in Kumasi</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="16" data-correct="A" data-points="4">
+            <div class="question-text">16. Which sentence correctly says "You all go to school"? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q16" value="A"> A) Mokɔ sukuu</label>
+                <label><input type="radio" name="q16" value="B"> B) Mekɔ sukuu</label>
+                <label><input type="radio" name="q16" value="C"> C) Yɛkɔ sukuu</label>
+                <label><input type="radio" name="q16" value="D"> D) Wɔkɔ sukuu</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <!-- SECTION D: NEGATION & COUNTABLE (Q17-20) -->
+        <div class="section-divider"><span class="label">Section D · Negation and Countable vs Uncountable</span><span class="line"></span></div>
+
+        <div class="exam-question" data-question="17" data-correct="B" data-points="4">
+            <div class="question-text">17. The passage says "Menni ti nsu." What does this mean? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q17" value="A"> A) I drink tea</label>
+                <label><input type="radio" name="q17" value="B"> B) I do not drink tea</label>
+                <label><input type="radio" name="q17" value="C"> C) I do not like tea</label>
+                <label><input type="radio" name="q17" value="D"> D) Tea is not available</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="18" data-correct="C" data-points="4">
+            <div class="question-text">18. "Yɛnhyia yɛn nuanom bio" — what is the negative marker in this sentence? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q18" value="A"> A) yɛn</label>
+                <label><input type="radio" name="q18" value="B"> B) bio</label>
+                <label><input type="radio" name="q18" value="C"> C) yɛn-</label>
+                <label><input type="radio" name="q18" value="D"> D) nuanom</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="19" data-correct="D" data-points="4">
+            <div class="question-text">19. Which of these is an UNCOUNTABLE noun? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q19" value="A"> A) aburoo</label>
+                <label><input type="radio" name="q19" value="B"> B) nwoma</label>
+                <label><input type="radio" name="q19" value="C"> C) akonnwa</label>
+                <label><input type="radio" name="q19" value="D"> D) nsuo</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="20" data-correct="A" data-points="4">
+            <div class="question-text">20. Which sentence correctly makes "Mekɔ sukuu" negative? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q20" value="A"> A) Menkɔ sukuu</label>
+                <label><input type="radio" name="q20" value="B"> B) Me kɔ sukuu daabi</label>
+                <label><input type="radio" name="q20" value="C"> C) Me nkɔ sukuu da</label>
+                <label><input type="radio" name="q20" value="D"> D) Mekɔ sukuu bi</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <!-- SECTION E: VOCABULARY & TRANSLATION (Q21-25) -->
+        <div class="section-divider"><span class="label">Section E · Vocabulary and Translation</span><span class="line"></span></div>
+
+        <div class="exam-question" data-question="21" data-correct="C" data-points="4">
+            <div class="question-text">21. The passage says "Mepɛ mpae bɔ paa ara." What does "mpae bɔ" mean? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q21" value="A"> A) watching TV</label>
+                <label><input type="radio" name="q21" value="B"> B) going to school</label>
+                <label><input type="radio" name="q21" value="C"> C) praying</label>
+                <label><input type="radio" name="q21" value="D"> D) cooking food</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="22" data-correct="B" data-points="4">
+            <div class="question-text">22. "Mefiri Kumasi" means: <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q22" value="A"> A) I live in Kumasi</label>
+                <label><input type="radio" name="q22" value="B"> B) I am from Kumasi</label>
+                <label><input type="radio" name="q22" value="C"> C) I am going to Kumasi</label>
+                <label><input type="radio" name="q22" value="D"> D) I like Kumasi</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="23" data-correct="D" data-points="4">
+            <div class="question-text">23. "Ɛyɛ anigye pa ara sɛ oburoni kyerɛ Twi!" — what emotion does this sentence express? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q23" value="A"> A) Sadness</label>
+                <label><input type="radio" name="q23" value="B"> B) Anger</label>
+                <label><input type="radio" name="q23" value="C"> C) Fear</label>
+                <label><input type="radio" name="q23" value="D"> D) Joy and amusement</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="24" data-correct="A" data-points="4">
+            <div class="question-text">24. How do you say "I cook in the evening" in Twi — positive, first person? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q24" value="A"> A) Menoa aduane anwummerɛ</label>
+                <label><input type="radio" name="q24" value="B"> B) Ɔnoa aduane anwummerɛ</label>
+                <label><input type="radio" name="q24" value="C"> C) Wonoa aduane anwummerɛ</label>
+                <label><input type="radio" name="q24" value="D"> D) Yɛnoa aduane anwummerɛ</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+        <div class="exam-question" data-question="25" data-correct="B" data-points="4">
+            <div class="question-text">25. Looking at the whole passage — which of these BEST describes Ama Tetebea's character? <span class="question-points">4 pts</span></div>
+            <div class="exam-options">
+                <label><input type="radio" name="q25" value="A"> A) Lazy and unambitious</label>
+                <label><input type="radio" name="q25" value="B"> B) Hardworking, disciplined, and faith-driven</label>
+                <label><input type="radio" name="q25" value="C"> C) Social and outgoing</label>
+                <label><input type="radio" name="q25" value="D"> D) Lonely and unhappy</label>
+            </div>
+            <div class="feedback"></div>
+        </div>
+
+    </form>
+
+    <div class="submit-area">
+        <button class="btn btn-primary" onclick="submitExam()">Submit Exam →</button>
+    </div>
+
+    <div class="score-section" id="scoreSection">
+        <h3>Exam Complete!</h3>
+        <p>Your Score:</p>
+        <div class="score-number" id="scoreNumber">0/100</div>
+        <p id="scoreMessage"></p>
+        <button class="btn btn-primary" onclick="retakeExam()">Retake Exam ↻</button>
+        <br><br>
+        <a href="https://portal.speakghana.org" class="btn btn-outline">Back to Portal</a>
+    </div>
+
+</div>
+
+<div class="watermark">Speak Ghana Language School | Licensed Student - Do Not Share</div>
+
+<script>
+    var examSubmitted = false;
+    var TOTAL_QUESTIONS = 25;
+
+    function updateProgress() {
+        var answered = 0;
+        for (var i = 1; i <= TOTAL_QUESTIONS; i++) {
+            var radios = document.getElementsByName('q' + i);
+            for (var j = 0; j < radios.length; j++) {
+                if (radios[j].checked) { answered++; break; }
+            }
+        }
+        document.getElementById('progressFill').style.width = ((answered / TOTAL_QUESTIONS) * 100) + '%';
+    }
+
+    function attachRadioListeners() {
+        for (var i = 1; i <= TOTAL_QUESTIONS; i++) {
+            (function(qNum) {
+                var radios = document.getElementsByName('q' + qNum);
+                for (var j = 0; j < radios.length; j++) {
+                    radios[j].addEventListener('change', function() {
+                        updateProgress();
+                        if (examSubmitted) {
+                            var questionDiv = this.closest('.exam-question');
+                            questionDiv.classList.remove('correct', 'incorrect');
+                            var feedbackDiv = questionDiv.querySelector('.feedback');
+                            feedbackDiv.classList.remove('correct', 'incorrect');
+                            feedbackDiv.style.display = 'none';
+                        }
+                    });
+                }
+            })(i);
+        }
+    }
+
+    function submitExam() {
+        var score = 0;
+        for (var i = 1; i <= TOTAL_QUESTIONS; i++) {
+            var selected = null;
+            var radios = document.getElementsByName('q' + i);
+            var questionDiv = document.querySelector('.exam-question[data-question="' + i + '"]');
+            var correctAnswer = questionDiv.getAttribute('data-correct');
+            var feedbackDiv = questionDiv.querySelector('.feedback');
+
+            for (var j = 0; j < radios.length; j++) {
+                if (radios[j].checked) { selected = radios[j].value; break; }
+            }
+
+            if (selected === correctAnswer) {
+                score += 4;
+                questionDiv.classList.add('correct');
+                questionDiv.classList.remove('incorrect');
+                feedbackDiv.innerHTML = 'Correct! (+4 points)';
+                feedbackDiv.classList.add('correct');
+                feedbackDiv.classList.remove('incorrect');
+                feedbackDiv.style.display = 'block';
+            } else {
+                questionDiv.classList.add('incorrect');
+                questionDiv.classList.remove('correct');
+                var correctText = '';
+                var options = questionDiv.querySelectorAll('.exam-options label');
+                for (var k = 0; k < options.length; k++) {
+                    if (options[k].querySelector('input').value === correctAnswer) {
+                        correctText = options[k].innerText;
+                        break;
+                    }
+                }
+                feedbackDiv.innerHTML = 'Incorrect. Correct answer: ' + correctText + ' (+0 points)';
+                feedbackDiv.classList.add('incorrect');
+                feedbackDiv.classList.remove('correct');
+                feedbackDiv.style.display = 'block';
+            }
+        }
+
+        examSubmitted = true;
+        var passed = score >= 75;
+        var message = passed
+            ? 'Congratulations! You passed with ' + score + '/100. You are ready for Chapter 4!'
+            : 'You scored ' + score + '/100. You need ' + (75 - score) + ' more points to pass. Re-read the passage, listen again, and try once more!';
+
+        document.getElementById('scoreNumber').innerHTML = score + '/100';
+        document.getElementById('scoreMessage').innerHTML = message;
+        document.getElementById('scoreSection').classList.add('show');
+        document.getElementById('scoreSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function retakeExam() {
+        for (var i = 1; i <= TOTAL_QUESTIONS; i++) {
+            var radios = document.getElementsByName('q' + i);
+            for (var j = 0; j < radios.length; j++) { radios[j].checked = false; }
+            var questionDiv = document.querySelector('.exam-question[data-question="' + i + '"]');
+            questionDiv.classList.remove('correct', 'incorrect');
+            var feedbackDiv = questionDiv.querySelector('.feedback');
+            feedbackDiv.classList.remove('correct', 'incorrect');
+            feedbackDiv.style.display = 'none';
+        }
+        examSubmitted = false;
+        updateProgress();
+        document.getElementById('scoreSection').classList.remove('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    attachRadioListeners();
+    updateProgress();
+</script>
+</body>
+</html>
