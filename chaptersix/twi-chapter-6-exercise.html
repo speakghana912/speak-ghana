@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Speak Ghana • Chapter 6: Practice Exercises</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #0f2b2a, #1f7a6e); padding: 2rem 1.5rem; }
+        .container { max-width: 1100px; margin: 0 auto; background: white; border-radius: 40px; box-shadow: 0 25px 45px rgba(0,0,0,0.2); padding: 2rem; }
+        .chapter-header { border-bottom: 3px solid #2A9D8F; margin-bottom: 1.5rem; padding-bottom: 1rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+        h1 { font-size: 2rem; color: #2A9D8F; }
+        .chapter-badge { background: #E76F51; color: white; padding: 0.4rem 1rem; border-radius: 40px; font-size: 0.85rem; font-weight: 600; }
+        .sub { color: #4b6a5e; margin-top: 0.25rem; font-size: 1rem; }
+        .section-card { background: #FEF9F0; border-radius: 32px; padding: 1.6rem 2rem; margin-bottom: 2rem; border: 1px solid #f0e5d8; }
+        .section-card h2 { color: #2A9D8F; font-size: 1.3rem; margin-bottom: 1rem; border-left: 5px solid #E76F51; padding-left: 1rem; }
+        .section-card p, .section-card li { line-height: 1.6; color: #2d3e2a; }
+        .word-bank { background: #e3f2ed; border-radius: 16px; padding: 0.8rem 1.2rem; margin-bottom: 1rem; font-weight: 700; color: #1e3a38; text-align: center; font-size: 0.88rem; }
+        .fill-blank { background: white; padding: 0.8rem 1.2rem; border-radius: 16px; border: 1px dashed #2A9D8F; margin: 0.8rem 0; }
+        .fill-blank li, .fill-blank p { margin: 0.6rem 0; font-size: 0.92rem; }
+        .blank { display: inline-block; min-width: 110px; border-bottom: 2px solid #E76F51; margin: 0 4px; padding: 0 4px; color: #2A9D8F; font-weight: 600; }
+        .matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem; margin: 1rem 0; background: white; padding: 1rem; border-radius: 20px; }
+        .matching-item { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+        .matching-item .twi { font-weight: 700; color: #2A9D8F; }
+        .matching-item .eng { color: #6f7a6e; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 0.8rem 0; }
+        th { background: #2A9D8F; color: white; padding: 9px 12px; text-align: left; }
+        td { padding: 7px 12px; border-bottom: 1px solid #f0e5d8; color: #2d3e2a; }
+        tr:nth-child(even) td { background: #fdf8f0; }
+        .roleplay-box { background: #fff3e0; border-radius: 20px; padding: 1rem; margin: 0.8rem 0; font-size: 0.92rem; line-height: 2.1; }
+        .roleplay-box .speaker { font-weight: 700; color: #E76F51; }
+        .tip-box { background: #e8f4f1; border-radius: 20px; padding: 1rem; margin: 0.8rem 0; font-size: 0.88rem; }
+        .tip-box strong { color: #2A9D8F; }
+        textarea.write-area { width: 100%; min-height: 100px; border: 1px dashed #2A9D8F; border-radius: 16px; padding: 1rem; font-family: inherit; font-size: 0.95rem; margin: 0.8rem 0; resize: vertical; }
+        textarea.write-area:focus { outline: none; border-color: #E76F51; border-style: solid; }
+        .btn-answer { background: #2A9D8F20; border: 1px solid #2A9D8F; padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.75rem; cursor: pointer; color: #2A9D8F; font-weight: 600; }
+        .btn-answer:hover { background: #2A9D8F; color: white; }
+        .answer-box { display: none; background: #f0f7f4; padding: 0.8rem 1rem; border-radius: 16px; margin-top: 0.5rem; border-left: 4px solid #2A9D8F; line-height: 1.9; font-size: 0.88rem; }
+        .answer-box.show { display: block; }
+        .close-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.8rem; border-radius: 50px; font-size: 0.9rem; cursor: pointer; }
+        footer { text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e0d9ce; color: #8f9b8a; font-size: 0.75rem; }
+        @media (max-width: 700px) { .container { padding: 1rem; } .section-card { padding: 1rem; } .matching-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="chapter-header">
+        <div>
+            <h1>Chapter 6 Practice</h1>
+            <p class="sub">Getting Around Nkran — 10 Exercises</p>
+        </div>
+        <div class="chapter-badge">Kɔ so sua! 🚌</div>
+    </div>
+
+    <!-- EX 1 -->
+    <div class="section-card">
+        <h2>Exercise 1: Match the Place</h2>
+        <p>Match each place to its description.</p>
+        <div class="matching-grid">
+            <div class="matching-item"><span class="twi">1. Makola</span><span class="eng">A. Main university campus</span></div>
+            <div class="matching-item"><span class="twi">2. Circle</span><span class="eng">B. Accra's biggest market</span></div>
+            <div class="matching-item"><span class="twi">3. Osu</span><span class="eng">C. Major tro-tro hub</span></div>
+            <div class="matching-item"><span class="twi">4. Legon</span><span class="eng">D. Oxford Street, nightlife</span></div>
+            <div class="matching-item"><span class="twi">5. 37</span><span class="eng">E. Hospital</span></div>
+            <div class="matching-item"><span class="twi">6. Kotoka</span><span class="eng">F. International airport</span></div>
+            <div class="matching-item"><span class="twi">7. Labadi</span><span class="eng">G. Popular beach</span></div>
+            <div class="matching-item"><span class="twi">8. Tema Station</span><span class="eng">H. Buses to Eastern Region</span></div>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex1')">Show Answers</button>
+        <div id="ex1" class="answer-box">1-B &nbsp;|&nbsp; 2-C &nbsp;|&nbsp; 3-D &nbsp;|&nbsp; 4-A &nbsp;|&nbsp; 5-E &nbsp;|&nbsp; 6-F &nbsp;|&nbsp; 7-G &nbsp;|&nbsp; 8-H</div>
+    </div>
+
+    <!-- EX 2 -->
+    <div class="section-card">
+        <h2>Exercise 2: Direction Words</h2>
+        <p>Write the Twi word for each direction.</p>
+        <div class="fill-blank">
+            <ol>
+                <li>right → <span class="blank">&nbsp;</span></li>
+                <li>left → <span class="blank">&nbsp;</span></li>
+                <li>straight ahead → <span class="blank">&nbsp;</span></li>
+                <li>behind → <span class="blank">&nbsp;</span></li>
+                <li>in front of → <span class="blank">&nbsp;</span></li>
+                <li>near → <span class="blank">&nbsp;</span></li>
+                <li>far → <span class="blank">&nbsp;</span></li>
+                <li>inside → <span class="blank">&nbsp;</span></li>
+                <li>between → <span class="blank">&nbsp;</span></li>
+                <li>beside / near → <span class="blank">&nbsp;</span></li>
+            </ol>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex2')">Show Answers</button>
+        <div id="ex2" class="answer-box">
+            1. nifa &nbsp;|&nbsp; 2. benkum &nbsp;|&nbsp; 3. anim so &nbsp;|&nbsp; 4. akyi no &nbsp;|&nbsp; 5. animfie &nbsp;|&nbsp;
+            6. ɛbɛn &nbsp;|&nbsp; 7. akyirikyiri &nbsp;|&nbsp; 8. mu &nbsp;|&nbsp; 9. ntam &nbsp;|&nbsp; 10. ho
+        </div>
+    </div>
+
+    <!-- EX 3 -->
+    <div class="section-card">
+        <h2>Exercise 3: Complete the Sentences</h2>
+        <div class="word-bank">Ɛhe na &nbsp;•&nbsp; anim so &nbsp;•&nbsp; nifa &nbsp;•&nbsp; akyirikyiri &nbsp;•&nbsp; ba ha &nbsp;•&nbsp; wɔ he &nbsp;•&nbsp; ɛbɛn &nbsp;•&nbsp; benkum</div>
+        <div class="fill-blank">
+            <ol>
+                <li>Mepa wo kyɛw, <span class="blank">&nbsp;</span> Circle wɔ? (Where is Circle?)</li>
+                <li>Kɔ <span class="blank">&nbsp;</span>. (Go straight.)</li>
+                <li>Fa <span class="blank">&nbsp;</span> wɔ traffic light no. (Turn right at the traffic light.)</li>
+                <li>Tro-tro a ɛkɔ Osu <span class="blank">&nbsp;</span>? (Where is the Osu tro-tro?)</li>
+                <li>Ɛwɔ <span class="blank">&nbsp;</span>? (Is it far?)</li>
+                <li>Daabi, <span class="blank">&nbsp;</span> ha. (No, it's near here.)</li>
+                <li>Me <span class="blank">&nbsp;</span>! (I'm getting off here!)</li>
+                <li>Kɔ <span class="blank">&nbsp;</span> wɔ asɔre no. (Turn left at the church.)</li>
+            </ol>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex3')">Show Answers</button>
+        <div id="ex3" class="answer-box">
+            1. Ɛhe na &nbsp;|&nbsp; 2. anim so &nbsp;|&nbsp; 3. nifa &nbsp;|&nbsp; 4. wɔ he &nbsp;|&nbsp;
+            5. akyirikyiri &nbsp;|&nbsp; 6. ɛbɛn &nbsp;|&nbsp; 7. ba ha &nbsp;|&nbsp; 8. benkum
+        </div>
+    </div>
+
+    <!-- EX 4 -->
+    <div class="section-card">
+        <h2>Exercise 4: Conjugate the Verb</h2>
+        <p>Fill in the full conjugation table for all four movement verbs.</p>
+        <table>
+            <tr><th>Pronoun</th><th>kɔ (go)</th><th>ba (come)</th><th>du (arrive)</th><th>sian (get off)</th></tr>
+            <tr><td>me</td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td></tr>
+            <tr><td>wo</td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td></tr>
+            <tr><td>ɔ</td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td></tr>
+            <tr><td>yɛn</td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td></tr>
+            <tr><td>mo</td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td></tr>
+            <tr><td>wɔn</td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td><td><span class="blank">&nbsp;</span></td></tr>
+        </table>
+        <button class="btn-answer" onclick="toggleAnswer('ex4')">Show Answers</button>
+        <div id="ex4" class="answer-box">
+            me: mekɔ / meba / medu / mesian &nbsp;|&nbsp; wo: wokɔ / woba / wodu / wosian &nbsp;|&nbsp;
+            ɔ: ɔkɔ / ɔba / ɔdu / ɔsian &nbsp;|&nbsp; yɛn: yɛkɔ / yɛba / yɛdu / yɛsian &nbsp;|&nbsp;
+            mo: mokɔ / moba / modu / mosian &nbsp;|&nbsp; wɔn: wɔnkɔ / wɔnba / wɔndu / wɔnsian
+        </div>
+    </div>
+
+    <!-- EX 5 -->
+    <div class="section-card">
+        <h2>Exercise 5: Make It Negative</h2>
+        <p>Add the n- prefix to make each sentence negative.</p>
+        <div class="fill-blank">
+            <ol>
+                <li>Mekɔ Osu. → <span class="blank">&nbsp;</span></li>
+                <li>Woba nnɛ. → <span class="blank">&nbsp;</span></li>
+                <li>Ɔdu Circle. → <span class="blank">&nbsp;</span></li>
+                <li>Yɛsian ha. → <span class="blank">&nbsp;</span></li>
+                <li>Menim kwan no. → <span class="blank">&nbsp;</span></li>
+            </ol>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex5')">Show Answers</button>
+        <div id="ex5" class="answer-box">
+            1. Menkɔ Osu. &nbsp;|&nbsp; 2. Wonba nnɛ. &nbsp;|&nbsp; 3. Ɔndu Circle. &nbsp;|&nbsp; 4. Yɛnsian ha. &nbsp;|&nbsp; 5. Menim kwan no.
+        </div>
+    </div>
+
+    <!-- EX 6 -->
+    <div class="section-card">
+        <h2>Exercise 6: Translate to Twi</h2>
+        <div class="fill-blank">
+            <ol>
+                <li>Where is the tro-tro to Circle? → <span class="blank">&nbsp;</span></li>
+                <li>I want to go to Osu. → <span class="blank">&nbsp;</span></li>
+                <li>How much is it to Lapaz? → <span class="blank">&nbsp;</span></li>
+                <li>Turn left at the market. → <span class="blank">&nbsp;</span></li>
+                <li>It is not far — it is near here. → <span class="blank">&nbsp;</span></li>
+                <li>I am getting off here. → <span class="blank">&nbsp;</span></li>
+                <li>Please say it again slowly. → <span class="blank">&nbsp;</span></li>
+                <li>I am lost. → <span class="blank">&nbsp;</span></li>
+                <li>Show me the way. → <span class="blank">&nbsp;</span></li>
+                <li>Walk well! → <span class="blank">&nbsp;</span></li>
+            </ol>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex6')">Show Answers</button>
+        <div id="ex6" class="answer-box">
+            1. Tro-tro a ɛkɔ Circle wɔ he? &nbsp;|&nbsp; 2. Mekɔ Osu. / Mepɛ kɔ Osu. &nbsp;|&nbsp;
+            3. Ɛyɛ sɛn kɔ Lapaz? &nbsp;|&nbsp; 4. Kɔ benkum wɔ gua no. &nbsp;|&nbsp;
+            5. Ɛnyɛ akyirikyiri — ɛbɛn ha. &nbsp;|&nbsp; 6. Me ba ha. / Mesian ha. &nbsp;|&nbsp;
+            7. Ka no bio nkakrankakra. / Kasa bɔkɔɔ. &nbsp;|&nbsp; 8. Me ayera kwan. &nbsp;|&nbsp;
+            9. Kyerɛ me kwan. &nbsp;|&nbsp; 10. Nante yie!
+        </div>
+    </div>
+
+    <!-- EX 7 -->
+    <div class="section-card">
+        <h2>Exercise 7: Prepositions of Place</h2>
+        <p>Fill in the correct Twi preposition phrase.</p>
+        <div class="word-bank">wɔ ... mu &nbsp;•&nbsp; wɔ ... akyi &nbsp;•&nbsp; wɔ ... anim &nbsp;•&nbsp; wɔ ... nifa so &nbsp;•&nbsp; wɔ ... ntam &nbsp;•&nbsp; wɔ ... ho</div>
+        <div class="fill-blank">
+            <ol>
+                <li>It's inside the tro-tro. → Ɛwɔ tro-tro no <span class="blank">&nbsp;</span>.</li>
+                <li>It's behind the school. → Ɛwɔ sukuu no <span class="blank">&nbsp;</span>.</li>
+                <li>Stand in front of the house. → Gyina fie no <span class="blank">&nbsp;</span>.</li>
+                <li>It's to the right of the bank. → Ɛwɔ sikakorabea no <span class="blank">&nbsp;</span>.</li>
+                <li>It's between the church and the market. → Ɛwɔ asɔre ne gua <span class="blank">&nbsp;</span>.</li>
+                <li>Sit beside me. → Tena me <span class="blank">&nbsp;</span>.</li>
+            </ol>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex7')">Show Answers</button>
+        <div id="ex7" class="answer-box">
+            1. mu &nbsp;|&nbsp; 2. akyi &nbsp;|&nbsp; 3. anim &nbsp;|&nbsp; 4. nifa so &nbsp;|&nbsp; 5. ntam &nbsp;|&nbsp; 6. ho
+        </div>
+    </div>
+
+    <!-- EX 8 -->
+    <div class="section-card">
+        <h2>Exercise 8: Adjectives After Nouns</h2>
+        <p>Reorder these into correct Twi word order (adjective AFTER noun) and translate.</p>
+        <div class="fill-blank">
+            <ol>
+                <li>kɛse ɔkwan → <span class="blank">&nbsp;</span> (a big road)</li>
+                <li>ketewa gua → <span class="blank">&nbsp;</span> (a small market)</li>
+                <li>tenten dan → <span class="blank">&nbsp;</span> (a tall building)</li>
+                <li>foforo ɔkwan → <span class="blank">&nbsp;</span> (a new road)</li>
+                <li>kɔntɔnkyee ɔkwan → <span class="blank">&nbsp;</span> (a winding road)</li>
+            </ol>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex8')">Show Answers</button>
+        <div id="ex8" class="answer-box">
+            1. ɔkwan kɛse &nbsp;|&nbsp; 2. gua ketewa &nbsp;|&nbsp; 3. dan tenten &nbsp;|&nbsp; 4. ɔkwan foforo &nbsp;|&nbsp; 5. ɔkwan kɔntɔnkyee
+        </div>
+    </div>
+
+    <!-- EX 9 -->
+    <div class="section-card">
+        <h2>Exercise 9: What Would You Say?</h2>
+        <p>What would you say in each situation?</p>
+        <div class="fill-blank">
+            <ol>
+                <li>A tro-tro mate asks: "Wokɔ he?" → <span class="blank">&nbsp;</span></li>
+                <li>You want to get off the tro-tro. → <span class="blank">&nbsp;</span></li>
+                <li>Someone gives directions but speaks too fast. → <span class="blank">&nbsp;</span></li>
+                <li>A taxi driver says "Ɛyɛ cedi aduonum." You think it's too much. → <span class="blank">&nbsp;</span></li>
+                <li>Someone helps you find your way. → <span class="blank">&nbsp;</span></li>
+                <li>You are completely lost. → <span class="blank">&nbsp;</span></li>
+                <li>You want to know if a place is far. → <span class="blank">&nbsp;</span></li>
+            </ol>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex9')">Show Answers</button>
+        <div id="ex9" class="answer-box">
+            1. Mekɔ [place]. &nbsp;|&nbsp; 2. Me ba ha! / Gyina ha! &nbsp;|&nbsp;
+            3. Ka no bio nkakrankakra. / Kasa bɔkɔɔ. &nbsp;|&nbsp;
+            4. Ɛyɛ dɔɔ so! Yɛ no... / Boɔ no wɔ soro! &nbsp;|&nbsp;
+            5. Medaase paa! Woadi me ɔkye. &nbsp;|&nbsp;
+            6. Me ayera kwan. Mepa wo kyɛw, kyerɛ me kwan kɔ [place]. &nbsp;|&nbsp;
+            7. Ɛwɔ akyirikyiri?
+        </div>
+    </div>
+
+    <!-- EX 10 -->
+    <div class="section-card">
+        <h2>Exercise 10: Fare Negotiation Dialogue</h2>
+        <p>You are at Osu and need a taxi to Lapaz. Write the full dialogue. Driver's first price: 50 cedis. Your counter-offer: 30 cedis. Final agreed price: 35 cedis.</p>
+        <div class="roleplay-box">
+            <p><span class="speaker">You:</span> ___________________________</p>
+            <p><span class="speaker">Driver:</span> ___________________________</p>
+            <p><span class="speaker">You:</span> ___________________________</p>
+            <p><span class="speaker">Driver:</span> ___________________________</p>
+            <p><span class="speaker">You:</span> ___________________________</p>
+            <p><span class="speaker">Driver:</span> ___________________________</p>
+        </div>
+        <textarea class="write-area" placeholder="Write your Twi dialogue here..."></textarea>
+        <div class="tip-box"><strong>Tip:</strong> Start with a greeting. Use Ɛyɛ dɔɔ so! and Yɛ no... End with Yoo, mekɔ. / Medaase!</div>
+        <button class="btn-answer" onclick="toggleAnswer('ex10')">Show model answer</button>
+        <div id="ex10" class="answer-box">
+            You: Maaha! Dropping kɔ Lapaz?<br>
+            Driver: Yiw! Ɛyɛ cedi aduonum.<br>
+            You: Aaa, ɛyɛ dɔɔ so! Yɛ no aduasa?<br>
+            Driver: Mepa wo kyɛw, aduasa nnum.<br>
+            You: Yoo, aduasa nnum. Mekɔ.<br>
+            Driver: Foro mu. Medaase!
+        </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1rem;">
+        <button class="close-btn" onclick="window.close()">Close</button>
+    </div>
+    <footer>Speak Ghana — Chapter 6: Getting Around Nkran | Practice Exercises</footer>
+</div>
+<script>
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show');
+    }
+</script>
+</body>
+</html>

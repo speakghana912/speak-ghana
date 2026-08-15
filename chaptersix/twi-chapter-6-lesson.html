@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Speak Ghana • Chapter 6: Getting Around Accra</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #0f2b2a, #1f7a6e); padding: 2rem 1.5rem; }
+        .container { max-width: 1300px; margin: 0 auto; background: white; border-radius: 40px; box-shadow: 0 25px 45px rgba(0,0,0,0.2); overflow: hidden; padding: 2rem; }
+        .chapter-header { border-bottom: 3px solid #2A9D8F; margin-bottom: 2rem; padding-bottom: 1rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+        h1 { font-size: 1.9rem; color: #2A9D8F; }
+        .chapter-badge { background: #E76F51; color: white; padding: 0.4rem 1rem; border-radius: 40px; font-size: 0.85rem; font-weight: 600; }
+        .sub { color: #4b6a5e; margin-top: 0.25rem; font-size: 1rem; }
+        .section-card { background: #FEF9F0; border-radius: 32px; padding: 1.6rem 2rem; margin-bottom: 2.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid #f0e5d8; }
+        .section-title { display: flex; align-items: center; gap: 12px; margin-bottom: 1.4rem; border-left: 6px solid #2A9D8F; padding-left: 1.2rem; }
+        .section-letter { background: #2A9D8F; color: white; width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center; border-radius: 30px; font-weight: 800; font-size: 1.4rem; flex-shrink: 0; }
+        .section-title h2 { font-size: 1.5rem; color: #1e3a38; }
+        .subtitle { font-size: 0.85rem; color: #888; display: block; margin-top: 0.2rem; }
+        .lesson-image { width: 100%; max-height: 340px; object-fit: cover; border-radius: 24px; margin-bottom: 1.2rem; box-shadow: 0 8px 20px rgba(0,0,0,0.12); display: block; }
+        .lesson-image-caption { text-align: center; font-size: 0.8rem; color: #888; margin-bottom: 1.2rem; font-style: italic; }
+        .passage-box { background: #f0f7f4; border-radius: 24px; padding: 1.4rem 1.8rem; border-left: 6px solid #2A9D8F; margin-bottom: 1.2rem; }
+        .passage-box p { margin-bottom: 0.7rem; line-height: 1.8; font-size: 0.97rem; color: #1e3a38; }
+        .passage-box p:last-child { margin-bottom: 0; }
+        .translation { display: block; font-size: 0.82rem; color: #777; font-style: italic; margin-top: 0.15rem; }
+        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.6rem; margin: 1rem 0; }
+        .vocab-item { background: white; border-radius: 16px; padding: 0.7rem 1rem; border: 1px solid #e2d9ce; display: flex; flex-direction: column; }
+        .twi-word { font-weight: 800; color: #2A9D8F; font-size: 1rem; }
+        .eng-def { font-size: 0.82rem; color: #4b6a5e; margin-top: 0.15rem; }
+        .note-def { font-size: 0.72rem; color: #aaa; margin-top: 0.1rem; font-style: italic; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem; }
+        th { background: #2A9D8F; color: white; padding: 10px 12px; text-align: left; }
+        td { padding: 8px 12px; border-bottom: 1px solid #f0e5d8; color: #2d3e2a; vertical-align: top; }
+        tr:nth-child(even) td { background: #fdf8f0; }
+        .phrase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.7rem; margin: 1rem 0; }
+        .phrase-card { background: white; border-radius: 20px; padding: 0.9rem 1.1rem; border: 1px solid #e2d9ce; }
+        .phrase-card .twi { font-weight: 700; color: #1e3a38; font-size: 0.95rem; }
+        .phrase-card .eng { font-size: 0.82rem; color: #888; margin-top: 0.2rem; }
+        .conj-table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.88rem; }
+        .conj-table th { background: #1e3a38; color: white; padding: 8px 12px; text-align: left; }
+        .conj-table td { padding: 7px 12px; border-bottom: 1px solid #eee; }
+        .conj-table tr:nth-child(even) td { background: #f9f3e8; }
+        .grammar-rule { background: white; border-radius: 20px; padding: 1rem 1.2rem; margin-bottom: 0.8rem; border-left: 5px solid #D4A373; }
+        .grammar-rule h4 { color: #D4A373; font-size: 0.9rem; margin-bottom: 0.4rem; text-transform: uppercase; font-size: 0.75rem; }
+        .grammar-rule p, .grammar-rule li { font-size: 0.9rem; color: #2d3e2a; line-height: 1.6; }
+        .grammar-rule ul { margin-left: 1.2rem; }
+        .transport-card { background: white; border-radius: 20px; padding: 1rem 1.2rem; border: 1px solid #e2d9ce; display: flex; gap: 0.8rem; align-items: flex-start; }
+        .transport-icon { font-size: 1.8rem; flex-shrink: 0; }
+        .transport-card h4 { color: #2A9D8F; font-size: 0.95rem; font-weight: 700; }
+        .transport-card p { font-size: 0.85rem; color: #4b6a5e; margin-top: 0.2rem; line-height: 1.5; }
+        .transport-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.7rem; margin: 1rem 0; }
+        .direction-card { background: white; border-radius: 16px; padding: 0.8rem 1rem; border: 2px solid #2A9D8F20; text-align: center; }
+        .direction-card .twi { font-size: 1.2rem; font-weight: 800; color: #2A9D8F; }
+        .direction-card .eng { font-size: 0.8rem; color: #666; margin-top: 0.2rem; }
+        .direction-card .pron { font-size: 0.72rem; color: #D4A373; margin-top: 0.1rem; font-style: italic; }
+        .direction-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.6rem; margin: 1rem 0; }
+        .can-do { background: #e3f2ed; border-radius: 20px; padding: 1rem 1.4rem; }
+        .can-do li { margin: 0.4rem 0; font-size: 0.9rem; color: #1e3a38; line-height: 1.5; }
+        .can-do li::before { content: "✅ "; }
+        .question-box { background: #f9f3e8; border-radius: 24px; padding: 1.2rem 1.5rem; margin-top: 1.2rem; }
+        .q-card { background: white; border-radius: 20px; padding: 1rem 1.2rem; margin-bottom: 0.9rem; }
+        .q-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.4rem; display: block; }
+        .blank { display: inline-block; min-width: 90px; border-bottom: 2px solid #E76F51; margin: 0 3px; padding: 0 3px; }
+        .badge-transport { display: inline-block; background: #2A9D8F15; color: #2A9D8F; border: 1px solid #2A9D8F40; padding: 0.2rem 0.7rem; border-radius: 30px; font-size: 0.75rem; font-weight: 700; margin: 0.2rem; }
+        footer { text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e0d9ce; color: #8f9b8a; font-size: 0.75rem; }
+        button.close-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.8rem; border-radius: 50px; font-size: 0.9rem; cursor: pointer; margin-top: 0.5rem; }
+        @media (max-width: 700px) { .container { padding: 1.2rem; } .section-card { padding: 1.2rem; } .vocab-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="chapter-header">
+        <div>
+            <h1>Kɔ Nkran Mu — Getting Around Accra (Nkran)</h1>
+            <p class="sub">Chapter 6 · Directions, Transport, Places and Getting Around</p>
+        </div>
+        <div class="chapter-badge">Let's hit the road! 🚌</div>
+    </div>
+
+    <!-- INTRO -->
+    <div style="background:#e3f2ed; border-radius:28px; padding:1.2rem 1.6rem; margin-bottom:2rem; border-left:8px solid #2A9D8F;">
+        <p style="color:#1e3a38; line-height:1.8; font-size:0.95rem;">In Chapter 5 you mastered shopping and bargaining at Ghanaian markets. Now it's time to navigate the bustling streets of Accra! Getting around Accra is an adventure — whether you're jumping on a tro-tro, haggling with a taxi driver, or asking a stranger for directions. This chapter gives you the language to do it all.</p>
+        <div style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:0.4rem;">
+            <span class="badge-transport">🚌 Tro-tro</span>
+            <span class="badge-transport">🚕 Taxi / Dropping</span>
+            <span class="badge-transport">🏍️ Okada</span>
+            <span class="badge-transport">📱 Uber / Bolt</span>
+            <span class="badge-transport">🚶 Walking</span>
+            <span class="badge-transport">🚌 STC / VIP Bus</span>
+        </div>
+    </div>
+
+    <!-- SECTION A: READING PASSAGE -->
+    <div class="section-card" id="sectionA">
+        <div class="section-title">
+            <span class="section-letter">A</span>
+            <div>
+                <h2>Akenkan — Reading Passage</h2>
+                <span class="subtitle">Kofi Yera Kwan Wɔ Accra — Kofi Gets Lost in Accra</span>
+            </div>
+        </div>
+
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chaptersix/chapter6-accra.jpg" alt="Busy street scene in Accra" class="lesson-image">
+        <p class="lesson-image-caption">The streets of Accra — tro-tros, taxis, and people everywhere</p>
+
+        <div class="passage-box">
+            <p>Kofi yɛ ɔbarima foforo wɔ Nkran. Ɔfiri Kumasi, nanso nnɛ na ɔkɔ Nkran mmere a ɛdi kan. Ɔpɛ sɛ ɔkɔ Makola edwam, nanso ɔnnim kwan no pa ara.
+            <span class="translation">Kofi is a young man new to Accra. He is from Kumasi, but today he is going to Accra (Nkran) for the first time. He wants to go to Makola market, but he does not know the way at all.</span></p>
+
+            <p>Ɔsii wɔ Circle, ɔhwɛɛ nipa pii wɔ edwam no mu. Tro-tro pii rekɔ baabi; mate pii refrɛ: "Osu! Osu!" "Kaneshie! Kaneshie!" "Lapaz! Lapaz!" Kofi kaa sɛ: "Makola? Makola wɔ he?"
+            <span class="translation">He got off at Circle and looked at many people in the station. Many tro-tros were going everywhere; many mates were calling: "Osu! Osu!" "Kaneshie! Kaneshie!" "Lapaz! Lapaz!" Kofi said: "Makola? Where is Makola?"</span></p>
+
+            <p>Ɔbaa baako huu no na ɔpenee no: "Maakye! Wokɔ Makola?" Kofi tiemm sɛ: "Yiw, mepɛ Makola, nanso me ayera kwan!" Ɔbaa no sereeɛ no na ɔkaa sɛ: "Makola bɛn ha. Kɔ anim kakra kɔsi sɛ wobɛhunu traffic light kɛse no. Fa nifa. Wobɛhunu Makola wɔ wo nifa so."
+            <span class="translation">A woman saw him and greeted him: "Good morning! Do you want Makola?" Kofi exclaimed: "Yes, I want Makola, but I am lost!" The woman smiled and said: "Makola is near here. Go straight until you see the big traffic light. Turn right. You will see Makola on your right side."</span></p>
+
+            <p>Kofi dwenee kakra na ɔkaa sɛ: "Mepa wo kyɛw, ka no bio nkakrankakra. Mente ase pa ara." Ɔbaa no seree na ɔkaa sɛ: "Kɔ wo anim. Wobɛhunu traffic light no, fa nifa. Makola wɔ hɔ." Kofi ani gyeɛ na ɔka sɛ: "Ɛyɛ, mate aseɛ. Medaase paa!"
+            <span class="translation">Kofi thought for a moment and said: "Please, say it again slowly (nkakrankakra). I don't understand very well." The woman smiled and said: "Go straight (Kɔ wo anim). When you see the traffic light, turn right. Makola is there." Kofi understood and said: "OK, I understand. Thank you very much!"</span></p>
+
+            <p>Ɔbaa no kaa sɛ: "Yɛnda aseɛ. Nante yie! Na sɛ woyera kwan bio a, bisa obi!" Kofi sereeɛ na ɔkɔɔ anim. Ɔduu Makola sima sɛn? Sima nnum pɛ! Ɔkaa sɛ: "Accra yɛ kɛse, nanso nipa no yɛ pa!"
+            <span class="translation">The woman said: "It is my pleasure. Walk well! And if you get lost again, ask someone!" Kofi smiled and went forward. How long did it take him to reach Makola? Just five minutes (sima nnum pɛ)! He said: "Accra is big, but the people are good!"</span></p>
+        </div>
+
+        <div class="question-box">
+            <h4 style="color:#2A9D8F; margin-bottom:1rem;">Nsɛmbisa — Comprehension Questions</h4>
+
+            <!-- Q1 Fill in -->
+            <div class="q-card" style="border-left:5px solid #D4A373;">
+                <span class="q-label" style="color:#D4A373;">✏️ Fill in the blank</span>
+                <p style="font-size:0.95rem; color:#1e3a38; line-height:1.8;">
+                    Kofi firi <span class="blank">&nbsp;</span>, nanso ɔkɔɔ <span class="blank">&nbsp;</span> kan. Ɔpɛɛ sɛ ɔkɔ <span class="blank">&nbsp;</span> edwam.
+                </p>
+                <details style="margin-top:0.6rem; cursor:pointer;"><summary style="color:#2A9D8F; font-size:0.8rem; font-weight:600;">Answer</summary>
+                <div style="margin-top:0.5rem; font-size:0.88rem; color:#1e3a38; line-height:1.7;">Kofi firi <strong>Kumasi</strong>, nanso ɔkɔɔ <strong>Accra</strong> kan. Ɔpɛɛ sɛ ɔkɔ <strong>Makola</strong> edwam.</div>
+                </details>
+            </div>
+
+            <!-- Q2 Short answer -->
+            <div class="q-card" style="border-left:5px solid #2A9D8F;">
+                <span class="q-label" style="color:#2A9D8F;">💬 Short Answer</span>
+                <p style="font-size:0.95rem; color:#1e3a38;"><strong>Twi:</strong> Mate no refrɛ baabi bɛn wɔ Circle? Kyerɛ mmiɛnsa.</p>
+                <p style="font-size:0.85rem; color:#666; margin-top:0.2rem;"><em>English: What destinations were the mates calling at Circle? Name three.</em></p>
+                <details style="margin-top:0.6rem; cursor:pointer;"><summary style="color:#2A9D8F; font-size:0.8rem; font-weight:600;">Answer</summary>
+                <div style="margin-top:0.5rem; font-size:0.88rem; color:#1e3a38; line-height:1.7;"><strong>Osu, Kaneshie, Lapaz</strong> (any three from the passage are correct).</div>
+                </details>
+            </div>
+
+            <!-- Q3 Sequence -->
+            <div class="q-card" style="border-left:5px solid #E76F51;">
+                <span class="q-label" style="color:#E76F51;">🔄 Put in Order</span>
+                <p style="font-size:0.95rem; color:#1e3a38; margin-bottom:0.5rem;">The woman gave Kofi 3 direction steps. Put them in the correct order:</p>
+                <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin:0.5rem 0;">
+                    <span style="background:#fde8dc; border-radius:30px; padding:0.3rem 0.9rem; font-weight:700; font-size:0.85rem;">Fa nifa.</span>
+                    <span style="background:#e3f2ed; border-radius:30px; padding:0.3rem 0.9rem; font-weight:700; font-size:0.85rem;">Kɔ anim so.</span>
+                    <span style="background:#fff3cd; border-radius:30px; padding:0.3rem 0.9rem; font-weight:700; font-size:0.85rem;">Wobɛhunu Makola wɔ wo nifa so.</span>
+                </div>
+                <details style="margin-top:0.6rem; cursor:pointer;"><summary style="color:#2A9D8F; font-size:0.8rem; font-weight:600;">Answer</summary>
+                <div style="margin-top:0.5rem; font-size:0.88rem; color:#1e3a38; line-height:1.8;">
+                    1️⃣ <strong>Kɔ anim so.</strong> — Go straight.<br>
+                    2️⃣ <strong>Fa nifa.</strong> — Turn right (at the traffic light).<br>
+                    3️⃣ <strong>Wobɛhunu Makola wɔ wo nifa so.</strong> — You will see Makola on your right.
+                </div>
+                </details>
+            </div>
+
+            <!-- Q4 True/False -->
+            <div class="q-card" style="border-left:5px solid #2A9D8F;">
+                <span class="q-label" style="color:#2A9D8F;">✅ True or False?</span>
+                <ol style="margin-left:1.3rem; font-size:0.92rem; line-height:2.1;">
+                    <li>Kofi nim Accra yie. ___</li>
+                    <li>Ɔbaa no huu Kofi na ɔpenee no. ___</li>
+                    <li>Kofi te aseɛ kan. ___</li>
+                    <li>Kofi duu Makola wɔ nantew nnum. ___</li>
+                    <li>Kofi kaa sɛ Accra nipa no yɛ bɔne. ___</li>
+                </ol>
+                <details style="margin-top:0.6rem; cursor:pointer;"><summary style="color:#2A9D8F; font-size:0.8rem; font-weight:600;">Answers</summary>
+                <div style="margin-top:0.5rem; font-size:0.88rem; color:#1e3a38; line-height:1.8;">
+                    1. <strong>F</strong> — ɔnnim kwan pa ara. &nbsp;|&nbsp; 2. <strong>T</strong>. &nbsp;|&nbsp; 3. <strong>F</strong> — ɔkaa sɛ ka no bio nwaanwaa. &nbsp;|&nbsp; 4. <strong>T</strong> — nantew nnum pɛ. &nbsp;|&nbsp; 5. <strong>F</strong> — ɔkaa sɛ nipa no yɛ <em>pa</em>.
+                </div>
+                </details>
+            </div>
+
+            <!-- Q5 Calculate/Think -->
+            <div class="q-card" style="border-left:5px solid #6c757d;">
+                <span class="q-label" style="color:#6c757d;">🧮 Work It Out</span>
+                <p style="font-size:0.95rem; color:#1e3a38; line-height:1.6;">Kofi asked the woman to repeat the directions. What two Twi phrases did he use — one to say he doesn't understand, one to ask her to speak slowly?</p>
+                <details style="margin-top:0.6rem; cursor:pointer;"><summary style="color:#2A9D8F; font-size:0.8rem; font-weight:600;">Answer</summary>
+                <div style="margin-top:0.5rem; font-size:0.88rem; color:#1e3a38; line-height:1.8;">
+                    <strong>Mente ase pa ara.</strong> — I don't understand very well.<br>
+                    <strong>Ka no bio nwaanwaa.</strong> — Say it again slowly.
+                </div>
+                </details>
+            </div>
+
+            <!-- Q6 Think beyond -->
+            <div class="q-card" style="border-left:5px solid #E76F51; margin-bottom:0;">
+                <span class="q-label" style="color:#E76F51;">🧠 Think Beyond</span>
+                <p style="font-size:0.95rem; color:#1e3a38; line-height:1.6;">The woman ended by saying "Sɛ woyera kwan bio a, bisa obi!" Why is this good advice for anyone new to Accra? What does it tell you about Ghanaian culture?</p>
+                <details style="margin-top:0.6rem; cursor:pointer;"><summary style="color:#2A9D8F; font-size:0.8rem; font-weight:600;">Discussion points</summary>
+                <div style="margin-top:0.5rem; font-size:0.88rem; color:#1e3a38; line-height:1.8;">
+                    • In Ghana, asking strangers for help is completely normal and expected — people are generally willing to help.<br>
+                    • Street addresses barely exist in Accra — directions always involve asking people and using landmarks.<br>
+                    • The phrase reflects the communal culture of Ghana: you are never truly alone on the road.
+                </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION B: PLACES IN ACCRA -->
+    <div class="section-card" id="sectionB">
+        <div class="section-title">
+            <span class="section-letter">B</span>
+            <div>
+                <h2>Accra Mu Mmpaeɛ — Important Places in Accra</h2>
+                <span class="subtitle">Neighbourhoods, landmarks, and essential facilities</span>
+            </div>
+        </div>
+
+        <h3 style="color:#E76F51; margin-bottom:0.8rem; font-size:1rem;">Major Neighbourhoods and Districts</h3>
+        <table>
+            <tr><th>Place</th><th>Common Name</th><th>What's There</th></tr>
+            <tr><td><strong>Accra Central</strong></td><td>Accra / Makola</td><td>Main market, government buildings</td></tr>
+            <tr><td><strong>Osu</strong></td><td>Osu</td><td>Oxford Street, nightlife, restaurants, embassies</td></tr>
+            <tr><td><strong>Circle</strong></td><td>Circle</td><td>Kwame Nkrumah Circle — major tro-tro hub</td></tr>
+            <tr><td><strong>Kaneshie</strong></td><td>Kaneshie</td><td>Market, tro-tro station, residential</td></tr>
+            <tr><td><strong>Lapaz</strong></td><td>Lapaz</td><td>Market, residential, transport hub</td></tr>
+            <tr><td><strong>Madina</strong></td><td>Madina</td><td>Market, near University of Ghana</td></tr>
+            <tr><td><strong>Tema Station</strong></td><td>Tema Station</td><td>Buses to Tema and Eastern Region</td></tr>
+            <tr><td><strong>Airport Residential</strong></td><td>Airport</td><td>Upscale area, embassies, hotels</td></tr>
+            <tr><td><strong>Spintex</strong></td><td>Spintex</td><td>Industrial area, shopping, residential</td></tr>
+            <tr><td><strong>Achimota</strong></td><td>Achimota</td><td>School, forest, transport hub</td></tr>
+            <tr><td><strong>Nima</strong></td><td>Nima</td><td>Vibrant market community</td></tr>
+            <tr><td><strong>Labone</strong></td><td>Labone</td><td>Upscale residential, restaurants</td></tr>
+        </table>
+
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">Key Landmarks — Nkɔde Mmpaeɛ</h3>
+        <table>
+            <tr><th>Place</th><th>Notes</th></tr>
+            <tr><td><strong>Kwame Nkrumah Circle</strong></td><td>The biggest tro-tro hub in Accra — everyone passes through here</td></tr>
+            <tr><td><strong>Makola Market</strong></td><td>Accra's largest market — cloth, food, household items</td></tr>
+            <tr><td><strong>37 Military Hospital</strong></td><td>Major hospital, useful directional landmark</td></tr>
+            <tr><td><strong>University of Ghana, Legon</strong></td><td>Main university campus — common destination</td></tr>
+            <tr><td><strong>Accra Mall</strong></td><td>Major shopping centre near Airport area</td></tr>
+            <tr><td><strong>Kotoka International Airport</strong></td><td>International airport — Accra's gateway</td></tr>
+            <tr><td><strong>Independence Square</strong></td><td>National monument, Black Star Square</td></tr>
+            <tr><td><strong>Labadi Beach</strong></td><td>Popular beach — weekend destination</td></tr>
+            <tr><td><strong>Oxford Street, Osu</strong></td><td>Nightlife, restaurants, shopping strip</td></tr>
+        </table>
+
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">Essential Facilities — Nneɛma a Ɛho Hia</h3>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">ayaresabea</span><span class="eng-def">hospital</span></div>
+            <div class="vocab-item"><span class="twi-word">sukuu</span><span class="eng-def">school</span></div>
+            <div class="vocab-item"><span class="twi-word">asɔre</span><span class="eng-def">church</span></div>
+            <div class="vocab-item"><span class="twi-word">mpepefoɔ asɔre dan</span><span class="eng-def">mosque</span></div>
+            <div class="vocab-item"><span class="twi-word">polise</span><span class="eng-def">police station</span></div>
+            <div class="vocab-item"><span class="twi-word">sikakorabea / bank</span><span class="eng-def">bank</span></div>
+            <div class="vocab-item"><span class="twi-word">posta</span><span class="eng-def">post office</span></div>
+            <div class="vocab-item"><span class="twi-word">adwumayɛbea</span><span class="eng-def">workplace / office</span></div>
+            <div class="vocab-item"><span class="twi-word">edwam / gua</span><span class="eng-def">market</span></div>
+            <div class="vocab-item"><span class="twi-word">petrol gyappe</span><span class="eng-def">petrol / filling station</span></div>
+            <div class="vocab-item"><span class="twi-word">hotel</span><span class="eng-def">hotel / guest house</span></div>
+            <div class="vocab-item"><span class="twi-word">fie</span><span class="eng-def">house / home</span></div>
+        </div>
+    </div>
+
+    <!-- SECTION C: DIRECTION WORDS -->
+    <div class="section-card" id="sectionC">
+        <div class="section-title">
+            <span class="section-letter">C</span>
+            <div>
+                <h2>Kwanten Nsɛmfua — Direction Words</h2>
+                <span class="subtitle">Basic directions, location words, and direction phrases</span>
+            </div>
+        </div>
+
+        <h3 style="color:#E76F51; margin-bottom:0.8rem; font-size:1rem;">Basic Directions — Ɔkwan a Ɛso</h3>
+        <div class="direction-grid">
+            <div class="direction-card"><div class="twi">nifa</div><div class="eng">right</div><div class="pron">nee-fah</div></div>
+            <div class="direction-card"><div class="twi">benkum</div><div class="eng">left</div><div class="pron">ben-koom</div></div>
+            <div class="direction-card"><div class="twi">anim</div><div class="eng">front / straight</div><div class="pron">ah-neem</div></div>
+            <div class="direction-card"><div class="twi">anim so</div><div class="eng">straight ahead</div><div class="pron">ah-neem soh</div></div>
+            <div class="direction-card"><div class="twi">akyi</div><div class="eng">back / behind</div><div class="pron">ah-chee</div></div>
+            <div class="direction-card"><div class="twi">atifi</div><div class="eng">north / up</div><div class="pron">ah-tee-fee</div></div>
+            <div class="direction-card"><div class="twi">anafo</div><div class="eng">south / down</div><div class="pron">ah-nah-foh</div></div>
+            <div class="direction-card"><div class="twi">apuee</div><div class="eng">east</div><div class="pron">ah-poo-eh</div></div>
+            <div class="direction-card"><div class="twi">atɔe</div><div class="eng">west</div><div class="pron">ah-toh-eh</div></div>
+        </div>
+
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">Location Words — Beaeɛ Nsɛmfua</h3>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">wɔ he?</span><span class="eng-def">where is?</span></div>
+            <div class="vocab-item"><span class="twi-word">ha</span><span class="eng-def">here</span></div>
+            <div class="vocab-item"><span class="twi-word">hɔ</span><span class="eng-def">there</span></div>
+            <div class="vocab-item"><span class="twi-word">hɔ ara</span><span class="eng-def">right there</span></div>
+            <div class="vocab-item"><span class="twi-word">ha ara</span><span class="eng-def">right here</span></div>
+            <div class="vocab-item"><span class="twi-word">ɛbɛn</span><span class="eng-def">near</span></div>
+            <div class="vocab-item"><span class="twi-word">akyirikyiri</span><span class="eng-def">far</span></div>
+            <div class="vocab-item"><span class="twi-word">animfie</span><span class="eng-def">in front of</span></div>
+            <div class="vocab-item"><span class="twi-word">akyi no</span><span class="eng-def">behind</span></div>
+            <div class="vocab-item"><span class="twi-word">ntam</span><span class="eng-def">between</span></div>
+            <div class="vocab-item"><span class="twi-word">mu</span><span class="eng-def">inside</span></div>
+            <div class="vocab-item"><span class="twi-word">so</span><span class="eng-def">on top / above</span></div>
+            <div class="vocab-item"><span class="twi-word">ase</span><span class="eng-def">under / below</span></div>
+            <div class="vocab-item"><span class="twi-word">ho</span><span class="eng-def">beside / near</span></div>
+        </div>
+
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">Useful Direction Phrases</h3>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="twi">Kɔ anim so.</div><div class="eng">Go straight.</div></div>
+            <div class="phrase-card"><div class="twi">Fa ha so kɔ nifa.</div><div class="eng">Turn right here.</div></div>
+            <div class="phrase-card"><div class="twi">Kɔ benkum.</div><div class="eng">Turn left.</div></div>
+            <div class="phrase-card"><div class="twi">Ɛwɔ akyi no.</div><div class="eng">It's behind.</div></div>
+            <div class="phrase-card"><div class="twi">Ɛwɔ animfie.</div><div class="eng">It's in front.</div></div>
+            <div class="phrase-card"><div class="twi">Ɛbɛn ha.</div><div class="eng">It's near here.</div></div>
+            <div class="phrase-card"><div class="twi">Ɛwɔ akyirikyiri.</div><div class="eng">It's far.</div></div>
+            <div class="phrase-card"><div class="twi">Kyerɛ me kwan.</div><div class="eng">Show me the way.</div></div>
+            <div class="phrase-card"><div class="twi">Di so.</div><div class="eng">Follow (it).</div></div>
+            <div class="phrase-card"><div class="twi">Kɔsi sɛ wohunu...</div><div class="eng">Go until you see...</div></div>
+            <div class="phrase-card"><div class="twi">Bere a wohunu...</div><div class="eng">When you see...</div></div>
+            <div class="phrase-card"><div class="twi">Ɛyɛ nantew nnum.</div><div class="eng">It's a five-minute walk.</div></div>
+        </div>
+    </div>
+
+    <!-- SECTION D: TRANSPORT -->
+    <div class="section-card" id="sectionD">
+        <div class="section-title">
+            <span class="section-letter">D</span>
+            <div>
+                <h2>Akwantuo Mmoa — Transport in Accra</h2>
+                <span class="subtitle">Types of transport, tro-tro vocabulary, taxi phrases</span>
+            </div>
+        </div>
+
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chaptersix/chapter6-trotro.jpg" alt="Colorful tro-tros at a station in Accra" class="lesson-image">
+        <p class="lesson-image-caption">A tro-tro station — mates calling destinations, passengers boarding</p>
+
+        <div class="transport-grid">
+            <div class="transport-card"><span class="transport-icon">🚌</span><div><h4>Tro-tro</h4><p>Shared minibus — fixed routes, cheapest option. The backbone of Accra transport. Mates call destinations.</p></div></div>
+            <div class="transport-card"><span class="transport-icon">🚕</span><div><h4>Taxi / Dropping</h4><p>Shared (dropping) or private hire. Agree price before getting in. More expensive than tro-tro.</p></div></div>
+            <div class="transport-card"><span class="transport-icon">📱</span><div><h4>Uber / Bolt</h4><p>Ride-hailing apps — price set by app. Popular in Accra. Drivers may greet you in Twi!</p></div></div>
+            <div class="transport-card"><span class="transport-icon">🏍️</span><div><h4>Okada</h4><p>Motorbike taxi — fast for short distances. Always agree price first. Wear a helmet if provided.</p></div></div>
+            <div class="transport-card"><span class="transport-icon">🚶</span><div><h4>Nantew — Walking</h4><p>For short distances in neighbourhoods. Many places within a 5–10 minute walk of each other.</p></div></div>
+            <div class="transport-card"><span class="transport-icon">🚌</span><div><h4>Bus — STC / VIP</h4><p>Coaches for longer journeys to other cities. Tema Station for Eastern Region; STC for intercity.</p></div></div>
+        </div>
+
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">Tro-tro Vocabulary — Tro-tro Kasa</h3>
+        <table>
+            <tr><th>Twi / Phrase</th><th>Meaning</th></tr>
+            <tr><td><strong>Mate / Driver</strong></td><td>Driver of the tro-tro</td></tr>
+            <tr><td><strong>Tro-tro mate</strong></td><td>Conductor — calls destinations, collects fares</td></tr>
+            <tr><td><strong>Ɛkɔ he?</strong></td><td>Where is it going?</td></tr>
+            <tr><td><strong>Wokɔ he?</strong></td><td>Where are you going? (mate asks passengers)</td></tr>
+            <tr><td><strong>Fa me kɔ...</strong></td><td>Take me to...</td></tr>
+            <tr><td><strong>Foro mu!</strong></td><td>Get on / board!</td></tr>
+            <tr><td><strong>Me ba ha!</strong></td><td>I'm getting off here!</td></tr>
+            <tr><td><strong>Gyina ha!</strong></td><td>Stop here!</td></tr>
+            <tr><td><strong>Mia kakra!</strong></td><td>Push a little! (when crowded)</td></tr>
+            <tr><td><strong>Ɛyɛ ma?</strong></td><td>Is it full?</td></tr>
+            <tr><td><strong>Me nantew.</strong></td><td>I'll walk.</td></tr>
+        </table>
+
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">Taxi / Dropping Phrases — Taxi Kasa</h3>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="twi">Mepɛ dropping.</div><div class="eng">I want a shared taxi.</div></div>
+            <div class="phrase-card"><div class="twi">Mepɛ taxi.</div><div class="eng">I want a private taxi.</div></div>
+            <div class="phrase-card"><div class="twi">Fa me kɔ Osu.</div><div class="eng">Take me to Osu.</div></div>
+            <div class="phrase-card"><div class="twi">Ɛyɛ sɛn?</div><div class="eng">How much?</div></div>
+            <div class="phrase-card"><div class="twi">Yɛ no...</div><div class="eng">Make it... (bargaining)</div></div>
+            <div class="phrase-card"><div class="twi">Metua cedi...</div><div class="eng">I will pay... cedis</div></div>
+            <div class="phrase-card"><div class="twi">Yoo, mekɔ.</div><div class="eng">OK, I'm going.</div></div>
+            <div class="phrase-card"><div class="twi">Daabi, ɛyɛ dɔ.</div><div class="eng">No, it's too expensive.</div></div>
+            <div class="phrase-card"><div class="twi">Gyina ha!</div><div class="eng">Stop here!</div></div>
+            <div class="phrase-card"><div class="twi">Fa sika no.</div><div class="eng">Take the money.</div></div>
+        </div>
+    </div>
+
+    <!-- SECTION E: ASKING & GIVING DIRECTIONS -->
+    <div class="section-card" id="sectionE">
+        <div class="section-title">
+            <span class="section-letter">E</span>
+            <div>
+                <h2>Kwanten Bisa ne Kyerɛ — Asking and Giving Directions</h2>
+                <span class="subtitle">Questions, answers, and what to say when you don't understand</span>
+            </div>
+        </div>
+
+        <h3 style="color:#E76F51; margin-bottom:0.8rem; font-size:1rem;">Asking for Directions</h3>
+        <table>
+            <tr><th>Twi</th><th>English</th></tr>
+            <tr><td><strong>Ɛhe na... wɔ?</strong></td><td>Where is...?</td></tr>
+            <tr><td><strong>Kyerɛ me kwan a mefa so kɔ...</strong></td><td>Show me the way to...</td></tr>
+            <tr><td><strong>Mepa wo kyɛw, ɛhe na Circle wɔ?</strong></td><td>Please, where is Circle?</td></tr>
+            <tr><td><strong>Ɛkwan bɛn na mefa so kɔ Osu?</strong></td><td>Which road do I take to Osu?</td></tr>
+            <tr><td><strong>Ɛbɛn ha?</strong></td><td>Is it near here?</td></tr>
+            <tr><td><strong>Ɛwɔ akyirikyiri?</strong></td><td>Is it far?</td></tr>
+            <tr><td><strong>Me yera kwan.</strong></td><td>I am lost.</td></tr>
+        </table>
+
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">If You Don't Understand</h3>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="twi">Mente ase.</div><div class="eng">I don't understand.</div></div>
+            <div class="phrase-card"><div class="twi">Ka no bio, mepa wo kyɛw.</div><div class="eng">Say it again, please.</div></div>
+            <div class="phrase-card"><div class="twi">Kasa bɔkɔɔ.</div><div class="eng">Speak slowly.</div></div>
+            <div class="phrase-card"><div class="twi">Kyerɛ me wɔ asase mfonini no so.</div><div class="eng">Show me on the map.</div></div>
+            <div class="phrase-card"><div class="twi">Twerɛ ma me.</div><div class="eng">Write it for me.</div></div>
+            <div class="phrase-card"><div class="twi">Bisa obi.</div><div class="eng">Ask someone.</div></div>
+        </div>
+
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">Giving Directions — Using Landmarks</h3>
+        <div style="background:white; border-radius:20px; padding:1rem 1.2rem; border:1px solid #e2d9ce; margin-bottom:0.8rem;">
+            <p style="font-size:0.88rem; color:#2d3e2a; line-height:1.7;">In Accra, people rarely use street names. They use <strong>landmarks</strong>. Always mention a landmark the person will recognise — a church, market, filling station, or major building.</p>
+        </div>
+        <table>
+            <tr><th>Pattern</th><th>Example</th></tr>
+            <tr><td>Kɔ anim so kɔsi sɛ wohunu [landmark].</td><td>Kɔ anim so kɔsi sɛ wohunu asɔre kɛse no.</td></tr>
+            <tr><td>Fa nifa / benkum wɔ [landmark].</td><td>Fa nifa wɔ traffic light no.</td></tr>
+            <tr><td>Ɛwɔ [landmark] akyi no.</td><td>Ɛwɔ bank no akyi no.</td></tr>
+            <tr><td>Ɛwɔ [landmark] animfie.</td><td>Ɛwɔ ayaresabea no animfie.</td></tr>
+            <tr><td>Ɛbɛn [landmark] no.</td><td>Ɛbɛn petrol gyappe no.</td></tr>
+            <tr><td>Wobɛhunu [place] wɔ wo [nifa/benkum] so.</td><td>Wobɛhunu Makola wɔ wo nifa so.</td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION F: GRAMMAR -->
+    <div class="section-card" id="sectionF">
+        <div class="section-title">
+            <span class="section-letter">F</span>
+            <div>
+                <h2>Kasamu Nhwɛsoɔ — Grammar Corner</h2>
+                <span class="subtitle">Movement verbs · Prepositions · Adjectives · Adverbs</span>
+            </div>
+        </div>
+
+        <!-- Movement verbs -->
+        <h3 style="color:#E76F51; margin-bottom:0.8rem; font-size:1rem;">Movement Verbs — Kɔ, Ba, Du, Sian</h3>
+        <div style="overflow-x:auto;">
+        <table class="conj-table">
+            <tr><th>Pronoun</th><th>kɔ (go)</th><th>ba (come)</th><th>du (arrive)</th><th>sian (get off)</th></tr>
+            <tr><td>me</td><td>mekɔ</td><td>meba</td><td>medu</td><td>mesian</td></tr>
+            <tr><td>wo</td><td>wokɔ</td><td>woba</td><td>wodu</td><td>wosian</td></tr>
+            <tr><td>ɔ</td><td>ɔkɔ</td><td>ɔba</td><td>ɔdu</td><td>ɔsian</td></tr>
+            <tr><td>yɛn</td><td>yɛkɔ</td><td>yɛba</td><td>yɛdu</td><td>yɛsian</td></tr>
+            <tr><td>mo</td><td>mokɔ</td><td>moba</td><td>modu</td><td>mosian</td></tr>
+            <tr><td>wɔn</td><td>wɔnkɔ</td><td>wɔnba</td><td>wɔndu</td><td>wɔnsian</td></tr>
+        </table>
+        </div>
+
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">Negative Forms — single n- prefix</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-bottom:1.2rem;">
+            <div style="background:white; border-radius:16px; padding:0.8rem 1rem; border:1px solid #e2d9ce; font-size:0.88rem;">
+                <strong style="color:#2A9D8F;">Mekɔ.</strong> → <strong style="color:#E76F51;">Menkɔ.</strong><br><span style="color:#888;">I go → I don't go</span>
+            </div>
+            <div style="background:white; border-radius:16px; padding:0.8rem 1rem; border:1px solid #e2d9ce; font-size:0.88rem;">
+                <strong style="color:#2A9D8F;">Meba.</strong> → <strong style="color:#E76F51;">Menba.</strong><br><span style="color:#888;">I come → I don't come</span>
+            </div>
+            <div style="background:white; border-radius:16px; padding:0.8rem 1rem; border:1px solid #e2d9ce; font-size:0.88rem;">
+                <strong style="color:#2A9D8F;">Medu.</strong> → <strong style="color:#E76F51;">Mendu.</strong><br><span style="color:#888;">I arrive → I don't arrive</span>
+            </div>
+            <div style="background:white; border-radius:16px; padding:0.8rem 1rem; border:1px solid #e2d9ce; font-size:0.88rem;">
+                <strong style="color:#2A9D8F;">Mesian.</strong> → <strong style="color:#E76F51;">Mensian.</strong><br><span style="color:#888;">I get off → I don't get off</span>
+            </div>
+        </div>
+
+        <!-- Prepositions -->
+        <h3 style="color:#E76F51; margin-bottom:0.8rem; font-size:1rem;">Prepositions of Place — wɔ ... mu / so / ase / akyi / anim</h3>
+        <table>
+            <tr><th>Twi</th><th>English</th><th>Example</th></tr>
+            <tr><td><strong>wɔ ... mu</strong></td><td>inside / in</td><td>Ɛwɔ tro-tro no mu. (It's inside the tro-tro.)</td></tr>
+            <tr><td><strong>wɔ ... so</strong></td><td>on / on top of</td><td>Tena akonnwa no so. (Sit on the chair.)</td></tr>
+            <tr><td><strong>wɔ ... ase</strong></td><td>under / below</td><td>Ɛwɔ pon no ase. (It's under the table.)</td></tr>
+            <tr><td><strong>wɔ ... anim</strong></td><td>in front of</td><td>Gyina fie no anim. (Stand in front of the house.)</td></tr>
+            <tr><td><strong>wɔ ... akyi</strong></td><td>behind</td><td>Ɛwɔ sukuu no akyi. (It's behind the school.)</td></tr>
+            <tr><td><strong>wɔ ... nifa so</strong></td><td>to the right of</td><td>Ɛwɔ bank no nifa so. (It's to the right of the bank.)</td></tr>
+            <tr><td><strong>wɔ ... benkum so</strong></td><td>to the left of</td><td>Ɛwɔ gua no benkum so. (It's to the left of the market.)</td></tr>
+            <tr><td><strong>wɔ ... ntam</strong></td><td>between</td><td>Ɛwɔ asɔre ne sukuu ntam. (It's between the church and school.)</td></tr>
+            <tr><td><strong>wɔ ... ho</strong></td><td>beside / near</td><td>Tena me ho. (Sit beside me.)</td></tr>
+        </table>
+
+        <!-- Adjectives -->
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">Adjectives for Places — come AFTER the noun</h3>
+        <div class="grammar-rule">
+            <h4>Word order rule</h4>
+            <p>In Twi, adjectives always come <strong>after</strong> the noun: <em>ɔkwan kɛse</em> (road big = a big road), not <em>kɛse ɔkwan</em>.</p>
+        </div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">kɛse</span><span class="eng-def">big / large</span><span class="note-def">ɔkwan kɛse — a big road</span></div>
+            <div class="vocab-item"><span class="twi-word">ketewa</span><span class="eng-def">small / little</span><span class="note-def">ɔkwan ketewa — a small path</span></div>
+            <div class="vocab-item"><span class="twi-word">tenten</span><span class="eng-def">tall / long</span><span class="note-def">dan tenten — a tall building</span></div>
+            <div class="vocab-item"><span class="twi-word">tiawa</span><span class="eng-def">short</span><span class="note-def">ɔkwan tiawa — a short way</span></div>
+            <div class="vocab-item"><span class="twi-word">ɛbɛn</span><span class="eng-def">near</span><span class="note-def">beaeɛ a ɛbɛn — a nearby place</span></div>
+            <div class="vocab-item"><span class="twi-word">akyirikyiri</span><span class="eng-def">far</span><span class="note-def">beaeɛ a akyirikyiri — a far place</span></div>
+            <div class="vocab-item"><span class="twi-word">foforo</span><span class="eng-def">new</span><span class="note-def">ɔkwan foforo — a new road</span></div>
+            <div class="vocab-item"><span class="twi-word">dedaw</span><span class="eng-def">old</span><span class="note-def">dan dedaw — an old building</span></div>
+            <div class="vocab-item"><span class="twi-word">tɛ</span><span class="eng-def">straight</span><span class="note-def">ɔkwan tɛ — a straight road</span></div>
+            <div class="vocab-item"><span class="twi-word">kɔntɔnkyee</span><span class="eng-def">winding / crooked</span><span class="note-def">ɔkwan kɔntɔnkyee</span></div>
+        </div>
+
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">Comparatives and Superlatives</h3>
+        <table>
+            <tr><th>Pattern</th><th>Meaning</th><th>Example</th></tr>
+            <tr><td><strong>[X] yɛ [adj] sen [Y]</strong></td><td>X is more [adj] than Y</td><td>Circle yɛ kɛse sen Madina.</td></tr>
+            <tr><td><strong>[X] yɛ [adj] paa</strong></td><td>X is very [adj]</td><td>Makola yɛ kɛse paa.</td></tr>
+            <tr><td><strong>[X] ne [adj] kyɛn nyinaa</strong></td><td>X is the most [adj]</td><td>Makola ne gua a ɛso kyɛn nyinaa wɔ Accra.</td></tr>
+        </table>
+
+        <!-- Adverbs -->
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">Adverbs of Manner — How You Move</h3>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">ntɛmntɛm</span><span class="eng-def">quickly</span><span class="note-def">Nantɛ ntɛmntɛm!</span></div>
+            <div class="vocab-item"><span class="twi-word">bɔkɔɔ / nwaanwaa</span><span class="eng-def">slowly</span><span class="note-def">Kasa bɔkɔɔ.</span></div>
+            <div class="vocab-item"><span class="twi-word">yie</span><span class="eng-def">well / carefully</span><span class="note-def">Hwɛ yie.</span></div>
+            <div class="vocab-item"><span class="twi-word">dennen</span><span class="eng-def">strongly / hard</span><span class="note-def">Mia dennen.</span></div>
+            <div class="vocab-item"><span class="twi-word">kakra</span><span class="eng-def">a little</span><span class="note-def">Kɔ anim kakra.</span></div>
+            <div class="vocab-item"><span class="twi-word">bio</span><span class="eng-def">again</span><span class="note-def">Ka no bio.</span></div>
+        </div>
+
+        <h3 style="color:#E76F51; margin:1.2rem 0 0.8rem; font-size:1rem;">Adverbs of Time — When You Travel</h3>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">nnɛ</span><span class="eng-def">today</span></div>
+            <div class="vocab-item"><span class="twi-word">ɔkyena</span><span class="eng-def">tomorrow</span></div>
+            <div class="vocab-item"><span class="twi-word">nnora</span><span class="eng-def">yesterday</span></div>
+            <div class="vocab-item"><span class="twi-word">anɔpa</span><span class="eng-def">morning</span></div>
+            <div class="vocab-item"><span class="twi-word">awia</span><span class="eng-def">afternoon</span></div>
+            <div class="vocab-item"><span class="twi-word">anwummere</span><span class="eng-def">evening</span></div>
+            <div class="vocab-item"><span class="twi-word">anadwo</span><span class="eng-def">night</span></div>
+            <div class="vocab-item"><span class="twi-word">nnɛm</span><span class="eng-def">now</span></div>
+            <div class="vocab-item"><span class="twi-word">ntɛm ara</span><span class="eng-def">soon / immediately</span></div>
+            <div class="vocab-item"><span class="twi-word">akyiri</span><span class="eng-def">later</span></div>
+            <div class="vocab-item"><span class="twi-word">daa</span><span class="eng-def">always / every day</span></div>
+        </div>
+
+        <!-- Word order -->
+        <div class="grammar-rule" style="margin-top:1rem;">
+            <h4>Word order in travel sentences</h4>
+            <p><strong>Subject + Verb + Place + Time</strong></p>
+            <ul style="margin-top:0.5rem;">
+                <li>Mekɔ Osu <strong>nnɛ</strong>. — I go to Osu today.</li>
+                <li>Yɛba fie <strong>anwummere</strong>. — We come home in the evening.</li>
+                <li>Ɔba <strong>nnɛ</strong>? — Is he coming today?</li>
+                <li>Yɛbɛdu Circle <strong>bereɛ sɛn</strong>? — When will we arrive at Circle?</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SECTION G: SUMMARY -->
+    <div class="section-card" id="sectionG">
+        <div class="section-title">
+            <span class="section-letter">G</span>
+            <div>
+                <h2>Awieeɛ — Chapter Summary</h2>
+                <span class="subtitle">What you can now do in Twi</span>
+            </div>
+        </div>
+        <div class="can-do">
+            <ul style="list-style:none; padding:0; display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap:0.4rem;">
+                <li>Name 20+ important places in Accra</li>
+                <li>Ask where something is: Ɛhe na... wɔ?</li>
+                <li>Give directions using landmarks</li>
+                <li>Use direction words: nifa, benkum, anim, akyi</li>
+                <li>Use location words: ha, hɔ, ɛbɛn, akyirikyiri</li>
+                <li>Take a tro-tro and say "Me ba ha!"</li>
+                <li>Negotiate a taxi fare in Twi</li>
+                <li>Ask about fares: Ɛyɛ sɛn?</li>
+                <li>Conjugate: kɔ, ba, du, sian (all pronouns)</li>
+                <li>Make any verb negative with n- prefix</li>
+                <li>Use prepositions: mu, so, ase, akyi, anim, ntam</li>
+                <li>Use adjectives after nouns: ɔkwan kɛse</li>
+                <li>Compare places: X yɛ kɛse sen Y</li>
+                <li>Use manner adverbs: ntɛmntɛm, nwaanwaa</li>
+                <li>Use time adverbs: nnɛ, ɔkyena, anwummere</li>
+                <li>Say "I'm lost" and ask for help calmly</li>
+                <li>Ask for directions to be repeated slowly</li>
+                <li>Navigate Accra's major landmarks</li>
+            </ul>
+        </div>
+        <p style="text-align:center; margin-top:1.2rem; font-weight:700; color:#2A9D8F; font-size:1.1rem;">Nante yie! Walk well — and never be afraid to bisa obi! 🚌</p>
+    </div>
+
+    <footer>
+        <p><strong>Chapter 6:</strong> Directions, Transport, Places and Getting Around Accra. Kɔ so sua!</p>
+    </footer>
+    <div style="text-align:center; margin-top:0.8rem;">
+        <button class="close-btn" onclick="window.close()">Close chapter</button>
+    </div>
+</div>
+<p style="font-size:0.7rem; text-align:center; margin-top:1rem; color:#a2b9b0;">Speak Ghana — Chapter 6: Getting Around Accra | Lesson</p>
+</body>
+</html>

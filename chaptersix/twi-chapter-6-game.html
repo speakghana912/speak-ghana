@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Kɔ Nkran! | Chapter 6 Game</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(145deg, #0f2b2a 0%, #1f7a6e 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+        .game-container { max-width: 580px; width: 100%; background: #FDF8F2; border-radius: 36px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); padding: 1.8rem; text-align: center; }
+        .game-title { color: #2A9D8F; font-size: 1.6rem; font-weight: 800; margin-bottom: 0.2rem; }
+        .game-sub { color: #4b6a5e; font-size: 0.85rem; margin-bottom: 1.2rem; }
+        .mode-toggle { display: flex; background: white; border-radius: 50px; padding: 0.3rem; margin-bottom: 0.8rem; border: 1px solid #e2d9ce; flex-wrap: wrap; gap: 0.2rem; }
+        .mode-btn { flex: 1; min-width: 70px; padding: 0.5rem 0.5rem; border: none; background: transparent; border-radius: 40px; font-weight: 700; font-size: 0.75rem; color: #888; cursor: pointer; transition: 0.2s; }
+        .mode-btn.active { background: #2A9D8F; color: white; }
+        .stats-row { display: flex; justify-content: space-between; margin-bottom: 1.2rem; gap: 0.6rem; }
+        .stat-box { flex: 1; background: white; border-radius: 16px; padding: 0.6rem; border: 1px solid #e2d9ce; }
+        .stat-label { font-size: 0.65rem; color: #999; text-transform: uppercase; }
+        .stat-value { font-size: 1.3rem; font-weight: 800; color: #2A9D8F; }
+        .category-badge { display: inline-block; background: #D4A37320; color: #D4A373; border: 1px solid #D4A373; padding: 0.25rem 0.9rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.8rem; }
+        .timer-bar { background: #e0dbd0; border-radius: 30px; height: 10px; overflow: hidden; margin-bottom: 1.4rem; }
+        .timer-fill { background: linear-gradient(90deg, #2A9D8F, #D4A373); height: 100%; width: 100%; border-radius: 30px; transition: width 0.1s linear; }
+        .timer-fill.urgent { background: #E76F51; }
+        .question-card { background: white; border-radius: 28px; padding: 1.8rem 1.4rem; margin-bottom: 1.2rem; border: 2px solid #2A9D8F; min-height: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .question-prompt { font-size: 0.85rem; color: #888; margin-bottom: 0.5rem; }
+        .question-main { font-size: 1.6rem; font-weight: 800; color: #1e3a38; line-height: 1.3; }
+        .feedback-text { font-size: 0.9rem; font-weight: 700; min-height: 1.3rem; margin-bottom: 0.6rem; }
+        .feedback-text.correct { color: #2A9D8F; }
+        .feedback-text.incorrect { color: #E76F51; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.2rem; }
+        .option-btn { background: white; border: 2px solid #2A9D8F; color: #1e3a38; padding: 0.9rem 0.5rem; border-radius: 18px; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: 0.15s; line-height: 1.3; }
+        .option-btn:hover { background: #2A9D8F; color: white; transform: translateY(-2px); }
+        .option-btn.correct { background: #2A9D8F; color: white; border-color: #2A9D8F; }
+        .option-btn.incorrect { background: #E76F51; color: white; border-color: #E76F51; }
+        .option-btn:disabled { cursor: default; }
+        .start-screen, .end-screen { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 1rem 0; }
+        .start-screen p, .end-screen p { color: #4b6a5e; font-size: 0.92rem; line-height: 1.5; }
+        .big-btn { background: linear-gradient(135deg, #2A9D8F, #1f7a6e); color: white; border: none; padding: 1rem 2.4rem; border-radius: 50px; font-size: 1.05rem; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(42,157,143,0.35); }
+        .big-btn:hover { transform: translateY(-2px); }
+        .end-score { font-size: 3rem; font-weight: 800; color: #2A9D8F; }
+        .end-streak { background: #D4A37320; color: #D4A373; padding: 0.4rem 1.2rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem; }
+        .hidden { display: none !important; }
+        @media (max-width: 420px) { .question-main { font-size: 1.2rem; } .option-btn { font-size: 0.78rem; } }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-title">🚌 Kɔ Nkran!</div>
+    <div class="game-sub">Chapter 6 — Getting Around Accra</div>
+
+    <div class="mode-toggle">
+        <button class="mode-btn active" id="modeAllBtn" onclick="setMode('all')">🎯 All</button>
+        <button class="mode-btn" id="modePlaceBtn" onclick="setMode('places')">📍 Places</button>
+        <button class="mode-btn" id="modeDirBtn" onclick="setMode('directions')">🧭 Directions</button>
+        <button class="mode-btn" id="modeTransBtn" onclick="setMode('transport')">🚌 Transport</button>
+        <button class="mode-btn" id="modeVerbBtn" onclick="setMode('verbs')">⚡ Verbs</button>
+    </div>
+
+    <div class="start-screen" id="startScreen">
+        <p id="startDescription">15 rounds across all 4 categories — Accra places, direction words, transport phrases, and movement verbs. Can you navigate Nkran?</p>
+        <button class="big-btn" onclick="startGame()">Board the Tro-tro ▶</button>
+    </div>
+
+    <div class="hidden" id="gameScreen">
+        <div class="stats-row">
+            <div class="stat-box"><div class="stat-label">Score</div><div class="stat-value" id="scoreDisplay">0</div></div>
+            <div class="stat-box"><div class="stat-label">Streak</div><div class="stat-value" id="streakDisplay">0</div></div>
+            <div class="stat-box"><div class="stat-label">Round</div><div class="stat-value" id="roundDisplay">1/15</div></div>
+        </div>
+        <div id="categoryBadge" class="category-badge">📍 Places</div>
+        <div class="timer-bar"><div class="timer-fill" id="timerFill"></div></div>
+        <div class="question-card">
+            <div class="question-prompt" id="questionPrompt">What does this mean?</div>
+            <div class="question-main" id="questionMain">Circle</div>
+        </div>
+        <div class="feedback-text" id="feedbackText"></div>
+        <div class="options-grid" id="optionsGrid"></div>
+    </div>
+
+    <div class="hidden end-screen" id="endScreen">
+        <div style="font-size:2.5rem;">🚌</div>
+        <div>Your Score</div>
+        <div class="end-score" id="finalScore">0/15</div>
+        <div class="end-streak" id="finalStreak">Best streak: 0</div>
+        <p id="endMessage"></p>
+        <button class="big-btn" onclick="startGame()">Ride Again ↻</button>
+    </div>
+</div>
+
+<script>
+var PLACES_DATA = [
+    { q: "Circle", prompt: "What is Circle known for?", answer: "Major tro-tro hub", wrong: ["University campus", "International airport", "Popular beach"] },
+    { q: "Makola", prompt: "What is Makola?", answer: "Accra's biggest market", wrong: ["A hospital", "A tro-tro station", "A beach"] },
+    { q: "Osu", prompt: "What is Osu known for?", answer: "Oxford Street, nightlife, restaurants", wrong: ["Fishing community", "University campus", "Bus terminal"] },
+    { q: "37", prompt: "What is 37?", answer: "A major hospital", wrong: ["A market", "A tro-tro hub", "A beach"] },
+    { q: "Legon", prompt: "What is in Legon?", answer: "University of Ghana", wrong: ["Kotoka Airport", "Makola Market", "37 Hospital"] },
+    { q: "Kotoka", prompt: "What is Kotoka?", answer: "International airport", wrong: ["A market", "A hospital", "A beach"] },
+    { q: "Labadi", prompt: "What is Labadi known for?", answer: "Popular beach", wrong: ["Nightlife strip", "Major market", "University"] },
+    { q: "ayaresabea", prompt: "What does this word mean?", answer: "hospital", wrong: ["school", "church", "police station"] },
+    { q: "sukuu", prompt: "What does this word mean?", answer: "school", wrong: ["hospital", "market", "bank"] },
+    { q: "sikakorabea", prompt: "What does this word mean?", answer: "bank", wrong: ["market", "hospital", "police station"] },
+    { q: "mpepefoɔ asɔre dan", prompt: "What does this mean?", answer: "mosque", wrong: ["church", "school", "police station"] },
+    { q: "petrol gyappe", prompt: "What does this mean?", answer: "petrol / filling station", wrong: ["bus station", "taxi rank", "car park"] },
+    { q: "adwumayɛbea", prompt: "What does this word mean?", answer: "workplace / office", wrong: ["market", "school", "hospital"] },
+    { q: "Spintex", prompt: "What is Spintex known for?", answer: "Industrial area, shopping, residential", wrong: ["University campus", "Fishing community", "Major tro-tro hub"] },
+    { q: "Achimota", prompt: "What is in Achimota?", answer: "School, forest, transport hub", wrong: ["Airport, embassies", "Market, nightlife", "Hospital, beach"] },
+];
+
+var DIRECTIONS_DATA = [
+    { q: "nifa", prompt: "What does this direction word mean?", answer: "right", wrong: ["left", "straight", "behind"] },
+    { q: "benkum", prompt: "What does this direction word mean?", answer: "left", wrong: ["right", "straight", "in front"] },
+    { q: "anim so", prompt: "What does this direction phrase mean?", answer: "straight ahead", wrong: ["turn right", "go back", "turn left"] },
+    { q: "akyi no", prompt: "What does this mean?", answer: "behind", wrong: ["in front", "beside", "between"] },
+    { q: "animfie", prompt: "What does this mean?", answer: "in front of", wrong: ["behind", "beside", "between"] },
+    { q: "ɛbɛn", prompt: "What does this mean?", answer: "near", wrong: ["far", "behind", "straight"] },
+    { q: "akyirikyiri", prompt: "What does this mean?", answer: "far", wrong: ["near", "right", "left"] },
+    { q: "ntam", prompt: "What does this mean?", answer: "between", wrong: ["inside", "beside", "behind"] },
+    { q: "Kɔ anim so.", prompt: "What does this phrase mean?", answer: "Go straight.", wrong: ["Turn right.", "Turn left.", "Go back."] },
+    { q: "Fa nifa wɔ traffic light no.", prompt: "What does this phrase mean?", answer: "Turn right at the traffic light.", wrong: ["Turn left at the traffic light.", "Go straight past the light.", "Stop at the traffic light."] },
+    { q: "Kɔ benkum.", prompt: "What does this phrase mean?", answer: "Turn left.", wrong: ["Turn right.", "Go straight.", "Go back."] },
+    { q: "Kɔsi sɛ wohunu asɔre no.", prompt: "What does this mean?", answer: "Go until you see the church.", wrong: ["Turn at the church.", "Stop at the church.", "Go past the church."] },
+    { q: "Ɛwɔ animfie.", prompt: "What does this mean?", answer: "It's in front.", wrong: ["It's behind.", "It's beside.", "It's far."] },
+    { q: "Di so.", prompt: "What does this command mean?", answer: "Follow (it).", wrong: ["Stop here.", "Go straight.", "Turn around."] },
+    { q: "Ɛyɛ nantɛ sima nnum.", prompt: "What does this mean?", answer: "It's a five-minute walk.", wrong: ["It's five stops away.", "Walk for five hours.", "It's very far."] },
+];
+
+var TRANSPORT_DATA = [
+    { q: "Me ba ha!", prompt: "What does this tro-tro phrase mean?", answer: "I'm getting off here!", wrong: ["I'm boarding here!", "Stop the car!", "I'm going here!"] },
+    { q: "Mia kakra!", prompt: "What does this mean on the tro-tro?", answer: "Push a little!", wrong: ["Walk a little!", "Pay a little!", "Move to the back!"] },
+    { q: "Foro mu!", prompt: "What does the mate mean by this?", answer: "Get on / Board!", wrong: ["Get off!", "Pay now!", "Move forward!"] },
+    { q: "Dropping", prompt: "What is 'dropping'?", answer: "Shared taxi", wrong: ["Private taxi", "Tro-tro", "Motorbike taxi"] },
+    { q: "Okada", prompt: "What is an okada?", answer: "Motorbike taxi", wrong: ["Shared taxi", "Tro-tro", "Ride-hailing app"] },
+    { q: "Fa me kɔ Osu.", prompt: "What does this taxi phrase mean?", answer: "Take me to Osu.", wrong: ["I'm going to Osu.", "Where is Osu?", "How far is Osu?"] },
+    { q: "Gyina ha!", prompt: "What does this mean?", answer: "Stop here!", wrong: ["Wait here!", "Turn here!", "Park here!"] },
+    { q: "Ɛkɔ he?", prompt: "What does the passenger ask?", answer: "Where is it going?", wrong: ["Where did it come from?", "How much is it?", "Is it full?"] },
+    { q: "Ɛyɛ ma?", prompt: "What does this tro-tro phrase mean?", answer: "Is it full?", wrong: ["Is it good?", "Is it going?", "Is it expensive?"] },
+    { q: "Mepɛ taxi.", prompt: "What does this mean?", answer: "I want a private taxi.", wrong: ["I want a shared taxi.", "I want a tro-tro.", "I want to walk."] },
+    { q: "Me nantew.", prompt: "What does this phrase mean?", answer: "I'll walk.", wrong: ["I'll run.", "I'll wait.", "I'll take the tro-tro."] },
+    { q: "Traffic yɛ den!", prompt: "What does this mean?", answer: "Traffic is bad!", wrong: ["Traffic is moving!", "No traffic today!", "The road is bad!"] },
+    { q: "Woadi me ɔkye.", prompt: "What does this phrase mean?", answer: "You have saved me!", wrong: ["You are very kind!", "Thank you very much!", "You are my friend!"] },
+    { q: "Me ayera kwan.", prompt: "What does this mean?", answer: "I am lost.", wrong: ["I don't know the way.", "I am confused.", "I need help."] },
+    { q: "Kasa bɔkɔɔ.", prompt: "What does this mean?", answer: "Speak slowly.", wrong: ["Go slowly.", "Talk loudly.", "Come slowly."] },
+];
+
+var VERBS_DATA = [
+    { q: "mekɔ", prompt: "What does this verb form mean?", answer: "I go", wrong: ["I come", "I arrive", "I get off"] },
+    { q: "woba", prompt: "What does this verb form mean?", answer: "you come", wrong: ["you go", "you arrive", "you get off"] },
+    { q: "ɔdu", prompt: "What does this verb form mean?", answer: "he / she arrives", wrong: ["he / she goes", "he / she comes", "he / she gets off"] },
+    { q: "yɛsian", prompt: "What does this verb form mean?", answer: "we get off", wrong: ["we go", "we come", "we arrive"] },
+    { q: "wɔnkɔ", prompt: "What does this verb form mean?", answer: "they go", wrong: ["they come", "they arrive", "they get off"] },
+    { q: "menkɔ", prompt: "What does this negative verb mean?", answer: "I don't go", wrong: ["I go", "I don't come", "I don't arrive"] },
+    { q: "menba", prompt: "What does this negative verb mean?", answer: "I don't come", wrong: ["I don't go", "I come", "I don't arrive"] },
+    { q: "How do you say 'She goes to Osu'?", prompt: "Choose the correct sentence:", answer: "Ɔkɔ Osu.", wrong: ["Ɔba Osu.", "Ɔdu Osu.", "Ɔsian Osu."] },
+    { q: "How do you say 'We are getting off here'?", prompt: "Choose the correct sentence:", answer: "Yɛsian ha.", wrong: ["Yɛkɔ ha.", "Yɛba ha.", "Yɛdu ha."] },
+    { q: "Bra ha!", prompt: "What does this command mean?", answer: "Come here!", wrong: ["Go here!", "Stop here!", "Wait here!"] },
+    { q: "Gyina ha!", prompt: "What does this command mean?", answer: "Stop here!", wrong: ["Come here!", "Go here!", "Wait here!"] },
+    { q: "Mekɔ Osu nnɛ.", prompt: "What does this sentence mean?", answer: "I go to Osu today.", wrong: ["I went to Osu yesterday.", "I'm going to Osu tomorrow.", "I came from Osu today."] },
+    { q: "Yɛbɛdu Circle bereɛ sɛn?", prompt: "What does this sentence mean?", answer: "When will we arrive at Circle?", wrong: ["Have we arrived at Circle?", "Where is Circle?", "Are we going to Circle?"] },
+    { q: "nnora", prompt: "What does this time word mean?", answer: "yesterday", wrong: ["today", "tomorrow", "last week"] },
+    { q: "ntɛm ara", prompt: "What does this time word mean?", answer: "immediately / very soon", wrong: ["later", "yesterday", "every day"] },
+];
+
+var ALL_CATEGORIES = [
+    { key: 'places', label: 'Places', icon: '📍 Places', data: PLACES_DATA },
+    { key: 'directions', label: 'Directions', icon: '🧭 Directions', data: DIRECTIONS_DATA },
+    { key: 'transport', label: 'Transport', icon: '🚌 Transport', data: TRANSPORT_DATA },
+    { key: 'verbs', label: 'Verbs', icon: '⚡ Verbs', data: VERBS_DATA }
+];
+
+var mode = 'all', score = 0, streak = 0, bestStreak = 0, round = 0;
+var TOTAL_ROUNDS = 15, timerInterval = null, timeLeft = 0, maxTime = 6000;
+var answered = false, currentCorrect = '';
+
+var catDescriptions = {
+    all: '15 rounds across all 4 categories — places, directions, transport, and movement verbs. Can you navigate Nkran?',
+    places: 'Accra places and facilities only — neighbourhoods, landmarks, and Twi vocabulary. 15 rounds.',
+    directions: 'Direction words and phrases only — nifa, benkum, anim, prepositions, and direction sentences. 15 rounds.',
+    transport: 'Transport vocabulary only — tro-tro phrases, taxi, okada, lost, and slow down. 15 rounds.',
+    verbs: 'Movement verbs only — kɔ, ba, du, sian, negatives, commands, and time words. 15 rounds.'
+};
+
+function setMode(m) {
+    mode = m;
+    ['all','places','directions','transport','verbs'].forEach(function(k, i) {
+        document.getElementById(['modeAllBtn','modePlaceBtn','modeDirBtn','modeTransBtn','modeVerbBtn'][i]).classList.toggle('active', k === m);
+    });
+    document.getElementById('startDescription').textContent = catDescriptions[m];
+    clearInterval(timerInterval);
+    document.getElementById('startScreen').classList.remove('hidden');
+    document.getElementById('gameScreen').classList.add('hidden');
+    document.getElementById('endScreen').classList.add('hidden');
+}
+
+function startGame() {
+    score = 0; streak = 0; bestStreak = 0; round = 0; maxTime = 6000;
+    document.getElementById('startScreen').classList.add('hidden');
+    document.getElementById('endScreen').classList.add('hidden');
+    document.getElementById('gameScreen').classList.remove('hidden');
+    updateStats(); nextRound();
+}
+
+function updateStats() {
+    document.getElementById('scoreDisplay').textContent = score;
+    document.getElementById('streakDisplay').textContent = streak;
+    document.getElementById('roundDisplay').textContent = round + '/' + TOTAL_ROUNDS;
+}
+
+function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length-1; i > 0; i--) { var j = Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+    return a;
+}
+
+function getCatData() {
+    if (mode === 'all') return ALL_CATEGORIES[round % ALL_CATEGORIES.length];
+    return ALL_CATEGORIES.find(function(c){ return c.key===mode; }) || ALL_CATEGORIES[0];
+}
+
+function nextRound() {
+    round++; answered = false;
+    document.getElementById('feedbackText').textContent = '';
+    document.getElementById('feedbackText').className = 'feedback-text';
+    if (round > TOTAL_ROUNDS) { endGame(); return; }
+    updateStats();
+    maxTime = Math.max(2500, 6000 - round * 200);
+    var cat = getCatData();
+    document.getElementById('categoryBadge').textContent = cat.icon;
+    var item = cat.data[Math.floor(Math.random() * cat.data.length)];
+    currentCorrect = item.answer;
+    document.getElementById('questionPrompt').textContent = item.prompt;
+    document.getElementById('questionMain').textContent = item.q;
+    renderOptions(shuffle([item.answer].concat(item.wrong.slice(0,3))), item.answer);
+    startTimer();
+}
+
+function renderOptions(options, correct) {
+    var grid = document.getElementById('optionsGrid');
+    grid.innerHTML = '';
+    options.forEach(function(opt) {
+        var btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt;
+        btn.onclick = function() { selectAnswer(btn, opt, correct); };
+        grid.appendChild(btn);
+    });
+}
+
+function selectAnswer(btn, selected, correct) {
+    if (answered) return;
+    answered = true;
+    clearInterval(timerInterval);
+    document.querySelectorAll('.option-btn').forEach(function(b) {
+        b.disabled = true;
+        if (b.textContent === correct) b.classList.add('correct');
+    });
+    var fb = document.getElementById('feedbackText');
+    if (selected === correct) {
+        score++; streak++;
+        bestStreak = Math.max(bestStreak, streak);
+        fb.textContent = 'Correct! ✓';
+        fb.className = 'feedback-text correct';
+    } else {
+        streak = 0;
+        btn.classList.add('incorrect');
+        fb.textContent = 'Correct: ' + correct;
+        fb.className = 'feedback-text incorrect';
+    }
+    updateStats();
+    setTimeout(nextRound, 1100);
+}
+
+function startTimer() {
+    timeLeft = maxTime;
+    var fill = document.getElementById('timerFill');
+    fill.style.width = '100%';
+    fill.classList.remove('urgent');
+    clearInterval(timerInterval);
+    timerInterval = setInterval(function() {
+        timeLeft -= 50;
+        var pct = Math.max(0, (timeLeft/maxTime)*100);
+        fill.style.width = pct + '%';
+        if (pct < 30) fill.classList.add('urgent');
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            if (!answered) {
+                answered = true; streak = 0;
+                var fb = document.getElementById('feedbackText');
+                fb.textContent = 'Time up! Answer: ' + currentCorrect;
+                fb.className = 'feedback-text incorrect';
+                document.querySelectorAll('.option-btn').forEach(function(b) {
+                    b.disabled = true;
+                    if (b.textContent === currentCorrect) b.classList.add('correct');
+                });
+                updateStats();
+                setTimeout(nextRound, 1300);
+            }
+        }
+    }, 50);
+}
+
+function endGame() {
+    clearInterval(timerInterval);
+    document.getElementById('gameScreen').classList.add('hidden');
+    document.getElementById('endScreen').classList.remove('hidden');
+    document.getElementById('finalScore').textContent = score + '/' + TOTAL_ROUNDS;
+    document.getElementById('finalStreak').textContent = 'Best streak: ' + bestStreak;
+    var pct = score / TOTAL_ROUNDS;
+    document.getElementById('endMessage').textContent =
+        pct >= 0.9 ? 'Excellent! You can navigate Nkran like a local!' :
+        pct >= 0.7 ? 'Great work! Drill one category to sharpen further.' :
+        pct >= 0.5 ? 'Good effort! Review the lesson and try again.' :
+        'Keep going — Nkran takes practice. You can do it!';
+}
+</script>
+</body>
+</html>
