@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Speak Ghana • Twi Chapter 5: Shopping, Prices & Bargaining</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2b2a, #1f7a6e);
+            padding: 2rem 1.5rem;
+        }
+        .container {
+            max-width: 1300px; margin: 0 auto; background: white;
+            border-radius: 40px; box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+            overflow: hidden; padding: 2rem;
+        }
+        .chapter-header {
+            border-bottom: 3px solid #2A9D8F; margin-bottom: 2rem;
+            padding-bottom: 1rem; display: flex; flex-wrap: wrap;
+            justify-content: space-between; align-items: flex-end; gap: 1rem;
+        }
+        h1 { font-size: 1.9rem; color: #2A9D8F; letter-spacing: -0.3px; }
+        .chapter-badge { background: #E76F51; color: white; padding: 0.4rem 1rem; border-radius: 40px; font-size: 0.85rem; font-weight: 600; }
+        .sub { color: #4b6a5e; margin-top: 0.25rem; font-size: 1rem; }
+        .section-card {
+            background: #FEF9F0; border-radius: 32px; padding: 1.6rem 2rem;
+            margin-bottom: 2.2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #f0e5d8;
+        }
+        .section-title {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 1.4rem; border-left: 6px solid #2A9D8F; padding-left: 1.2rem;
+        }
+        .section-letter {
+            background: #2A9D8F; color: white; width: 42px; height: 42px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 30px; font-weight: 800; font-size: 1.4rem; flex-shrink: 0;
+        }
+        .section-title h2 { font-size: 1.5rem; color: #1e3a38; }
+        .section-title .subtitle { font-size: 0.85rem; color: #888; display: block; margin-top: 0.2rem; }
+        .intro-box {
+            background: #e3f2ed; border-radius: 28px; padding: 1.4rem 1.8rem;
+            margin-bottom: 2rem; border-left: 8px solid #2A9D8F;
+        }
+        .intro-box ul { margin: 0.8rem 0 0 1.3rem; }
+        .intro-box li { margin: 0.4rem 0; }
+        .passage-box {
+            background: #fff6e8; border-radius: 28px; padding: 1.5rem;
+            border: 1px solid #f0dbb4; margin: 1rem 0 1.5rem 0;
+        }
+        .twi-passage {
+            font-family: 'Courier New', 'SF Mono', monospace;
+            font-size: 1.05rem; line-height: 1.8; font-weight: 500; color: #1f3b37;
+        }
+        .twi-passage .translation {
+            font-family: 'Inter', sans-serif; font-size: 0.82rem; color: #888;
+            font-style: italic; display: block; margin-bottom: 0.6rem;
+        }
+        .lesson-image {
+            width: 100%; height: auto; object-fit: contain; border-radius: 28px;
+            margin: 1rem 0 1.5rem 0; box-shadow: 0 10px 25px rgba(0,0,0,0.12); display: block;
+        }
+        .lesson-image-caption {
+            text-align: center; font-size: 0.8rem; color: #888;
+            margin-top: -1.1rem; margin-bottom: 1.5rem; font-style: italic;
+        }
+        .question-box {
+            background: #eef5f2; border-radius: 24px; padding: 1.2rem 1.8rem; margin-top: 1rem;
+        }
+        .question-list { padding-left: 1.5rem; margin: 0.8rem 0; }
+        .question-list li { margin: 0.6rem 0; line-height: 1.4; }
+        .grammar-table {
+            width: 100%; border-collapse: collapse; background: white;
+            border-radius: 20px; overflow: hidden; margin: 1.2rem 0; font-size: 0.9rem;
+        }
+        .grammar-table th { background: #2A9D8F; color: white; padding: 10px 8px; text-align: left; }
+        .grammar-table td { padding: 10px 8px; border-bottom: 1px solid #e0dbd0; }
+        .grammar-table tr:last-child td { border-bottom: none; }
+        .grammar-table tr:nth-child(even) td { background: #f9f3e8; }
+        .vocab-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 0.7rem; margin: 1.2rem 0;
+        }
+        .vocab-item {
+            background: white; padding: 0.5rem 1rem; border-radius: 60px;
+            display: flex; justify-content: space-between; align-items: baseline;
+            border: 1px solid #e2d9ce; font-size: 0.88rem;
+        }
+        .twi-word { font-weight: 700; color: #2A9D8F; }
+        .eng-def { color: #555; }
+        .practice-tip {
+            background: #fff3cd; border-radius: 20px; padding: 1rem 1.4rem;
+            margin: 1.2rem 0; border-left: 6px solid #D4A373; font-size: 0.9rem; color: #856404;
+        }
+        .grammar-corner {
+            background: #e3f2ed; border-radius: 28px; padding: 1.5rem;
+            margin: 1.8rem 0 1rem 0; border-left: 8px solid #2A9D8F;
+        }
+        .grammar-corner h3 { color: #1e3a38; margin-bottom: 0.5rem; }
+        .examples-list {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 0.6rem; margin-top: 1rem;
+        }
+        .example-item {
+            background: white; padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.85rem;
+        }
+        .phrase-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 0.7rem; margin: 1rem 0;
+        }
+        .phrase-card {
+            background: white; border-radius: 20px; padding: 0.8rem 1.1rem;
+            border-left: 4px solid #E76F51;
+        }
+        .phrase-card .twi { font-weight: 700; color: #E76F51; font-size: 1rem; }
+        .phrase-card .eng { color: #555; font-size: 0.82rem; margin-top: 0.2rem; }
+        .cultural-note {
+            background: #FFF3CD; border-left: 4px solid #D4A373;
+            padding: 0.8rem 1rem; border-radius: 12px; margin: 0.8rem 0;
+            font-size: 0.88rem; color: #856404;
+        }
+        .checklist { list-style: none; margin: 0.8rem 0; padding: 0; }
+        .checklist li {
+            padding: 0.5rem 0.8rem; margin-bottom: 0.5rem; background: white;
+            border-radius: 14px; display: flex; align-items: center;
+            gap: 0.6rem; font-size: 0.92rem;
+        }
+        .checklist li::before { content: "☐"; color: #2A9D8F; font-size: 1.2rem; }
+        .footer-note {
+            margin-top: 1rem; text-align: center;
+            border-top: 1px solid #e0d9ce; padding-top: 1.2rem; color: #6c7a6e;
+        }
+        .btn-audio-sim {
+            background: #d4a37330; border: 1px solid #d4a373; padding: 0.2rem 0.7rem;
+            border-radius: 30px; font-size: 0.7rem; display: inline-block;
+            color: #b87333; cursor: pointer;
+        }
+        button.close-btn {
+            background: #D4A373; color: white; border: none; padding: 0.6rem 1.8rem;
+            border-radius: 50px; font-size: 0.9rem; cursor: pointer; margin-top: 0.5rem;
+        }
+        button.close-btn:hover { background: #b87c4a; }
+        @media (max-width: 700px) {
+            .container { padding: 1.2rem; }
+            .section-card { padding: 1.2rem; }
+            .section-title h2 { font-size: 1.2rem; }
+            .twi-passage { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="chapter-header">
+        <div>
+            <h1>Dwumadi — Shopping, Prices & Bargaining</h1>
+            <p class="sub">Chapter 5 · Tɔ, Tɔn, ne Tua Sika — Buy, Sell, and Pay</p>
+        </div>
+        <div class="chapter-badge">Yɛkɔ edwam! Let's go shopping!</div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro-box">
+        <p>In Chapter 4 you learned numbers, time, days, and questions. Now it is time to use all of that in the place where Ghanaian life happens every day — the market.</p>
+        <p style="margin-top: 0.8rem;">Whether you are at Makola, a chop bar, or buying pure water from a street vendor, these are the phrases you will hear and need:</p>
+        <ul>
+            <li><strong>Wei yɛ sɛn?</strong> (How much is this?)</li>
+            <li><strong>Ɛyɛ dɔ! Te boɔ no so kakra.</strong> (It is expensive! Reduce the price a little.)</li>
+            <li><strong>Metua cedi aduonu.</strong> (I will pay 20 cedis.)</li>
+            <li><strong>Medaase paa!</strong> (Thank you very much!)</li>
+        </ul>
+        <h3 style="color: #E76F51; margin-top: 1.2rem; margin-bottom: 0.5rem;">What You Will Achieve</h3>
+        <ul>
+            <li>Name 30+ market items and food in Twi</li>
+            <li>Ask and understand prices in Ghana cedis and pesewas</li>
+            <li>Bargain politely and effectively</li>
+            <li>Handle transactions at markets, chop bars, and street vendors</li>
+            <li>Use the three key shopping verbs: <strong>tɔ</strong> (buy), <strong>tɔn</strong> (sell), <strong>tua</strong> (pay)</li>
+        </ul>
+    </div>
+
+    <!-- SECTION A: READING PASSAGE -->
+    <div class="section-card" id="sectionA">
+        <div class="section-title">
+            <span class="section-letter">A</span>
+            <div>
+                <h2>Kenkan · Abena Kɔ Makola (Abena Goes to Makola)</h2>
+                <span class="subtitle">Read first — notice every price, every verb, every bargain</span>
+            </div>
+        </div>
+        <p style="margin-bottom: 1rem; color: #555; font-size: 0.9rem;">This passage uses every shopping skill in this chapter. Read it carefully before answering the comprehension questions below.</p>
+
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chapterfive/chapter5-makola.jpg" alt="Abena bargaining at Makola Market" class="lesson-image">
+        <p class="lesson-image-caption">Makola Market, Accra — where every Twi phrase in this chapter comes alive</p>
+
+        <div class="passage-box">
+            <div class="twi-passage">
+                <span>Ɛnnɛ yɛ Memeneda. Abena sɔre ntɛm efirisɛ ɔpɛ sɛ ɔkɔ Makola edwam.</span>
+                <span class="translation">Today is Saturday. Abena wakes up early because she wants to go to Makola Market.</span>
+
+                <span>Ɔhyɛ ne ntadeɛ, ɔdi ne anɔpa aduane kakra, na ɔkɔ.</span>
+                <span class="translation">She dresses, eats a little breakfast, and goes.</span>
+
+                <span>Ɔduru edwam no so, ɔhyia ɔdwadini baa baako. Ɔma no akwaaba: "Maakye! Wo ho te sɛn?"</span>
+                <span class="translation">She arrives at the market and meets a female trader. She greets her: "Good morning! How are you?"</span>
+
+                <span>Ɔdwadini no buae sɛ: "Maakye! Me ho yɛ. Dɛn na wopɛ?"</span>
+                <span class="translation">The trader replied: "Good morning! I am fine. What are you looking for?"</span>
+
+                <span>Abena kaa sɛ: "Mepɛ ntoosi ne gyene ne ngo kakra."</span>
+                <span class="translation">Abena said: "I want tomatoes (ntoosi), onions, and a little palm oil."</span>
+
+                <span>Ɔdwadini no kyerɛɛ no tomato fɛfɛ na ɔkaa sɛ: "Ntoosi no, ɛyɛ cedi aduonu."</span>
+                <span class="translation">The trader showed her beautiful tomatoes (ntoosi) and said: "The tomatoes are 20 cedis."</span>
+
+                <span>Abena tiemm sɛ: "Aaa! Ɛyɛ dɔ! Te boɔ no so kakra. Mepɛ sɛ metua cedi du nnum."</span>
+                <span class="translation">Abena exclaimed (tiemm): "Aaa! That is expensive! Reduce the price a little. I want to pay 15 cedis."</span>
+
+                <span>Ɔdwadini no dewenee kakra na ɔkaa sɛ: "Yoo, metua cedi du nsia."</span>
+                <span class="translation">The trader thought (dewenee) for a moment and said: "OK, pay 16 cedis."</span>
+
+                <span>Wɔte aseɛ na Abena tua cedi du nsia ma no.</span>
+                <span class="translation">They agreed (Wɔte aseɛ) and Abena paid her 16 cedis.</span>
+
+                <span>Wɔtɔɔ gyene ne ngo nso. Ne nyinaa, Abena tua cedi aduonu nsia.</span>
+                <span class="translation">They also bought onions and palm oil. In total, Abena paid 26 cedis.</span>
+
+                <span>Abena kaa sɛ: "Medaase paa!" Ɔdwadini no buae sɛ: "Yɛnda ase! Bra bio!"</span>
+                <span class="translation">Abena said: "Thank you very much!" The trader replied: "It is my pleasure! Come again!"</span>
+
+                <span>Abena firi edwam no na ɔkɔ chop bar. Ɔtɔɔ fufu ne nkwan ma ne ho. Ɛyɛ dɛ pa ara.</span>
+                <span class="translation">Abena left the market and went to a chop bar. She bought fufu and soup for herself. It was very delicious.</span>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <h4>Nsɛmbisa — Comprehension Questions</h4>
+            <p style="font-size: 0.82rem; color: #888; margin-bottom: 1rem; font-style: italic;">Different question types below — fill in the blank, short answer, calculate, and think-beyond. Answers are hidden until you click.</p>
+
+            <!-- Q1: Fill in the blank -->
+            <div style="background: white; border-radius: 20px; padding: 1rem 1.2rem; margin-bottom: 0.9rem; border-left: 5px solid #D4A373;">
+                <p style="font-size: 0.75rem; font-weight: 700; color: #D4A373; text-transform: uppercase; margin-bottom: 0.4rem;">✏️ Fill in the blank</p>
+                <p style="font-size: 0.95rem; color: #1e3a38; line-height: 1.7;">
+                    Ɛnnɛ yɛ <span style="display:inline-block;min-width:90px;border-bottom:2px solid #E76F51;">&nbsp;</span>, na Abena kɔɔ <span style="display:inline-block;min-width:90px;border-bottom:2px solid #E76F51;">&nbsp;</span> edwam. Ɔpɛɛ <span style="display:inline-block;min-width:90px;border-bottom:2px solid #E76F51;">&nbsp;</span>, <span style="display:inline-block;min-width:90px;border-bottom:2px solid #E76F51;">&nbsp;</span>, ne <span style="display:inline-block;min-width:90px;border-bottom:2px solid #E76F51;">&nbsp;</span>.
+                </p>
+                <details style="margin-top: 0.6rem; cursor: pointer;"><summary style="color: #2A9D8F; font-size: 0.8rem; font-weight: 600;">Answer</summary>
+                <div style="margin-top: 0.5rem; font-size: 0.88rem; color: #1e3a38; line-height: 1.7;">Ɛnnɛ yɛ <strong>Memeneda</strong>, na Abena kɔɔ <strong>Makola</strong> edwam. Ɔpɛɛ <strong>ntoosi</strong>, <strong>gyene</strong>, ne <strong>ngo</strong>.</div>
+                </details>
+            </div>
+
+            <!-- Q2: Short answer Twi + English -->
+            <div style="background: white; border-radius: 20px; padding: 1rem 1.2rem; margin-bottom: 0.9rem; border-left: 5px solid #2A9D8F;">
+                <p style="font-size: 0.75rem; font-weight: 700; color: #2A9D8F; text-transform: uppercase; margin-bottom: 0.4rem;">💬 Short Answer</p>
+                <p style="font-size: 0.95rem; color: #1e3a38;"><strong>Twi:</strong> Ɔdwadini no kaa sɛ ntoosi no yɛ sɛn? Na Abena tiemm sɛ dɛn?</p>
+                <p style="font-size: 0.85rem; color: #666; margin-top: 0.2rem;"><em>English: What price did the trader give for the tomatoes? What did Abena exclaim?</em></p>
+                <details style="margin-top: 0.6rem; cursor: pointer;"><summary style="color: #2A9D8F; font-size: 0.8rem; font-weight: 600;">Answer</summary>
+                <div style="margin-top: 0.5rem; font-size: 0.88rem; color: #1e3a38; line-height: 1.7;">
+                    Ɔdwadini no kaa sɛ ntoosi no yɛ <strong>cedi aduonu</strong> (20 cedis).<br>
+                    Abena tiemm sɛ: <strong>"Ɛyɛ dɔ!"</strong> — meaning "It is expensive!"
+                </div>
+                </details>
+            </div>
+
+            <!-- Q3: Q&A bargaining sequence -->
+            <div style="background: white; border-radius: 20px; padding: 1rem 1.2rem; margin-bottom: 0.9rem; border-left: 5px solid #E76F51;">
+                <p style="font-size: 0.75rem; font-weight: 700; color: #E76F51; text-transform: uppercase; margin-bottom: 0.4rem;">🔄 Question &amp; Answer</p>
+                <p style="font-size: 0.95rem; color: #1e3a38; margin-bottom: 0.5rem;">The bargaining went through three price stages. Put them in the correct order:</p>
+                <div style="display:flex; gap: 0.6rem; flex-wrap: wrap; margin: 0.5rem 0;">
+                    <span style="background:#e3f2ed; border-radius:30px; padding:0.3rem 0.9rem; font-weight:700; font-size:0.88rem;">cedi du nnum (15)</span>
+                    <span style="background:#fde8dc; border-radius:30px; padding:0.3rem 0.9rem; font-weight:700; font-size:0.88rem;">cedi aduonu (20)</span>
+                    <span style="background:#fff3cd; border-radius:30px; padding:0.3rem 0.9rem; font-weight:700; font-size:0.88rem;">cedi du nsia (16)</span>
+                </div>
+                <p style="font-size: 0.82rem; color: #888; margin-top: 0.3rem;"><em>Trader first price → Abena's offer → final agreed price</em></p>
+                <details style="margin-top: 0.6rem; cursor: pointer;"><summary style="color: #2A9D8F; font-size: 0.8rem; font-weight: 600;">Answer</summary>
+                <div style="margin-top: 0.5rem; font-size: 0.88rem; color: #1e3a38; line-height: 1.8;">
+                    1️⃣ <strong>cedi aduonu (20)</strong> — trader's opening price<br>
+                    2️⃣ <strong>cedi du nnum (15)</strong> — Abena's counter-offer<br>
+                    3️⃣ <strong>cedi du nsia (16)</strong> — agreed final price<br>
+                    <span style="color:#888; font-size:0.82rem;">The trader came down but not all the way — a typical real bargain.</span>
+                </div>
+                </details>
+            </div>
+
+            <!-- Q4: Calculate -->
+            <div style="background: white; border-radius: 20px; padding: 1rem 1.2rem; margin-bottom: 0.9rem; border-left: 5px solid #6c757d;">
+                <p style="font-size: 0.75rem; font-weight: 700; color: #6c757d; text-transform: uppercase; margin-bottom: 0.4rem;">🧮 Calculate</p>
+                <p style="font-size: 0.95rem; color: #1e3a38; line-height: 1.6;">Abena tua cedi du nsia ma ntoosi no. Ne nyinaa, ɔtua cedi aduonu nsia.<br>
+                <em style="font-size:0.85rem; color:#666;">Abena paid 16 cedis for the tomatoes. She paid 26 cedis in total. How much did the onions and palm oil cost together? Write your working in Twi.</em></p>
+                <details style="margin-top: 0.6rem; cursor: pointer;"><summary style="color: #2A9D8F; font-size: 0.8rem; font-weight: 600;">Answer</summary>
+                <div style="margin-top: 0.5rem; font-size: 0.88rem; color: #1e3a38; line-height: 1.8;">
+                    Cedi aduonu nsia tia cedi du nsia = <strong>cedi du (10 cedis)</strong><br>
+                    26 − 16 = 10<br>
+                    <strong>Gyene ne ngo boɔ yɛɛ cedi du.</strong>
+                </div>
+                </details>
+            </div>
+
+            <!-- Q5: Fill in — ending -->
+            <div style="background: white; border-radius: 20px; padding: 1rem 1.2rem; margin-bottom: 0.9rem; border-left: 5px solid #D4A373;">
+                <p style="font-size: 0.75rem; font-weight: 700; color: #D4A373; text-transform: uppercase; margin-bottom: 0.4rem;">✏️ Fill in the blank</p>
+                <p style="font-size: 0.95rem; color: #1e3a38; line-height: 1.7;">
+                    Wɔte aseɛ na Abena firi <span style="display:inline-block;min-width:90px;border-bottom:2px solid #E76F51;">&nbsp;</span> no. Ɔkɔɔ <span style="display:inline-block;min-width:90px;border-bottom:2px solid #E76F51;">&nbsp;</span>. Ɔtɔɔ <span style="display:inline-block;min-width:90px;border-bottom:2px solid #E76F51;">&nbsp;</span> ne <span style="display:inline-block;min-width:90px;border-bottom:2px solid #E76F51;">&nbsp;</span>. Ɛyɛ <span style="display:inline-block;min-width:60px;border-bottom:2px solid #E76F51;">&nbsp;</span> pa ara.
+                </p>
+                <details style="margin-top: 0.6rem; cursor: pointer;"><summary style="color: #2A9D8F; font-size: 0.8rem; font-weight: 600;">Answer</summary>
+                <div style="margin-top: 0.5rem; font-size: 0.88rem; color: #1e3a38; line-height: 1.7;">Wɔte aseɛ na Abena firi <strong>edwam</strong> no. Ɔkɔɔ <strong>chop bar</strong>. Ɔtɔɔ <strong>fufu</strong> ne <strong>nkwan</strong>. Ɛyɛ <strong>dɛ</strong> pa ara.</div>
+                </details>
+            </div>
+
+            <!-- Q6: True or False -->
+            <div style="background: white; border-radius: 20px; padding: 1rem 1.2rem; margin-bottom: 0.9rem; border-left: 5px solid #2A9D8F;">
+                <p style="font-size: 0.75rem; font-weight: 700; color: #2A9D8F; text-transform: uppercase; margin-bottom: 0.4rem;">✅ True or False?</p>
+                <p style="font-size: 0.85rem; color: #888; margin-bottom: 0.6rem; font-style: italic;">Write T (true) or F (false) next to each. Answers are in the passage.</p>
+                <ol style="margin-left: 1.3rem; font-size: 0.92rem; line-height: 2;">
+                    <li>Abena kɔɔ edwam wɔ Yawoada. ___</li>
+                    <li>Ɔdwadini no yɛɛ baa. ___</li>
+                    <li>Abena ne ɔdwadini no tenaa aseɛ wɔ cedi aduonu. ___</li>
+                    <li>Abena tɔɔ fufu ne nkwan wɔ chop bar. ___</li>
+                    <li>Ɔdwadini no kaa "Bra bio!" wɔ awieeɛ. ___</li>
+                </ol>
+                <details style="margin-top: 0.6rem; cursor: pointer;"><summary style="color: #2A9D8F; font-size: 0.8rem; font-weight: 600;">Answers</summary>
+                <div style="margin-top: 0.5rem; font-size: 0.88rem; color: #1e3a38; line-height: 1.8;">
+                    1. <strong>F</strong> — Ɛyɛ Memeneda, na Yawoada. &nbsp;|&nbsp;
+                    2. <strong>T</strong> — she was a female trader (ɔdwadini baa). &nbsp;|&nbsp;
+                    3. <strong>F</strong> — they agreed at cedi du nsia (16), not aduonu (20). &nbsp;|&nbsp;
+                    4. <strong>T</strong>. &nbsp;|&nbsp;
+                    5. <strong>T</strong>.
+                </div>
+                </details>
+            </div>
+
+            <!-- Q7: Think beyond -->
+            <div style="background: white; border-radius: 20px; padding: 1rem 1.2rem; margin-bottom: 0rem; border-left: 5px solid #E76F51;">
+                <p style="font-size: 0.75rem; font-weight: 700; color: #E76F51; text-transform: uppercase; margin-bottom: 0.4rem;">🧠 Think Beyond</p>
+                <p style="font-size: 0.95rem; color: #1e3a38; line-height: 1.6;">Abena wanted to pay 15 cedis but paid 16 cedis. The trader wanted 20 but accepted 16. Who do you think got the better deal? Write 2–3 sentences explaining your answer in English or Twi.</p>
+                <details style="margin-top: 0.6rem; cursor: pointer;"><summary style="color: #2A9D8F; font-size: 0.8rem; font-weight: 600;">Discussion points</summary>
+                <div style="margin-top: 0.5rem; font-size: 0.88rem; color: #1e3a38; line-height: 1.8;">
+                    There is no single right answer — this is intentional! Some points to consider:<br>
+                    • <strong>Abena</strong> came closest to her target (she was 1 cedi away from 15; the trader was 4 cedis away from 20).<br>
+                    • <strong>The trader</strong> kept the sale going and earned a loyal customer ("Bra bio!") — worth more than 4 cedis in the long run.<br>
+                    • Good bargaining is not about winning — it is about both sides feeling satisfied. <em>Wɔte aseɛ</em> — they agreed.
+                </div>
+                </details>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SECTION B: VOCABULARY - FOOD ITEMS -->
+    <div class="section-card" id="sectionB">
+        <div class="section-title">
+            <span class="section-letter">B</span>
+            <div>
+                <h2>Aduane — Food Items</h2>
+                <span class="subtitle">Items marked ★ were introduced in earlier chapters — review them here in shopping context</span>
+            </div>
+        </div>
+
+        <img src="https://raw.githubusercontent.com/speakghana912/speak-ghana/main/chapterfive/chapter5-chopbar.jpg" alt="Inside a Ghanaian chop bar" class="lesson-image">
+        <p class="lesson-image-caption">A chop bar — where these food words become real orders</p>
+
+        <table class="grammar-table">
+            <tr><th>English</th><th>Twi</th><th>Notes</th></tr>
+            <tr><td>Food (general)</td><td><strong>aduane</strong></td><td>General word for food ★</td></tr>
+            <tr><td>Fufu</td><td><strong>fufu</strong></td><td>★ Chapter 3</td></tr>
+            <tr><td>Banku</td><td><strong>banku</strong></td><td>★ Chapter 3</td></tr>
+            <tr><td>Kenkey</td><td><strong>dɔkono</strong></td><td>★ Chapter 3</td></tr>
+            <tr><td>Yam</td><td><strong>bayere</strong></td><td>★ Chapter 4 audio</td></tr>
+            <tr><td>Plantain</td><td><strong>bɔdeɛ / borɔdeɛ</strong></td><td>Ripe plantain is very common</td></tr>
+            <tr><td>Rice</td><td><strong>ɛmo</strong></td><td>★ Chapter 3</td></tr>
+            <tr><td>Beans</td><td><strong>adua</strong></td><td>Common in waakye</td></tr>
+            <tr><td>Pepper</td><td><strong>mako</strong></td><td>★ Chapter 3</td></tr>
+            <tr><td>Onion</td><td><strong>gyene</strong></td><td>New this chapter</td></tr>
+            <tr><td>Tomato</td><td><strong>ntoosi</strong></td><td>Also called "tomato" (borrowed)</tr>
+            <tr><td>Garden eggs</td><td><strong>ntowaa / nyaadowa</strong></td><td>Small white/purple eggplants</td></tr>
+            <tr><td>Okra</td><td><strong>nkruma</strong></td><td>Used in soups and stews</td></tr>
+            <tr><td>Fish</td><td><strong>nsuomunam</strong></td><td>Literally "water meat" ★ Chapter 3</td></tr>
+            <tr><td>Chicken</td><td><strong>akokɔ</strong></td><td>Very popular at chop bars</td></tr>
+            <tr><td>Meat (general)</td><td><strong>nam</strong></td><td>Can specify: akokɔ nam (chicken meat)</td></tr>
+            <tr><td>Eggs</td><td><strong>nkosua</strong></td><td>★ Chapter 3</td></tr>
+            <tr><td>Water</td><td><strong>nsuo</strong></td><td>★ Chapter 3</td></tr>
+            <tr><td>Palm oil</td><td><strong>ngo</strong></td><td>Essential in Ghanaian cooking</td></tr>
+            <tr><td>Salt</td><td><strong>nkyene</strong></td><td>★ Chapter 4</td></tr>
+            <tr><td>Sugar</td><td><strong>asikyire</strong></td><td>For tea and drinks</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Non-Food Items — Nneɛma a Ɛnyɛ Aduane</h3>
+        <table class="grammar-table">
+            <tr><th>English</th><th>Twi</th><th>Notes</th></tr>
+            <tr><td>Cloth / Fabric</td><td><strong>ntoma</strong></td><td>For clothing and kente</td></tr>
+            <tr><td>Traditional cloth</td><td><strong>atadeɛ</strong></td><td>Formal/ceremonial wear</td></tr>
+            <tr><td>Shoes / Sandals</td><td><strong>mpaboa</strong></td><td>General word for footwear</td></tr>
+            <tr><td>Bag</td><td><strong>kotoku</strong></td><td>Also used for shopping bags</td></tr>
+            <tr><td>Basket</td><td><strong>kɛntɛn</strong></td><td>Traditional woven basket</td></tr>
+            <tr><td>Soap</td><td><strong>samina</strong></td><td>Also asamina</td></tr>
+            <tr><td>Sponge</td><td><strong>sapɔ</strong></td><td>Bathing sponge</td></tr>
+            <tr><td>Toothbrush</td><td><strong>ahohyea dua</strong></td><td>Literally "teeth-cleaning stick"</td></tr>
+            <tr><td>Toothpaste</td><td><strong>ahohyea nsu</strong></td><td>Literally "teeth-cleaning water"</td></tr>
+            <tr><td>Phone credit / Airtime</td><td><strong>airtime</strong></td><td>Borrowed — used as-is</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Market Places and People — Gua ne Nnipa</h3>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">edwam</span><span class="eng-def">market</span></div>
+            <div class="vocab-item"><span class="twi-word">ɔdwadini</span><span class="eng-def">trader / seller (male)</span></div>
+            <div class="vocab-item"><span class="twi-word">ɔdwadini baa</span><span class="eng-def">trader / seller (female)</span></div>
+            <div class="vocab-item"><span class="twi-word">dwadifoɔ</span><span class="eng-def">traders (plural)</span></div>
+            <div class="vocab-item"><span class="twi-word">ɔtɔfo</span><span class="eng-def">buyer / customer</span></div>
+            <div class="vocab-item"><span class="twi-word">chop bar</span><span class="eng-def">local restaurant</span></div>
+            <div class="vocab-item"><span class="twi-word">buul</span><span class="eng-def">store / shop</span></div>
+        </div>
+    </div>
+
+    <!-- SECTION C: MONEY AND PRICES -->
+    <div class="section-card" id="sectionC">
+        <div class="section-title">
+            <span class="section-letter">C</span>
+            <div>
+                <h2>Sika ne Boɔ — Money and Prices</h2>
+                <span class="subtitle">Ghana Cedis and Pesewas — using your Chapter 4 numbers</span>
+            </div>
+        </div>
+
+        <table class="grammar-table">
+            <tr><th>Amount</th><th>Twi</th><th>Type</th></tr>
+            <tr><td>1 pesewa</td><td><strong>pesewa baako</strong></td><td>Coin (rarely used alone)</td></tr>
+            <tr><td>10 pesewas</td><td><strong>pesewa du</strong></td><td>Coin</td></tr>
+            <tr><td>20 pesewas</td><td><strong>pesewa aduonu</strong></td><td>Coin</td></tr>
+            <tr><td>50 pesewas</td><td><strong>pesewa aduonum</strong></td><td>Coin</td></tr>
+            <tr><td>1 cedi</td><td><strong>cedi baako</strong></td><td>Note</td></tr>
+            <tr><td>5 cedis</td><td><strong>cedi ɛnum</strong></td><td>Note</td></tr>
+            <tr><td>10 cedis</td><td><strong>cedi du</strong></td><td>Note</td></tr>
+            <tr><td>20 cedis</td><td><strong>cedi aduonu</strong></td><td>Note</td></tr>
+            <tr><td>50 cedis</td><td><strong>cedi aduonum</strong></td><td>Note</td></tr>
+            <tr><td>100 cedis</td><td><strong>cedi ɔha</strong></td><td>Note</td></tr>
+            <tr><td>200 cedis</td><td><strong>cedi ahanu</strong></td><td>Note</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">How to Say Prices</h3>
+        <p style="margin-bottom: 0.8rem; color: #555;">Pattern: <strong>Ɛyɛ cedi [number]</strong> — It is [number] cedis</p>
+        <div class="examples-list">
+            <div class="example-item">Ɛyɛ cedi ɛnum. — It is 5 cedis.</div>
+            <div class="example-item">Ɛyɛ cedi aduonu. — It is 20 cedis.</div>
+            <div class="example-item">Ɛyɛ cedi aduonum. — It is 50 cedis.</div>
+            <div class="example-item">Ɛyɛ cedi ɔha. — It is 100 cedis.</div>
+            <div class="example-item">Ɛyɛ cedi aduonu ne pesewa aduonum. — It is 20 cedis 50 pesewas.</div>
+            <div class="example-item">Ɛyɛ cedi ɛnum ne pesewa aduonu num. — It is 5 cedis 75 pesewas.</div>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Key Money Verbs</h3>
+        <table class="grammar-table">
+            <tr><th>Verb</th><th>Meaning</th><th>Example</th></tr>
+            <tr><td><strong>tɔ</strong></td><td>buy</td><td>Metɔ aduane. (I buy food.)</td></tr>
+            <tr><td><strong>tɔn</strong></td><td>sell</td><td>Ɔtɔn ntoma. (She sells cloth.)</td></tr>
+            <tr><td><strong>tua</strong></td><td>pay</td><td>Metua cedi no. (I pay the money.)</td></tr>
+            <tr><td><strong>gye</strong></td><td>receive / take</td><td>Megye cedi no. (I receive the money.)</td></tr>
+            <tr><td><strong>ma</strong></td><td>give</td><td>Ma me cedi no. (Give me the money.)</td></tr>
+            <tr><td><strong>boɔ</strong></td><td>price / cost</td><td>Boɔ no yɛ sɛn? (What is the price?)</td></tr>
+        </table>
+    </div>
+
+    <!-- SECTION D: SHOPPING PHRASES -->
+    <div class="section-card" id="sectionD">
+        <div class="section-title">
+            <span class="section-letter">D</span>
+            <div>
+                <h2>Nsɛmfua a Ɛho Hia — Key Shopping Phrases</h2>
+                <span class="subtitle">Greet first, always — then ask</span>
+            </div>
+        </div>
+
+        <div class="grammar-corner">
+            <h3>Always Greet Before Asking a Price</h3>
+            <p>In a Ghanaian market, you MUST greet before asking anything. Skipping the greeting is rude.</p>
+            <div class="examples-list" style="margin-top: 0.8rem;">
+                <div class="example-item">Maakye! — Good morning (before noon)</div>
+                <div class="example-item">Maaha! — Good afternoon</div>
+                <div class="example-item">Maadwo! — Good evening</div>
+                <div class="example-item">Wo ho te sɛn? — How are you?</div>
+            </div>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Asking About Prices</h3>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="twi">Wei yɛ sɛn?</div><div class="eng">How much is this?</div></div>
+            <div class="phrase-card"><div class="twi">Ɛyɛ sɛn?</div><div class="eng">How much is it?</div></div>
+            <div class="phrase-card"><div class="twi">Boɔ no yɛ sɛn?</div><div class="eng">What is the price?</div></div>
+            <div class="phrase-card"><div class="twi">Wɔtɔn wei sɛn?</div><div class="eng">How much do they sell this for?</div></div>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Pointing and Choosing</h3>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">Wei</span><span class="eng-def">This (right here)</span></div>
+            <div class="vocab-item"><span class="twi-word">Hɔ</span><span class="eng-def">That (over there)</span></div>
+            <div class="vocab-item"><span class="twi-word">Wei ara</span><span class="eng-def">This very one</span></div>
+            <div class="vocab-item"><span class="twi-word">Hɔ ara</span><span class="eng-def">That very one</span></div>
+            <div class="vocab-item"><span class="twi-word">Kyerɛ me...</span><span class="eng-def">Show me...</span></div>
+            <div class="vocab-item"><span class="twi-word">Mehwehwɛ...</span><span class="eng-def">I am looking for...</span></div>
+            <div class="vocab-item"><span class="twi-word">Wowɔ...?</span><span class="eng-def">Do you have...?</span></div>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Quantity Words</h3>
+        <div class="vocab-grid">
+            <div class="vocab-item"><span class="twi-word">kakra</span><span class="eng-def">a little / small amount</span></div>
+            <div class="vocab-item"><span class="twi-word">pii</span><span class="eng-def">a lot / much</span></div>
+            <div class="vocab-item"><span class="twi-word">nyinaa</span><span class="eng-def">all / everything</span></div>
+            <div class="vocab-item"><span class="twi-word">sɛkɔ baako</span><span class="eng-def">one bag (of water etc.)</span></div>
+            <div class="vocab-item"><span class="twi-word">dɔnhwere</span><span class="eng-def">a bunch / cluster</span></div>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Bargaining Phrases — Atɛ no ho Kasa</h3>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="twi">Ɛyɛ dɔ! / Boɔ no wɔ soro!</div><div class="eng">It is expensive! / The price is high!</div></div>
+            <div class="phrase-card"><div class="twi">Ɛyɛ dɔɔ so. / Boɔ no wɔ soro paa.</div><div class="eng">It is too expensive. / The price is very high.</div></div>
+            <div class="phrase-card"><div class="twi">Te boɔ no so kakra.</div><div class="eng">Reduce the price a little.</div></div>
+            <div class="phrase-card"><div class="twi">Yɛ no kakra.</div><div class="eng">Make it a little less.</div></div>
+            <div class="phrase-card"><div class="twi">Ɛno ne nea metumi atua.</div><div class="eng">That is all I can pay.</div></div>
+            <div class="phrase-card"><div class="twi">Ɛyɛ den ma me.</div><div class="eng">It is too much for me.</div></div>
+            <div class="phrase-card"><div class="twi">Yoo, mate ase.</div><div class="eng">OK, I understand / agreed.</div></div>
+            <div class="phrase-card"><div class="twi">Metua no.</div><div class="eng">I will pay it.</div></div>
+            <div class="phrase-card"><div class="twi">Fa firi me.</div><div class="eng">Give me on credit.</div></div>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Ending the Transaction</h3>
+        <div class="phrase-grid">
+            <div class="phrase-card"><div class="twi">Medaase.</div><div class="eng">Thank you.</div></div>
+            <div class="phrase-card"><div class="twi">Medaase paa!</div><div class="eng">Thank you very much!</div></div>
+            <div class="phrase-card"><div class="twi">Yɛnda ase.</div><div class="eng">It is my pleasure (seller's response).</div></div>
+            <div class="phrase-card"><div class="twi">Bra bio!</div><div class="eng">Come again!</div></div>
+            <div class="phrase-card"><div class="twi">Nante yie!</div><div class="eng">Walk well / Go safely!</div></div>
+        </div>
+    </div>
+
+    <!-- SECTION E: SHOPPING SITUATIONS -->
+    <div class="section-card" id="sectionE">
+        <div class="section-title">
+            <span class="section-letter">E</span>
+            <div>
+                <h2>Shopping Situations — Dwumadi Mu</h2>
+                <span class="subtitle">Chop bar, market, airtime, water, and produce</span>
+            </div>
+        </div>
+
+        <h3 style="color: #E76F51; margin-bottom: 0.5rem;">At the Chop Bar — Wɔ Chop Bar</h3>
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>English</th></tr>
+            <tr><td>Aduane wɔ hɔ?</td><td>Is there food?</td></tr>
+            <tr><td>Dɛn na ɛwɔ hɔ nnɛ?</td><td>What is available today?</td></tr>
+            <tr><td>Mepɛ fufu ne nkwan.</td><td>I want fufu and soup.</td></tr>
+            <tr><td>Ma me nsu kakra.</td><td>Give me a little water.</td></tr>
+            <tr><td>Adane no yɛ dɛ!</td><td>The food is delicious!</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">At the Market — Wɔ Edwam</h3>
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>English</th></tr>
+            <tr><td>Mehwehwɛ ntoma fɛfɛ.</td><td>I am looking for beautiful cloth.</td></tr>
+            <tr><td>Wɔtɔn ntoma wɔ he?</td><td>Where do they sell cloth?</td></tr>
+            <tr><td>Wowɔ kɛseɛ? / Wowɔ ketewa?</td><td>Do you have a bigger one? / A smaller one?</td></tr>
+            <tr><td>Kyerɛ me kɔla foforo.</td><td>Show me another color.</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Buying Airtime — Airtime Tɔ</h3>
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>English</th></tr>
+            <tr><td>Mepɛ airtime.</td><td>I want airtime.</td></tr>
+            <tr><td>Wopɛ MTN, Vodafone, ana AirtelTigo?</td><td>Do you want MTN, Vodafone, or AirtelTigo?</td></tr>
+            <tr><td>Fa me nka.</td><td>Give me the credit.</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Buying Pure Water — Nsu Tɔ</h3>
+        <table class="grammar-table">
+            <tr><th>Twi</th><th>English</th></tr>
+            <tr><td>Mepɛ nsuo.</td><td>I want water.</td></tr>
+            <tr><td>Nsuo sɛkɔ baako.</td><td>One bag of water.</td></tr>
+            <tr><td>Ɛyɛ pesewa aduonum.</td><td>It is 50 pesewas.</td></tr>
+        </table>
+
+        <div class="cultural-note">
+            🌍 <strong>Pure water sachets:</strong> In Ghana, water is sold in small plastic sachets called "pure water" or "sachet water." You bite a corner and drink. They are everywhere — markets, streets, schools, churches.
+        </div>
+    </div>
+
+    <!-- SECTION F: GRAMMAR CORNER -->
+    <div class="section-card" id="sectionF">
+        <div class="section-title">
+            <span class="section-letter">F</span>
+            <div>
+                <h2>Grammar Corner — The Three Shopping Verbs</h2>
+                <span class="subtitle">tɔ (buy), tɔn (sell), tua (pay) — master these three</span>
+            </div>
+        </div>
+
+        <div class="grammar-corner">
+            <h3>The Verb "tɔ" — To Buy</h3>
+            <p style="margin: 0.5rem 0;">Follows the same pronoun-prefix pattern you learned in Chapter 3:</p>
+        </div>
+        <table class="grammar-table">
+            <tr><th>Pronoun + tɔ</th><th>Contracted</th><th>Meaning</th></tr>
+            <tr><td>me + tɔ</td><td><strong>metɔ</strong></td><td>I buy</td></tr>
+            <tr><td>wo + tɔ</td><td><strong>wotɔ</strong></td><td>you buy</td></tr>
+            <tr><td>ɔ + tɔ</td><td><strong>ɔtɔ</strong></td><td>he / she buys</td></tr>
+            <tr><td>yɛn + tɔ</td><td><strong>yɛtɔ</strong></td><td>we buy</td></tr>
+            <tr><td>mo + tɔ</td><td><strong>motɔ</strong></td><td>you (plural) buy</td></tr>
+            <tr><td>wɔn + tɔ</td><td><strong>wɔntɔ</strong></td><td>they buy</td></tr>
+        </table>
+
+        <div class="grammar-corner" style="margin-top: 1.5rem;">
+            <h3>The Verb "tɔn" — To Sell</h3>
+        </div>
+        <table class="grammar-table">
+            <tr><th>Pronoun + tɔn</th><th>Contracted</th><th>Meaning</th></tr>
+            <tr><td>me + tɔn</td><td><strong>metɔn</strong></td><td>I sell</td></tr>
+            <tr><td>wo + tɔn</td><td><strong>wotɔn</strong></td><td>you sell</td></tr>
+            <tr><td>ɔ + tɔn</td><td><strong>ɔtɔn</strong></td><td>he / she sells</td></tr>
+            <tr><td>yɛn + tɔn</td><td><strong>yɛtɔn</strong></td><td>we sell</td></tr>
+            <tr><td>mo + tɔn</td><td><strong>motɔn</strong></td><td>you (plural) sell</td></tr>
+            <tr><td>wɔn + tɔn</td><td><strong>wɔntɔn</strong></td><td>they sell</td></tr>
+        </table>
+
+        <div class="grammar-corner" style="margin-top: 1.5rem;">
+            <h3>The Verb "tua" — To Pay</h3>
+        </div>
+        <table class="grammar-table">
+            <tr><th>Pronoun + tua</th><th>Contracted</th><th>Meaning</th></tr>
+            <tr><td>me + tua</td><td><strong>metua</strong></td><td>I pay</td></tr>
+            <tr><td>wo + tua</td><td><strong>wotua</strong></td><td>you pay</td></tr>
+            <tr><td>ɔ + tua</td><td><strong>ɔtua</strong></td><td>he / she pays</td></tr>
+            <tr><td>yɛn + tua</td><td><strong>yɛtua</strong></td><td>we pay</td></tr>
+            <tr><td>mo + tua</td><td><strong>motua</strong></td><td>you (plural) pay</td></tr>
+            <tr><td>wɔn + tua</td><td><strong>wɔntua</strong></td><td>they pay</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Imperatives — Polite Commands</h3>
+        <p style="margin-bottom: 0.8rem; color: #555;">At the market you constantly give and receive polite commands. These are imperative forms — the verb used directly without a pronoun subject:</p>
+        <div class="examples-list">
+            <div class="example-item"><strong>Ma me</strong> nsuo. — Give me water.</div>
+            <div class="example-item"><strong>Fa</strong> sika no. — Take the money.</div>
+            <div class="example-item"><strong>Kyerɛ me</strong> wei. — Show me this.</div>
+            <div class="example-item"><strong>Te</strong> boɔ no so. — Reduce the price.</div>
+            <div class="example-item"><strong>Bra</strong> bio. — Come again.</div>
+            <div class="example-item"><strong>Nante</strong> yie. — Walk well.</div>
+        </div>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Negative Shopping Sentences</h3>
+        <p style="margin-bottom: 0.8rem; color: #555;">Add the <strong>n-</strong> prefix (from Chapter 3) to shopping verbs:</p>
+        <table class="grammar-table">
+            <tr><th>Positive</th><th>Negative</th></tr>
+            <tr><td>Metɔ. (I buy.)</td><td><strong>Mentɔ.</strong> (I do not buy.)</td></tr>
+            <tr><td>Metua. (I pay.)</td><td><strong>Mentua.</strong> (I do not pay.)</td></tr>
+            <tr><td>Mepɛ wei. (I want this.)</td><td><strong>Menpɛ wei.</strong> (I do not want this.)</td></tr>
+            <tr><td>Metɔ tomato nnɛ. (I buy tomatoes today.)</td><td><strong>Mentɔ</strong> tomato nnɛ. (I am not buying tomatoes today.)</td></tr>
+        </table>
+
+        <h3 style="color: #E76F51; margin: 1.5rem 0 0.5rem;">Word Order in Shopping Sentences</h3>
+        <div class="grammar-corner">
+            <p><strong>Pattern: Subject + Verb + Object + Quantity / Price</strong></p>
+            <div class="examples-list" style="margin-top: 0.8rem;">
+                <div class="example-item">Me + tɔ + tomato + kakra → <strong>Metɔ tomato kakra.</strong></div>
+                <div class="example-item">Me + pɛ + aburoo + mmienu → <strong>Mepɛ aburoo mmienu.</strong></div>
+                <div class="example-item">Ɛ + yɛ + sika + aduonu → <strong>Ɛyɛ cedi aduonu.</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION G: CHAPTER SUMMARY -->
+    <div class="section-card" id="sectionG">
+        <div class="section-title">
+            <span class="section-letter">G</span>
+            <h2>Chapter Summary — What You Have Learned</h2>
+        </div>
+        <ul class="question-list">
+            <li>30+ market items: food, non-food, and market people vocabulary</li>
+            <li>Ghana cedis and pesewas — saying prices clearly</li>
+            <li>How to greet before shopping — always greet first</li>
+            <li>Asking prices: Wei yɛ sɛn? / Ɛyɛ sɛn? / Boɔ no yɛ sɛn?</li>
+            <li>Bargaining politely: Te boɔ no so kakra / Ɛno ne nea metumi atua</li>
+            <li>Ending transactions: Medaase paa! / Bra bio! / Nante yie!</li>
+            <li>The three key shopping verbs: tɔ (buy), tɔn (sell), tua (pay)</li>
+            <li>Imperative forms for market commands</li>
+            <li>Negative shopping sentences using the n- prefix</li>
+        </ul>
+
+        <h3 style="color: #E76F51; margin: 1.4rem 0 0.6rem;">Can-Do Checklist</h3>
+        <ul class="checklist">
+            <li>I can name common market items and food in Twi</li>
+            <li>I can ask "Wei yɛ sɛn?" and understand the answer</li>
+            <li>I can say prices in Ghana cedis and pesewas</li>
+            <li>I can bargain politely without being rude</li>
+            <li>I can buy food at a chop bar in Twi</li>
+            <li>I can buy airtime, water, and produce from vendors</li>
+            <li>I can conjugate tɔ, tɔn, and tua across all six pronouns</li>
+            <li>I can use imperative forms: Ma me, Fa, Kyerɛ me, Te boɔ no so</li>
+        </ul>
+    </div>
+
+    <div class="footer-note">
+        <p>
+            <span class="btn-audio-sim" onclick="speakPhrase('Wei yɛ sɛn?')">🔊 Wei yɛ sɛn?</span>
+            <span class="btn-audio-sim" onclick="speakPhrase('Te boɔ no so kakra')">🔊 Te boɔ no so kakra</span>
+            <span class="btn-audio-sim" onclick="speakPhrase('Medaase paa')">🔊 Medaase paa!</span>
+        </p>
+        <p><strong>Chapter 5:</strong> Shopping, Prices and Bargaining — the language of Ghanaian markets. Kɔ so sua!</p>
+    </div>
+    <div style="text-align: center; margin-top: 0.8rem;">
+        <button class="close-btn" onclick="window.close()">Close chapter</button>
+    </div>
+
+</div>
+<p style="font-size: 0.7rem; text-align: center; margin-top: 1rem; color: #a2b9b0;">Speak Ghana — Chapter 5: Shopping, Prices and Bargaining | Dwumadi</p>
+</body>
+</html>

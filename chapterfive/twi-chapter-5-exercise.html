@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Speak Ghana • Chapter 5: Practice Exercises</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #0f2b2a, #1f7a6e); padding: 2rem 1.5rem; }
+        .container { max-width: 1100px; margin: 0 auto; background: white; border-radius: 40px; box-shadow: 0 25px 45px rgba(0,0,0,0.2); overflow: hidden; padding: 2rem; }
+        .chapter-header { border-bottom: 3px solid #2A9D8F; margin-bottom: 1.5rem; padding-bottom: 1rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+        h1 { font-size: 2rem; color: #2A9D8F; }
+        .chapter-badge { background: #E76F51; color: white; padding: 0.4rem 1rem; border-radius: 40px; font-size: 0.85rem; font-weight: 600; }
+        .sub { color: #4b6a5e; margin-top: 0.25rem; font-size: 1rem; }
+        .section-card { background: #FEF9F0; border-radius: 32px; padding: 1.6rem 2rem; margin-bottom: 2rem; border: 1px solid #f0e5d8; }
+        .section-card h2 { color: #2A9D8F; font-size: 1.4rem; margin-bottom: 1rem; border-left: 5px solid #E76F51; padding-left: 1rem; }
+        .section-card p, .section-card li { line-height: 1.6; color: #2d3e2a; }
+        .section-card ol, .section-card ul { padding-left: 1.8rem; margin: 0.6rem 0; }
+        .word-bank { background: #e3f2ed; border-radius: 16px; padding: 0.8rem 1.2rem; margin-bottom: 1rem; font-weight: 700; color: #1e3a38; text-align: center; font-size: 0.9rem; }
+        .fill-blank { background: white; padding: 0.8rem 1.2rem; border-radius: 16px; border: 1px dashed #2A9D8F; margin: 0.8rem 0; }
+        .fill-blank li, .fill-blank p { margin: 0.5rem 0; }
+        .blank { display: inline-block; min-width: 110px; border-bottom: 2px solid #E76F51; margin: 0 4px; padding: 0 4px; color: #2A9D8F; font-weight: 600; }
+        .matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem; margin: 1rem 0; background: white; padding: 1rem; border-radius: 20px; }
+        .matching-item { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+        .matching-item .twi { font-weight: 700; color: #2A9D8F; }
+        .matching-item .eng { color: #6f7a6e; }
+        .roleplay-box { background: #fff3e0; border-radius: 20px; padding: 1rem; margin: 0.8rem 0; }
+        .roleplay-box .speaker { font-weight: 700; color: #E76F51; }
+        .tip-box { background: #e8f4f1; border-radius: 20px; padding: 1rem; margin: 0.8rem 0; font-size: 0.88rem; }
+        .tip-box strong { color: #2A9D8F; }
+        .write-area { width: 100%; min-height: 100px; border: 1px dashed #2A9D8F; border-radius: 16px; padding: 1rem; font-family: inherit; font-size: 0.95rem; margin: 0.8rem 0; resize: vertical; }
+        .write-area:focus { outline: none; border-color: #E76F51; border-style: solid; }
+        .btn-answer { background: #2A9D8F20; border: 1px solid #2A9D8F; padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.75rem; cursor: pointer; color: #2A9D8F; font-weight: 600; }
+        .btn-answer:hover { background: #2A9D8F; color: white; }
+        .answer-box { display: none; background: #f0f7f4; padding: 0.8rem 1rem; border-radius: 16px; margin-top: 0.5rem; border-left: 4px solid #2A9D8F; line-height: 1.8; font-size: 0.88rem; }
+        .answer-box.show { display: block; }
+        .close-btn { background: #D4A373; color: white; border: none; padding: 0.6rem 1.8rem; border-radius: 50px; font-size: 0.9rem; cursor: pointer; }
+        footer { text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e0d9ce; color: #8f9b8a; font-size: 0.75rem; }
+        @media (max-width: 700px) { .container { padding: 1rem; } .section-card { padding: 1rem; } .matching-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="chapter-header">
+        <div>
+            <h1>Chapter 5 Practice</h1>
+            <p class="sub">Shopping, Prices and Bargaining — 10 Exercises</p>
+        </div>
+        <div class="chapter-badge">Edwam mu — In the Market!</div>
+    </div>
+
+    <!-- EXERCISE 1 -->
+    <div class="section-card">
+        <h2>Exercise 1: Match the Market Item</h2>
+        <p>Match each Twi word to its English meaning.</p>
+        <div class="matching-grid">
+            <div class="matching-item"><span class="twi">1. ntoma</span><span class="eng">A. onion</span></div>
+            <div class="matching-item"><span class="twi">2. aburoo</span><span class="eng">B. cloth</span></div>
+            <div class="matching-item"><span class="twi">3. gyene</span><span class="eng">C. orange</span></div>
+            <div class="matching-item"><span class="twi">4. mako</span><span class="eng">D. fish</span></div>
+            <div class="matching-item"><span class="twi">5. nsuomunam</span><span class="eng">E. pepper</span></div>
+            <div class="matching-item"><span class="twi">6. nsuo</span><span class="eng">F. water</span></div>
+            <div class="matching-item"><span class="twi">7. bayere</span><span class="eng">G. yam</span></div>
+            <div class="matching-item"><span class="twi">8. ntoosi</span><span class="eng">H. tomato</span></div>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex1')">Show Answers</button>
+        <div id="ex1" class="answer-box">1-B &nbsp;|&nbsp; 2-C &nbsp;|&nbsp; 3-A &nbsp;|&nbsp; 4-E &nbsp;|&nbsp; 5-D &nbsp;|&nbsp; 6-F &nbsp;|&nbsp; 7-G &nbsp;|&nbsp; 8-H</div>
+    </div>
+
+    <!-- EXERCISE 2 -->
+    <div class="section-card">
+        <h2>Exercise 2: Write the Price in Twi</h2>
+        <p>Write each price as a complete Twi phrase using "Ɛyɛ cedi..."</p>
+        <div class="fill-blank">
+            <ol>
+                <li>5 cedis → <span class="blank">______</span></li>
+                <li>15 cedis → <span class="blank">______</span></li>
+                <li>23 cedis → <span class="blank">______</span></li>
+                <li>37 cedis → <span class="blank">______</span></li>
+                <li>48 cedis → <span class="blank">______</span></li>
+                <li>52 cedis → <span class="blank">______</span></li>
+                <li>64 cedis → <span class="blank">______</span></li>
+                <li>76 cedis → <span class="blank">______</span></li>
+                <li>89 cedis → <span class="blank">______</span></li>
+                <li>100 cedis → <span class="blank">______</span></li>
+            </ol>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex2')">Show Answers</button>
+        <div id="ex2" class="answer-box">
+            1. Ɛyɛ cedi ɛnum &nbsp;|&nbsp; 2. Ɛyɛ cedi du nnum &nbsp;|&nbsp; 3. Ɛyɛ cedi aduonu mmiɛnsa &nbsp;|&nbsp;
+            4. Ɛyɛ cedi aduasa nson &nbsp;|&nbsp; 5. Ɛyɛ cedi aduanan nwɔtwe &nbsp;|&nbsp; 6. Ɛyɛ cedi aduonum mmienu &nbsp;|&nbsp;
+            7. Ɛyɛ cedi aduosia ɛnan &nbsp;|&nbsp; 8. Ɛyɛ cedi aduoson nsia &nbsp;|&nbsp;
+            9. Ɛyɛ cedi aduonwɔtwe nkron &nbsp;|&nbsp; 10. Ɛyɛ cedi ɔha
+        </div>
+    </div>
+
+    <!-- EXERCISE 3 -->
+    <div class="section-card">
+        <h2>Exercise 3: Complete the Market Dialogue</h2>
+        <p>Fill in the blanks with the correct Twi words.</p>
+        <div class="word-bank">Maakye &nbsp;•&nbsp; yɛ &nbsp;•&nbsp; cedi aduasa &nbsp;•&nbsp; Boɔ no wɔ soro &nbsp;•&nbsp; Te boɔ no so &nbsp;•&nbsp; kyɛw &nbsp;•&nbsp; aduonu nwɔtwe &nbsp;•&nbsp; Medaase &nbsp;•&nbsp; sɛn</div>
+        <div class="fill-blank">
+            <p><strong>A:</strong> <span class="blank">_______</span>! Wo ho te sɛn?</p>
+            <p><strong>B:</strong> Maakye! Me ho <span class="blank">_______</span>. Dɛn na wopɛ?</p>
+            <p><strong>A:</strong> Mepɛ fufu. Ɛyɛ <span class="blank">_______</span>?</p>
+            <p><strong>B:</strong> Ɛyɛ <span class="blank">_______</span>.</p>
+            <p><strong>A:</strong> <span class="blank">_______</span>! <span class="blank">_______</span> kakra.</p>
+            <p><strong>B:</strong> Mepa wo <span class="blank">_______</span>, <span class="blank">_______</span>.</p>
+            <p><strong>A:</strong> Yoo, metua. <span class="blank">_______</span>! Bra bio!</p>
+        </div>
+    </div>
+
+    <!-- EXERCISE 4 -->
+    <div class="section-card">
+        <h2>Exercise 4: Verb Table — Fill in the Gaps</h2>
+        <p>Complete the conjugation table for the three shopping verbs.</p>
+        <div class="fill-blank">
+            <table style="width:100%; border-collapse:collapse; font-size:0.88rem;">
+                <tr style="background:#2A9D8F;color:white;"><th style="padding:8px;">Pronoun</th><th style="padding:8px;">tɔ (buy)</th><th style="padding:8px;">tɔn (sell)</th><th style="padding:8px;">tua (pay)</th></tr>
+                <tr><td style="padding:8px;">me</td><td style="padding:8px;"><span class="blank">_____</span></td><td style="padding:8px;"><span class="blank">_____</span></td><td style="padding:8px;"><span class="blank">_____</span></td></tr>
+                <tr style="background:#f9f3e8;"><td style="padding:8px;">wo</td><td style="padding:8px;"><span class="blank">_____</span></td><td style="padding:8px;"><span class="blank">_____</span></td><td style="padding:8px;"><span class="blank">_____</span></td></tr>
+                <tr><td style="padding:8px;">ɔ</td><td style="padding:8px;"><span class="blank">_____</span></td><td style="padding:8px;"><span class="blank">_____</span></td><td style="padding:8px;"><span class="blank">_____</span></td></tr>
+                <tr style="background:#f9f3e8;"><td style="padding:8px;">yɛn</td><td style="padding:8px;"><span class="blank">_____</span></td><td style="padding:8px;"><span class="blank">_____</span></td><td style="padding:8px;"><span class="blank">_____</span></td></tr>
+                <tr><td style="padding:8px;">mo</td><td style="padding:8px;"><span class="blank">_____</span></td><td style="padding:8px;"><span class="blank">_____</span></td><td style="padding:8px;"><span class="blank">_____</span></td></tr>
+                <tr style="background:#f9f3e8;"><td style="padding:8px;">wɔn</td><td style="padding:8px;"><span class="blank">_____</span></td><td style="padding:8px;"><span class="blank">_____</span></td><td style="padding:8px;"><span class="blank">_____</span></td></tr>
+            </table>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex4')">Show Answers</button>
+        <div id="ex4" class="answer-box">
+            me: metɔ / metɔn / metua &nbsp;|&nbsp; wo: wotɔ / wotɔn / wotua &nbsp;|&nbsp;
+            ɔ: ɔtɔ / ɔtɔn / ɔtua &nbsp;|&nbsp; yɛn: yɛtɔ / yɛtɔn / yɛtua &nbsp;|&nbsp;
+            mo: motɔ / motɔn / motua &nbsp;|&nbsp; wɔn: wɔntɔ / wɔntɔn / wɔntua
+        </div>
+    </div>
+
+    <!-- EXERCISE 5 -->
+    <div class="section-card">
+        <h2>Exercise 5: Positive or Negative?</h2>
+        <p>Make each sentence negative using the n- prefix.</p>
+        <div class="fill-blank">
+            <ol>
+                <li>Metɔ aduane. → <span class="blank">______</span></li>
+                <li>Wotua cedi no. → <span class="blank">______</span></li>
+                <li>Mepɛ wei. → <span class="blank">______</span></li>
+                <li>Ɔtɔn ntoma wɔ edwam. → <span class="blank">______</span></li>
+                <li>Yɛtɔ ntoosi nnɛ. → <span class="blank">______</span></li>
+            </ol>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex5')">Show Answers</button>
+        <div id="ex5" class="answer-box">
+            1. Mentɔ aduane. &nbsp;|&nbsp; 2. Wontua cedi no. &nbsp;|&nbsp; 3. Menpɛ wei. &nbsp;|&nbsp;
+            4. Ɔntɔn ntoma wɔ edwam. &nbsp;|&nbsp; 5. Yɛntɔ ntoosi nnɛ.
+        </div>
+    </div>
+
+    <!-- EXERCISE 6 -->
+    <div class="section-card">
+        <h2>Exercise 6: Translate to Twi</h2>
+        <div class="fill-blank">
+            <ol>
+                <li>How much is this? → <span class="blank">______</span></li>
+                <li>The price is high. → <span class="blank">______</span></li>
+                <li>Reduce the price a little. → <span class="blank">______</span></li>
+                <li>I will pay 20 cedis. → <span class="blank">______</span></li>
+                <li>Give me two oranges. → <span class="blank">______</span></li>
+                <li>Do you have tomatoes? → <span class="blank">______</span></li>
+                <li>I do not want this. → <span class="blank">______</span></li>
+                <li>It is my pleasure! → <span class="blank">______</span></li>
+            </ol>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex6')">Show Answers</button>
+        <div id="ex6" class="answer-box">
+            1. Wei yɛ sɛn? &nbsp;|&nbsp; 2. Boɔ no wɔ soro. &nbsp;|&nbsp; 3. Te boɔ no so kakra. &nbsp;|&nbsp;
+            4. Mɛtua cedi aduonu. &nbsp;|&nbsp; 5. Ma me aburoo mmienu. &nbsp;|&nbsp;
+            6. Wowɔ ntoosi? &nbsp;|&nbsp; 7. Menpɛ wei. &nbsp;|&nbsp; 8. Yɛnda aseɛ!
+        </div>
+    </div>
+
+    <!-- EXERCISE 7 -->
+    <div class="section-card">
+        <h2>Exercise 7: Match the Question to the Answer</h2>
+        <div class="matching-grid">
+            <div class="matching-item"><span class="twi">1. Wei yɛ sɛn?</span><span class="eng">A. Mepɛ MTN.</span></div>
+            <div class="matching-item"><span class="twi">2. Wopɛ network bɛn?</span><span class="eng">B. Ɛyɛ cedi aduonu.</span></div>
+            <div class="matching-item"><span class="twi">3. Dɛn na wopɛ?</span><span class="eng">C. Metua cedi no.</span></div>
+            <div class="matching-item"><span class="twi">4. Wobɛtua?</span><span class="eng">D. Mepɛ fufu ne nkwan.</span></div>
+            <div class="matching-item"><span class="twi">5. Wɔtɔn ntoma wɔ he?</span><span class="eng">E. Wɔtɔn wɔ Makola.</span></div>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex7')">Show Answers</button>
+        <div id="ex7" class="answer-box">1-B &nbsp;|&nbsp; 2-A &nbsp;|&nbsp; 3-D &nbsp;|&nbsp; 4-C &nbsp;|&nbsp; 5-E</div>
+    </div>
+
+    <!-- EXERCISE 8 -->
+    <div class="section-card">
+        <h2>Exercise 8: Your Shopping List</h2>
+        <p>Write a shopping list of 5 items you want to buy at the market. Include quantity and estimated price in Twi.</p>
+        <div class="fill-blank">
+            <p>1. Mepɛ _________________ (Ɛyɛ cedi _________________)</p>
+            <p>2. Mepɛ _________________ (Ɛyɛ cedi _________________)</p>
+            <p>3. Mepɛ _________________ (Ɛyɛ cedi _________________)</p>
+            <p>4. Mepɛ _________________ (Ɛyɛ cedi _________________)</p>
+            <p>5. Mepɛ _________________ (Ɛyɛ cedi _________________)</p>
+        </div>
+        <p style="margin-top: 0.5rem; font-size:0.88rem;">Now write the total: <strong>Ne nyinaa yɛ cedi _________________</strong></p>
+    </div>
+
+    <!-- EXERCISE 9 -->
+    <div class="section-card">
+        <h2>Exercise 9: What Does It Mean?</h2>
+        <p>Imagine you hear these at the market. What do they mean in English?</p>
+        <div class="fill-blank">
+            <ol>
+                <li>"Ɛyɛ cedi aduonu num." → <span class="blank">______</span></li>
+                <li>"Boɔ no wɔ soro! Yɛ no aduonu." → <span class="blank">______</span></li>
+                <li>"Mepa wo kyɛw, fa ma me." → <span class="blank">______</span></li>
+                <li>"Bra bio!" → <span class="blank">______</span></li>
+                <li>"Fa firi me." → <span class="blank">______</span></li>
+            </ol>
+        </div>
+        <button class="btn-answer" onclick="toggleAnswer('ex9')">Show Answers</button>
+        <div id="ex9" class="answer-box">
+            1. It is 25 cedis. &nbsp;|&nbsp; 2. The price is high! Make it 20 (cedis). &nbsp;|&nbsp;
+            3. Please, give me (it). &nbsp;|&nbsp; 4. Come again! &nbsp;|&nbsp; 5. Give me on credit.
+        </div>
+    </div>
+
+    <!-- EXERCISE 10 -->
+    <div class="section-card">
+        <h2>Exercise 10: Real Market Challenge — Write a Dialogue</h2>
+        <p>You are buying banku at a chop bar. The seller says it is 40 cedis. You want to pay 30 cedis. Write your bargaining dialogue (6–8 lines) below:</p>
+        <div class="roleplay-box">
+            <p><span class="speaker">You:</span> ___________________________</p>
+            <p><span class="speaker">Seller:</span> ___________________________</p>
+            <p><span class="speaker">You:</span> ___________________________</p>
+            <p><span class="speaker">Seller:</span> ___________________________</p>
+            <p><span class="speaker">You:</span> ___________________________</p>
+            <p><span class="speaker">Seller:</span> ___________________________</p>
+        </div>
+        <textarea class="write-area" placeholder="Write your dialogue here in Twi..."></textarea>
+        <div class="tip-box">
+            <strong>Tip:</strong> Start with a greeting. Use Boɔ no wɔ soro! and Te boɔ no so kakra. End with Medaase paa! / Yɛnda aseɛ!
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 1rem;">
+        <button class="close-btn" onclick="window.close()">Close</button>
+    </div>
+    <footer>Speak Ghana — Chapter 5: Shopping, Prices and Bargaining | Practice Exercises</footer>
+</div>
+<script>
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show');
+    }
+</script>
+</body>
+</html>

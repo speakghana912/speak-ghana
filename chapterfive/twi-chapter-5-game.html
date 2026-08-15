@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Edwam Challenge! | Chapter 5 Game</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(145deg, #0f2b2a 0%, #1f7a6e 100%);
+            min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+        }
+        .game-container {
+            max-width: 580px; width: 100%; background: #FDF8F2; border-radius: 36px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3); padding: 1.8rem; text-align: center;
+        }
+        .game-title { color: #2A9D8F; font-size: 1.6rem; font-weight: 800; margin-bottom: 0.2rem; }
+        .game-sub { color: #4b6a5e; font-size: 0.85rem; margin-bottom: 1.2rem; }
+        .mode-toggle { display: flex; background: white; border-radius: 50px; padding: 0.3rem; margin-bottom: 0.8rem; border: 1px solid #e2d9ce; flex-wrap: wrap; gap: 0.2rem; }
+        .mode-btn { flex: 1; min-width: 80px; padding: 0.5rem 0.6rem; border: none; background: transparent; border-radius: 40px; font-weight: 700; font-size: 0.78rem; color: #888; cursor: pointer; transition: 0.2s; }
+        .mode-btn.active { background: #2A9D8F; color: white; }
+        .stats-row { display: flex; justify-content: space-between; margin-bottom: 1.2rem; gap: 0.6rem; }
+        .stat-box { flex: 1; background: white; border-radius: 16px; padding: 0.6rem; border: 1px solid #e2d9ce; }
+        .stat-label { font-size: 0.65rem; color: #999; text-transform: uppercase; }
+        .stat-value { font-size: 1.3rem; font-weight: 800; color: #2A9D8F; }
+        .category-badge { display: inline-block; background: #D4A37320; color: #D4A373; border: 1px solid #D4A373; padding: 0.25rem 0.9rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.8rem; }
+        .timer-bar { background: #e0dbd0; border-radius: 30px; height: 10px; overflow: hidden; margin-bottom: 1.4rem; }
+        .timer-fill { background: linear-gradient(90deg, #2A9D8F, #D4A373); height: 100%; width: 100%; border-radius: 30px; transition: width 0.1s linear; }
+        .timer-fill.urgent { background: #E76F51; }
+        .question-card { background: white; border-radius: 28px; padding: 1.8rem 1.4rem; margin-bottom: 1.2rem; border: 2px solid #2A9D8F; min-height: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .question-prompt { font-size: 0.85rem; color: #888; margin-bottom: 0.5rem; }
+        .question-main { font-size: 1.7rem; font-weight: 800; color: #1e3a38; line-height: 1.3; }
+        .question-hint { font-size: 0.9rem; color: #E76F51; font-weight: 600; margin-top: 0.4rem; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.2rem; }
+        .option-btn { background: white; border: 2px solid #2A9D8F; color: #1e3a38; padding: 0.9rem 0.5rem; border-radius: 18px; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: 0.15s; line-height: 1.3; }
+        .option-btn:hover { background: #2A9D8F; color: white; transform: translateY(-2px); }
+        .option-btn.correct { background: #2A9D8F; color: white; border-color: #2A9D8F; }
+        .option-btn.incorrect { background: #E76F51; color: white; border-color: #E76F51; }
+        .option-btn:disabled { cursor: default; }
+        .feedback-text { font-size: 0.9rem; font-weight: 700; min-height: 1.3rem; margin-bottom: 0.6rem; }
+        .feedback-text.correct { color: #2A9D8F; }
+        .feedback-text.incorrect { color: #E76F51; }
+        .start-screen, .end-screen { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 1rem 0; }
+        .start-screen p, .end-screen p { color: #4b6a5e; font-size: 0.92rem; line-height: 1.5; }
+        .big-btn { background: linear-gradient(135deg, #2A9D8F, #1f7a6e); color: white; border: none; padding: 1rem 2.4rem; border-radius: 50px; font-size: 1.05rem; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(42,157,143,0.35); }
+        .big-btn:hover { transform: translateY(-2px); }
+        .end-score { font-size: 3rem; font-weight: 800; color: #2A9D8F; }
+        .end-streak { background: #D4A37320; color: #D4A373; padding: 0.4rem 1.2rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem; }
+        .hidden { display: none !important; }
+        @media (max-width: 420px) { .question-main { font-size: 1.3rem; } .option-btn { font-size: 0.8rem; } }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="game-title">🛒 Edwam Challenge!</div>
+    <div class="game-sub">Chapter 5 — Shopping, Prices & Bargaining</div>
+
+    <div class="mode-toggle">
+        <button class="mode-btn active" id="modeAllBtn" onclick="setMode('all')">🎯 All</button>
+        <button class="mode-btn" id="modeVocabBtn" onclick="setMode('vocab')">🥬 Items</button>
+        <button class="mode-btn" id="modePriceBtn" onclick="setMode('prices')">💰 Prices</button>
+        <button class="mode-btn" id="modePhraseBtn" onclick="setMode('phrases')">🗣️ Phrases</button>
+        <button class="mode-btn" id="modeVerbBtn" onclick="setMode('verbs')">⚡ Verbs</button>
+    </div>
+
+    <div class="start-screen" id="startScreen">
+        <p id="startDescription">15 rounds across all 4 categories — market items, prices, shopping phrases, and shopping verbs. How many can you get right?</p>
+        <button class="big-btn" onclick="startGame()">Start Shopping ▶</button>
+    </div>
+
+    <div class="hidden" id="gameScreen">
+        <div class="stats-row">
+            <div class="stat-box"><div class="stat-label">Score</div><div class="stat-value" id="scoreDisplay">0</div></div>
+            <div class="stat-box"><div class="stat-label">Streak</div><div class="stat-value" id="streakDisplay">0</div></div>
+            <div class="stat-box"><div class="stat-label">Round</div><div class="stat-value" id="roundDisplay">1/15</div></div>
+        </div>
+        <div id="categoryBadge" class="category-badge">🥬 Items</div>
+        <div class="timer-bar"><div class="timer-fill" id="timerFill"></div></div>
+        <div class="question-card">
+            <div class="question-prompt" id="questionPrompt">What is this in Twi?</div>
+            <div class="question-main" id="questionMain">tomato</div>
+            <div class="question-hint" id="questionHint"></div>
+        </div>
+        <div class="feedback-text" id="feedbackText"></div>
+        <div class="options-grid" id="optionsGrid"></div>
+    </div>
+
+    <div class="hidden end-screen" id="endScreen">
+        <div style="font-size: 2.5rem;">🛒</div>
+        <div>Your Score</div>
+        <div class="end-score" id="finalScore">0/15</div>
+        <div class="end-streak" id="finalStreak">Best streak: 0</div>
+        <p id="endMessage"></p>
+        <button class="big-btn" onclick="startGame()">Shop Again ↻</button>
+    </div>
+</div>
+
+<script>
+var VOCAB_DATA = [
+    { q: "ntoosi", prompt: "What does this word mean?", answer: "tomato", wrong: ["onion", "pepper", "garden eggs"] },
+    { q: "gyene", prompt: "What does this word mean?", answer: "onion", wrong: ["tomato", "salt", "beans"] },
+    { q: "nsuomunam", prompt: "What does this word mean?", answer: "fish", wrong: ["chicken", "meat", "eggs"] },
+    { q: "bayere", prompt: "What does this word mean?", answer: "yam", wrong: ["plantain", "rice", "beans"] },
+    { q: "bɔdeɛ", prompt: "What does this word mean?", answer: "plantain", wrong: ["yam", "banana", "garden eggs"] },
+    { q: "ntowaa", prompt: "What does this word mean?", answer: "garden eggs", wrong: ["okra", "pepper", "tomato"] },
+    { q: "nkruma", prompt: "What does this word mean?", answer: "okra", wrong: ["beans", "garden eggs", "tomato"] },
+    { q: "ngo", prompt: "What does this word mean?", answer: "palm oil", wrong: ["water", "salt", "sugar"] },
+    { q: "asikyire", prompt: "What does this word mean?", answer: "sugar", wrong: ["salt", "palm oil", "pepper"] },
+    { q: "nkyene", prompt: "What does this word mean?", answer: "salt", wrong: ["sugar", "pepper", "palm oil"] },
+    { q: "kɛntɛn", prompt: "What does this word mean?", answer: "basket", wrong: ["bag", "cloth", "soap"] },
+    { q: "samina", prompt: "What does this word mean?", answer: "soap", wrong: ["sponge", "toothbrush", "cloth"] },
+    { q: "ntoma", prompt: "What does this word mean?", answer: "cloth / fabric", wrong: ["basket", "shoes", "bag"] },
+    { q: "ɔdwadini baa", prompt: "What does this mean?", answer: "female trader", wrong: ["male trader", "customer", "buyer"] },
+    { q: "ɔtɔfo", prompt: "What does this word mean?", answer: "buyer / customer", wrong: ["seller", "female trader", "market"] }
+];
+
+var PRICE_DATA = [
+    { q: "cedi ɛnum", prompt: "What price is this?", answer: "5 cedis", wrong: ["15 cedis", "50 cedis", "4 cedis"] },
+    { q: "cedi aduonu", prompt: "What price is this?", answer: "20 cedis", wrong: ["12 cedis", "22 cedis", "200 cedis"] },
+    { q: "cedi aduonum", prompt: "What price is this?", answer: "50 cedis", wrong: ["45 cedis", "15 cedis", "500 cedis"] },
+    { q: "cedi ɔha", prompt: "What price is this?", answer: "100 cedis", wrong: ["10 cedis", "1000 cedis", "50 cedis"] },
+    { q: "pesewa aduonum", prompt: "What price is this?", answer: "50 pesewas", wrong: ["50 cedis", "5 pesewas", "500 pesewas"] },
+    { q: "cedi du nnum", prompt: "What price is this?", answer: "15 cedis", wrong: ["10 cedis", "25 cedis", "50 cedis"] },
+    { q: "cedi aduonu nwɔtwe", prompt: "What price is this?", answer: "28 cedis", wrong: ["18 cedis", "38 cedis", "22 cedis"] },
+    { q: "cedi aduasa", prompt: "What price is this?", answer: "30 cedis", wrong: ["13 cedis", "33 cedis", "300 cedis"] },
+    { q: "How do you say 20 cedis in Twi?", prompt: "Choose the correct Twi price:", answer: "cedi aduonu", wrong: ["cedi aduonum", "cedi aduonu baako", "cedi du mmienu"] },
+    { q: "How do you say 50 cedis in Twi?", prompt: "Choose the correct Twi price:", answer: "cedi aduonum", wrong: ["cedi aduonu", "cedi aduonum baako", "cedi ɔha"] }
+];
+
+var PHRASE_DATA = [
+    { q: "Wei yɛ sɛn?", prompt: "What does this phrase mean?", answer: "How much is this?", wrong: ["What do you want?", "Where is this?", "Is this good?"] },
+    { q: "Te boɔ no so kakra.", prompt: "What does this phrase mean?", answer: "Reduce the price a little.", wrong: ["The price is high.", "I want to pay less.", "Give me a discount."] },
+    { q: "Boɔ no wɔ soro.", prompt: "What does this phrase mean?", answer: "The price is high.", wrong: ["The price is low.", "That is expensive for me.", "Reduce the price."] },
+    { q: "Ɛno ne nea metumi atua.", prompt: "What does this phrase mean?", answer: "That is all I can pay.", wrong: ["I do not want to pay.", "The price is too high.", "Give me a better price."] },
+    { q: "Yɛnda aseɛ!", prompt: "What does this phrase mean?", answer: "It is my pleasure!", wrong: ["We thank you!", "Come again!", "Walk well!"] },
+    { q: "Fa firi me.", prompt: "What does this phrase mean?", answer: "Give me on credit.", wrong: ["Give me for free.", "Take this from me.", "Give me change."] },
+    { q: "Wowɔ ntoosi?", prompt: "What does this phrase mean?", answer: "Do you have tomatoes?", wrong: ["I want tomatoes.", "Where are the tomatoes?", "How much are the tomatoes?"] },
+    { q: "Bra bio!", prompt: "What does this phrase mean?", answer: "Come again!", wrong: ["Walk well!", "It is my pleasure!", "Thank you!"] },
+    { q: "Mehwehwɛ ntoma fɛfɛ.", prompt: "What does this sentence mean?", answer: "I am looking for beautiful cloth.", wrong: ["I want to buy cloth.", "Show me cloth.", "Do you have cloth?"] },
+    { q: "Yoo, mate aseɛ.", prompt: "What does this phrase mean?", answer: "OK, I understand / agreed.", wrong: ["OK, I will not pay.", "OK, that is too much.", "OK, come again."] }
+];
+
+var VERB_DATA = [
+    { q: "metɔ", prompt: "What does this verb form mean?", answer: "I buy", wrong: ["I sell", "I pay", "I want"] },
+    { q: "ɔtɔn", prompt: "What does this verb form mean?", answer: "he / she sells", wrong: ["he / she buys", "he / she pays", "they sell"] },
+    { q: "yɛtua", prompt: "What does this verb form mean?", answer: "we pay", wrong: ["we buy", "we sell", "they pay"] },
+    { q: "wɔntɔ", prompt: "What does this verb form mean?", answer: "they buy", wrong: ["they sell", "they pay", "you (plural) buy"] },
+    { q: "mentɔ", prompt: "What does this verb form mean?", answer: "I do not buy", wrong: ["I buy", "I do not sell", "I do not pay"] },
+    { q: "menpɛ wei", prompt: "What does this phrase mean?", answer: "I do not want this", wrong: ["I want this", "I do not have this", "I do not like this"] },
+    { q: "How do you say 'She sells cloth' in Twi?", prompt: "Choose the correct sentence:", answer: "Ɔtɔn ntoma.", wrong: ["Ɔtɔ ntoma.", "Ɔtua ntoma.", "Ɔpɛ ntoma."] },
+    { q: "How do you say 'I will pay' in Twi?", prompt: "Choose the correct sentence:", answer: "Metua no.", wrong: ["Metɔ no.", "Mepɛ tua.", "Mede no."] },
+    { q: "Ma me aburoo mmienu.", prompt: "What does this imperative sentence mean?", answer: "Give me two oranges.", wrong: ["I want two oranges.", "Take two oranges.", "Show me two oranges."] },
+    { q: "Kyerɛ me wei.", prompt: "What does this imperative sentence mean?", answer: "Show me this.", wrong: ["Give me this.", "Take this.", "I want this."] }
+];
+
+var ALL_CATEGORIES = [
+    { key: 'vocab', label: 'Items', icon: '🥬 Items', data: VOCAB_DATA },
+    { key: 'prices', label: 'Prices', icon: '💰 Prices', data: PRICE_DATA },
+    { key: 'phrases', label: 'Phrases', icon: '🗣️ Phrases', data: PHRASE_DATA },
+    { key: 'verbs', label: 'Verbs', icon: '⚡ Verbs', data: VERB_DATA }
+];
+
+var mode = 'all';
+var score = 0, streak = 0, bestStreak = 0, round = 0;
+var TOTAL_ROUNDS = 15;
+var timerInterval = null, timeLeft = 0, maxTime = 6000;
+var answered = false, currentCorrect = '';
+
+var catDescriptions = {
+    all: '15 rounds across all 4 categories — market items, prices, shopping phrases, and shopping verbs.',
+    vocab: 'Market items only — food, non-food, and market vocabulary. 15 rounds.',
+    prices: 'Prices only — cedis, pesewas, and number-to-price translation. 15 rounds.',
+    phrases: 'Shopping phrases only — bargaining, greetings, and transactions. 15 rounds.',
+    verbs: 'Shopping verbs only — tɔ, tɔn, tua, negatives, and imperatives. 15 rounds.'
+};
+
+function setMode(m) {
+    mode = m;
+    ['all','vocab','prices','phrases','verbs'].forEach(function(k, i) {
+        document.getElementById(['modeAllBtn','modeVocabBtn','modePriceBtn','modePhraseBtn','modeVerbBtn'][i]).classList.toggle('active', k === m);
+    });
+    document.getElementById('startDescription').textContent = catDescriptions[m];
+    clearInterval(timerInterval);
+    document.getElementById('startScreen').classList.remove('hidden');
+    document.getElementById('gameScreen').classList.add('hidden');
+    document.getElementById('endScreen').classList.add('hidden');
+}
+
+function startGame() {
+    score = 0; streak = 0; bestStreak = 0; round = 0; maxTime = 6000;
+    document.getElementById('startScreen').classList.add('hidden');
+    document.getElementById('endScreen').classList.add('hidden');
+    document.getElementById('gameScreen').classList.remove('hidden');
+    updateStats(); nextRound();
+}
+
+function updateStats() {
+    document.getElementById('scoreDisplay').textContent = score;
+    document.getElementById('streakDisplay').textContent = streak;
+    document.getElementById('roundDisplay').textContent = round + '/' + TOTAL_ROUNDS;
+}
+
+function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+}
+
+function getCatData() {
+    if (mode === 'all') return ALL_CATEGORIES[round % ALL_CATEGORIES.length];
+    return ALL_CATEGORIES.find(function(c) { return c.key === mode; }) || ALL_CATEGORIES[0];
+}
+
+function nextRound() {
+    round++;
+    answered = false;
+    document.getElementById('feedbackText').textContent = '';
+    document.getElementById('feedbackText').className = 'feedback-text';
+    if (round > TOTAL_ROUNDS) { endGame(); return; }
+    updateStats();
+    maxTime = Math.max(2500, 6000 - round * 200);
+    var cat = getCatData();
+    document.getElementById('categoryBadge').textContent = cat.icon;
+    var item = cat.data[Math.floor(Math.random() * cat.data.length)];
+    currentCorrect = item.answer;
+    document.getElementById('questionPrompt').textContent = item.prompt;
+    document.getElementById('questionMain').textContent = item.q;
+    document.getElementById('questionHint').textContent = item.hint || '';
+    renderOptions(shuffle([item.answer].concat(item.wrong.slice(0,3))), item.answer);
+    startTimer();
+}
+
+function renderOptions(options, correct) {
+    var grid = document.getElementById('optionsGrid');
+    grid.innerHTML = '';
+    options.forEach(function(opt) {
+        var btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt;
+        btn.onclick = function() { selectAnswer(btn, opt, correct); };
+        grid.appendChild(btn);
+    });
+}
+
+function selectAnswer(btn, selected, correct) {
+    if (answered) return;
+    answered = true;
+    clearInterval(timerInterval);
+    document.querySelectorAll('.option-btn').forEach(function(b) {
+        b.disabled = true;
+        if (b.textContent === correct) b.classList.add('correct');
+    });
+    var fb = document.getElementById('feedbackText');
+    if (selected === correct) {
+        score++; streak++;
+        bestStreak = Math.max(bestStreak, streak);
+        fb.textContent = 'Correct!';
+        fb.className = 'feedback-text correct';
+    } else {
+        streak = 0;
+        btn.classList.add('incorrect');
+        fb.textContent = 'Correct: ' + correct;
+        fb.className = 'feedback-text incorrect';
+    }
+    updateStats();
+    setTimeout(nextRound, 1100);
+}
+
+function startTimer() {
+    timeLeft = maxTime;
+    var fill = document.getElementById('timerFill');
+    fill.style.width = '100%';
+    fill.classList.remove('urgent');
+    clearInterval(timerInterval);
+    timerInterval = setInterval(function() {
+        timeLeft -= 50;
+        var pct = Math.max(0, (timeLeft / maxTime) * 100);
+        fill.style.width = pct + '%';
+        if (pct < 30) fill.classList.add('urgent');
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            if (!answered) {
+                answered = true; streak = 0;
+                var fb = document.getElementById('feedbackText');
+                fb.textContent = 'Time up! Answer: ' + currentCorrect;
+                fb.className = 'feedback-text incorrect';
+                document.querySelectorAll('.option-btn').forEach(function(b) {
+                    b.disabled = true;
+                    if (b.textContent === currentCorrect) b.classList.add('correct');
+                });
+                updateStats();
+                setTimeout(nextRound, 1300);
+            }
+        }
+    }, 50);
+}
+
+function endGame() {
+    clearInterval(timerInterval);
+    document.getElementById('gameScreen').classList.add('hidden');
+    document.getElementById('endScreen').classList.remove('hidden');
+    document.getElementById('finalScore').textContent = score + '/' + TOTAL_ROUNDS;
+    document.getElementById('finalStreak').textContent = 'Best streak: ' + bestStreak;
+    var pct = score / TOTAL_ROUNDS;
+    document.getElementById('endMessage').textContent =
+        pct >= 0.9 ? 'Excellent! You are ready for any Ghanaian market!' :
+        pct >= 0.7 ? 'Great work! Nearly there — try one category to drill further.' :
+        pct >= 0.5 ? 'Good effort! Pick a single category and practise more.' :
+        'Keep going — review the lesson and try again!';
+}
+</script>
+</body>
+</html>
